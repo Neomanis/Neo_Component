@@ -1,6 +1,6 @@
 {
   "name": "neo-component",
-  "version": "1.0.6",
+  "version": "0.1.1",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -21,6 +21,8 @@
     "@storybook/react": "^6.3.10",
     "@tailwindcss/postcss7-compat": "^2.2.16",
     "@types/react": "^17.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
@@ -32,6 +34,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.2",
     "postcss": "^8.3.9",
     "prettier": "^2.4.1",
@@ -52,6 +55,12 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "yarn checkHusky && start-storybook -p 6006",
+    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn testNoWatch\" && npx husky add .husky/pre-push \"yarn build\"",
+    "lint": "eslint . --ext .tsx",
+    "lint:fix": "eslint --fix",
+    "prettier": "prettier --check **.tsx **.ts **.js",
+    "prettier:fix": "prettier --write **.tsx **.ts **.js",
+    "checkHusky": "node checkIfHuskyExists.ts"
   }
 }
