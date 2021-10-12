@@ -1,6 +1,6 @@
 {
   "name": "neo_lib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -12,6 +12,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@storybook/react": "^6.3.10",
