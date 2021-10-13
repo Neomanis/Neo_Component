@@ -1,7 +1,7 @@
 import React from "react";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { ComponentStory, Meta } from "@storybook/react";
-import { IconTicketCategorie, Tooltip } from "../../";
+import { IconTicketCategorie, Tooltip } from "../..";
 
 export default {
     title: "Atoms/Tooltip",

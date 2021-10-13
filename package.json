@@ -8,7 +8,7 @@
   ],
   "license": "MIT",
   "publishConfig": {
-    "registry": "http://localhost:4873"
+    "registry": "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^21.0.0",
+    "@storybook/addon-essentials": "^6.3.11",
     "tailwindcss": "yarn:@tailwindcss/postcss7-compat"
   },
   "peerDependencies": {
@@ -55,7 +56,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "storybook": "yarn checkHusky && start-storybook -p 6006",
+    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public",
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn testNoWatch\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { Icon } from "../../";
+import { Icon } from "../..";
 
 /**import icon for fontawesome */
 

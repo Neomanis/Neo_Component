@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import IconTicketCategorie from "../../../components/atoms/ticket/iconTicketCategorie";
+import { IconTicketCategorie } from "../../..";
 
 export default {
     title: "Atoms/Ticket/IconTicketCategorie",

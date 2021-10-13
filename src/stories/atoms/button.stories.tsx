@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { Button } from "../../";
+import { Button } from "../..";
 import { faWind } from "@fortawesome/free-solid-svg-icons";
 
 export default {

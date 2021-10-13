@@ -1,1 +1,1 @@
-export { Button, Icon, Tooltip, IconTicketCategorie } from "./components/atoms";
+export * from "./components/atoms";
