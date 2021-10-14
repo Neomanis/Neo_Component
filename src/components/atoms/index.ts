@@ -20,6 +20,7 @@ import InputSelect from "./input/inputSelect";
 import InputSimpleSelect from "./input/inputSimpleSelect";
 import InputTextarea from "./input/inputTextarea";
 import LinkComp from "./link";
+import NavItem from "./navItem";
 import Pill from "./pill";
 import RequesterInfo from "./ticket/requesterInfo";
 import SwitchToggle from "./switchToggle";
@@ -52,6 +53,7 @@ export {
     InputSimpleSelect,
     InputTextarea,
     LinkComp,
+    NavItem,
     Pill,
     RequesterInfo,
     SwitchToggle,
