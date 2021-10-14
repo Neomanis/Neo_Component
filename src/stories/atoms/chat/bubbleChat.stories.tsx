@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof BubbleChat> = (args) => {
     return (
-        <div className="p-4 flex items-center w-1/4">
+        <div className="p-4 flex items-center w-1/4 bg-neo_blue">
             <BubbleChat {...args} />
         </div>
     );
@@ -17,16 +17,16 @@ const Template: ComponentStory<typeof BubbleChat> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    name: "Stest Supervisor",
+    name: "Alexei Stukov",
     date: "2020-09-28",
-    content: 'content msg "Hello NeoBotlltlgtrlgrtel zgrlte glrelzg relz lrglrleglrel grle lgrel lgregrleglrelgrle !"',
+    content: "I am more monster than man.",
     bgColor: "bg-neo_blue-modal",
 };
 
 export const Bot = Template.bind({});
 Bot.args = {
-    name: "BOT",
+    name: "Glados ",
     date: "2020-09-28",
-    content: 'content msg "Hello NeoBotlltlgtrlgrtel zgrlte glrelzg relz lrglrleglrel grle lgrel lgregrleglrelgrle !"',
+    content: "I've been really busy being dead. You know, after you MURDERED ME.",
     border: true,
 };
