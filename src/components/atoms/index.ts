@@ -11,6 +11,7 @@ import IconOutageCategorie from "./outage/iconOutageCategorie";
 import IconTicketCategorie from "./ticket/iconTicketCategorie";
 import Input from "./input/input";
 import InputChoice from "./input/inputChoice";
+import InputDateTime from "./input/inputDateTime";
 import InputFile from "./input/inputFile";
 import InputMultipleSelect from "./input/inputMultipleSelect";
 import InputSelect from "./input/inputSelect";
@@ -38,6 +39,7 @@ export {
     IconTicketCategorie,
     Input,
     InputChoice,
+    InputDateTime,
     InputFile,
     InputMultipleSelect,
     InputSelect,

@@ -1958,7 +1958,7 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rollup/pluginutils@^4.1.0":
+"@rollup/pluginutils@^4.1.0", "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.1.1.tgz#1d4da86dd4eded15656a57d933fda2b9a08d47ec"
   integrity sha512-clDjivHqWGXi7u+0d2r2sBi4Ie6VLEAzWMIkvJLnDmxoOhBYOTfzGbOQBA32THHm11/LiJbd01tJUpJsbshSWQ==
@@ -4786,6 +4786,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 clean-css@^4.2.3:
   version "4.2.3"
@@ -9540,6 +9545,18 @@ react-colorful@^5.1.2:
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.5.0.tgz#8359f218984a927095477a190ab9927eaf865c0c"
   integrity sha512-BuzrlrM0ylg7coPkXOrRqlf2BgHLw5L44sybbr9Lg4xy7w9e5N7fGYbojOO0s8J0nvrM3PERN2rVFkvSa24lnQ==
 
+react-datepicker@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.2.1.tgz#72caf5055bc7c4eb0279c1f6d7624ded053edc4c"
+  integrity sha512-0gcvHMnX8rS1fV90PjjsB7MQdsWNU77JeVHf6bbwK9HnFxgwjVflTx40ebKmHV+leqe+f+FgUP9Nvqbe5RGyfA==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    classnames "^2.2.6"
+    date-fns "^2.0.1"
+    prop-types "^15.7.2"
+    react-onclickoutside "^6.10.0"
+    react-popper "^2.2.5"
+
 react-dev-utils@^11.0.3:
   version "11.0.4"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.4.tgz#a7ccb60257a1ca2e0efe7a83e38e6700d17aa37a"
@@ -9665,6 +9682,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-onclickoutside@^6.10.0:
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.12.0.tgz#c63db2e3c2c852b288160cdb6cff443604e28db4"
+  integrity sha512-oPlOTYcISLHfpMog2lUZMFSbqOs4LFcA4+vo7fpfevB5v9Z0D5VBDBkfeO5lv+hpEcGoaGk67braLT+QT+eICA==
 
 react-popper-tooltip@^3.1.1:
   version "3.1.1"
@@ -10057,6 +10079,13 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rollup-plugin-import-css@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-import-css/-/rollup-plugin-import-css-3.0.2.tgz#7b718aba264b08cff1f171a83fbf0a1b36ad47ca"
+  integrity sha512-4Y/U5EMQHomMlYSF0OBOo/XJSgfou+iHMfBOqneaX5Cp5BCyQn1YrUtXC6KYEPHPxTadC+oXhrTCr9yzRN2DyA==
+  dependencies:
+    "@rollup/pluginutils" "^4.1.1"
 
 rollup-plugin-peer-deps-external@^2.2.4:
   version "2.2.4"
