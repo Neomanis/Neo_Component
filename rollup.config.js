@@ -2,6 +2,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-import-css";
+import image from "@rollup/plugin-image";
 import typescript from "rollup-plugin-typescript2";
 import packageJson from "./package.json";
 
@@ -19,5 +20,12 @@ export default {
             sourcemap: true,
         },
     ],
-    plugins: [peerDepsExternal(), css(), resolve(), commonjs(), typescript({ useTsconfigDeclarationDir: true })],
+    plugins: [
+        peerDepsExternal(),
+        css(),
+        image(),
+        resolve(),
+        commonjs(),
+        typescript({ useTsconfigDeclarationDir: true }),
+    ],
 };

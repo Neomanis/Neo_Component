@@ -9,6 +9,7 @@ import HexaPill from "./hexaPill";
 import Icon from "./icon";
 import IconOutageCategorie from "./outage/iconOutageCategorie";
 import IconTicketCategorie from "./ticket/iconTicketCategorie";
+import Img from "./img";
 import Input from "./input/input";
 import InputChoice from "./input/inputChoice";
 import InputDateShift from "./input/inputDateShift";
@@ -38,6 +39,7 @@ export {
     Icon,
     IconOutageCategorie,
     IconTicketCategorie,
+    Img,
     Input,
     InputChoice,
     InputDateShift,
