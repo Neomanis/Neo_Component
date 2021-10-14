@@ -22,6 +22,8 @@
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@storybook/addon-essentials": "^6.3.11",
     "@storybook/react": "^6.3.10",
+    "@svgr/rollup": "^5.5.0",
+    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/postcss7-compat": "^2.2.16",
     "@types/react": "^17.0.28",
     "@types/react-datepicker": "^4.1.7",

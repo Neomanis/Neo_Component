@@ -4,6 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-import-css";
 import image from "@rollup/plugin-image";
 import typescript from "rollup-plugin-typescript2";
+import svgr from "@svgr/rollup";
 import packageJson from "./package.json";
 
 export default {
@@ -22,6 +23,7 @@ export default {
     ],
     plugins: [
         peerDepsExternal(),
+        svgr(),
         css(),
         image(),
         resolve(),
