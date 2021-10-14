@@ -19,7 +19,9 @@ import InputMultipleSelect from "./input/inputMultipleSelect";
 import InputSelect from "./input/inputSelect";
 import InputSimpleSelect from "./input/inputSimpleSelect";
 import InputTextarea from "./input/inputTextarea";
+import LinkComp from "./link";
 import Pill from "./pill";
+import RequesterInfo from "./ticket/requesterInfo";
 import SwitchToggle from "./switchToggle";
 import Tab from "./tabs/tab";
 import Tabs from "./tabs/tabs";
@@ -49,7 +51,9 @@ export {
     InputSelect,
     InputSimpleSelect,
     InputTextarea,
+    LinkComp,
     Pill,
+    RequesterInfo,
     SwitchToggle,
     Tab,
     Tabs,
