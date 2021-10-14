@@ -1,6 +1,6 @@
 {
-  "name": "neo-component",
-  "version": "0.1.1",
+  "name": "@neomanis/neo-component",
+  "version": "0.1.3",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -17,7 +17,9 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
+    "@storybook/addon-essentials": "^6.3.11",
     "@storybook/react": "^6.3.10",
     "@tailwindcss/postcss7-compat": "^2.2.16",
     "@types/react": "^17.0.28",
@@ -47,8 +49,8 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@rollup/plugin-commonjs": "^21.0.0",
-    "@storybook/addon-essentials": "^6.3.11",
+    "@ckeditor/ckeditor5-build-classic": "^30.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.3",
     "date-fns": "^2.25.0",
     "react-hook-form": "^7.17.3",
     "tailwindcss": "yarn:@tailwindcss/postcss7-compat"

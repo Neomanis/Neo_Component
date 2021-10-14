@@ -1,12 +1,8 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { IInputSelect } from "../../../interface";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
-
-interface IInputSelect {
-    id?: number;
-    value?: string;
-}
 
 interface Props {
     data: Array<IInputSelect>;
