@@ -42,7 +42,7 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
             );
         default:
             return (
-                <div className={`${className} flex items-center justify-center} onClick={fCallBack`}>
+                <div className={`${className} flex items-center justify-center`} onClick={fCallBack}>
                     <FontAwesomeIcon icon={fontIcon} />
                 </div>
             );
