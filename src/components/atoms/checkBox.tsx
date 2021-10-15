@@ -1,24 +1,24 @@
 import React, { ReactElement, ChangeEvent } from "react";
 
 interface Props {
+    checked?: boolean;
     data?: string;
     fCallBack?: (e: ChangeEvent<HTMLInputElement>) => void;
-    checked?: boolean;
     name?: string;
     testId?: string;
 }
 
-const Checkbox = ({ data, fCallBack, checked, name, testId }: Props): ReactElement => {
+const Checkbox = ({ checked, data, fCallBack, name, testId }: Props): ReactElement => {
     return (
         <>
             <input
-                id={name}
-                type="checkbox"
-                name={name}
                 checked={checked}
-                onChange={fCallBack}
                 className="cursor-pointer"
                 data-testid={testId}
+                id={name}
+                name={name}
+                onChange={fCallBack}
+                type="checkbox"
             />
             <label htmlFor={name} className="mx-2 cursor-pointer">
                 {data}

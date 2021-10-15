@@ -2,11 +2,12 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { faGhost } from "@fortawesome/free-solid-svg-icons";
 import { Route, BrowserRouter as Router } from "react-router-dom";
+
 import { NavItem } from "../..";
 
 export default {
-    title: "Atoms/NavItem",
     component: NavItem,
+    title: "Atoms/NavItem",
 } as Meta;
 
 const Template: ComponentStory<typeof NavItem> = (args) => {
@@ -23,6 +24,6 @@ const Template: ComponentStory<typeof NavItem> = (args) => {
 
 export const navItemDefault = Template.bind({});
 navItemDefault.args = {
-    path: "/",
     icon: faGhost,
+    path: "/",
 };

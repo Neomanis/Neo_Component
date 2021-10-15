@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { InputChoice } from "../../..";
 
 export default {
-    title: "Atoms/Input/InputChoice",
     component: InputChoice,
+    title: "Atoms/Input/InputChoice",
 } as Meta;
 
 const Template: ComponentStory<typeof InputChoice> = (args) => <InputChoice {...args} />;

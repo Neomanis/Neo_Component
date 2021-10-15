@@ -1,18 +1,16 @@
 import React, { ReactElement, ReactNode } from "react";
-
-//IMPORT REACT ROUTER
 import { Link, NavLink } from "react-router-dom";
 
 interface Props {
-    children: ReactNode | string;
-    href: string;
-    className?: string;
     activeClassName?: string;
-    type: "router" | "nav" | string;
+    children: ReactNode | string;
+    className?: string;
     fCallBack?: () => void;
+    href: string;
+    type: "router" | "nav" | string;
 }
 
-const LinkComp = ({ type, className, href, children, activeClassName }: Props): ReactElement => {
+const LinkComp = ({ activeClassName, children, className, href, type }: Props): ReactElement => {
     switch (type) {
         case "router":
             return (

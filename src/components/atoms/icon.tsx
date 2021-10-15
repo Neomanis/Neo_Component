@@ -1,18 +1,16 @@
 import React, { ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-//add a import from FontAwesome if you want a new icon
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-    fontIcon: IconProp;
-    fCallBack?: () => void;
-    type?: string;
     className?: string;
+    fCallBack?: () => void;
+    fontIcon: IconProp;
+    type?: string;
 }
 
-const Icon = ({ fCallBack, fontIcon, type, className }: Props): ReactElement => {
+const Icon = ({ className, fCallBack, fontIcon, type }: Props): ReactElement => {
     switch (type) {
         case "iconLink":
             return (
@@ -27,8 +25,8 @@ const Icon = ({ fCallBack, fontIcon, type, className }: Props): ReactElement => 
             return (
                 <div className="p-4 text-neo_black-black_0 text-4xl">
                     <FontAwesomeIcon
-                        icon={fontIcon}
                         className="pointer-events-none w-6 h-6 absolute top-12 opacity-50 transform -translate-y-1/2 left-3"
+                        icon={fontIcon}
                     />
                 </div>
             );

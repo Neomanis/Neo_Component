@@ -2,35 +2,35 @@ import React, { ReactElement, useEffect } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 interface Props {
+    className?: string;
     data: { label: string; value: string }[];
     defaultValue?: string;
     label?: string;
-    className?: string;
     labelClassName?: string;
+    onChangeCallBack?: (e: string) => void;
     optionClassName?: string;
+    placeholder?: string;
     refForm?: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     selectClassName?: string;
     setValue?: UseFormSetValue<FieldValues>;
-    onChangeCallBack?: (e: string) => void;
-    placeholder?: string;
 }
 
 const InputSimpleSelect = ({
+    className,
     data,
     defaultValue,
     label,
-    className,
     labelClassName,
+    onChangeCallBack,
     optionClassName,
+    placeholder,
     refForm,
     register,
     required,
-    setValue,
     selectClassName,
-    onChangeCallBack,
-    placeholder,
+    setValue,
 }: Props): ReactElement => {
     const inputRegister =
         refForm &&

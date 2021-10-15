@@ -1,17 +1,17 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { InputSimpleSelect } from "../../..";
 
 export default {
-    title: "Atoms/Input/InputSimpleSelect",
     component: InputSimpleSelect,
+    title: "Atoms/Input/InputSimpleSelect",
 } as Meta;
 
 const Template: ComponentStory<typeof InputSimpleSelect> = (args) => <InputSimpleSelect {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    refForm: "exemple",
     data: [
         {
             label: "exemple1",
@@ -22,4 +22,5 @@ Default.args = {
             value: "2",
         },
     ],
+    refForm: "exemple",
 };

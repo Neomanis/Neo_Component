@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useRef, ChangeEvent, useReducer } from "react";
-import { IInputSelect } from "../../../interface";
-
+import { UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { IInputSelect } from "../../../interface";
 import Dot from "../dot";
-import { UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
 import inputReducer from "../../utils/reducers/inputReducer";
 
 interface Props {
@@ -45,9 +45,9 @@ const InputMultipleSelect = ({
         isCooldown: false,
         isSuccess: false,
         previous: defaultItems,
-        updated: defaultItems,
         timeoutId: undefined,
         trigger: false,
+        updated: defaultItems,
     });
 
     const selectInput = useRef<HTMLSelectElement>(null);
@@ -150,14 +150,12 @@ const InputMultipleSelect = ({
                 <div className="mx-3 mt-2 w-6">
                     {(isError || state.isCancelable || state.isSuccess) && (
                         <Dot
-                            isError={isError}
                             errorMessage={errorMessage}
-                            positionClassname={dotPosition}
                             isCancelable={state.isCancelable}
                             isCooldown={state.isCooldown}
+                            isError={isError}
                             isSuccess={state.isSuccess}
                             isUpdateField={isUpdateField}
-                            trigger={state.trigger}
                             onClickCallback={(): void => {
                                 if (state.timeoutId) {
                                     clearTimeout(state.timeoutId);
@@ -167,6 +165,8 @@ const InputMultipleSelect = ({
                                     selectInput.current.value = "-1";
                                 }
                             }}
+                            positionClassname={dotPosition}
+                            trigger={state.trigger}
                         />
                     )}
                 </div>
@@ -176,15 +176,13 @@ const InputMultipleSelect = ({
                     const value = items.find((item) => id === item.id);
                     return (
                         <div
-                            key={key}
                             className="flex bg-neo_blue my-1 rounded justify-between"
+                            key={key}
                             style={{ width: "87%" }}
                         >
                             <p className="m-2 text-white">{value?.value}</p>
                             <button
                                 className="m-2 text-neo_red"
-                                type="button"
-                                value={value?.id}
                                 onClick={(): void => {
                                     if (state.timeoutId) {
                                         clearTimeout(state.timeoutId);
@@ -200,6 +198,8 @@ const InputMultipleSelect = ({
                                         selectInput.current.value = "-1";
                                     }
                                 }}
+                                type="button"
+                                value={value?.id}
                             >
                                 <FontAwesomeIcon icon={faTrashAlt} />
                             </button>

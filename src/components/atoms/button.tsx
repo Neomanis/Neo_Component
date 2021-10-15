@@ -1,30 +1,31 @@
 import React, { ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 interface Props {
     className?: string;
     data?: string;
     disabled?: boolean;
+    fCallback?: () => void;
     fontIcon?: IconProp;
     iconClassName?: string;
+    svg?: ReactElement;
     svgClassName?: string;
     testId?: string;
     type?: "button" | "submit" | "reset";
-    fCallback?: () => void;
-    svg?: ReactElement;
 }
 
 const Button = ({
     className,
     data,
     disabled,
+    fCallback,
     fontIcon,
     iconClassName,
-    testId,
-    type = "button",
-    fCallback,
     svg,
     svgClassName,
+    testId,
+    type = "button",
 }: Props): ReactElement => {
     return (
         <button type={type} className={className} onClick={fCallback} data-testid={testId} disabled={disabled}>

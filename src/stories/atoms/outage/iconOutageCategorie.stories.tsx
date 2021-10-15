@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { IconOutageCategorie } from "../../..";
 
 export default {
-    title: "Atoms/Outage/IconOutageCategorie",
     component: IconOutageCategorie,
+    title: "Atoms/Outage/IconOutageCategorie",
 } as Meta;
 
 const Template: ComponentStory<typeof IconOutageCategorie> = (args) => <IconOutageCategorie {...args} />;

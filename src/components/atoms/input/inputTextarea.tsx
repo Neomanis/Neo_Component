@@ -1,51 +1,52 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 
 interface Props {
-    placeholder?: string;
-    required?: boolean;
+    defaultValue?: string;
+    dotPosition?: string;
+    errorMessage?: string;
+    isError?: boolean;
+    isUpdateField?: boolean;
     label?: string;
+    onChangeCallBack?: () => void;
+    placeholder?: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
+    required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
-    defaultValue?: string;
-    isError?: boolean;
-    errorMessage?: string;
-    isUpdateField?: boolean;
-    dotPosition?: string;
-    onChangeCallBack?: () => void;
-    updateFunction?: (refForm: string, value: string) => void;
-    timerSetting?: number;
     targetId?: number | undefined;
+    timerSetting?: number;
+    updateFunction?: (refForm: string, value: string) => void;
 }
 
 const InputTextarea = ({
-    placeholder,
-    required,
+    defaultValue,
+    dotPosition,
+    errorMessage,
+    isError,
+    isUpdateField = false,
     label,
+    onChangeCallBack,
+    placeholder,
     refForm,
     register,
+    required,
     setValue,
-    defaultValue,
-    isError,
-    errorMessage,
-    isUpdateField = false,
-    dotPosition,
-    onChangeCallBack,
-    updateFunction,
-    timerSetting = 5000,
     targetId,
+    timerSetting = 5000,
+    updateFunction,
 }: Props): ReactElement => {
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
         isSuccess: false,
         previous: defaultValue,
-        updated: defaultValue,
         timeoutId: undefined,
         trigger: false,
+        updated: defaultValue,
     });
     const isLastMount = useRef(false);
 
@@ -86,10 +87,17 @@ const InputTextarea = ({
             <label className="w-full h-full">
                 <div className="text-sm font-bold mr-2 mb-4">{label}</div>
                 <textarea
-                    className="w-full h-5/6 bg-neo_blue rounded border-2 border-neo_blue-light px-2 py-1 "
-                    placeholder={placeholder}
                     {...(register && register(refForm, { required }))}
+                    className="w-full h-5/6 bg-neo_blue rounded border-2 border-neo_blue-light px-2 py-1 "
                     defaultValue={defaultValue}
+                    onBlur={(e): void => {
+                        if (isUpdateField && state.previous !== e.target.value && !isError) {
+                            dispatch({ type: "UPDATING", payload: e.target.value });
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                        }
+                    }}
                     onChange={(e): void => {
                         onChangeCallBack && onChangeCallBack();
                         inputRegister && inputRegister.onChange(e);
@@ -104,14 +112,7 @@ const InputTextarea = ({
                             }
                         }
                     }}
-                    onBlur={(e): void => {
-                        if (isUpdateField && state.previous !== e.target.value && !isError) {
-                            dispatch({ type: "UPDATING", payload: e.target.value });
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                        }
-                    }}
+                    placeholder={placeholder}
                 ></textarea>
             </label>
             <div className="w-5">
@@ -120,11 +121,9 @@ const InputTextarea = ({
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
+                        isError={isError}
                         isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
-                        isError={isError}
-                        positionClassname={dotPosition}
-                        trigger={state.trigger}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);
@@ -134,6 +133,8 @@ const InputTextarea = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
+                        positionClassname={dotPosition}
+                        trigger={state.trigger}
                     />
                 )}
             </div>

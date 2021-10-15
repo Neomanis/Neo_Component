@@ -4,28 +4,28 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Link from "./link";
 
 interface Props {
-    path: string;
-    icon?: IconProp;
-    svg?: ReactElement;
-    linkClassName?: string;
     activeLinkClassName?: string;
+    icon?: IconProp;
     iconClassName?: string;
+    linkClassName?: string;
+    path: string;
+    svg?: ReactElement;
 }
 
 const NavItem = ({
-    path,
-    icon,
-    svg,
-    linkClassName = "",
-    iconClassName = "",
     activeLinkClassName = "",
+    icon,
+    iconClassName = "",
+    linkClassName = "",
+    path,
+    svg,
 }: Props): ReactElement => {
     return (
         <Link
-            href={path}
-            type="nav"
             activeClassName={`${activeLinkClassName} bg-neo_blue-blue_sky rounded-b-md h-full border-neo_blue`}
             className={`${linkClassName} flex justify-center items-center h-full ml-8 w-16`}
+            href={path}
+            type="nav"
         >
             {icon && <Icon fontIcon={icon} className={`${iconClassName} text-neo_lite hover:text-6xl text-5xl`} />}
             {svg && svg}

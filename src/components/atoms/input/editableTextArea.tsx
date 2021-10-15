@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
-import Dot from "../dot";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import inputReducer from "../../utils/reducers/inputReducer";
+import Dot from "../dot";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -18,7 +19,6 @@ interface Props {
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
     timerSetting?: number;
-    fCallBackOnChange?: (data: string) => void;
     updateFunction?: (refForm: string, value: string) => void;
 }
 
@@ -28,14 +28,14 @@ const EditableTextarea = ({
     dotPosition,
     errorMessage,
     isError,
-    timerSetting = 5000,
+    isUpdateField = false,
     refForm,
-    updateFunction,
-    setValue,
     register,
     required,
-    isUpdateField = false,
+    setValue,
     targetId,
+    timerSetting = 5000,
+    updateFunction,
 }: Props): ReactElement => {
     const toolbarConfig = [
         "heading",
@@ -61,9 +61,9 @@ const EditableTextarea = ({
         isCooldown: false,
         isSuccess: false,
         previous: getHTMLValue(defaultValue),
-        updated: getHTMLValue(defaultValue),
         timeoutId: undefined,
         trigger: false,
+        updated: getHTMLValue(defaultValue),
     });
 
     const [key, setKey] = useState(0);
@@ -117,11 +117,20 @@ const EditableTextarea = ({
     return (
         <div className="flex" style={{ width: "85%" }} key={key}>
             <CKEditor
-                id="editor"
-                editor={ClassicEditor}
-                data={state.updated as string}
                 config={{
                     toolbar: toolbarConfig,
+                }}
+                data={state.updated as string}
+                editor={ClassicEditor}
+                id="editor"
+                onBlur={(e, editor): void => {
+                    const data = editor.getData();
+                    if (isUpdateField && state.previous !== data && !isError) {
+                        dispatch({ type: "UPDATING", payload: data });
+                        if (state.timeoutId) {
+                            clearTimeout(state.timeoutId);
+                        }
+                    }
                 }}
                 onChange={(event, editor): void => {
                     const data = editor.getData();
@@ -137,27 +146,16 @@ const EditableTextarea = ({
                         }
                     }
                 }}
-                onBlur={(e, editor): void => {
-                    const data = editor.getData();
-                    if (isUpdateField && state.previous !== data && !isError) {
-                        dispatch({ type: "UPDATING", payload: data });
-                        if (state.timeoutId) {
-                            clearTimeout(state.timeoutId);
-                        }
-                    }
-                }}
             />
             <div className="w-5 mx-3 mt-2">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
-                        positionClassname={dotPosition}
+                        errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
-                        isSuccess={state.isSuccess}
                         isError={isError}
+                        isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
-                        errorMessage={errorMessage}
-                        trigger={state.trigger}
                         onClickCallback={(): void => {
                             if (setValue && clearErrors) {
                                 setValue(refForm, state.previous);
@@ -168,6 +166,8 @@ const EditableTextarea = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
+                        positionClassname={dotPosition}
+                        trigger={state.trigger}
                     />
                 )}
             </div>

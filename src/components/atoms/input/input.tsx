@@ -1,11 +1,13 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
     defaultValue?: string;
+    disabled?: boolean;
     dotPosition?: string;
     errorMessage?: string;
     inputClassName?: string;
@@ -13,6 +15,7 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
+    onChangeCallBack?: () => void;
     pattern?: string;
     placeholder?: string;
     refForm: string;
@@ -20,17 +23,15 @@ interface Props {
     required: boolean;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
-    typeInput: string;
     timerSetting?: number;
-    value?: string;
-    onChangeCallBack?: () => void;
+    typeInput: string;
     updateFunction?: (refForm: string, value: string) => void;
-    disabled?: boolean;
 }
 
 const Input = ({
     clearErrors,
     defaultValue,
+    disabled,
     dotPosition,
     errorMessage,
     inputClassName,
@@ -38,6 +39,7 @@ const Input = ({
     isUpdateField = false,
     label,
     labelClassName,
+    onChangeCallBack,
     pattern,
     placeholder,
     refForm,
@@ -47,18 +49,16 @@ const Input = ({
     targetId,
     timerSetting = 5000,
     typeInput,
-    onChangeCallBack,
     updateFunction,
-    disabled,
 }: Props): ReactElement => {
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
         isSuccess: false,
         previous: defaultValue,
-        updated: defaultValue,
         timeoutId: undefined,
         trigger: false,
+        updated: defaultValue,
     });
 
     const isLastMount = useRef(false);
@@ -101,13 +101,18 @@ const Input = ({
             <label className="w-full flex justify-center">
                 {label}
                 <input
-                    disabled={disabled}
                     {...inputRegister}
                     className={`${inputClassName}`}
                     defaultValue={defaultValue}
-                    pattern={pattern}
-                    placeholder={placeholder}
-                    type={typeInput}
+                    disabled={disabled}
+                    onBlur={(e): void => {
+                        if (isUpdateField && state.previous !== e.target.value && !isError) {
+                            dispatch({ type: "UPDATING", payload: e.target.value });
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                        }
+                    }}
                     onChange={(e): void => {
                         onChangeCallBack && onChangeCallBack();
                         inputRegister && inputRegister.onChange(e);
@@ -122,27 +127,20 @@ const Input = ({
                             }
                         }
                     }}
-                    onBlur={(e): void => {
-                        if (isUpdateField && state.previous !== e.target.value && !isError) {
-                            dispatch({ type: "UPDATING", payload: e.target.value });
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                        }
-                    }}
+                    pattern={pattern}
+                    placeholder={placeholder}
+                    type={typeInput}
                 />
             </label>
             <div className="w-5 absolute -right-4">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
-                        positionClassname={dotPosition}
+                        errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
-                        isSuccess={state.isSuccess}
                         isError={isError}
+                        isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
-                        errorMessage={errorMessage}
-                        trigger={state.trigger}
                         onClickCallback={(): void => {
                             if (setValue && clearErrors) {
                                 setValue(refForm, state.previous);
@@ -153,6 +151,8 @@ const Input = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
+                        positionClassname={dotPosition}
+                        trigger={state.trigger}
                     />
                 )}
             </div>

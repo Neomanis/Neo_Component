@@ -5,32 +5,31 @@ import InputDateTime from "./inputDateTime";
 import InputSelect from "./inputSelect";
 
 interface Props {
-    register: UseFormRegister<FieldValues>;
-    setValue?: UseFormSetValue<FieldValues>;
-    getValues: UseFormGetValues<FieldValues>;
-    refForm: string;
-    required: boolean;
-    tabProps: Array<{ id: number; value: string }>;
-    label: string;
     date: Date;
     isUpdateField?: boolean;
-    updateFunction?: (refForm: string, value: string) => void;
+    getValues: UseFormGetValues<FieldValues>;
+    label: string;
     maxDate?: Date;
     minDate?: Date;
+    refForm: string;
+    register: UseFormRegister<FieldValues>;
+    setValue?: UseFormSetValue<FieldValues>;
+    tabProps: Array<{ id: number; value: string }>;
+    updateFunction?: (refForm: string, value: string) => void;
 }
 
 const InputDateShift = ({
-    register,
-    setValue,
-    getValues,
-    tabProps,
-    label,
     date,
-    refForm,
     isUpdateField = false,
-    updateFunction,
+    getValues,
+    label,
     maxDate,
     minDate,
+    refForm,
+    register,
+    setValue,
+    tabProps,
+    updateFunction,
 }: Props): ReactElement => {
     const [dateShift, setDateShift] = useState(date);
     const [dateAdd, setDateAdd] = useState<Date | null>();
@@ -55,34 +54,34 @@ const InputDateShift = ({
             <div className="w-1/2 flex justify-between">
                 <InputDateTime
                     defaultValue={dateShift}
-                    label={label}
-                    refForm={refForm}
-                    register={register}
-                    setValue={setValue}
-                    targetId={Math.round(dateShift.getTime() / 1000)}
                     fCallBack={(data) => {
                         setDateAdd(data);
                         setValue && setValue("select-" + refForm, -1);
                     }}
                     isUpdateField={isUpdateField}
-                    updateFunction={updateFunction}
+                    label={label}
                     maxDate={maxDate}
                     minDate={minDate}
+                    refForm={refForm}
+                    register={register}
+                    setValue={setValue}
+                    targetId={Math.round(dateShift.getTime() / 1000)}
+                    updateFunction={updateFunction}
                 />
             </div>
             <div className="w-1/2">
                 <InputSelect
                     data={tabProps}
-                    setStateValue={(value) => updateDate(value)}
-                    refForm={"select-" + refForm}
                     defaultValue={-1}
-                    setValue={setValue}
+                    isUpdateField={isUpdateField}
+                    refForm={"select-" + refForm}
                     register={register}
+                    setStateValue={(value) => updateDate(value)}
+                    setValue={setValue}
                     targetId={
                         Math.round(dateAdd ? dateAdd.getTime() / 1000 : 0) ||
                         Math.round(date ? date.getTime() / 1000 : 0)
                     }
-                    isUpdateField={isUpdateField}
                     updateFunction={() => updateFunction && updateFunction(refForm, getValues(refForm))}
                 />
             </div>

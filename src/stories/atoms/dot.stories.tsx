@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { Dot } from "../..";
 
 export default {
-    title: "Atoms/Dot",
     component: Dot,
+    title: "Atoms/Dot",
 } as Meta;
 
 const Template: ComponentStory<typeof Dot> = (args) => {
@@ -16,37 +18,33 @@ const Template: ComponentStory<typeof Dot> = (args) => {
 };
 export const Animation = Template.bind({});
 Animation.args = {
-    isSuccess: false,
-    isCooldown: true,
     isCancelable: true,
-    trigger: true,
-    // eslint-disable-next-line no-console
+    isCooldown: true,
+    isSuccess: false,
     onClickCallback: () => console.log("ok"),
+    trigger: true,
 };
 
 export const Success = Template.bind({});
 Success.args = {
     isCooldown: false,
     isSuccess: true,
-    positionClassname: "",
-    // eslint-disable-next-line no-console
     onClickCallback: () => console.log("ok"),
+    positionClassname: "",
 };
 export const CoolDown = Template.bind({});
 CoolDown.args = {
-    isSuccess: false,
     isCancelable: true,
-    positionClassname: "",
-    // eslint-disable-next-line no-console
+    isSuccess: false,
     onClickCallback: () => console.log("ok"),
+    positionClassname: "",
 };
 export const Error = Template.bind({});
 Error.args = {
     errorMessage: "errorExemple",
-    isSuccess: false,
     isCancelable: false,
     isError: true,
-    positionClassname: "",
-    // eslint-disable-next-line no-console
+    isSuccess: false,
     onClickCallback: () => console.log("ok"),
+    positionClassname: "",
 };

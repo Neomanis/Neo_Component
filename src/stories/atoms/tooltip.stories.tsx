@@ -1,11 +1,12 @@
 import React from "react";
-import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { ComponentStory, Meta } from "@storybook/react";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { IconTicketCategorie, Tooltip } from "../..";
 
 export default {
-    title: "Atoms/Tooltip",
     component: Tooltip,
+    title: "Atoms/Tooltip",
 } as Meta;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => {
@@ -18,30 +19,30 @@ const Template: ComponentStory<typeof Tooltip> = (args) => {
 
 export const tooltipIconDefault = Template.bind({});
 tooltipIconDefault.args = {
+    className: "",
     data: "data test",
     fontIcon: faExclamationCircle,
-    className: "",
 };
 
 export const tooltipIconTop = Template.bind({});
 tooltipIconTop.args = {
-    position: "top",
+    className: "",
     data: "data test",
     fontIcon: faExclamationCircle,
-    className: "",
+    position: "top",
 };
 
 export const tooltipComponentDefault = Template.bind({});
 tooltipComponentDefault.args = {
-    data: "data test",
-    component: <IconTicketCategorie />,
     className: "",
+    component: <IconTicketCategorie />,
+    data: "data test",
 };
 
 export const tooltipComponentTop = Template.bind({});
 tooltipComponentTop.args = {
-    position: "top",
-    data: "data test",
-    component: <IconTicketCategorie />,
     className: "",
+    component: <IconTicketCategorie />,
+    data: "data test",
+    position: "top",
 };

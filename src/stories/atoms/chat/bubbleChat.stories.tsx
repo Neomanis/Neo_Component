@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { BubbleChat } from "../../..";
 
 export default {
-    title: "Atoms/Chat/BubbleChat",
     component: BubbleChat,
+    title: "Atoms/Chat/BubbleChat",
 } as Meta;
 
 const Template: ComponentStory<typeof BubbleChat> = (args) => {
@@ -17,16 +18,16 @@ const Template: ComponentStory<typeof BubbleChat> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    name: "Alexei Stukov",
-    date: "2020-09-28",
-    content: "I am more monster than man.",
     bgColor: "bg-neo_blue-modal",
+    content: "I am more monster than man.",
+    date: "2020-09-28",
+    name: "Alexei Stukov",
 };
 
 export const Bot = Template.bind({});
 Bot.args = {
-    name: "Glados ",
-    date: "2020-09-28",
-    content: "I've been really busy being dead. You know, after you MURDERED ME.",
     border: true,
+    content: "I've been really busy being dead. You know, after you MURDERED ME.",
+    date: "2020-09-28",
+    name: "Glados ",
 };

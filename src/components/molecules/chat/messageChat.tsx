@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
-import { BubbleChat } from "../../atoms";
-import Img from "../../atoms/img";
+
+import { BubbleChat, Img } from "../../atoms";
 interface Props {
     content: string;
     date: string;
@@ -8,17 +8,17 @@ interface Props {
     name: string;
 }
 
-const MessageChat = ({ name, isMe, date, content }: Props): ReactElement => {
+const MessageChat = ({ content, date, isMe, name }: Props): ReactElement => {
     return (
         <div className={`${isMe && " flex-row-reverse"} w-full flex items-start`}>
             <Img type="imgProfile" className={"rounded-full w-11"} />
             <div className="ml-3">
                 <BubbleChat
-                    content={content}
-                    name={name}
-                    date={date}
                     bgColor={isMe ? "bg-neo_blue" : ""}
                     border={!isMe}
+                    content={content}
+                    date={date}
+                    name={name}
                 />
             </div>
         </div>

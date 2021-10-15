@@ -1,21 +1,18 @@
+/* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import ChatCard from "../../../components/molecules/chat/chatCard";
+
+import { ChatCard } from "../../..";
 
 export default {
-    title: "Molecules/Chat/ChatCard",
     component: ChatCard,
+    title: "Molecules/Chat/ChatCard",
 } as Meta;
 
 const Template: ComponentStory<typeof ChatCard> = (args) => <ChatCard {...args} />;
 
 export const Dropdown = Template.bind({});
 Dropdown.args = {
-    // eslint-disable-next-line no-console
-    fCallBack: () => console.log("ok"),
-    type: "dropdown",
-    message: "Please choose a category",
-    placeholder: "Select a category ...",
     datas: [
         {
             label: "Network",
@@ -30,15 +27,14 @@ Dropdown.args = {
             value: "telephony",
         },
     ],
+    fCallBack: () => console.log("ok"),
+    message: "Please choose a category",
+    placeholder: "Select a category ...",
+    type: "dropdown",
 };
 
 export const SingleChoice = Template.bind({});
 SingleChoice.args = {
-    // eslint-disable-next-line no-console
-    fCallBack: () => console.log("ok"),
-    type: "single-choice",
-    message: "Please choose one of the following option",
-    placeholder: "Select ...",
     datas: [
         {
             label: "Network",
@@ -57,4 +53,8 @@ SingleChoice.args = {
             value: "System",
         },
     ],
+    fCallBack: () => console.log("ok"),
+    message: "Please choose one of the following option",
+    placeholder: "Select ...",
+    type: "single-choice",
 };

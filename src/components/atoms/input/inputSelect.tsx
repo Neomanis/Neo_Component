@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+
 import { IInputSelect } from "../../../interface";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
@@ -15,15 +16,14 @@ interface Props {
     label?: string;
     labelClassName?: string;
     optionClassName?: string;
-    placeholder?: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     selectClassName?: string;
+    setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
     timerSetting?: number;
-    setStateValue?: (value: number) => void;
     updateFunction?: (field: string, value: number) => void;
 }
 
@@ -41,11 +41,11 @@ const InputSelect = ({
     refForm,
     register,
     required,
+    selectClassName,
+    setStateValue,
     setValue,
     targetId,
-    selectClassName,
     timerSetting = 5000,
-    setStateValue,
     updateFunction,
 }: Props): ReactElement => {
     const [state, dispatch] = useReducer(inputReducer, {
@@ -53,9 +53,9 @@ const InputSelect = ({
         isCooldown: false,
         isSuccess: false,
         previous: defaultValue,
-        updated: defaultValue,
         timeoutId: undefined,
         trigger: false,
+        updated: defaultValue,
     });
 
     const isLastMount = useRef(false);
@@ -106,10 +106,9 @@ const InputSelect = ({
                     <div className={`text-neo_blue-light text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>
                 )}
                 <select
+                    {...inputSelectRegister}
                     className={`w-full bg-neo_blue p-2 rounded truncate ${selectClassName}`}
                     id={id}
-                    value={state.updated as number}
-                    {...inputSelectRegister}
                     onChange={(e): void => {
                         inputSelectRegister?.onChange(e);
                         if (isUpdateField) {
@@ -129,6 +128,7 @@ const InputSelect = ({
                             clearTimeout(state.timeoutId);
                         }
                     }}
+                    value={state.updated as number}
                 >
                     {defaultValue === -1 && (
                         <option className={`${optionClassName}`} value={-1} key={-1}>
@@ -147,14 +147,12 @@ const InputSelect = ({
             <div className="mx-3 w-9">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
-                        positionClassname={dotPosition}
+                        errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
-                        isSuccess={state.isSuccess}
                         isError={isError}
-                        errorMessage={errorMessage}
+                        isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
-                        trigger={state.trigger}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);
@@ -167,6 +165,8 @@ const InputSelect = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
+                        positionClassname={dotPosition}
+                        trigger={state.trigger}
                     />
                 )}
             </div>

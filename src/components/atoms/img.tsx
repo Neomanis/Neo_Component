@@ -4,16 +4,16 @@ import React, { ReactElement } from "react";
 import ImgUserdefault from "../../img/defaultUserPicture.jpg";
 
 interface Props {
+    className?: string;
     data?: {
-        src?: string;
         alt?: string;
         height?: number;
+        src?: string;
     };
     type: string;
-    className?: string;
 }
 
-const Img = ({ data, type, className }: Props): ReactElement => {
+const Img = ({ className, data, type }: Props): ReactElement => {
     switch (type) {
         case "logoImg":
             return <img className={className} src={data?.src} alt={data?.alt} />;

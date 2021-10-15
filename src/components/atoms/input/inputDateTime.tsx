@@ -3,12 +3,14 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 interface Props {
-    errorMessage?: string;
     defaultValue: Date;
     dotPosition?: string;
+    errorMessage?: string;
+    fCallBack?: (date: Date | null) => void;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
@@ -24,13 +26,13 @@ interface Props {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    fCallBack?: (date: Date | null) => void;
 }
 
 const InputDateTime = ({
-    errorMessage,
     defaultValue,
     dotPosition,
+    errorMessage,
+    fCallBack,
     isError,
     isUpdateField = false,
     label,
@@ -45,7 +47,6 @@ const InputDateTime = ({
     targetId,
     timerSetting = 5000,
     updateFunction,
-    fCallBack,
 }: Props): ReactElement => {
     const [startDate, setStartDate] = useState<Date | null>(defaultValue);
     const [state, dispatch] = useReducer(inputReducer, {
@@ -53,9 +54,9 @@ const InputDateTime = ({
         isCooldown: false,
         isSuccess: false,
         previous: defaultValue,
-        updated: defaultValue,
         timeoutId: undefined,
         trigger: false,
+        updated: defaultValue,
     });
 
     const isLastMount = useRef(false);

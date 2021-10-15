@@ -3,8 +3,8 @@ import { ComponentStory, Meta } from "@storybook/react";
 import { InputChat } from "../../..";
 
 export default {
-    title: "Molecules/Chat/InputChat",
     component: InputChat,
+    title: "Molecules/Chat/InputChat",
 } as Meta;
 
 const Template: ComponentStory<typeof InputChat> = (args) => {

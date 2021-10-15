@@ -3,8 +3,8 @@ import { ComponentStory, Meta } from "@storybook/react";
 import { MessageChat } from "../../..";
 
 export default {
-    title: "Molecules/Chat/MessageChat",
     component: MessageChat,
+    title: "Molecules/Chat/MessageChat",
 } as Meta;
 
 const Template: ComponentStory<typeof MessageChat> = (args) => {
@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof MessageChat> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    date: "12:12",
     content: "BURN BABY BURN!",
+    date: "12:12",
     name: "Ragnaros The Firelord",
 };

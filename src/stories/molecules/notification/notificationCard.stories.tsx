@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { NotificationCard } from "../../..";
 
 export default {
-    title: "Molecules/Notification/NotificationCard",
     component: NotificationCard,
+    title: "Molecules/Notification/NotificationCard",
 } as Meta;
 
 const Template: ComponentStory<typeof NotificationCard> = (args) => {
@@ -18,12 +19,12 @@ const Template: ComponentStory<typeof NotificationCard> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    read: false,
     content: "Where is Ryan ?",
     date: "2021-09-05 10:58:24",
-    notificationId: 1,
-    userUid: "21",
+    fDeleteNotification: () => console.log("hello"),
     fInitialRender: () => console.log("hello"),
     fReadNotification: () => console.log("hello"),
-    fDeleteNotification: () => console.log("hello"),
+    notificationId: 1,
+    read: false,
+    userUid: "21",
 };

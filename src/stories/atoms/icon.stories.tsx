@@ -1,14 +1,12 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { Icon } from "../..";
-
-/**import icon for fontawesome */
-
 import { faCog, faBell } from "@fortawesome/free-solid-svg-icons";
 
+import { Icon } from "../..";
+
 export default {
-    title: "Atoms/Icon",
     component: Icon,
+    title: "Atoms/Icon",
 } as Meta;
 
 const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
@@ -29,8 +27,8 @@ iconPlaceholderInput.args = {
 };
 export const iconNotification = Template.bind({});
 iconNotification.args = {
-    fontIcon: faBell,
-    type: "iconWithRedDot",
     // eslint-disable-next-line no-console
     fCallBack: () => true,
+    fontIcon: faBell,
+    type: "iconWithRedDot",
 };

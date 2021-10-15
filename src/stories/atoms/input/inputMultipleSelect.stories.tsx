@@ -1,17 +1,17 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { InputMultipleSelect } from "../../..";
 
 export default {
-    title: "Atoms/Input/InputMultipleSelect",
     component: InputMultipleSelect,
+    title: "Atoms/Input/InputMultipleSelect",
 } as Meta;
 
 const Template: ComponentStory<typeof InputMultipleSelect> = (args) => <InputMultipleSelect {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    refForm: "exemple",
     items: [
         {
             id: 1,
@@ -22,4 +22,5 @@ Default.args = {
             value: "exemple2",
         },
     ],
+    refForm: "exemple",
 };

@@ -1,22 +1,23 @@
 import React, { ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-//Icon categories
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
-import { faServer } from "@fortawesome/free-solid-svg-icons";
-import { faPrint } from "@fortawesome/free-solid-svg-icons";
-import { faPhoneSlash } from "@fortawesome/free-solid-svg-icons";
-import { faTools } from "@fortawesome/free-solid-svg-icons";
-import { faUserCog } from "@fortawesome/free-solid-svg-icons";
+import {
+    faDesktop,
+    faUser,
+    faNetworkWired,
+    faServer,
+    faPrint,
+    faPhoneSlash,
+    faTools,
+    faUserCog,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-    id?: number;
     className?: string;
+    id?: number;
 }
 
-const IconTicketCategorie = ({ id, className }: Props): ReactElement => {
+const IconTicketCategorie = ({ className, id }: Props): ReactElement => {
     switch (id) {
         case 1: //Utilisateur > Réseau
             return <FontAwesomeIcon icon={faUserCog} className={className} />;

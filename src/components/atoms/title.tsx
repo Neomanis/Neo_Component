@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 
 interface Props {
+    className?: string;
     data?: string;
     type: string;
-    className?: string;
 }
 
-const Title = ({ data, type, className }: Props): ReactElement => {
+const Title = ({ className, data, type }: Props): ReactElement => {
     switch (type) {
         case "h1":
             return <h1 className={`niveauGrotesk ${className}`}>{data}</h1>;

@@ -1,17 +1,18 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import React, { ReactElement, useState } from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 import Icon from "./icon";
 
 interface Props {
-    fontIcon?: IconProp;
-    fontIconClassName?: string;
+    className?: string;
     component?: ReactElement;
     data: string;
+    fontIcon?: IconProp;
+    fontIconClassName?: string;
     position?: string;
-    className?: string;
 }
 
-const Tooltip = ({ fontIcon, component, data, position, className, fontIconClassName }: Props): ReactElement => {
+const Tooltip = ({ className, component, data, fontIcon, fontIconClassName, position }: Props): ReactElement => {
     const [showTooltip, setShowTooltip] = useState(false);
 
     switch (position) {

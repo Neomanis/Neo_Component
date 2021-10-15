@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { IconTicketCategorie } from "../../..";
 
 export default {
-    title: "Atoms/Ticket/IconTicketCategorie",
     component: IconTicketCategorie,
+    title: "Atoms/Ticket/IconTicketCategorie",
 } as Meta;
 
 const Template: ComponentStory<typeof IconTicketCategorie> = (args) => <IconTicketCategorie {...args} />;

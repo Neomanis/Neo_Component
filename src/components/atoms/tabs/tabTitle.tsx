@@ -1,14 +1,15 @@
 import React, { ReactElement } from "react";
+
 import Button from "../button";
 
 type Props = {
-    title: string;
     index: number;
-    selectedTab: number;
     handleSelectedTab: (index: number) => void;
+    selectedTab: number;
+    title: string;
 };
 
-const TabTitle = ({ title, handleSelectedTab, index, selectedTab }: Props): ReactElement => {
+const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: Props): ReactElement => {
     return (
         <li
             className={`mr-4 cursor-pointer border-b-2 

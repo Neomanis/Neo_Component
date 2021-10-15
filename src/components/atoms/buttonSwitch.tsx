@@ -1,40 +1,39 @@
+import React, { ReactElement, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ReactElement, useState } from "react";
 
 interface Props {
     activeClassName?: string;
-    inactiveClassName?: string;
-    activeIconClassName?: string;
-    inactiveIconClassName?: string;
     activeData?: string;
-    inactiveData?: string;
-    disabled?: boolean;
     activeFontIcon?: IconProp;
+    activeIconClassName?: string;
+    disabled?: boolean;
+    fCallback?: (data: boolean) => void;
+    inactiveClassName?: string;
+    inactiveData?: string;
     inactiveFontIcon?: IconProp;
+    inactiveIconClassName?: string;
     testId?: string;
     type?: "button" | "submit" | "reset";
-    fCallback?: (data: boolean) => void;
 }
 
 const ButtonSwitch = ({
     activeClassName,
-    inactiveClassName,
-    activeIconClassName,
-    inactiveIconClassName,
     activeData,
-    inactiveData,
+    activeFontIcon,
+    activeIconClassName,
     disabled,
     fCallback,
-    activeFontIcon,
+    inactiveClassName,
+    inactiveData,
     inactiveFontIcon,
+    inactiveIconClassName,
     testId,
     type = "button",
 }: Props): ReactElement => {
     const [isActive, setIsActive] = useState(false);
     return (
         <button
-            type={type}
             className={`flex items-center justify-center
             ${isActive ? activeClassName : inactiveClassName}
             rounded-lg`}
@@ -42,8 +41,9 @@ const ButtonSwitch = ({
                 setIsActive(!isActive);
                 fCallback && fCallback(isActive);
             }}
-            disabled={disabled}
             data-testid={testId}
+            disabled={disabled}
+            type={type}
         >
             {isActive ? <div className="px-2">{activeData}</div> : <div className="px-2">{inactiveData}</div>}
             {activeFontIcon && inactiveFontIcon && (

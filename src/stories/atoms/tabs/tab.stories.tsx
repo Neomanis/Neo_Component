@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { Tab } from "../../..";
 
 export default {
-    title: "Atoms/Tabs/Tab",
     component: Tab,
+    title: "Atoms/Tabs/Tab",
 } as Meta;
 
 const Template: ComponentStory<typeof Tab> = (args) => {

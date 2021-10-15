@@ -1,12 +1,12 @@
 import React, { ReactElement, useState } from "react";
 
 interface Props {
+    defaultStatus: boolean;
     fCallBack?: () => void;
     value: string;
-    defaultStatus: boolean;
 }
 
-const SwitchToggle = ({ fCallBack, defaultStatus, value }: Props): ReactElement => {
+const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement => {
     const [checked, setChecked] = useState(defaultStatus);
 
     function toggleSwitch(): void {
@@ -20,25 +20,25 @@ const SwitchToggle = ({ fCallBack, defaultStatus, value }: Props): ReactElement 
         <div className="flex items-center">
             <div className="relative w-10 inline-block mr-2">
                 <input
-                    type="checkbox"
-                    name="toggle"
-                    id="toggle"
+                    checked={checked}
                     className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear ${
                         checked && "translate-x-full bg-white"
                     }`}
-                    checked={checked}
+                    id="toggle"
+                    name="toggle"
                     onChange={(): void => {
                         toggleSwitch();
                     }}
+                    type="checkbox"
                 />
                 <label
-                    htmlFor="toggle"
                     className={`block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer duration-150 ease-linear ${
                         checked && "bg-green-400"
                     }`}
+                    htmlFor="toggle"
                 ></label>
             </div>
-            <label htmlFor="toggle" className="text-xs text-gray-700 cursor-pointer">
+            <label className="text-xs text-gray-700 cursor-pointer" htmlFor="toggle">
                 {value}
             </label>
         </div>

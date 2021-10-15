@@ -1,11 +1,10 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { ButtonSwitch } from "../..";
 import { faWind, faAd } from "@fortawesome/free-solid-svg-icons";
 
+import { ButtonSwitch } from "../..";
+
 export default {
-    title: "Atoms/ButtonSwitch",
-    component: ButtonSwitch,
     argTypes: {
         testId: {
             name: "testId",
@@ -27,22 +26,24 @@ export default {
             },
         },
     },
+    component: ButtonSwitch,
+    title: "Atoms/ButtonSwitch",
 } as Meta;
 
 const Template: ComponentStory<typeof ButtonSwitch> = (args) => <ButtonSwitch {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    testId: "testId",
-    type: "button",
     activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500",
-    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500",
-    activeIconClassName: "",
-    inactiveIconClassName: "",
     activeData: "active",
-    inactiveData: "inactive",
     activeFontIcon: faWind,
-    inactiveFontIcon: faAd,
+    activeIconClassName: "",
     // eslint-disable-next-line no-console
     fCallback: () => console.log("click ! "),
+    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500",
+    inactiveData: "inactive",
+    inactiveFontIcon: faAd,
+    inactiveIconClassName: "",
+    testId: "testId",
+    type: "button",
 };

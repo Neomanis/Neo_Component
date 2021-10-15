@@ -1,18 +1,15 @@
 import React, { ReactElement } from "react";
-import InputChoice from "../../atoms/input/inputChoice";
-import InputSimpleSelect from "../../atoms/input/inputSimpleSelect";
-
-import Title from "../../atoms/title";
+import { Title, InputSimpleSelect, InputChoice } from "../../atoms";
 
 interface Props {
-    fCallBack: (data: { text: string; value: string }) => void;
     datas: { label: string; value: string }[];
-    placeholder: string;
+    fCallBack: (data: { text: string; value: string }) => void;
     message: string;
+    placeholder: string;
     type: string;
 }
 
-const ChatCard = ({ fCallBack, datas, placeholder, message, type }: Props): ReactElement => {
+const ChatCard = ({ datas, fCallBack, message, placeholder, type }: Props): ReactElement => {
     let option;
     switch (type) {
         case "dropdown":
@@ -20,17 +17,17 @@ const ChatCard = ({ fCallBack, datas, placeholder, message, type }: Props): Reac
                 <>
                     <Title className={"text-white"} type="h3" data={message} />
                     <InputSimpleSelect
-                        data={datas}
-                        optionClassName={""}
                         className={"mt-2"}
-                        selectClassName={"text-white border-2"}
-                        placeholder={placeholder}
+                        data={datas}
                         onChangeCallBack={(data) =>
                             fCallBack({
                                 value: data,
                                 text: datas.find((option) => option.value === data)?.label,
                             })
                         }
+                        optionClassName={""}
+                        placeholder={placeholder}
+                        selectClassName={"text-white border-2"}
                     />
                 </>
             );
@@ -40,6 +37,7 @@ const ChatCard = ({ fCallBack, datas, placeholder, message, type }: Props): Reac
                 <>
                     <Title className={"text-white"} type="h3" data={message} />
                     <InputChoice
+                        className={"my-1"}
                         data={datas}
                         fCallBack={(data) =>
                             fCallBack({
@@ -47,7 +45,6 @@ const ChatCard = ({ fCallBack, datas, placeholder, message, type }: Props): Reac
                                 text: datas.find((choice) => choice.value === data)?.label,
                             })
                         }
-                        className={"my-1"}
                     />
                 </>
             );

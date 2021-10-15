@@ -1,14 +1,14 @@
 import React, { ReactElement } from "react";
 
 interface Props {
-    name: string;
-    id?: string;
-    required?: boolean;
-    label?: string;
     accept?: string;
+    id?: string;
+    label?: string;
+    name: string;
+    required?: boolean;
 }
 
-const InputFile = ({ accept, name, required, id, label }: Props): ReactElement => {
+const InputFile = ({ accept, id, label, name, required }: Props): ReactElement => {
     return (
         <label className="">
             {label}

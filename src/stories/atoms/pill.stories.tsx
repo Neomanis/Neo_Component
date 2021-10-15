@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import { Pill } from "../..";
 
 export default {
-    title: "Atoms/Pill",
     component: Pill,
+    title: "Atoms/Pill",
 } as Meta;
 
 const Template: ComponentStory<typeof Pill> = (args) => {
@@ -17,6 +18,6 @@ const Template: ComponentStory<typeof Pill> = (args) => {
 
 export const pillDefault = Template.bind({});
 pillDefault.args = {
-    data: "17",
     className: "",
+    data: "17",
 };

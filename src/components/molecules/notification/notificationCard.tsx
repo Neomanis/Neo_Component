@@ -1,28 +1,29 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { ReactComponent as CloseLogo } from "../../../img/svg/nm_ico_close.svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import Icon from "../../atoms/icon";
+
+import { ReactComponent as CloseLogo } from "../../../img/svg/nm_ico_close.svg";
+import { Icon } from "../../atoms";
 
 interface Props {
-    fInitialRender: () => void;
-    date: string;
     content: string;
-    read: boolean;
-    notificationId: number;
-    userUid: string;
-    fReadNotification: (notificationId: number, userUid: string) => void;
+    date: string;
     fDeleteNotification: (notificationId: number, userUid: string) => void;
+    fInitialRender: () => void;
+    fReadNotification: (notificationId: number, userUid: string) => void;
+    notificationId: number;
+    read: boolean;
+    userUid: string;
 }
 
 const NotificationCard = ({
-    fInitialRender,
-    date,
     content,
-    read,
-    notificationId,
-    userUid,
+    date,
     fDeleteNotification,
+    fInitialRender,
     fReadNotification,
+    notificationId,
+    read,
+    userUid,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
 

@@ -1,13 +1,14 @@
 import React, { ReactElement } from "react";
+
 import Img from "../img";
 
 interface Props {
-    type?: string;
     isGroup: boolean;
     requester?: { name: string };
+    type?: string;
 }
 
-const RequesterInfo = ({ isGroup, type, requester }: Props): ReactElement => {
+const RequesterInfo = ({ isGroup, requester, type }: Props): ReactElement => {
     switch (type) {
         case "compactTicket":
             return (
