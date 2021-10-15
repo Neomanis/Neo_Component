@@ -12,7 +12,7 @@ const MessageChat = ({ content, date, isMe, name }: Props): ReactElement => {
     return (
         <div className={`${isMe && " flex-row-reverse"} w-full flex items-start`}>
             <Img type="imgProfile" className={"rounded-full w-11"} />
-            <div className="ml-3">
+            <div className="mx-3">
                 <BubbleChat
                     bgColor={isMe ? "bg-neo_blue" : ""}
                     border={!isMe}

@@ -28,7 +28,7 @@ Dropdown.args = {
         },
     ],
     fCallBack: () => console.log("ok"),
-    message: "Please choose a category",
+    title: "Please choose a category",
     placeholder: "Select a category ...",
     type: "dropdown",
 };
@@ -54,7 +54,7 @@ SingleChoice.args = {
         },
     ],
     fCallBack: () => console.log("ok"),
-    message: "Please choose one of the following option",
+    title: "Please choose one of the following option",
     placeholder: "Select ...",
     type: "single-choice",
 };

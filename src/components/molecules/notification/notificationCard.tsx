@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { ReactComponent as CloseLogo } from "../../../img/svg/nm_ico_close.svg";
@@ -8,7 +8,6 @@ interface Props {
     content: string;
     date: string;
     fDeleteNotification: (notificationId: number, userUid: string) => void;
-    fInitialRender: () => void;
     fReadNotification: (notificationId: number, userUid: string) => void;
     notificationId: number;
     read: boolean;
@@ -19,18 +18,12 @@ const NotificationCard = ({
     content,
     date,
     fDeleteNotification,
-    fInitialRender,
     fReadNotification,
     notificationId,
     read,
     userUid,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
-
-    useEffect(() => {
-        fInitialRender();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <div

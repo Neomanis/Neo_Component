@@ -4,18 +4,18 @@ import { Title, InputSimpleSelect, InputChoice } from "../../atoms";
 interface Props {
     datas: { label: string; value: string }[];
     fCallBack: (data: { text: string; value: string }) => void;
-    message: string;
-    placeholder: string;
+    placeholder?: string;
+    title: string;
     type: string;
 }
 
-const ChatCard = ({ datas, fCallBack, message, placeholder, type }: Props): ReactElement => {
+const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactElement => {
     let option;
     switch (type) {
         case "dropdown":
             option = (
                 <>
-                    <Title className={"text-white"} type="h3" data={message} />
+                    <Title className={"text-white"} type="h3" data={title} />
                     <InputSimpleSelect
                         className={"mt-2"}
                         data={datas}
@@ -35,7 +35,7 @@ const ChatCard = ({ datas, fCallBack, message, placeholder, type }: Props): Reac
         case "single-choice":
             option = (
                 <>
-                    <Title className={"text-white"} type="h3" data={message} />
+                    <Title className={"text-white"} type="h3" data={title} />
                     <InputChoice
                         className={"my-1"}
                         data={datas}
