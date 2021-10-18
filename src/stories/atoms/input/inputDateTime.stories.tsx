@@ -1,11 +1,17 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
+import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../..";
 
 export default {
     component: InputDateTime,
     title: "Atoms/Input/inputDateTime",
+    parameters: {
+        docs: {
+            page: InputDateTimeDoc,
+        },
+    },
 } as Meta;
 
 const Template: ComponentStory<typeof InputDateTime> = (args) => <InputDateTime {...args} />;
