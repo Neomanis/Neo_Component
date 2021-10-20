@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -20,8 +20,8 @@
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^13.0.5",
-    "@storybook/addon-essentials": "^6.3.11",
-    "@storybook/react": "^6.3.10",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@svgr/rollup": "^5.5.0",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/postcss7-compat": "^2.2.16",
@@ -67,7 +67,7 @@
   "scripts": {
     "build": "rollup -c",
     "storybook": "yarn checkHusky && start-storybook -p 6006 -s public",
-    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn testNoWatch\" && npx husky add .husky/pre-push \"yarn build\"",
+    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",

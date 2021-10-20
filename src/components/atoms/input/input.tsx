@@ -15,7 +15,9 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
-    onChangeCallBack?: () => void;
+    onBlurCallBack?: () => void;
+    onChangeCallBack?: (e: string) => void;
+    onFocusCallBack?: () => void;
     pattern?: string;
     placeholder?: string;
     refForm: string;
@@ -39,7 +41,9 @@ const Input = ({
     isUpdateField = false,
     label,
     labelClassName,
+    onBlurCallBack,
     onChangeCallBack,
+    onFocusCallBack,
     pattern,
     placeholder,
     refForm,
@@ -106,6 +110,7 @@ const Input = ({
                     defaultValue={defaultValue}
                     disabled={disabled}
                     onBlur={(e): void => {
+                        onBlurCallBack();
                         if (isUpdateField && state.previous !== e.target.value && !isError) {
                             dispatch({ type: "UPDATING", payload: e.target.value });
                             if (state.timeoutId) {
@@ -113,8 +118,9 @@ const Input = ({
                             }
                         }
                     }}
+                    onFocus={() => onFocusCallBack()}
                     onChange={(e): void => {
-                        onChangeCallBack && onChangeCallBack();
+                        onChangeCallBack && onChangeCallBack(e.target.value);
                         inputRegister && inputRegister.onChange(e);
                         if (isUpdateField) {
                             if (state.previous !== e.target.value) {
