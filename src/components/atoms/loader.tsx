@@ -8,7 +8,7 @@ interface Props {
     data?: string;
     type?: string;
 }
-const Loader = ({ type, data }: Props): ReactElement => {
+const Loader = ({ data, type }: Props): ReactElement => {
     switch (type) {
         case "circleOnly":
             return (

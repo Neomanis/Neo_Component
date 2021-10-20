@@ -15,9 +15,9 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
+    onBlurCallBack?: () => void;
     onChangeCallBack?: (e: string) => void;
     onFocusCallBack?: () => void;
-    onBlurCallBack?: () => void;
     pattern?: string;
     placeholder?: string;
     refForm: string;
@@ -41,7 +41,9 @@ const Input = ({
     isUpdateField = false,
     label,
     labelClassName,
+    onBlurCallBack,
     onChangeCallBack,
+    onFocusCallBack,
     pattern,
     placeholder,
     refForm,
@@ -52,8 +54,6 @@ const Input = ({
     timerSetting = 5000,
     typeInput,
     updateFunction,
-    onFocusCallBack,
-    onBlurCallBack,
 }: Props): ReactElement => {
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,

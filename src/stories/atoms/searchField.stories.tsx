@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof SearchField> = (args) => {
     return (
-        <div className=" bg-neo_blue-dark w-full h-56">
+        <div className="  w-full h-56">
             <form>
                 <div className="w-1/3 p-2">
                     <SearchField {...args} />
