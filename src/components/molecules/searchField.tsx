@@ -17,7 +17,7 @@ interface Props {
     setFocus?: UseFormSetFocus<FieldValues>;
 }
 
-const InputSearch = ({ placeholder, refForm, register, setValue, setFocus }: Props): ReactElement => {
+const SearchField = ({ placeholder, refForm, register, setValue, setFocus }: Props): ReactElement => {
     const [width, setWidth] = useState(32);
     const [inputFocus, setInputFocus] = useState(false);
     const [inputEmpty, setInputEmpty] = useState(true);
@@ -61,4 +61,4 @@ const InputSearch = ({ placeholder, refForm, register, setValue, setFocus }: Pro
     );
 };
 
-export default InputSearch;
+export default SearchField;
