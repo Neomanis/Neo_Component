@@ -3,5 +3,6 @@ import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
 import NotificationCard from "./notification/notificationCard";
 import SearchField from "./searchField";
+import WorkflowCard from "./notification/workflowCard";
 
-export { ChatCard, InputChat, MessageChat, NotificationCard, SearchField };
+export { ChatCard, InputChat, MessageChat, NotificationCard, SearchField, WorkflowCard };
