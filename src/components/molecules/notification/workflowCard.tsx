@@ -5,22 +5,21 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 interface Props {
     content: string;
     date: string;
-    workflowId: number;
-    userUid: string;
-    sender: string;
-    workFlowRequestText: string;
-    workFlowErrorText: string;
     fManageWorkflow: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+    sender: string;
+    workflowErrorText: string;
+    workflowId: number;
+    workflowRequestText: string;
 }
 
 const WorkflowCard = ({
     content,
     date,
-    workflowId,
     fManageWorkflow,
     sender,
-    workFlowRequestText,
-    workFlowErrorText,
+    workflowId,
+    workflowErrorText,
+    workflowRequestText,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const [isError, setIsError] = useState(false);
@@ -38,7 +37,7 @@ const WorkflowCard = ({
                     <span className="font-medium" style={{ fontSize: "1.02rem" }}>
                         {sender}{" "}
                     </span>
-                    {workFlowRequestText}
+                    {workflowRequestText}
                     <span style={{ fontSize: "1.02rem" }}> {content}</span>
                 </p>
                 <div className="flex justify-between w-full">
@@ -62,7 +61,7 @@ const WorkflowCard = ({
                 </div>
                 {isError && (
                     <div>
-                        <p className={"text-neo_orange"}>{workFlowErrorText} </p>
+                        <p className={"text-neo_orange"}>{workflowErrorText} </p>
                     </div>
                 )}
             </div>

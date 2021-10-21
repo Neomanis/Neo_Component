@@ -19,11 +19,11 @@ const Template: ComponentStory<typeof WorkflowCard> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    content: "access to Ryan.",
+    content: "access to Printer.",
     date: "2021-09-05 10:58:24",
-    workflowId: 1,
     fManageWorkflow: () => console.log("hello"),
     sender: "Toto",
-    workFlowRequestText: "request",
-    workFlowErrorText: "sorry you can't",
+    workflowId: 1,
+    workflowErrorText: "sorry you can't",
+    workflowRequestText: "request",
 };
