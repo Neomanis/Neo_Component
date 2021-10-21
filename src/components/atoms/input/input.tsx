@@ -110,7 +110,7 @@ const Input = ({
                     defaultValue={defaultValue}
                     disabled={disabled}
                     onBlur={(e): void => {
-                        onBlurCallBack();
+                        onBlurCallBack && onBlurCallBack();
                         if (isUpdateField && state.previous !== e.target.value && !isError) {
                             dispatch({ type: "UPDATING", payload: e.target.value });
                             if (state.timeoutId) {
@@ -118,7 +118,7 @@ const Input = ({
                             }
                         }
                     }}
-                    onFocus={() => onFocusCallBack()}
+                    onFocus={() => onFocusCallBack && onFocusCallBack()}
                     onChange={(e): void => {
                         onChangeCallBack && onChangeCallBack(e.target.value);
                         inputRegister && inputRegister.onChange(e);

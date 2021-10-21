@@ -19,6 +19,7 @@ import InputMultipleSelect from "./input/inputMultipleSelect";
 import InputSelect from "./input/inputSelect";
 import InputSimpleSelect from "./input/inputSimpleSelect";
 import InputTextarea from "./input/inputTextarea";
+import Loader from "./loader";
 import Pill from "./pill";
 import RequesterInfo from "./ticket/requesterInfo";
 import SwitchToggle from "./switchToggle";
@@ -50,6 +51,7 @@ export {
     InputSelect,
     InputSimpleSelect,
     InputTextarea,
+    Loader,
     Pill,
     RequesterInfo,
     SwitchToggle,

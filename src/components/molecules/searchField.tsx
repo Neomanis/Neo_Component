@@ -15,30 +15,38 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
     setFocus?: UseFormSetFocus<FieldValues>;
+    fCallBack?: () => void;
 }
 
-const SearchField = ({ placeholder, refForm, register, setValue, setFocus }: Props): ReactElement => {
+const SearchField = ({ placeholder, refForm, register, setValue, setFocus, fCallBack }: Props): ReactElement => {
     const [width, setWidth] = useState(32);
     const [inputFocus, setInputFocus] = useState(false);
     const [inputEmpty, setInputEmpty] = useState(true);
+
+    function onEscape(e: React.KeyboardEvent<HTMLDivElement>) {
+        if (e.keyCode === 27) {
+            setValue("input", "");
+            fCallBack && fCallBack();
+        }
+    }
 
     return (
         <div
             onMouseEnter={() => {
                 setTimeout(() => {
                     setFocus(refForm);
-                }, 600);
+                }, 400);
                 setWidth(200);
             }}
             onMouseLeave={() => !inputFocus && inputEmpty && setWidth(32)}
             className="flex items-center justify-between "
-            style={{ width: width + "px", transition: "0.8s linear" }}
+            style={{ width: width + "px", transition: "0.5s linear" }}
         >
             <div className=" bg-neo_blue h-8 flex items-center rounded-full overflow-hidden">
                 <div className={`${width > 32 && "animate-onSpin"} ${width < 200 && "animate-onSpinReverse"} px-2`}>
                     <Icon fontIcon={faSearch} className="text-white" />
                 </div>
-                <div className="">
+                <div onKeyDown={(e) => onEscape(e)}>
                     <Input
                         inputClassName="w-full bg-transparent text-white placeholder-white border-none focus:outline-none"
                         isUpdateField={false}
