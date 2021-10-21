@@ -25,7 +25,9 @@ const SearchField = ({ placeholder, refForm, register, setValue, setFocus, fCall
 
     function onEscape(e: React.KeyboardEvent<HTMLDivElement>) {
         if (e.keyCode === 27) {
-            setValue("input", "");
+            setValue(refForm, "");
+            setWidth(32);
+            setInputFocus(false);
             fCallBack && fCallBack();
         }
     }
