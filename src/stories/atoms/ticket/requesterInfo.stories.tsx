@@ -8,13 +8,20 @@ export default {
     title: "Atoms/Ticket/RequesterInfo",
 } as Meta;
 
-const Template: ComponentStory<typeof RequesterInfo> = (args) => <RequesterInfo {...args} />;
+const Template: ComponentStory<typeof RequesterInfo> = (args) => (
+    <div className="bg-neo_blue p-2">
+        <RequesterInfo {...args} />
+    </div>
+);
 
-export const Default = Template.bind({});
-Default.args = {};
-export const CompactTicket = Template.bind({});
-CompactTicket.args = {
+export const UserRequester = Template.bind({});
+UserRequester.args = {
+    isGroup: false,
+    requesterName: "Mario Duplantier ",
+};
+
+export const GroupRequester = Template.bind({});
+GroupRequester.args = {
     isGroup: true,
-    requester: { name: "Requester" },
-    type: "compactTicket",
+    requesterName: "Gojira",
 };
