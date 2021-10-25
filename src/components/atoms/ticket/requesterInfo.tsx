@@ -4,37 +4,26 @@ import Img from "../img";
 
 interface Props {
     isGroup: boolean;
-    requester?: { name: string };
-    type?: string;
+    requesterName: string;
 }
 
-const RequesterInfo = ({ isGroup, requester, type }: Props): ReactElement => {
-    switch (type) {
-        case "compactTicket":
-            return (
-                <div className="flex justify-items-stretch">
-                    <div className="self-center py-4 w-1/6 border-r-2 border-neo_black-black_05 text-neo_blue-light opacity-50 text-xs">
-                        {isGroup ? "GROUP " : "USER"}
-                    </div>
-                    <div className="text-xs text-white pl-4 flex ">
-                        <div>
-                            {isGroup ? (
-                                <p className="font-bold">{requester?.name}</p>
-                            ) : (
-                                <p className="font-bold">{requester?.name}</p>
-                            )}
-                            {/* <p>{user.title ? titleCase(user.title) : ""}</p> */}
-                            <p>Platypus Department</p>
-                        </div>
-                    </div>
-                    <div className="ml-auto rounded-full w-12 overflow-hidden">
-                        <Img type="imgProfil" />
-                    </div>
+const RequesterInfo = ({ isGroup, requesterName }: Props): ReactElement => {
+    return (
+        <div className="flex justify-items-stretch">
+            <div className="self-center py-4 w-1/6 border-r-2 border-neo_black-black_05 text-neo_blue-light opacity-50 text-xs">
+                {isGroup ? "GROUP " : "USER"}
+            </div>
+            <div className="text-xs text-white pl-4 flex ">
+                <div>
+                    <p className="font-bold">{requesterName}</p>
+                    <p>Platypus Department</p>
                 </div>
-            );
-        default:
-            return <div className="flex items-center justify-center">yolo</div>;
-    }
+            </div>
+            <div className="ml-auto rounded-full w-12 overflow-hidden">
+                <Img type="imgProfil" />
+            </div>
+        </div>
+    );
 };
 
 export default RequesterInfo;
