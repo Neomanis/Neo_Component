@@ -18,6 +18,10 @@ const Template: ComponentStory<typeof Hexagon> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {};
+export const DefaultIcon = Template.bind({});
+DefaultIcon.args = {
+    bgColor: "#2fa8fc",
+};
 export const Ticket = Template.bind({});
 Ticket.args = {
     isNotif: true,

@@ -6,9 +6,10 @@ interface Props {
     isSelected?: boolean;
     opacity?: string;
     type?: string;
+    strokeColor?: string;
 }
 
-const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type }: Props): ReactElement => {
+const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: Props): ReactElement => {
     function transformOpacity(): string {
         if (opacity && opacity !== "") {
             return (parseInt(opacity) / 100).toString();
@@ -94,11 +95,11 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type }: Props): ReactE
                 <svg version="1.1" viewBox="-23 -15 220 230">
                     <path
                         d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
-                        fillOpacity="0"
-                        stroke={isSelected ? bgColor : "#172f4b"}
+                        fill={bgColor && bgColor}
+                        fillOpacity={bgColor ? "1" : "0"}
                         strokeLinejoin="round"
+                        stroke={strokeColor ? (isSelected ? strokeColor : "#172f4b") : "#172f4b"}
                         strokeWidth="10"
-                        style={isNotif ? { filter: "drop-shadow(#2fa8fc 0px 0px 10px)" } : undefined}
                     ></path>
                 </svg>
             );
