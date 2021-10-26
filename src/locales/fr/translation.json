@@ -1,0 +1,158 @@
+{
+    "button": {
+        "create": "Nouveau Ticket"
+    },
+    "categories": {
+        "server": "Serveur",
+        "serverNetwork": "Serveur > Réseau",
+        "tool": "Outil",
+        "user": "Utilisateur",
+        "userNetwork": "Utilisateur > Réseau",
+        "userPrinter": "Utilisateur > Impression",
+        "userSystem": "Utilisateur > Système",
+        "userTelephony": "Utilisateur > Téléphone"
+    },
+    "configScreen": {
+        "address": "Adresse",
+        "currentConf": "Configuration actuelle"
+    },
+    "dropdown": {
+        "errorLang": "Erreur : la modification de la langue a échouée",
+        "goService": "Services"
+    },
+    "globalErrors": {
+        "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
+        "somethingWentWrong": "Une erreur s'est produite"
+    },
+    "loginScreen": {
+        "errorPartial": "Veuillez remplir les deux champs",
+        "errorSubmit": "Identifiant ou mot de passe incorrect",
+        "submitButton": "Entrer"
+    },
+    "notification": {
+        "clearAll": "Tout supprimer",
+        "empty": "Tout va bien !"
+    },
+    "outage": {
+        "empty": "Tout va bien !"
+    },
+    "resourceCategory": {
+        "Computer": "Ordinateurs",
+        "Monitor": "Écrans",
+        "Networkequipment": "Réseaux",
+        "Peripheral": "Périphériques",
+        "Phone": "Téléphones",
+        "Printer": "Imprimantes",
+        "Rack": "Baies",
+        "Software": "Logiciels"
+    },
+    "ticketForm": {
+        "actors": "Acteurs",
+        "assigned": "Assigné à",
+        "assignedGroup": "Groupe assigné",
+        "by": " par ",
+        "category": "Categorie",
+        "created": "Ticket créé le : ",
+        "errorDateTime": "Date dans le futur interdite",
+        "errorInvalidInput": "Champ invalide",
+        "errorRequired": "Champ requis",
+        "errorSubmit": "Erreur: les modifications seront perdues",
+        "impact": "Impact",
+        "info": "Informations",
+        "inputDescription": "Description",
+        "inputTitle": "Titre",
+        "openDate": "Date d'ouverture",
+        "openTime": "Heure",
+        "priority": "Priorité",
+        "requester": "Demandeur",
+        "requesterGroup": "Groupe demandeur",
+        "resources": "Ressources",
+        "source": "Source",
+        "status": "Statut",
+        "successSubmit": "Ticket créé avec succès",
+        "type": "Type",
+        "updated": "Dernière modification ",
+        "urgency": "Urgence",
+        "validation": "Validation",
+        "watcher": "Observateur",
+        "watcherGroup": "Groupe observateur"
+    },
+    "ticketModalInfo": {
+        "actions": "Actions",
+        "details": "Détails",
+        "diagnostics": "Diagnostics",
+        "entity": "ENTREPRISE",
+        "exit": "Sortie",
+        "ipRemote": "IP distante",
+        "knowledge": "Connaissance",
+        "name": "Nom",
+        "portRemote": "Port distant",
+        "similarTickets": "Tickets similaires",
+        "tools": "Outils",
+        "user": "UTILISATEUR"
+    },
+    "ticketScreen": {
+        "botReport": "Rapport de Neobot",
+        "chatHistory": "HISTORIQUE DE CHAT",
+        "deleted": "supprimé",
+        "deleteQuestion": "Supprimer ce ticket ?",
+        "display": "Afficher",
+        "errorDelete": "Erreur lors de la suppression du message",
+        "id": "Ticket",
+        "keyDetected": "MOTS-CLES",
+        "markResolved": "MARQUE COMME RESOLU",
+        "search": "Rechercher",
+        "solveQuestion": "Marqué comme résolu ?",
+        "solveTicket": "MARQUÉ COMME RÉSOLU",
+        "subjectDetected": "SUJETS",
+        "systemDiag": "DIAGNOSTIC SYSTEME",
+        "ticketFilters": {
+            "allTickets": "TOUS",
+            "ongoing": "EN COURS",
+            "pending": "EN ATTENTE"
+        }
+    },
+    "titles": {
+        "inbox": "File d'attente",
+        "inventory": "Inventaire",
+        "outage": "Maintenance",
+        "newTicket": "Nouveau Ticket",
+        "notifications": "Notifications",
+        "resourcesScreen": "Ressources",
+        "technicalEvent": "Interventions Techniques",
+        "unassigned": "Tickets non assignés",
+        "userTickets": "Mes Tickets"
+    },
+    "inputDateTime": {
+        "startAt": "Commence le",
+        "endAt": "Termine le"
+    },
+    "inputDateShift": {
+        "displayAt": "Afficher le",
+        "hideAt": "Masquer le"
+    },
+    "inputSelect": {
+        "type": "Type",
+        "severity": "Sévérité",
+        "outage": "Interruption",
+        "event": "Evènement",
+        "major": "Majeure",
+        "minor": "Mineure"
+    },
+    "inputTextArea": {
+        "content": "Description"
+    },
+    "selectShift": {
+        "1h": "1h",
+        "6h": "6h",
+        "1d": "1 jour",
+        "2d": "2 jours",
+        "3d": "3 jours"
+    },
+    "validationCard": {
+        "deleteValidation": "Supprimer cet"
+    },
+    "chat": {
+        "send": "Envoyer un message ..."
+    }
+}
