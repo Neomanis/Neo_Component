@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-image": "^2.1.1",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/react": "^6.3.12",
