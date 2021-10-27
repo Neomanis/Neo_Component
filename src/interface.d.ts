@@ -1,121 +1,70 @@
 import { ReactElement } from "react";
 
-export interface IUser {
-    uid?: string;
-    name?: { firstName?: string; lastName?: string };
-    role?: string;
-    mail?: string;
-    dn?: string;
-    title?: string;
-    token?: string;
-    glpiToken?: string;
-    glpiId?: string;
-    language: string;
-}
-
 export interface IAuthRoute {
     user: IUser;
     component: ReactElement;
     path: string;
     roles: string[];
 }
-
-export interface IService {
-    name: string;
-    url: string;
-    port: string;
+export interface ICategoryResources {
+    [x: string]: IResourceItem[];
 }
-
-export interface IStatus {
-    statusCode: number;
-    message: string;
-    name: string;
-}
-
-export interface ISessionToken {
-    sessionToken: string;
-}
-
-export interface ITicket {
+export interface IChatMessage {
     id?: number;
-    entities_id?: number;
-    name?: string;
+    itemtype?: string;
+    items_id?: number;
     date?: string;
-    closedate?: string;
-    solvedate?: string;
-    date_mod?: string;
-    users_id_lastupdater?: number;
-    status?: number;
-    users_id_recipient?: number;
-    requesttypes_id?: number;
-    content?: string;
-    urgency?: number;
-    impact?: number;
-    priority?: number;
-    itilcategories_id?: number;
-    type?: number;
-    global_validation?: number;
-    slas_id_ttr?: number;
-    slas_id_tto?: number;
-    slalevels_id_ttr?: number;
-    time_to_resolve?: string;
-    time_to_own?: string;
-    begin_waiting_date?: string;
-    sla_waiting_duration?: number;
-    ola_waiting_duration?: number;
-    olas_id_tto?: number;
-    olas_id_ttr?: number;
-    olalevels_id_ttr?: number;
-    ola_ttr_begin_date?: string;
-    internal_time_to_resolve?: string;
-    internal_time_to_own?: string;
-    waiting_duration?: number;
-    close_delay_stat?: number;
-    solve_delay_stat?: number;
-    takeintoaccount_delay_stat?: number;
-    actiontime?: number;
-    is_deleted?: number;
-    resources?: IResource[];
-    locations_id?: number;
-    validation_percent?: number;
-    date_creation?: string;
-    userRequester?: number[];
-    userWatcher?: number[];
-    userAssignedTo?: number[];
-    groupRequester?: number[];
-    groupWatcher?: number[];
-    groupAssignedTo?: number[];
-    links?: { rel?: string; href?: string }[];
-}
-
-export interface IUpdateTicket {
-    [x: string]: string | number | number[] | Partial<IResource>[];
-}
-
-export interface IInputs {
-    itilcategories_id: string;
-    description: string;
-    impact: string;
-    openning_date: string;
-    openning_time: string;
-    priority: string;
-    requesttypes_id: string;
-    status: string;
-    requester: string;
-    name: string;
-    type: string;
-    urgency: string;
-    global_validation: string;
-    watcher: string;
-    assignedTo: string;
+    users_id: number;
+    users_id_editor?: number;
     content: string;
-    date_creation: Date;
-    userRequester?: number[];
-    userWatcher?: number[];
-    userAssignedTo?: number[];
-    groupRequester?: number[];
-    groupWatcher?: number[];
-    groupAssignedTo?: number[];
+    is_private?: number;
+    requesttypes_id?: number;
+    date_mod?: string;
+    date_creation?: string;
+    timeline_position?: number;
+    sourceitems_id?: number;
+    sourceof_items_id?: number;
+}
+
+export interface IChatResponse {
+    type: string;
+    skill?: string;
+    text?: string;
+    message?: string;
+    buttonText?: string;
+    placeholderText?: string;
+    dropdownPlaceholder?: string;
+    markdown?: boolean;
+    options?: Array<{ label: string; value: string }>;
+    choices?: Array<{ label: string; value: string }>;
+    displayInKeyboard?: boolean;
+    typing?: boolean;
+}
+
+export interface IDiagnostic {
+    _id: { $oid: string };
+    ticketId: number;
+    diagnostics: Array<{
+        name: string;
+        ipRemote?: string;
+        portRemote?: number;
+        results: Array<{
+            Exit: {
+                id: number;
+                name: string;
+                type: string;
+                action: string;
+            };
+            Actions: Array<{
+                id: number;
+                description: string;
+                result: string;
+                date: {
+                    $date: string;
+                };
+            }>;
+        }>;
+    }>;
 }
 
 export interface IFormInput {
@@ -229,32 +178,24 @@ export interface IGlpiRequest {
     completename?: string;
 }
 
-export interface IInputSelect {
-    id?: number;
-    value?: string;
-}
-export interface IResponse {
-    code: number;
-    message: string;
-}
-export interface IItsmConfig {
-    address: string;
-}
-
-export interface ITicketCreate {
-    name?: string;
-    status?: number;
-    users_id_recipient?: number;
-    requesttypes_id?: number;
-    content?: string;
-    urgency?: number;
-    impact?: number;
-    priority?: number;
-    itilcategories_id?: number;
-    type?: number;
-    global_validation?: number;
-    date_creation?: string;
-    resources?: Partial<IResource>[];
+export interface IInputs {
+    itilcategories_id: string;
+    description: string;
+    impact: string;
+    openning_date: string;
+    openning_time: string;
+    priority: string;
+    requesttypes_id: string;
+    status: string;
+    requester: string;
+    name: string;
+    type: string;
+    urgency: string;
+    global_validation: string;
+    watcher: string;
+    assignedTo: string;
+    content: string;
+    date_creation: Date;
     userRequester?: number[];
     userWatcher?: number[];
     userAssignedTo?: number[];
@@ -263,8 +204,12 @@ export interface ITicketCreate {
     groupAssignedTo?: number[];
 }
 
-export interface IOpenAndUserTickets {
-    [x: string]: ITicket[];
+export interface IInputSelect {
+    id?: number;
+    value?: string;
+}
+export interface IItsmConfig {
+    address: string;
 }
 
 export interface INotification {
@@ -276,6 +221,9 @@ export interface INotification {
     read: boolean;
 }
 
+export interface IOpenAndUserTickets {
+    [x: string]: ITicket[];
+}
 export interface IOutage {
     id: number;
     title: string;
@@ -288,6 +236,16 @@ export interface IOutage {
     hideAt?: string;
 }
 
+export interface IResponse {
+    code: number;
+    message: string;
+}
+
+export interface IResource {
+    item: IResourceItem;
+    type: string;
+    tickets: Partial<ITicket>[];
+}
 export interface IResourceItem {
     id: number;
     entities_id?: number;
@@ -320,75 +278,113 @@ export interface IResourceItem {
     links?: { rel?: string; href?: string }[];
 }
 
-export interface IResource {
-    item: IResourceItem;
-    type: string;
-    tickets: Partial<ITicket>[];
-}
-
 export interface IResourcesMultipleSelect {
     resources: IInputSelect[];
     type: string;
 }
 
-export interface ICategoryResources {
-    [x: string]: IResourceItem[];
+export interface IService {
+    name: string;
+    url: string;
+    port: string;
 }
 
-export interface IChatMessage {
+export interface IStatus {
+    statusCode: number;
+    message: string;
+    name: string;
+}
+
+export interface ISessionToken {
+    sessionToken: string;
+}
+
+export interface ITicket {
     id?: number;
-    itemtype?: string;
-    items_id?: number;
+    entities_id?: number;
+    name?: string;
     date?: string;
-    users_id: number;
-    users_id_editor?: number;
-    content: string;
-    is_private?: number;
-    requesttypes_id?: number;
+    closedate?: string;
+    solvedate?: string;
     date_mod?: string;
+    users_id_lastupdater?: number;
+    status?: number;
+    users_id_recipient?: number;
+    requesttypes_id?: number;
+    content?: string;
+    urgency?: number;
+    impact?: number;
+    priority?: number;
+    itilcategories_id?: number;
+    type?: number;
+    global_validation?: number;
+    slas_id_ttr?: number;
+    slas_id_tto?: number;
+    slalevels_id_ttr?: number;
+    time_to_resolve?: string;
+    time_to_own?: string;
+    begin_waiting_date?: string;
+    sla_waiting_duration?: number;
+    ola_waiting_duration?: number;
+    olas_id_tto?: number;
+    olas_id_ttr?: number;
+    olalevels_id_ttr?: number;
+    ola_ttr_begin_date?: string;
+    internal_time_to_resolve?: string;
+    internal_time_to_own?: string;
+    waiting_duration?: number;
+    close_delay_stat?: number;
+    solve_delay_stat?: number;
+    takeintoaccount_delay_stat?: number;
+    actiontime?: number;
+    is_deleted?: number;
+    resources?: IResource[];
+    locations_id?: number;
+    validation_percent?: number;
     date_creation?: string;
-    timeline_position?: number;
-    sourceitems_id?: number;
-    sourceof_items_id?: number;
+    userRequester?: number[];
+    userWatcher?: number[];
+    userAssignedTo?: number[];
+    groupRequester?: number[];
+    groupWatcher?: number[];
+    groupAssignedTo?: number[];
+    links?: { rel?: string; href?: string }[];
+}
+export interface ITicketCreate {
+    name?: string;
+    status?: number;
+    users_id_recipient?: number;
+    requesttypes_id?: number;
+    content?: string;
+    urgency?: number;
+    impact?: number;
+    priority?: number;
+    itilcategories_id?: number;
+    type?: number;
+    global_validation?: number;
+    date_creation?: string;
+    resources?: Partial<IResource>[];
+    userRequester?: number[];
+    userWatcher?: number[];
+    userAssignedTo?: number[];
+    groupRequester?: number[];
+    groupWatcher?: number[];
+    groupAssignedTo?: number[];
 }
 
-export interface IChatResponse {
-    type: string;
-    skill?: string;
-    text?: string;
-    message?: string;
-    buttonText?: string;
-    placeholderText?: string;
-    dropdownPlaceholder?: string;
-    markdown?: boolean;
-    options?: Array<{ label: string; value: string }>;
-    choices?: Array<{ label: string; value: string }>;
-    displayInKeyboard?: boolean;
-    typing?: boolean;
+export interface IUser {
+    uid?: string;
+    name?: { firstName?: string; lastName?: string };
+    role?: string;
+    mail?: string;
+    dn?: string;
+    title?: string;
+    token?: string;
+    glpiToken?: string;
+    glpiId?: string;
+    language: string;
 }
 
-export interface IDiagnostic {
-    _id: { $oid: string };
-    ticketId: number;
-    diagnostics: Array<{
-        name: string;
-        ipRemote?: string;
-        portRemote?: number;
-        results: Array<{
-            Exit: {
-                id: number;
-                name: string;
-                type: string;
-                action: string;
-            };
-            Actions: Array<{
-                id: number;
-                description: string;
-                result: string;
-                date: {
-                    $date: string;
-                };
-            }>;
-        }>;
-    }>;
+export interface IUpdateTicket {
+    [x: string]: string | number | number[] | Partial<IResource>[];
 }
