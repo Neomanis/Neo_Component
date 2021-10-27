@@ -54,3 +54,14 @@ export interface ITicket {
     groupAssignedTo?: number[];
     links?: { rel?: string; href?: string }[];
 }
+export interface IOutage {
+    id: number;
+    title: string;
+    content: string;
+    severity: string;
+    type: string;
+    startAt: string;
+    endAt?: string;
+    displayAt: string;
+    hideAt?: string;
+}
