@@ -1,7 +1,7 @@
 import React from "react";
 import { IOutage } from "../../../interface";
 import { Title, IconOutageCategorie } from "../../atoms";
-import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
+import { getFormatedTimeToNowExtended, formatDate } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     data: IOutage;
@@ -35,7 +35,7 @@ const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
                     className="font-bold leading-tight uppercase text-sm truncate w-full"
                 />
                 <p className={`${isFolded ? "line-clamp-2" : ""} text-xs pb-2`}>{data.content}</p>
-                <p className="text-xs pb-2 ">{getFormatedTimeToNowExtended(data.startAt, languageUser)}</p>
+                <p className="text-xs py-2 ">{`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}</p>
             </div>
         </div>
     );
