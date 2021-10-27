@@ -1,14 +1,13 @@
 import React from "react";
 import { IOutage } from "../../../interface";
 import { Title, IconOutageCategorie } from "../../atoms";
-import { getFormatedTimeToNowExtended, formatDate } from "../../utils/getFormatedTimeToNow";
+import { formatDate } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     data: IOutage;
-    languageUser: string;
 }
 
-const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
+const OutageTab = ({ data }: Props): React.ReactElement => {
     const [isFolded, setIsFolded] = React.useState<boolean>(true);
     let colorOutage = data.severity === "major" ? "neo_urgency-major" : "neo_urgency";
     if (
