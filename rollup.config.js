@@ -6,6 +6,7 @@ import image from "@rollup/plugin-image";
 import typescript from "rollup-plugin-typescript2";
 import svgr from "@svgr/rollup";
 import packageJson from "./package.json";
+import json from "@rollup/plugin-json";
 
 export default {
     input: "src/index.ts",
@@ -29,5 +30,6 @@ export default {
         resolve(),
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true }),
+        json(),
     ],
 };

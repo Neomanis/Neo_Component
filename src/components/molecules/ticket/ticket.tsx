@@ -8,13 +8,16 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import { ReactComponent as TicketLogo } from "../../../img/svg/nm_ico_ticket_normal.svg";
 
+//translations
+import i18next from "i18next";
+
 interface Props {
     ticket?: ITicket;
-    labelTicket?: string;
     currentTicket?: ITicket;
-    iconBG?: IconProp;
     fOverCallBack?: (val: { ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }) => void;
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
+    iconBG?: IconProp;
+    languageUser: string;
 }
 
 const Ticket = ({
@@ -22,12 +25,12 @@ const Ticket = ({
     fOverCallBack,
     currentTicket,
     fOpenModalCurrentTicket,
-    labelTicket,
     iconBG,
+    languageUser,
 }: Props): ReactElement => {
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
     const ref = useRef<HTMLHeadingElement>(null);
-
+    const myLanguage = i18next.getFixedT(languageUser);
     //settings variable ready
 
     function onMouseEnterHandler(): void {
@@ -101,7 +104,7 @@ const Ticket = ({
                                 <IconTicketCategorie id={ticket.itilcategories_id} />
                             </div>
                             <div className="font-bold">
-                                <Title type="h3" data={labelTicket + " " + ticket.id.toString()} />
+                                <Title type="h3" data={myLanguage("ticketScreen.id") + " " + ticket.id.toString()} />
                             </div>
                         </div>
                         <div
