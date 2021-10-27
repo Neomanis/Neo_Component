@@ -1,19 +1,14 @@
 import { ReactElement } from "react";
 
-// A
-
 export interface IAuthRoute {
     user: IUser;
     component: ReactElement;
     path: string;
     roles: string[];
 }
-
-// C
 export interface ICategoryResources {
     [x: string]: IResourceItem[];
 }
-
 export interface IChatMessage {
     id?: number;
     itemtype?: string;
@@ -46,7 +41,6 @@ export interface IChatResponse {
     typing?: boolean;
 }
 
-// D
 export interface IDiagnostic {
     _id: { $oid: string };
     ticketId: number;
@@ -73,14 +67,10 @@ export interface IDiagnostic {
     }>;
 }
 
-// F
-
 export interface IFormInput {
     login: string;
     password: string;
 }
-
-// G
 
 export interface IGlpiUsers {
     api_token_date?: string;
@@ -188,7 +178,6 @@ export interface IGlpiRequest {
     completename?: string;
 }
 
-// I
 export interface IInputs {
     itilcategories_id: string;
     description: string;
@@ -223,8 +212,6 @@ export interface IItsmConfig {
     address: string;
 }
 
-// N
-
 export interface INotification {
     notification: {
         id: number;
@@ -233,8 +220,6 @@ export interface INotification {
     };
     read: boolean;
 }
-
-// O
 
 export interface IOpenAndUserTickets {
     [x: string]: ITicket[];
@@ -251,7 +236,6 @@ export interface IOutage {
     hideAt?: string;
 }
 
-// R
 export interface IResponse {
     code: number;
     message: string;
@@ -299,8 +283,6 @@ export interface IResourcesMultipleSelect {
     type: string;
 }
 
-// S
-
 export interface IService {
     name: string;
     url: string;
@@ -316,8 +298,6 @@ export interface IStatus {
 export interface ISessionToken {
     sessionToken: string;
 }
-
-// T
 
 export interface ITicket {
     id?: number;
@@ -391,8 +371,6 @@ export interface ITicketCreate {
     groupWatcher?: number[];
     groupAssignedTo?: number[];
 }
-
-// U
 
 export interface IUser {
     uid?: string;

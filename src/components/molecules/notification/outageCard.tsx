@@ -9,6 +9,7 @@ interface Props {
 }
 
 const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
+    const [isFolded, setIsFolded] = React.useState<boolean>(true);
     let colorOutage = data.severity === "major" ? "neo_urgency-major" : "neo_urgency";
     if (
         new Date(data.startAt) > new Date() ||
@@ -19,6 +20,9 @@ const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
 
     return (
         <div
+            onClick={() => {
+                setIsFolded(!isFolded);
+            }}
             className={`cursor-pointer w-full min-h-24 mb-7 bg-${colorOutage} flex items-center justify-between py-3 pl-3 rounded-md z-10`}
         >
             <div className="text-4xl flex items-center">
@@ -30,7 +34,7 @@ const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
                     type={"h4"}
                     className="font-bold leading-tight uppercase text-sm truncate w-full"
                 />
-                <p className="text-xs pb-2 ">{data.content}</p>
+                <p className={`${isFolded ? "line-clamp-2" : ""} text-xs pb-2`}>{data.content}</p>
                 <p className="text-xs pb-2 ">{getFormatedTimeToNowExtended(data.startAt, languageUser)}</p>
             </div>
         </div>
