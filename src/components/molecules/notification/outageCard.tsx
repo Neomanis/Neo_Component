@@ -5,7 +5,7 @@ import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     data: IOutage;
-    languageUser?: string;
+    languageUser: string;
 }
 
 const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
@@ -19,20 +19,19 @@ const OutageTab = ({ data, languageUser }: Props): React.ReactElement => {
 
     return (
         <div
-            className={`cursor-pointer min-h-24 mb-7 bg-${colorOutage} bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10`}
+            className={`cursor-pointer w-full min-h-24 mb-7 bg-${colorOutage} flex items-center justify-between py-3 pl-3 rounded-md z-10`}
         >
             <div className="text-4xl flex items-center">
                 <IconOutageCategorie id={data.type === "event" ? 1 : 2} />
             </div>
             <div className="text-left px-4 w-full">
-                <p className="text-xs whitespace-nowrap pb-2 ">
-                    {getFormatedTimeToNowExtended(data.startAt, languageUser)}
-                </p>
                 <Title
                     data={data.title}
                     type={"h4"}
                     className="font-bold leading-tight uppercase text-sm truncate w-full"
                 />
+                <p className="text-xs pb-2 ">{data.content}</p>
+                <p className="text-xs pb-2 ">{getFormatedTimeToNowExtended(data.startAt, languageUser)}</p>
             </div>
         </div>
     );
