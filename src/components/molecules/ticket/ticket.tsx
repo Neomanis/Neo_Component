@@ -4,7 +4,6 @@ import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import { ReactComponent as TicketLogo } from "../../../img/svg/nm_ico_ticket_normal.svg";
 
@@ -16,8 +15,8 @@ interface Props {
     currentTicket?: ITicket;
     fOverCallBack?: (val: { ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }) => void;
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
-    iconBG?: IconProp;
-    languageUser: string;
+    iconBG?: boolean;
+    languageUser?: string;
 }
 
 const Ticket = ({
@@ -30,7 +29,7 @@ const Ticket = ({
 }: Props): ReactElement => {
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
     const ref = useRef<HTMLHeadingElement>(null);
-    const myLanguage = i18next.getFixedT(languageUser);
+    const myLanguage = i18next.getFixedT(languageUser ? languageUser : "en_US");
     //settings variable ready
 
     function onMouseEnterHandler(): void {
