@@ -1,0 +1,158 @@
+{
+    "button": {
+        "create": "New Ticket"
+    },
+    "categories": {
+        "server": "Server",
+        "serverNetwork": "Server > Network",
+        "tool": "Tool",
+        "user": "User",
+        "userNetwork": "User > Network",
+        "userPrinter": "User > Printing",
+        "userSystem": "User > System",
+        "userTelephony": "User > Telephony"
+    },
+    "configScreen": {
+        "address": "Itsm address",
+        "currentConf": "Current itsm config"
+    },
+    "dropdown": {
+        "errorLang": "Error : language modification failed",
+        "goService": "Services"
+    },
+    "globalErrors": {
+        "404": "OUPSS ! PAGES NOT FOUND !",
+        "somethingWentWrong": "something went wrong"
+    },
+    "loginScreen": {
+        "errorPartial": "Both field are required",
+        "errorSubmit": "Login or password incorrect",
+        "submitButton": "Login"
+    },
+    "notification": {
+        "clearAll": "Clear all",
+        "empty": "Everything is fine !"
+    },
+    "outage": {
+        "empty": "Everything is fine !"
+    },
+    "resourceCategory": {
+        "Computer": "Computers",
+        "Monitor": "Monitors",
+        "Networkequipment": "Networks",
+        "Peripheral": "Peripherals",
+        "Phone": "Phones",
+        "Printer": "Printers",
+        "Rack": "Racks",
+        "Software": "Softwares"
+    },
+    "ticketForm": {
+        "actors": "Actors",
+        "assigned": "Assigned to",
+        "assignedGroup": "Assigned to group",
+        "by": " by ",
+        "category": "Category",
+        "created": "Create Ticket",
+        "errorDateTime": "Future date not allowed",
+        "errorInvalidInput": "invalid input",
+        "errorRequired": "required field",
+        "errorSubmit": "Error: changes will be lost",
+        "impact": "Impact",
+        "info": "Info",
+        "inputDescription": "Description",
+        "inputTitle": "Title",
+        "openDate": "Opening date",
+        "openTime": "Opening time",
+        "priority": "Priority",
+        "requester": "Requester",
+        "requesterGroup": "Requester group",
+        "resources": "Resources",
+        "source": "Request source",
+        "status": "Status",
+        "successSubmit": "Ticket successfully created",
+        "type": "Type",
+        "updated": "Last update ",
+        "urgency": "Urgency",
+        "validation": "Validation",
+        "watcher": "Watcher",
+        "watcherGroup": "Watcher group"
+    },
+    "ticketModalInfo": {
+        "actions": "Actions",
+        "details": "Details",
+        "diagnostics": "Diagnostics",
+        "entity": "ENTITY",
+        "exit": "Exit",
+        "ipRemote": "IP remote",
+        "knowledge": "Knowledge",
+        "name": "Name",
+        "portRemote": "Port remote",
+        "similarTickets": "Similar Tickets",
+        "tools": "Tools",
+        "user": "USER"
+    },
+    "ticketScreen": {
+        "botReport": "Neobot Report",
+        "chatHistory": "CHAT HISTORY",
+        "deleted": "deleted",
+        "deleteQuestion": "Delete this ticket ?",
+        "display": "Display",
+        "errorDelete": "Deletion failed",
+        "id": "Ticket",
+        "keyDetected": "DETECTED KEYWORDS",
+        "markResolved": "MARKS IT AS RESOLVED",
+        "search": "Search",
+        "solveQuestion": "Marks it as solved ?",
+        "solveTicket": "MARKS IT AS SOLVED",
+        "subjectDetected": "DETECTED SUBJECTS",
+        "systemDiag": "SYSTEM DIAGNOSTIC",
+        "ticketFilters": {
+            "allTickets": "ALL TICKETS",
+            "ongoing": "ONGOING",
+            "pending": "PENDING"
+        }
+    },
+    "titles": {
+        "inbox": "Inbox",
+        "inventory": "Inventory",
+        "outage": "Maintenance",
+        "newTicket": "New Ticket",
+        "notifications": "Notifications",
+        "resourcesScreen": "Resources",
+        "technicalEvent": "Technical events",
+        "unassigned": "Unassigned tickets",
+        "userTickets": "My tickets"
+    },
+    "inputDateTime": {
+        "startAt": "Start at",
+        "endAt": "End at"
+    },
+    "inputDateShift": {
+        "displayAt": "Display at",
+        "hideAt": "Hide at"
+    },
+    "inputSelect": {
+        "type": "Type",
+        "severity": "Severity",
+        "outage": "Outage",
+        "event": "Event",
+        "major": "Major",
+        "minor": "Minor"
+    },
+    "inputTextArea": {
+        "content": "Content"
+    },
+    "selectShift": {
+        "1h": "1h",
+        "6h": "6h",
+        "1d": "1 day",
+        "2d": "2 days",
+        "3d": "3 days"
+    },
+    "validationCard": {
+        "deleteValidation": "Delete this"
+    },
+    "chat": {
+        "send": "Send a message ..."
+    }
+}
