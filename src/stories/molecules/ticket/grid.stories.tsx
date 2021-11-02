@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { fakeTicket } from "../../fakeObject";
-import i18n from "../../../i18n";
+import { i18n } from "../../../i18n";
 import Grid from "../../../components/molecules/ticket/grid";
 
 export default {

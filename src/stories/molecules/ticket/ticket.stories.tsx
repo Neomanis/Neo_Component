@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { fakeTicket } from "../../fakeObject";
-import i18n from "../../../i18n";
+import { i18n } from "../../../i18n";
 import Ticket from "../../../components/molecules/ticket/ticket";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 
