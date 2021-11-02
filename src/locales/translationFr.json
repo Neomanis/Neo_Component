@@ -23,22 +23,48 @@
         "errorLang": "Erreur : la modification de la langue a échouée",
         "goService": "Services"
     },
+    "global": {
+        "yes": "Oui",
+        "no": "Non"
+    },
     "globalErrors": {
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
         "somethingWentWrong": "Une erreur s'est produite"
+    },
+    "inputDateShift": {
+        "displayAt": "Afficher le",
+        "hideAt": "Masquer le"
+    },
+    "inputDateTime": {
+        "endAt": "Termine le",
+        "startAt": "Commence le"
+    },
+    "inputSelect": {
+        "event": "Evènement",
+        "major": "Majeure",
+        "minor": "Mineure",
+        "outage": "Interruption",
+        "severity": "Sévérité",
+        "type": "Type"
+    },
+    "inputTextArea": {
+        "content": "Description"
     },
     "loginScreen": {
         "errorPartial": "Veuillez remplir les deux champs",
         "errorSubmit": "Identifiant ou mot de passe incorrect",
         "submitButton": "Entrer"
     },
-    "noeHelperChat": {
-        "askHelp": "Comment ça marche?",
-        "helpTitle": "Comment ça marche?",
-        "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste!",
-        "helpButton": "D'accord merci!",
-        "talkToHuman": "Je dois parler à un humain maintenant!",
-        "undoTicket": "Je me suis trompé(e), peut-on arrêter?"
+    "neoHelperChat": {
+        "askHelp": "Comment ça marche ?",
+        "helpTitle": "Comment ça marche ?",
+        "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
+        "helpButton": "D'accord merci !",
+        "modifyTicketName": "Je veux nommer mon ticket",
+        "talkToHuman": "Je veux parler à un humain maintenant !",
+        "talkToHumanResponse": "D'accord, j'escalade le ticket. Un technicien vous contactera dès que possible",
+        "undoTicket": "J'ai fait une erreur, peut-on s'arrêter là ?",
+        "validateUndo": "Êtes-vous sûr de vouloir clore le ticket ?"
     },
     "neoHelperScreen": {
         "empty": "Rien à voir ici",
@@ -61,6 +87,13 @@
         "Printer": "Imprimantes",
         "Rack": "Baies",
         "Software": "Logiciels"
+    },
+    "selectShift": {
+        "1h": "1h",
+        "6h": "6h",
+        "1d": "1 jour",
+        "2d": "2 jours",
+        "3d": "3 jours"
     },
     "ticketForm": {
         "actors": "Acteurs",
@@ -142,32 +175,6 @@
         "technicalEvent": "Interventions Techniques",
         "unassigned": "Tickets non assignés",
         "userTickets": "Mes Tickets"
-    },
-    "inputDateTime": {
-        "startAt": "Commence le",
-        "endAt": "Termine le"
-    },
-    "inputDateShift": {
-        "displayAt": "Afficher le",
-        "hideAt": "Masquer le"
-    },
-    "inputSelect": {
-        "type": "Type",
-        "severity": "Sévérité",
-        "outage": "Interruption",
-        "event": "Evènement",
-        "major": "Majeure",
-        "minor": "Mineure"
-    },
-    "inputTextArea": {
-        "content": "Description"
-    },
-    "selectShift": {
-        "1h": "1h",
-        "6h": "6h",
-        "1d": "1 jour",
-        "2d": "2 jours",
-        "3d": "3 jours"
     },
     "validationCard": {
         "deleteValidation": "Supprimer cet"
