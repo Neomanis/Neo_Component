@@ -35,7 +35,7 @@
     "noeHelperChat": {
         "askHelp": "Comment ça marche?",
         "helpTitle": "Comment ça marche?",
-        "helpText": "Neobot est une IA créée pour définir et essayer de résoudre votre problème. Parler lui comme vous parleriez à un technicien et il s'occupera du reste!",
+        "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste!",
         "helpButton": "D'accord merci!",
         "talkToHuman": "Je dois parler à un humain maintenant!",
         "undoTicket": "Je me suis trompé(e), peut-on arrêter?"
