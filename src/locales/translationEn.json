@@ -33,6 +33,14 @@
         "errorSubmit": "Login or password incorrect",
         "submitButton": "Login"
     },
+    "noeHelperChat": {
+        "askHelp": "How does it work?",
+        "helpTitle": "How does it work?",
+        "helpText": "Neobot is an AI that will define ans try to solve your problem. Talk to it as if you were talking to a technician, it will take care of the rest!",
+        "helpButton": "Ok thanks!",
+        "talkToHuman": "I need to talk to a human now!",
+        "undoTicket": "I made mistake, can we stop?"
+    },
     "neoHelperScreen": {
         "empty": "Nothing to see here",
         "title": "NeoHelper list"

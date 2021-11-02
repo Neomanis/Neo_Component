@@ -32,6 +32,14 @@
         "errorSubmit": "Identifiant ou mot de passe incorrect",
         "submitButton": "Entrer"
     },
+    "noeHelperChat": {
+        "askHelp": "Comment ça marche?",
+        "helpTitle": "Comment ça marche?",
+        "helpText": "Neobot est une IA créée pour définir et essayer de résoudre votre problème. Parler lui comme vous parleriez à un technicien et il s'occupera du reste!",
+        "helpButton": "D'accord merci!",
+        "talkToHuman": "Je dois parler à un humain maintenant!",
+        "undoTicket": "Je me suis trompé(e), peut-on arrêter?"
+    },
     "neoHelperScreen": {
         "empty": "Rien à voir ici",
         "title": "Liste des NeoHelper"
