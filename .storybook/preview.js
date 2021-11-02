@@ -1,5 +1,5 @@
 import "../src/styles/tailwind.css";
-import i18n from "../src/i18n";
+import { i18n } from "../src/i18n";
 export const parameters = {
     // viewMode: "docs",
     i18n,

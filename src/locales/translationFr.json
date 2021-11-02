@@ -12,6 +12,9 @@
         "userSystem": "Utilisateur > Système",
         "userTelephony": "Utilisateur > Téléphone"
     },
+    "chat": {
+        "send": "Envoyer un message ..."
+    },
     "configScreen": {
         "address": "Adresse",
         "currentConf": "Configuration actuelle"
@@ -29,9 +32,14 @@
         "errorSubmit": "Identifiant ou mot de passe incorrect",
         "submitButton": "Entrer"
     },
+    "neoHelperScreen": {
+        "empty": "Rien à voir ici",
+        "title": "Liste des NeoHelper"
+    },
     "notification": {
+        "title": "Notifications",
         "clearAll": "Tout supprimer",
-        "empty": "Tout va bien !"
+        "empty": "Plus de notifications !"
     },
     "outage": {
         "empty": "Tout va bien !"
@@ -113,11 +121,15 @@
         }
     },
     "titles": {
+        "dashBoard": "Accueil",
         "inbox": "File d'attente",
         "inventory": "Inventaire",
+        "iNeedHelp": "Besoin d'aide",
         "outage": "Maintenance",
         "newTicket": "Nouveau Ticket",
         "notifications": "Notifications",
+        "neobotReport": "Rapport de Neobot",
+        "latestNews": "Dernières Nouvelles",
         "resourcesScreen": "Ressources",
         "technicalEvent": "Interventions Techniques",
         "unassigned": "Tickets non assignés",
@@ -152,7 +164,9 @@
     "validationCard": {
         "deleteValidation": "Supprimer cet"
     },
-    "chat": {
-        "send": "Envoyer un message ..."
+    "workflow": {
+        "title": "Workflow requests",
+        "request": "requests",
+        "error": "request failed"
     }
 }

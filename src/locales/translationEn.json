@@ -12,6 +12,9 @@
         "userSystem": "User > System",
         "userTelephony": "User > Telephony"
     },
+    "chat": {
+        "send": "Send a message ..."
+    },
     "configScreen": {
         "address": "Itsm address",
         "currentConf": "Current itsm config"
@@ -22,16 +25,22 @@
     },
     "globalErrors": {
         "404": "OUPSS ! PAGES NOT FOUND !",
-        "somethingWentWrong": "something went wrong"
+        "somethingWentWrong": "Something went wrong",
+        "servicesUnavailable": "Services are unavailable, please wait"
     },
     "loginScreen": {
         "errorPartial": "Both field are required",
         "errorSubmit": "Login or password incorrect",
         "submitButton": "Login"
     },
+    "neoHelperScreen": {
+        "empty": "Nothing to see here",
+        "title": "NeoHelper list"
+    },
     "notification": {
+        "title": "Notifications",
         "clearAll": "Clear all",
-        "empty": "Everything is fine !"
+        "empty": "Such empty !"
     },
     "outage": {
         "empty": "Everything is fine !"
@@ -101,7 +110,6 @@
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
         "markResolved": "MARKS IT AS RESOLVED",
-        "search": "Search",
         "solveQuestion": "Marks it as solved ?",
         "solveTicket": "MARKS IT AS SOLVED",
         "subjectDetected": "DETECTED SUBJECTS",
@@ -110,14 +118,19 @@
             "allTickets": "ALL TICKETS",
             "ongoing": "ONGOING",
             "pending": "PENDING"
-        }
+        },
+        "ticketDetails": "TICKET DETAILS"
     },
     "titles": {
+        "dashBoard": "Dashboard",
         "inbox": "Inbox",
         "inventory": "Inventory",
+        "iNeedHelp": "I Need Help",
         "outage": "Maintenance",
         "newTicket": "New Ticket",
         "notifications": "Notifications",
+        "neobotReport": "Neobot Report",
+        "latestNews": "Latest News",
         "resourcesScreen": "Resources",
         "technicalEvent": "Technical events",
         "unassigned": "Unassigned tickets",
@@ -152,7 +165,9 @@
     "validationCard": {
         "deleteValidation": "Delete this"
     },
-    "chat": {
-        "send": "Send a message ..."
+    "workflow": {
+        "title": "Workflow requests",
+        "request": "requests",
+        "error": "request failed"
     }
 }
