@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-
 export interface IAuthRoute {
     user: IUser;
     component: ReactElement;
@@ -8,6 +7,10 @@ export interface IAuthRoute {
 }
 export interface ICategoryResources {
     [x: string]: IResourceItem[];
+}
+export interface IChatCardDataResponse {
+    text: string | undefined;
+    value: string | undefined;
 }
 export interface IChatMessage {
     id?: number;
@@ -24,8 +27,8 @@ export interface IChatMessage {
     timeline_position?: number;
     sourceitems_id?: number;
     sourceof_items_id?: number;
+    recipient?: string;
 }
-
 export interface IChatResponse {
     type: string;
     skill?: string;
@@ -36,13 +39,15 @@ export interface IChatResponse {
     dropdownPlaceholder?: string;
     markdown?: boolean;
     options?: Array<{ label: string; value: string }>;
-    choices?: Array<{ label: string; value: string }>;
+    choices?: Array<{ title: string; value: string }>;
     displayInKeyboard?: boolean;
     typing?: boolean;
+    ticketId?: number;
 }
-
 export interface IDiagnostic {
-    _id: { $oid: string };
+    _id: {
+        $oid: string;
+    };
     ticketId: number;
     diagnostics: Array<{
         name: string;
@@ -66,12 +71,10 @@ export interface IDiagnostic {
         }>;
     }>;
 }
-
 export interface IFormInput {
     login: string;
     password: string;
 }
-
 export interface IGlpiUsers {
     api_token_date?: string;
     auths_id?: number;
@@ -161,7 +164,6 @@ export interface IGlpiUsers {
     users_id_supervisor?: number;
     usertitles_id?: number;
 }
-
 export interface IGlpiRequest {
     id?: number;
     name?: string;
@@ -177,7 +179,6 @@ export interface IGlpiRequest {
     date_creation?: string;
     completename?: string;
 }
-
 export interface IInputs {
     itilcategories_id: string;
     description: string;
@@ -203,7 +204,6 @@ export interface IInputs {
     groupWatcher?: number[];
     groupAssignedTo?: number[];
 }
-
 export interface IInputSelect {
     id?: number;
     value?: string;
@@ -211,7 +211,6 @@ export interface IInputSelect {
 export interface IItsmConfig {
     address: string;
 }
-
 export interface INotification {
     notification: {
         id: number;
@@ -220,7 +219,6 @@ export interface INotification {
     };
     read: boolean;
 }
-
 export interface IOpenAndUserTickets {
     [x: string]: ITicket[];
 }
@@ -235,12 +233,10 @@ export interface IOutage {
     displayAt: string;
     hideAt?: string;
 }
-
 export interface IResponse {
     code: number;
     message: string;
 }
-
 export interface IResource {
     item: IResourceItem;
     type: string;
@@ -275,30 +271,28 @@ export interface IResourceItem {
     uuid?: string;
     date_creation?: string;
     is_recursive?: number;
-    links?: { rel?: string; href?: string }[];
+    links?: {
+        rel?: string;
+        href?: string;
+    }[];
 }
-
 export interface IResourcesMultipleSelect {
     resources: IInputSelect[];
     type: string;
 }
-
 export interface IService {
     name: string;
     url: string;
     port: string;
 }
-
 export interface IStatus {
     statusCode: number;
     message: string;
     name: string;
 }
-
 export interface ISessionToken {
     sessionToken: string;
 }
-
 export interface ITicket {
     id?: number;
     entities_id?: number;
@@ -348,7 +342,10 @@ export interface ITicket {
     groupRequester?: number[];
     groupWatcher?: number[];
     groupAssignedTo?: number[];
-    links?: { rel?: string; href?: string }[];
+    links?: {
+        rel?: string;
+        href?: string;
+    }[];
 }
 export interface ITicketCreate {
     name?: string;
@@ -371,7 +368,6 @@ export interface ITicketCreate {
     groupWatcher?: number[];
     groupAssignedTo?: number[];
 }
-
 export interface IUser {
     uid?: string;
     name?: { firstName?: string; lastName?: string };
@@ -381,8 +377,17 @@ export interface IUser {
     title?: string;
     token?: string;
     glpiToken?: string;
-    glpiId?: string;
-    language: string;
+    glpiId?: number;
+    language?: string;
+}
+
+export interface IWorkflow {
+    id: number;
+    sender: string;
+    recipient: string;
+    content: string;
+    accepted: boolean | null;
+    createdAt: string;
 }
 
 export interface IUpdateTicket {
