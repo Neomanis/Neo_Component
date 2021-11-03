@@ -23,15 +23,50 @@
         "errorLang": "Error : language modification failed",
         "goService": "Services"
     },
+    "global": {
+        "yes": "Yes",
+        "no": "No"
+    },
     "globalErrors": {
         "404": "OUPSS ! PAGES NOT FOUND !",
-        "somethingWentWrong": "Something went wrong",
-        "servicesUnavailable": "Services are unavailable, please wait"
+        "servicesUnavailable": "Services are unavailable, please wait",
+        "somethingWentWrong": "Something went wrong"
+    },
+    "inputDateShift": {
+        "displayAt": "Display at",
+        "hideAt": "Hide at"
+    },
+    "inputDateTime": {
+        "endAt": "End at",
+        "startAt": "Start at"
+    },
+    "inputSelect": {
+        "event": "Event",
+        "major": "Major",
+        "minor": "Minor",
+        "outage": "Outage",
+        "severity": "Severity",
+        "type": "Type"
+    },
+    "inputTextArea": {
+        "content": "Content"
     },
     "loginScreen": {
         "errorPartial": "Both field are required",
         "errorSubmit": "Login or password incorrect",
         "submitButton": "Login"
+    },
+    "neoHelperChat": {
+        "askHelp": "How does it work?",
+        "helpTitle": "How does it work?",
+        "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
+        "helpButton": "Ok thanks!",
+        "modifyTicketName": "I would like to name my ticket",
+        "talkToHuman": "I need to talk to a human now!",
+        "talkToHumanResponse": "Ok, I'm escalating this ticket. A technician will contact you as soon as possible",
+        "undoTicket": "I made a mistake, can we stop there?",
+        "undoTicketResponse": "Alright, I close this ticket",
+        "validateUndo": "Are you sure to close this ticket?"
     },
     "neoHelperScreen": {
         "empty": "Nothing to see here",
@@ -54,6 +89,13 @@
         "Printer": "Printers",
         "Rack": "Racks",
         "Software": "Softwares"
+    },
+    "selectShift": {
+        "1h": "1h",
+        "6h": "6h",
+        "1d": "1 day",
+        "2d": "2 days",
+        "3d": "3 days"
     },
     "ticketForm": {
         "actors": "Actors",
@@ -135,32 +177,6 @@
         "technicalEvent": "Technical events",
         "unassigned": "Unassigned tickets",
         "userTickets": "My tickets"
-    },
-    "inputDateTime": {
-        "startAt": "Start at",
-        "endAt": "End at"
-    },
-    "inputDateShift": {
-        "displayAt": "Display at",
-        "hideAt": "Hide at"
-    },
-    "inputSelect": {
-        "type": "Type",
-        "severity": "Severity",
-        "outage": "Outage",
-        "event": "Event",
-        "major": "Major",
-        "minor": "Minor"
-    },
-    "inputTextArea": {
-        "content": "Content"
-    },
-    "selectShift": {
-        "1h": "1h",
-        "6h": "6h",
-        "1d": "1 day",
-        "2d": "2 days",
-        "3d": "3 days"
     },
     "validationCard": {
         "deleteValidation": "Delete this"
