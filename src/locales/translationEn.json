@@ -181,6 +181,9 @@
     "validationCard": {
         "deleteValidation": "Delete this"
     },
+    "vncScreen": {
+        "missingVnc": "No remote control available"
+    },
     "workflow": {
         "title": "Workflow requests",
         "request": "requests",
