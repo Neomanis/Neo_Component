@@ -10,30 +10,25 @@ import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 import i18next from "i18next";
 
 interface Props {
+    dataView?: React.RefObject<HTMLHeadingElement>;
+    fChatModalOpen?: () => void;
+    fMouseLeave?: () => void;
+    fOpenModalCurrentTicket?: (ticket: ITicket) => void;
+    fTicketModalOpen?: () => void;
+    languageUser: string;
     ticket: ITicket;
     ticketRequester?: string;
-    dataView?: React.RefObject<HTMLHeadingElement>;
-
-    fMouseLeave?: () => void;
-
-    fOpenModalCurrentTicket?: (ticket: ITicket) => void;
-
-    fChatModalOpen?: () => void;
-
-    fTicketModalOpen?: () => void;
-
-    languageUser: string;
 }
 
 const HoverTicket = ({
-    ticket,
-    ticketRequester,
     dataView,
-    fOpenModalCurrentTicket,
     fChatModalOpen,
     fMouseLeave,
+    fOpenModalCurrentTicket,
     fTicketModalOpen,
     languageUser,
+    ticket,
+    ticketRequester,
 }: Props): ReactElement => {
     const position = dataView?.current ? dataView?.current.getBoundingClientRect() : null;
     const myLanguage = i18next.getFixedT(languageUser);
@@ -64,13 +59,13 @@ const HoverTicket = ({
     return (
         <div
             className={`absolute z-10 -ml-5`}
+            onClick={(): void => fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket)}
+            onMouseLeave={fMouseLeave}
             style={{
                 ...displayModalWithinScreen(position ? position : { top: 0, left: 0 }),
                 zIndex: 20,
                 transform: "translateX(-192px) translateY(8px) ",
             }}
-            onMouseLeave={fMouseLeave}
-            onClick={(): void => fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket)}
         >
             <div className={`useOnClickOutsideException flex animate-postionHover`}>
                 <div className={`w-24 z-10 animate-leftH `} style={{ transform: "translateX(20px)" }}>
@@ -79,8 +74,8 @@ const HoverTicket = ({
                         style={{ width: 58, height: 29, top: 61, left: 38 }}
                     ></div>
                     <Hexagon
-                        type={"leftHalf"}
                         bgColor={ticket.status ? getStatusColor(ticket.status, true) : "#dae5e5"}
+                        type={"leftHalf"}
                     />
                 </div>
                 <div className={`w-96 z-30 transform -translate-y-1 animate-widthAnim overflow-hidden`}>
@@ -115,7 +110,7 @@ const HoverTicket = ({
                                         <Img type="imgProfil" />
                                     </div>
                                     <div className="text-white text-xs text-right">
-                                        <div>{ticketRequester ? ticketRequester : "Loading ..."}</div>
+                                        <div>{ticketRequester}</div>
                                         <div>Platypus Department</div>
                                     </div>
                                 </div>
@@ -124,34 +119,34 @@ const HoverTicket = ({
                     </div>
                     <div className="flex justify-center transform -translate-y-3 z-30">
                         <Button
-                            type="button"
-                            fontIcon={faChartLine}
                             className={
                                 "bg-neo_blue-light flex justify-center items-center cursor-default rounded-full w-10 h-10 border border-neo_blue-dark"
                             }
-                            iconClassName={"text-neo_lite"}
                             disabled
+                            fontIcon={faChartLine}
+                            iconClassName={"text-neo_lite"}
+                            type="button"
                         />
                         <Button
-                            type="button"
-                            fontIcon={faComment}
                             className={
                                 "bg-neo_blue-light flex justify-center items-center cursor-default rounded-full w-10 h-10 border border-neo_blue-dark transform hover:scale-110"
                             }
-                            iconClassName={"text-neo_lite"}
                             fCallback={fChatModalOpen}
+                            fontIcon={faComment}
+                            iconClassName={"text-neo_lite"}
+                            type="button"
                         />
                         <Button
-                            type="button"
-                            fontIcon={faExpandArrowsAlt}
                             className={
                                 "bg-neo_blue-light flex justify-center items-center cursor-pointer transform hover:scale-110 transition-all rounded-full w-10 h-10 border border-neo_blue-dark"
                             }
-                            iconClassName={"text-neo_blue-dark"}
                             fCallback={(): void => {
                                 fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket);
                                 fTicketModalOpen && fTicketModalOpen();
                             }}
+                            fontIcon={faExpandArrowsAlt}
+                            iconClassName={"text-neo_blue-dark"}
+                            type="button"
                         />
                     </div>
                 </div>
