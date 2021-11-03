@@ -1,4 +1,4 @@
-import { IInputSelect, ITicket } from "../interface";
+import { IGlpiRequest, IGlpiUsers, IInputSelect, ITicket } from "../interface";
 
 export const fakeTicket: ITicket = {
     id: 1,
@@ -42,7 +42,7 @@ export const fakeTicket: ITicket = {
     locations_id: 0,
     validation_percent: 0,
     date_creation: "2021-07-12 15:52:44",
-    userRequester: [],
+    userRequester: [1],
     userWatcher: [],
     userAssignedTo: [],
     groupRequester: [],
@@ -60,6 +60,18 @@ export const fakeGroups: IInputSelect[] = [
     { id: 1, value: "Vagos" },
     { id: 2, value: "Families" },
     { id: 3, value: "LSPD" },
+];
+
+export const fakeGlpiUsers: IGlpiUsers[] = [
+    { id: 1, firstname: "Unicorn", realname: "Pichon", name: "uPichon" },
+    { id: 1, firstname: "Platypus", realname: "Collins", name: "uCollins" },
+    { id: 1, firstname: "Beluga", realname: "Rotarez", name: "uRotarez" },
+];
+
+export const fakeGlpiGroups: IGlpiRequest[] = [
+    { id: 1, completename: "Gojira" },
+    { id: 2, completename: "Ne Obliviscaris" },
+    { id: 3, completename: "Parkway Drive" },
 ];
 
 export const fakeTicketResources: ITicket = {

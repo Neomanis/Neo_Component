@@ -7,20 +7,24 @@ import { Ticket } from "..";
 import Button from "../../atoms/button";
 //icon
 import { faCaretSquareLeft, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
+import { displayRequesterName } from "../../utils/displayRequesterName";
+import { IGlpiRequest, IGlpiUsers } from "../../..";
 
 interface Props {
-    currentTicket?: ITicket;
-    tickets?: ITicket[];
-    paginationGrid?: boolean;
     col: number;
-    row: number;
-    languageUser: string;
-    withHover?: true;
-    fOpenModalCurrentTicket?: () => void;
-    fCurrentTicket?: (ticket: ITicket) => void;
+    currentTicket?: ITicket;
     fChatModalOpen?: () => void;
+    fCurrentTicket?: (ticket: ITicket) => void;
+    fOpenModalCurrentTicket?: () => void;
     fTicketModalOpen?: () => void;
+    glpiGroups?: IGlpiRequest[];
+    glpiUsers?: IGlpiUsers[];
     iconBG?: boolean;
+    languageUser: string;
+    paginationGrid?: boolean;
+    row: number;
+    tickets?: ITicket[];
+    withHover?: true;
 }
 
 interface BlankTab {
@@ -29,18 +33,20 @@ interface BlankTab {
 }
 
 const Grid = ({
-    currentTicket,
-    tickets,
     col,
-    row,
-    paginationGrid,
-    languageUser,
-    withHover,
-    fOpenModalCurrentTicket,
-    fCurrentTicket,
+    currentTicket,
     fChatModalOpen,
+    fCurrentTicket,
+    fOpenModalCurrentTicket,
     fTicketModalOpen,
+    glpiGroups,
+    glpiUsers,
     iconBG,
+    languageUser,
+    paginationGrid,
+    row,
+    tickets,
+    withHover,
 }: Props): ReactElement => {
     const tabTickets = tickets
         ? tickets?.length !== 0
@@ -129,16 +135,17 @@ const Grid = ({
         <>
             {withHover && overTicket && (
                 <HoverTicket
+                    dataView={overTicket.position}
+                    fChatModalOpen={() => fChatModalOpen && fChatModalOpen()}
                     fMouseLeave={(): void => setOverTicket(undefined)}
                     fOpenModalCurrentTicket={(ticket) => {
                         fOpenModalCurrentTicket && fOpenModalCurrentTicket();
                         fCurrentTicket && fCurrentTicket(ticket);
                     }}
-                    fChatModalOpen={() => fChatModalOpen && fChatModalOpen()}
                     fTicketModalOpen={() => fTicketModalOpen && fTicketModalOpen()}
-                    ticket={overTicket.ticket}
-                    dataView={overTicket.position}
                     languageUser={languageUser}
+                    ticket={overTicket.ticket}
+                    ticketRequester={displayRequesterName(overTicket.ticket, glpiUsers, glpiGroups)}
                 />
             )}
             <div className={`${col === 1 ? "w-52" : ""}`}>
@@ -149,44 +156,44 @@ const Grid = ({
                         </p>
                         <Button
                             className="mx-1 hover:text-neo_blue-light cursor-pointer flex items-center"
-                            fontIcon={faCaretSquareLeft}
                             fCallback={(): void => nextAndPrevious(-1)}
+                            fontIcon={faCaretSquareLeft}
                         />
                         <Button
                             className="mx-1 hover:text-neo_blue-light cursor-pointer flex items-center"
-                            fontIcon={faCaretSquareRight}
                             fCallback={(): void => nextAndPrevious(1)}
+                            fontIcon={faCaretSquareRight}
                         />
                     </div>
                 )}
                 {tabGrid &&
                     tabGrid.map((grid, key) => (
                         <div
-                            key={"grid-" + key}
-                            id={"gridId-" + key}
                             className={`transform scale-73 -mt-8 ${paginationGrid && pageGrid > 1 ? " -mt-16" : ""} ${
                                 col > 3 ? "-translate-x-8" : ""
                             } ${numberGrid !== key ? "hidden" : ""}`}
+                            id={"gridId-" + key}
+                            key={"grid-" + key}
                         >
                             {grid.map((row, id) => (
                                 <div
-                                    key={"row-" + id}
                                     className={`flex transform scale-120 z-auto ${
                                         Number.isInteger(id / 2) ? " translate-x-23" : ""
                                     }`}
+                                    key={"row-" + id}
                                 >
                                     {row.map((ticket, key) => (
                                         <div key={"ticket-" + key} className="-mx-2">
                                             {ticket.id > 0 ? (
                                                 <Ticket
                                                     currentTicket={currentTicket}
-                                                    ticket={ticket}
-                                                    fOverCallBack={setOverTicket}
-                                                    languageUser={languageUser}
                                                     fOpenModalCurrentTicket={(ticket) => {
                                                         fOpenModalCurrentTicket && fOpenModalCurrentTicket();
                                                         fCurrentTicket && fCurrentTicket(ticket);
                                                     }}
+                                                    fOverCallBack={setOverTicket}
+                                                    languageUser={languageUser}
+                                                    ticket={ticket}
                                                 />
                                             ) : (
                                                 <Ticket iconBG={iconBG} />

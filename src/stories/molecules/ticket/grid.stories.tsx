@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { fakeTicket } from "../../fakeObject";
+import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
 import { i18n } from "../../../i18n";
 import Grid from "../../../components/molecules/ticket/grid";
 
@@ -21,21 +21,23 @@ const Template: ComponentStory<typeof Grid> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
     col: 2,
+    fCurrentTicket: () => console.log("fCurrentTicket"),
+    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
+    fOpenTicketModal: () => console.log("fOpenTicketModal"),
+    fShowChatModal: () => console.log("fShowChatModal"),
+    glpiGroups: fakeGlpiGroups,
+    glpiUsers: fakeGlpiUsers,
     row: 3,
     tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
     withHover: true,
-    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
-    fCurrentTicket: () => console.log("fCurrentTicket"),
-    fShowChatModal: () => console.log("fShowChatModal"),
-    fOpenTicketModal: () => console.log("fOpenTicketModal"),
 };
 export const DefaultHelper = Template.bind({});
 DefaultHelper.args = {
     col: 2,
+    fCurrentTicket: () => console.log("fCurrentTicket"),
+    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
+    iconBG: true,
     row: 3,
     tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
     withHover: false,
-    iconBG: true,
-    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
-    fCurrentTicket: () => console.log("fCurrentTicket"),
 };
