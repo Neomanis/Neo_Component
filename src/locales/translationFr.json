@@ -181,6 +181,9 @@
     "validationCard": {
         "deleteValidation": "Supprimer cet"
     },
+    "vncScreen": {
+        "missingVnc": "Aucun contrôle distant disponible"
+    },
     "workflow": {
         "title": "Workflow requests",
         "request": "requests",
