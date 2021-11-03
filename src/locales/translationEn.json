@@ -29,8 +29,8 @@
     },
     "globalErrors": {
         "404": "OUPSS ! PAGES NOT FOUND !",
-        "somethingWentWrong": "Something went wrong",
-        "servicesUnavailable": "Services are unavailable, please wait"
+        "servicesUnavailable": "Services are unavailable, please wait",
+        "somethingWentWrong": "Something went wrong"
     },
     "inputDateShift": {
         "displayAt": "Display at",
@@ -65,8 +65,8 @@
         "talkToHuman": "I need to talk to a human now!",
         "talkToHumanResponse": "Ok, I'm escalating this ticket. A technician will contact you as soon as possible",
         "undoTicket": "I made a mistake, can we stop there?",
-        "undoTicketResponse": "",
-        "validateUndo": "Are you sure to close the ticket?"
+        "undoTicketResponse": "Alright, I close this ticket",
+        "validateUndo": "Are you sure to close this ticket?"
     },
     "neoHelperScreen": {
         "empty": "Nothing to see here",

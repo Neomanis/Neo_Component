@@ -29,6 +29,7 @@
     },
     "globalErrors": {
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
+        "servicesUnavailable": "Les services ne sont pas disponibles, merci de patienter",
         "somethingWentWrong": "Une erreur s'est produite"
     },
     "inputDateShift": {
@@ -64,6 +65,7 @@
         "talkToHuman": "Je veux parler à un humain maintenant !",
         "talkToHumanResponse": "D'accord, j'escalade le ticket. Un technicien vous contactera dès que possible",
         "undoTicket": "J'ai fait une erreur, peut-on s'arrêter là ?",
+        "undoTicketResponse": "Très bien, je clos le ticket",
         "validateUndo": "Êtes-vous sûr de vouloir clore le ticket ?"
     },
     "neoHelperScreen": {
