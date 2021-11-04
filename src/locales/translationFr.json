@@ -62,8 +62,10 @@
         "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
         "helpButton": "D'accord merci !",
         "modifyTicketName": "Je veux nommer mon ticket",
+        "talkToBot": "Etablir un diagnostic avec Neobot",
+        "talkToBotResponse": "Super ! Je m'occupe de votre ticket. Nous allons diagnostiquer et résoudre votre problème. Le ticket sera escaladé si ce n'est pas possible. Vous pouvez interrompte mon diagnostique à tout moment et escalader le ticket vers un technicien.",
         "talkToHuman": "Je veux parler à un humain maintenant !",
-        "talkToHumanResponse": "D'accord, j'escalade le ticket. Un technicien vous contactera dès que possible",
+        "talkToHumanResponse": "Ok, nous escaladons votre ticket vers un technicien. Vous pouvez me recontacter pour que j'établisse un diagnostique de votre problème en cliquant sur 'Etablir un diagnostic' juste en dessous.",
         "undoTicket": "J'ai fait une erreur, peut-on s'arrêter là ?",
         "undoTicketResponse": "Très bien, je clos le ticket",
         "validateUndo": "Êtes-vous sûr de vouloir clore le ticket ?"

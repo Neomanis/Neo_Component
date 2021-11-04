@@ -62,9 +62,11 @@
         "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
         "helpButton": "Ok thanks!",
         "modifyTicketName": "I would like to name my ticket",
+        "talktoBot": "Diagnostic with Neobot",
+        "talkToBotResponse": "Great! I will take care of your ticket. We will diagnose and solve your problem. The ticket will be escalated if it's not possible. You can interrupt my diagnosis at any time and escalate the ticket to a technician.",
         "talkToHuman": "I need to talk to a human now!",
-        "talkToHumanResponse": "Ok, I'm escalating this ticket. A technician will contact you as soon as possible",
-        "undoTicket": "I made a mistake, can we stop there?",
+        "talkToHumanResponse": "Okay, we are escalating your ticket to a technician. You can contact me again to diagnose your problem by clicking on the 'Diagnostic with Neobot' button below.",
+        "undoTicket": "I made a mistake, can we stop now?",
         "undoTicketResponse": "Alright, I close this ticket",
         "validateUndo": "Are you sure to close this ticket?"
     },
