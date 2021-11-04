@@ -65,7 +65,7 @@
         "talkToBot": "Etablir un diagnostic avec Neobot",
         "talkToBotResponse": "Super ! Je m'occupe de votre ticket. Nous allons diagnostiquer et résoudre votre problème. Le ticket sera escaladé si ce n'est pas possible. Vous pouvez interrompte mon diagnostique à tout moment et escalader le ticket vers un technicien.",
         "talkToHuman": "Je veux parler à un humain maintenant !",
-        "talkToHumanResponse": "Ok, nous escaladons votre ticket vers un technicien. Il y a -- tickets non-affecté(s) en attente, temps d'attente estimé à -- minute(s). Vous pouvez me recontacter pour que j'établisse un diagnostique de votre problème en cliquant sur 'Etablir un diagnostic' juste en dessous.",
+        "talkToHumanResponse": "Ok, nous escaladons votre ticket vers un technicien. Vous pouvez me recontacter pour que j'établisse un diagnostique de votre problème en cliquant sur 'Etablir un diagnostic' juste en dessous.",
         "undoTicket": "J'ai fait une erreur, peut-on s'arrêter là ?",
         "undoTicketResponse": "Très bien, je clos le ticket",
         "validateUndo": "Êtes-vous sûr de vouloir clore le ticket ?"
