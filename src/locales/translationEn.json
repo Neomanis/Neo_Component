@@ -154,6 +154,7 @@
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
         "markResolved": "MARKS IT AS RESOLVED",
+        "search": "Search",
         "solveQuestion": "Marks it as solved ?",
         "solveTicket": "MARKS IT AS SOLVED",
         "subjectDetected": "DETECTED SUBJECTS",

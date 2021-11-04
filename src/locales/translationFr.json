@@ -163,7 +163,8 @@
             "allTickets": "TOUS",
             "ongoing": "EN COURS",
             "pending": "EN ATTENTE"
-        }
+        },
+        "ticketDetails": "DETAILS TICKET"
     },
     "titles": {
         "dashBoard": "Accueil",
