@@ -33,3 +33,20 @@ if [ -t 1 ]; then
   exec < /dev/tty
 fi
 ```
+
+## How to test the package locally
+
+First, you need to change the package version and build it with rollup `yarn build`
+
+When the build is done, run `yarn pack` to compile your package in a tgz file
+
+Then go to the project where you want to test it and run `yarn add file:path/to/tgz/file` <br/>
+Exemple : `yarn add file:../Neo_Component/neomanis-neo-component-v1.6.6.tgz`
+
+Now it will take your local package
+
+⚠️⚠️⚠️<br/>
+Before you commit and push your work in the other project, don't forget to remove the local package from the project and do a proper install <br/>
+`yarn remove @neomanis/neo-component`<br/>
+`yarn add @neomanis/neo-component`<br/>
+⚠️⚠️⚠️
