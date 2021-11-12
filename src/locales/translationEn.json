@@ -99,6 +99,9 @@
         "2d": "2 days",
         "3d": "3 days"
     },
+    "tQuestion": {
+        "forTicket": "For Ticket n°"
+    },
     "ticketForm": {
         "actors": "Actors",
         "assigned": "Assigned to",
