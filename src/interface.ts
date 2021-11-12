@@ -305,14 +305,15 @@ export interface ITechnicalQuestion {
     assignedGroups?: string[];
 }
 export interface ITechnicalQuestionResponse {
+    id: number;
     ticketId: number;
     title: string;
     text: string;
     createUser?: string;
-    createLevel?: string;
+    createLevel?: string | null;
     createDate?: string;
-    updateUser?: string;
-    updateLevel?: string;
+    updateUser?: string | null;
+    updateLevel?: string | null;
     updateDate?: string;
     keywords?: string[];
     assignedUsers?: string[];
