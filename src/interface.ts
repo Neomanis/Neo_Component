@@ -56,16 +56,6 @@ export interface IDiagnostic {
         runId: string;
         diagExecutionTime: number;
         incidentType: string;
-        interfaceName?: string;
-        netmask?: string;
-        dhcpEnabled?: string;
-        ipRemote?: string;
-        portRemote?: number;
-        cidr?: string;
-        mtu?: string;
-        localIp?: string;
-        nextHop?: string;
-        arpFilled?: string;
         results: Array<{
             Exit: {
                 id: number;
