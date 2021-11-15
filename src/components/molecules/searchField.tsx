@@ -10,15 +10,15 @@ import {
 } from "../../../node_modules/react-hook-form/dist";
 
 interface Props {
+    fCallBack?: () => void;
     placeholder: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
-    setValue?: UseFormSetValue<FieldValues>;
     setFocus?: UseFormSetFocus<FieldValues>;
-    fCallBack?: () => void;
+    setValue?: UseFormSetValue<FieldValues>;
 }
 
-const SearchField = ({ placeholder, refForm, register, setValue, setFocus, fCallBack }: Props): ReactElement => {
+const SearchField = ({ fCallBack, placeholder, refForm, register, setValue, setFocus }: Props): ReactElement => {
     const [width, setWidth] = useState(32);
     const [inputFocus, setInputFocus] = useState(false);
     const [inputEmpty, setInputEmpty] = useState(true);

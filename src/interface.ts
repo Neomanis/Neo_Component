@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+
 export interface IAuthRoute {
     user: IUser;
     component: ReactElement;
@@ -304,6 +305,31 @@ export interface IStatus {
 }
 export interface ISessionToken {
     sessionToken: string;
+}
+
+export interface ITechnicalQuestion {
+    ticketId: number;
+    title: string;
+    text: string;
+    user: { name: string; level?: string };
+    keywords?: string[];
+    assignedUsers?: string[];
+    assignedGroups?: string[];
+}
+export interface ITechnicalQuestionResponse {
+    id: number;
+    ticketId: number;
+    title: string;
+    text: string;
+    createUser?: string;
+    createLevel?: string | null;
+    createDate?: string;
+    updateUser?: string | null;
+    updateLevel?: string | null;
+    updateDate?: string;
+    keywords?: string[];
+    assignedUsers?: string[];
+    assignedGroups?: string[];
 }
 export interface ITicket {
     id?: number;

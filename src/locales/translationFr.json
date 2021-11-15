@@ -61,7 +61,10 @@
         "helpTitle": "Comment ça marche ?",
         "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
         "helpButton": "D'accord merci !",
-        "modifyTicketName": "Je veux nommer mon ticket",
+        "inputPlaceholder": "Envoyer",
+        "renameTicketButton": "Je voudrais nommer mon ticket",
+        "renameTicketQuestion": "Comment voulez-vous nommer ce ticket ?",
+        "renameTicketValidation": "Le nom du ticket a bien été modifié.",
         "talkToBot": "Etablir un diagnostic avec Neobot",
         "talkToBotResponse": "Super ! Je m'occupe de votre ticket. Nous allons diagnostiquer et résoudre votre problème. Le ticket sera escaladé si ce n'est pas possible. Vous pouvez interrompte mon diagnostique à tout moment et escalader le ticket vers un technicien.",
         "talkToHuman": "Je veux parler à un humain maintenant !",
@@ -98,6 +101,9 @@
         "1d": "1 jour",
         "2d": "2 jours",
         "3d": "3 jours"
+    },
+    "tQuestion": {
+        "forTicket": "Pour le ticket N°"
     },
     "ticketForm": {
         "actors": "Acteurs",
