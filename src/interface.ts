@@ -49,10 +49,22 @@ export interface IDiagnostic {
         $oid: string;
     };
     ticketId: number;
+    username: string;
     diagnostics: Array<{
         name: string;
+        runId: string;
+        diagExecutionTime: number;
+        incidentType: string;
+        interfaceName?: string;
+        netmask?: string;
+        dhcpEnabled?: string;
         ipRemote?: string;
         portRemote?: number;
+        cidr?: string;
+        mtu?: string;
+        localIp?: string;
+        nextHop?: string;
+        arpFilled?: string;
         results: Array<{
             Exit: {
                 id: number;
@@ -60,7 +72,7 @@ export interface IDiagnostic {
                 type: string;
                 action: string;
             };
-            Actions: Array<{
+            Action: Array<{
                 id: number;
                 description: string;
                 result: string;
