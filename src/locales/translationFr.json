@@ -138,6 +138,7 @@
     },
     "ticketModalInfo": {
         "actions": "Actions",
+        "answer": "réponse",
         "details": "Détails",
         "diagnostics": "Diagnostics",
         "entity": "ENTREPRISE",

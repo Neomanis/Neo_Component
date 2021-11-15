@@ -321,6 +321,8 @@ export interface ITechnicalQuestionResponse {
     ticketId: number;
     title: string;
     text: string;
+    solved: boolean;
+    answersId?: number[];
     createUser?: string;
     createLevel?: string | null;
     createDate?: string;
