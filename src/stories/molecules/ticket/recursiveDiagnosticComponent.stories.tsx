@@ -10,7 +10,7 @@ export default {
     title: "Molecules/Ticket/RecursiveDiagnosticComponent",
 } as Meta;
 
-const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = (args) => {
+const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
     return (
         <div className="bg-neo_blue p-4">
             {fakeDiag.diagnostics.map((it) => (
