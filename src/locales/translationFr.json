@@ -140,7 +140,12 @@
         "actions": "Actions",
         "answer": "réponse",
         "details": "Détails",
-        "diagnostics": "Diagnostics",
+        "diagnostics": {
+            "name": "Diagnostiques",
+            "bookName": "Livre invoqué",
+            "executionTime": "temps d'exécution",
+            "result": "resultat"
+        },
         "entity": "ENTREPRISE",
         "exit": "Sortie",
         "ipRemote": "IP distante",

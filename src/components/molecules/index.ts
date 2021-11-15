@@ -9,6 +9,7 @@ import SearchField from "./searchField";
 import Ticket from "./ticket/ticket";
 import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
+import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 
 export {
     ChatCard,
@@ -22,4 +23,5 @@ export {
     Ticket,
     ValidationCard,
     WorkflowCard,
+    RecursiveDiagnosticComponent,
 };

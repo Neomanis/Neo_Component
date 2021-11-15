@@ -140,7 +140,12 @@
         "actions": "Actions",
         "answer": "answer",
         "details": "Details",
-        "diagnostics": "Diagnostics",
+        "diagnostics": {
+            "name": "Diagnostics",
+            "bookName": "Book name",
+            "executionTime": "execution time",
+            "result": "result"
+        },
         "entity": "ENTITY",
         "exit": "Exit",
         "ipRemote": "IP remote",
