@@ -76,5 +76,7 @@ Finally:
 -   `yarn link react`
 -   `yarn link react-dom`
 
-If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
+You'll have to build your local package and restart your react server on every modifications in order to see you updates.
+
+note: If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
 There is no prerequisites before push your work into your branch, since the simlinks are maid locally
