@@ -71,7 +71,7 @@ Then (still in the same folder) run:
 
 Finally:
 
--   `cd ../Your-React-Project`
+-   `cd ../path/to/Your-React-Project`
 -   `yarn link Your-Local-Package-alias`
 -   `yarn link react`
 -   `yarn link react-dom`
