@@ -71,21 +71,21 @@ const RecursiveDiagnosticComponent = ({
             >
                 <div className="flex flex-col w-full">
                     {name && (
-                        <p className="flex font-bold">
+                        <div className="flex font-bold">
                             <Icon className="mx-2" fontIcon={faBook} />
                             {name}
-                        </p>
+                        </div>
                     )}
                     {executionTime && (
-                        <p className="flex">
+                        <div className="flex">
                             <Icon className="mx-2" fontIcon={faClock} /> {executionTime} ms
-                        </p>
+                        </div>
                     )}
                     {isFolded && getFinalExit(results) && getFinalExit(results).Exit.action ? (
-                        <p className="flex">
+                        <div className="flex">
                             <Icon className="mx-2" fontIcon={faDoorOpen} />
                             {getFinalExit(results).Exit.action}
-                        </p>
+                        </div>
                     ) : (
                         ""
                     )}
@@ -93,22 +93,22 @@ const RecursiveDiagnosticComponent = ({
                 </div>
                 {Action && (
                     <>
-                        <p className="flex">
+                        <div className="flex">
                             <Icon className="mx-2" fontIcon={faWaveSquare} />
                             {Action.description}
-                        </p>
-                        <p className="flex">
+                        </div>
+                        <div className="flex">
                             <Icon className="mx-2" fontIcon={faClock} />
                             {Action.executionTime} ms
-                        </p>
+                        </div>
                     </>
                 )}
 
                 {Exit && (
-                    <p className="flex">
+                    <div className="flex">
                         <Icon className="mx-2" fontIcon={faDoorOpen} />
                         {Exit.action}
-                    </p>
+                    </div>
                 )}
                 {hasChildren &&
                     !isFolded &&
