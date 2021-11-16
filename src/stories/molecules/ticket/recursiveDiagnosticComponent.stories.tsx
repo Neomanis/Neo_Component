@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { fakeDiag, fakeDiag2 } from "../../fakeObject";
+import { fakeDiag } from "../../fakeObject";
 import { i18n } from "../../../i18n";
 import RecursiveDiagnosticComponent from "../../../components/molecules/ticket/recursiveDiagnosticComponent";
 
@@ -18,6 +18,7 @@ const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
               ]
             : "";
     // second object in order to test awaiting state
+    // need too import -fakeDiag2-
     // const awaiting2 =
     //     fakeDiag2.awaiting.length > 0
     //         ? fakeDiag2.awaiting[fakeDiag2.awaiting.length - 1].bookNames[
