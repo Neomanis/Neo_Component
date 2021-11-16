@@ -143,7 +143,12 @@
         "actions": "Actions",
         "answer": "answer",
         "details": "Details",
-        "diagnostics": "Diagnostics",
+        "diagnostics": {
+            "name": "Diagnostics",
+            "positiveAnswer": "Positive answer",
+            "negativeAnswer": "Negative answer",
+            "awaitingState": "Awaiting state"
+        },
         "entity": "ENTITY",
         "exit": "Exit",
         "ipRemote": "IP remote",
