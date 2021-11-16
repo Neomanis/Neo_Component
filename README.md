@@ -36,6 +36,8 @@ fi
 
 ## How to test the package locally
 
+### Method 1:
+
 First, you need to change the package version and build it with rollup `yarn build`
 
 When the build is done, run `yarn pack` to compile your package in a tgz file
@@ -50,3 +52,31 @@ Before you commit and push your work in the other project, don't forget to remov
 `yarn remove @neomanis/neo-component`<br/>
 `yarn add @neomanis/neo-component`<br/>
 ⚠️⚠️⚠️
+
+### Method 2 (using yarn link):
+
+First run:
+
+-   `cd ../Your-Local-Package`
+-   `yarn build`
+-   `yarn link` (this will print out a Success message with the yarn commande to use later on)
+-   `yarn install`
+
+Then (still in the same folder) run:
+
+-   `cd ./node_modules/react`
+-   `yarn link` wich will create an alias (`react`)
+-   `cd ../react-dom`
+-   `yarn link` wich will also create an alias (`react-dom`)
+
+Finally:
+
+-   `cd ../path/to/Your-React-Project`
+-   `yarn link Your-Local-Package-alias`
+-   `yarn link react`
+-   `yarn link react-dom`
+
+You'll have to build your local package and restart your react server on every modifications in order to see you updates.
+
+note: If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
+There is no prerequisites before push your work into your branch, since the simlinks are maid locally
