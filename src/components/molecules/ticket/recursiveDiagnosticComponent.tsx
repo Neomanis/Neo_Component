@@ -33,6 +33,7 @@ const RecursiveDiagnosticComponent = ({
         return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function lateralColorBand(type: any): string {
         if (type.result === "Validated" || type.result === "OK" || type.type === "solved") {
             return "neo_green-base";
