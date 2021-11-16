@@ -17,6 +17,13 @@ const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
                   fakeDiag.awaiting[fakeDiag.awaiting.length - 1].bookNames.length - 1
               ]
             : "";
+    // second object in order to test awaiting state
+    // const awaiting2 =
+    //     fakeDiag2.awaiting.length > 0
+    //         ? fakeDiag2.awaiting[fakeDiag2.awaiting.length - 1].bookNames[
+    //               fakeDiag2.awaiting[fakeDiag2.awaiting.length - 1].bookNames.length - 1
+    //           ]
+    //         : "";
     return (
         <div className="bg-neo_blue p-4">
             {fakeDiag.diagnostics.map((it) => (
