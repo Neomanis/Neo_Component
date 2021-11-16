@@ -66,7 +66,8 @@ Then (still in the same folder) run:
 
 -   `cd ./node_modules/react`
 -   `yarn link` wich will create an alias (`react`)
--   `cd ../react-dom` and `yarn link` wich will also create an alias (`react-dom`)
+-   `cd ../react-dom`
+-   `yarn link` wich will also create an alias (`react-dom`)
 
 Finally:
 
