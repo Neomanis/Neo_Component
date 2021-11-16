@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import i18next from "i18next";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp, faClock } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "../../atoms";
 interface Props {
     name: string;
@@ -8,15 +8,17 @@ interface Props {
     Exit?: { name: string; id: number; type: string; action: string };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     results: any[];
+    awaiting: string;
     executionTime: number;
     languageUser: string;
 }
 
 const RecursiveDiagnosticComponent = ({
     name,
-    results,
     Action,
     Exit,
+    results,
+    awaiting,
     executionTime,
     languageUser,
 }: Props): ReactElement => {
@@ -46,7 +48,7 @@ const RecursiveDiagnosticComponent = ({
 
     return (
         <div
-            className={`text-neo_lite rounded-md m-2 border cursor-pointer `}
+            className="text-neo_lite rounded-md m-2 border cursor-pointer"
             onClick={(e): void => {
                 e.stopPropagation();
                 setIsFolded(!isFolded);
@@ -57,13 +59,17 @@ const RecursiveDiagnosticComponent = ({
                     !hasChildren && (Action || Exit)
                         ? `border-l-8 border-${lateralColorBand(Action ? Action : Exit)}`
                         : ""
+                } ${
+                    getFinalExit(results)
+                        ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}`
+                        : "border-l-8 border-neo_lite"
                 }
             }`}
             >
                 <div className="flex flex-col w-full">
                     {name && (
                         <p>
-                            <span className="font-semibold">
+                            <span className="font-semibold text-lg">
                                 {myLanguage("ticketModalInfo.diagnostics.bookName")}:{" "}
                             </span>
                             {name}
@@ -78,11 +84,8 @@ const RecursiveDiagnosticComponent = ({
                         ""
                     )}
                     {executionTime && (
-                        <p>
-                            <span className="font-semibold">
-                                {myLanguage("ticketModalInfo.diagnostics.executionTime")}:{" "}
-                            </span>
-                            {executionTime} ms
+                        <p className="flex">
+                            <Icon className="mx-2" fontIcon={faClock} /> {executionTime} ms
                         </p>
                     )}
                     {hasChildren && isFolded && <Icon fontIcon={faChevronDown} />}
@@ -93,10 +96,8 @@ const RecursiveDiagnosticComponent = ({
                             <span className="font-semibold">Description: </span>
                             {Action.description}
                         </p>
-                        <p>
-                            <span className="font-semibold">
-                                {myLanguage("ticketModalInfo.diagnostics.executionTime")}:{" "}
-                            </span>
+                        <p className="flex">
+                            <Icon className="mx-2" fontIcon={faClock} />
                             {Action.executionTime} ms
                         </p>
                     </>
@@ -109,7 +110,9 @@ const RecursiveDiagnosticComponent = ({
                 )}
                 {hasChildren &&
                     !isFolded &&
-                    results.map((item, key) => <RecursiveDiagnosticComponent key={key} {...item} />)}
+                    results.map((item, key) => (
+                        <RecursiveDiagnosticComponent key={key} {...item} awaiting={awaiting} />
+                    ))}
                 {hasChildren && !isFolded && <Icon fontIcon={faChevronUp} />}
             </div>
         </div>

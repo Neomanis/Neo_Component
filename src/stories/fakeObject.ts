@@ -274,6 +274,96 @@ export const fakeDiag = {
     __v: 1,
 };
 
+export const fakeDiag2 = {
+    _id: { $oid: "619380a296ea5e447db859a3" },
+    ticketId: 666,
+    username: "ttest",
+    diagnostics: [
+        {
+            runId: "1637056674890",
+            name: "internet",
+            diagExecutionTime: 228,
+            remoteHost: "8.8.8.8",
+            remotePort: 443,
+            incidentType: "someIncidentType",
+            results: [
+                {
+                    Action: {
+                        description: "Check on monitoring if there is no alert on bandwidth usage",
+                        id: 1,
+                        result: "OK",
+                        date: { $date: "2021-11-16T09:57:54.933Z" },
+                        executionTime: 8,
+                    },
+                },
+                {
+                    Action: {
+                        description: "Is this a slowness ?",
+                        id: 2,
+                        result: "Failed",
+                        date: { $date: "2021-11-16T09:57:54.940Z" },
+                        executionTime: 0,
+                    },
+                },
+                {
+                    Action: {
+                        description: "check portquiz on remote port",
+                        id: 3,
+                        result: "OK",
+                        date: { $date: "2021-11-16T09:57:55.055Z" },
+                        executionTime: 100,
+                    },
+                },
+                {
+                    name: "firewall",
+                    results: [
+                        {
+                            Action: {
+                                description: "Is this a slowness ?",
+                                id: 1,
+                                result: "OK",
+                                date: { $date: "2021-11-16T09:57:55.070Z" },
+                                executionTime: 0,
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    awaiting: [
+        {
+            bookNames: ["internet", "firewall"],
+            runId: "1637056674890",
+            currentChapter: {
+                id: 4,
+                name: "launch_book",
+                desc: "Launch firewall book",
+                actionParams: { type: "book", name: "firewall", params: [] },
+                follow: { yes: { id: 5, type: "actions" }, no: { id: 4, type: "exits" } },
+            },
+            username: "ttest",
+            startTime: 52,
+        },
+        {
+            bookNames: ["internet", "firewall"],
+            runId: "1637056674890",
+            currentChapter: {
+                id: 2,
+                name: "ask_permissions",
+                desc: "asking_permission to someone",
+                actionParams: {
+                    type: "workflowRequest",
+                    params: [{ type: "message", value: "Give right to neo bot", recipient: "stest" }],
+                },
+                follow: { yes: { id: 3, type: "actions" }, no: { id: 2, type: "exits" } },
+            },
+            username: "ttest",
+        },
+    ],
+    __v: 0,
+};
+
 export const fakeGroups: IInputSelect[] = [
     { id: 1, value: "Vagos" },
     { id: 2, value: "Families" },
