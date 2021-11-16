@@ -103,7 +103,10 @@
         "3d": "3 jours"
     },
     "tQuestion": {
-        "forTicket": "Pour le ticket N°"
+        "answeredQuestionTitle": "Questions répondues",
+        "forTicket": "Liée au ticket",
+        "switchValue": "Montrer mes questions liées",
+        "unansweredQuestionTitle": "Questions sans réponse"
     },
     "ticketForm": {
         "actors": "Acteurs",

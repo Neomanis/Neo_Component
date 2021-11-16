@@ -313,15 +313,15 @@ export interface ITechnicalQuestionResponse {
     text: string;
     solved: boolean;
     answersId?: number[];
-    createUser?: string;
-    createLevel?: string | null;
-    createDate?: string;
-    updateUser?: string | null;
-    updateLevel?: string | null;
-    updateDate?: string;
-    keywords?: string[];
-    assignedUsers?: string[];
-    assignedGroups?: string[];
+    createUser: string;
+    createLevel: string | null;
+    createDate: string;
+    updateUser: string | null;
+    updateLevel: string | null;
+    updateDate: string;
+    keywords: string[];
+    assignedUsers: string[];
+    assignedGroups: string[];
 }
 export interface ITicket {
     id?: number;
