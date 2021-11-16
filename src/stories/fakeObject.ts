@@ -62,70 +62,54 @@ export const fakeDiag = {
     username: "ttest",
     diagnostics: [
         {
-            runId: "1636541270105",
-            name: "network",
-            diagExecutionTime: 274,
+            runId: "1637056674890",
+            name: "internet",
+            diagExecutionTime: 228,
             remoteHost: "8.8.8.8",
             remotePort: 443,
             incidentType: "someIncidentType",
-            remoteIp: "8.8.8.8",
-            localIp: "192.168.1.78",
-            interfaceName: "wlp0s20f3",
-            cidr: "24",
-            netmask: "255.255.255.0",
-            dhcpEnabled: "True",
-            nextHop: "192.168.1.254",
-            mtu: "1500",
-            arpFilled: "True",
             results: [
                 {
                     Action: {
-                        description:
-                            "Retrieving Network information (Local IP;Mask;GW;DHCP enabled or not;MTU;Autonegotiation;ARP)",
+                        description: "Check on monitoring if there is no alert on bandwidth usage",
                         id: 1,
                         result: "OK",
-                        date: { $date: "2021-11-10T10:47:50.210Z" },
-                        executionTime: 43,
+                        date: { $date: "2021-11-16T09:57:54.933Z" },
+                        executionTime: 8,
                     },
                 },
                 {
                     Action: {
-                        description: "Ping 127.0.0.1",
+                        description: "Is this a slowness ?",
                         id: 2,
-                        result: "OK",
-                        date: { $date: "2021-11-10T10:47:50.242Z" },
-                        executionTime: 15,
-                    },
-                },
-                {
-                    Action: {
-                        description: "check if IP address is in the right range, not APIPA, etc",
-                        id: 4,
-                        result: "OK",
-                        date: { $date: "2021-11-10T10:47:50.270Z" },
-                        executionTime: 12,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Ping gateway",
-                        id: 7,
-                        result: "OK",
-                        date: { $date: "2021-11-10T10:47:50.304Z" },
-                        executionTime: 17,
-                    },
-                },
-                {
-                    Action: {
-                        description:
-                            "If remote host is defined by a FQDN, try to resolve it. If it's an IP, follow yes",
-                        id: 10,
                         result: "Failed",
-                        date: { $date: "2021-11-10T10:47:50.376Z" },
-                        executionTime: 58,
+                        date: { $date: "2021-11-16T09:57:54.940Z" },
+                        executionTime: 0,
                     },
                 },
-                { Exit: { id: 6, name: "escalate_dns", type: "escalate", action: "DNS not working" } },
+                {
+                    Action: {
+                        description: "check portquiz on remote port",
+                        id: 3,
+                        result: "OK",
+                        date: { $date: "2021-11-16T09:57:55.055Z" },
+                        executionTime: 100,
+                    },
+                },
+                {
+                    name: "firewall",
+                    results: [
+                        {
+                            Action: {
+                                description: "Is this a slowness ?",
+                                id: 1,
+                                result: "OK",
+                                date: { $date: "2021-11-16T09:57:55.070Z" },
+                                executionTime: 0,
+                            },
+                        },
+                    ],
+                },
             ],
         },
         {
@@ -272,96 +256,6 @@ export const fakeDiag = {
     ],
     awaiting: [],
     __v: 1,
-};
-
-export const fakeDiag2 = {
-    _id: { $oid: "619380a296ea5e447db859a3" },
-    ticketId: 666,
-    username: "ttest",
-    diagnostics: [
-        {
-            runId: "1637056674890",
-            name: "internet",
-            diagExecutionTime: 228,
-            remoteHost: "8.8.8.8",
-            remotePort: 443,
-            incidentType: "someIncidentType",
-            results: [
-                {
-                    Action: {
-                        description: "Check on monitoring if there is no alert on bandwidth usage",
-                        id: 1,
-                        result: "OK",
-                        date: { $date: "2021-11-16T09:57:54.933Z" },
-                        executionTime: 8,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Is this a slowness ?",
-                        id: 2,
-                        result: "Failed",
-                        date: { $date: "2021-11-16T09:57:54.940Z" },
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Action: {
-                        description: "check portquiz on remote port",
-                        id: 3,
-                        result: "OK",
-                        date: { $date: "2021-11-16T09:57:55.055Z" },
-                        executionTime: 100,
-                    },
-                },
-                {
-                    name: "firewall",
-                    results: [
-                        {
-                            Action: {
-                                description: "Is this a slowness ?",
-                                id: 1,
-                                result: "OK",
-                                date: { $date: "2021-11-16T09:57:55.070Z" },
-                                executionTime: 0,
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-    ],
-    awaiting: [
-        {
-            bookNames: ["internet", "firewall"],
-            runId: "1637056674890",
-            currentChapter: {
-                id: 4,
-                name: "launch_book",
-                desc: "Launch firewall book",
-                actionParams: { type: "book", name: "firewall", params: [] },
-                follow: { yes: { id: 5, type: "actions" }, no: { id: 4, type: "exits" } },
-            },
-            username: "ttest",
-            startTime: 52,
-        },
-        {
-            bookNames: ["internet", "firewall"],
-            runId: "1637056674890",
-            currentChapter: {
-                id: 2,
-                name: "ask_permissions",
-                desc: "asking_permission to someone",
-                actionParams: {
-                    type: "workflowRequest",
-                    params: [{ type: "message", value: "Give right to neo bot", recipient: "stest" }],
-                },
-                follow: { yes: { id: 3, type: "actions" }, no: { id: 2, type: "exits" } },
-            },
-            username: "ttest",
-        },
-    ],
-    __v: 0,
 };
 
 export const fakeGroups: IInputSelect[] = [
