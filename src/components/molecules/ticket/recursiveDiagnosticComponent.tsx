@@ -1,6 +1,12 @@
 import React, { ReactElement, useState } from "react";
-import i18next from "i18next";
-import { faChevronDown, faChevronUp, faClock } from "@fortawesome/free-solid-svg-icons";
+import {
+    faChevronDown,
+    faChevronUp,
+    faClock,
+    faBook,
+    faWaveSquare,
+    faDoorOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "../../atoms";
 interface Props {
     name: string;
@@ -10,7 +16,6 @@ interface Props {
     results: any[];
     awaiting: string;
     executionTime: number;
-    languageUser: string;
 }
 
 const RecursiveDiagnosticComponent = ({
@@ -20,10 +25,8 @@ const RecursiveDiagnosticComponent = ({
     results,
     awaiting,
     executionTime,
-    languageUser,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
-    const myLanguage = i18next.getFixedT(languageUser);
     const hasChildren = results && results.length;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,32 +71,30 @@ const RecursiveDiagnosticComponent = ({
             >
                 <div className="flex flex-col w-full">
                     {name && (
-                        <p>
-                            <span className="font-semibold text-lg">
-                                {myLanguage("ticketModalInfo.diagnostics.bookName")}:{" "}
-                            </span>
+                        <p className="flex font-bold">
+                            <Icon className="mx-2" fontIcon={faBook} />
                             {name}
                         </p>
-                    )}
-                    {getFinalExit(results) && getFinalExit(results).Exit.type ? (
-                        <p>
-                            <span className="font-semibold">Exit: </span>
-                            {getFinalExit(results).Exit.type}
-                        </p>
-                    ) : (
-                        ""
                     )}
                     {executionTime && (
                         <p className="flex">
                             <Icon className="mx-2" fontIcon={faClock} /> {executionTime} ms
                         </p>
                     )}
+                    {isFolded && getFinalExit(results) && getFinalExit(results).Exit.action ? (
+                        <p className="flex">
+                            <Icon className="mx-2" fontIcon={faDoorOpen} />
+                            {getFinalExit(results).Exit.action}
+                        </p>
+                    ) : (
+                        ""
+                    )}
                     {hasChildren && isFolded && <Icon fontIcon={faChevronDown} />}
                 </div>
                 {Action && (
                     <>
-                        <p>
-                            <span className="font-semibold">Description: </span>
+                        <p className="flex">
+                            <Icon className="mx-2" fontIcon={faWaveSquare} />
                             {Action.description}
                         </p>
                         <p className="flex">
@@ -104,9 +105,10 @@ const RecursiveDiagnosticComponent = ({
                 )}
 
                 {Exit && (
-                    <>
-                        <p>{Exit.action}</p>
-                    </>
+                    <p className="flex">
+                        <Icon className="mx-2" fontIcon={faDoorOpen} />
+                        {Exit.action}
+                    </p>
                 )}
                 {hasChildren &&
                     !isFolded &&
