@@ -73,6 +73,32 @@ export interface IDiagnostic {
             }>;
         }>;
     }>;
+    awaiting: Array<{
+        bookNames: string[];
+        runId: string;
+        currentChapter: {
+            id: number;
+            name: string;
+            desc: string;
+            actionParams: {
+                type: string;
+                name: string;
+                params: [];
+            };
+            follow: {
+                yes: {
+                    id: number;
+                    type: string;
+                };
+                no: {
+                    id: number;
+                    type: string;
+                };
+            };
+        };
+        username: string;
+        startTime: number;
+    }>;
 }
 export interface IFormInput {
     login: string;
