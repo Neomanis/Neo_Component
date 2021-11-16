@@ -1,5 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import i18next from "i18next";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "../../atoms";
 interface Props {
     name: string;
     Action?: { description: string; id: number; date: Date; executionTime: number; result: string };
@@ -31,56 +33,83 @@ const RecursiveDiagnosticComponent = ({
         return undefined;
     }
 
+    function lateralColorBand(type: any): string {
+        if (type.result === "Validated" || type.result === "OK" || type.type === "solved") {
+            return "neo_green-base";
+        } else if (type.result === "Rejected" || type.result === "Failed" || type.type === "escalate") {
+            return "neo_orange";
+        } else {
+            return "neo_lite";
+        }
+    }
+
     return (
-        <div className={` text-neo_lite rounded-md m-2 p-1 border`}>
+        <div
+            className={`text-neo_lite rounded-md m-2 border cursor-pointer `}
+            onClick={(e): void => {
+                e.stopPropagation();
+                setIsFolded(!isFolded);
+            }}
+        >
             <div
-                className="cursor-pointer"
-                onClick={(e): void => {
-                    e.stopPropagation();
-                    setIsFolded(!isFolded);
-                }}
+                className={`rounded-md p-2 ${
+                    !hasChildren && (Action || Exit)
+                        ? `border-l-8 border-${lateralColorBand(Action ? Action : Exit)}`
+                        : ""
+                }
+            }`}
             >
-                <div className="flex w-full justify-between">
-                    <div>
-                        {name && (
-                            <p>
-                                {myLanguage("ticketModalInfo.diagnostics.bookName")}: {name}
-                            </p>
-                        )}
-                        {getFinalExit(results) && getFinalExit(results).Exit.type ? (
-                            <p>Exit: {getFinalExit(results).Exit.type}</p>
-                        ) : (
-                            ""
-                        )}
-                        {executionTime && (
-                            <p>
-                                {myLanguage("ticketModalInfo.diagnostics.executionTime")}: {executionTime} ms
-                            </p>
-                        )}
-                        {hasChildren && isFolded && <p>...</p>}
-                    </div>
+                <div className="flex flex-col w-full">
+                    {name && (
+                        <p>
+                            <span className="font-semibold">
+                                {myLanguage("ticketModalInfo.diagnostics.bookName")}:{" "}
+                            </span>
+                            {name}
+                        </p>
+                    )}
+                    {getFinalExit(results) && getFinalExit(results).Exit.type ? (
+                        <p>
+                            <span className="font-semibold">Exit: </span>
+                            {getFinalExit(results).Exit.type}
+                        </p>
+                    ) : (
+                        ""
+                    )}
+                    {executionTime && (
+                        <p>
+                            <span className="font-semibold">
+                                {myLanguage("ticketModalInfo.diagnostics.executionTime")}:{" "}
+                            </span>
+                            {executionTime} ms
+                        </p>
+                    )}
+                    {hasChildren && isFolded && <Icon fontIcon={faChevronDown} />}
                 </div>
                 {Action && (
                     <>
-                        <p>Description: {Action.description}</p>
                         <p>
-                            {myLanguage("ticketModalInfo.diagnostics.result")}: {Action.result}
+                            <span className="font-semibold">Description: </span>
+                            {Action.description}
                         </p>
                         <p>
-                            {myLanguage("ticketModalInfo.diagnostics.executionTime")}: {Action.executionTime} ms
+                            <span className="font-semibold">
+                                {myLanguage("ticketModalInfo.diagnostics.executionTime")}:{" "}
+                            </span>
+                            {Action.executionTime} ms
                         </p>
                     </>
                 )}
 
                 {Exit && (
                     <>
-                        <p>{Exit.type}</p>
-                        <p>{Exit.name}</p>
+                        <p>{Exit.action}</p>
                     </>
                 )}
                 {hasChildren &&
                     !isFolded &&
                     results.map((item, key) => <RecursiveDiagnosticComponent key={key} {...item} />)}
+                {hasChildren && !isFolded && <Icon fontIcon={faChevronUp} />}
             </div>
         </div>
     );
