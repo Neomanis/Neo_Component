@@ -407,6 +407,8 @@ export interface IUser {
     glpiToken?: string;
     glpiId?: number;
     language?: string;
+    level?: string;
+    groups?: string[];
 }
 
 export interface IWorkflow {
