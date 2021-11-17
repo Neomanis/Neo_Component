@@ -55,6 +55,23 @@ Before you commit and push your work in the other project, don't forget to remov
 
 ### Method 2 (using yarn link):
 
+#### For standart library (js/ts)
+First run:
+
+-   `cd ../Your-Local-Package`
+-   `yarn build`
+-   `yarn link` (this will print out a Success message with the yarn command to use later on)
+-   `yarn install`
+
+
+Then:
+
+-   `cd ../path/to/Your-React-Project`
+-   `yarn link Your-Local-Package-alias`
+
+And it's all good.
+
+#### For React library only (Neo_Component)
 First run:
 
 -   `cd ../Your-Local-Package`
