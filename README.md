@@ -59,7 +59,7 @@ First run:
 
 -   `cd ../Your-Local-Package`
 -   `yarn build`
--   `yarn link` (this will print out a Success message with the yarn commande to use later on)
+-   `yarn link` (this will print out a Success message with the yarn command to use later on)
 -   `yarn install`
 
 Then (still in the same folder) run:
@@ -76,7 +76,7 @@ Finally:
 -   `yarn link react`
 -   `yarn link react-dom`
 
-You'll have to build your local package and restart your react server on every modifications in order to see you updates.
+You'll have to build your local package and restart your react server on every modifications in order to see your updates.
 
 note: If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
-There is no prerequisites before push your work into your branch, since the simlinks are maid locally
+There is no prerequisites before push your work into your branch, since the simlinks are made locally
