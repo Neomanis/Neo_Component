@@ -19,6 +19,7 @@ import InputMultipleSelect from "./input/inputMultipleSelect";
 import InputSelect from "./input/inputSelect";
 import InputSimpleSelect from "./input/inputSimpleSelect";
 import InputTextarea from "./input/inputTextarea";
+import InputKeyword from "./input/inputKeyword";
 import Loader from "./loader";
 import Pill from "./pill";
 import RequesterInfo from "./ticket/requesterInfo";
@@ -51,6 +52,7 @@ export {
     InputSelect,
     InputSimpleSelect,
     InputTextarea,
+    InputKeyword,
     Loader,
     Pill,
     RequesterInfo,
