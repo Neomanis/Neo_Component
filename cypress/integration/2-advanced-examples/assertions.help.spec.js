@@ -1,5 +1,3 @@
-/* eslint-disable promise/always-return */
-/* eslint-disable promise/catch-or-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /// <reference types="cypress" />

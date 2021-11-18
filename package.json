@@ -73,7 +73,8 @@
   "scripts": {
     "build": "rollup -c",
     "checkHusky": "node checkIfHuskyExists.ts",
-    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
