@@ -156,6 +156,7 @@
         "name": "Nom",
         "portRemote": "Port distant",
         "similarTickets": "Tickets similaires",
+        "technicalQuestion": "Demander de l'aide",
         "tools": "Outils",
         "user": "UTILISATEUR"
     },
