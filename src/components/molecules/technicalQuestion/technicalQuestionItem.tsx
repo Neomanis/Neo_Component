@@ -59,7 +59,7 @@ const TechnicalQuestionItem = ({
                 </div>
             </div>
             <div className="flex justify-between mt-2">
-                <div className="truncate w-4/5">{content}</div>
+                <div className="truncate w-4/5" dangerouslySetInnerHTML={{ __html: content }}></div>
                 <p>
                     {myLanguage("tQuestion.forTicket")} {ticketId}
                 </p>
