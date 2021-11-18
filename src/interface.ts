@@ -461,6 +461,6 @@ export interface ITechnicalQuestionAnswer {
     updateUser: string | null;
     updateLevel: string | null;
     updateDate: string;
-    accepted: false;
+    accepted: boolean;
     upvoters: string[];
 }
