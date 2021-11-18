@@ -1,5 +1,5 @@
 {
-    "baseUrl": "http://localhost:6006",
+    "baseUrl": "http://localhost:9009",
     "defaultCommandTimeout": 10000,
     "integrationFolder": "cypress/integration/storybook",
     "ignoreTestFiles": "*.help.spec.js",
