@@ -156,6 +156,7 @@
         "name": "Name",
         "portRemote": "Port remote",
         "similarTickets": "Similar Tickets",
+        "technicalQuestion": "Ask some help",
         "tools": "Tools",
         "user": "USER"
     },
