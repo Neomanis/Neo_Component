@@ -33,6 +33,7 @@
     "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
+    "cypress": "^9.0.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -71,12 +72,13 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public",
+    "checkHusky": "node checkIfHuskyExists.ts",
+    "cypress:open": "./node_modules/.bin/cypress open",
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",
     "prettier:fix": "prettier --write **/*.{tsx,ts,js}",
-    "checkHusky": "node checkIfHuskyExists.ts"
+    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public"
   }
 }
