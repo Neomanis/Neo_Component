@@ -7,7 +7,7 @@ interface Props {
     name: string;
 }
 
-export default function BubbleChat({ bgColor, border, content, date, name }: Props): ReactElement {
+const BubbleChat = ({ bgColor, border, content, date, name }: Props): ReactElement => {
     return (
         <div className={`${bgColor} ${border && "border border-neo_blue-light"} rounded-md px-2`}>
             <header className={` text-neo_blue-light uppercase font-bold`}>
@@ -17,4 +17,6 @@ export default function BubbleChat({ bgColor, border, content, date, name }: Pro
             <main className="w-full text-neo_lite text-xs py-1">{content}</main>
         </div>
     );
-}
+};
+
+export default BubbleChat;
