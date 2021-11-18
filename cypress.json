@@ -1,3 +1,5 @@
 {
-    "ignoreTestFiles": "*.help.spec.js"
+    "ignoreTestFiles": "*.help.spec.js",
+    "video": false,
+    "screenshotOnRunFailure": false
 }
