@@ -451,3 +451,16 @@ export interface IWorkflow {
 export interface IUpdateTicket {
     [x: string]: string | number | number[] | Partial<IResource>[];
 }
+
+export interface ITechnicalQuestionAnswer {
+    id: number;
+    text: string;
+    createUser: string;
+    createLevel: string | null;
+    createDate: string;
+    updateUser: string | null;
+    updateLevel: string | null;
+    updateDate: string;
+    accepted: boolean;
+    upvoters: string[];
+}
