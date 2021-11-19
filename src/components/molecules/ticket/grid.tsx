@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { ITicket } from "../../../interface";
 
 import HoverTicket from "./hoverTicket";
-import { Ticket } from "..";
+import Ticket from "./ticket";
 import Button from "../../atoms/button";
 //icon
 import { faCaretSquareLeft, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
