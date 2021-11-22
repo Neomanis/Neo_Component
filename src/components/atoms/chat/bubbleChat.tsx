@@ -14,7 +14,7 @@ const BubbleChat = ({ bgColor, border, content, date, name }: Props): ReactEleme
                 <div className="text-sm">{name}</div>
                 <div className=" text-neo_blue-blue_sky text-xs">{date}</div>
             </header>
-            <main className="w-full text-neo_lite text-xs py-1">{content}</main>
+            <main className="w-full text-neo_lite text-xs py-1 break-all">{content}</main>
         </div>
     );
 };
