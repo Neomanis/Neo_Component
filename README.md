@@ -97,3 +97,22 @@ You'll have to build your local package and restart your react server on every m
 
 note: If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
 There is no prerequisites before push your work into your branch, since the simlinks are made locally
+
+## Cypress
+
+[Here some documentations](https://docs.cypress.io/guides/overview/why-cypress)
+
+#### Before all
+You should delete your .husky and regenerate it with `yarn husky:setup`
+Note also that you should have installed locally a version of chrome and firefox.
+For GNU/linux user you can, instead of chrome, use chromium. You should also modify you husky push hook to target this script `ci:storybook:chromium` instead of `ci:storybook:chrome`.
+
+You can use cypress to create e2e testing. To do so simply add a `.spec.js` file in `./cypress/integration/storybook/` and start hacking some e2e tests.
+
+#### Here are several script that you can use during development:
+
+- `cypress:run` -> it will simply launch a test runner like jest, but know that you should have storybook server running in parallel on port 6006
+- `cypress:open` -> it will open an electron app to monitor your tests suites
+
+- `ci:<nextcommand>` -> this is only used by husky, so you shouldn't have to use it
+

@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "1.8.7",
+  "version": "2.0.0",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -33,6 +33,7 @@
     "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
+    "cypress": "^9.0.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
@@ -51,6 +52,7 @@
     "rollup-plugin-import-css": "^3.0.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-typescript2": "^0.31.0",
+    "start-server-and-test": "^1.14.0",
     "storybook-react-i18next": "^1.0.12",
     "typescript": "^4.4.3"
   },
@@ -71,12 +73,21 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public",
-    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn build\"",
+    "checkHusky": "node checkIfHuskyExists.ts",
+    "ci:cypress:storybook": "start-storybook -p 9009 -s public --ci",
+    "ci:cypress:test:storybook:chrome": "cypress run --headless -C cypress.ci.json --browser chrome",
+    "ci:cypress:test:storybook:chromium": "cypress run --headless -C cypress.ci.json --browser chromium",
+    "ci:cypress:test:storybook:firefox": "cypress run --headless -C cypress.ci.json --browser firefox",
+    "ci:storybook:chrome": "yarn start-server-and-test ci:cypress:storybook http://localhost:9009 ci:cypress:test:storybook:chrome",
+    "ci:storybook:chromium": "yarn start-server-and-test ci:cypress:storybook http://localhost:9009 ci:cypress:test:storybook:chromium",
+    "ci:storybook:firefox": "yarn start-server-and-test ci:cypress:storybook http://localhost:9009 ci:cypress:test:storybook:firefox",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --headless -C cypress.json",
+    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn ci:storybook:chrome\" && npx husky add .husky/pre-push \"yarn ci:storybook:firefox\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",
     "prettier:fix": "prettier --write **/*.{tsx,ts,js}",
-    "checkHusky": "node checkIfHuskyExists.ts"
+    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public"
   }
 }
