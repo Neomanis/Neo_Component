@@ -85,6 +85,11 @@
     "outage": {
         "empty": "Everything is fine !"
     },
+    "remote": {
+        "controlButton": "Remote Control",
+        "persistantShell": "Persistent shell",
+        "shellButton": "Remote Shell"
+    },
     "resourceCategory": {
         "Computer": "Computers",
         "Monitor": "Monitors",
@@ -102,9 +107,16 @@
         "2d": "2 days",
         "3d": "3 days"
     },
+    "serviceList": {
+        "checkAllButton": "Check all",
+        "refreshButton": "Auto-refresh",
+        "uncheckAllButton": "Uncheck all"
+    },
     "tQuestion": {
         "answeredQuestionTitle": "Answered questions",
         "forTicket": "Related to ticket",
+        "modalLeftTitle": "Technical Question",
+        "modalRightTitle": "Answers",
         "switchValue": "Show my related questions",
         "unansweredQuestionTitle": "Unanswered questions"
     },
@@ -147,6 +159,7 @@
             "name": "Diagnostics",
             "positiveAnswer": "Positive answer",
             "negativeAnswer": "Negative answer",
+            "noDiagnostic": "No diagnostic",
             "awaitingState": "Awaiting state"
         },
         "entity": "ENTITY",
@@ -161,11 +174,14 @@
         "user": "USER"
     },
     "ticketScreen": {
+        "assignedToGroup": "Group",
+        "assignedToUser": "User",
         "botReport": "Neobot Report",
         "chatHistory": "CHAT HISTORY",
         "deleted": "deleted",
         "deleteQuestion": "Delete this ticket ?",
         "display": "Display",
+        "entity": "Entity",
         "errorDelete": "Deletion failed",
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
@@ -177,6 +193,7 @@
         "systemDiag": "SYSTEM DIAGNOSTIC",
         "ticketFilters": {
             "allTickets": "ALL TICKETS",
+            "new": "NEW",
             "ongoing": "ONGOING",
             "pending": "PENDING"
         },
