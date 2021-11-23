@@ -18,14 +18,24 @@ const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
             : "";
     return (
         <div className="bg-neo_blue p-4">
-            {fakeDiag.diagnostics.map((it) => (
-                <RecursiveDiagnosticComponent
-                    name={it.name}
-                    executionTime={it.diagExecutionTime}
-                    results={it.results}
-                    awaiting={awaiting}
-                />
-            ))}
+            {fakeDiag.diagnostics.map((it) => {
+                const filteredKeys = Object.keys(it).filter((el) => {
+                    return el !== "results" && el !== "diagExecutionTime" && el !== "name" && el !== "runId";
+                });
+                const obj = [];
+                filteredKeys.forEach((k) => {
+                    obj.push({ [k]: it[k] });
+                });
+                return (
+                    <RecursiveDiagnosticComponent
+                        name={it.name}
+                        executionTime={it.diagExecutionTime}
+                        results={it.results}
+                        awaiting={awaiting}
+                        diagDataKeys={obj}
+                    />
+                );
+            })}
         </div>
     );
 };

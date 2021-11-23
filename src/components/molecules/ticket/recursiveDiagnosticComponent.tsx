@@ -16,6 +16,7 @@ interface Props {
     results: any[];
     awaiting: string;
     executionTime: number;
+    diagDataKeys: any[];
 }
 
 const RecursiveDiagnosticComponent = ({
@@ -25,6 +26,7 @@ const RecursiveDiagnosticComponent = ({
     results,
     awaiting,
     executionTime,
+    diagDataKeys,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const hasChildren = results && results.length;
@@ -70,17 +72,34 @@ const RecursiveDiagnosticComponent = ({
             }`}
             >
                 <div className="flex flex-col w-full">
-                    {name && (
-                        <div className="flex font-bold">
-                            <Icon className="mx-2" fontIcon={faBook} />
-                            {name}
-                        </div>
-                    )}
-                    {executionTime && (
-                        <div className="flex">
-                            <Icon className="mx-2" fontIcon={faClock} /> {executionTime} ms
-                        </div>
-                    )}
+                    <div className="flex justify-between">
+                        {name && (
+                            <div className="flex font-bold text-lg">
+                                <Icon className="mx-2" fontIcon={faBook} />
+                                {name}
+                            </div>
+                        )}
+                        {executionTime && (
+                            <div className="flex">
+                                {executionTime} ms
+                                <Icon className="mx-2" fontIcon={faClock} />
+                            </div>
+                        )}
+                    </div>
+                    {!isFolded &&
+                        hasChildren &&
+                        diagDataKeys &&
+                        diagDataKeys.map((el) => {
+                            const key = Reflect.ownKeys(el)[0];
+                            const value = Reflect.get(el, key);
+                            if (key && value) {
+                                return (
+                                    <p className="mx-2">
+                                        {key}: {value}
+                                    </p>
+                                );
+                            }
+                        })}
                     {isFolded && getFinalExit(results) && getFinalExit(results).Exit.action ? (
                         <div className="flex">
                             <Icon className="mx-2" fontIcon={faDoorOpen} />
@@ -92,16 +111,16 @@ const RecursiveDiagnosticComponent = ({
                     {hasChildren && isFolded && <Icon fontIcon={faChevronDown} />}
                 </div>
                 {Action && (
-                    <>
+                    <div className="flex justify-between">
                         <div className="flex">
                             <Icon className="mx-2" fontIcon={faWaveSquare} />
                             {Action.description}
                         </div>
                         <div className="flex">
+                            {Action.executionTime ? `${Action.executionTime} ms` : "- ms"}
                             <Icon className="mx-2" fontIcon={faClock} />
-                            {Action.executionTime} ms
                         </div>
-                    </>
+                    </div>
                 )}
 
                 {Exit && (
