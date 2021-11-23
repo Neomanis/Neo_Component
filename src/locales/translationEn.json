@@ -85,6 +85,11 @@
     "outage": {
         "empty": "Everything is fine !"
     },
+    "remote": {
+        "controlButton": "Remote Control",
+        "persistantShell": "Persistent shel",
+        "shellButton": "Remote Shell"
+    },
     "resourceCategory": {
         "Computer": "Computers",
         "Monitor": "Monitors",
@@ -103,9 +108,9 @@
         "3d": "3 days"
     },
     "serviceList": {
-        "checkAllButton": "Check-All",
+        "checkAllButton": "Check all",
         "refreshButton": "Auto-refresh",
-        "uncheckAllButton": "Uncheck-All"
+        "uncheckAllButton": "Uncheck all"
     },
     "tQuestion": {
         "answeredQuestionTitle": "Answered questions",
@@ -154,7 +159,7 @@
             "name": "Diagnostics",
             "positiveAnswer": "Positive answer",
             "negativeAnswer": "Negative answer",
-            "noDiagnostic": "No diagnostics for ticket",
+            "noDiagnostic": "No diagnostic",
             "awaitingState": "Awaiting state"
         },
         "entity": "ENTITY",
@@ -163,8 +168,6 @@
         "knowledge": "Knowledge",
         "name": "Name",
         "portRemote": "Port remote",
-        "remoteControl": "Remote Control",
-        "remoteShell": "Remote Shell",
         "similarTickets": "Similar Tickets",
         "technicalQuestion": "Ask some help",
         "tools": "Tools",

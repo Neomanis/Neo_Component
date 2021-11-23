@@ -85,6 +85,11 @@
     "outage": {
         "empty": "Tout va bien !"
     },
+    "remote": {
+        "controlButton": "Controle Distant",
+        "persistantShell": "Shell persistant",
+        "shellButton": "Terminal Distant"
+    },
     "resourceCategory": {
         "Computer": "Ordinateurs",
         "Monitor": "Écrans",
@@ -154,7 +159,7 @@
             "name": "Diagnostics",
             "positiveAnswer": "Retour positif",
             "negativeAnswer": "Retour négatif",
-            "noDiagnostic": "Pas de diagnostics pour le ticket",
+            "noDiagnostic": "Pas de diagnostic",
             "awaitingState": "En attente"
         },
         "entity": "ENTREPRISE",
@@ -163,8 +168,6 @@
         "knowledge": "Connaissance",
         "name": "Nom",
         "portRemote": "Port distant",
-        "remoteControl": "Controle Distant",
-        "remoteShell": "Terminal Distant",
         "similarTickets": "Tickets similaires",
         "technicalQuestion": "Demander de l'aide",
         "tools": "Outils",
