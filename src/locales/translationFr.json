@@ -85,6 +85,11 @@
     "outage": {
         "empty": "Tout va bien !"
     },
+    "remote": {
+        "controlButton": "Controle Distant",
+        "persistantShell": "Shell persistant",
+        "shellButton": "Terminal Distant"
+    },
     "resourceCategory": {
         "Computer": "Ordinateurs",
         "Monitor": "Écrans",
@@ -102,9 +107,16 @@
         "2d": "2 jours",
         "3d": "3 jours"
     },
+    "serviceList": {
+        "checkAllButton": "Tout sélectionner",
+        "refreshButton": "Refresh-auto",
+        "uncheckAllButton": "Tout déselectionner"
+    },
     "tQuestion": {
         "answeredQuestionTitle": "Questions répondues",
         "forTicket": "Liée au ticket",
+        "modalLeftTitle": "Question Technique",
+        "modalRightTitle": "Réponses",
         "switchValue": "Montrer mes questions liées",
         "unansweredQuestionTitle": "Questions sans réponse"
     },
@@ -147,6 +159,7 @@
             "name": "Diagnostics",
             "positiveAnswer": "Retour positif",
             "negativeAnswer": "Retour négatif",
+            "noDiagnostic": "Pas de diagnostic",
             "awaitingState": "En attente"
         },
         "entity": "ENTREPRISE",
@@ -161,11 +174,14 @@
         "user": "UTILISATEUR"
     },
     "ticketScreen": {
+        "assignedToGroup": "Groupe",
+        "assignedToUser": "Utilisateur",
         "botReport": "Rapport de Neobot",
         "chatHistory": "HISTORIQUE DE CHAT",
         "deleted": "supprimé",
         "deleteQuestion": "Supprimer ce ticket ?",
         "display": "Afficher",
+        "entity": "Entité",
         "errorDelete": "Erreur lors de la suppression du message",
         "id": "Ticket",
         "keyDetected": "MOTS-CLES",
@@ -177,6 +193,7 @@
         "systemDiag": "DIAGNOSTIC SYSTEME",
         "ticketFilters": {
             "allTickets": "TOUS",
+            "new": "NOUVEAU",
             "ongoing": "EN COURS",
             "pending": "EN ATTENTE"
         },
