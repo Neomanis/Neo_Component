@@ -16,6 +16,7 @@ interface Props {
     results: any[];
     awaiting: string;
     executionTime: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     diagDataKeys: any[];
 }
 
