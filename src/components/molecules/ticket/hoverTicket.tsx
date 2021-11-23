@@ -1,14 +1,13 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
 
-import { formatDistanceToNowStrict } from "date-fns";
 import { faClock, faExpandArrowsAlt, faComment, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations
 import i18next from "i18next";
-import { getDateFnsLocaleFromUserLang, getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
+import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
