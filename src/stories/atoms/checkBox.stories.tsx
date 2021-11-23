@@ -9,7 +9,11 @@ export default {
     title: "Atoms/Checkbox",
 } as Meta;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
+const Template: ComponentStory<typeof Checkbox> = (args) => (
+    <div className="bg-neo_blue-light w-full h-96">
+        <Checkbox {...args} />
+    </div>
+);
 
 export const BoxDefault = Template.bind({});
 BoxDefault.args = {
@@ -23,11 +27,13 @@ BoxTrue.args = {
     data: "Label true",
     name: "true",
     testId: "test-default",
+    classNameLabel: "text-white",
 };
 export const BoxFalse = Template.bind({});
 BoxFalse.args = {
     checked: false,
-    data: "Label flase",
-    name: "flase",
+    data: "Label false",
+    name: "false",
     testId: "test-default",
+    classNameLabel: "text-red",
 };
