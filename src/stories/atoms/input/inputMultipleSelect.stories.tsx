@@ -24,4 +24,5 @@ Default.args = {
     ],
     refForm: "exemple",
     isUpdateField: true,
+    updateFunction: (refForm, value) => console.log(refForm, value),
 };
