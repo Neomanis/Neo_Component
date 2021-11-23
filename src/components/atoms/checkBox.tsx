@@ -15,14 +15,14 @@ const Checkbox = ({ checked, data, fCallBack, name, testId, classNameInput, clas
         <>
             <input
                 checked={checked}
-                className={`cursor-pointer ${classNameInput}`}
+                className={classNameInput}
                 data-testid={testId}
                 id={name}
                 name={name}
                 onChange={fCallBack}
                 type="checkbox"
             />
-            <label htmlFor={name} className={`mx-2 cursor-pointer ${classNameLabel}`}>
+            <label htmlFor={name} className={classNameLabel}>
                 {data}
             </label>
         </>
