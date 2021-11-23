@@ -6,21 +6,23 @@ interface Props {
     fCallBack?: (e: ChangeEvent<HTMLInputElement>) => void;
     name?: string;
     testId?: string;
+    classNameInput?: string;
+    classNameLabel?: string;
 }
 
-const Checkbox = ({ checked, data, fCallBack, name, testId }: Props): ReactElement => {
+const Checkbox = ({ checked, data, fCallBack, name, testId, classNameInput, classNameLabel }: Props): ReactElement => {
     return (
         <>
             <input
                 checked={checked}
-                className="cursor-pointer"
+                className={classNameInput}
                 data-testid={testId}
                 id={name}
                 name={name}
                 onChange={fCallBack}
                 type="checkbox"
             />
-            <label htmlFor={name} className="mx-2 cursor-pointer">
+            <label htmlFor={name} className={classNameLabel}>
                 {data}
             </label>
         </>
