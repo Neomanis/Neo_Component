@@ -87,7 +87,7 @@
     },
     "remote": {
         "controlButton": "Remote Control",
-        "persistantShell": "Persistent shel",
+        "persistantShell": "Persistent shell",
         "shellButton": "Remote Shell"
     },
     "resourceCategory": {
