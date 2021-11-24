@@ -35,7 +35,7 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer w-1/2 useOnClickOutsideException"
+            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer useOnClickOutsideException"
             onClick={openTechnicalQuestion}
         >
             <div className="flex justify-between items-center">
