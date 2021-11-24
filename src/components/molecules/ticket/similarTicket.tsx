@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { ReactComponent as TicketClosed } from "../../../img/svg/nm_ico_ticket_closed.svg";
-
 import { Icon, IconTicketCategorie } from "../../atoms";
 import { ITicket } from "../../..";
 import { formatDistanceToNowStrict } from "date-fns";
