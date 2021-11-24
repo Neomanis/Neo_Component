@@ -3,7 +3,7 @@ import { faEye, faEyeSlash, faUserCheck, faUserTimes } from "@fortawesome/free-s
 import i18next from "i18next";
 
 import { formatDate } from "../../utils";
-import { ButtonSwitch, Icon, Title, Tooltip } from "../../atoms";
+import { Icon, Title, Tooltip } from "../../atoms";
 
 interface Props {
     content: string;
@@ -78,18 +78,6 @@ const TechnicalQuestionItem = ({
                             followTechnicalQuestion(id);
                         }}
                         fontIcon={followed ? faEye : faEyeSlash}
-                        // component={
-                        //     <ButtonSwitch
-                        //         activeClassName="text-white font-semibold"
-                        //         // activeData={`${myLanguage("tQuestion.follow")}`}
-                        //         activeFontIcon={faEye}
-                        //         inactiveClassName="text-white font-semibold"
-                        //         // inactiveData={`${myLanguage("tQuestion.unfollow")}`}
-                        //         inactiveFontIcon={faEyeSlash}
-                        //         inactiveIconClassName="text-white"
-                        //         fCallback={() => followTechnicalQuestion(id)}
-                        //     />
-                        // }
                     />
                 </div>
             </div>
