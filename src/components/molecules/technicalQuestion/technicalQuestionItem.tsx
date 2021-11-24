@@ -39,9 +39,9 @@ const TechnicalQuestionItem = ({
             onClick={openTechnicalQuestion}
         >
             <div className="flex justify-between items-center">
-                <div>
+                <div className="w-3/5">
                     <div className="flex">
-                        <Title type={"h2"} data={title} className=" font-bold text-xl mr-2" />
+                        <Title type={"h2"} data={title} className="font-bold text-xl mr-2 truncate" />
                         <Icon
                             fontIcon={solved ? faUserCheck : faUserTimes}
                             className={`${solved ? "text-neo_green-base" : "text-neo_red"}`}
