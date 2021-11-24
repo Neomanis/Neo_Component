@@ -1,13 +1,13 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
 
-import { formatDistanceToNowStrict } from "date-fns";
 import { faClock, faExpandArrowsAlt, faComment, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations
 import i18next from "i18next";
+import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
@@ -101,7 +101,9 @@ const HoverTicket = ({
                                 </div>
                                 <div className="flex items-center">
                                     <Icon fontIcon={faClock} />
-                                    <p className="ml-1">{formatDistanceToNowStrict(new Date(ticket.date_creation))}</p>
+                                    <p className="ml-1">
+                                        {getFormatedTimeToNowExtended(ticket.date_creation, languageUser)}
+                                    </p>
                                 </div>
                             </div>
                             <div className="flex items-center justify-center">
