@@ -23,6 +23,8 @@ TechnicalQuestionItemDefault.args = {
     createDate: "18/11/2021 09:23",
     createLevel: "Level 1",
     createUser: "Leman Russ",
+    followed: false,
+    followTechnicalQuestion: () => console.log("hey"),
     id: 2,
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,

@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
+    active?: boolean;
     activeClassName?: string;
     activeData?: string;
     activeFontIcon?: IconProp;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const ButtonSwitch = ({
+    active = false,
     activeClassName,
     activeData,
     activeFontIcon,
@@ -31,7 +33,12 @@ const ButtonSwitch = ({
     testId,
     type = "button",
 }: Props): ReactElement => {
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(active);
+
+    useEffect(() => {
+        setIsActive(active);
+    }, [active]);
+
     return (
         <button
             className={`flex items-center justify-center
