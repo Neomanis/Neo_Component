@@ -35,13 +35,13 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer useOnClickOutsideException"
+            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer w-1/2 useOnClickOutsideException"
             onClick={openTechnicalQuestion}
         >
             <div className="flex justify-between items-center">
-                <div>
+                <div className="w-3/5">
                     <div className="flex">
-                        <Title type={"h2"} data={title} className=" font-bold text-xl mr-2" />
+                        <Title type={"h2"} data={title} className="font-bold text-xl mr-2 truncate" />
                         <Icon
                             fontIcon={solved ? faUserCheck : faUserTimes}
                             className={`${solved ? "text-neo_green-base" : "text-neo_red"}`}
