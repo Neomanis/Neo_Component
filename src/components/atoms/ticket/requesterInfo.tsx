@@ -30,6 +30,3 @@ const RequesterInfo = ({ isGroup, requesterName, languageUser }: Props): ReactEl
 };
 
 export default RequesterInfo;
-function GlobalContext(GlobalContext: any): { user: any } {
-    throw new Error("Function not implemented.");
-}
