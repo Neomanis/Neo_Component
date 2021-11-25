@@ -112,16 +112,6 @@
         "refreshButton": "Auto-refresh",
         "uncheckAllButton": "Uncheck all"
     },
-    "tQuestion": {
-        "answeredQuestionTitle": "Answered questions",
-        "follow": "Follow",
-        "forTicket": "Related to ticket",
-        "modalLeftTitle": "Technical Question",
-        "modalRightTitle": "Answers",
-        "switchValue": "Show my related questions",
-        "unansweredQuestionTitle": "Unanswered questions",
-        "unfollow": "Unfollow"
-    },
     "ticketForm": {
         "actors": "Actors",
         "assigned": "Assigned to",
@@ -215,6 +205,17 @@
         "technicalEvent": "Technical events",
         "unassigned": "Unassigned tickets",
         "userTickets": "My tickets"
+    },
+    "tQuestion": {
+        "answeredQuestionTitle": "Answered questions",
+        "follow": "Follow",
+        "forTicket": "Related to ticket",
+        "modalLeftTitle": "Technical Question",
+        "modalRightTitle": "Answers",
+        "similarQuestion": "Similar question",
+        "switchValue": "Show my related questions",
+        "unansweredQuestionTitle": "Unanswered questions",
+        "unfollow": "Unfollow"
     },
     "validationCard": {
         "deleteValidation": "Delete this"
