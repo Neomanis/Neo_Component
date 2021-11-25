@@ -56,7 +56,7 @@ const AnswerItem = ({
     }
     return (
         <div
-            className={`text-neo_blue-light bg-neo_blue-dark p-2 rounded-xl mb-4 ${
+            className={`text-white bg-neo_blue-dark p-2 rounded-xl mb-4 ${
                 accepted && "border-2 border-neo_green-base"
             }`}
         >
@@ -71,7 +71,7 @@ const AnswerItem = ({
                 </div>
                 <div className="flex items-center">
                     <p className="mr-2">{createUser}</p>
-                    {createLevel ?? <p className="text-neo_blue-light text-opacity-80 mr-2">{createLevel}</p>}
+                    {createLevel ?? <p className="text-white text-opacity-80 mr-2">{createLevel}</p>}
                     {createUser === userUid && (
                         <Button fontIcon={faEdit} className="mr-2" fCallback={() => setUpdate(true)} />
                     )}
@@ -80,7 +80,7 @@ const AnswerItem = ({
                             fontIcon={faArrowUp}
                             fCallback={() => upvote(id)}
                             className={`${
-                                userUid && upvoters.includes(userUid) && "text-neo_blue-blue_sky"
+                                userUid && upvoters.includes(userUid) && "text-neo_bg_B-blue_sky"
                             } cursor-pointer`}
                         />
                         <div>{upvoters.length}</div>

@@ -32,16 +32,16 @@ const NotificationCard = ({
                 setIsFolded(!isFolded);
                 fReadNotification(notificationId, userUid);
             }}
-            className="cursor-pointer min-h-24 mb-7 bg-neo_blue bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
+            className="cursor-pointer min-h-24 mb-7 bg-neo_bg_B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
         >
             <div className="flex flex-col text-white w-8/12">
                 <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>{content}</p>
                 <div className="flex justify-start w-5/12">
                     <Icon
-                        className={`text-xxs ${read ? "text-neo_black-black_05 opacity-30" : "text-neo_red"}`}
+                        className={`text-xxs ${read ? " text-neo_light_grey opacity-30" : "text-neo_red"}`}
                         fontIcon={faCircle}
                     />
-                    <p className="text-xs text-neo_black-black_05 whitespace-nowrap ml-3">{date}</p>
+                    <p className="text-xs text-neo_light_grey whitespace-nowrap ml-3">{date}</p>
                 </div>
             </div>
             <div

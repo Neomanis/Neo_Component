@@ -14,7 +14,7 @@ interface Props {
 
 const InputChat = ({ cardOpen, placeholder, refForm, register, setValue }: Props): ReactElement => {
     return (
-        <div className="flex items-center p-2 bg-neo_blue relative z-20">
+        <div className="flex items-center p-2 bg-neo_bg_B relative z-20 text-white">
             <Input
                 disabled={cardOpen}
                 inputClassName="bg-transparent w-full border-none text-neo_lite focus:outline-none"
@@ -27,7 +27,7 @@ const InputChat = ({ cardOpen, placeholder, refForm, register, setValue }: Props
                 typeInput="text"
             />
             <div className="pl-1 transform hover:scale-105">
-                <Button className="text-2xl text-neo_lite" type="submit" fontIcon={faPaperPlane} />
+                <Button className="text-2xl" type="submit" fontIcon={faPaperPlane} />
             </div>
         </div>
     );

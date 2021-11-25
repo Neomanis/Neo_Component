@@ -155,12 +155,12 @@ const Grid = ({
                             {numberGrid + 1}/{pageGrid}
                         </p>
                         <Button
-                            className="mx-1 hover:text-neo_blue-light cursor-pointer flex items-center"
+                            className="mx-1 hover:text-white cursor-pointer flex items-center"
                             fCallback={(): void => nextAndPrevious(-1)}
                             fontIcon={faCaretSquareLeft}
                         />
                         <Button
-                            className="mx-1 hover:text-neo_blue-light cursor-pointer flex items-center"
+                            className="mx-1 hover:text-white cursor-pointer flex items-center"
                             fCallback={(): void => nextAndPrevious(1)}
                             fontIcon={faCaretSquareRight}
                         />

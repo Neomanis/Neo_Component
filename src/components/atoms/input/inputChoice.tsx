@@ -26,7 +26,7 @@ const InputChoice = ({
                 {data.map((item, key) => (
                     <div
                         className={`${labelClassName} 
-                        flex items-center p-2 text-neo_blue font-bold `}
+                        flex items-center p-2 text-neo_bg_B font-bold `}
                         key={key}
                     >
                         <div

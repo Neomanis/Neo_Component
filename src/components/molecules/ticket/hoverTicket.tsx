@@ -79,7 +79,7 @@ const HoverTicket = ({
                     />
                 </div>
                 <div className={`w-96 z-30 transform -translate-y-1 animate-widthAnim overflow-hidden`}>
-                    <div className={`relative h-36 overflow-hidden bg-neo_blue rounded flex justify-between p-3 w-96`}>
+                    <div className={`relative h-36 overflow-hidden bg-neo_bg_B rounded flex justify-between p-3 w-96`}>
                         <div className="flex flex-col text-left justify-between w-2/3">
                             <div className="text-white">
                                 <div className="text-xl ">
@@ -88,14 +88,14 @@ const HoverTicket = ({
                                 <div>{ticket.name}</div>
                             </div>
                             <div className="text-xs">
-                                <div className="text-neo_blue-light font-bold">
+                                <div className="text-white font-bold">
                                     {myLanguage("ticketScreen.keyDetected")}
                                 </div>
                                 <div className="truncate text-white">keyword, another keyword</div>
                             </div>
                         </div>
                         <div className="flex flex-col text-right h-full justify-between w-1/3">
-                            <div className="flex justify-around text-neo_blue-light w-full">
+                            <div className="flex justify-around text-white w-full">
                                 <div className=" text-2xl">
                                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
                                 </div>
@@ -147,7 +147,7 @@ const HoverTicket = ({
                                 fTicketModalOpen && fTicketModalOpen();
                             }}
                             fontIcon={faExpandArrowsAlt}
-                            iconClassName={"text-neo_blue-dark"}
+                            iconClassName={"text-neo_bg_B-dark"}
                             type="button"
                         />
                     </div>

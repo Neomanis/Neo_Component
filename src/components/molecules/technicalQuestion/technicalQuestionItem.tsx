@@ -35,7 +35,7 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer useOnClickOutsideException"
+            className="list-none bg-neo_bg_B m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer useOnClickOutsideException"
             onClick={openTechnicalQuestion}
         >
             <div className="flex justify-between items-center">
@@ -48,13 +48,13 @@ const TechnicalQuestionItem = ({
                         />
                     </div>
                     {createDate && (
-                        <p className="text-neo_blue-light text-opacity-80 text-xs">{formatDate(createDate)}</p>
+                        <p className="text-white text-opacity-80 text-xs">{formatDate(createDate)}</p>
                     )}
                 </div>
                 <div>
                     <div className="flex">
                         <p className="mr-2">{createUser}</p>
-                        <p className="text-neo_blue-light text-opacity-80">{createLevel}</p>
+                        <p className="text-white text-opacity-80">{createLevel}</p>
                     </div>
                 </div>
             </div>

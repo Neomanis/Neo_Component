@@ -126,9 +126,9 @@ const InputMultipleSelect = ({
         <div className="w-full">
             <div className="flex">
                 <label className="flex justify-between items-center w-full ">
-                    {label && <div className="text-neo_blue-light text-xs font-bold w-2/4">{label}</div>}
+                    {label && <div className="text-white text-xs font-bold w-2/4">{label}</div>}
                     <select
-                        className="w-full bg-neo_blue p-2 rounded text-neo_blue-light truncate"
+                        className="w-full bg-neo_bg_B p-2 rounded text-white truncate"
                         onChange={(e): void => {
                             if (state.timeoutId) {
                                 clearTimeout(state.timeoutId);
@@ -176,7 +176,7 @@ const InputMultipleSelect = ({
                     const value = items.find((item) => id === item.id);
                     return (
                         <div
-                            className="flex bg-neo_blue my-1 rounded justify-between"
+                            className="flex bg-neo_bg_B my-1 rounded justify-between"
                             key={key}
                             style={{ width: "87%" }}
                         >

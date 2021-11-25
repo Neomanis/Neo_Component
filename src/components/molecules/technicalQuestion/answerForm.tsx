@@ -48,12 +48,12 @@ const AnswerForm = ({
                     {isUpdateField && (
                         <Button
                             fontIcon={faTimes}
-                            className="text-xl text-neo_blue-light mb-5"
+                            className="text-xl text-white mb-5"
                             fCallback={closeCallback}
                         />
                     )}
                     {!isUpdateField && (
-                        <Button fontIcon={faSave} type="submit" className="text-xl text-neo_blue-light" />
+                        <Button fontIcon={faSave} type="submit" className="text-xl text-white" />
                     )}
                 </div>
             </div>

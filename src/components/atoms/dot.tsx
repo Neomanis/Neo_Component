@@ -44,7 +44,7 @@ const Dot = ({
         <div
             className={`${positionClassname} relative w-5 p-1 text-center rounded-full text-white ${
                 (isCancelable || isError) && "bg-neo_red cursor-pointer"
-            } ${isSuccess && "bg-neo_urgency-very_low"}`}
+            } ${isSuccess && "bg-neo_green"}`}
             onClick={(): void => {
                 isCancelable && onClickCallback();
             }}

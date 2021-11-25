@@ -102,12 +102,10 @@ const InputSelect = ({
     return (
         <div className="w-full flex items-center">
             <label className={`flex items-center w-full my-1`}>
-                {label && (
-                    <div className={`text-neo_blue-light text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>
-                )}
+                {label && <div className={`text-white text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>}
                 <select
                     {...inputSelectRegister}
-                    className={`w-full bg-neo_blue p-2 rounded truncate ${selectClassName}`}
+                    className={`w-full bg-neo_bg_B p-2 rounded truncate text-white ${selectClassName}`}
                     id={id}
                     onChange={(e): void => {
                         inputSelectRegister?.onChange(e);

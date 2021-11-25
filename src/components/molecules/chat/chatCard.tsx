@@ -56,7 +56,7 @@ const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactE
     }
 
     return (
-        <div className={`h-32 rounded bg-neo_blue p-2 border-b-2 border-neo_blue-modal overflow-hidden`}>
+        <div className={`h-32 rounded bg-neo_bg_B p-2 border-b-2 border-neo_expanded_siew overflow-hidden`}>
             <div>{option}</div>
         </div>
     );

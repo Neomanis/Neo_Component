@@ -23,7 +23,7 @@ const TicketTechnicalQuestionLine = ({
 
     return (
         <div
-            className="bg-neo_blue m-1 grid grid-cols-6 gap-2 rounded-full text-base cursor-pointer text-neo_blue-light"
+            className="bg-neo_bg_B m-1 grid grid-cols-6 gap-2 rounded-full text-base cursor-pointer text-white"
             onClick={() => openTechnicalQuestion()}
         >
             <div className="col-span-4 ml-1 ">{title}</div>

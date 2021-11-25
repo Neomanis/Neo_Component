@@ -14,8 +14,8 @@ const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: Props): Reac
         <li
             className={`mr-4 cursor-pointer border-b-2 
                         ${selectedTab !== index && "hover:text-white"}
-                        ${selectedTab === index ? " text-neo_blue-blue_sky" : "text-neo_black-black_02"} 
-                        ${selectedTab === index ? " border-neo_blue-blue_sky" : " border-neo_blue-modal"}`}
+                        ${selectedTab === index ? "text-neo_blue" : "bg-neo_link"} 
+                        ${selectedTab === index ? "text-neo_blue" : "border-neo_blue_modal"}`}
         >
             <Button data={title} fCallback={() => handleSelectedTab(index)} />
         </li>
