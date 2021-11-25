@@ -40,7 +40,7 @@ export default function ValidationCard({
     }
     return (
         <div
-            className={`flex ${flexType} items-center justify-center border-2 border-neo_blue-light bg-neo_blue text-neo_blue-light rounded-md py-2`}
+            className={`flex ${flexType} text-white items-center justify-center border-2 border-neo_link bg-neo_bg_B rounded-md py-2`}
         >
             {text != "" && <p className={`${paddingTxt} py-1`}>{text}</p>}
             <div className="flex row px-2">

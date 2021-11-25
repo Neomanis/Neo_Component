@@ -30,7 +30,7 @@ const WorkflowCard = ({
                 e.stopPropagation();
                 setIsFolded(!isFolded);
             }}
-            className="cursor-pointer min-h-24 mb-7 w-full bg-neo_blue bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
+            className="cursor-pointer min-h-24 mb-7 w-full bg-neo_bg_B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
         >
             <div className="flex flex-col text-white w-full">
                 <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>
@@ -45,14 +45,14 @@ const WorkflowCard = ({
                     <div className="flex ml-auto mr-2">
                         <Button
                             className={
-                                "flex border rounded-full p-1 w-8 h-8  border-neo_green-base hover:bg-neo_green-base text-neo_green-base hover:text-neo_blue transition duration-200 items-center justify-center"
+                                "flex border rounded-full p-1 w-8 h-8 border-neo_green hover:bg-neo_green  text-neo_green hover:text-neo_bg_B transition duration-200 items-center justify-center"
                             }
                             fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, true, setIsError)}
                             fontIcon={faCheck}
                         />
                         <Button
                             className={
-                                "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo_orange hover:bg-neo_orange text-neo_orange hover:text-neo_blue transition duration-200 items-center justify-center"
+                                "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo_orange hover:bg-neo_orange text-neo_orange hover:text-neo_bg_B transition duration-200 items-center justify-center"
                             }
                             fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, false, setIsError)}
                             fontIcon={faTimes}

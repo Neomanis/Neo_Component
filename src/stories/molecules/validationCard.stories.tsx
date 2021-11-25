@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof ValidationCard> = (args) => {
     return (
-        <div className="bg-neo_black-black_1 w-1/5 p-10 flex items-center">
+        <div className=" bg-neo_bg_A  p-10 flex items-center">
             <ValidationCard {...args} />
         </div>
     );

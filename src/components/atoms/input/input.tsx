@@ -14,7 +14,7 @@ interface Props {
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
-    labelClassName?: string;
+    className?: string;
     onBlurCallBack?: () => void;
     onChangeCallBack?: (e: string) => void;
     onFocusCallBack?: () => void;
@@ -40,7 +40,7 @@ const Input = ({
     isError,
     isUpdateField = false,
     label,
-    labelClassName,
+    className,
     onBlurCallBack,
     onChangeCallBack,
     onFocusCallBack,
@@ -101,12 +101,12 @@ const Input = ({
 
     const inputRegister = register && register(refForm, { required });
     return (
-        <div className={`${labelClassName} w-full flex items-center justify-center relative`}>
+        <div className={`${className} w-full flex items-center justify-center relative`}>
             <label className="w-full flex justify-center">
                 {label}
                 <input
                     {...inputRegister}
-                    className={`${inputClassName}`}
+                    className={`${inputClassName} w-full`}
                     defaultValue={defaultValue}
                     disabled={disabled}
                     onBlur={(e): void => {

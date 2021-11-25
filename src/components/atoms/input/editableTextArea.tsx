@@ -115,7 +115,7 @@ const EditableTextarea = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="flex" style={{ width: "85%" }} key={key}>
+        <div className="flex" key={key}>
             <CKEditor
                 config={{
                     toolbar: toolbarConfig,
@@ -132,7 +132,7 @@ const EditableTextarea = ({
                         }
                     }
                 }}
-                onChange={(event, editor): void => {
+                onChange={(editor): void => {
                     const data = editor.getData();
                     setValue && setValue(refForm, data, { shouldValidate: true });
                     if (isUpdateField) {

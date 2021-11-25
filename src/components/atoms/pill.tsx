@@ -7,7 +7,7 @@ interface Props {
 const Pill = ({ className = "", data }: Props): ReactElement => {
     return (
         <div
-            className={`${className} h-6 w-auto px-3 whitespace-nowrap flex items-center justify-center bg-neo_blue text-white`}
+            className={`${className} h-6 w-auto px-3 whitespace-nowrap flex items-center justify-center bg-neo_bg_B text-white`}
         >
             {data}
         </div>

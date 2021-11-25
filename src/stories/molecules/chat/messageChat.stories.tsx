@@ -9,7 +9,10 @@ export default {
 
 const Template: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center w-1/4">
+        <div className="p-4 flex items-center flex-col bg-neo_expanded_view w-72">
+            <MessageChat {...args} isMe={true} />
+            <MessageChat {...args} />
+            <MessageChat {...args} isMe={true} />
             <MessageChat {...args} />
         </div>
     );
@@ -18,6 +21,13 @@ const Template: ComponentStory<typeof MessageChat> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
     content: "BURN BABY BURN!",
+    date: "12:12",
+    name: "Ragnaros The Firelord",
+    isMe: true,
+};
+export const DefaultDot = Template.bind({});
+DefaultDot.args = {
+    content: "BURN BABY BURN! fdksfkdskqfkdksq kfdksqk dfk fkdskqfkd f kkfdsqk fkdskfks",
     date: "12:12",
     name: "Ragnaros The Firelord",
 };

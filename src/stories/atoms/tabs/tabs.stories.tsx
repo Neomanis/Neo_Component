@@ -10,10 +10,12 @@ export default {
 
 const Template: ComponentStory<typeof Tabs> = (args) => {
     return (
-        <Tabs {...args}>
-            <Tab title="TabOne">Some content</Tab>
-            <Tab title="TabTwo">Some other content</Tab>
-        </Tabs>
+        <div className=" bg-neo_blue_modal">
+            <Tabs {...args}>
+                <Tab title="TabOne">Some content</Tab>
+                <Tab title="TabTwo">Some other content</Tab>
+            </Tabs>
+        </div>
     );
 };
 

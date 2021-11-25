@@ -39,7 +39,7 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none bg-neo_blue m-4 py-2 px-4 text-neo_lite rounded-md cursor-pointer useOnClickOutsideException w-1/2 z-10"
+            className="list-none bg-neo_bg_B m-4 py-2 px-4 text-white rounded-md cursor-pointer useOnClickOutsideException z-10"
             onClick={() => {
                 openTechnicalQuestion();
             }}
@@ -50,17 +50,15 @@ const TechnicalQuestionItem = ({
                         <Title type={"h2"} data={title} className="font-bold text-xl mr-2 truncate" />
                         <Icon
                             fontIcon={solved ? faUserCheck : faUserTimes}
-                            className={`${solved ? "text-neo_green-base" : "text-neo_red"}`}
+                            className={`${solved ? "text-neo_green" : "text-neo_red"}`}
                         />
                     </div>
-                    {createDate && (
-                        <p className="text-neo_blue-light text-opacity-80 text-xs">{formatDate(createDate)}</p>
-                    )}
+                    {createDate && <p className="text-white text-opacity-80 text-xs">{formatDate(createDate)}</p>}
                 </div>
                 <div>
                     <div className="flex">
                         <p>{createUser}</p>
-                        <p className="text-neo_blue-light text-opacity-80 mx-2">{createLevel}</p>
+                        <p className="text-white text-opacity-80 mx-2">{createLevel}</p>
                         <p>
                             {myLanguage("tQuestion.forTicket")} {ticketId}
                         </p>

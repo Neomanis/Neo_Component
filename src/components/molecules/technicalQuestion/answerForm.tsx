@@ -46,15 +46,9 @@ const AnswerForm = ({
                 />
                 <div className="flex flex-col">
                     {isUpdateField && (
-                        <Button
-                            fontIcon={faTimes}
-                            className="text-xl text-neo_blue-light mb-5"
-                            fCallback={closeCallback}
-                        />
+                        <Button fontIcon={faTimes} className="text-xl text-white mb-5" fCallback={closeCallback} />
                     )}
-                    {!isUpdateField && (
-                        <Button fontIcon={faSave} type="submit" className="text-xl text-neo_blue-light" />
-                    )}
+                    {!isUpdateField && <Button fontIcon={faSave} type="submit" className="text-xl text-white" />}
                 </div>
             </div>
         </form>

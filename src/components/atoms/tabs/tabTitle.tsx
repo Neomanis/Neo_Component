@@ -12,10 +12,11 @@ type Props = {
 const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: Props): ReactElement => {
     return (
         <li
-            className={`mr-4 cursor-pointer border-b-2 
+            className={`mr-4 cursor-pointer border-b-2 font-bold
                         ${selectedTab !== index && "hover:text-white"}
-                        ${selectedTab === index ? " text-neo_blue-blue_sky" : "text-neo_black-black_02"} 
-                        ${selectedTab === index ? " border-neo_blue-blue_sky" : " border-neo_blue-modal"}`}
+                        ${
+                            selectedTab === index ? "text-neo_blue border-neo_blue" : " border-opacity-0 text-neo_link"
+                        } `}
         >
             <Button data={title} fCallback={() => handleSelectedTab(index)} />
         </li>

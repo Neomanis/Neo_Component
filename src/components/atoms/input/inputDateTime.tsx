@@ -108,9 +108,9 @@ const InputDateTime = ({
     return (
         <div className="flex items-center w-full">
             <label className="flex items-center justify-between w-full">
-                <div className="text-neo_blue-light text-xs font-bold w-full">{label}</div>
+                <div className="text-white text-xs font-bold w-full">{label}</div>
                 <DatePicker
-                    className="mx-3 bg-neo_blue text-neo_blue-light border-2 border-neo_blue-light rounded py-1 w-32 text-center text-xs"
+                    className="mx-3 bg-neo_bg_B text-white border-2 border-neo_light_grey rounded py-1 w-32 text-center text-xs"
                     placeholderText={placeholder}
                     required={required}
                     selected={startDate}

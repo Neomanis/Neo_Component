@@ -8,15 +8,22 @@ export default {
     title: "Atoms/Input/InputDefault",
 } as Meta;
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => {
+    return (
+        <div className="  ">
+            <Input {...args} />
+        </div>
+    );
+};
 
 export const InputDefault = Template.bind({});
 InputDefault.args = {
-    inputClassName: "bg-transparent border-neo_black-black_02 border-b-2 focus:outline-none text-white",
-    labelClassName: "my-2 bg-neo_black-black_1 pb-2 pt-1 px-3 rounded-xl w-full relative",
+    inputClassName: " bg-transparent border-neo_bg_B border-b-2 focus:outline-none text-white",
+    className: "my-2 bg-neo_bg_A pb-2 pt-1 px-3 rounded-xl w-full relative",
     // eslint-disable-next-line no-console
     onChangeCallBack: (): void => console.log("submitError"),
     refForm: "login",
     required: true,
     typeInput: "input",
+    placeholder: "Default Input",
 };
