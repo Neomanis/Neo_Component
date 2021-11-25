@@ -88,9 +88,7 @@ const HoverTicket = ({
                                 <div>{ticket.name}</div>
                             </div>
                             <div className="text-xs">
-                                <div className="text-white font-bold">
-                                    {myLanguage("ticketScreen.keyDetected")}
-                                </div>
+                                <div className="text-white font-bold">{myLanguage("ticketScreen.keyDetected")}</div>
                                 <div className="truncate text-white">keyword, another keyword</div>
                             </div>
                         </div>

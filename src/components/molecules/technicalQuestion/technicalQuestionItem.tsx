@@ -47,9 +47,7 @@ const TechnicalQuestionItem = ({
                             className={`${solved ? "text-neo_green-base" : "text-neo_red"}`}
                         />
                     </div>
-                    {createDate && (
-                        <p className="text-white text-opacity-80 text-xs">{formatDate(createDate)}</p>
-                    )}
+                    {createDate && <p className="text-white text-opacity-80 text-xs">{formatDate(createDate)}</p>}
                 </div>
                 <div>
                     <div className="flex">

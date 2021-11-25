@@ -24,5 +24,6 @@ Default.args = {
     ],
     refForm: "exemple",
     isUpdateField: true,
+    // eslint-disable-next-line no-console
     updateFunction: (refForm, value) => console.log(refForm, value),
 };
