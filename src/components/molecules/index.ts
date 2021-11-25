@@ -9,6 +9,7 @@ import NotificationCard from "./notification/notificationCard";
 import OutageCard from "./notification/outageCard";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 import SearchField from "./searchField";
+import SimilarTicket from "./ticket/similarTicket";
 import TechnicalQuestionItem from "./technicalQuestion/technicalQuestionItem";
 import Ticket from "./ticket/ticket";
 import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQuestionLine";
@@ -27,6 +28,7 @@ export {
     OutageCard,
     RecursiveDiagnosticComponent,
     SearchField,
+    SimilarTicket,
     TechnicalQuestionItem,
     Ticket,
     TicketTechnicalQuestionLine,
