@@ -120,7 +120,7 @@ const HoverTicket = ({
                     <div className="flex justify-center transform -translate-y-3 z-30">
                         <Button
                             className={
-                                " bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10 border border-neo_blue-dark"
+                                "bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10 text-neo_bg_B"
                             }
                             disabled
                             fontIcon={faChartLine}
@@ -129,7 +129,7 @@ const HoverTicket = ({
                         />
                         <Button
                             className={
-                                "bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10 border border-neo_blue-dark transform hover:scale-110"
+                                "bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10  transform hover:scale-110 text-neo_bg_B"
                             }
                             fCallback={fChatModalOpen}
                             fontIcon={faComment}
@@ -138,7 +138,7 @@ const HoverTicket = ({
                         />
                         <Button
                             className={
-                                "bg-neo_link flex justify-center items-center cursor-pointer transform hover:scale-110 transition-all rounded-full w-10 h-10 border border-neo_blue-dark"
+                                "bg-neo_link flex justify-center items-center cursor-pointer transform hover:scale-110 transition-all rounded-full w-10 h-10 text-neo_bg_B"
                             }
                             fCallback={(): void => {
                                 fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket);

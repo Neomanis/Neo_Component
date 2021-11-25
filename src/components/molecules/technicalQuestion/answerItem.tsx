@@ -55,11 +55,7 @@ const AnswerItem = ({
         );
     }
     return (
-        <div
-            className={`text-white bg-neo_blue-dark p-2 rounded-xl mb-4 ${
-                accepted && "border-2 border-neo_green-base"
-            }`}
-        >
+        <div className={`text-white bg-neo_bg_B p-2 rounded-xl mb-4 ${accepted && "border-2 border-neo_green"}`}>
             <div className="flex justify-between">
                 <div className="flex">
                     <div>{formatDate(createDate)}</div>
@@ -79,9 +75,7 @@ const AnswerItem = ({
                         <Button
                             fontIcon={faArrowUp}
                             fCallback={() => upvote(id)}
-                            className={`${
-                                userUid && upvoters.includes(userUid) && "text-neo_bg_B-blue_sky"
-                            } cursor-pointer`}
+                            className={`${userUid && upvoters.includes(userUid) && "text-neo_blue"} cursor-pointer`}
                         />
                         <div>{upvoters.length}</div>
                     </div>

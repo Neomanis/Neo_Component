@@ -30,7 +30,7 @@ const TicketTechnicalQuestionLine = ({
             <div className="text-opacity-80 ">{`${answersNumber ?? 0} ${myLanguage("ticketModalInfo.answer")}`}</div>
             <div
                 className={`${
-                    solved ? "bg-neo_green-base" : "bg-neo_red"
+                    solved ? "bg-neo_green" : "bg-neo_red"
                 } flex justify-center items-center col-end-7 rounded-r-full text-white`}
             >
                 <Icon fontIcon={solved ? faUserCheck : faUserTimes} />

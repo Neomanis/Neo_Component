@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof SimilarTicket> = (args) => {
     return (
-        <div className="w-full p-4 bg-neo_blue-modal">
+        <div className="w-full p-4 bg-neo_bg_B">
             <SimilarTicket {...args} languageUser={i18n.language} />
         </div>
     );

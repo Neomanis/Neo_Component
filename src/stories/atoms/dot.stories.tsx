@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof Dot> = (args) => {
     return (
-        <div className="bg-neo_blue-dark h-8 flex justify-center items-center w-8">
+        <div className=" bg-neo_bg_A h-8 flex justify-center items-center w-8">
             <Dot {...args} />
         </div>
     );
