@@ -28,9 +28,9 @@ module.exports = {
                     very_high: "#F24D3D",
                     major: "#F42A3E",
                 },
-                neo_wellow: {
+                neo_yellow: {
                     DEFAULT: "#FFCC66",
-                    send: "#e2dc8f",
+                    sand: "#e2dc8f",
                 },
             },
         },
