@@ -28,6 +28,7 @@ import Tabs from "./tabs/tabs";
 import TabTitle from "./tabs/tabTitle";
 import Title from "./title";
 import Tooltip from "./tooltip";
+import WordTag from "./wordTag";
 
 export {
     BubbleChat,
@@ -60,4 +61,5 @@ export {
     TabTitle,
     Title,
     Tooltip,
+    WordTag,
 };
