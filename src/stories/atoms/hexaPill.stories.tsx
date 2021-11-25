@@ -18,7 +18,7 @@ export default {
 
 const Template: ComponentStory<typeof HexaPill> = (args) => {
     return (
-        <div className="bg-neo_black-black_1 p-2 flex items-center w-16">
+        <div className=" bg-neo_bg_A p-2 flex items-center w-16">
             <HexaPill {...args} />
         </div>
     );

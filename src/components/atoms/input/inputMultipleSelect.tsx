@@ -123,8 +123,8 @@ const InputMultipleSelect = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="w-full">
-            <div className="flex">
+        <div className="w-full flex">
+            <div className="w-full">
                 <label className="flex justify-between items-center w-full ">
                     {label && <div className="text-white text-xs font-bold w-2/4">{label}</div>}
                     <select
@@ -147,39 +147,10 @@ const InputMultipleSelect = ({
                         ))}
                     </select>
                 </label>
-                <div className="mx-3 mt-2 w-6">
-                    {(isError || state.isCancelable || state.isSuccess) && (
-                        <Dot
-                            errorMessage={errorMessage}
-                            isCancelable={state.isCancelable}
-                            isCooldown={state.isCooldown}
-                            isError={isError}
-                            isSuccess={state.isSuccess}
-                            isUpdateField={isUpdateField}
-                            onClickCallback={(): void => {
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
-                                dispatch({ type: "CANCEL_UPDATE" });
-                                if (selectInput.current) {
-                                    selectInput.current.value = "-1";
-                                }
-                            }}
-                            positionClassname={dotPosition}
-                            trigger={state.trigger}
-                        />
-                    )}
-                </div>
-            </div>
-            <div className="">
                 {(state.updated as number[]).map((id, key) => {
                     const value = items.find((item) => id === item.id);
                     return (
-                        <div
-                            className="flex bg-neo_bg_B my-1 rounded justify-between"
-                            key={key}
-                            style={{ width: "87%" }}
-                        >
+                        <div className="flex bg-neo_bg_B my-1 rounded justify-between" key={key}>
                             <p className="m-2 text-white">{value?.value}</p>
                             <button
                                 className="m-2 text-neo_red"
@@ -206,6 +177,30 @@ const InputMultipleSelect = ({
                         </div>
                     );
                 })}
+            </div>
+
+            <div className="mx-3 mt-2 w-6">
+                {(isError || state.isCancelable || state.isSuccess) && (
+                    <Dot
+                        errorMessage={errorMessage}
+                        isCancelable={state.isCancelable}
+                        isCooldown={state.isCooldown}
+                        isError={isError}
+                        isSuccess={state.isSuccess}
+                        isUpdateField={isUpdateField}
+                        onClickCallback={(): void => {
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                            dispatch({ type: "CANCEL_UPDATE" });
+                            if (selectInput.current) {
+                                selectInput.current.value = "-1";
+                            }
+                        }}
+                        positionClassname={dotPosition}
+                        trigger={state.trigger}
+                    />
+                )}
             </div>
         </div>
     );

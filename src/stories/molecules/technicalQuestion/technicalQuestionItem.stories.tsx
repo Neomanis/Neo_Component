@@ -20,9 +20,11 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
 export const TechnicalQuestionItemDefault = Template.bind({});
 TechnicalQuestionItemDefault.args = {
     content: "We do not seek your confession, only your torment.",
-    createDate: "18/11/2021 09:23",
+    createDate: "2021-11-15T13:34:48.551Z",
     createLevel: "Level 1",
     createUser: "Leman Russ",
+    followed: false,
+    followTechnicalQuestion: () => console.log("hey"),
     id: 2,
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,

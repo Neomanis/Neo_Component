@@ -45,7 +45,7 @@ const WorkflowCard = ({
                     <div className="flex ml-auto mr-2">
                         <Button
                             className={
-                                "flex border rounded-full p-1 w-8 h-8  border-neo_green-base hover:bg-neo_green-base text-neo_green-base hover:text-neo_bg_B transition duration-200 items-center justify-center"
+                                "flex border rounded-full p-1 w-8 h-8 border-neo_green hover:bg-neo_green  text-neo_green hover:text-neo_bg_B transition duration-200 items-center justify-center"
                             }
                             fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, true, setIsError)}
                             fontIcon={faCheck}

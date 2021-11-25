@@ -114,11 +114,13 @@
     },
     "tQuestion": {
         "answeredQuestionTitle": "Answered questions",
+        "follow": "Follow",
         "forTicket": "Related to ticket",
         "modalLeftTitle": "Technical Question",
         "modalRightTitle": "Answers",
         "switchValue": "Show my related questions",
-        "unansweredQuestionTitle": "Unanswered questions"
+        "unansweredQuestionTitle": "Unanswered questions",
+        "unfollow": "Unfollow"
     },
     "ticketForm": {
         "actors": "Actors",
