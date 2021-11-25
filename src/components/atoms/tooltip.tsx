@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState, MouseEvent } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
@@ -7,12 +7,21 @@ interface Props {
     className?: string;
     component?: ReactElement;
     data: string;
+    fCallback?: (e: MouseEvent) => void;
     fontIcon?: IconProp;
     fontIconClassName?: string;
     position?: string;
 }
 
-const Tooltip = ({ className, component, data, fontIcon, fontIconClassName, position }: Props): ReactElement => {
+const Tooltip = ({
+    className,
+    component,
+    data,
+    fCallback,
+    fontIcon,
+    fontIconClassName,
+    position,
+}: Props): ReactElement => {
     const [showTooltip, setShowTooltip] = useState(false);
 
     switch (position) {
@@ -34,7 +43,11 @@ const Tooltip = ({ className, component, data, fontIcon, fontIconClassName, posi
             onMouseLeave={(): void => setShowTooltip(false)}
         >
             {component && component}
-            {fontIcon && <Icon fontIcon={fontIcon} className={fontIconClassName} />}
+            {fontIcon && (
+                <div onClick={(e) => fCallback && fCallback(e)}>
+                    <Icon fontIcon={fontIcon} className={fontIconClassName} />
+                </div>
+            )}
             <div
                 className={`
                     ${showTooltip ? "" : "hidden"} 
