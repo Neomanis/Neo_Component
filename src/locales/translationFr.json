@@ -112,16 +112,6 @@
         "refreshButton": "Refresh-auto",
         "uncheckAllButton": "Tout déselectionner"
     },
-    "tQuestion": {
-        "answeredQuestionTitle": "Questions répondues",
-        "follow": "Suivre",
-        "forTicket": "Liée au ticket",
-        "modalLeftTitle": "Question Technique",
-        "modalRightTitle": "Réponses",
-        "switchValue": "Montrer mes questions liées",
-        "unansweredQuestionTitle": "Questions sans réponse",
-        "unfollow": "Ne plus suivre"
-    },
     "ticketForm": {
         "actors": "Acteurs",
         "assigned": "Assigné à",
@@ -215,6 +205,17 @@
         "technicalEvent": "Interventions Techniques",
         "unassigned": "Tickets non assignés",
         "userTickets": "Mes Tickets"
+    },
+    "tQuestion": {
+        "answeredQuestionTitle": "Questions répondues",
+        "follow": "Suivre",
+        "forTicket": "Liée au ticket",
+        "modalLeftTitle": "Question Technique",
+        "modalRightTitle": "Réponses",
+        "similarQuestion": "Question similaire",
+        "switchValue": "Montrer mes questions liées",
+        "unansweredQuestionTitle": "Questions sans réponse",
+        "unfollow": "Ne plus suivre"
     },
     "validationCard": {
         "deleteValidation": "Supprimer cet"
