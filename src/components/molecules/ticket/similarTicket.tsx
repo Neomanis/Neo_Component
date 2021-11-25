@@ -3,7 +3,8 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { ReactComponent as TicketClosed } from "../../../img/svg/nm_ico_ticket_closed.svg";
 import { ReactComponent as TicketNormal } from "../../../img/svg/nm_ico_ticket_normal.svg";
 import { Icon, IconTicketCategorie } from "../../atoms";
-import { getFormatedTimeToNowExtended, getPriorityColor, ITicket } from "../../..";
+import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
+import { ITicket } from "../../../interface";
 import i18next from "i18next";
 
 interface Props {
