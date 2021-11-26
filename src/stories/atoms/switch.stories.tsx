@@ -8,7 +8,15 @@ export default {
     title: "Atoms/SwitchToggle",
 } as Meta;
 
-const Template: ComponentStory<typeof SwitchToggle> = (args) => <SwitchToggle {...args} />;
+const Template: ComponentStory<typeof SwitchToggle> = (args) => {
+    return (
+        <>
+            <SwitchToggle {...args} id={"test"} />
+            <SwitchToggle {...args} id={"test2"} />
+            <SwitchToggle {...args} id={"test3"} />
+        </>
+    );
+};
 
 export const Default = Template.bind({});
 Default.args = {

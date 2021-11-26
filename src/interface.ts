@@ -331,6 +331,7 @@ export interface ITechnicalQuestion {
     keywords?: string[];
     assignedUsers?: string[];
     assignedGroups?: string[];
+    followers: string[];
 }
 export interface ITechnicalQuestionResponse {
     id: number;
@@ -348,6 +349,7 @@ export interface ITechnicalQuestionResponse {
     keywords: string[];
     assignedUsers: string[];
     assignedGroups: string[];
+    followers: string[];
 }
 export interface ITicket {
     id?: number;
