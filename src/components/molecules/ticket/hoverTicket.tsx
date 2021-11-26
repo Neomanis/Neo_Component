@@ -3,7 +3,7 @@ import { ITicket } from "../../../interface";
 
 import { faClock, faExpandArrowsAlt, faComment, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
-import { Button, Hexagon, Icon, IconTicketCategorie, Img, Tooltip } from "../../atoms";
+import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations
 import i18next from "i18next";
