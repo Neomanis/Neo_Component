@@ -402,6 +402,7 @@ export interface ITicket {
         rel?: string;
         href?: string;
     }[];
+    keywords?: string[];
 }
 export interface ITicketCreate {
     name?: string;
