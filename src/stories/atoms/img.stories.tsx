@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof Img> = (args) => {
     return (
-        <div className="p-4 flex items-center w-1/4 bg-neo_expanded_view">
+        <div className="p-4 flex items-center w-1/4 bg-neo-expanded">
             <Img {...args} />;
         </div>
     );

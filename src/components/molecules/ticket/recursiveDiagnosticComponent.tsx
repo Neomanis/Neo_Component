@@ -44,11 +44,11 @@ const RecursiveDiagnosticComponent = ({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function lateralColorBand(type: any): string {
         if (type.result === "Validated" || type.result === "OK" || type.type === "solved") {
-            return "neo_green";
+            return "neo-green";
         } else if (type.result === "Rejected" || type.result === "Failed" || type.type === "escalate") {
-            return "neo_orange";
+            return "neo-orange";
         } else {
-            return "neo_lite";
+            return "neo-light-grey";
         }
     }
 
@@ -68,7 +68,7 @@ const RecursiveDiagnosticComponent = ({
                 } ${
                     getFinalExit(results)
                         ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}`
-                        : "border-l-8 border-neo_light_grey"
+                        : "border-l-8 border-neo-light-grey"
                 }
             }`}
             >

@@ -8,29 +8,39 @@ module.exports = {
         extend: {
             //color perso neomanis
             colors: {
-                neo_bg_A: "#152535",
-                neo_bg_B: "#15304C",
-                neo_link: "#7DAAB7",
-                neo_blue: "#22AAFF",
-                neo_blue_secondary: "#366688",
-                neo_blue_modal: "#0f283f",
-                neo_expanded_view: "#17212B",
-                neo_light_grey: "#DAE5E5",
-                neo_red: "#F7284F",
-                neo_pink: "#FF1166",
-                neo_green: "#7FEF7F",
-                neo_orange: "#ED943B",
-                neo_urgency: {
-                    very_low: "#7FEF7F",
-                    low: "#B6C25D",
-                    DEFAULT: "#ED943B",
-                    high: "#EF713C",
-                    very_high: "#F24D3D",
-                    major: "#F42A3E",
-                },
-                neo_yellow: {
-                    DEFAULT: "#FFCC66",
-                    sand: "#e2dc8f",
+                neo: {
+                    bg: {
+                        A: "#152535",
+                        B: "#15304C",
+                    },
+                    link: "#7DAAB7",
+                    blue: {
+                        DEFAULT: "#22AAFF",
+                        secondary: "#366688",
+                        modal: "#0f283f",
+                    },
+                    expanded: "#17212B",
+                    light: {
+                        grey: "#DAE5E5",
+                    },
+                    red: "#F7284F",
+                    pink: "#FF1166",
+                    green: "#7FEF7F",
+                    orange: "#ED943B",
+                    urgency: {
+                        very: {
+                            low: "#7FEF7F",
+                            hight: "#F24D3D",
+                        },
+                        low: "#B6C25D",
+                        DEFAULT: "#ED943B",
+                        high: "#EF713C",
+                        major: "#F42A3E",
+                    },
+                    yellow: {
+                        DEFAULT: "#FFCC66",
+                        sand: "#e2dc8f",
+                    },
                 },
             },
         },
@@ -136,7 +146,6 @@ module.exports = {
             "gradient-to-bl": "linear-gradient(to bottom left, var(--tw-gradient-stops))",
             "gradient-to-l": "linear-gradient(to left, var(--tw-gradient-stops))",
             "gradient-to-tl": "linear-gradient(to top left, var(--tw-gradient-stops))",
-            "framboos-gradient": "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
         },
         backgroundOpacity: (theme) => theme("opacity"),
         backgroundPosition: {

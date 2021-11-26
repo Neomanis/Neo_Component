@@ -43,8 +43,8 @@ const Dot = ({
     return (
         <div
             className={`${positionClassname} relative w-5 p-1 text-center rounded-full text-white ${
-                (isCancelable || isError) && "bg-neo_red cursor-pointer"
-            } ${isSuccess && "bg-neo_green"}`}
+                (isCancelable || isError) && "bg-neo-red cursor-pointer"
+            } ${isSuccess && "bg-neo-green"}`}
             onClick={(): void => {
                 isCancelable && onClickCallback();
             }}
@@ -87,7 +87,7 @@ const Dot = ({
                     {!isError && <Icon fontIcon={faUndo} />}
                     {isError && errorMessage && (
                         <Tooltip
-                            className="bg-neo_red"
+                            className="bg-neo-red"
                             data={errorMessage}
                             fontIcon={faExclamationTriangle}
                             fontIconClassName="text-white"
@@ -98,7 +98,7 @@ const Dot = ({
             {!isUpdateField && isError && errorMessage && (
                 <div className="text-xs">
                     <Tooltip
-                        className="bg-neo_red"
+                        className="bg-neo-red"
                         data={errorMessage}
                         fontIcon={faExclamationTriangle}
                         fontIconClassName="text-white"

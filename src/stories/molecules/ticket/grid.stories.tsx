@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof Grid> = (args) => {
     return (
-        <div className="p-4">
+        <div className="p-4 w-1/2 bg-neo-bg-A">
             <Grid {...args} languageUser={i18n.language} />
         </div>
     );
@@ -28,8 +28,20 @@ Default.args = {
     glpiGroups: fakeGlpiGroups,
     glpiUsers: fakeGlpiUsers,
     row: 3,
-    tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
+    tickets: [
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+        fakeTicket,
+    ],
     withHover: true,
+    paginationGrid: true,
 };
 export const DefaultHelper = Template.bind({});
 DefaultHelper.args = {

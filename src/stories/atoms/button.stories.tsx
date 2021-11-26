@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    className: "flex bg-purple-600 text-white rounded px-1",
+    className: "flex text-white rounded px-1",
     data: "Default",
     disabled: true,
     fCallback: () => console.log("click ! "),
@@ -22,6 +22,7 @@ Default.args = {
     iconClassName: "ml-2",
     testId: "testId",
     type: "button",
+    style: { background: "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)" },
 };
 export const Submit = Template.bind({});
 Submit.args = {

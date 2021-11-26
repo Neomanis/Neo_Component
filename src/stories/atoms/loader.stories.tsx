@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof Loader> = (args) => {
     return (
-        <div className=" bg-neo_expanded_view p-2 flex items-center ">
+        <div className=" bg-neo-expanded p-2 flex items-center ">
             <Loader {...args} />
         </div>
     );

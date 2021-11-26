@@ -18,7 +18,7 @@ const Loader = ({ data, type }: Props): ReactElement => {
             );
         default:
             return (
-                <div className="flex justify-center items-center bg-neo_red text-white rounded-lg px-4 py-1 shadow-lg">
+                <div className="flex justify-center items-center bg-neo-red text-white rounded-lg px-4 py-1 shadow-lg">
                     <div className="mx-2">
                         <Title type="h1" data={data ? data : "loading ..."} />
                     </div>
