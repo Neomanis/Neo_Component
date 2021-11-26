@@ -213,7 +213,8 @@
         "modalLeftTitle": "Technical Question",
         "modalRightTitle": "Answers",
         "similarQuestion": "Similar question",
-        "switchValue": "Show my related questions",
+        "switchValueRelated": "Show my related questions",
+        "switchValueSolved": "Show me solved questions",
         "unansweredQuestionTitle": "Unanswered questions",
         "unfollow": "Unfollow"
     },
