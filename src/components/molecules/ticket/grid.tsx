@@ -146,6 +146,7 @@ const Grid = ({
                     languageUser={languageUser}
                     ticket={overTicket.ticket}
                     ticketRequester={displayRequesterName(overTicket.ticket, glpiUsers, glpiGroups)}
+                    keywords={["printer", "network", "internet"]}
                 />
             )}
             <div className={`${col === 1 ? "w-52" : ""}`}>
