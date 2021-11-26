@@ -50,7 +50,7 @@ const InputSimpleSelect = ({
             {label && <div className={`text-white text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>}
             <select
                 {...inputRegister}
-                className={`w-full bg-neo_bg_B p-2 rounded truncate text-white  ${selectClassName}`}
+                className={`w-full bg-neo-bg-B p-2 rounded truncate text-white  ${selectClassName}`}
                 defaultValue={defaultValue}
                 onChange={(e): void => {
                     onChangeCallBack && onChangeCallBack(e.target.value);

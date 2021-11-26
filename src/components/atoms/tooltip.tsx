@@ -38,7 +38,7 @@ const Tooltip = ({
 
     return (
         <div
-            className="text-neo_black-black_05 cursor-pointer relative"
+            className="text-neo-link cursor-pointer relative"
             onMouseEnter={(): void => setShowTooltip(true)}
             onMouseLeave={(): void => setShowTooltip(false)}
         >
@@ -53,7 +53,7 @@ const Tooltip = ({
                     ${showTooltip ? "" : "hidden"} 
                     ${position} 
                     ${className}
-                    w-max max-w-xxs absolute bg-neo_blue-modal z-50 px-4 py-1 rounded text-xs text-white
+                    w-max max-w-xxs absolute bg-neo-blue-modal z-50 px-4 py-1 rounded text-xs text-white
                 `}
             >
                 {data}

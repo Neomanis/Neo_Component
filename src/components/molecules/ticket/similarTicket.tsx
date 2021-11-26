@@ -18,14 +18,14 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
 
     return (
         <div
-            className="bg-neo_bg_B flex cursor-pointer text-white rounded-full"
+            className="bg-neo-bg-B flex cursor-pointer text-white rounded-full"
             onClick={(): void => fOpenSimilarTicket(ticket)}
         >
             <div
                 className={`${getPriorityColor(
                     ticket.priority,
                     false
-                )} w-auto text-neo_bg_B rounded-l-full flex items-center px-2 font-semibold`}
+                )} w-auto text-neo-bg-B rounded-l-full flex items-center px-2 font-semibold`}
             >
                 {ticket.status > 4 ? (
                     <TicketClosed className="w-10" fill="#172f4b" />

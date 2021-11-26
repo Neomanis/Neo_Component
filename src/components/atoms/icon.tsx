@@ -16,7 +16,7 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
         case "iconLink":
             return (
                 <div
-                    className={`${className} p-4 text-neo_bg_B hover:text-neo_bg_B-blue_sky cursor-pointer text-4xl`}
+                    className={`${className} p-4 text-neo-bg-B hover:text-neo-blue cursor-pointer text-4xl`}
                     onClick={fCallBack}
                 >
                     <FontAwesomeIcon icon={fontIcon} />
@@ -24,7 +24,7 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
             );
         case "placeholderInput":
             return (
-                <div className="p-4 text-neo_bg_B text-4xl">
+                <div className="p-4 text-neo-bg-B text-4xl">
                     <FontAwesomeIcon
                         icon={fontIcon}
                         className="pointer-events-none w-6 h-6 absolute top-12 transform -translate-y-1/2 left-3"
@@ -33,10 +33,10 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
             );
         case "iconWithRedDot":
             return (
-                <div className={`${className} p-1 text-neo_bg_B text-4xl relative w-10`}>
+                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`}>
                     <FontAwesomeIcon icon={fontIcon} />
                     {redDot && (
-                        <FontAwesomeIcon icon={faCircle} className="text-neo_red absolute top-0 right-0 text-xxs" />
+                        <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />
                     )}
                 </div>
             );

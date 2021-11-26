@@ -30,7 +30,7 @@ const WorkflowCard = ({
                 e.stopPropagation();
                 setIsFolded(!isFolded);
             }}
-            className="cursor-pointer min-h-24 mb-7 w-full bg-neo_bg_B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
+            className="cursor-pointer min-h-24 mb-7 w-full bg-neo-bg-B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
         >
             <div className="flex flex-col text-white w-full">
                 <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>
@@ -41,18 +41,18 @@ const WorkflowCard = ({
                     <span style={{ fontSize: "1.02rem" }}> {content}</span>
                 </p>
                 <div className="flex justify-between w-full">
-                    <p className="text-xs text-neo_black-black_05 whitespace-nowrap mt-2">{date}</p>
+                    <p className="text-xs text-neo-link whitespace-nowrap mt-2">{date}</p>
                     <div className="flex ml-auto mr-2">
                         <Button
                             className={
-                                "flex border rounded-full p-1 w-8 h-8 border-neo_green hover:bg-neo_green  text-neo_green hover:text-neo_bg_B transition duration-200 items-center justify-center"
+                                "flex border rounded-full p-1 w-8 h-8 border-neo-green hover:bg-neo-green  text-neo-green hover:text-neo-bg-B transition duration-200 items-center justify-center"
                             }
                             fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, true, setIsError)}
                             fontIcon={faCheck}
                         />
                         <Button
                             className={
-                                "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo_orange hover:bg-neo_orange text-neo_orange hover:text-neo_bg_B transition duration-200 items-center justify-center"
+                                "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo-orange hover:bg-neo-orange text-neo-orange hover:text-neo-bg-B transition duration-200 items-center justify-center"
                             }
                             fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, false, setIsError)}
                             fontIcon={faTimes}
@@ -61,7 +61,7 @@ const WorkflowCard = ({
                 </div>
                 {isError && (
                     <div>
-                        <p className={"text-neo_orange"}>{workflowErrorText} </p>
+                        <p className={"text-neo-orange"}>{workflowErrorText} </p>
                     </div>
                 )}
             </div>

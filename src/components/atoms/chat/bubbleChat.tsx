@@ -9,8 +9,8 @@ const BubbleChat = ({ bgColor, border, content }: Props): ReactElement => {
     return (
         <div
             className={`${bgColor} 
-            ${border && "border-2 border-neo_bg_B"}
-             text-xxs rounded-md p-2 text-neo_light_grey `}
+            ${border && "border-2 border-neo-bg-B"}
+             text-xxs rounded-md p-2  text-neo-light-grey `}
         >
             {content}
         </div>

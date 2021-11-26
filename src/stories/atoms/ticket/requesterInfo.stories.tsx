@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof RequesterInfo> = (args) => (
-    <div className="bg-neo_bg_B p-2">
+    <div className="bg-neo-bg-B p-2">
         <RequesterInfo {...args} />
     </div>
 );

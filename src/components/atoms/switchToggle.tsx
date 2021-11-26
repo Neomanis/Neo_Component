@@ -21,9 +21,8 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement 
             <div className="relative w-10 inline-block mr-2">
                 <input
                     checked={checked}
-                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear ${
-                        checked && "translate-x-full bg-white"
-                    }`}
+                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear 
+                    ${checked && "translate-x-full bg-white"}`}
                     id="toggle"
                     name="toggle"
                     onChange={(): void => {
@@ -38,7 +37,7 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement 
                     htmlFor="toggle"
                 ></label>
             </div>
-            <label className="text-xs text-gray-700 cursor-pointer" htmlFor="toggle">
+            <label className="text-xs text-neo-blue-secondary cursor-pointer" htmlFor="toggle">
                 {value}
             </label>
         </div>

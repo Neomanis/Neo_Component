@@ -150,7 +150,7 @@ const Grid = ({
             )}
             <div className={`${col === 1 ? "w-52" : ""}`}>
                 {paginationGrid && pageGrid > 1 && (
-                    <div className={`flex text-xl justify-end items-center text-neo_lite`}>
+                    <div className={`flex text-xl justify-end items-center text-neo-light-grey`}>
                         <p className="pt-1 mx-2">
                             {numberGrid + 1}/{pageGrid}
                         </p>

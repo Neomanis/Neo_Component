@@ -11,6 +11,7 @@ interface Props {
     iconClassName?: string;
     svg?: ReactElement;
     svgClassName?: string;
+    style?: React.CSSProperties;
     testId?: string;
     type?: "button" | "submit" | "reset";
 }
@@ -24,11 +25,19 @@ const Button = ({
     iconClassName,
     svg,
     svgClassName,
+    style,
     testId,
     type = "button",
 }: Props): ReactElement => {
     return (
-        <button type={type} className={className} onClick={fCallback} data-testid={testId} disabled={disabled}>
+        <button
+            type={type}
+            className={className}
+            onClick={fCallback}
+            data-testid={testId}
+            disabled={disabled}
+            style={style}
+        >
             {svg && <div className={svgClassName}>{svg}</div>}
             {data}
             {fontIcon && (

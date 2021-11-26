@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof BubbleChat> = (args) => {
     return (
-        <div className="p-4 flex items-center w-1/4 bg-neo_expanded_view">
+        <div className="p-4 flex items-center w-1/4 bg-neo-expanded">
             <BubbleChat {...args} />
         </div>
     );
@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof BubbleChat> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    bgColor: " bg-neo_bg_B",
+    bgColor: " bg-neo-bg-B",
     content: "I am more monster than man.",
 };
 
