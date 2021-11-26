@@ -19,10 +19,8 @@ const Template: ComponentStory<typeof Tooltip> = (args) => {
 
 export const tooltipIconDefault = Template.bind({});
 tooltipIconDefault.args = {
-    textContentClassName: "text-neo_light_grey",
     className: "border",
     data: "data test",
-    textContent: "data test",
 };
 
 export const tooltipIconTop = Template.bind({});
