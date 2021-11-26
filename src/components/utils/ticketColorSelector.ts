@@ -16,23 +16,23 @@ export function getStatusColor(statusId: number, isHex: boolean): string {
             hex: "#dae5e5",
         },
         pending: {
-            tailwind: "bg-neo_wellow-send",
+            tailwind: "bg-neo-yellow-sand",
             hex: "#E2DC8F",
         },
         assigned: {
-            tailwind: "bg-neo-blue-blue-sky",
+            tailwind: "bg-neo-blue",
             hex: "#2fa8fc",
         },
         planned: {
-            tailwind: "bg-neo-blue-blue-sky",
+            tailwind: "bg-neo-blue",
             hex: "#2fa8fc",
         },
         solved: {
-            tailwind: "bg-neo-blue-dark",
+            tailwind: "bg-neo-bg-A",
             hex: "#152535",
         },
         closed: {
-            tailwind: "bg-neo-blue-dark",
+            tailwind: "bg-neo-bg-A",
             hex: "#152535",
         },
     };
