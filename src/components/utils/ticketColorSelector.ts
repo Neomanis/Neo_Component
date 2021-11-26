@@ -20,11 +20,11 @@ export function getStatusColor(statusId: number, isHex: boolean): string {
             hex: "#E2DC8F",
         },
         assigned: {
-            tailwind: "bg-neo-blue-blue_sky",
+            tailwind: "bg-neo-blue-blue-sky",
             hex: "#2fa8fc",
         },
         planned: {
-            tailwind: "bg-neo-blue-blue_sky",
+            tailwind: "bg-neo-blue-blue-sky",
             hex: "#2fa8fc",
         },
         solved: {
@@ -45,27 +45,27 @@ export function getPriorityColor(priorityId: number, isHex: boolean): string {
     const priorityColors: Colors = {
         verylow: {
             hex: "#7FEF7F",
-            tailwind: "bg-neo_urgency-very_low",
+            tailwind: "bg-neo-urgency-very-low",
         },
         low: {
             hex: "#B6C25D",
-            tailwind: "bg-neo_urgency-low",
+            tailwind: "bg-neo-urgency-low",
         },
         medium: {
             hex: "#ED943B",
-            tailwind: "bg-neo_urgency",
+            tailwind: "bg-neo-urgency",
         },
         high: {
             hex: "#EF713C",
-            tailwind: "bg-neo_urgency-high",
+            tailwind: "bg-neo-urgency-high",
         },
         veryhigh: {
             hex: "#F24D3D",
-            tailwind: "bg-neo_urgency-very_high",
+            tailwind: "bg-neo-urgency-very-high",
         },
         major: {
             hex: "#F42A3E",
-            tailwind: "bg-neo_urgency-major",
+            tailwind: "bg-neo-urgency-major",
         },
     };
     if (priorityId >= 1 && priorityId <= 6) {

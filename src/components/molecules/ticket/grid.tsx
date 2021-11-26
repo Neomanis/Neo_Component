@@ -6,7 +6,7 @@ import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
 import Button from "../../atoms/button";
 //icon
-import { faCaretSquareLeft, faCaretSquareRight } from "@fortawesome/free-solid-svg-icons";
+import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { displayRequesterName } from "../../utils/displayRequesterName";
 import { IGlpiRequest, IGlpiUsers } from "../../..";
 
@@ -150,19 +150,19 @@ const Grid = ({
             )}
             <div className={`${col === 1 ? "w-52" : ""}`}>
                 {paginationGrid && pageGrid > 1 && (
-                    <div className={`flex text-xl justify-end items-center text-neo-light-grey`}>
-                        <p className="pt-1 mx-2">
+                    <div className={`flex text-xl justify-end items-center text-neo-link`}>
+                        <p className="pt-1 mr-4">
                             {numberGrid + 1}/{pageGrid}
                         </p>
                         <Button
-                            className="mx-1 hover:text-white cursor-pointer flex items-center"
+                            className="hover:text-white cursor-pointer flex items-center transform rotate-90 text-3xl"
                             fCallback={(): void => nextAndPrevious(-1)}
-                            fontIcon={faCaretSquareLeft}
+                            fontIcon={faSortDown}
                         />
                         <Button
-                            className="mx-1 hover:text-white cursor-pointer flex items-center"
+                            className="hover:text-white cursor-pointer flex items-center transform -rotate-90 text-3xl"
                             fCallback={(): void => nextAndPrevious(1)}
-                            fontIcon={faCaretSquareRight}
+                            fontIcon={faSortDown}
                         />
                     </div>
                 )}
