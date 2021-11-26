@@ -24,7 +24,7 @@ Default.args = {
         title: "Outage title",
         content:
             "outage content   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quod cum nihil quasi deleniti, ut, labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
-        severity: "major",
+        severity: "",
         type: "outage",
         startAt: new Date(),
         endAt: new Date(),
