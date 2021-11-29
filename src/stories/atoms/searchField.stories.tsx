@@ -11,7 +11,7 @@ export default {
 const Template: ComponentStory<typeof SearchField> = (args) => {
     const { setValue, setFocus } = useForm({ mode: "onChange" });
     return (
-        <div className="w-full h-56 bg-neo_bg_A">
+        <div className="w-full h-56 bg-neo-bg-A">
             <form>
                 <div className="w-1/3 p-2">
                     <SearchField {...args} setFocus={setFocus} setValue={setValue} />

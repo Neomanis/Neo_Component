@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof NotificationCard> = (args) => {
     return (
-        <div className=" bg-neo_bg_A p-2 flex items-center">
+        <div className=" bg-neo-bg-A p-2 flex items-center">
             <NotificationCard {...args} />
         </div>
     );
