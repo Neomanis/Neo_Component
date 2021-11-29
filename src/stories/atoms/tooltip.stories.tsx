@@ -35,7 +35,7 @@ tooltipIconTop.args = {
 export const tooltipComponentDefault = Template.bind({});
 tooltipComponentDefault.args = {
     className: "",
-    component: <IconTicketCategorie />,
+    component: <p>test</p>,
     data: "data test",
 };
 

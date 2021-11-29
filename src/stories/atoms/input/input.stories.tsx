@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
 export const InputDefault = Template.bind({});
 InputDefault.args = {
     inputClassName: " bg-transparent border-neo-bg-B border-b-2 focus:outline-none text-white",
-    className: "my-2 bg-neo_bg_A pb-2 pt-1 px-3 rounded-xl w-full relative",
+    className: "my-2 bg-neo-bg-A pb-2 pt-1 px-3 rounded-xl w-full relative",
     // eslint-disable-next-line no-console
     onChangeCallBack: (): void => console.log("submitError"),
     refForm: "login",

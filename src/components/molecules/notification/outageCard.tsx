@@ -9,12 +9,12 @@ interface Props {
 
 const OutageTab = ({ data }: Props): React.ReactElement => {
     const [isFolded, setIsFolded] = React.useState<boolean>(true);
-    let colorOutage = data.severity === "major" ? "neo_urgency-major" : "neo_urgency";
+    let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
     if (
         new Date(data.startAt) > new Date() ||
         (data.endAt && data.hideAt && new Date(data.endAt) < new Date() && new Date() < new Date(data.hideAt))
     ) {
-        colorOutage = "neo_black-black_05";
+        colorOutage = "bg-neo-light-grey";
     }
 
     return (
