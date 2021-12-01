@@ -18,6 +18,7 @@ interface Props {
     languageUser: string;
     ticket: ITicket;
     ticketRequester?: string;
+    keywords: string[];
 }
 
 const HoverTicket = ({
@@ -29,6 +30,7 @@ const HoverTicket = ({
     languageUser,
     ticket,
     ticketRequester,
+    keywords,
 }: Props): ReactElement => {
     const position = dataView?.current ? dataView?.current.getBoundingClientRect() : null;
     const myLanguage = i18next.getFixedT(languageUser);
@@ -89,7 +91,14 @@ const HoverTicket = ({
                             </div>
                             <div className="text-xs">
                                 <div className="text-white font-bold">{myLanguage("ticketScreen.keyDetected")}</div>
-                                <div className="truncate text-white">keyword, another keyword</div>
+                                <div className="truncate text-white w-3/4">
+                                    {keywords.map((kw, i, keywords) => {
+                                        if (i + 1 === keywords.length) {
+                                            return `${kw}.`;
+                                        }
+                                        return `${kw}, `;
+                                    })}
+                                </div>
                             </div>
                         </div>
                         <div className="flex flex-col text-right h-full justify-between w-1/3">

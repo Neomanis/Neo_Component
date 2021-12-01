@@ -404,6 +404,7 @@ export interface ITicket {
         rel?: string;
         href?: string;
     }[];
+    keywords?: string[];
 }
 export interface ITicketCreate {
     name?: string;
@@ -451,7 +452,7 @@ export interface IWorkflow {
 }
 
 export interface IUpdateTicket {
-    [x: string]: string | number | number[] | Partial<IResource>[];
+    [x: string]: string | number | number[] | Partial<IResource>[] | string[];
 }
 
 export interface ITechnicalQuestionAnswer {

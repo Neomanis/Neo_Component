@@ -18,4 +18,5 @@ export const Default = Template.bind({});
 Default.args = {
     ticket: fakeTicket,
     ticketRequester: "test User",
+    keywords: ["toto", "les poneys", "tutu", "cooucou", "printer", "j'aime me battre", "comment ca fait plaisir"],
 };

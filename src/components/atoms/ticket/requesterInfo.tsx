@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import Img from "../img";
 //translations
 import i18next from "i18next";
