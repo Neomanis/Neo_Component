@@ -41,14 +41,16 @@ const Tooltip = ({
             className="text-neo-link cursor-pointer relative"
             onMouseEnter={(): void => setShowTooltip(true)}
             onMouseLeave={(): void => setShowTooltip(false)}
+            data-testid="tooltip-body"
         >
             {component && component}
             {fontIcon && (
-                <div onClick={(e) => fCallback && fCallback(e)}>
+                <div onClick={(e) => fCallback && fCallback(e)} data-testid="tooltip-icon-body">
                     <Icon fontIcon={fontIcon} className={fontIconClassName} />
                 </div>
             )}
             <div
+                data-testid="tooltip-bubble"
                 className={`
                     ${showTooltip ? "" : "hidden"} 
                     ${position} 
