@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /// <reference types="cypress" />
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
@@ -11,12 +12,19 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-undef
 module.exports = (on, config) => {
-    // `on` is used to hook into various events Cypress emits
-    // `config` is the resolved Cypress config
+    if (config.testingType === "component") {
+        const { startDevServer } = require("@cypress/webpack-dev-server");
+
+        // Your project's Webpack configuration
+        const webpackConfig = require("../../webpack.config.js");
+
+        on("dev-server:start", (options) => startDevServer({ options, webpackConfig }));
+    }
 };
