@@ -56,13 +56,13 @@ Before you commit and push your work in the other project, don't forget to remov
 ### Method 2 (using yarn link):
 
 #### For standart library (js/ts)
+
 First run:
 
 -   `cd ../Your-Local-Package`
 -   `yarn build`
 -   `yarn link` (this will print out a Success message with the yarn command to use later on)
 -   `yarn install`
-
 
 Then:
 
@@ -72,6 +72,7 @@ Then:
 And it's all good.
 
 #### For React library only (Neo_Component)
+
 First run:
 
 -   `cd ../Your-Local-Package`
@@ -103,6 +104,7 @@ There is no prerequisites before push your work into your branch, since the siml
 [Here some documentations](https://docs.cypress.io/guides/overview/why-cypress)
 
 #### Before all
+
 You should delete your .husky and regenerate it with `yarn husky:setup`
 Note also that you should have installed locally a version of chrome and firefox.
 For GNU/linux user you can, instead of chrome, use chromium. You should also modify you husky push hook to target this script `ci:storybook:chromium` instead of `ci:storybook:chrome`.
@@ -111,8 +113,13 @@ You can use cypress to create e2e testing. To do so simply add a `.spec.js` file
 
 #### Here are several script that you can use during development:
 
-- `cypress:run` -> it will simply launch a test runner like jest, but know that you should have storybook server running in parallel on port 6006
-- `cypress:open` -> it will open an electron app to monitor your tests suites
+-   `cypress:run` -> it will simply launch a test runner like jest, but know that you should have storybook server running in parallel on port 6006
+-   `cypress:open` -> it will open an electron app to monitor your tests suites
 
-- `ci:<nextcommand>` -> this is only used by husky, so you shouldn't have to use it
+-   `ci:<nextcommand>` -> this is only used by husky, so you shouldn't have to use it
 
+#### You can also do some unit testing
+
+-   `cypress:run:ct` -> it will simply laucnh a test runner like jest based on the test in `src/test/**/*.spec.js`
+
+-   `cypress:open:ct` -> it will open an electron app to monitor your tests suites, usefull when you create your test because it has hot reload included
