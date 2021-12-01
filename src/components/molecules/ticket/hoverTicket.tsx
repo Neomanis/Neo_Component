@@ -81,7 +81,7 @@ const HoverTicket = ({
                     />
                 </div>
                 <div className={`w-96 z-30 transform -translate-y-1 animate-widthAnim overflow-hidden`}>
-                    <div className={`relative h-36 overflow-hidden bg-neo_bg_B rounded flex justify-between p-3 w-96`}>
+                    <div className={`relative h-36 overflow-hidden bg-neo-bg-B rounded flex justify-between p-3 w-96`}>
                         <div className="flex flex-col text-left justify-between w-2/3">
                             <div className="text-white">
                                 <div className="text-xl ">
@@ -129,32 +129,32 @@ const HoverTicket = ({
                     <div className="flex justify-center transform -translate-y-3 z-30">
                         <Button
                             className={
-                                "bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10 text-neo_bg_B"
+                                "bg-neo-link flex justify-center items-center cursor-default rounded-full w-10 h-10 text-neo-bg-B"
                             }
                             disabled
                             fontIcon={faChartLine}
-                            iconClassName={"text-neo_lite"}
+                            iconClassName={"text-neo-light-grey"}
                             type="button"
                         />
                         <Button
                             className={
-                                "bg-neo_link flex justify-center items-center cursor-default rounded-full w-10 h-10  transform hover:scale-110 text-neo_bg_B"
+                                "bg-neo-link flex justify-center items-center cursor-default rounded-full w-10 h-10  transform hover:scale-110 text-neo-bg-B"
                             }
                             fCallback={fChatModalOpen}
                             fontIcon={faComment}
-                            iconClassName={"text-neo_lite"}
+                            iconClassName={"text-neo-light-grey"}
                             type="button"
                         />
                         <Button
                             className={
-                                "bg-neo_link flex justify-center items-center cursor-pointer transform hover:scale-110 transition-all rounded-full w-10 h-10 text-neo_bg_B"
+                                "bg-neo-link flex justify-center items-center cursor-pointer transform hover:scale-110 transition-all rounded-full w-10 h-10 text-neo-bg-B"
                             }
                             fCallback={(): void => {
                                 fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket);
                                 fTicketModalOpen && fTicketModalOpen();
                             }}
                             fontIcon={faExpandArrowsAlt}
-                            iconClassName={"text-neo_bg_B-dark"}
+                            iconClassName={"text-neo-bg-B-dark"}
                             type="button"
                         />
                     </div>

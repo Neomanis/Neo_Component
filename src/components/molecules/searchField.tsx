@@ -44,7 +44,7 @@ const SearchField = ({ fCallBack, placeholder, refForm, register, setValue, setF
             className="flex items-center justify-between "
             style={{ width: width + "px", transition: "0.5s linear" }}
         >
-            <div className=" bg-neo_bg_B h-8 flex items-center rounded-full overflow-hidden">
+            <div className=" bg-neo-bg-B h-8 flex items-center rounded-full overflow-hidden">
                 <div className={`${width > 32 && "animate-onSpin"} ${width < 200 && "animate-onSpinReverse"} px-2`}>
                     <Icon fontIcon={faSearch} className="text-white" />
                 </div>

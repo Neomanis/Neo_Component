@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof OutageCard> = (args) => {
     return (
-        <div className=" bg-neo_bg_A p-2 w-1/2 flex items-center">
+        <div className=" bg-neo-bg-A p-2 w-1/2 flex items-center">
             <OutageCard {...args} />
         </div>
     );
@@ -24,7 +24,7 @@ Default.args = {
         title: "Outage title",
         content:
             "outage content   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quod cum nihil quasi deleniti, ut, labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
-        severity: "major",
+        severity: "",
         type: "outage",
         startAt: new Date(),
         endAt: new Date(),

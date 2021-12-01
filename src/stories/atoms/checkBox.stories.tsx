@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof Checkbox> = (args) => (
-    <div className="bg-neo_bg_B w-full h-96">
+    <div className="bg-neo-bg-B w-full h-96">
         <Checkbox {...args} />
     </div>
 );

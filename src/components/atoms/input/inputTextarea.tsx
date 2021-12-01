@@ -88,7 +88,7 @@ const InputTextarea = ({
                 <div className="text-sm font-bold mr-2 mb-4">{label}</div>
                 <textarea
                     {...(register && register(refForm, { required }))}
-                    className="w-full h-5/6 bg-neo_bg_B rounded border-2 border-neo_light_grey px-2 py-1 "
+                    className="w-full h-5/6 bg-neo-bg-B rounded border-2 border-neo-light-grey px-2 py-1 "
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
                         if (isUpdateField && state.previous !== e.target.value && !isError) {

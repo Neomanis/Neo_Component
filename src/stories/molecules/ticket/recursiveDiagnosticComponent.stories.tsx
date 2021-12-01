@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
               ]
             : "";
     return (
-        <div className="bg-neo_bg_B p-4">
+        <div className="bg-neo-bg-B p-4">
             {fakeDiag.diagnostics.map((it) => {
                 const arrayKeys: string[] = Object.keys(it);
                 const exclusions = ["results", "diagExecutionTime", "name", "runId"];

@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo_expanded_view w-72">
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
             <MessageChat {...args} isMe={true} />
             <MessageChat {...args} />
             <MessageChat {...args} isMe={true} />

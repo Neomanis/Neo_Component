@@ -14,10 +14,10 @@ interface Props {
 
 const InputChat = ({ cardOpen, placeholder, refForm, register, setValue }: Props): ReactElement => {
     return (
-        <div className="flex items-center p-2 bg-neo_bg_B relative z-20 text-white">
+        <div className="flex items-center p-2 bg-neo-bg-B relative z-20 text-white">
             <Input
                 disabled={cardOpen}
-                inputClassName="bg-transparent w-full border-none text-neo_lite focus:outline-none"
+                inputClassName="bg-transparent w-full border-none text-neo-light-grey focus:outline-none"
                 isUpdateField={false}
                 placeholder={placeholder}
                 refForm={refForm}

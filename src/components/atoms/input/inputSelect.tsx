@@ -105,7 +105,7 @@ const InputSelect = ({
                 {label && <div className={`text-white text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>}
                 <select
                     {...inputSelectRegister}
-                    className={`w-full bg-neo_bg_B p-2 rounded truncate text-white ${selectClassName}`}
+                    className={`w-full bg-neo-bg-B p-2 rounded truncate text-white ${selectClassName}`}
                     id={id}
                     onChange={(e): void => {
                         inputSelectRegister?.onChange(e);

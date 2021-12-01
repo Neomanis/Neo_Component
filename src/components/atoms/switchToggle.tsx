@@ -4,9 +4,10 @@ interface Props {
     defaultStatus: boolean;
     fCallBack?: () => void;
     value: string;
+    id?: string;
 }
 
-const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement => {
+const SwitchToggle = ({ defaultStatus, fCallBack, value, id }: Props): ReactElement => {
     const [checked, setChecked] = useState(defaultStatus);
 
     function toggleSwitch(): void {
@@ -21,11 +22,9 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement 
             <div className="relative w-10 inline-block mr-2">
                 <input
                     checked={checked}
-                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear ${
-                        checked && "translate-x-full bg-white"
-                    }`}
-                    id="toggle"
-                    name="toggle"
+                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear 
+                    ${checked && "translate-x-full bg-white"}`}
+                    id={id}
                     onChange={(): void => {
                         toggleSwitch();
                     }}
@@ -35,10 +34,10 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value }: Props): ReactElement 
                     className={`block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer duration-150 ease-linear ${
                         checked && "bg-green-400"
                     }`}
-                    htmlFor="toggle"
+                    htmlFor={id}
                 ></label>
             </div>
-            <label className="text-xs text-gray-700 cursor-pointer" htmlFor="toggle">
+            <label className="text-xs text-neo-blue-secondary cursor-pointer" htmlFor={id}>
                 {value}
             </label>
         </div>

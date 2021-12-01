@@ -40,14 +40,14 @@ export default function ValidationCard({
     }
     return (
         <div
-            className={`flex ${flexType} text-white items-center justify-center border-2 border-neo_link bg-neo_bg_B rounded-md py-2`}
+            className={`flex ${flexType} text-white items-center justify-center border-2 border-neo-link bg-neo-bg-B rounded-md py-2`}
         >
             {text != "" && <p className={`${paddingTxt} py-1`}>{text}</p>}
             <div className="flex row px-2">
                 <div className="transform hover:scale-110">
                     <Button
                         fontIcon={faChevronDown}
-                        className={"text-neo_green flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-green flex items-center justify-center rounded-lg mx-2"}
                         fCallback={(): void => {
                             fCallBackValidate();
                         }}
@@ -56,7 +56,7 @@ export default function ValidationCard({
                 <div className="transform hover:scale-110">
                     <Button
                         fontIcon={faTimes}
-                        className={"text-neo_red flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-red flex items-center justify-center rounded-lg mx-2"}
                         fCallback={(): void => fCallBackCancel()}
                     />
                 </div>
