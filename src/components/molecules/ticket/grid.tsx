@@ -56,7 +56,8 @@ const Grid = ({
 
     const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[]>>>();
     const [numberGrid, setNumbertGrid] = useState(0);
-    const [overTicket, setOverTicket] = useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
+    const [hoverTicket, setHoverTicket] =
+        useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
 
     // Calculation of the number of pages
     const pageGrid = Math.ceil(tabTickets.length / (row * col));
@@ -133,20 +134,20 @@ const Grid = ({
     }, [tickets]);
     return (
         <>
-            {withHover && overTicket && (
+            {withHover && hoverTicket && (
                 <HoverTicket
-                    dataView={overTicket.position}
+                    dataView={hoverTicket.position}
                     fChatModalOpen={() => fChatModalOpen && fChatModalOpen()}
-                    fMouseLeave={(): void => setOverTicket(undefined)}
+                    fMouseLeave={(): void => setHoverTicket(undefined)}
                     fOpenModalCurrentTicket={(ticket) => {
                         fOpenModalCurrentTicket && fOpenModalCurrentTicket();
                         fCurrentTicket && fCurrentTicket(ticket);
                     }}
                     fTicketModalOpen={() => fTicketModalOpen && fTicketModalOpen()}
                     languageUser={languageUser}
-                    ticket={overTicket.ticket}
-                    ticketRequester={displayRequesterName(overTicket.ticket, glpiUsers, glpiGroups)}
-                    keywords={overTicket.ticket.keywords}
+                    ticket={hoverTicket.ticket}
+                    ticketRequester={displayRequesterName(hoverTicket.ticket, glpiUsers, glpiGroups)}
+                    keywords={hoverTicket.ticket.keywords}
                 />
             )}
             <div className={`${col === 1 ? "w-52" : ""}`}>
@@ -192,7 +193,7 @@ const Grid = ({
                                                         fOpenModalCurrentTicket && fOpenModalCurrentTicket();
                                                         fCurrentTicket && fCurrentTicket(ticket);
                                                     }}
-                                                    fOverCallBack={setOverTicket}
+                                                    fOverCallBack={setHoverTicket}
                                                     languageUser={languageUser}
                                                     ticket={ticket}
                                                 />

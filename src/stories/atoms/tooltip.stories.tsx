@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof Tooltip> = (args) => {
     return (
-        <div className="p-4 bg-neo_bg_B flex items-center w-1/4">
+        <div className="p-4 bg-neo-bg-B flex items-center w-1/4">
             <Tooltip {...args} />
         </div>
     );
@@ -21,6 +21,7 @@ export const tooltipIconDefault = Template.bind({});
 tooltipIconDefault.args = {
     className: "border",
     data: "data test",
+    fontIcon: faExclamationCircle,
 };
 
 export const tooltipIconTop = Template.bind({});
