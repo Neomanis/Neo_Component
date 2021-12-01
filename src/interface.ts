@@ -452,7 +452,7 @@ export interface IWorkflow {
 }
 
 export interface IUpdateTicket {
-    [x: string]: string | number | number[] | Partial<IResource>[];
+    [x: string]: string | number | number[] | Partial<IResource>[] | string[];
 }
 
 export interface ITechnicalQuestionAnswer {
