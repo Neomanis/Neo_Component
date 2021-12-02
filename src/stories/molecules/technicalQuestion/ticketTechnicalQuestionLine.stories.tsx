@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof TicketTechnicalQuestionLine> = (args) => {
     return (
-        <div className="">
+        <div className="w-full p-4 bg-neo-bg-B">
             <TicketTechnicalQuestionLine {...args} />
         </div>
     );

@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { ReactComponent as TicketClosed } from "../../../img/svg/nm_ico_ticket_closed.svg";
 import { ReactComponent as TicketNormal } from "../../../img/svg/nm_ico_ticket_normal.svg";
-import { Icon, IconTicketCategorie } from "../../atoms";
+import { Icon, IconTicketCategorie, Tooltip } from "../../atoms";
 import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
 import { ITicket } from "../../../interface";
 import i18next from "i18next";
@@ -18,7 +18,7 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
 
     return (
         <div
-            className="bg-neo-bg-B flex cursor-pointer text-white rounded-full"
+            className="bg-neo-bg-B flex cursor-pointer text-white rounded-full h-8"
             onClick={(): void => fOpenSimilarTicket(ticket)}
         >
             <div
@@ -36,15 +36,20 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                     {myLanguage("ticketScreen.id")} {ticket?.id}
                 </div>
             </div>
-            <div className="flex w-full justify-between p-2">
-                <div className="flex items-center px-3 whitespace-nowrap">
+            <div className="flex w-full justify-between p-1">
+                <div className="flex items-center px-1 whitespace-nowrap text-neo-link">
                     <Icon fontIcon={faClock} />
-                    <p className="ml-2">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
+                    <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
                 </div>
-                <div className="flex items-center px-3" data-testId="ticketName">
-                    <p className="line-clamp-1">{ticket.name}</p>
+                <div className="flex items-center px-1" data-testId="ticketName">
+                    <Tooltip
+                        data={ticket.name}
+                        position="top"
+                        className="bg-neo-bg-A text-white px-4 py-1 rounded"
+                        component={<p className="line-clamp-1 text-white">{ticket.name}</p>}
+                    />
                 </div>
-                <div className="flex items-center px-3">
+                <div className="flex items-center px-1">
                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
                 </div>
             </div>
