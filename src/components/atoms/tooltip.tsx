@@ -55,7 +55,7 @@ const Tooltip = ({
                     ${showTooltip ? "" : "hidden"} 
                     ${position} 
                     ${className}
-                    w-max max-w-xxs absolute bg-neo-blue-modal z-50 px-4 py-1 rounded text-xs text-white
+                    w-max max-w-xxs absolute z-50
                 `}
             >
                 {data}

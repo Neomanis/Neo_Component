@@ -87,7 +87,7 @@ const Dot = ({
                     {!isError && <Icon fontIcon={faUndo} />}
                     {isError && errorMessage && (
                         <Tooltip
-                            className="bg-neo-red"
+                            className="bg-neo-red text-white px-4 py-1 rounded"
                             data={errorMessage}
                             fontIcon={faExclamationTriangle}
                             fontIconClassName="text-white"
@@ -98,7 +98,7 @@ const Dot = ({
             {!isUpdateField && isError && errorMessage && (
                 <div className="text-xs">
                     <Tooltip
-                        className="bg-neo-red"
+                        className="bg-neo-red text-white px-4 py-1 rounded"
                         data={errorMessage}
                         fontIcon={faExclamationTriangle}
                         fontIconClassName="text-white"

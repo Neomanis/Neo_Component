@@ -23,17 +23,17 @@ const TicketTechnicalQuestionLine = ({
 
     return (
         <div
-            className="bg-neo-bg-B m-1 grid grid-cols-6 gap-2 rounded-full text-base cursor-pointer text-white"
+            className="bg-neo-bg-B grid grid-cols-6 gap-2 rounded-full text-base cursor-pointer text-white h-8 items-center"
             onClick={() => openTechnicalQuestion()}
         >
-            <div className="col-span-4 ml-1 ">{title}</div>
-            <div className="text-opacity-80 ">{`${answersNumber ?? 0} ${myLanguage("ticketModalInfo.answer")}`}</div>
+            <div className="col-span-4 ml-2 ">{title}</div>
+            <div className="text-opacity-80">{`${answersNumber ?? 0} ${myLanguage("ticketModalInfo.answer")}`}</div>
             <div
                 className={`
                 ${solved ? "bg-neo-green" : "bg-neo-red"} 
-                flex justify-center items-center col-end-7 rounded-r-full text-white`}
+                col-end-7 rounded-r-full text-white self-stretch`}
             >
-                <Icon fontIcon={solved ? faUserCheck : faUserTimes} />
+                <Icon fontIcon={solved ? faUserCheck : faUserTimes} className="h-full" />
             </div>
         </div>
     );
