@@ -387,6 +387,7 @@ export interface ITicket {
     waiting_duration?: number;
     close_delay_stat?: number;
     solve_delay_stat?: number;
+    similarTickets?: ITicket[];
     takeintoaccount_delay_stat?: number;
     actiontime?: number;
     is_deleted?: number;
