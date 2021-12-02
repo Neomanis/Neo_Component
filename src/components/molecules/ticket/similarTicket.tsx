@@ -32,7 +32,7 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                 ) : (
                     <TicketNormal className="w-10 px-1" fill="#172f4b" />
                 )}
-                <div className="pr-2 whitespace-nowrap" data-testId="ticketId">
+                <div className="pr-2 whitespace-nowrap" data-testid="ticketId">
                     {myLanguage("ticketScreen.id")} {ticket?.id}
                 </div>
             </div>
