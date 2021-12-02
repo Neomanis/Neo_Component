@@ -28,6 +28,7 @@ import Tabs from "./tabs/tabs";
 import TabTitle from "./tabs/tabTitle";
 import Title from "./title";
 import Tooltip from "./tooltip";
+import TestEditableTextArea from "./input/testEditorTextArea";
 
 export {
     BubbleChat,
@@ -60,4 +61,5 @@ export {
     TabTitle,
     Title,
     Tooltip,
+    TestEditableTextArea,
 };
