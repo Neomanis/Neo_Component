@@ -3,7 +3,7 @@
 import React from "react";
 import { BubbleChat } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
+import "../../../styles/tailwind.css";
 
 describe("BubbleChat", () => {
     it("should be visible and display content props value", () => {
