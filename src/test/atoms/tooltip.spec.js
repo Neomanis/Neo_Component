@@ -6,12 +6,6 @@ import { mount } from "@cypress/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/tailwind.css";
 describe("Tooltip", () => {
-    it("should show data on hover", () => {
-        mount(<Tooltip data="El data" component={<p>Hey oh</p>} />);
-
-        cy.get('[data-testid="tooltip-bubble"]').should("be.hidden").invoke("show").should("be.visible");
-    });
-
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip data="El data" position="top" />);
 
@@ -19,9 +13,9 @@ describe("Tooltip", () => {
     });
 
     it("should show tooltip bubble at the bottom", () => {
-        mount(<Tooltip data="El data" position="top" />);
+        mount(<Tooltip data="El data" position="bottom" />);
 
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-6");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-6");
     });
 
     it("should show a icon", () => {
