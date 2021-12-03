@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 import React from "react";
-import { BubbleChat } from "../../components/atoms";
+import { BubbleChat } from "../../../components/atoms";
 import { mount } from "@cypress/react";
 import "../../styles/tailwind.css";
 
