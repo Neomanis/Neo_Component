@@ -8,12 +8,21 @@ export default {
     title: "Atoms/Input/TestEditableTextArea",
 } as Meta;
 
-const Template: ComponentStory<typeof TestEditableTextArea> = (args) => <TestEditableTextArea {...args} />;
+const Template: ComponentStory<typeof TestEditableTextArea> = (args) => (
+    <div className="w-full h-screen bg-neo-bg-B text-white">
+        <TestEditableTextArea {...args} />
+    </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {
-    label: "Exemple",
-    placeholder: "Exemple",
-    refForm: "exempleArea",
+    refForm: "content",
+    required: false,
+};
+
+export const AreaUpdate = Template.bind({});
+AreaUpdate.args = {
+    isUpdateField: true,
+    refForm: "content",
     required: false,
 };

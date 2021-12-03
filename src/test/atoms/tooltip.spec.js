@@ -15,7 +15,7 @@ describe("Tooltip", () => {
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip data="El data" position="top" />);
 
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-6");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-");
     });
 
     it("should show tooltip bubble at the bottom", () => {
