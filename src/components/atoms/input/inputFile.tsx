@@ -10,7 +10,7 @@ interface Props {
 
 const InputFile = ({ accept, id, label, name, required }: Props): ReactElement => {
     return (
-        <label className="">
+        <label className="" data-testid="inputFile-body">
             {label}
             <input className="" type="file" accept={accept} name={name} id={id} required={required} />
         </label>
