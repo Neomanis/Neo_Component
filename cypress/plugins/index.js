@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /// <reference types="cypress" />
 // ***********************************************************
@@ -12,12 +13,10 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 
 /**
  * @type {Cypress.PluginConfig}
  */
-// eslint-disable-next-line no-undef
 module.exports = (on, config) => {
     require("@cypress/code-coverage/task")(on, config);
     on("file:preprocessor", require("@cypress/code-coverage/use-babelrc"));
@@ -25,7 +24,6 @@ module.exports = (on, config) => {
     if (config.testingType === "component") {
         const { startDevServer } = require("@cypress/webpack-dev-server");
 
-        // Your project's Webpack configuration
         const webpackConfig = require("./webpack.config.js");
 
         on("dev-server:start", (options) => startDevServer({ options, webpackConfig }));
