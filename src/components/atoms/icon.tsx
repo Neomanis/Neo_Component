@@ -18,13 +18,14 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
                 <div
                     className={`${className} p-4 text-neo-bg-B hover:text-neo-blue cursor-pointer text-4xl`}
                     onClick={fCallBack}
+                    data-testid="icon-link-body"
                 >
                     <FontAwesomeIcon icon={fontIcon} />
                 </div>
             );
         case "placeholderInput":
             return (
-                <div className="p-4 text-neo-bg-B text-4xl">
+                <div className="p-4 text-neo-bg-B text-4xl" data-testid="icon-placeholder-body">
                     <FontAwesomeIcon
                         icon={fontIcon}
                         className="pointer-events-none w-6 h-6 absolute top-12 transform -translate-y-1/2 left-3"
@@ -33,7 +34,7 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
             );
         case "iconWithRedDot":
             return (
-                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`}>
+                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`} data-testid="icon-reddot-body">
                     <FontAwesomeIcon icon={fontIcon} />
                     {redDot && (
                         <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />
@@ -42,7 +43,11 @@ const Icon = ({ className, fCallBack, fontIcon, redDot, type }: Props): ReactEle
             );
         default:
             return (
-                <div className={`${className} flex items-center justify-center`} onClick={fCallBack}>
+                <div
+                    className={`${className} flex items-center justify-center`}
+                    onClick={fCallBack}
+                    data-testid="icon-default-body"
+                >
                     <FontAwesomeIcon icon={fontIcon} />
                 </div>
             );

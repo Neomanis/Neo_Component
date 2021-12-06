@@ -50,7 +50,10 @@ const InputDateShift = ({
     }, [dateAdd]);
 
     return (
-        <div className="flex justify-between items-center w-full text-white text-xs font-bold">
+        <div
+            className="flex justify-between items-center w-full text-white text-xs font-bold"
+            data-testid="inputDateShift-body"
+        >
             <div className="w-1/2 flex justify-between">
                 <InputDateTime
                     defaultValue={dateShift}

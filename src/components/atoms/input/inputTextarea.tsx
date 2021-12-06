@@ -83,7 +83,7 @@ const InputTextarea = ({
     }, [state.updated, state.previous]);
     const inputRegister = register && register(refForm, { required });
     return (
-        <div className="w-full h-52 flex text-white ">
+        <div className="w-full h-52 flex text-white" data-testid="inputTextarea-body">
             <label className="w-full h-full">
                 <div className="text-sm font-bold mr-2 mb-4">{label}</div>
                 <textarea
