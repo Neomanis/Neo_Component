@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
@@ -98,7 +98,7 @@
     "ci:storybook:firefox": "yarn start-server-and-test ci:cypress:storybook http://localhost:9009 ci:cypress:test:storybook:firefox",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --headless -C cypress.json",
-    "cypress:open:ct": "set NODE_ENV=test&& set DEBUG=code-coverage&& cypress open-ct",
+    "cypress:open:ct": "cypress open-ct",
     "cypress:run:ct": "npx nyc cypress run-ct",
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn cypress:run:ct\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
