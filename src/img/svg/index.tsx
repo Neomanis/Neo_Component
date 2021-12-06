@@ -48,8 +48,8 @@ import { ReactComponent as Planet } from "./nm_design_planet.svg";
 import { ReactComponent as TicketBottom } from "./nm_design_ticket_bottom.svg";
 import { ReactComponent as TicketCenter } from "./nm_design_ticket_center.svg";
 import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
-import { ReactComponent as LogoBlanc } from "./nm_logo_couleur_blanc.svg";
-import { ReactComponent as LogoBLeu } from "./nm_logo_couleur_bleu.svg";
+import { ReactComponent as LogoBlancSvg } from "./nm_logo_couleur_blanc.svg";
+import { ReactComponent as LogoBLeuSvg } from "./nm_logo_couleur_bleu.svg";
 import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_texte.svg";
 import { ReactComponent as LogoBleuNoText } from "./nm_logo_couleur_bleu_sans_texte.svg";
 import { ReactComponent as LogoMonoBlanc } from "./nm_logo_mono_blanc.svg";
@@ -105,8 +105,8 @@ export {
     IconStatusBarShort,
     IconSystemStatus,
     IconTicketClosed,
-    LogoBlanc,
-    LogoBLeu,
+    LogoBlancSvg,
+    LogoBLeuSvg,
     LogoBlancNoText,
     LogoBleuNoText,
     LogoMonoBlanc,

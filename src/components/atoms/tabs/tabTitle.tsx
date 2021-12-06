@@ -17,8 +17,9 @@ const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: Props): Reac
                         ${
                             selectedTab === index ? "text-neo-blue border-neo-blue" : " border-opacity-0 text-neo-link"
                         } `}
+            data-testid="tabTitle-body"
         >
-            <Button data={title} fCallback={() => handleSelectedTab(index)} />
+            <Button data={title} fCallback={() => handleSelectedTab(index)} testId="tabTitle-button" />
         </li>
     );
 };

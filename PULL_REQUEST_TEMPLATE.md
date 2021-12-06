@@ -6,5 +6,7 @@
 
 ### Check list
 
-- [x] update README.md
-- [x] implement test exemple
+- [ ] visual testing in storybook
+- [ ] test coverage ok
+- [ ] package version updated
+- [ ] tested in neohelper or neo server

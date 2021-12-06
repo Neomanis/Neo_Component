@@ -1,15 +1,15 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Tooltip } from "../../components/atoms";
 import { mount } from "@cypress/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/tailwind.css";
+
 describe("Tooltip", () => {
     it("should show data on hover", () => {
         mount(<Tooltip data="El data" component={<p>Hey oh</p>} />);
-
-        cy.get('[data-testid="tooltip-bubble"]').should("be.hidden").invoke("show").should("be.visible");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
+        cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
+        cy.get('[data-testid="tooltip-bubble"]').should("not.have.class", "hidden");
+        cy.get('[data-testid="tooltip-body"]').trigger("mouseout");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
     });
 
     it("should show tooltip bubble at the top", () => {
@@ -19,9 +19,9 @@ describe("Tooltip", () => {
     });
 
     it("should show tooltip bubble at the bottom", () => {
-        mount(<Tooltip data="El data" position="top" />);
+        mount(<Tooltip data="El data" position="bottom" />);
 
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-6");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-6");
     });
 
     it("should show a icon", () => {

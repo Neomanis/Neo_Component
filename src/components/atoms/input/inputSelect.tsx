@@ -100,7 +100,7 @@ const InputSelect = ({
         });
 
     return (
-        <div className="w-full flex items-center">
+        <div className="w-full flex items-center" data-testid="inputSelect-body">
             <label className={`flex items-center w-full my-1`}>
                 {label && <div className={`text-white text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>}
                 <select

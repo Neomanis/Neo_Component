@@ -7,12 +7,12 @@ import InputSelect from "./inputSelect";
 interface Props {
     date: Date;
     isUpdateField?: boolean;
-    getValues: UseFormGetValues<FieldValues>;
+    getValues?: UseFormGetValues<FieldValues>;
     label: string;
     maxDate?: Date;
     minDate?: Date;
     refForm: string;
-    register: UseFormRegister<FieldValues>;
+    register?: UseFormRegister<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
     tabProps: Array<{ id: number; value: string }>;
     updateFunction?: (refForm: string, value: string) => void;
@@ -50,7 +50,10 @@ const InputDateShift = ({
     }, [dateAdd]);
 
     return (
-        <div className="flex justify-between items-center w-full text-white text-xs font-bold">
+        <div
+            className="flex justify-between items-center w-full text-white text-xs font-bold"
+            data-testid="inputDateShift-body"
+        >
             <div className="w-1/2 flex justify-between">
                 <InputDateTime
                     defaultValue={dateShift}

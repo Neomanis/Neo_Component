@@ -19,6 +19,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
                 <div
                     className={`${className} p-4 text-neo-bg-B hover:text-neo-blue cursor-pointer text-4xl`}
                     onClick={fCallBack}
+                    data-testid="icon-link-body"
                 >
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
@@ -26,7 +27,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         case "placeholderInput":
             return (
-                <div className="p-4 text-neo-bg-B text-4xl">
+                <div className="p-4 text-neo-bg-B text-4xl" data-testid="icon-placeholder-body">
                     {!svg && fontIcon && (
                         <FontAwesomeIcon
                             icon={fontIcon}
@@ -38,7 +39,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         case "iconWithRedDot":
             return (
-                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`}>
+                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`} data-testid="icon-reddot-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {redDot && (
                         <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />
@@ -48,7 +49,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         default:
             return (
-                <div className={`${className} flex items-center justify-center`} onClick={fCallBack}>
+                <div className={`${className} flex items-center justify-center`} onClick={fCallBack}  data-testid="icon-default-body" >
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
                 </div>
