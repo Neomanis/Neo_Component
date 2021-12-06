@@ -106,7 +106,7 @@ const InputDateTime = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="flex items-center w-full">
+        <div className="flex items-center w-full" data-testid="inputDateTime-body">
             <label className="flex items-center justify-between w-full">
                 <div className="text-white text-xs font-bold w-full">{label}</div>
                 <DatePicker

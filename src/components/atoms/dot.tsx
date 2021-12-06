@@ -48,6 +48,7 @@ const Dot = ({
             onClick={(): void => {
                 isCancelable && onClickCallback();
             }}
+            data-testid="dot-body"
         >
             {isCooldown && (
                 <svg

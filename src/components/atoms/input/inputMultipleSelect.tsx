@@ -123,7 +123,7 @@ const InputMultipleSelect = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="w-full flex">
+        <div className="w-full flex" data-testid="inputMultipleSelect-body">
             <div className="w-full">
                 <label className="flex justify-between items-center w-full">
                     {label && <div className="text-white text-xs font-bold w-2/4">{label}</div>}
