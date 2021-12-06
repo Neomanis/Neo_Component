@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("InputSimpleSelect", () => {
     it("should be visible", () => {
-        mount(<InputSimpleSelect />);
+        mount(<InputSimpleSelect data={[]} />);
 
         cy.get('[data-testid="inputSimpleSelect-body"]').should("be.visible");
     });

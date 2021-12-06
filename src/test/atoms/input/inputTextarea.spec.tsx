@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("InputTextarea", () => {
     it("should be visible", () => {
-        mount(<InputTextarea />);
+        mount(<InputTextarea refForm="text" />);
 
         cy.get('[data-testid="inputTextarea-body"]').should("be.visible");
     });

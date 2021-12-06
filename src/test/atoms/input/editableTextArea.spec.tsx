@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("EditableTextarea", () => {
     it("should be visible", () => {
-        mount(<EditableTextarea />);
+        mount(<EditableTextarea refForm="content" />);
 
         cy.get('[data-testid="editableTextArea-body"]').should("be.visible");
     });

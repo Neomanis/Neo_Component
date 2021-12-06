@@ -7,12 +7,12 @@ import InputSelect from "./inputSelect";
 interface Props {
     date: Date;
     isUpdateField?: boolean;
-    getValues: UseFormGetValues<FieldValues>;
+    getValues?: UseFormGetValues<FieldValues>;
     label: string;
     maxDate?: Date;
     minDate?: Date;
     refForm: string;
-    register: UseFormRegister<FieldValues>;
+    register?: UseFormRegister<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
     tabProps: Array<{ id: number; value: string }>;
     updateFunction?: (refForm: string, value: string) => void;

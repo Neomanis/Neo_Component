@@ -7,7 +7,7 @@ import "../../styles/tailwind.css";
 
 describe("Button", () => {
     it("should be visible and display correctly", () => {
-        mount(<Button testId="button-body" type="default" data="Helloworld" />);
+        mount(<Button testId="button-body" data="Helloworld" />);
         cy.get('[data-testid="button-body"]').should("be.visible");
     });
 });

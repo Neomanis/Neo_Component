@@ -7,7 +7,7 @@ import "../../styles/tailwind.css";
 
 describe("SwitchToggle", () => {
     it("should be visible ", () => {
-        mount(<SwitchToggle value="Helloworld" />);
+        mount(<SwitchToggle value="Helloworld" defaultStatus={false} />);
 
         cy.get('[data-testid="switchToggle-body"]').should("be.visible");
     });

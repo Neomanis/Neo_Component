@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("InputFile", () => {
     it("should be visible", () => {
-        mount(<InputFile />);
+        mount(<InputFile name="input-file" />);
 
         cy.get('[data-testid="inputFile-body"]').should("be.visible");
     });

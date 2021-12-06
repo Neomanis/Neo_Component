@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("InputSelect", () => {
     it("should be visible", () => {
-        mount(<InputSelect />);
+        mount(<InputSelect data={[]} refForm="select" />);
 
         cy.get('[data-testid="inputSelect-body"]').should("be.visible");
     });

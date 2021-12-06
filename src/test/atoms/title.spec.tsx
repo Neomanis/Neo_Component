@@ -27,7 +27,7 @@ describe("Title", () => {
         cy.get('[data-testid="title-h4-body"]').should("be.visible");
     });
     it("should be visible with type default", () => {
-        mount(<Title data="Helloworld" />);
+        mount(<Title data="Helloworld" type="default" />);
 
         cy.get('[data-testid="title-default-body"]').should("be.visible");
     });

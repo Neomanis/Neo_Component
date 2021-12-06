@@ -7,7 +7,7 @@ import "../../../styles/tailwind.css";
 
 describe("InputDateTime", () => {
     it("should be visible", () => {
-        mount(<InputDateTime />);
+        mount(<InputDateTime defaultValue={new Date()} refForm="date" />);
 
         cy.get('[data-testid="inputDateTime-body"]').should("be.visible");
     });

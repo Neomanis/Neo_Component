@@ -27,7 +27,7 @@ describe("Img", () => {
         cy.get('[data-testid="backgroundImg-body"]').should("be.visible");
     });
     it("should be visible and display correctly with type default", () => {
-        mount(<Img data={{ alt: "Helloworld", height: 200 }} />);
+        mount(<Img type="" data={{ alt: "Helloworld", height: 200 }} />);
         cy.get('[data-testid="default-body"]').should("be.visible");
     });
 });

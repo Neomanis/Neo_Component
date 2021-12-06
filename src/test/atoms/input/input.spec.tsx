@@ -6,6 +6,12 @@ import { mount } from "@cypress/react";
 import "../../../styles/tailwind.css";
 
 describe("Input", () => {
+    it("should be visible", () => {
+        mount(<Input refForm="input" required={false} typeInput="text" />);
+
+        cy.get('[data-testid="input-body"]').should("be.visible");
+    });
+
     it("should show input and be of type text", () => {
         mount(<Input refForm="input" required={false} typeInput="text" />);
         cy.get('[data-testid="input-body"]').should("be.visible").find('[type="text"]').should("exist");

@@ -22,7 +22,7 @@ describe("IconOutageCategorie", () => {
         cy.get("svg").should("exist");
     });
     it("should have corresponding className if props className is defined", () => {
-        mount(<IconOutageCategorie className="bg-neo-bg-A" />);
+        mount(<IconOutageCategorie id={99} className="bg-neo-bg-A" />);
         cy.get('[data-testid="iconOutageCategorie-default"]').should("have.class", "bg-neo-bg-A");
     });
 });

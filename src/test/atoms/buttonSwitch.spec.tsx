@@ -11,7 +11,6 @@ describe("ButtonSwitch", () => {
         mount(
             <ButtonSwitch
                 testId="buttonSwitch-body"
-                isActive
                 activeData="Helloworld"
                 activeClassName="group  text-white  hover:text-neo-bg-A"
                 inactiveClassName="group hover:text-white"
