@@ -23,4 +23,5 @@ declare module "@ckeditor/ckeditor5-build-classic" {
 }
 
 declare module "*.jpg";
+declare module "*.png";
 declare module "*.svg";

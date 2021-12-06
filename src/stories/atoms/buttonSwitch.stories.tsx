@@ -1,9 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { faWind, faAd } from "@fortawesome/free-solid-svg-icons";
-
-import { ButtonSwitch } from "../..";
-
+import { ButtonSwitch, ClockLogo, IconMaintenance } from "../..";
 export default {
     argTypes: {
         testId: {
@@ -44,6 +42,22 @@ Default.args = {
     inactiveData: "inactive",
     inactiveFontIcon: faAd,
     inactiveIconClassName: "",
+    testId: "testId",
+    type: "button",
+};
+
+export const DefaultSvg = Template.bind({});
+DefaultSvg.args = {
+    activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500",
+    activeData: "active",
+    // eslint-disable-next-line no-console
+    fCallback: () => console.log("click ! "),
+    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500",
+    inactiveData: "inactive",
+    inactiveSvg: <ClockLogo fill="#fff" viewBox=" 10 10 30 30 " />,
+    activeSvg: <IconMaintenance fill="#fff" viewBox=" 0 0 50 50 " />,
+    activeSvgClassName: "w-8",
+    inactiveSvgClassName: "w-8",
     testId: "testId",
     type: "button",
 };

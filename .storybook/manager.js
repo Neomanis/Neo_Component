@@ -1,6 +1,6 @@
 import { create } from "@storybook/theming/create";
 import { addons } from "@storybook/addons";
-import logoUrl from "../src/img/titleNeomanisStorybook.png";
+import logoUrl from "../src/img/img/titleNeomanisStorybook.png";
 
 const theme = create({
     base: "light",

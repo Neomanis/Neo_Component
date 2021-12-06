@@ -1,7 +1,5 @@
 import React, { ReactElement } from "react";
-
-//IMPORT IMG BY DEFAULT FOR PROFILE PICTURE
-import ImgUserdefault from "../../img/defaultUserPicture.jpg";
+import { DefaultUserPicture } from "../..";
 
 interface Props {
     className?: string;
@@ -25,7 +23,7 @@ const Img = ({ className, data, type }: Props): ReactElement => {
             return data ? (
                 <img src={data.src} alt={data.alt} className={className} />
             ) : (
-                <img src={ImgUserdefault} className={className} alt={"default img"} />
+                <img src={DefaultUserPicture} className={className} alt={"default img"} />
             );
 
         case "img-background":

@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { ReactComponent as AddFile } from "../../../img/svg/nm_ico_addFile.svg";
+import { IconAdd } from "../../..";
 import { Input } from "../../atoms";
 
 interface Props {
@@ -32,7 +32,7 @@ const InputChat = ({
             }`}
         >
             <div className="p-2 opacity-50">
-                <AddFile fill="#7daab7" />
+                <IconAdd fill="#7daab7" />
             </div>
             <div className="flex items-center ">
                 <Input

@@ -5,10 +5,9 @@ import { ITicket } from "../../../interface";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";
 
-import { ReactComponent as TicketLogo } from "../../../img/svg/nm_ico_ticket_normal.svg";
-
 //translations
 import i18next from "i18next";
+import { TicketLogo } from "../../..";
 
 interface Props {
     ticket?: ITicket;
