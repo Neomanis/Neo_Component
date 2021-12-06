@@ -18,11 +18,11 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value, id }: Props): ReactElem
     }
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center" data-testid="switchToggle-body">
             <div className="relative w-10 inline-block mr-2">
                 <input
                     checked={checked}
-                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear 
+                    className={`absolute block w-4 h-4 m-1 rounded-full bg-white appearance-none cursor-pointer transform duration-150 ease-linear
                     ${checked && "translate-x-full bg-white"}`}
                     id={id}
                     onChange={(): void => {
