@@ -101,7 +101,7 @@ const Input = ({
 
     const inputRegister = register && register(refForm, { required });
     return (
-        <div className={`${className} w-full flex items-center justify-center relative`}>
+        <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full flex justify-center">
                 {label}
                 <input
