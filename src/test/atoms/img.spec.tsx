@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Img } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
 
 describe("Img", () => {
     it("should be visible and display correctly with type logoImg", () => {

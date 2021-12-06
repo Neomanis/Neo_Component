@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { IconTicketCategorie } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../../styles/tailwind.css";
 
 describe("IconTicketCategorie", () => {
     it("should be visible", () => {

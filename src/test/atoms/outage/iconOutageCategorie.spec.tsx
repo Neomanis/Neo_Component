@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { IconOutageCategorie } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../../styles/tailwind.css";
 
 describe("IconOutageCategorie", () => {
     it("should be visible and display correct component corresponding to id 1", () => {

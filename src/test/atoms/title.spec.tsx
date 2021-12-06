@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Title } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
 
 describe("Title", () => {
     it("should be visible with type h1", () => {

@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Checkbox } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
 
 describe("Checkbox", () => {
     it("should be visible and display correctly", () => {

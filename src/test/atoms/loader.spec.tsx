@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Loader } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
 
 describe("Loader", () => {
     it("should be visible with type circleOnly", () => {

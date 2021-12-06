@@ -1,7 +1,6 @@
 import React from "react";
 import { Tab, Tabs } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../../styles/tailwind.css";
 
 describe("Tabs", () => {
     it("should be visible and display correctly", () => {

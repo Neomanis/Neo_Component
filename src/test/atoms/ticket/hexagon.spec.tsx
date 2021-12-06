@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Hexagon } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../../styles/tailwind.css";
 
 describe("Hexagon", () => {
     it("should be visible with ticket type", () => {

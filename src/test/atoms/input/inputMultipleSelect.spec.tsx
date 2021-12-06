@@ -1,9 +1,5 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { InputMultipleSelect } from "../../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../../styles/tailwind.css";
 
 describe("InputMultipleSelect", () => {
     it("should be visible", () => {

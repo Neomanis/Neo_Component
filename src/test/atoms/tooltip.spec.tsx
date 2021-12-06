@@ -1,10 +1,6 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Tooltip } from "../../components/atoms";
 import { mount } from "@cypress/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/tailwind.css";
 
 describe("Tooltip", () => {
     it("should show data on hover", () => {

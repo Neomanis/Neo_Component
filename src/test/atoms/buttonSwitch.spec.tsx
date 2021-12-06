@@ -1,9 +1,6 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { ButtonSwitch } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
+
 import { faCheckSquare, faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 
 describe("ButtonSwitch", () => {

@@ -1,9 +1,6 @@
-/* eslint-disable no-undef */
-
-import React from "react";
 import { Icon } from "../../components/atoms";
 import { mount } from "@cypress/react";
-import "../../styles/tailwind.css";
+
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
 describe("Icon", () => {
