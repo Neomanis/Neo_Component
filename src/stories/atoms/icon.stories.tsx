@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { faCog, faBell } from "@fortawesome/free-solid-svg-icons";
 
-import { Icon } from "../..";
+import { Icon, IconFullStar } from "../..";
 
 export default {
     component: Icon,
@@ -30,5 +30,27 @@ iconNotification.args = {
     // eslint-disable-next-line no-console
     fCallBack: () => true,
     fontIcon: faBell,
+    type: "iconWithRedDot",
+};
+
+export const svgDefault = Template.bind({});
+svgDefault.args = {
+    svg: <IconFullStar />,
+};
+export const svgLink = Template.bind({});
+svgLink.args = {
+    svg: <IconFullStar />,
+    type: "iconLink",
+};
+export const svgPlaceholderInput = Template.bind({});
+svgPlaceholderInput.args = {
+    svg: <IconFullStar />,
+    type: "placeholderInput",
+};
+export const svgNotification = Template.bind({});
+svgNotification.args = {
+    // eslint-disable-next-line no-console
+    fCallBack: () => true,
+    svg: <IconFullStar />,
     type: "iconWithRedDot",
 };

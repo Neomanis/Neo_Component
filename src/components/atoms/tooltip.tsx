@@ -11,6 +11,8 @@ interface Props {
     fontIcon?: IconProp;
     fontIconClassName?: string;
     position?: string;
+    svg?: ReactElement;
+    svgClassName?: string;
 }
 
 const Tooltip = ({
@@ -21,6 +23,8 @@ const Tooltip = ({
     fontIcon,
     fontIconClassName,
     position,
+    svg,
+    svgClassName,
 }: Props): ReactElement => {
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -49,6 +53,7 @@ const Tooltip = ({
                     <Icon fontIcon={fontIcon} className={fontIconClassName} />
                 </div>
             )}
+            {svg && <div className={svgClassName}>{svg}</div>}
             <div
                 data-testid="tooltip-bubble"
                 className={`
