@@ -57,7 +57,7 @@ const Tooltip = ({
             <div
                 data-testid="tooltip-bubble"
                 className={`
-                    ${showTooltip ? "" : "hidden"} 
+                    ${showTooltip && "hidden"} 
                     ${position} 
                     ${className}
                     w-max max-w-xxs absolute z-50
