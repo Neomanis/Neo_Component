@@ -1,16 +1,16 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { TestEditableTextArea } from "../../..";
+import { TextEditor } from "../../..";
 
 export default {
-    component: TestEditableTextArea,
+    component: TextEditor,
     title: "Atoms/Input/TestEditableTextArea",
 } as Meta;
 
-const Template: ComponentStory<typeof TestEditableTextArea> = (args) => (
+const Template: ComponentStory<typeof TextEditor> = (args) => (
     <div className="w-full h-screen bg-neo-bg-B text-white">
-        <TestEditableTextArea {...args} />
+        <TextEditor {...args} />
     </div>
 );
 

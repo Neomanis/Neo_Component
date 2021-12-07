@@ -22,7 +22,7 @@ interface Props {
     updateFunction?: (refForm: string, value: string) => void;
 }
 
-const TestEditableTextarea = ({
+const TextEditor = ({
     clearErrors,
     defaultValue = "",
     dotPosition,
@@ -89,11 +89,8 @@ const TestEditableTextarea = ({
 
     useEffect(() => {
         if (isUpdateField && state.updated && state.updated !== state.previous) {
-            console.log("Hello");
             const newTimeout = setTimeout(() => {
-                console.log("World ??");
                 if (updateFunction && state.updated) {
-                    console.log("World");
                     updateFunction(refForm, state.updated as string);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
@@ -168,4 +165,4 @@ const TestEditableTextarea = ({
     );
 };
 
-export default TestEditableTextarea;
+export default TextEditor;
