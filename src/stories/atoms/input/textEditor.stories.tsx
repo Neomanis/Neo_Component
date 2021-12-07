@@ -5,11 +5,11 @@ import { TextEditor } from "../../..";
 
 export default {
     component: TextEditor,
-    title: "Atoms/Input/TestEditableTextArea",
+    title: "Atoms/Input/TextEditor",
 } as Meta;
 
 const Template: ComponentStory<typeof TextEditor> = (args) => (
-    <div className="w-full h-screen bg-neo-bg-B text-white">
+    <div className="w-full h-screen bg-neo-bg-A text-white">
         <TextEditor {...args} />
     </div>
 );

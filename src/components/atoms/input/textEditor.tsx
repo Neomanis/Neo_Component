@@ -1,7 +1,8 @@
-import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useReducer, useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "../../../styles/textEditor.css";
 
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
@@ -106,7 +107,6 @@ const TextEditor = ({
     return (
         <div className="flex w-full">
             <ReactQuill
-                theme="snow"
                 value={state.updated as string}
                 onBlur={(previousSelection, source, editor) => {
                     setIsFocused(false);
