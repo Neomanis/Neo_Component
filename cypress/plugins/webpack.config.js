@@ -31,8 +31,12 @@ module.exports = {
                 use: ["style-loader", "css-loader", "postcss-loader"],
             },
             {
-                test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg|svg)(\?|$)/,
+                test: /\.(woff|woff2|ttf|eot|ico|png|gif|jpg|jpeg)(\?|$)/,
                 use: "file-loader",
+            },
+            {
+                test: /\.svg$/,
+                use: ["@svgr/webpack", "file-loader"],
             },
         ],
         strictExportPresence: false,

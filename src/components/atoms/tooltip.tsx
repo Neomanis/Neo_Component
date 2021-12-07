@@ -53,11 +53,15 @@ const Tooltip = ({
                     <Icon fontIcon={fontIcon} className={fontIconClassName} />
                 </div>
             )}
-            {svg && <div className={svgClassName}>{svg}</div>}
+            {svg && (
+                <div onClick={(e) => fCallback && fCallback(e)} className={svgClassName} data-testid="tooltip-svg-body">
+                    {svg}
+                </div>
+            )}
             <div
                 data-testid="tooltip-bubble"
                 className={`
-                    ${showTooltip && "hidden"} 
+                    ${!showTooltip && "hidden"} 
                     ${position} 
                     ${className}
                     w-max max-w-xxs absolute z-50
