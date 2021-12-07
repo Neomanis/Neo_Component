@@ -18,23 +18,23 @@ describe("Input", () => {
         cy.get('[data-testid="input-body"]').should("be.visible").should("contain.text", "I'm a input");
     });
 
-    it("should trigger onBlurCallBack and onChangeCallBack", () => {
-        const onBlurCallBack = cy.stub().as("el-onBlurCallback");
-        const onChangeCallBack = cy.stub().as("el-onChangeCallBack");
+    // it("should trigger onBlurCallBack and onChangeCallBack", () => {
+    //     const onBlurCallBack = cy.stub().as("el-onBlurCallback");
+    //     const onChangeCallBack = cy.stub().as("el-onChangeCallBack");
 
-        mount(
-            <Input
-                refForm="input"
-                required={false}
-                typeInput="text"
-                onBlurCallBack={onBlurCallBack}
-                onChangeCallBack={onChangeCallBack}
-            />
-        );
+    //     mount(
+    //         <Input
+    //             refForm="input"
+    //             required={false}
+    //             typeInput="text"
+    //             onBlurCallBack={onBlurCallBack}
+    //             onChangeCallBack={onChangeCallBack}
+    //         />
+    //     );
 
-        cy.get('[data-testid="input"]').type("H");
-        cy.get("@el-onChangeCallBack").should("have.been.called");
-        cy.get('[data-testid="input"]').blur();
-        cy.get("@el-onBlurCallback").should("have.been.called");
-    });
+    //     cy.get('[data-testid="input"]').type("H");
+    //     cy.get("@el-onChangeCallBack").should("have.been.called");
+    //     cy.get('[data-testid="input"]').blur();
+    //     cy.get("@el-onBlurCallback").should("have.been.called");
+    // });
 });

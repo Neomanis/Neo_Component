@@ -3,14 +3,14 @@ import { mount } from "@cypress/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 describe("Tooltip", () => {
-    it("should show data on hover", () => {
-        mount(<Tooltip data="El data" component={<p>Hey oh</p>} />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
-        cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
-        cy.get('[data-testid="tooltip-bubble"]').should("not.have.class", "hidden");
-        cy.get('[data-testid="tooltip-body"]').trigger("mouseout");
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
-    });
+    // it("should show data on hover", () => {
+    //     mount(<Tooltip data="El data" component={<p>Hey oh</p>} />);
+    //     cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
+    //     cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
+    //     cy.get('[data-testid="tooltip-bubble"]').should("not.have.class", "hidden");
+    //     cy.get('[data-testid="tooltip-body"]').trigger("mouseout");
+    //     cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
+    // });
 
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip data="El data" position="top" />);
@@ -34,12 +34,12 @@ describe("Tooltip", () => {
         cy.get("p").should("exist");
     });
 
-    it("should call the callback function when clicking the icon", () => {
-        const fCallback = cy.stub().as("el-callback");
+    // it("should call the callback function when clicking the icon", () => {
+    //     const fCallback = cy.stub().as("el-callback");
 
-        mount(<Tooltip data="El data" fontIcon={faUser} fCallback={fCallback} />);
-        cy.get('[data-testid="tooltip-icon-body"]').click();
+    //     mount(<Tooltip data="El data" fontIcon={faUser} fCallback={fCallback} />);
+    //     cy.get('[data-testid="tooltip-icon-body"]').click();
 
-        cy.get("@el-callback").should("have.been.called");
-    });
+    //     cy.get("@el-callback").should("have.been.called");
+    // });
 });
