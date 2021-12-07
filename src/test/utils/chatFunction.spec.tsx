@@ -15,7 +15,7 @@ describe("Chat functions", () => {
         });
     });
 
-    it("should return a array of uid", () => {
+    it("should return a array of recipient's name", () => {
         expect(
             getRecipientsNameByIds(
                 [
@@ -23,21 +23,8 @@ describe("Chat functions", () => {
                     { id: 2, name: "heats" },
                     { id: 3, name: "deliv" },
                 ],
-                [1, 2]
+                [1, 2, 4]
             )
         ).to.eql(["hubert", "heats"]);
-    });
-
-    it("should return a empty array if no id are common", () => {
-        expect(
-            getRecipientsNameByIds(
-                [
-                    { id: 1, name: "hubert" },
-                    { id: 2, name: "heats" },
-                    { id: 3, name: "deliv" },
-                ],
-                [4, 5]
-            )
-        ).to.eql([]);
     });
 });
