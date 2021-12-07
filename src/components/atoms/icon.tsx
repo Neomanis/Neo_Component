@@ -49,7 +49,11 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         default:
             return (
-                <div className={`${className} flex items-center justify-center`} onClick={fCallBack}  data-testid="icon-default-body" >
+                <div
+                    className={`${className} flex items-center justify-center`}
+                    onClick={fCallBack}
+                    data-testid="icon-default-body"
+                >
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
                 </div>

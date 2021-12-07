@@ -31,7 +31,12 @@ const Img = ({ className, data, type }: Props): ReactElement => {
             return data ? (
                 <img src={data.src} alt={data.alt} className={className} data-testid="profileImg-with-data-body" />
             ) : (
-                <img src={DefaultUserPicture} data-testid="profileImg-without-data-body" className={className} alt={"default img"} />
+                <img
+                    src={DefaultUserPicture}
+                    data-testid="profileImg-without-data-body"
+                    className={className}
+                    alt={"default img"}
+                />
             );
 
         case "img-background":
