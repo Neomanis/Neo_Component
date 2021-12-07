@@ -8,6 +8,10 @@ interface Props {
     activeData?: string;
     activeFontIcon?: IconProp;
     activeIconClassName?: string;
+    inactiveSvg?: ReactElement;
+    inactiveSvgClassName?: string;
+    activeSvg?: ReactElement;
+    activeSvgClassName?: string;
     disabled?: boolean;
     fCallback?: (data: boolean) => void;
     inactiveClassName?: string;
@@ -24,6 +28,10 @@ const ButtonSwitch = ({
     activeData,
     activeFontIcon,
     activeIconClassName,
+    inactiveSvg,
+    inactiveSvgClassName,
+    activeSvg,
+    activeSvgClassName,
     disabled,
     fCallback,
     inactiveClassName,
@@ -53,6 +61,11 @@ const ButtonSwitch = ({
             type={type}
         >
             {isActive ? <div className="px-2">{activeData}</div> : <div className="px-2">{inactiveData}</div>}
+            {activeSvg && inactiveSvg && (
+                <div className={`${isActive ? activeSvgClassName : inactiveSvgClassName}`}>
+                    {isActive ? activeSvg : inactiveSvg}
+                </div>
+            )}
             {activeFontIcon && inactiveFontIcon && (
                 <div
                     className={`flex items-center justify-center m-1

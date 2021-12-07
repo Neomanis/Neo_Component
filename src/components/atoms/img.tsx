@@ -1,7 +1,5 @@
 import React, { ReactElement } from "react";
-
-//IMPORT IMG BY DEFAULT FOR PROFILE PICTURE
-import ImgUserdefault from "../../img/defaultUserPicture.jpg";
+import { DefaultUserPicture } from "../..";
 
 interface Props {
     className?: string;
@@ -16,22 +14,35 @@ interface Props {
 const Img = ({ className, data, type }: Props): ReactElement => {
     switch (type) {
         case "logoImg":
-            return <img className={className} src={data?.src} alt={data?.alt} />;
+            return <img className={className} src={data?.src} alt={data?.alt} data-testid="logoImg-body" />;
 
         case "logoSvg":
-            return <img className={className} src={data?.src} alt={data?.alt} height={data?.height} />;
+            return (
+                <img
+                    className={className}
+                    src={data?.src}
+                    alt={data?.alt}
+                    height={data?.height}
+                    data-testid="logoSvg-body"
+                />
+            );
 
         case "imgProfile":
             return data ? (
-                <img src={data.src} alt={data.alt} className={className} />
+                <img src={data.src} alt={data.alt} className={className} data-testid="profileImg-with-data-body" />
             ) : (
-                <img src={ImgUserdefault} className={className} alt={"default img"} />
+                <img
+                    src={DefaultUserPicture}
+                    data-testid="profileImg-without-data-body"
+                    className={className}
+                    alt={"default img"}
+                />
             );
 
         case "img-background":
-            return <img className={className} src={data?.src} alt={data?.alt} />;
+            return <img className={className} src={data?.src} alt={data?.alt} data-testid="backgroundImg-body" />;
         default:
-            return <img className={className} src={data?.src} alt={data?.alt} />;
+            return <img className={className} src={data?.src} alt={data?.alt} data-testid="default-body" />;
     }
 };
 

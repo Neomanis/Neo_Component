@@ -46,7 +46,7 @@ const InputSimpleSelect = ({
     }, []);
 
     return (
-        <label className={`flex items-center w-full my-1 ${className}`}>
+        <label className={`flex items-center w-full my-1 ${className}`} data-testid="inputSimpleSelect-body">
             {label && <div className={`text-white text-xs font-bold w-2/4 ${labelClassName}`}>{label}</div>}
             <select
                 {...inputRegister}

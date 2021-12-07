@@ -115,7 +115,7 @@ const EditableTextarea = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="flex w-full" key={key}>
+        <div className="flex w-full" key={key} data-testid="editableTextArea-body">
             <CKEditor
                 config={{
                     toolbar: toolbarConfig,
