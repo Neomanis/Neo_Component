@@ -1,7 +1,5 @@
 import React, { ReactElement } from "react";
-
-//IMPORT IMG BY DEFAULT FOR PROFILE PICTURE
-import ImgUserdefault from "../../img/defaultUserPicture.jpg";
+import { DefaultUserPicture } from "../..";
 
 interface Props {
     className?: string;
@@ -34,10 +32,10 @@ const Img = ({ className, data, type }: Props): ReactElement => {
                 <img src={data.src} alt={data.alt} className={className} data-testid="profileImg-with-data-body" />
             ) : (
                 <img
-                    src={ImgUserdefault}
+                    src={DefaultUserPicture}
+                    data-testid="profileImg-without-data-body"
                     className={className}
                     alt={"default img"}
-                    data-testid="profileImg-without-data-body"
                 />
             );
 

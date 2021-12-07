@@ -42,7 +42,7 @@ tooltipComponentDefault.args = {
 export const tooltipComponentTop = Template.bind({});
 tooltipComponentTop.args = {
     className: "",
-    component: <IconTicketCategorie />,
+    svg: <IconTicketCategorie />,
     data: "data test",
     position: "top",
 };

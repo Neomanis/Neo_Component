@@ -1,11 +1,10 @@
 import React, { ReactElement } from "react";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { ReactComponent as TicketClosed } from "../../../img/svg/nm_ico_ticket_closed.svg";
-import { ReactComponent as TicketNormal } from "../../../img/svg/nm_ico_ticket_normal.svg";
 import { Icon, IconTicketCategorie, Tooltip } from "../../atoms";
 import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
 import { ITicket } from "../../../interface";
 import i18next from "i18next";
+import { IconTicketClosed, TicketLogo } from "../../..";
 
 interface Props {
     fOpenSimilarTicket?: (ticket: ITicket) => void;
@@ -28,9 +27,9 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                 )} w-auto text-neo-bg-B rounded-l-full flex items-center px-2 font-semibold`}
             >
                 {ticket.status > 4 ? (
-                    <TicketClosed className="w-10" fill="#172f4b" />
+                    <IconTicketClosed className="w-10" fill="#172f4b" />
                 ) : (
-                    <TicketNormal className="w-10 px-1" fill="#172f4b" />
+                    <TicketLogo className="w-10 px-1" fill="#172f4b" />
                 )}
                 <div className="pr-2 whitespace-nowrap" data-testid="ticketId">
                     {myLanguage("ticketScreen.id")} {ticket?.id}
