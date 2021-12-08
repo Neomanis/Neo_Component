@@ -72,8 +72,6 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^30.0.0",
-    "@ckeditor/ckeditor5-react": "^3.0.3",
     "@tailwindcss/line-clamp": "^0.2.2",
     "date-fns": "^2.25.0",
     "i18next": "^21.3.3",
