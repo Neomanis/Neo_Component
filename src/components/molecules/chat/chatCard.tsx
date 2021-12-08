@@ -34,7 +34,7 @@ const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactE
             break;
         case "single-choice":
             option = (
-                <>
+                <div className="px-4 py-1">
                     <Title className={"text-white"} type="h3" data={title} />
                     <InputChoice
                         className={"my-1"}
@@ -46,7 +46,7 @@ const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactE
                             })
                         }
                     />
-                </>
+                </div>
             );
             break;
 
@@ -56,7 +56,7 @@ const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactE
     }
 
     return (
-        <div className={`h-32 rounded bg-neo-bg-B p-2 border-b-2 border-neo-expanded overflow-hidden`}>
+        <div className={`rounded-sm bg-neo-bg-B p-2 border-b-2 border-neo-expanded overflow-hidden`}>
             <div>{option}</div>
         </div>
     );

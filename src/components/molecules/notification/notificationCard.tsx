@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "../../atoms";
-import { CloseLogo } from "../../..";
+import { CloseLogo } from "../../../img/svg";
 
 interface Props {
     content: string;

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { DefaultUserPicture } from "../..";
+import { DefaultUserPicture } from "../../img/png";
 
 interface Props {
     className?: string;

@@ -8,7 +8,7 @@ import Button from "../../atoms/button";
 //icon
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { displayRequesterName } from "../../utils/displayRequesterName";
-import { IGlpiRequest, IGlpiUsers } from "../../..";
+import { IGlpiRequest, IGlpiUsers } from "../../../interface";
 
 interface Props {
     col: number;
