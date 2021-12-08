@@ -26,15 +26,15 @@ const InputChoice = ({
                 {data.map((item, key) => (
                     <div
                         className={`${labelClassName}
-                        flex items-center p-2 text-neo-bg-B font-bold `}
+                        flex items-center p-1 text-white text-sm `}
                         key={key}
                     >
                         <div
-                            className="cursor-pointer bg-white  transform hover:scale-105 transition-transform rounded-full w-28 text-center"
+                            className="cursor-pointer bg-neo-link  transform hover:scale-105 transition-transform rounded-3xl text-center"
                             id={item.value + key}
                             onClick={() => fCallBack && fCallBack(item.value)}
                         >
-                            <div className="px-2 cursor-pointer">{item.label}</div>
+                            <div className="px-6 py-1 cursor-pointer">{item.label}</div>
                         </div>
                     </div>
                 ))}
