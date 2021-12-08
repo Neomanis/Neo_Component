@@ -1,0 +1,63 @@
+.quill {
+    height: auto !important;
+    width: 100% !important;
+}
+
+.ql-container {
+    border: none !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    background-color: #15304c !important;
+    color: aliceblue !important;
+    height: 100% !important;
+    overflow-y: scroll !important;
+    scrollbar-width: none !important;
+}
+
+.ql-toolbar {
+    border: none !important;
+    border-bottom: 1px solid #0f283f !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    background-color: #15304c !important;
+}
+
+.ql-toolbar .ql-snow {
+    padding: 0px !important;
+}
+
+.ql-formats .ql-header {
+    color: #ffffffdc;
+}
+
+.ql-picker-options-12 {
+    background-color: #15304c;
+}
+
+.ql-picker-item,
+.ql-selected {
+    color: black;
+}
+
+.ql-snow .ql-stroke {
+    stroke: #ffffffdc;
+}
+
+.ql-snow .ql-stroke-miter {
+    stroke: #ffffffdc;
+}
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+    fill: #ffffffdc;
+}
+
+.ql-snow .ql-stroke {
+    stroke: #ffffffdc;
+}
+.ql-snow .ql-stroke-miter {
+    stroke: #ffffffdc;
+}
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill {
+    fill: #ffffffdc;
+}

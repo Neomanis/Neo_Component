@@ -18,6 +18,7 @@ type Action =
     | { type: "SET_TIMEOUT"; payload: NodeJS.Timeout }
     | { type: "SHOW_DOT" }
     | { type: "UPDATE_SUCCESS" }
+    | { type: "ON_CHANGE"; payload: string }
     | { type: "UPDATING"; payload: string | number | Date };
 
 export default function inputReducer(state: State, action: Action): State {
@@ -70,6 +71,11 @@ export default function inputReducer(state: State, action: Action): State {
                 isCooldown: true,
                 isSuccess: false,
                 trigger: !state.trigger,
+                updated: action.payload,
+            };
+        case "ON_CHANGE":
+            return {
+                ...state,
                 updated: action.payload,
             };
         default:
