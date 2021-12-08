@@ -10,3 +10,4 @@
 - [ ] test coverage ok
 - [ ] package version updated
 - [ ] tested in neohelper or neo server
+- [ ] no circular dependencies
