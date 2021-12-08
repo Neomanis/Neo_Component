@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { MessageChat } from "../../..";
+import { MessageChat } from "../../../components/molecules";
 
 export default {
     component: MessageChat,

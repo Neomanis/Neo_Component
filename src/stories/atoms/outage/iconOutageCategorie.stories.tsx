@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { IconOutageCategorie } from "../../..";
+import { IconOutageCategorie } from "../../../components/atoms";
 
 export default {
     component: IconOutageCategorie,

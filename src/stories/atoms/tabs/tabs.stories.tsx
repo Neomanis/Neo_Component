@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { Tab, Tabs } from "../../..";
+import { Tab, Tabs } from "../../../components/atoms";
 
 export default {
     component: Tabs,

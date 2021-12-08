@@ -5,9 +5,10 @@ import { formatDate } from "../../utils/getFormatedTimeToNow";
 
 interface Props {
     data: IOutage;
+    svgFill?: string;
 }
 
-const OutageTab = ({ data }: Props): React.ReactElement => {
+const OutageTab = ({ data, svgFill }: Props): React.ReactElement => {
     const [isFolded, setIsFolded] = React.useState<boolean>(true);
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
     if (
@@ -24,8 +25,8 @@ const OutageTab = ({ data }: Props): React.ReactElement => {
             }}
             className={`cursor-pointer w-full min-h-24 mb-7 bg-${colorOutage} flex items-center justify-between py-3 pl-3 rounded-md z-10`}
         >
-            <div className="text-4xl flex items-center">
-                <IconOutageCategorie id={data.type === "event" ? 1 : 2} />
+            <div className="text-4xl flex items-center w-14">
+                <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={svgFill} />
             </div>
             <div className="text-left px-4 w-full">
                 <Title

@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { InputChat, ITechnicalQuestion } from "../../..";
+import { InputChat } from "../../../components/molecules";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { ITechnicalQuestion } from "../../../interface";
 
 export default {
     component: InputChat,

@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { WorkflowCard } from "../../..";
+import { WorkflowCard } from "../../../components/molecules";
 
 export default {
     component: WorkflowCard,

@@ -16,18 +16,14 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
     switch (type) {
         case "iconLink":
             return (
-                <div
-                    className={`${className} p-4 text-neo-bg-B hover:text-neo-blue cursor-pointer text-4xl`}
-                    onClick={fCallBack}
-                    data-testid="icon-link-body"
-                >
+                <div className={className} onClick={fCallBack} data-testid="icon-link-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
                 </div>
             );
         case "placeholderInput":
             return (
-                <div className="p-4 text-neo-bg-B text-4xl" data-testid="icon-placeholder-body">
+                <div className={`${className}`} data-testid="icon-placeholder-body">
                     {!svg && fontIcon && (
                         <FontAwesomeIcon
                             icon={fontIcon}
@@ -39,7 +35,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         case "iconWithRedDot":
             return (
-                <div className={`${className} p-1 text-neo-bg-B text-4xl relative w-10`} data-testid="icon-reddot-body">
+                <div className={className} data-testid="icon-reddot-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {redDot && (
                         <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />

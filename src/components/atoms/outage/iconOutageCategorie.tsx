@@ -1,27 +1,33 @@
 import React, { ReactElement } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationTriangle, faTools, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { CautionLogo, IconInfo } from "../../../img/svg";
 
 interface Props {
     className?: string;
     id: number;
+    svgFill?: string;
 }
 
-const IconOutageCategorie = ({ className, id }: Props): ReactElement => {
+const IconOutageCategorie = ({ className, id, svgFill }: Props): ReactElement => {
     switch (id) {
         case 1: //Intervention
-            return <FontAwesomeIcon icon={faInfoCircle} className={className} data-testid="iconOutageCategorie-id-1" />;
+            return (
+                <div className={className} data-testid="iconOutageCategorie-id-1">
+                    <IconInfo fill={svgFill} />
+                </div>
+            );
         case 2: //Outage
             return (
-                <FontAwesomeIcon
-                    icon={faExclamationTriangle}
-                    className={className}
-                    data-testid="iconOutageCategorie-id-2"
-                />
+                <div className={className} data-testid="iconOutageCategorie-id-2">
+                    <CautionLogo fill={svgFill} />
+                </div>
             );
         default:
             //default
-            return <FontAwesomeIcon icon={faTools} className={className} data-testid="iconOutageCategorie-default" />;
+            return (
+                <div className={className} data-testid="iconOutageCategorie-default">
+                    <IconInfo fill={svgFill} />
+                </div>
+            );
     }
 };
 

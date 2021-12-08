@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { NotificationCard } from "../../..";
+import { NotificationCard } from "../../../components/molecules";
 
 export default {
     component: NotificationCard,
