@@ -52,7 +52,7 @@ const Grid = ({
             : [{ id: 0, name: "blank" }]
         : [{ id: 0, name: "blank" }];
 
-    const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[]>>>();
+    const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[] | BlankTab[]>>>();
     const [numberGrid, setNumbertGrid] = useState(0);
     const [hoverTicket, setHoverTicket] =
         useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
