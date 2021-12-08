@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { IconAdd } from "../../..";
+import { IconAdd } from "../../../img/svg";
 import { Input } from "../../atoms";
 
 interface Props {

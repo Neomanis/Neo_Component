@@ -4,7 +4,7 @@ import { Icon, IconTicketCategorie, Tooltip } from "../../atoms";
 import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
 import { ITicket } from "../../../interface";
 import i18next from "i18next";
-import { IconTicketClosed, TicketLogo } from "../../..";
+import { IconTicketClosed, TicketLogo } from "../../../img/svg";
 
 interface Props {
     fOpenSimilarTicket?: (ticket: ITicket) => void;

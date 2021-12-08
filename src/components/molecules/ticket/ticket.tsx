@@ -1,6 +1,5 @@
 import React, { ReactElement, useState, useEffect, useRef } from "react";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
+import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";

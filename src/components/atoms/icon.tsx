@@ -23,7 +23,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
             );
         case "placeholderInput":
             return (
-                <div className={className} data-testid="icon-placeholder-body">
+                <div className={`${className}`} data-testid="icon-placeholder-body">
                     {!svg && fontIcon && (
                         <FontAwesomeIcon
                             icon={fontIcon}
