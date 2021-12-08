@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { InputMultipleSelect } from "../../..";
+import { InputMultipleSelect } from "../../../components/atoms";
 
 export default {
     component: InputMultipleSelect,

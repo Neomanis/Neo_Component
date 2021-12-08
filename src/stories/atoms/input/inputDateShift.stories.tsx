@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { InputDateShift } from "../../..";
+import { InputDateShift } from "../../../components/atoms";
 
 export default {
     component: InputDateShift,

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { BubbleChat } from "../../..";
+import { BubbleChat } from "../../../components/atoms";
 
 export default {
     component: BubbleChat,

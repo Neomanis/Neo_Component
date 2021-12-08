@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { OutageCard } from "../../..";
+import { OutageCard } from "../../../components/molecules";
 
 export default {
     component: OutageCard,
@@ -31,5 +31,5 @@ Default.args = {
         displayAt: new Date(),
         hideAt: new Date(),
     },
-    languageUser: "FR_fr",
+    svgFill: "#15304C",
 };

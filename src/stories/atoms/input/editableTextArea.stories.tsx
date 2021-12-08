@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { EditableTextarea } from "../../..";
+import { EditableTextarea } from "../../../components/atoms/";
 
 export default {
     component: EditableTextarea,
