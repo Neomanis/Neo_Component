@@ -25,7 +25,7 @@ const OutageTab = ({ data, svgFill }: Props): React.ReactElement => {
             }}
             className={`cursor-pointer w-full min-h-24 mb-7 bg-${colorOutage} flex items-center justify-between py-3 pl-3 rounded-md z-10`}
         >
-            <div className="text-4xl flex items-center">
+            <div className="text-4xl flex items-center w-14">
                 <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={svgFill} />
             </div>
             <div className="text-left px-4 w-full">

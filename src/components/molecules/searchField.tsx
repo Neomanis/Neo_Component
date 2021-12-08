@@ -7,7 +7,7 @@ import {
     UseFormSetFocus,
     UseFormSetValue,
 } from "../../../node_modules/react-hook-form/dist";
-import { IconSearch } from "../..";
+import { IconSearch } from "../../img/svg";
 
 interface Props {
     fCallBack?: () => void;

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { InputSimpleSelect } from "../../..";
+import { InputSimpleSelect } from "../../../components/atoms";
 
 export default {
     component: InputSimpleSelect,

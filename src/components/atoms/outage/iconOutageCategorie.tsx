@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { CautionLogo, IconInfo } from "../../..";
+import { CautionLogo, IconInfo } from "../../../img/svg";
 
 interface Props {
     className?: string;

@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { OutageCard } from "../../..";
+import { OutageCard } from "../../../components/molecules";
 
 export default {
     component: OutageCard,

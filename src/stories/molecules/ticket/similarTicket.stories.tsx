@@ -2,7 +2,7 @@ import React from "react";
 import SimilarTicket from "../../../components/molecules/ticket/similarTicket";
 import { ComponentStory, Meta } from "@storybook/react";
 import { fakeTicket } from "../../fakeObject";
-import { i18n } from "../../..";
+import { i18n } from "../../../i18n";
 
 export default {
     title: "Molecules/Ticket/SimilarTicket",
@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof SimilarTicket> = (args) => {
     return (
-        <div className=" p-4 bg-neo-bg-B ">
+        <div className="p-4 bg-neo-bg-B">
             <SimilarTicket {...args} languageUser={i18n.language} />
         </div>
     );

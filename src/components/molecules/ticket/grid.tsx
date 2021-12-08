@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { ITicket } from "../../../interface";
+import { IGlpiRequest, IGlpiUsers, ITicket } from "../../../interface";
 import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
 import Button from "../../atoms/button";
 import { displayRequesterName } from "../../utils/displayRequesterName";
-import { IconArrowLeft, IconArrowRight, IGlpiRequest, IGlpiUsers } from "../../..";
+import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 
 interface Props {
     col: number;

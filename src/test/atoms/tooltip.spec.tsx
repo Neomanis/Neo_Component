@@ -1,7 +1,7 @@
 import { Tooltip } from "../../components/atoms";
 import { mount } from "@cypress/react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { IconInbox } from "../../";
+import { IconInbox } from "../../img/svg";
 
 describe("Tooltip", () => {
     it("should show data on hover", () => {

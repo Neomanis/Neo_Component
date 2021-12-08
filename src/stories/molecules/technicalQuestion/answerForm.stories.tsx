@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
-import { AnswerForm } from "../../..";
+import { AnswerForm } from "../../../components/molecules";
 import { ComponentStory, Meta } from "@storybook/react";
 
 export default {

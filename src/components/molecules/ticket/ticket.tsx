@@ -6,7 +6,7 @@ import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";
 
 //translations
 import i18next from "i18next";
-import { ClockLogo, TicketLogo } from "../../..";
+import { ClockLogo, TicketLogo } from "../../../img/svg";
 
 interface Props {
     ticket?: ITicket;

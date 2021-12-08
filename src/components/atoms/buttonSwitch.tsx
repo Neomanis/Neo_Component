@@ -62,7 +62,7 @@ const ButtonSwitch = ({
         >
             {isActive ? <div className="px-2">{activeData}</div> : <div className="px-2">{inactiveData}</div>}
             {activeSvg && inactiveSvg && (
-                <div className={`${isActive ? activeSvgClassName : inactiveSvgClassName}`}>
+                <div className={`${isActive ? activeSvgClassName : inactiveSvgClassName} p-1`}>
                     {isActive ? activeSvg : inactiveSvg}
                 </div>
             )}

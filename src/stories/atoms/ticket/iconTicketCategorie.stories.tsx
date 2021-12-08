@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { IconTicketCategorie } from "../../..";
+import { IconTicketCategorie } from "../../../components/atoms";
 
 export default {
     component: IconTicketCategorie,

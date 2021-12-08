@@ -6,7 +6,7 @@ import { Button, Hexagon, IconTicketCategorie, Img } from "../../atoms";
 //translations
 import i18next from "i18next";
 import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
-import { ChatLogo, DiagLogo, ExpandLogo, ClockLogo } from "../../..";
+import { ChatLogo, ClockLogo, DiagLogo, ExpandLogo } from "../../../img/svg";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
