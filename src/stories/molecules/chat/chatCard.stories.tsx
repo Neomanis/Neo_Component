@@ -9,7 +9,11 @@ export default {
     title: "Molecules/Chat/ChatCard",
 } as Meta;
 
-const Template: ComponentStory<typeof ChatCard> = (args) => <ChatCard {...args} />;
+const Template: ComponentStory<typeof ChatCard> = (args) => (
+    <div className="w-72">
+        <ChatCard {...args} />
+    </div>
+);
 
 export const Dropdown = Template.bind({});
 Dropdown.args = {
@@ -37,11 +41,11 @@ export const SingleChoice = Template.bind({});
 SingleChoice.args = {
     datas: [
         {
-            label: "Network",
+            label: "Some network information",
             value: "network",
         },
         {
-            label: "Printer",
+            label: "Some very long printer informartion that are not usefull and can be very boring",
             value: "printer",
         },
         {
@@ -54,7 +58,7 @@ SingleChoice.args = {
         },
     ],
     fCallBack: () => console.log("ok"),
-    title: "Please choose one of the following option",
+    title: "Please choose one of the following options",
     placeholder: "Select ...",
     type: "single-choice",
 };
