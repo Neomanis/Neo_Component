@@ -21,6 +21,7 @@ interface Props {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
+    className?: string;
 }
 
 const TextEditor = ({

@@ -33,17 +33,19 @@ const AnswerForm = ({
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="mb-6">
             <div className="flex justify-center items-center">
-                <TextEditor
-                    register={register}
-                    refForm="text"
-                    required
-                    errorMessage={myLanguage("ticketForm.errorRequired")}
-                    isError={formState?.errors.text}
-                    setValue={setValue}
-                    isUpdateField={isUpdateField}
-                    updateFunction={updateFunction}
-                    defaultValue={text}
-                />
+                <div className="w-full h-48 mb-6 ml-2">
+                    <TextEditor
+                        register={register}
+                        refForm="text"
+                        required
+                        errorMessage={myLanguage("ticketForm.errorRequired")}
+                        isError={formState?.errors.text}
+                        setValue={setValue}
+                        isUpdateField={isUpdateField}
+                        updateFunction={updateFunction}
+                        defaultValue={text}
+                    />
+                </div>
                 <div className="flex flex-col">
                     {isUpdateField && (
                         <Button fontIcon={faTimes} className="text-xl text-white mb-5" fCallback={closeCallback} />

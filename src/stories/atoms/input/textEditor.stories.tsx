@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof TextEditor> = (args) => (
-    <div className="w-full h-screen bg-neo-bg-A text-black">
+    <div className="w-full h-96 bg-neo-bg-A text-black">
         <TextEditor {...args} />
     </div>
 );
@@ -28,4 +28,5 @@ AreaUpdate.args = {
     // eslint-disable-next-line no-console
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     timerSetting: 3000,
+    className: "h-full w-full",
 };

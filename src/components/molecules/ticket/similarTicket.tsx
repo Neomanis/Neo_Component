@@ -36,12 +36,12 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                 </div>
             </div>
             <div className="flex p-1 group justify-between w-full">
-                <div className="flex items-center px-1 whitespace-nowrap text-neo-link group-hover:hidden">
-                    <Icon fontIcon={faClock} />
-                    <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
-                </div>
                 <div className="flex items-center px-1" data-testid="ticketName">
                     <p className="line-clamp-1 text-white text-sm w-full">{ticket.name}</p>
+                </div>
+                <div className="items-center px-1 whitespace-nowrap text-neo-link hidden group-hover:flex">
+                    <Icon fontIcon={faClock} />
+                    <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
                 </div>
                 <div className="flex items-center px-1 ml-auto">
                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />

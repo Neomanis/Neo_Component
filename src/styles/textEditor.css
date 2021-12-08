@@ -1,5 +1,6 @@
 .quill {
-    height: 100% !important;
+    height: auto !important;
+    width: 100% !important;
 }
 
 .ql-container {
@@ -8,7 +9,7 @@
     border-bottom-right-radius: 5px !important;
     background-color: #15304c !important;
     color: aliceblue !important;
-    height: 150px !important;
+    height: 100% !important;
     overflow-y: scroll !important;
     scrollbar-width: none !important;
 }
