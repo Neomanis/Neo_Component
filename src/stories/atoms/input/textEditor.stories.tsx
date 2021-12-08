@@ -25,6 +25,7 @@ AreaUpdate.args = {
     isUpdateField: true,
     refForm: "content",
     required: false,
-    updateFunction: (refForm: any, value: any) => console.log(refForm, value),
+    // eslint-disable-next-line no-console
+    updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     timerSetting: 3000,
 };

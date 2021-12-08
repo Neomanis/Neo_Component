@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useReducer, useState, useRef } from "react";
+import React, { ReactElement, useEffect, useReducer, useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
