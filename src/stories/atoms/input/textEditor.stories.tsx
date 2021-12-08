@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { TextEditor } from "../../..";
+import { TextEditor } from "../../../components/atoms";
 
 export default {
     component: TextEditor,
@@ -18,6 +18,7 @@ export const Default = Template.bind({});
 Default.args = {
     refForm: "content",
     required: false,
+    className: "",
 };
 
 export const AreaUpdate = Template.bind({});

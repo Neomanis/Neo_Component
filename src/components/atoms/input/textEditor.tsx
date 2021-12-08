@@ -21,7 +21,7 @@ interface Props {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    className?: string;
+    className: string;
 }
 
 const TextEditor = ({
@@ -38,6 +38,7 @@ const TextEditor = ({
     targetId,
     timerSetting = 5000,
     updateFunction,
+    className,
 }: Props): ReactElement => {
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
@@ -92,69 +93,71 @@ const TextEditor = ({
     }, [targetId]);
 
     return (
-        <div className="flex w-full h-full" key={key}>
-            <ReactQuill
-                value={state.updated as string}
-                onBlur={(previousSelection, source, editor) => {
-                    setIsFocused(false);
-                    if (isUpdateField && state.updated && state.updated !== state.previous && !isError) {
-                        dispatch({ type: "UPDATING", payload: editor.getHTML() });
-                        const newTimeout = setTimeout(() => {
-                            if (updateFunction && state.updated) {
-                                updateFunction(refForm, state.updated as string);
-                                dispatch({ type: "UPDATE_SUCCESS" });
-                                setTimeout(() => {
-                                    dispatch({ type: "CLEAR_SUCCESS" });
-                                }, 3000);
-                            }
-                        }, timerSetting);
-                        dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
-                    }
-                }}
-                onChange={(data) => {
-                    if (isFocused) {
-                        setValue && setValue(refForm, data, { shouldValidate: true });
-                        dispatch({ type: "ON_CHANGE", payload: data });
-                        if (isUpdateField) {
-                            if (state.previous !== data) {
-                                dispatch({ type: "SHOW_DOT" });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+        <div className={className} key={key} data-testid="textEditor-body">
+            <div className="flex w-full h-full">
+                <ReactQuill
+                    value={state.updated as string}
+                    onBlur={(previousSelection, source, editor) => {
+                        setIsFocused(false);
+                        if (isUpdateField && state.updated && state.updated !== state.previous && !isError) {
+                            dispatch({ type: "UPDATING", payload: editor.getHTML() });
+                            const newTimeout = setTimeout(() => {
+                                if (updateFunction && state.updated) {
+                                    updateFunction(refForm, state.updated as string);
+                                    dispatch({ type: "UPDATE_SUCCESS" });
+                                    setTimeout(() => {
+                                        dispatch({ type: "CLEAR_SUCCESS" });
+                                    }, 3000);
+                                }
+                            }, timerSetting);
+                            dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
+                        }
+                    }}
+                    onChange={(data) => {
+                        if (isFocused) {
+                            setValue && setValue(refForm, data, { shouldValidate: true });
+                            dispatch({ type: "ON_CHANGE", payload: data });
+                            if (isUpdateField) {
+                                if (state.previous !== data) {
+                                    dispatch({ type: "SHOW_DOT" });
+                                } else {
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
                         }
-                    }
-                }}
-                onFocus={() => setIsFocused(true)}
-                modules={modules}
-                formats={formats}
-            />
-            <div className="w-5 mx-3 mt-2">
-                {(isError || state.isCancelable || state.isSuccess) && (
-                    <Dot
-                        errorMessage={errorMessage}
-                        isCancelable={state.isCancelable}
-                        isCooldown={state.isCooldown}
-                        isError={isError}
-                        isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
-                        onClickCallback={(): void => {
-                            if (setValue && clearErrors) {
-                                setValue(refForm, state.previous);
-                                clearErrors();
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }}
-                        positionClassname={dotPosition}
-                        trigger={state.trigger}
-                        timer={timerSetting}
-                    />
-                )}
+                    }}
+                    onFocus={() => setIsFocused(true)}
+                    modules={modules}
+                    formats={formats}
+                />
+                <div className="w-5 mx-3 mt-2">
+                    {(isError || state.isCancelable || state.isSuccess) && (
+                        <Dot
+                            errorMessage={errorMessage}
+                            isCancelable={state.isCancelable}
+                            isCooldown={state.isCooldown}
+                            isError={isError}
+                            isSuccess={state.isSuccess}
+                            isUpdateField={isUpdateField}
+                            onClickCallback={(): void => {
+                                if (setValue && clearErrors) {
+                                    setValue(refForm, state.previous);
+                                    clearErrors();
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
+                                dispatch({ type: "CANCEL_UPDATE" });
+                            }}
+                            positionClassname={dotPosition}
+                            trigger={state.trigger}
+                            timer={timerSetting}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );

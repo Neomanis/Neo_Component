@@ -26,25 +26,27 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
             >
                 <div className="w-8">
                     {ticket.status > 4 ? (
-                        <IconTicketClosed className="w-10" fill="#172f4b" />
+                        <IconTicketClosed className="w-8" fill="#172f4b" />
                     ) : (
-                        <TicketLogo className="w-10 px-1" fill="#172f4b" />
+                        <TicketLogo className="w-8 px-1" fill="#172f4b" />
                     )}
                 </div>
                 <div className="flex w-28 justify-self-start pl-1" data-testid="ticketId">
                     {ticket?.id}
                 </div>
             </div>
-            <div className="flex p-1 group justify-between w-full">
+            <div className="flex px-2 group justify-between w-full">
+                <div className="flex items-center">
+                    <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
+                </div>
                 <div className="flex items-center px-1" data-testid="ticketName">
                     <p className="line-clamp-1 text-white text-sm w-full">{ticket.name}</p>
                 </div>
-                <div className="items-center px-1 whitespace-nowrap text-neo-link hidden group-hover:flex">
-                    <Icon fontIcon={faClock} />
+                <div className="items-center whitespace-nowrap text-neo-link hidden group-hover:flex">
                     <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
                 </div>
-                <div className="flex items-center px-1 ml-auto">
-                    <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
+                <div className="flex items-center px-1 whitespace-nowrap text-neo-link ml-auto">
+                    <Icon fontIcon={faClock} />
                 </div>
             </div>
         </div>

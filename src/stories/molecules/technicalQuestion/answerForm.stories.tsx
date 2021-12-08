@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof AnswerForm> = (args) => {
     return (
-        <div className=" bg-neo-bg-A p-2">
+        <div className="bg-neo-bg-A p-2">
             <AnswerForm {...args} />
         </div>
     );
