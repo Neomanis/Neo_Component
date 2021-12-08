@@ -31,5 +31,5 @@ Default.args = {
         displayAt: new Date(),
         hideAt: new Date(),
     },
-    languageUser: "FR_fr",
+    svgFill: "#15304C",
 };

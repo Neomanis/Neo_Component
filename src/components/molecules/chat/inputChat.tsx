@@ -31,7 +31,7 @@ const InputChat = ({
                     : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link"
             }`}
         >
-            <div className="p-2 opacity-50">
+            <div className="p-2 opacity-50 w-10">
                 <IconAdd fill="#7daab7" />
             </div>
             <div className="flex items-center ">

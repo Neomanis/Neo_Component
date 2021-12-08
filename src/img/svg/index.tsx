@@ -8,7 +8,6 @@ import { ReactComponent as CloseLogo } from "./nm_ico_close.svg";
 import { ReactComponent as ExpandLogo } from "./nm_ico_expand.svg";
 import { ReactComponent as TabLogo } from "./nm_ico_popup.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
-import { ReactComponent as IconAddFill } from "./nm_ico_addFile.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
@@ -54,6 +53,8 @@ import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_
 import { ReactComponent as LogoBleuNoText } from "./nm_logo_couleur_bleu_sans_texte.svg";
 import { ReactComponent as LogoMonoBlanc } from "./nm_logo_mono_blanc.svg";
 import { ReactComponent as LogoMonoNoir } from "./nm_logo_mono_noir.svg";
+import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
+import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
 
 export {
     TicketLogo,
@@ -69,7 +70,6 @@ export {
     ExpandLogo,
     TabLogo,
     IconAdd,
-    IconAddFill,
     IconArrowLeft,
     IconArrowRight,
     Planet,
@@ -111,4 +111,6 @@ export {
     LogoBleuNoText,
     LogoMonoBlanc,
     LogoMonoNoir,
+    IconLogin,
+    IconRetract,
 };

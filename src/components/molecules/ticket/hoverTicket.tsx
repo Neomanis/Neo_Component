@@ -1,13 +1,12 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
-
-import { faClock, faExpandArrowsAlt, faComment, faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
-import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
+import { Button, Hexagon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations
 import i18next from "i18next";
 import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
+import { ChatLogo, DiagLogo, ExpandLogo, ClockLogo } from "../../..";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
@@ -103,12 +102,14 @@ const HoverTicket = ({
                         </div>
                         <div className="flex flex-col text-right h-full justify-between w-1/3">
                             <div className="flex justify-around text-white w-full">
-                                <div className=" text-2xl">
+                                <div className="text-2xl mr-4">
                                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
                                 </div>
                                 <div className="flex items-center">
-                                    <Icon fontIcon={faClock} />
-                                    <p className="ml-1">
+                                    <div className="w-5 mr-1">
+                                        <ClockLogo fill="#DAE5E5" />
+                                    </div>
+                                    <p className="text-xs">
                                         {getFormatedTimeToNowExtended(ticket.date_creation, languageUser)}
                                     </p>
                                 </div>
@@ -132,17 +133,17 @@ const HoverTicket = ({
                                 "bg-neo-link flex justify-center items-center cursor-default rounded-full w-10 h-10 text-neo-bg-B"
                             }
                             disabled
-                            fontIcon={faChartLine}
-                            iconClassName={"text-neo-light-grey"}
+                            svg={<DiagLogo fill="#DAE5E5" />}
+                            svgClassName={"w-4"}
                             type="button"
                         />
                         <Button
                             className={
-                                "bg-neo-link flex justify-center items-center cursor-default rounded-full w-10 h-10  transform hover:scale-110 text-neo-bg-B"
+                                "bg-neo-link flex justify-center items-center cursor-default rounded-full w-10 h-10 transform hover:scale-110"
                             }
                             fCallback={fChatModalOpen}
-                            fontIcon={faComment}
-                            iconClassName={"text-neo-light-grey"}
+                            svg={<ChatLogo fill="#15304C" />}
+                            svgClassName="w-5"
                             type="button"
                         />
                         <Button
@@ -153,7 +154,8 @@ const HoverTicket = ({
                                 fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket);
                                 fTicketModalOpen && fTicketModalOpen();
                             }}
-                            fontIcon={faExpandArrowsAlt}
+                            svg={<ExpandLogo fill="#15304C" />}
+                            svgClassName="w-5"
                             iconClassName={"text-neo-bg-B-dark"}
                             type="button"
                         />
