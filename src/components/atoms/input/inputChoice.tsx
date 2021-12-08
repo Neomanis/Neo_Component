@@ -30,11 +30,11 @@ const InputChoice = ({
                         key={key}
                     >
                         <div
-                            className="cursor-pointer bg-neo-link  transform hover:scale-105 transition-transform rounded-3xl text-center"
+                            className="cursor-pointer bg-neo-link  transform hover:scale-105 transition-transform rounded-sm text-center"
                             id={item.value + key}
                             onClick={() => fCallBack && fCallBack(item.value)}
                         >
-                            <div className="px-6 py-1 cursor-pointer">{item.label}</div>
+                            <div className="w-60 cursor-pointer">{item.label}</div>
                         </div>
                     </div>
                 ))}
