@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useReducer, useState } from "react";
+import React, { ReactElement, useEffect, useReducer, useState, useRef } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -49,6 +49,8 @@ const TextEditor = ({
     });
     const [isFocused, setIsFocused] = useState(false);
 
+    const [key, setKey] = useState(0);
+
     function getHTMLValue(e: string): string {
         return e.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
     }
@@ -59,7 +61,6 @@ const TextEditor = ({
             ["bold", "italic", "underline", "strike", "blockquote"],
             [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
             ["link", "image"],
-            ["clean"],
         ],
     };
     const formats = [
@@ -82,39 +83,31 @@ const TextEditor = ({
     }, []);
 
     useEffect(() => {
+        setKey(key + 1);
         dispatch({ type: "RESET", payload: getHTMLValue(defaultValue) as string });
         setValue && setValue(refForm, getHTMLValue(defaultValue));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetId]);
 
-    useEffect(() => {
-        if (isUpdateField && state.updated && state.updated !== state.previous) {
-            const newTimeout = setTimeout(() => {
-                if (updateFunction && state.updated) {
-                    updateFunction(refForm, state.updated as string);
-                    dispatch({ type: "UPDATE_SUCCESS" });
-                    setTimeout(() => {
-                        dispatch({ type: "CLEAR_SUCCESS" });
-                    }, 3000);
-                }
-            }, timerSetting);
-            dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.updated, state.previous]);
-
     return (
-        <div className="flex w-full">
+        <div className="flex w-full h-full" key={key}>
             <ReactQuill
                 value={state.updated as string}
                 onBlur={(previousSelection, source, editor) => {
                     setIsFocused(false);
-                    if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
+                    if (isUpdateField && state.updated && state.updated !== state.previous && !isError) {
                         dispatch({ type: "UPDATING", payload: editor.getHTML() });
-                        if (state.timeoutId) {
-                            clearTimeout(state.timeoutId);
-                        }
+                        const newTimeout = setTimeout(() => {
+                            if (updateFunction && state.updated) {
+                                updateFunction(refForm, state.updated as string);
+                                dispatch({ type: "UPDATE_SUCCESS" });
+                                setTimeout(() => {
+                                    dispatch({ type: "CLEAR_SUCCESS" });
+                                }, 3000);
+                            }
+                        }, timerSetting);
+                        dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
                     }
                 }}
                 onChange={(data) => {
@@ -158,6 +151,7 @@ const TextEditor = ({
                         }}
                         positionClassname={dotPosition}
                         trigger={state.trigger}
+                        timer={timerSetting}
                     />
                 )}
             </div>

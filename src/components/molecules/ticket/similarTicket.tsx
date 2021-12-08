@@ -22,7 +22,7 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                 className={`${getPriorityColor(
                     ticket.priority,
                     false
-                )} w-32 text-neo-bg-B rounded-l-full flex items-center font-semibold`}
+                )} w-1/3 text-neo-bg-B rounded-l-full flex items-center font-semibold`}
             >
                 <div className="w-8">
                     {ticket.status > 4 ? (
@@ -35,17 +35,15 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                     {ticket?.id}
                 </div>
             </div>
-            <div className="flex w-full justify-between p-1 group">
-                <div className="flex items-center px-1 whitespace-nowrap text-neo-link">
-                    <Icon fontIcon={faClock} className="group-hover:hidden" />
-                    <p className="ml-2 text-xs group-hover:hidden">
-                        {getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}
-                    </p>
+            <div className="flex p-1 group justify-between w-full">
+                <div className="flex items-center px-1 whitespace-nowrap text-neo-link group-hover:hidden">
+                    <Icon fontIcon={faClock} />
+                    <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
                 </div>
                 <div className="flex items-center px-1" data-testid="ticketName">
-                    <p className="line-clamp-1 text-white text-sm">{ticket.name}</p>
+                    <p className="line-clamp-1 text-white text-sm w-full">{ticket.name}</p>
                 </div>
-                <div className="flex items-center px-1">
+                <div className="flex items-center px-1 ml-auto">
                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
                 </div>
             </div>

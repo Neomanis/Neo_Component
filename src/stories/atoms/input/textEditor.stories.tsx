@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof TextEditor> = (args) => (
-    <div className="w-full h-screen bg-neo-bg-A text-white">
+    <div className="w-full h-screen bg-neo-bg-A text-black">
         <TextEditor {...args} />
     </div>
 );
@@ -25,4 +25,6 @@ AreaUpdate.args = {
     isUpdateField: true,
     refForm: "content",
     required: false,
+    updateFunction: (refForm: any, value: any) => console.log(refForm, value),
+    timerSetting: 3000,
 };

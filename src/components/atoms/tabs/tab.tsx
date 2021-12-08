@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Tab = ({ children }: Props): ReactElement => {
-    return <div data-testid="tab-body">{children}</div>;
+    return <div data-testid="tab-body h-full">{children}</div>;
 };
 
 export default Tab;

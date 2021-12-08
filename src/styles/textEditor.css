@@ -1,9 +1,21 @@
+.quill {
+    height: 100% !important;
+}
+
 .ql-container {
     border: none !important;
     border-bottom-left-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     background-color: #15304c !important;
+    color: aliceblue !important;
+    height: 150px !important;
+    overflow-y: scroll !important;
+    scrollbar-width: none !important;
 }
+
+/* .ql-editor {
+    padding: 0px !important;
+} */
 
 .ql-toolbar {
     border: none !important;
@@ -11,6 +23,10 @@
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
     background-color: #15304c !important;
+}
+
+.ql-toolbar .ql-snow {
+    padding: 0px !important;
 }
 
 .ql-formats .ql-header {

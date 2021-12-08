@@ -14,7 +14,7 @@ const Tabs = ({ children }: Props): ReactElement => {
     }
 
     return (
-        <div data-testid="tabs-body">
+        <div data-testid="tabs-body h-full">
             <ul className="flex list-none mt-3">
                 {children.map((item, index) => (
                     <TabTitle

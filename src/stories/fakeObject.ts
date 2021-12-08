@@ -3,7 +3,7 @@ import { IGlpiRequest, IGlpiUsers, IInputSelect, ITicket } from "../interface";
 export const fakeTicket: ITicket = {
     id: 32,
     entities_id: 0,
-    name: "Test JM a peu pres avec un titre genre mega long",
+    name: "Test JM a peu pres avec un titre genre",
     date: "2021-07-12 15:52:44",
     closedate: undefined,
     solvedate: undefined,
