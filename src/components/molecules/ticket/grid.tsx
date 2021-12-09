@@ -19,6 +19,7 @@ interface Props {
     languageUser: string;
     paginationGrid?: boolean;
     row: number;
+    reverseGrid?: boolean;
     tickets?: ITicket[];
     withHover?: true;
 }
@@ -41,6 +42,7 @@ const Grid = ({
     languageUser,
     paginationGrid,
     row,
+    reverseGrid = false,
     tickets,
     withHover,
 }: Props): ReactElement => {
@@ -148,7 +150,7 @@ const Grid = ({
             )}
             <div className={`${col === 1 && "w-52"}`}>
                 {paginationGrid && pageGrid > 1 && (
-                    <div className={`flex text-xl justify-end items-center text-neo-link mb-4`}>
+                    <div className={`flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4">
                             {numberGrid + 1}/{pageGrid}
                         </p>
@@ -175,8 +177,11 @@ const Grid = ({
                         >
                             {grid.map((row, id) => (
                                 <div
-                                    className={`flex transform scale-120 z-auto ${
-                                        Number.isInteger(id / 2) ? " translate-x-23" : ""
+                                    className={`flex transform scale-120 z-auto 
+                                    ${
+                                        reverseGrid
+                                            ? Number.isInteger(id / 2) && "translate-x-23"
+                                            : !Number.isInteger(id / 2) && "translate-x-23"
                                     }`}
                                     key={"row-" + id}
                                 >

@@ -52,4 +52,5 @@ DefaultHelper.args = {
     row: 3,
     tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
     withHover: false,
+    reverseGrid: true,
 };

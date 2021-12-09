@@ -9,7 +9,11 @@ export default {
     title: "Atoms/Icon",
 } as Meta;
 
-const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
+const Template: ComponentStory<typeof Icon> = (args) => (
+    <div className="">
+        <Icon {...args} />
+    </div>
+);
 
 export const iconDefault = Template.bind({});
 iconDefault.args = {
@@ -31,6 +35,8 @@ iconNotification.args = {
     fCallBack: () => true,
     fontIcon: faBell,
     type: "iconWithRedDot",
+    redDot: true,
+    className: "relative w-10",
 };
 
 export const svgDefault = Template.bind({});

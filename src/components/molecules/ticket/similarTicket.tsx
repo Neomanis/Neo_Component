@@ -24,14 +24,14 @@ const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): Rea
                     false
                 )} w-1/3 text-neo-bg-B rounded-l-full flex items-center font-semibold`}
             >
-                <div className="w-8">
+                <div>
                     {ticket.status > 4 ? (
-                        <IconTicketClosed className="w-8" fill="#172f4b" />
+                        <IconTicketClosed className="w-10 px-2" fill="#172f4b" />
                     ) : (
-                        <TicketLogo className="w-8 px-1" fill="#172f4b" />
+                        <TicketLogo className="w-10 px-2" fill="#172f4b" />
                     )}
                 </div>
-                <div className="flex w-28 justify-self-start pl-1" data-testid="ticketId">
+                <div className="flex w-28 justify-self-start" data-testid="ticketId">
                     {ticket?.id}
                 </div>
             </div>
