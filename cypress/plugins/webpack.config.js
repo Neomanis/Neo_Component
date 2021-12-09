@@ -19,12 +19,12 @@ module.exports = {
                         presets: ["@babel/preset-react"],
                     },
                 },
-                exclude: /node_modules/,
+                exclude: ["../../node_modules", "../../src/stories"],
             },
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
-                exclude: /node_modules/,
+                exclude: ["../../node_modules", "../../src/stories"],
             },
             {
                 test: /\.css$/i,
