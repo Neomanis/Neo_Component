@@ -144,8 +144,8 @@ const Ticket = ({
                     <div className="absolute w-full flex items-center justify-center">
                         {iconBG ? (
                             <>
-                                <div className="absolute w-16">
-                                    <TicketLogo viewBox="0 0 50 50" fill="#152535" />
+                                <div className="absolute w-12">
+                                    <TicketLogo fill="#152535" />
                                 </div>
                                 <Hexagon bgColor="#172f4b" />
                             </>
