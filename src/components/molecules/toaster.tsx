@@ -1,8 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { ReactComponent as NeoLogo } from "../../img/svg/nm_logo_couleur_blanc_toast.svg";
-import { ReactComponent as NeoLogoSad } from "../../img/svg/nm_logo_couleur_blanc_toast-sad.svg";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../atoms";
+import { NeoLogo, NeoLogoSad } from "../../img/svg";
 
 interface Props {
     className?: string;

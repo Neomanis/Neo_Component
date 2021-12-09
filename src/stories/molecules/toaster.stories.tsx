@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import Toaster from "../../components/molecules/toaster";
 import { ComponentStory, Meta } from "@storybook/react";
@@ -9,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof Toaster> = (args) => {
     return (
-        <div className=" bg-neo-bg-A p-10 flex items-center w-2/6">
+        <div className="bg-neo-bg-A p-10 flex items-center w-2/6">
             <Toaster {...args} />
         </div>
     );
@@ -21,9 +22,7 @@ ToasterDefault.args = {
     closable: false,
     data: "Ticket updated ! This page will be refresh ...",
     emotion: "happy",
-    // eslint-disable-next-line no-console
     fCallBackCancel: () => console.log("CANCELED!"),
-    // eslint-disable-next-line no-console
     fCallBackRefresh: () => console.log("REFRESH!"),
     refreshing: true,
     refreshDuration: 5,
@@ -36,9 +35,7 @@ ToasterSad.args = {
     closable: true,
     data: "Something went wrong, please try again.",
     emotion: "sad",
-    // eslint-disable-next-line no-console
     fCallBackCancel: () => console.log("CANCELED!"),
-    // eslint-disable-next-line no-console
     fCallBackRefresh: () => console.log("REFRESH!"),
     refreshing: false,
     refreshDuration: 5,
