@@ -678,10 +678,10 @@ module.exports = {
             },
             shakeX: {
                 from: {
-                    transform: "transform: translate3d(0, 0, 0)",
+                    transform: "translate3d(0, 0, 0)",
                 },
                 to: {
-                    transform: "transform: translate3d(0, 0, 0)",
+                    transform: "translate3d(0, 0, 0)",
                 },
                 "10%, 30%": {
                     transform: "translate3d(-3px, 0, 0)",

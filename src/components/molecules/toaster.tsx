@@ -9,8 +9,8 @@ interface Props {
     closable?: boolean;
     data: string | number;
     emotion?: string;
-    fCallBackCancel: () => void;
-    fCallBackRefresh: () => void;
+    fCallBackCancel?: () => void;
+    fCallBackRefresh?: () => void;
     refreshing?: boolean;
     refreshDuration?: number;
     title?: string;
@@ -55,12 +55,17 @@ const Toaster = ({
     }
 
     return (
-        <div className={`flex w-full bg-neo-bg-B rounded-lg shadow-md py-3 relative overflow-hidden ${className}`}>
+        <div
+            className={`flex w-full bg-neo-bg-B rounded-lg shadow-md py-3 relative overflow-hidden ${className}`}
+            data-testid="toastClassName"
+        >
             <div className="flex items-center justify-center w-1/5">{renderSwitchNeoLogo(emotion)}</div>
 
             <div className="flex items-center py-2 w-4/5">
                 <div className="px-3">
-                    <span className="font-semibold text-white">{title}</span>
+                    <span className="font-semibold text-white" data-testid="toastTitle">
+                        {title}
+                    </span>
                     <p className="text-sm text-white" data-testid="toastData">
                         {data}
                     </p>
@@ -86,6 +91,7 @@ const Toaster = ({
                         fontIcon={faTimes}
                         className={"text-white opacity-30 flex items-center justify-center rounded-lg mx-2"}
                         fCallback={(): void => fCallBackCancel()}
+                        testId="toasterClose"
                     />
                 </div>
             )}
