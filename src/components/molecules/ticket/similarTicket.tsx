@@ -3,13 +3,13 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 import { Icon, IconTicketCategorie } from "../../atoms";
 import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
-import { ITicket } from "../../../interface";
 import { IconTicketClosed, TicketLogo } from "../../../img/svg";
+import { ISimilarTicket } from "../../../interface";
 
 interface Props {
-    fOpenSimilarTicket?: (ticket: ITicket) => void;
+    fOpenSimilarTicket?: (ticket: ISimilarTicket) => void;
     languageUser: string;
-    ticket: ITicket;
+    ticket: ISimilarTicket;
 }
 
 const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): ReactElement => {
