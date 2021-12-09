@@ -19,12 +19,17 @@ module.exports = {
                         presets: ["@babel/preset-react"],
                     },
                 },
-                exclude: ["../../node_modules", "../../src/stories"],
+                exclude: /node_modules/,
             },
             {
                 test: /\.tsx?$/,
-                use: "ts-loader",
-                exclude: ["../../node_modules", "../../src/stories"],
+                use: {
+                    loader: "ts-loader",
+                    options: {
+                        configFile: "tsconfig.prod.json",
+                    },
+                },
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/i,
