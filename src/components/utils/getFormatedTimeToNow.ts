@@ -42,24 +42,24 @@ export function formatDateToNow(date: string, lang: string): string {
 
     switch (lang) {
         case "fr-FR":
-            if (timestampDiff < 24 * 60 * 60) {
-                formatedDate = `${dateForm.getHours()}:${dateForm.getMinutes()}`;
-            } else if (timestampDiff < 7 * 24 * 60 * 60) {
+            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
+                formatedDate = `${dateForm.getHours()}:${("0" + dateForm.getMinutes().toString()).slice(-2)}`;
+            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
                 formatedDate = `${dateForm.toLocaleDateString(lang, {
                     weekday: "long",
-                })} à ${dateForm.getHours()}:${dateForm.getMinutes()}`;
+                })} à ${dateForm.getHours()}:${("0" + dateForm.getMinutes().toString()).slice(-2)}`;
                 formatedDate = formatedDate[0].toUpperCase() + formatedDate.slice(1);
             } else {
-                formatedDate = `le ${dateForm.toLocaleDateString(
-                    lang
-                )} à ${dateForm.getHours()}:${dateForm.getMinutes()}`;
+                formatedDate = `le ${dateForm.toLocaleDateString(lang)} à ${dateForm.getHours()}:${(
+                    "0" + dateForm.getMinutes().toString()
+                ).slice(-2)}`;
             }
             break;
 
         case "en-US":
-            if (timestampDiff < 24 * 60 * 60) {
+            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
                 formatedDate = getEnglishHour(dateForm);
-            } else if (timestampDiff < 7 * 24 * 60 * 60) {
+            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
                 formatedDate = `${dateForm.toLocaleDateString(lang, {
                     weekday: "long",
                 })}, ${getEnglishHour(dateForm)}`;
@@ -72,11 +72,11 @@ export function formatDateToNow(date: string, lang: string): string {
             }
             break;
 
-        // enUS and enGB date format
+        // enGB date format
         default:
-            if (timestampDiff < 24 * 60 * 60) {
+            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
                 formatedDate = getEnglishHour(dateForm);
-            } else if (timestampDiff < 7 * 24 * 60 * 60) {
+            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
                 formatedDate = `${dateForm.toLocaleDateString("en-GB", {
                     weekday: "long",
                 })}, ${getEnglishHour(dateForm)}`;
@@ -101,6 +101,6 @@ function getEnglishHour(date: Date): string {
     } else if (hour == 12) {
         suffix = "PM";
     }
-    const englishTime = `${displayHour}:${date.getMinutes()} ${suffix}`;
+    const englishTime = `${displayHour}:${("0" + date.getMinutes().toString()).slice(-2)} ${suffix}`;
     return englishTime;
 }

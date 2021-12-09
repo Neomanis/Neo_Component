@@ -178,6 +178,9 @@
         "id": "Ticket",
         "keyDetected": "MOTS-CLES",
         "markResolved": "MARQUE COMME RESOLU",
+        "neoHelper": {
+            "waitTechnician": "Un technicien vous contactera dès que possible."
+        },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
         "solveTicket": "MARQUÉ COMME RÉSOLU",
