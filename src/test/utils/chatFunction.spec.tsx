@@ -5,13 +5,14 @@ describe("Chat functions", () => {
     before(() => {
         expect(formatMessage, "formatMessage").to.be.a("function");
         expect(getRecipientsNameByIds, "getRecipientsNameByIds").to.be.a("function");
+        expect(stripHtml, "stripHtml").to.be.a("function");
     });
 
     it("should format a message to IChatMessage", () => {
         expect(formatMessage("This is my message", 12)).to.eql({
             content: "This is my message",
             users_id: 12,
-            date_creation: format(new Date(), "yyyy-MM-dd hh:mm:ss"),
+            date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         });
     });
 

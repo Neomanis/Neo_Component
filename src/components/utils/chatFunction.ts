@@ -23,7 +23,6 @@ export function getRecipientsNameByIds(glpiUsers: IGlpiUsers[], ids: number[]): 
 
 export function stripHtml(html: string): string {
     const doc = new DOMParser().parseFromString(html, "text/html");
-
     const parsed = new DOMParser().parseFromString(doc.body.textContent, "text/html");
     return parsed.body.textContent || "";
 }
