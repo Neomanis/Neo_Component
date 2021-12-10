@@ -6,9 +6,14 @@ interface Props {
     date: string;
     isMe: boolean;
     name: string;
+    avatar?: {
+        encodedAvatar: string;
+        mimetype: string;
+        originalname: string;
+    };
 }
 
-const MessageChat = ({ content, date, isMe, name }: Props): ReactElement => {
+const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement => {
     const [hover, setHover] = useState(false);
     return (
         <div>
@@ -34,7 +39,18 @@ const MessageChat = ({ content, date, isMe, name }: Props): ReactElement => {
                 w-full flex items-center`}
             >
                 <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="min-w-max">
-                    <Img type="imgProfile" className={"rounded-full w-11"} />
+                    {avatar ? (
+                        <Img
+                            type="imgProfile"
+                            data={{
+                                src: `data:${avatar?.mimetype};base64,${avatar.encodedAvatar}`,
+                                alt: `${avatar?.originalname}`,
+                            }}
+                            className={"rounded-full w-11"}
+                        />
+                    ) : (
+                        <Img type="imgProfile" className={"rounded-full w-11"} />
+                    )}
                 </div>
                 <div className="mx-3">
                     <BubbleChat bgColor={isMe && "bg-neo-bg-B"} border={!isMe} content={content} />
