@@ -110,12 +110,14 @@ module.exports = {
             ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
             pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
             bounce: "bounce 1s infinite",
+            bounceSlow: "bounceSlow 1.5s infinite",
             widthAnim: "widthAnim 0.3s linear",
             widthModalAnim: "widthModalAnim 0.3s linear",
             widthModalAnimOut: "widthModalAnimOut 0.3s linear",
             postionHover: "postionHover 0.3s linear",
             leftH: "leftH 0.3s linear",
             rightH: "rightH 0.3s linear",
+            shakeX: "shakeX 2s infinite",
             slideIn: "slideIn 0.3s ease-in-out",
             slideOut: "slideOut 0.5s ease-in-out",
             slideTop: "sideTop 0.5s ease-in-out",
@@ -647,6 +649,57 @@ module.exports = {
                 "50%": {
                     transform: "none",
                     animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+                },
+            },
+            bounceSlow: {
+                "0%": {
+                    transform: "translateY(0)",
+                },
+
+                "6.5%": {
+                    transform: "translateY(-4px) rotateY(-9deg)",
+                },
+
+                "18.5%": {
+                    transform: "translateY(3px) rotateY(7deg)",
+                },
+
+                "31.5%": {
+                    transform: "translateY(-2px) rotateY(-5deg)",
+                },
+
+                "43.5%": {
+                    transform: "translateY(1px) rotateY(3deg)",
+                },
+
+                "50%": {
+                    transform: "translateY(0)",
+                },
+            },
+            shakeX: {
+                from: {
+                    transform: "translate3d(0, 0, 0)",
+                },
+                to: {
+                    transform: "translate3d(0, 0, 0)",
+                },
+                "10%, 30%": {
+                    transform: "translate3d(-3px, 0, 0)",
+                },
+                "20%, 40%": {
+                    transform: "translate3d(3px, 0, 0)",
+                },
+                "50%, 70%": {
+                    transform: "translate3d(-1px, 0, 0)",
+                },
+                "60%": {
+                    transform: "translate3d(1px, 0, 0)",
+                },
+                "80%": {
+                    transform: "translate3d(0, 0, 0)",
+                },
+                "90%": {
+                    transform: "translate3d(0, 0, 0)",
                 },
             },
         },

@@ -29,7 +29,7 @@ export default {
         image(),
         resolve(),
         commonjs(),
-        typescript({ useTsconfigDeclarationDir: true }),
+        typescript({ useTsconfigDeclarationDir: true, tsconfig: "./tsconfig.prod.json" }),
         json(),
     ],
 };

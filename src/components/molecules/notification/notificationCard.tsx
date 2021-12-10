@@ -31,27 +31,28 @@ const NotificationCard = ({
                 setIsFolded(!isFolded);
                 fReadNotification(notificationId, userUid);
             }}
-            className="cursor-pointer min-h-24 mb-7 bg-neo-bg-B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
+            className="cursor-pointer w-full bg-neo-bg-B bg-opacity-50 flex items-center justify-between p-3 rounded-md "
         >
-            <div className="flex flex-col text-white w-8/12">
-                <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>{content}</p>
-                <div className="flex justify-start w-5/12">
+            <div className="text-white w-11/12 pr-2">
+                <p className={`${isFolded && "line-clamp-2"} mb-3 text-sm`}>{content}</p>
+                <div className="flex justify-start">
                     <Icon
                         className={`text-xxs ${read ? " text-neo-light-grey opacity-30" : "text-neo-red"}`}
                         fontIcon={faCircle}
                     />
-                    <p className="text-xs text-neo-light-grey whitespace-nowrap ml-3">{date}</p>
+                    <p className="text-xs text-neo-link ml-3">{date}</p>
                 </div>
             </div>
-            <div
-                className="cursor-pointer flex w-8 h-8 z-20"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    setIsFolded(true);
-                    fDeleteNotification(notificationId, userUid);
-                }}
-            >
-                <CloseLogo viewBox="10 10 30 30" fill="#778899" />
+            <div className="w-1/12 flex justify-center">
+                <Icon
+                    svg={<CloseLogo fill="#7DAAB7" />}
+                    className="cursor-pointer w-3 h-3 transform hover:scale-125"
+                    fCallBack={(e) => {
+                        e.stopPropagation();
+                        setIsFolded(true);
+                        fDeleteNotification(notificationId, userUid);
+                    }}
+                />
             </div>
         </div>
     );

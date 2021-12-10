@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof NotificationCard> = (args) => {
     return (
-        <div className=" bg-neo-bg-A p-2 flex items-center">
+        <div className=" bg-neo-bg-A p-2 flex items-center" style={{ width: 400 }}>
             <NotificationCard {...args} />
         </div>
     );
@@ -19,11 +19,12 @@ const Template: ComponentStory<typeof NotificationCard> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    content: "Where is Ryan ?",
+    content:
+        "Where is Ryan ? lfgf dg sogfdos ogfdso gofdso gofdsog fids i igfdos gifdso i  igfdks kiiiiiiiiiiiiidfus dfu sfduisfd fdsfudsifdu fids ufdsf iusdf iusdf udsf udsfsdifu sdif usdfiudsfusdf usdf usdfu gfdk skgfdksgk gfkdsk gkfdk igfdos igfods   ",
     date: "2021-09-05 10:58:24",
-    fDeleteNotification: () => console.log("hello"),
-    fInitialRender: () => console.log("hello"),
-    fReadNotification: () => console.log("hello"),
+    fDeleteNotification: () => console.log(" fDeleteNotification"),
+    fInitialRender: () => console.log("fInitialRender"),
+    fReadNotification: () => console.log("fReadNotification"),
     notificationId: 1,
     read: false,
     userUid: "21",
