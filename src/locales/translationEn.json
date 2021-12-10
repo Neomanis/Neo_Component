@@ -23,6 +23,11 @@
         "errorLang": "Error : language modification failed",
         "goService": "Services"
     },
+    "formatDateToNow": {
+        "begin": "",
+        "end": "",
+        "middle": "',' "
+    },
     "global": {
         "yes": "Yes",
         "no": "No"
@@ -178,6 +183,9 @@
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
         "markResolved": "MARKS IT AS RESOLVED",
+        "neoHelper": {
+            "waitTechnician": "A technician will contact you as soon as possible to help."
+        },
         "search": "Search",
         "solveQuestion": "Marks it as solved ?",
         "solveTicket": "MARKS IT AS SOLVED",

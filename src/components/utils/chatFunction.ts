@@ -5,7 +5,7 @@ export function formatMessage(message: string, senderId: number): IChatMessage {
     return {
         content: message,
         users_id: senderId,
-        date_creation: format(new Date(), "yyyy-MM-dd hh:mm:ss"),
+        date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
     };
 }
 
@@ -19,4 +19,10 @@ export function getRecipientsNameByIds(glpiUsers: IGlpiUsers[], ids: number[]): 
     });
 
     return recipients;
+}
+
+export function stripHtml(html: string): string {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const parsed = new DOMParser().parseFromString(doc.body.textContent, "text/html");
+    return parsed.body.textContent || "";
 }

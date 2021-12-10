@@ -1,17 +1,18 @@
 import { format } from "date-fns";
-import { formatMessage, getRecipientsNameByIds } from "../../components/utils";
+import { formatMessage, getRecipientsNameByIds, stripHtml } from "../../components/utils";
 
 describe("Chat functions", () => {
     before(() => {
         expect(formatMessage, "formatMessage").to.be.a("function");
         expect(getRecipientsNameByIds, "getRecipientsNameByIds").to.be.a("function");
+        expect(stripHtml, "stripHtml").to.be.a("function");
     });
 
     it("should format a message to IChatMessage", () => {
         expect(formatMessage("This is my message", 12)).to.eql({
             content: "This is my message",
             users_id: 12,
-            date_creation: format(new Date(), "yyyy-MM-dd hh:mm:ss"),
+            date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         });
     });
 
@@ -26,5 +27,10 @@ describe("Chat functions", () => {
                 [1, 2, 4]
             )
         ).to.eql(["hubert", "heats"]);
+    });
+
+    it("should remove html tags", () => {
+        expect(stripHtml("<p>COUCOU</p>")).to.eql("COUCOU");
+        expect(stripHtml("&lt;p&gt;Vous en êtes où ?&lt;/p&gt;")).to.equal("Vous en êtes où ?");
     });
 });
