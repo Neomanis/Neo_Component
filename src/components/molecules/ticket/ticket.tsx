@@ -1,13 +1,12 @@
 import React, { ReactElement, useState, useEffect, useRef } from "react";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
+import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
 import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";
 
 //translations
 import i18next from "i18next";
-import { TicketLogo } from "../../../img/svg";
+import { ClockLogo, TicketLogo } from "../../../img/svg";
 
 interface Props {
     ticket?: ITicket;
@@ -112,9 +111,9 @@ const Ticket = ({
                         >
                             <p className="truncate mx-2">{ticket.name}</p>
                         </div>
-                        <div className="text-white text-center text-sm flex justify-center">
-                            <div className="text-base mx-1">
-                                <Icon fontIcon={faClock} />
+                        <div className="text-white text-sm flex justify-center item-center">
+                            <div className="w-4 h-4 mr-1">
+                                <ClockLogo fill="#fff" />
                             </div>
                             <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
                         </div>
@@ -145,8 +144,8 @@ const Ticket = ({
                     <div className="absolute w-full flex items-center justify-center">
                         {iconBG ? (
                             <>
-                                <div className="absolute w-16">
-                                    <TicketLogo viewBox="0 0 50 50" fill="#152535" />
+                                <div className="absolute w-12">
+                                    <TicketLogo fill="#152535" />
                                 </div>
                                 <Hexagon bgColor="#172f4b" />
                             </>

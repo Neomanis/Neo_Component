@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import i18next from "i18next";
 import { faSave, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, EditableTextarea } from "../../atoms";
+import { Button, TextEditor } from "../../atoms";
 
 interface Props {
     closeCallback?: () => void;
@@ -33,7 +33,7 @@ const AnswerForm = ({
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="mb-6">
             <div className="flex justify-center items-center">
-                <EditableTextarea
+                <TextEditor
                     register={register}
                     refForm="text"
                     required
@@ -43,6 +43,7 @@ const AnswerForm = ({
                     isUpdateField={isUpdateField}
                     updateFunction={updateFunction}
                     defaultValue={text}
+                    className={"w-full h-48 mb-6 ml-2"}
                 />
                 <div className="flex flex-col">
                     {isUpdateField && (

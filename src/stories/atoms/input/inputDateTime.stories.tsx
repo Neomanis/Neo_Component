@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
-import { InputDateTime } from "../../..";
+import { InputDateTime } from "../../../components/atoms";
 
 export default {
     component: InputDateTime,

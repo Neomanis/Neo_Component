@@ -69,7 +69,7 @@ const TechnicalQuestionItem = ({
                 <div className="truncate w-4/5" dangerouslySetInnerHTML={{ __html: content }}></div>
                 <div className="flex items-center">
                     <Tooltip
-                        className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded"
+                        className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
                         data={followed ? myLanguage("tQuestion.follow") : myLanguage("tQuestion.unfollow")}
                         fCallback={(e) => {
                             e.stopPropagation();

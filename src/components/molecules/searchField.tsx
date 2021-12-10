@@ -1,13 +1,13 @@
 import React, { ReactElement, useState } from "react";
-import { Icon, Input } from "../atoms";
+import { Input } from "../atoms";
 
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import {
     FieldValues,
     UseFormRegister,
     UseFormSetFocus,
     UseFormSetValue,
 } from "../../../node_modules/react-hook-form/dist";
+import { IconSearch } from "../../img/svg";
 
 interface Props {
     fCallBack?: () => void;
@@ -46,7 +46,9 @@ const SearchField = ({ fCallBack, placeholder, refForm, register, setValue, setF
         >
             <div className=" bg-neo-bg-B h-8 flex items-center rounded-full overflow-hidden">
                 <div className={`${width > 32 && "animate-onSpin"} ${width < 200 && "animate-onSpinReverse"} px-2`}>
-                    <Icon fontIcon={faSearch} className="text-white" />
+                    <div className="w-4">
+                        <IconSearch fill="#fff" />
+                    </div>
                 </div>
                 <div onKeyDown={(e) => onEscape(e)}>
                     <Input

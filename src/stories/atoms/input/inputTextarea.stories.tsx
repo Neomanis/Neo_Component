@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { InputTextarea } from "../../..";
+import { InputTextarea } from "../../../components/atoms";
 
 export default {
     component: InputTextarea,

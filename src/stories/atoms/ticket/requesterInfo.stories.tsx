@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { RequesterInfo } from "../../..";
+import { RequesterInfo } from "../../../components/atoms";
 
 export default {
     component: RequesterInfo,

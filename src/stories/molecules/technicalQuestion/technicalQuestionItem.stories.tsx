@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
-import { TechnicalQuestionItem } from "../../..";
+import { TechnicalQuestionItem } from "../../../components/molecules";
 
 import { ComponentStory, Meta } from "@storybook/react";
 

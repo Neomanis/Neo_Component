@@ -1,14 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
-
-import { ITicket } from "../../../interface";
-
+import { IGlpiRequest, IGlpiUsers, ITicket } from "../../../interface";
 import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
 import Button from "../../atoms/button";
-//icon
-import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { displayRequesterName } from "../../utils/displayRequesterName";
-import { IGlpiRequest, IGlpiUsers } from "../../../interface";
+import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 
 interface Props {
     col: number;
@@ -23,6 +19,7 @@ interface Props {
     languageUser: string;
     paginationGrid?: boolean;
     row: number;
+    reverseGrid?: boolean;
     tickets?: ITicket[];
     withHover?: true;
 }
@@ -45,6 +42,7 @@ const Grid = ({
     languageUser,
     paginationGrid,
     row,
+    reverseGrid = false,
     tickets,
     withHover,
 }: Props): ReactElement => {
@@ -54,7 +52,7 @@ const Grid = ({
             : [{ id: 0, name: "blank" }]
         : [{ id: 0, name: "blank" }];
 
-    const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[]>>>();
+    const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[] | BlankTab[]>>>();
     const [numberGrid, setNumbertGrid] = useState(0);
     const [hoverTicket, setHoverTicket] =
         useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
@@ -150,21 +148,21 @@ const Grid = ({
                     keywords={hoverTicket.ticket.keywords}
                 />
             )}
-            <div className={`${col === 1 ? "w-52" : ""}`}>
+            <div className={`${col === 1 && "w-52"}`}>
                 {paginationGrid && pageGrid > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
-                        <p className="pt-1 mr-4">
+                        <p className="mr-4">
                             {numberGrid + 1}/{pageGrid}
                         </p>
                         <Button
-                            className="hover:text-white cursor-pointer flex items-center transform rotate-90 text-3xl"
+                            className="cursor-pointer w-5 pr-1 transform hover:scale-105"
                             fCallback={(): void => nextAndPrevious(-1)}
-                            fontIcon={faSortDown}
+                            svg={<IconArrowLeft fill="#7DAAB7" />}
                         />
                         <Button
-                            className="hover:text-white cursor-pointer flex items-center transform -rotate-90 text-3xl"
+                            className="cursor-pointer w-5 pl-1 transform hover:scale-105"
                             fCallback={(): void => nextAndPrevious(1)}
-                            fontIcon={faSortDown}
+                            svg={<IconArrowRight fill="#7DAAB7" />}
                         />
                     </div>
                 )}
@@ -179,8 +177,11 @@ const Grid = ({
                         >
                             {grid.map((row, id) => (
                                 <div
-                                    className={`flex transform scale-120 z-auto ${
-                                        Number.isInteger(id / 2) ? " translate-x-23" : ""
+                                    className={`flex transform scale-120 z-auto 
+                                    ${
+                                        reverseGrid
+                                            ? Number.isInteger(id / 2) && "translate-x-23"
+                                            : !Number.isInteger(id / 2) && "translate-x-23"
                                     }`}
                                     key={"row-" + id}
                                 >

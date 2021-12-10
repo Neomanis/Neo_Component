@@ -9,7 +9,7 @@ describe("Icon", () => {
         cy.get('[data-testid="icon-link-body"]').should("be.visible");
     });
     it("should be visible and display icon placeholder type", () => {
-        mount(<Icon type="placeholderInput" fontIcon={faCheckSquare} />);
+        mount(<Icon type="placeholderInput" fontIcon={faCheckSquare} className="p-4 text-neo-bg-B text-4xl" />);
         cy.get('[data-testid="icon-placeholder-body"]').should("be.visible");
     });
     it("should be visible and display icon red dot type", () => {

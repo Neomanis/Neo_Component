@@ -13,6 +13,7 @@ import SimilarTicket from "./ticket/similarTicket";
 import TechnicalQuestionItem from "./technicalQuestion/technicalQuestionItem";
 import Ticket from "./ticket/ticket";
 import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQuestionLine";
+import Toaster from "./toaster";
 import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
 
@@ -32,6 +33,7 @@ export {
     TechnicalQuestionItem,
     Ticket,
     TicketTechnicalQuestionLine,
+    Toaster,
     ValidationCard,
     WorkflowCard,
 };

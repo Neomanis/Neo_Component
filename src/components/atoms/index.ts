@@ -3,7 +3,6 @@ import Button from "./button";
 import ButtonSwitch from "./buttonSwitch";
 import Checkbox from "./checkBox";
 import Dot from "./dot";
-import EditableTextarea from "./input/editableTextArea";
 import Hexagon from "./ticket/hexagon";
 import HexaPill from "./hexaPill";
 import Icon from "./icon";
@@ -28,6 +27,7 @@ import Tabs from "./tabs/tabs";
 import TabTitle from "./tabs/tabTitle";
 import Title from "./title";
 import Tooltip from "./tooltip";
+import TextEditor from "./input/textEditor";
 
 export {
     BubbleChat,
@@ -35,7 +35,6 @@ export {
     ButtonSwitch,
     Checkbox,
     Dot,
-    EditableTextarea,
     Hexagon,
     HexaPill,
     Icon,
@@ -60,4 +59,5 @@ export {
     TabTitle,
     Title,
     Tooltip,
+    TextEditor,
 };

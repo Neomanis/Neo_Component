@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
-import { AnswerForm } from "../../..";
+import { AnswerForm } from "../../../components/molecules";
 import { ComponentStory, Meta } from "@storybook/react";
 
 export default {
@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof AnswerForm> = (args) => {
     return (
-        <div className=" bg-neo-bg-B p-2">
+        <div className="bg-neo-bg-A p-2">
             <AnswerForm {...args} />
         </div>
     );
