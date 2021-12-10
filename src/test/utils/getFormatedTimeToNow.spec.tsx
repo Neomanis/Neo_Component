@@ -35,7 +35,7 @@ describe("Date to now format functions", () => {
         expect(formatDate(format(date, "yyyy-MM-dd HH:mm:ss"))).to.equal("12/10/2021 11:02");
     });
 
-    it("Should do thing", () => {
+    it("Should use the first form of the function", () => {
         const date = new Date();
         date.setHours(15);
         date.setMinutes(10);
@@ -44,7 +44,7 @@ describe("Date to now format functions", () => {
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "fr_FR")).to.equal("15:10");
     });
 
-    it("Should do another thing", () => {
+    it("Should use the second form of the function", () => {
         const date = new Date();
         date.setHours(date.getHours() - 24);
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "en_US")).to.equal(
@@ -58,7 +58,7 @@ describe("Date to now format functions", () => {
         );
     });
 
-    it("Should do another thing", () => {
+    it("Should use the third form of the function", () => {
         const date = new Date();
         date.setHours(date.getHours() - 240);
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "en_US")).to.equal(

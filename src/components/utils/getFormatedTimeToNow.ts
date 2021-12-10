@@ -1,5 +1,6 @@
 import { formatDistanceToNowStrict, Locale, format } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
+import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
     const dateTicket = new Date(date.replace(/-/g, "/"));
@@ -35,22 +36,11 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
     let formatedDate: string;
     const date = new Date(incomingDate);
     const timestampDiff = (new Date().getTime() - Date.parse(incomingDate)) / 1000;
-    let begin: string;
-    let middle: string;
-    let end: string;
-    switch (lang) {
-        case "fr_FR":
-            begin = "'le' ";
-            middle = " 'à' ";
-            end = "";
-            break;
-        // en_US and en_GB
-        default:
-            begin = "";
-            middle = "',' ";
-            end = "";
-            break;
-    }
+    const myLanguage = i18n.getFixedT(lang);
+    const begin = myLanguage("formatDateToNow.begin");
+    const middle = myLanguage("formatDateToNow.middle");
+    const end = myLanguage("formatDateToNow.end");
+
     if (timestampDiff < 24 * 60 * 60 && date.getDay() === new Date().getDay()) {
         formatedDate = format(date, `p`, {
             locale: getDateFnsLocaleFromUserLang(lang),
@@ -64,6 +54,5 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
             locale: getDateFnsLocaleFromUserLang(lang),
         });
     }
-
     return formatedDate;
 }

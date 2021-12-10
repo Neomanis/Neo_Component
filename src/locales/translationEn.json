@@ -23,6 +23,11 @@
         "errorLang": "Error : language modification failed",
         "goService": "Services"
     },
+    "formatDateToNow": {
+        "begin": "",
+        "end": "",
+        "middle": "',' "
+    },
     "global": {
         "yes": "Yes",
         "no": "No"

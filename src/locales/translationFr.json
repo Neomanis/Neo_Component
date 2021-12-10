@@ -23,6 +23,11 @@
         "errorLang": "Erreur : la modification de la langue a échouée",
         "goService": "Services"
     },
+    "formatDateToNow": {
+        "begin": "'le' ",
+        "end": "",
+        "middle": " 'à' "
+    },
     "global": {
         "yes": "Oui",
         "no": "Non"
