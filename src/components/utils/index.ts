@@ -2,9 +2,9 @@ import { displayRequesterName, getUserName, getRequesterUid } from "./displayReq
 import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction";
 import {
     getFormatedTimeToNow,
-    getFormatedTimeToNowExtended,
     formatDate,
     formatDateToNow,
+    getFormatedTimeToNowExtended,
 } from "./getFormatedTimeToNow";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getPriorityColor } from "./ticketColorSelector";

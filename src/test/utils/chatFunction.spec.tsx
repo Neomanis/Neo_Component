@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { formatMessage, getRecipientsNameByIds } from "../../components/utils";
+import { formatMessage, getRecipientsNameByIds, stripHtml } from "../../components/utils";
 
 describe("Chat functions", () => {
     before(() => {
@@ -26,5 +26,10 @@ describe("Chat functions", () => {
                 [1, 2, 4]
             )
         ).to.eql(["hubert", "heats"]);
+    });
+
+    it("should remove html tags", () => {
+        expect(stripHtml("<p>COUCOU</p>")).to.eql("COUCOU");
+        expect(stripHtml("&lt;p&gt;Vous en êtes où ?&lt;/p&gt;")).to.equal("Vous en êtes où ?");
     });
 });

@@ -1,15 +1,15 @@
-import { formatDistanceToNowStrict, Locale } from "date-fns";
+import { formatDistanceToNowStrict, Locale, format } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
 
 export function getFormatedTimeToNow(date: string): string {
-    const dateTicket = new Date(date.includes(" ") ? date.replace(" ", "T") + "Z" : date);
+    const dateTicket = new Date(date.replace(/-/g, "/"));
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
     return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {
     const locale = getDateFnsLocaleFromUserLang(lang);
-    const formatToDate = new Date(date.includes(" ") ? date.replace(" ", "T") + "Z" : date);
+    const formatToDate = new Date(date.replace(/-/g, "/"));
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }
@@ -27,80 +27,43 @@ export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     }
 }
 
-export function formatDate(lang: string): string {
-    const local = getDateFnsLocaleFromUserLang(lang).code;
-    const date = new Date(lang).toLocaleDateString(local);
-    const time = new Date(lang).toLocaleTimeString(local, { hour: "2-digit", minute: "2-digit" });
-    return date + " " + time;
+export function formatDate(date: string, lang = "en_GB"): string {
+    return format(new Date(date), "P p", { locale: getDateFnsLocaleFromUserLang(lang) });
 }
 
-export function formatDateToNow(date: string, lang: string): string {
-    let formatedDate = "DateError";
-    const dateForm = new Date(date);
-    const timestampDiff = (new Date().getTime() - Date.parse(date)) / 1000;
-    lang = lang.replace("_", "-");
-
+export function formatDateToNow(incomingDate: string, lang: string): string {
+    let formatedDate: string;
+    const date = new Date(incomingDate);
+    const timestampDiff = (new Date().getTime() - Date.parse(incomingDate)) / 1000;
+    let begin: string;
+    let middle: string;
+    let end: string;
     switch (lang) {
-        case "fr-FR":
-            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
-                formatedDate = `${dateForm.getHours()}:${("0" + dateForm.getMinutes().toString()).slice(-2)}`;
-            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
-                formatedDate = `${dateForm.toLocaleDateString(lang, {
-                    weekday: "long",
-                })} à ${dateForm.getHours()}:${("0" + dateForm.getMinutes().toString()).slice(-2)}`;
-                formatedDate = formatedDate[0].toUpperCase() + formatedDate.slice(1);
-            } else {
-                formatedDate = `le ${dateForm.toLocaleDateString(lang)} à ${dateForm.getHours()}:${(
-                    "0" + dateForm.getMinutes().toString()
-                ).slice(-2)}`;
-            }
+        case "fr_FR":
+            begin = "'le' ";
+            middle = " 'à' ";
+            end = "";
             break;
-
-        case "en-US":
-            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
-                formatedDate = getEnglishHour(dateForm);
-            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
-                formatedDate = `${dateForm.toLocaleDateString(lang, {
-                    weekday: "long",
-                })}, ${getEnglishHour(dateForm)}`;
-            } else {
-                formatedDate = `${dateForm.toLocaleDateString(lang, {
-                    month: "2-digit",
-                    day: "2-digit",
-                    year: "2-digit",
-                })}, ${getEnglishHour(dateForm)}`;
-            }
-            break;
-
-        // enGB date format
+        // en_US and en_GB
         default:
-            if (timestampDiff < 24 * 60 * 60 && dateForm.getDay() == new Date().getDay()) {
-                formatedDate = getEnglishHour(dateForm);
-            } else if (timestampDiff < 7 * 24 * 60 * 60 && dateForm.getDay() !== new Date().getDay()) {
-                formatedDate = `${dateForm.toLocaleDateString("en-GB", {
-                    weekday: "long",
-                })}, ${getEnglishHour(dateForm)}`;
-            } else {
-                formatedDate = `${dateForm.toLocaleDateString("en-GB")}, ${getEnglishHour(dateForm)}`;
-            }
+            begin = "";
+            middle = "',' ";
+            end = "";
             break;
+    }
+    if (timestampDiff < 24 * 60 * 60 && date.getDay() === new Date().getDay()) {
+        formatedDate = format(date, `p`, {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
+    } else if (timestampDiff < 7 * 24 * 60 * 60 && date.getDay() !== new Date().getDay()) {
+        formatedDate = format(date, `eeee${middle}p`, {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
+    } else {
+        formatedDate = format(date, `${begin}P${middle}p${end}`, {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
     }
 
     return formatedDate;
-}
-
-function getEnglishHour(date: Date): string {
-    const hour = date.getHours();
-    let displayHour = hour;
-    let suffix = "AM";
-    if (hour == 0) {
-        displayHour = 12;
-    } else if (hour > 12) {
-        displayHour = hour - 12;
-        suffix = "PM";
-    } else if (hour == 12) {
-        suffix = "PM";
-    }
-    const englishTime = `${displayHour}:${("0" + date.getMinutes().toString()).slice(-2)} ${suffix}`;
-    return englishTime;
 }
