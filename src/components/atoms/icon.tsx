@@ -5,7 +5,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     className?: string;
-    fCallBack?: () => void;
+    fCallBack?: (e?) => void;
     fontIcon?: IconProp;
     svg?: ReactElement;
     redDot?: boolean;

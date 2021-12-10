@@ -21,13 +21,13 @@ const Template: ComponentStory<typeof Grid> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
     col: 2,
+    row: 3,
     fCurrentTicket: () => console.log("fCurrentTicket"),
     fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
     fOpenTicketModal: () => console.log("fOpenTicketModal"),
     fShowChatModal: () => console.log("fShowChatModal"),
     glpiGroups: fakeGlpiGroups,
     glpiUsers: fakeGlpiUsers,
-    row: 3,
     tickets: [
         fakeTicket,
         fakeTicket,
@@ -46,10 +46,10 @@ Default.args = {
 export const DefaultHelper = Template.bind({});
 DefaultHelper.args = {
     col: 2,
+    row: 3,
     fCurrentTicket: () => console.log("fCurrentTicket"),
     fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
     iconBG: true,
-    row: 3,
     tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
     withHover: false,
     reverseGrid: true,
