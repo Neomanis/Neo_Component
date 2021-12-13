@@ -23,19 +23,15 @@ const OutageTab = ({ data, svgFill }: Props): React.ReactElement => {
             onClick={() => {
                 setIsFolded(!isFolded);
             }}
-            className={`cursor-pointer w-full min-h-24 mb-7 bg-${colorOutage} flex items-center justify-between py-3 pl-3 rounded-md z-10`}
+            className={`cursor-pointer w-full bg-${colorOutage} flex items-center justify-between rounded-md px-2`}
         >
-            <div className="text-4xl flex items-center w-14">
-                <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={svgFill} />
+            <div className=" flex justify-center items-center sm:w-2/12 w-3/12">
+                <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={svgFill} className="max-w-md" />
             </div>
-            <div className="text-left px-4 w-full">
-                <Title
-                    data={data.title}
-                    type={"h4"}
-                    className="font-bold leading-tight uppercase text-sm truncate w-full"
-                />
-                <p className={`${isFolded ? "line-clamp-2" : ""} text-xs pb-2`}>{data.content}</p>
-                <p className="text-xs py-2 ">{`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}</p>
+            <div className="pl-2 py-2 sm:w-10/12 w-9/12">
+                <Title data={data.title} type={"h4"} className="font-bold leading-tight uppercase text-sm truncate " />
+                <p className={`${isFolded && "line-clamp-2"} text-xxs mb-2`}>{data.content}</p>
+                <p className="text-xxs">{`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}</p>
             </div>
         </div>
     );
