@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof Toaster> = (args) => {
     return (
-        <div className="bg-neo-bg-A p-10 flex items-center w-2/6">
+        <div className="bg-neo-bg-A p-10 flex items-center">
             <Toaster {...args} />
         </div>
     );
