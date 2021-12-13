@@ -120,6 +120,8 @@ You can use cypress to create e2e testing. To do so simply add a `.spec.js` file
 
 #### You can also do some unit testing
 
--   `cypress:run:ct` -> it will simply laucnh a test runner like jest based on the test in `src/test/**/*.spec.js`
+-   `cypress:run:ct` -> it will simply laucnh a test runner like jest based on the test in `src/test/**/*.spec.tsx`
+
+-   `cypress:run:ct --spec ./src/test/path/to/file.spec.tsx` -> it will launch test only on the specified file
 
 -   `cypress:open:ct` -> it will open an electron app to monitor your tests suites, usefull when you create your test because it has hot reload included
