@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../atoms";
 import { NeoLogo, NeoLogoSad } from "../../img/svg";
@@ -27,18 +27,21 @@ const Toaster = ({
     title,
 }: Props): ReactElement => {
     const [progress, setProgress] = useState(0);
+    const timerCall = useRef<NodeJS.Timeout>();
 
     useEffect(() => {
         if (refreshing) {
             setTimeout(() => {
                 setProgress(100);
-            }, 100);
-            setTimeout(() => {
+            }, 50);
+
+            timerCall.current = setTimeout(() => {
                 fCallBackRefresh();
             }, (refreshDuration + 1) * 1000);
         }
+        return () => clearTimeout(timerCall.current);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [refreshing]);
 
     function renderSwitchNeoLogo(emotion) {
         switch (emotion) {
@@ -89,7 +92,11 @@ const Toaster = ({
                     <Button
                         fontIcon={faTimes}
                         className={"text-white opacity-30 flex items-center justify-center rounded-lg mx-2"}
-                        fCallback={(): void => fCallBackCancel()}
+                        fCallback={(): void => {
+                            fCallBackCancel();
+                            setProgress(0);
+                            clearTimeout(timerCall.current);
+                        }}
                         testId="toasterClose"
                     />
                 </div>
