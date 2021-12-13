@@ -140,7 +140,7 @@ const Ticket = ({
                     </div>
                 </div>
             ) : (
-                <div className="w-40 h-40 transform">
+                <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
                     <div className="absolute w-full flex items-center justify-center">
                         {iconBG ? (
                             <>

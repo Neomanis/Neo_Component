@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
 import { i18n } from "../../../i18n";
-import Grid from "../../../components/molecules/ticket/grid";
+import { Grid } from "../../../components/molecules";
+import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
 
 export default {
     component: Grid,
@@ -20,37 +20,28 @@ const Template: ComponentStory<typeof Grid> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    col: 2,
-    row: 3,
+    rows: 2,
+    cols: 2,
+    glpiGroups: fakeGlpiGroups,
+    glpiUsers: fakeGlpiUsers,
     fCurrentTicket: () => console.log("fCurrentTicket"),
     fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
     fOpenTicketModal: () => console.log("fOpenTicketModal"),
     fShowChatModal: () => console.log("fShowChatModal"),
-    glpiGroups: fakeGlpiGroups,
-    glpiUsers: fakeGlpiUsers,
-    tickets: [
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-        fakeTicket,
-    ],
+    ticketList: Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) })),
+    showPagination: true,
+    reverseGrid: false,
     withHover: true,
-    paginationGrid: true,
 };
+
 export const DefaultHelper = Template.bind({});
 DefaultHelper.args = {
-    col: 2,
-    row: 3,
+    cols: 1,
     fCurrentTicket: () => console.log("fCurrentTicket"),
     fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
-    iconBG: true,
-    tickets: [fakeTicket, fakeTicket, fakeTicket, fakeTicket],
+    showBackgroundIcon: true,
+    rows: 4,
+    ticketList: [fakeTicket, fakeTicket, fakeTicket],
     withHover: false,
     reverseGrid: true,
 };
