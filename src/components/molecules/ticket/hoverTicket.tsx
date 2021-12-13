@@ -62,6 +62,7 @@ const HoverTicket = ({
             className={`absolute z-10 -ml-5`}
             onClick={(): void => fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket)}
             onMouseLeave={fMouseLeave}
+            data-testid="hoverTicket-body"
             style={{
                 ...displayModalWithinScreen(position ? position : { top: 0, left: 0 }),
                 zIndex: 20,
@@ -145,6 +146,7 @@ const HoverTicket = ({
                             svg={<ChatLogo fill="#15304C" />}
                             svgClassName="w-5"
                             type="button"
+                            testId="hoverTicket-openChat-button"
                         />
                         <Button
                             className={
@@ -158,6 +160,7 @@ const HoverTicket = ({
                             svgClassName="w-5"
                             iconClassName={"text-neo-bg-B-dark"}
                             type="button"
+                            testId="hoverTicket-expandTicket-button"
                         />
                     </div>
                 </div>
