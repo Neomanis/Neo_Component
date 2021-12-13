@@ -3,14 +3,14 @@ import { enUS, enGB, fr } from "date-fns/locale";
 import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
-    const dateTicket = new Date(date.replace(/-/g, "/"));
+    const dateTicket = new Date(date.replace(/-/g, "/").replace("T", " ").replace("Z", ""));
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
     return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {
     const locale = getDateFnsLocaleFromUserLang(lang);
-    const formatToDate = new Date(date.replace(/-/g, "/"));
+    const formatToDate = new Date(date.replace(/-/g, "/").replace("T", " ").replace("Z", ""));
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }
