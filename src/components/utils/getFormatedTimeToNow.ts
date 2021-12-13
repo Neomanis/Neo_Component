@@ -3,14 +3,14 @@ import { enUS, enGB, fr } from "date-fns/locale";
 import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
-    const dateTicket = new Date(date.replace(/-/g, "/").replace("T", " ").replace("Z", ""));
+    const dateTicket = new Date(dateHandler(date));
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
     return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {
     const locale = getDateFnsLocaleFromUserLang(lang);
-    const formatToDate = new Date(date.replace(/-/g, "/").replace("T", " ").replace("Z", ""));
+    const formatToDate = new Date(dateHandler(date));
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }
@@ -28,14 +28,22 @@ export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     }
 }
 
+function dateHandler(date: string): string {
+    if (!date.includes("T")) {
+        return date.replace(" ", "T") + "+01:00";
+    }
+
+    return date;
+}
+
 export function formatDate(date: string, lang = "en_GB"): string {
     return format(new Date(date), "P p", { locale: getDateFnsLocaleFromUserLang(lang) });
 }
 
 export function formatDateToNow(incomingDate: string, lang: string): string {
     let formatedDate: string;
-    const date = new Date(incomingDate);
-    const timestampDiff = (new Date().getTime() - Date.parse(incomingDate)) / 1000;
+    const date = new Date(dateHandler(incomingDate));
+    const timestampDiff = (new Date().getTime() - new Date(date).getTime()) / 1000;
     const myLanguage = i18n.getFixedT(lang);
     const begin = myLanguage("formatDateToNow.begin");
     const middle = myLanguage("formatDateToNow.middle");

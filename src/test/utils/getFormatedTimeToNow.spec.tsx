@@ -27,6 +27,7 @@ describe("Date to now format functions", () => {
         date.setMinutes(date.getMinutes() - 1);
         expect(getFormatedTimeToNowExtended(format(date, "yyyy-MM-dd HH:mm:ss"), "fr_FR")).to.equal("il y a 1 minute");
         expect(getFormatedTimeToNowExtended(format(date, "yyyy-MM-dd HH:mm:ss"), "en_GB")).to.equal("1 minute ago");
+        expect(getFormatedTimeToNowExtended(date.toISOString(), "en_GB")).to.equal("1 minute ago");
         expect(getFormatedTimeToNowExtended(format(date, "yyyy-MM-dd HH:mm:ss"), "yolo")).to.equal("1 minute ago");
     });
 
