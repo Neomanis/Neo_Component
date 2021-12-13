@@ -30,7 +30,7 @@ interface BlankHexagon {
     name: "blank";
 }
 
-const GridTest = ({
+const Grid = ({
     cols,
     currentTicket,
     fChatModalOpen,
@@ -188,4 +188,4 @@ const GridTest = ({
     );
 };
 
-export default GridTest;
+export default Grid;
