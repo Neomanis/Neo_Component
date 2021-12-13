@@ -1,13 +1,14 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
+
 import { IGlpiRequest, IGlpiUsers, ITicket } from "../../../interface";
+import { displayRequesterName } from "../../utils";
+import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
+import { Button } from "../../atoms";
 import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
-import Button from "../../atoms/button";
-import { displayRequesterName } from "../../utils/displayRequesterName";
-import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 
 interface Props {
-    col: number;
+    cols: number;
     currentTicket?: ITicket;
     fChatModalOpen?: () => void;
     fCurrentTicket?: (ticket: ITicket) => void;
@@ -15,22 +16,22 @@ interface Props {
     fTicketModalOpen?: () => void;
     glpiGroups?: IGlpiRequest[];
     glpiUsers?: IGlpiUsers[];
-    iconBG?: boolean;
+    showBackgroundIcon?: boolean;
     languageUser: string;
-    paginationGrid?: boolean;
-    row: number;
     reverseGrid?: boolean;
-    tickets?: ITicket[];
-    withHover?: true;
+    rows: number;
+    showPagination?: boolean;
+    ticketList?: ITicket[];
+    withHover?: boolean;
 }
 
-interface BlankTab {
+interface BlankHexagon {
     id: number;
-    name: string;
+    name: "blank";
 }
 
-const Grid = ({
-    col,
+const GridTest = ({
+    cols,
     currentTicket,
     fChatModalOpen,
     fCurrentTicket,
@@ -38,98 +39,69 @@ const Grid = ({
     fTicketModalOpen,
     glpiGroups,
     glpiUsers,
-    iconBG,
+    showBackgroundIcon,
     languageUser,
-    paginationGrid,
-    row,
-    reverseGrid = false,
-    tickets,
+    reverseGrid,
+    rows,
+    showPagination,
+    ticketList,
     withHover,
 }: Props): ReactElement => {
-    const tabTickets = tickets
-        ? tickets?.length !== 0
-            ? tickets
-            : [{ id: 0, name: "blank" }]
-        : [{ id: 0, name: "blank" }];
-
-    const [tabGrid, setTabGrid] = useState<Array<Array<ITicket[] | BlankTab[]>>>();
-    const [numberGrid, setNumbertGrid] = useState(0);
+    // grids is a 3D array, the first is the number of pagination
+    // second one is the number of collumns
+    // third is the number of rows
+    const [grids, setGrids] = useState<(ITicket | BlankHexagon)[][][]>([]);
+    const [currentPageNumber, setCurrentPageNumber] = useState(0);
     const [hoverTicket, setHoverTicket] =
         useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
 
-    // Calculation of the number of pages
-    const pageGrid = Math.ceil(tabTickets.length / (row * col));
+    const getGridsPaginationNumber = useCallback(() => {
+        return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
+    }, [ticketList, rows, cols]);
 
-    /** This function transforms the object tab from the component input in a more complex tab.
-     *  It uses Props: Row and Col of the Component to define the future size of the ticket grid.
-     *  Row - line
-     *  Col - Column
-     * It starts by dividing the table of objects in smaller tables (Row X object)
-     * If the last table does not match the size of a line, it fills it with empty objects
-     * It then groups the lines in tables by Col x table [object] to form the grids of the tickets,
-     * if the size of the last grid of tickets are too small compared to the size requested, then it fills the missing row with the blanck row.
-     */
-
-    function tabSpliter(): void {
-        const tabRow: Array<ITicket[]> & Array<BlankTab[]> = [];
-        const grid: Array<Array<ITicket[] | BlankTab[]>> = [];
-
-        //build row
-        if (tabTickets) {
-            tabTickets.forEach((item) => {
-                if (!tabRow.length || tabRow[tabRow.length - 1].length === col) tabRow.push([]);
-                tabRow[tabRow.length - 1].push(item);
-            });
-        }
-        const numcol = col - tabRow[tabRow.length - 1].length;
-        //complete row
-        for (let i = 1; i <= numcol; i++) {
-            tabRow[tabRow.length - 1].push({ id: 0, name: "blank" });
-        }
-        //build col
-        tabRow.forEach((tab) => {
-            if (!grid.length || grid[grid.length - 1].length === row) grid.push([]);
-            grid[grid.length - 1].push(tab);
-        });
-
-        const gridDefault = [];
-
-        const numrow = row - grid[grid.length - 1].length;
-
-        //complete col
-        for (let i = 0; i <= row; i++) {
-            if (i < col) {
-                gridDefault.push({ id: 0, name: "blank" });
-            }
-            if (i < numrow) {
-                grid[grid.length - 1].push(gridDefault);
-            }
-        }
-
-        setTabGrid(grid);
+    function isTypeOfTicket(item: ITicket | BlankHexagon) {
+        return Boolean((item as ITicket).similarTickets);
     }
 
-    function nextAndPrevious(val: number): void {
-        if (val > 0) {
-            if (numberGrid < pageGrid - 1) {
-                setNumbertGrid(numberGrid + val);
-            } else {
-                setNumbertGrid(0);
+    function createGrids(tickets: ITicket[]) {
+        const gridsInitialization: (ITicket | BlankHexagon)[][][] = [];
+
+        // grids creation
+        for (let gridIndex = 0; gridIndex < getGridsPaginationNumber(); gridIndex++) {
+            const grid: (ITicket | BlankHexagon)[][] = [];
+            // rows creation
+            for (let index = 0; index < rows; index++) {
+                grid.push(
+                    // cols creation
+                    Array.from({ length: cols }, (_, i) => {
+                        let item: ITicket | BlankHexagon = { id: i, name: "blank" };
+                        if (tickets[0]) {
+                            item = tickets[0];
+                            tickets.shift();
+                        }
+                        return item;
+                    })
+                );
             }
+            gridsInitialization.push(grid);
+        }
+
+        setGrids(gridsInitialization);
+    }
+
+    function changePage(direction: "prev" | "next"): void {
+        if (direction === "prev") {
+            setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? getGridsPaginationNumber() - 1 : pageNumber - 1));
         } else {
-            if (numberGrid === 0) {
-                setNumbertGrid(pageGrid - 1);
-            } else {
-                setNumbertGrid(numberGrid + val);
-            }
+            setCurrentPageNumber((pageNumber) => (pageNumber === getGridsPaginationNumber() - 1 ? 0 : pageNumber + 1));
         }
     }
 
     useEffect(() => {
-        tabSpliter();
-        setNumbertGrid(0);
+        createGrids(ticketList ? Array.from(ticketList) : []);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [tickets]);
+    }, [ticketList]);
+
     return (
         <>
             {withHover && hoverTicket && (
@@ -148,68 +120,72 @@ const Grid = ({
                     keywords={hoverTicket.ticket.keywords}
                 />
             )}
-            <div className={`${col === 1 && "w-52"}`}>
-                {paginationGrid && pageGrid > 1 && (
+            <div className={`${cols === 1 && "w-52"}`} data-testid="grid-body">
+                {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
-                        <p className="mr-4">
-                            {numberGrid + 1}/{pageGrid}
+                        <p className="mr-4" data-testid="grid-page-number">
+                            {currentPageNumber + 1}/{getGridsPaginationNumber()}
                         </p>
                         <Button
                             className="cursor-pointer w-5 pr-1 transform hover:scale-105"
-                            fCallback={(): void => nextAndPrevious(-1)}
+                            fCallback={(): void => changePage("prev")}
                             svg={<IconArrowLeft fill="#7DAAB7" />}
+                            testId="grid-page-left-button"
                         />
                         <Button
                             className="cursor-pointer w-5 pl-1 transform hover:scale-105"
-                            fCallback={(): void => nextAndPrevious(1)}
+                            fCallback={(): void => changePage("next")}
                             svg={<IconArrowRight fill="#7DAAB7" />}
+                            testId="grid-page-right-button"
                         />
                     </div>
                 )}
-                {tabGrid &&
-                    tabGrid.map((grid, key) => (
-                        <div
-                            className={`transform scale-73 -mt-8 ${paginationGrid && pageGrid > 1 ? " -mt-16" : ""} ${
-                                col > 3 ? "-translate-x-8" : ""
-                            } ${numberGrid !== key ? "hidden" : ""}`}
-                            id={"gridId-" + key}
-                            key={"grid-" + key}
-                        >
-                            {grid.map((row, id) => (
-                                <div
-                                    className={`flex transform scale-120 z-auto 
+                {grids.map((grid, key) => (
+                    <div
+                        className={`transform scale-73 -mt-8  
+                    ${cols > 3 ? "-translate-x-8" : ""}
+                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} 
+                    ${currentPageNumber !== key ? "hidden" : ""}`}
+                        id={"gridId-" + key}
+                        key={"grid-" + key}
+                        data-testid="grid-element"
+                    >
+                        {grid.map((row, id) => (
+                            <div
+                                className={`flex transform scale-120 z-auto 
                                     ${
                                         reverseGrid
                                             ? Number.isInteger(id / 2) && "translate-x-23"
                                             : !Number.isInteger(id / 2) && "translate-x-23"
                                     }`}
-                                    key={"row-" + id}
-                                >
-                                    {row.map((ticket, key) => (
-                                        <div key={"ticket-" + key} className="-mx-2">
-                                            {ticket.id > 0 ? (
-                                                <Ticket
-                                                    currentTicket={currentTicket}
-                                                    fOpenModalCurrentTicket={(ticket) => {
-                                                        fOpenModalCurrentTicket && fOpenModalCurrentTicket();
-                                                        fCurrentTicket && fCurrentTicket(ticket);
-                                                    }}
-                                                    fOverCallBack={setHoverTicket}
-                                                    languageUser={languageUser}
-                                                    ticket={ticket}
-                                                />
-                                            ) : (
-                                                <Ticket iconBG={iconBG} />
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                    ))}
+                                key={"row-" + id}
+                                data-testid="grid-row"
+                            >
+                                {row.map((item, key) => (
+                                    <div key={"ticket-" + key} className="-mx-2" data-testid="grid-ticket">
+                                        {isTypeOfTicket(item) ? (
+                                            <Ticket
+                                                ticket={item as ITicket}
+                                                currentTicket={currentTicket}
+                                                fOpenModalCurrentTicket={(ticket) => {
+                                                    fOpenModalCurrentTicket && fOpenModalCurrentTicket();
+                                                    fCurrentTicket && fCurrentTicket(ticket);
+                                                }}
+                                                fOverCallBack={setHoverTicket}
+                                                languageUser={languageUser}
+                                            />
+                                        ) : (
+                                            <Ticket iconBG={showBackgroundIcon} />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                ))}
             </div>
         </>
     );
 };
 
-export default Grid;
+export default GridTest;
