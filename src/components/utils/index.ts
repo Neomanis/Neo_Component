@@ -1,13 +1,14 @@
 import { displayRequesterName, getUserName, getRequesterUid } from "./displayRequesterName";
 import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction";
 import {
-    getFormatedTimeToNow,
     formatDate,
     formatDateToNow,
+    getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
 } from "./getFormatedTimeToNow";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getPriorityColor } from "./ticketColorSelector";
+import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
 
 export {
@@ -25,4 +26,5 @@ export {
     getUserName,
     inputReducer,
     stripHtml,
+    useIsFirstRender,
 };
