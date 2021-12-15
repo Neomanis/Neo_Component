@@ -37,7 +37,7 @@ function dateHandler(date: string): string {
 }
 
 export function formatDate(date: string, lang = "en_GB"): string {
-    return format(new Date(date), "P p", { locale: getDateFnsLocaleFromUserLang(lang) });
+    return format(new Date(dateHandler(date)), "P p", { locale: getDateFnsLocaleFromUserLang(lang) });
 }
 
 export function formatDateToNow(incomingDate: string, lang: string): string {

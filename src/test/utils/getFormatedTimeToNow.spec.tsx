@@ -33,7 +33,7 @@ describe("Date to now format functions", () => {
 
     it("Should format date in english", () => {
         const date = new Date("2021/10/12 11:02");
-        expect(formatDate(format(date, "yyyy-MM-dd HH:mm:ss"))).to.equal("12/10/2021 11:02");
+        expect(formatDate(format(date, "yyyy-MM-dd HH:mm:ss"))).to.equal("12/10/2021 12:02");
     });
 
     it("Should use the first form of the function", () => {
