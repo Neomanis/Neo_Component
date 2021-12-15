@@ -84,6 +84,11 @@
         "title": "Agents NeoHelper",
         "switchAvailability": "Voir seulement les agents NeoHelper disponibles"
     },
+    "neoHelperSettings": {
+        "usernameTitle": "NOM DE L'UTILISATEUR",
+        "computernameTitle": "NOM DE L'ORDINATEUR",
+        "preferences": "Préférences"
+    },
     "notification": {
         "title": "Notifications",
         "clearAll": "Tout supprimer",
