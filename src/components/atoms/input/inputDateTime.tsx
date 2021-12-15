@@ -7,13 +7,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 interface Props {
+    className?: string;
     defaultValue: Date;
     dotPosition?: string;
     errorMessage?: string;
     fCallBack?: (date: Date | null) => void;
+    inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
+    labelClassName?: string;
     maxDate?: Date;
     minDate?: Date;
     pattern?: string;
@@ -29,13 +32,16 @@ interface Props {
 }
 
 const InputDateTime = ({
+    className,
     defaultValue,
     dotPosition,
     errorMessage,
     fCallBack,
+    inputClassName,
     isError,
     isUpdateField = false,
     label,
+    labelClassName,
     maxDate,
     minDate,
     placeholder,
@@ -106,11 +112,11 @@ const InputDateTime = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="flex items-center w-full" data-testid="inputDateTime-body">
-            <label className="flex items-center justify-between w-full">
-                <div className="text-white text-xs font-bold w-full">{label}</div>
+        <div className={`${className}`} data-testid="inputDateTime-body">
+            <label className={`${labelClassName}`}>
+                {label}
                 <DatePicker
-                    className="mx-3 bg-neo-bg-B text-white border-2 border-neo-light-grey rounded py-1 w-32 text-center text-xs"
+                    className={`${inputClassName}`}
                     placeholderText={placeholder}
                     required={required}
                     selected={startDate}

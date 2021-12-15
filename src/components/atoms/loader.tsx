@@ -7,12 +7,13 @@ import Title from "./title";
 interface Props {
     data?: string;
     type?: string;
+    className?: string;
 }
-const Loader = ({ data, type }: Props): ReactElement => {
+const Loader = ({ data, type, className }: Props): ReactElement => {
     switch (type) {
         case "circleOnly":
             return (
-                <div className="animate-spin text-2xl my-1 text-white" data-testid="loader-circle-body">
+                <div className={`animate-spin ${className}`} data-testid="loader-circle-body">
                     <Icon fontIcon={faSpinner} />
                 </div>
             );

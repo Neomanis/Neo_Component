@@ -54,8 +54,11 @@ const InputDateShift = ({
             className="flex justify-between items-center w-full text-white text-xs font-bold"
             data-testid="inputDateShift-body"
         >
-            <div className="w-1/2 flex justify-between">
+            <div className="w-1/2 flex justify-between text-white text-xs font-bold">
                 <InputDateTime
+                    className="flex items-center w-full"
+                    inputClassName="mx-3 bg-neo-bg-B text-white border-2 border-neo-light-grey rounded py-1 w-32 text-center text-xs"
+                    labelClassName="flex items-center justify-between w-full"
                     defaultValue={dateShift}
                     fCallBack={(data) => {
                         setDateAdd(data);
