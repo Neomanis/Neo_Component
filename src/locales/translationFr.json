@@ -67,6 +67,7 @@
         "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
         "helpButton": "D'accord merci !",
         "inputPlaceholder": "Envoyer",
+        "neobotToasterRefresh": "Neobot recupère de nouvelles informations sur ce ticket...",
         "renameTicketButton": "Je voudrais nommer mon ticket",
         "renameTicketQuestion": "Comment voulez-vous nommer ce ticket ?",
         "renameTicketValidation": "Le nom du ticket a bien été modifié.",
