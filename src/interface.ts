@@ -422,6 +422,11 @@ export interface IUser {
     language?: string;
     level?: string;
     groups?: string[];
+    avatar?: {
+        encodedAvatar: string;
+        mimetype: string;
+        originalname: string;
+    };
 }
 
 export interface IWorkflow {
