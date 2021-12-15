@@ -82,7 +82,7 @@
     "neoHelperScreen": {
         "empty": "Rien à voir ici",
         "title": "Agents NeoHelper",
-        "switchAvailability": "Voir les agents NeoHelper indisponibles"
+        "switchAvailability": "Voir seulement les agents NeoHelper disponibles"
     },
     "notification": {
         "title": "Notifications",
