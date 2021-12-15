@@ -81,8 +81,8 @@
     },
     "neoHelperScreen": {
         "empty": "Rien à voir ici",
-        "title": "Liste des NeoHelper",
-        "switchValueRelated": "Voir les NeoHelpers indisponibles"
+        "title": "Agents NeoHelper",
+        "switchAvailability": "Voir les agents NeoHelper indisponibles"
     },
     "notification": {
         "title": "Notifications",

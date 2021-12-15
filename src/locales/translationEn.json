@@ -81,8 +81,8 @@
     },
     "neoHelperScreen": {
         "empty": "Nothing to see here",
-        "title": "NeoHelper list",
-        "switchValueRelated": "Show unavailable NeoHelpers"
+        "title": "NeoHelper agents",
+        "switchAvailability": "Show unavailable NeoHelper agents"
     },
     "notification": {
         "title": "Notifications",
