@@ -6,7 +6,7 @@ import { NeoLogo, NeoLogoSad } from "../../img/svg";
 interface Props {
     className?: string;
     closable?: boolean;
-    data: string | number;
+    data: string;
     emotion?: string;
     fCallBackCancel?: () => void;
     fCallBackRefresh?: () => void;
