@@ -8,6 +8,7 @@ import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
 
 interface Props {
+    className?: string;
     cols: number;
     currentTicket?: ITicket;
     fChatModalOpen?: () => void;
@@ -16,10 +17,10 @@ interface Props {
     fTicketModalOpen?: () => void;
     glpiGroups?: IGlpiRequest[];
     glpiUsers?: IGlpiUsers[];
-    showBackgroundIcon?: boolean;
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
+    showBackgroundIcon?: boolean;
     showPagination?: boolean;
     ticketList?: ITicket[];
     withHover?: boolean;
@@ -31,6 +32,7 @@ interface BlankHexagon {
 }
 
 const Grid = ({
+    className,
     cols,
     currentTicket,
     fChatModalOpen,
@@ -39,10 +41,10 @@ const Grid = ({
     fTicketModalOpen,
     glpiGroups,
     glpiUsers,
-    showBackgroundIcon,
     languageUser,
     reverseGrid,
     rows,
+    showBackgroundIcon,
     showPagination,
     ticketList,
     withHover,
@@ -120,7 +122,7 @@ const Grid = ({
                     keywords={hoverTicket.ticket.keywords}
                 />
             )}
-            <div className={`${cols === 1 && "w-52"}`} data-testid="grid-body">
+            <div className={`${cols === 1 ? "w-52" : ""} ${className}`} data-testid="grid-body">
                 {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">

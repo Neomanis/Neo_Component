@@ -119,6 +119,10 @@
         "refreshButton": "Auto-refresh",
         "uncheckAllButton": "Uncheck all"
     },
+    "ticketAdvancesSearch": {
+        "filter": "Add filter",
+        "title": "Advanced search"
+    },
     "ticketForm": {
         "actors": "Actors",
         "assigned": "Assigned to",
