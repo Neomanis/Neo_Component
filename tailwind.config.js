@@ -657,19 +657,19 @@ module.exports = {
                 },
 
                 "6.5%": {
-                    transform: "translateY(-4px) rotateY(-9deg)",
+                    transform: "translateY(-4px)",
                 },
 
                 "18.5%": {
-                    transform: "translateY(3px) rotateY(7deg)",
+                    transform: "translateY(3px)",
                 },
 
                 "31.5%": {
-                    transform: "translateY(-2px) rotateY(-5deg)",
+                    transform: "translateY(-2px)",
                 },
 
                 "43.5%": {
-                    transform: "translateY(1px) rotateY(3deg)",
+                    transform: "translateY(1px)",
                 },
 
                 "50%": {

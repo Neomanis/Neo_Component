@@ -46,13 +46,13 @@ const Toaster = ({
     function renderSwitchNeoLogo(emotion) {
         switch (emotion) {
             case "happy":
-                return <NeoLogo className="animate-bounceSlow" viewBox="225 0 550 325" />;
+                return <NeoLogo className="animate-bounceSlow w-full" viewBox="225 0 550 325" />;
 
             case "sad":
-                return <NeoLogoSad className="animate-shakeX" viewBox="225 0 510 325" />;
+                return <NeoLogoSad className="animate-shakeX w-full" viewBox="225 0 510 325" />;
 
             default:
-                return <NeoLogo className="animate-bounceSlow" viewBox="225 0 550 325" />;
+                return <NeoLogo className="animate-bounceSlow w-full" viewBox="225 0 550 325" />;
         }
     }
 
@@ -61,14 +61,14 @@ const Toaster = ({
             className={`flex w-full bg-neo-bg-B rounded-lg shadow-md py-3 relative overflow-hidden ${className}`}
             data-testid="toastClassName"
         >
-            <div className="flex items-center justify-center w-1/5">{renderSwitchNeoLogo(emotion)}</div>
+            <div className="flex items-center justify-center w-2/6">{renderSwitchNeoLogo(emotion)}</div>
 
             <div className="flex items-center py-2 w-4/5">
-                <div className="px-3">
+                <div className="px-1">
                     <span className="font-semibold text-white" data-testid="toastTitle">
                         {title}
                     </span>
-                    <p className="text-sm text-white" data-testid="toastData">
+                    <p className="text-xs text-white" data-testid="toastData">
                         {data}
                     </p>
                 </div>
