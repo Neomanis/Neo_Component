@@ -18,7 +18,6 @@ const Template: ComponentStory<typeof Toaster> = (args) => {
 
 export const ToasterDefault = Template.bind({});
 ToasterDefault.args = {
-    className: "",
     closable: false,
     data: "Ticket updated ! This page will be refresh ...",
     dataClassName: "text-xs",
@@ -33,7 +32,6 @@ ToasterDefault.args = {
 
 export const ToasterSad = Template.bind({});
 ToasterSad.args = {
-    className: "",
     closable: true,
     data: "Something went wrong, please try again.",
     dataClassName: "text-xs",
