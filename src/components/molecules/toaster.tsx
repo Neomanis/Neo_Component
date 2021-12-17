@@ -7,24 +7,32 @@ interface Props {
     className?: string;
     closable?: boolean;
     data: string;
+    dataClassName?: string;
     emotion?: string;
     fCallBackCancel?: () => void;
     fCallBackRefresh?: () => void;
+    progressColor1?: string;
+    progressColor2?: string;
     refreshing?: boolean;
     refreshDuration?: number;
     title?: string;
+    titleClassName?: string;
 }
 
 const Toaster = ({
     className,
     closable = false,
     data,
+    dataClassName,
     emotion,
     fCallBackCancel,
     fCallBackRefresh,
+    progressColor1 = "ff5155",
+    progressColor2 = "ff1664",
     refreshing = false,
     refreshDuration = 5,
     title,
+    titleClassName,
 }: Props): ReactElement => {
     const [progress, setProgress] = useState(0);
     const timerCall = useRef<NodeJS.Timeout>();
@@ -46,29 +54,30 @@ const Toaster = ({
     function renderSwitchNeoLogo(emotion) {
         switch (emotion) {
             case "happy":
-                return <NeoLogo className="animate-bounceSlow w-full" viewBox="225 0 550 325" />;
+                return <NeoLogo className="animate-bounceSlow" viewBox="225 0 550 325" />;
 
             case "sad":
-                return <NeoLogoSad className="animate-shakeX w-full" viewBox="225 0 510 325" />;
+                return <NeoLogoSad className="animate-shakeX" viewBox="225 0 510 325" />;
 
             default:
-                return <NeoLogo className="animate-bounceSlow w-full" viewBox="225 0 550 325" />;
+                return <NeoLogo className="animate-bounceSlow" viewBox="225 0 550 325" />;
         }
     }
 
     return (
         <div
-            className={`flex w-full bg-neo-bg-B rounded-lg shadow-md py-3 relative overflow-hidden ${className}`}
+            className={`flex w-full py-3 relative overflow-hidden ${
+                className ? "" : "bg-neo-bg-B rounded-lg shadow-md text-white"
+            }`}
             data-testid="toastClassName"
         >
-            <div className="flex items-center justify-center w-2/6">{renderSwitchNeoLogo(emotion)}</div>
-
-            <div className="flex items-center py-2 w-4/5">
-                <div className="px-1">
-                    <span className="font-semibold text-white" data-testid="toastTitle">
+            <div className="flex items-center justify-center w-3/12">{renderSwitchNeoLogo(emotion)}</div>
+            <div className="flex items-center py-2 w-9/12">
+                <div className="pr-2">
+                    <span className={`${titleClassName}`} data-testid="toastTitle">
                         {title}
                     </span>
-                    <p className="text-xs text-white" data-testid="toastData">
+                    <p className={`${dataClassName}`} data-testid="toastData">
                         {data}
                     </p>
                 </div>
@@ -76,22 +85,23 @@ const Toaster = ({
             {refreshing && (
                 <div className="absolute bottom-0 w-full">
                     <div
-                        className="text-xs leading-none py-1 text-center text-white border-b-4"
+                        className="py-1 border-b-4"
                         style={{
                             width: progress + "%",
                             transition: refreshDuration + "s linear",
                             transitionDelay: "0.5s",
                             borderImageSlice: "1",
-                            borderImageSource: "linear-gradient(to left, #ff5155, #ff1664)",
+                            borderImageSource:
+                                "linear-gradient(to left, #" + progressColor1 + ", #" + progressColor2 + ")",
                         }}
                     ></div>
                 </div>
             )}
             {closable && (
-                <div className="p-1 -mt-3">
+                <div className="pr-2 -mt-3">
                     <Button
                         fontIcon={faTimes}
-                        className={"text-white opacity-30 flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-link opacity-50 transform hover:scale-105"}
                         fCallback={(): void => {
                             fCallBackCancel();
                             setProgress(0);
