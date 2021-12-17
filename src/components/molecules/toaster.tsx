@@ -67,7 +67,7 @@ const Toaster = ({
     return (
         <div
             className={`flex w-full py-3 relative overflow-hidden ${
-                className ? "" : "bg-neo-bg-B rounded-lg shadow-md text-white"
+                className ? className : "bg-neo-bg-B rounded-lg shadow-md text-white"
             }`}
             data-testid="toastClassName"
         >
