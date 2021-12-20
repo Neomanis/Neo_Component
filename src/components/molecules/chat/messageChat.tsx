@@ -37,8 +37,10 @@ const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement
                 className={`
                 ${isMe && "flex-row-reverse"} 
                 w-full flex items-center`}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
             >
-                <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="min-w-max">
+                <div className="min-w-max">
                     {avatar ? (
                         <Img
                             type="imgProfile"
