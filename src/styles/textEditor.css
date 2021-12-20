@@ -61,3 +61,14 @@
 .ql-snow .ql-stroke.ql-fill {
     fill: #ffffffdc;
 }
+
+.hiddenLineNumberOne > * {
+    display: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hiddenLineNumberOne > *:nth-child(1) {
+    display: block;
+}

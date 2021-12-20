@@ -35,7 +35,6 @@ const TechnicalQuestionItem = ({
     title,
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
-
     return (
         <li
             key={id}
@@ -66,7 +65,7 @@ const TechnicalQuestionItem = ({
                 </div>
             </div>
             <div className="flex justify-between mt-2">
-                <div className="truncate w-4/5" dangerouslySetInnerHTML={{ __html: content }}></div>
+                <div className="hiddenLineNumberOne truncate mr-5" dangerouslySetInnerHTML={{ __html: content }}></div>
                 <div className="flex items-center">
                     <Tooltip
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"

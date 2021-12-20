@@ -30,7 +30,7 @@ module.exports = {
                     urgency: {
                         very: {
                             low: "#7FEF7F",
-                            hight: "#F24D3D",
+                            high: "#F24D3D",
                         },
                         low: "#B6C25D",
                         DEFAULT: "#ED943B",
