@@ -98,19 +98,23 @@ const TextEditor = ({
                 <ReactQuill
                     value={state.updated as string}
                     onBlur={(previousSelection, source, editor) => {
-                        setIsFocused(false);
-                        if (isUpdateField && state.updated && state.updated !== state.previous && !isError) {
-                            dispatch({ type: "UPDATING", payload: editor.getHTML() });
-                            const newTimeout = setTimeout(() => {
-                                if (updateFunction && state.updated) {
-                                    updateFunction(refForm, state.updated as string);
-                                    dispatch({ type: "UPDATE_SUCCESS" });
-                                    setTimeout(() => {
-                                        dispatch({ type: "CLEAR_SUCCESS" });
-                                    }, 3000);
-                                }
-                            }, timerSetting);
-                            dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
+                        // Paste action trigger onBlur event with parameter "source" return a string "silent",
+                        // so we skip onBlur if this is the case
+                        if (source !== "silent") {
+                            setIsFocused(false);
+                            if (isUpdateField && state.updated && state.updated !== state.previous && !isError) {
+                                dispatch({ type: "UPDATING", payload: editor.getHTML() });
+                                const newTimeout = setTimeout(() => {
+                                    if (updateFunction && state.updated) {
+                                        updateFunction(refForm, state.updated as string);
+                                        dispatch({ type: "UPDATE_SUCCESS" });
+                                        setTimeout(() => {
+                                            dispatch({ type: "CLEAR_SUCCESS" });
+                                        }, 3000);
+                                    }
+                                }, timerSetting);
+                                dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
+                            }
                         }
                     }}
                     onChange={(data) => {
