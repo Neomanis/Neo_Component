@@ -19,7 +19,8 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
 
 export const TechnicalQuestionItemDefault = Template.bind({});
 TechnicalQuestionItemDefault.args = {
-    content: "We do not seek your confession, only your torment.",
+    content:
+        "<p>We do not seek your confession, only your tormbbbbbbbbbbbbbbbbbbbbbb xcwhchxshc hcdsh hcdsh cdhsqcdshent.</p><p>We do not seek your confession, only your torment.</p> <p>We do not seek your confession, only your torment.</p>",
     createDate: "2021-11-15T13:34:48.551Z",
     createLevel: "Level 1",
     createUser: "Leman Russ",

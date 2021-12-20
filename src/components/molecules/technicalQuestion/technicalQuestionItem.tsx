@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useRef } from "react";
 import { faEye, faEyeSlash, faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 
@@ -35,7 +35,6 @@ const TechnicalQuestionItem = ({
     title,
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
-
     return (
         <li
             key={id}
@@ -66,7 +65,7 @@ const TechnicalQuestionItem = ({
                 </div>
             </div>
             <div className="flex justify-between mt-2">
-                <div className="truncate w-4/5" dangerouslySetInnerHTML={{ __html: content }}></div>
+                <div className="hiddenLigneNo1 truncate mr-5" dangerouslySetInnerHTML={{ __html: content }}></div>
                 <div className="flex items-center">
                     <Tooltip
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
