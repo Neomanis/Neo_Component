@@ -7,24 +7,32 @@ interface Props {
     className?: string;
     closable?: boolean;
     data: string;
+    dataClassName?: string;
     emotion?: string;
     fCallBackCancel?: () => void;
     fCallBackRefresh?: () => void;
+    progressColor1?: string;
+    progressColor2?: string;
     refreshing?: boolean;
     refreshDuration?: number;
     title?: string;
+    titleClassName?: string;
 }
 
 const Toaster = ({
-    className,
+    className = "bg-neo-bg-B rounded-lg shadow-md text-white",
     closable = false,
     data,
+    dataClassName,
     emotion,
     fCallBackCancel,
     fCallBackRefresh,
+    progressColor1 = "#ff5155",
+    progressColor2 = "#ff1664",
     refreshing = false,
     refreshDuration = 5,
     title,
+    titleClassName,
 }: Props): ReactElement => {
     const [progress, setProgress] = useState(0);
     const timerCall = useRef<NodeJS.Timeout>();
@@ -57,18 +65,14 @@ const Toaster = ({
     }
 
     return (
-        <div
-            className={`flex w-full bg-neo-bg-B rounded-lg shadow-md py-3 relative overflow-hidden ${className}`}
-            data-testid="toastClassName"
-        >
-            <div className="flex items-center justify-center w-1/5">{renderSwitchNeoLogo(emotion)}</div>
-
-            <div className="flex items-center py-2 w-4/5">
-                <div className="px-3">
-                    <span className="font-semibold text-white" data-testid="toastTitle">
+        <div className={`flex w-full py-3 relative overflow-hidden ${className}`} data-testid="toastClassName">
+            <div className="flex items-center justify-center w-3/12">{renderSwitchNeoLogo(emotion)}</div>
+            <div className="flex items-center py-2 w-9/12">
+                <div className="pr-2">
+                    <span className={`${titleClassName}`} data-testid="toastTitle">
                         {title}
                     </span>
-                    <p className="text-sm text-white" data-testid="toastData">
+                    <p className={`${dataClassName}`} data-testid="toastData">
                         {data}
                     </p>
                 </div>
@@ -76,22 +80,23 @@ const Toaster = ({
             {refreshing && (
                 <div className="absolute bottom-0 w-full">
                     <div
-                        className="text-xs leading-none py-1 text-center text-white border-b-4"
+                        className="py-1 border-b-4"
                         style={{
                             width: progress + "%",
                             transition: refreshDuration + "s linear",
                             transitionDelay: "0.5s",
                             borderImageSlice: "1",
-                            borderImageSource: "linear-gradient(to left, #ff5155, #ff1664)",
+                            borderImageSource:
+                                "linear-gradient(to left, " + progressColor1 + ", " + progressColor2 + ")",
                         }}
                     ></div>
                 </div>
             )}
             {closable && (
-                <div className="p-1 -mt-3">
+                <div className="pr-2 -mt-3">
                     <Button
                         fontIcon={faTimes}
-                        className={"text-white opacity-30 flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-link opacity-50 transform hover:scale-105"}
                         fCallback={(): void => {
                             fCallBackCancel();
                             setProgress(0);
