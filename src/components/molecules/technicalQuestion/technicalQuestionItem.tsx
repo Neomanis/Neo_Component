@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from "react";
+import React, { ReactElement } from "react";
 import { faEye, faEyeSlash, faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 
