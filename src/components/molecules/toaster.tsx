@@ -27,8 +27,8 @@ const Toaster = ({
     emotion,
     fCallBackCancel,
     fCallBackRefresh,
-    progressColor1 = "ff5155",
-    progressColor2 = "ff1664",
+    progressColor1 = "#ff5155",
+    progressColor2 = "#ff1664",
     refreshing = false,
     refreshDuration = 5,
     title,
@@ -87,7 +87,7 @@ const Toaster = ({
                             transitionDelay: "0.5s",
                             borderImageSlice: "1",
                             borderImageSource:
-                                "linear-gradient(to left, #" + progressColor1 + ", #" + progressColor2 + ")",
+                                "linear-gradient(to left, " + progressColor1 + ", " + progressColor2 + ")",
                         }}
                     ></div>
                 </div>
