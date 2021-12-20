@@ -89,17 +89,19 @@ const HoverTicket = ({
                                 </div>
                                 <div>{ticket.name}</div>
                             </div>
-                            <div className="text-xs">
-                                <div className="text-white font-bold">{myLanguage("ticketScreen.keyDetected")}</div>
-                                <div className="truncate text-white w-3/4">
-                                    {keywords.map((kw, i, keywords) => {
-                                        if (i + 1 === keywords.length) {
-                                            return `${kw}.`;
-                                        }
-                                        return `${kw}, `;
-                                    })}
+                            {keywords.length > 0 && (
+                                <div className="text-xs">
+                                    <div className="text-white font-bold">{myLanguage("ticketScreen.keyDetected")}</div>
+                                    <div className="truncate text-white w-3/4">
+                                        {keywords.map((kw, i, keywords) => {
+                                            if (i + 1 === keywords.length) {
+                                                return `${kw}.`;
+                                            }
+                                            return `${kw}, `;
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                         <div className="flex flex-col text-right h-full justify-between w-1/3">
                             <div className="flex justify-around text-white w-full">
