@@ -1,8 +1,7 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "2.12.6",
+  "version": "2.12.7",
   "main": "build/index.js",
-  "module": "build/index.es.js",
   "files": [
     "build"
   ],
@@ -99,7 +98,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --headless -C cypress.json",
     "cypress:open:ct": "cypress open-ct",
-    "cypress:run:ct": "npx nyc cypress run-ct",
+    "cypress:run:ct": "cypress run-ct",
+    "cypress:run:ct:coverage": "npx nyc cypress run-ct",
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"yarn cypress:run:ct\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
