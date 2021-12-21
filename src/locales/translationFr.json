@@ -197,7 +197,7 @@
         "neoHelper": {
             "waitTechnician": "Un technicien vous contactera dès que possible.",
             "inProgress": "Votre demande est en cours de traitement.",
-            "pending": "Votre demande est en attente, nous revenons vers vous dans les plus brefs délais."
+            "pending": "Votre demande est en attente, nous collectons de plus amples informations."
         },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
