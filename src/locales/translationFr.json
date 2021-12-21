@@ -195,7 +195,9 @@
         "keyDetected": "MOTS-CLES",
         "markResolved": "MARQUE COMME RESOLU",
         "neoHelper": {
-            "waitTechnician": "Un technicien vous contactera dès que possible."
+            "waitTechnician": "Un technicien vous contactera dès que possible.",
+            "inProgress": "Votre demande est en cours de traitement.",
+            "pending": "Votre demande est en attente, nous revenon vers vous dans les plus brefs délais."
         },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
