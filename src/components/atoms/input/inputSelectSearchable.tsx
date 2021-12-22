@@ -1,17 +1,17 @@
-import React, { ReactElement, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
-import Select from "react-select";
+import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../..";
 
 interface Props {
     data: Array<{ label: string; value: string }>;
-    defaultValue?: number;
+    defaultValue?: number | number[];
     dotPosition?: string;
     errorMessage?: string;
     id?: string;
-    isClearable: boolean;
+    isClearable?: boolean;
     isError?: boolean;
     isMulti?: boolean;
     isSearchable: boolean;
@@ -23,7 +23,7 @@ interface Props {
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
     timerSetting?: number;
-    updateFunction?: (field: string, value: number) => void;
+    updateFunction?: (field: string, value: number | number[]) => void;
 }
 
 const InputSelectSearchable = ({
@@ -31,7 +31,7 @@ const InputSelectSearchable = ({
     defaultValue,
     dotPosition,
     errorMessage,
-    isClearable,
+    isClearable = false,
     isError,
     isMulti = false,
     isSearchable = true,
@@ -45,7 +45,13 @@ const InputSelectSearchable = ({
     timerSetting = 5000,
     updateFunction,
 }: Props): ReactElement => {
+    const values = data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
+        acc.push({ value: parseInt(curVal.value), label: curVal.label });
+        return acc;
+    }, []);
+
     const [state, dispatch] = useReducer(inputReducer, {
+        stateFormated: values.find((el) => el.value === defaultValue),
         isCancelable: false,
         isCooldown: false,
         isSuccess: false,
@@ -56,11 +62,6 @@ const InputSelectSearchable = ({
     });
 
     const isLastMount = useRef(false);
-
-    const values = data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
-        acc.push({ value: parseInt(curVal.value), label: curVal.label });
-        return acc;
-    }, []);
 
     const myLanguage = i18n.getFixedT(languageUser);
     const customStyles = {
@@ -139,10 +140,67 @@ const InputSelectSearchable = ({
             ...provided,
             color: "#DAE5E5",
         }),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        multiValue: (provided, state) => ({
+            ...provided,
+            color: "#DAE5E5",
+            background: "#FF1166",
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        multiValueLabel: (provided, state) => ({
+            ...provided,
+            background: "#152535",
+            color: "#DAE5E5",
+        }),
     };
 
+    function handleOnChangeSimple(val: { value: number; label: string } | null): void {
+        if (val) {
+            const newTracking = values.find((el) => el.value === val.value);
+            dispatch({ type: "TRACK_STATE", payload: newTracking });
+        } else {
+            dispatch({ type: "TRACK_STATE", payload: null });
+        }
+
+        if (isUpdateField) {
+            if (val?.value !== state.previous) {
+                dispatch({ type: "UPDATING", payload: val?.value });
+            } else {
+                dispatch({ type: "CANCEL_UPDATE" });
+            }
+        } else {
+            dispatch({ type: "RESET", payload: val?.value });
+        }
+        if (setValue && val) {
+            setValue(refForm, val?.value);
+        }
+        if (state.timeoutId) {
+            clearTimeout(state.timeoutId);
+        }
+    }
+
+    function handleChangeMulti(
+        val: MultiValue<{
+            value: number;
+            label: string;
+        }>
+    ): void {
+        const valArrayNumber = val.map((el) => el.value);
+        const formatedState = values.filter((el) => valArrayNumber.includes(el.value));
+        if (isUpdateField) {
+            dispatch({ type: "TRACK_STATE", payload: formatedState });
+            dispatch({ type: "UPDATING", payload: valArrayNumber });
+        }
+        if (setValue && val) {
+            setValue(refForm, val);
+        }
+        if (state.timeoutId) {
+            clearTimeout(state.timeoutId);
+        }
+    }
+
     useEffect(() => {
-        dispatch({ type: "RESET", payload: defaultValue as number });
+        dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
             isLastMount.current = true;
@@ -154,7 +212,7 @@ const InputSelectSearchable = ({
         if (isUpdateField && state.updated !== state.previous) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction) {
-                    updateFunction(refForm, state.updated as number);
+                    updateFunction(refForm, state.updated as number | number[]);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -188,23 +246,24 @@ const InputSelectSearchable = ({
                 isMulti={isMulti}
                 form={refForm}
                 placeholder={placeholder}
-                defaultValue={values.filter((el) => el.value === defaultValue)}
+                defaultValue={
+                    !isMulti
+                        ? values.filter((el) => el.value === defaultValue)
+                        : values.filter((el) => (defaultValue as number[]).includes(el.value))
+                }
+                value={state.stateFormated}
+                closeMenuOnSelect={!isMulti}
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                onChange={(val, md): void => {
-                    if (isUpdateField && val) {
-                        if (val?.value !== state.previous) {
-                            dispatch({ type: "UPDATING", payload: val?.value });
-                        } else {
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }
+                onChange={(val, action): void => {
+                    if (!isMulti) {
+                        handleOnChangeSimple(val as { label: string; value: number });
                     } else {
-                        val && dispatch({ type: "RESET", payload: val?.value });
-                    }
-                    if (setValue && val) {
-                        setValue(refForm, val?.value);
-                    }
-                    if (state.timeoutId) {
-                        clearTimeout(state.timeoutId);
+                        handleChangeMulti(
+                            val as MultiValue<{
+                                value: number;
+                                label: string;
+                            }>
+                        );
                     }
                 }}
             />
@@ -229,6 +288,12 @@ const InputSelectSearchable = ({
                                 clearTimeout(state.timeoutId);
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
+                            dispatch({
+                                type: "TRACK_STATE",
+                                payload: !isMulti
+                                    ? values.filter((el) => el.value === state.previous)
+                                    : values.filter((el) => (state.previous as number[]).includes(el.value)),
+                            });
                         }}
                         positionClassname={dotPosition}
                         trigger={state.trigger}
