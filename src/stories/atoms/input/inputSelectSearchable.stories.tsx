@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
 export const Default = Template.bind({});
 export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
+export const Multiple = Template.bind({});
 Default.args = {
     isClearable: true,
     placeholder: "story Searchable",
@@ -137,4 +138,46 @@ NotSearchable.args = {
         },
     ],
     refForm: "exemple",
+};
+Multiple.args = {
+    isClearable: true,
+    placeholder: "story Searchable",
+    isSearchable: true,
+    defaultValue: 3,
+    isMulti: true,
+    refForm: "example 1",
+    data: [
+        {
+            label: "Abricot",
+            value: 1,
+        },
+        {
+            label: "Banane",
+            value: 2,
+        },
+        {
+            label: "Cactus",
+            value: 3,
+        },
+        {
+            label: "Detergent",
+            value: 4,
+        },
+        {
+            label: "Destruction",
+            value: 5,
+        },
+        {
+            label: "Decheance",
+            value: 6,
+        },
+        {
+            label: "Detritus",
+            value: 7,
+        },
+        {
+            label: "Emergeance",
+            value: 8,
+        },
+    ],
 };

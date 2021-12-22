@@ -13,6 +13,7 @@ interface Props {
     id?: string;
     isClearable: boolean;
     isError?: boolean;
+    isMulti?: boolean;
     isSearchable: boolean;
     isUpdateField?: boolean;
     languageUser?: string;
@@ -32,6 +33,7 @@ const InputSelectSearchable = ({
     errorMessage,
     isClearable,
     isError,
+    isMulti = false,
     isSearchable = true,
     isUpdateField = false,
     languageUser = "en_US",
@@ -183,6 +185,7 @@ const InputSelectSearchable = ({
                 noOptionsMessage={(obj: { inputValue: string }) =>
                     `${obj.inputValue} ${myLanguage("inputSelectSearchable.noOptionMessage")}`
                 }
+                isMulti={isMulti}
                 form={refForm}
                 placeholder={placeholder}
                 defaultValue={values.filter((el) => el.value === defaultValue)}
@@ -205,6 +208,7 @@ const InputSelectSearchable = ({
                     }
                 }}
             />
+
             <div className="mx-3 w-9">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
