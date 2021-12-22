@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
