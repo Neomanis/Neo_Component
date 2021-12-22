@@ -53,6 +53,9 @@
         "severity": "Sévérité",
         "type": "Type"
     },
+    "inputSelectSearchable": {
+        "noOptionMessage": "non trouvé"
+    },
     "inputTextArea": {
         "content": "Description"
     },
@@ -195,7 +198,9 @@
         "keyDetected": "MOTS-CLES",
         "markResolved": "MARQUE COMME RESOLU",
         "neoHelper": {
-            "waitTechnician": "Un technicien vous contactera dès que possible."
+            "waitTechnician": "Un technicien vous contactera dès que possible.",
+            "inProgress": "Votre demande est en cours de traitement.",
+            "pending": "Votre demande est en attente, nous collectons de plus amples informations."
         },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",

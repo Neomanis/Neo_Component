@@ -8,82 +8,92 @@ export default {
     title: "Atoms/Input/InputSelectSearchable",
 } as Meta;
 
-const Template: ComponentStory<typeof InputSelectSearchable> = (args) => <InputSelectSearchable {...args} />;
+const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
+    return <InputSelectSearchable {...args} />;
+};
 
 export const Default = Template.bind({});
 export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 Default.args = {
+    isClearable: true,
+    placeholder: "story Searchable",
+    isSearchable: true,
+    defaultValue: 3,
+    refForm: "example 1",
     data: [
         {
-            id: 1,
-            value: "Abricot",
+            label: "Abricot",
+            value: 1,
         },
         {
-            id: 2,
-            value: "Banane",
+            label: "Banane",
+            value: 2,
         },
         {
-            id: 3,
-            value: "Cactus",
+            label: "Cactus",
+            value: 3,
         },
         {
-            id: 4,
-            value: "Domino",
+            label: "Detergent",
+            value: 4,
         },
         {
-            id: 5,
-            value: "Detritus",
+            label: "Destruction",
+            value: 5,
         },
         {
-            id: 6,
-            value: "Deterioration",
+            label: "Decheance",
+            value: 6,
         },
         {
-            id: 7,
-            value: "Decheance",
+            label: "Detritus",
+            value: 7,
         },
         {
-            id: 8,
-            value: "Destruction",
+            label: "Emergeance",
+            value: 8,
         },
     ],
-    refForm: "exemple",
 };
 Updatable.args = {
     isUpdateField: true,
+    isSearchable: true,
+    //meant not to display isClearable button since isUpdateField = true
+    isClearable: true,
+    placeholder: "story Searchable",
     data: [
         {
-            id: 1,
-            value: "Abricot",
+            label: "Abricot",
+            value: 1,
         },
         {
-            id: 2,
-            value: "Banane",
+            label: "Banane",
+            value: 2,
         },
         {
-            id: 3,
-            value: "Cactus",
+            label: "Cactus",
+            value: 3,
         },
         {
-            id: 4,
-            value: "Domino",
+            label: "Detergent",
+            value: 4,
         },
         {
-            id: 5,
-            value: "Detritus",
+            label: "Destruction",
+            value: 5,
         },
         {
-            id: 6,
-            value: "Deterioration",
+            label: "Decheance",
+            value: 6,
         },
         {
-            id: 7,
-            value: "Decheance",
+            label: "Detritus",
+            value: 7,
         },
         {
-            id: 8,
-            value: "Destruction",
+            label: "Emergeance",
+            value: 8,
         },
     ],
     refForm: "exemple",
@@ -91,38 +101,39 @@ Updatable.args = {
 NotSearchable.args = {
     isUpdateField: true,
     isSearchable: false,
+    placeholder: "story Searchable",
     data: [
         {
-            id: 1,
-            value: "Abricot",
+            label: "Abricot",
+            value: 1,
         },
         {
-            id: 2,
-            value: "Banane",
+            label: "Banane",
+            value: 2,
         },
         {
-            id: 3,
-            value: "Cactus",
+            label: "Cactus",
+            value: 3,
         },
         {
-            id: 4,
-            value: "Domino",
+            label: "Detergent",
+            value: 4,
         },
         {
-            id: 5,
-            value: "Detritus",
+            label: "Destruction",
+            value: 5,
         },
         {
-            id: 6,
-            value: "Deterioration",
+            label: "Decheance",
+            value: 6,
         },
         {
-            id: 7,
-            value: "Decheance",
+            label: "Detritus",
+            value: 7,
         },
         {
-            id: 8,
-            value: "Destruction",
+            label: "Emergeance",
+            value: 8,
         },
     ],
     refForm: "exemple",

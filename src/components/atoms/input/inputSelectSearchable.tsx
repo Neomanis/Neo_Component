@@ -1,23 +1,23 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
-import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
 import Select from "react-select";
-
-import { IInputSelect } from "../../../interface";
-import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
+import inputReducer from "../../utils/reducers/inputReducer";
+import { i18n } from "../../..";
 
 interface Props {
-    data: Array<IInputSelect>;
+    data: Array<{ label: string; value: string }>;
     defaultValue?: number;
     dotPosition?: string;
     errorMessage?: string;
     id?: string;
+    isClearable: boolean;
     isError?: boolean;
     isSearchable: boolean;
     isUpdateField?: boolean;
+    languageUser?: string;
+    placeholder: string;
     refForm: string;
-    register?: UseFormRegister<FieldValues>;
-    required?: boolean;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
@@ -30,12 +30,13 @@ const InputSelectSearchable = ({
     defaultValue,
     dotPosition,
     errorMessage,
+    isClearable,
     isError,
     isSearchable = true,
     isUpdateField = false,
+    languageUser = "en_US",
+    placeholder,
     refForm,
-    register,
-    required,
     setStateValue,
     setValue,
     targetId,
@@ -53,32 +54,35 @@ const InputSelectSearchable = ({
     });
 
     const isLastMount = useRef(false);
-    const values: { value: number; label: string }[] = data.reduce((acc, curVal) => {
-        acc.push({ value: curVal.id, label: curVal.value });
+
+    const values = data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
+        acc.push({ value: parseInt(curVal.value), label: curVal.label });
         return acc;
     }, []);
 
+    const myLanguage = i18n.getFixedT(languageUser);
     const customStyles = {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        container: (provided, state) => ({
+        container: (provided: any, state: any) => ({
             ...provided,
             background: "#15304C",
-            padding: 10,
+            padding: 0,
+            margin: 0,
             color: "#DAE5E5",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        input: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        input: (provided: any, state: any) => ({
             ...provided,
             color: "#DAE5E5",
             margin: 0,
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        valueContainer: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        valueContainer: (provided: any, state: any) => ({
             ...provided,
             color: "#DAE5E5",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        dropdownIndicator: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        dropdownIndicator: (provided: any, state: any) => ({
             ...provided,
             display: "bloc",
             padding: 0,
@@ -87,19 +91,29 @@ const InputSelectSearchable = ({
             top: 10,
             border: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        indicatorSeparator: (provided, state) => ({
+        clearIndicator: (provided: any, state: any) => ({
+            ...provided,
+            display: "bloc",
+            padding: 0,
+            position: "absolute",
+            right: 30,
+            top: 10,
+            border: "none",
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        indicatorSeparator: (provided: any, state: any) => ({
             ...provided,
             display: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        noOptionsMessage: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        noOptionsMessage: (provided: any, state: any) => ({
             ...provided,
             background: "#15304C",
             borderRaduis: 10,
             margin: 0,
         }),
-        option: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        option: (provided: any, state: { isSelected: any }) => ({
             ...provided,
             innerWidth: "100%",
             InputSelect: "100%",
@@ -109,27 +123,20 @@ const InputSelectSearchable = ({
             padding: 10,
         }),
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        control: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        control: (provided: any, state: any) => ({
             ...provided,
             width: "100%",
             color: "#DAE5E5",
             background: "#15304C",
             border: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        singleValue: (provided, state) => ({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        singleValue: (provided: any, state: any) => ({
             ...provided,
             color: "#DAE5E5",
         }),
     };
-
-    const inputSelectRegister =
-        register &&
-        register(refForm, {
-            required,
-            validate: (value) => (required ? data.some((element) => element.id === parseInt(value)) : true),
-        });
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue as number });
@@ -166,30 +173,31 @@ const InputSelectSearchable = ({
     return (
         <div className="w-full flex items-center" data-testid="inputSelect-body">
             <Select
-                {...inputReducer}
-                className="flex items-center w-full my-1 text-neo-light-grey  rounded-md text-xs font-bold"
+                className="flex items-center w-full my-1  rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
                 styles={customStyles}
                 options={values}
-                // onBlur={() => console.log("BLUR")}
-                noOptionsMessage={(obj: { inputValue: string }) => `${obj.inputValue} not found`}
+                // if isUpdateField, the dot will provide the cancelable option
+                isClearable={!isUpdateField && isClearable}
+                noOptionsMessage={(obj: { inputValue: string }) =>
+                    `${obj.inputValue} ${myLanguage("inputSelectSearchable.noOptionMessage")}`
+                }
                 form={refForm}
-                placeholder={refForm}
+                placeholder={placeholder}
+                defaultValue={values.filter((el) => el.value === defaultValue)}
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 onChange={(val, md): void => {
-                    // console.log("VALUE", val);
-                    // console.log("STATE", state);
-                    inputSelectRegister?.onChange({ type: "change", target: { value: val.value } });
-                    if (isUpdateField) {
-                        if (val.value !== state.previous) {
-                            dispatch({ type: "UPDATING", payload: val.value });
+                    if (isUpdateField && val) {
+                        if (val?.value !== state.previous) {
+                            dispatch({ type: "UPDATING", payload: val?.value });
                         } else {
                             dispatch({ type: "CANCEL_UPDATE" });
                         }
                     } else {
-                        dispatch({ type: "RESET", payload: val.value });
+                        val && dispatch({ type: "RESET", payload: val?.value });
                     }
-                    if (setStateValue) {
-                        setStateValue(val.value);
+                    if (setValue && val) {
+                        setValue(refForm, val?.value);
                     }
                     if (state.timeoutId) {
                         clearTimeout(state.timeoutId);

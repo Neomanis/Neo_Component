@@ -53,6 +53,9 @@
         "severity": "Severity",
         "type": "Type"
     },
+    "inputSelectSearchable": {
+        "noOptionMessage": "not found"
+    },
     "inputTextArea": {
         "content": "Content"
     },
@@ -195,7 +198,9 @@
         "keyDetected": "DETECTED KEYWORDS",
         "markResolved": "MARKS IT AS RESOLVED",
         "neoHelper": {
-            "waitTechnician": "A technician will contact you as soon as possible to help."
+            "waitTechnician": "A technician will contact you as soon as possible.",
+            "inProgress": "Your request is being processed.",
+            "pending": "Your request is pending, we are collecting more informations."
         },
         "search": "Search",
         "solveQuestion": "Marks it as solved ?",
