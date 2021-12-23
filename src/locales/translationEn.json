@@ -91,7 +91,7 @@
     },
     "notification": {
         "title": "Notifications",
-        "clearAll": "Clear all",
+        "clearAll": "Clear all notifications",
         "empty": "Such empty !"
     },
     "outage": {
