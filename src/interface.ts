@@ -245,6 +245,9 @@ export interface INotification {
         id: number;
         content: string;
         createdAt: string;
+        objectId: number;
+        objectType: string;
+        type: string;
     };
     read: boolean;
 }
