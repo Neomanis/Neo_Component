@@ -64,8 +64,8 @@ const InputSelectSearchable = ({
     const isLastMount = useRef(false);
 
     const myLanguage = i18n.getFixedT(languageUser);
+    /* eslint-disable no-unused-vars */
     const customStyles = {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         clearIndicator: (provided, state) => ({
             ...provided,
             display: "bloc",
@@ -75,7 +75,6 @@ const InputSelectSearchable = ({
             top: 10,
             border: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         container: (provided, state) => ({
             ...provided,
             background: "#15304C",
@@ -83,7 +82,6 @@ const InputSelectSearchable = ({
             margin: 0,
             color: "#DAE5E5",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         control: (provided, state) => ({
             ...provided,
             width: "100%",
@@ -91,7 +89,6 @@ const InputSelectSearchable = ({
             background: "#15304C",
             border: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         dropdownIndicator: (provided, state) => ({
             ...provided,
             display: "bloc",
@@ -101,42 +98,35 @@ const InputSelectSearchable = ({
             top: 10,
             border: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         indicatorSeparator: (provided, state) => ({
             ...provided,
             display: "none",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         input: (provided, state) => ({
             ...provided,
             color: "#DAE5E5",
             margin: 0,
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         menu: (provided, state) => ({
             ...provided,
             background: "#15304C",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         multiValue: (provided, state) => ({
             ...provided,
             color: "#DAE5E5",
             background: "#FF1166",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         multiValueLabel: (provided, state) => ({
             ...provided,
             background: "#152535",
             color: "#DAE5E5",
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         noOptionsMessage: (provided, state) => ({
             ...provided,
             background: "#15304C",
             borderRaduis: 10,
             margin: 0,
         }),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         option: (provided, state: { isSelected }) => ({
             ...provided,
             "&:hover": {
@@ -147,13 +137,12 @@ const InputSelectSearchable = ({
             color: state.isSelected ? "#FF1166" : "#DAE5E5",
             padding: 10,
         }),
-
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         singleValue: (provided, state) => ({
             ...provided,
             color: "#DAE5E5",
         }),
     };
+    /* eslint-enable no-unused-vars */
 
     function handleOnChangeSimple(val: { value: number; label: string } | null): void {
         if (val) {
