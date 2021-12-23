@@ -110,7 +110,7 @@
             "rejected": "L'utilisateur a refusé la demande",
             "sent": "Demande envoyée, en attente de l'approbation de l'utilisateur",
             "timedOut": "Hmmm, l'utilisateur semble être absent, la notification a expiré",
-            "try again": "Souhaitez-vous réessayer ?"
+            "tryAgain": "Souhaitez-vous réessayer ?"
         },
         "persistantShell": "Shell persistant",
         "shellButton": "Terminal Distant"

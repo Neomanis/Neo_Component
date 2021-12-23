@@ -110,7 +110,7 @@
             "rejected": "User rejected the request",
             "sent": "Request sent, waiting for user approval",
             "timedOut": "Hmmm, user seems away, the notification timed out",
-            "try again": "Would you like to retry?"
+            "tryAgain": "Would you like to retry?"
         },
         "persistantShell": "Persistent shell",
         "shellButton": "Remote Shell"
