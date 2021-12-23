@@ -155,7 +155,9 @@ const InputSelectSearchable = ({
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
                 noOptionsMessage={(obj: { inputValue: string }) =>
-                    `${obj.inputValue} ${myLanguage("inputSelectSearchable.noOptionMessage")}`
+                    `${myLanguage("inputSelectSearchable.value")} ${obj.inputValue} ${myLanguage(
+                        "inputSelectSearchable.noOptionMessage"
+                    )}`
                 }
                 isMulti={isMulti}
                 form={refForm}
