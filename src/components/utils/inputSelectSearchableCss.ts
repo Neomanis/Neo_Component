@@ -50,6 +50,7 @@ export const customStyles = {
         ...provided,
         color: "#DAE5E5",
         background: "#FF1166",
+        margin: 1,
     }),
     multiValueLabel: (provided, state) => ({
         ...provided,
