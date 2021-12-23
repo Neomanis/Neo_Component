@@ -3,7 +3,7 @@ import { FieldValues, UseFormSetValue } from "react-hook-form";
 import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
-import { i18n } from "../../..";
+import { i18n } from "../../../i18n";
 
 interface Props {
     data: Array<{ label: string; value: string }>;
