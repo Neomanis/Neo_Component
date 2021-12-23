@@ -9,7 +9,11 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
-    return <InputSelectSearchable {...args} />;
+    return (
+        <div className="w-1/4">
+            <InputSelectSearchable {...args} />
+        </div>
+    );
 };
 
 export const Default = Template.bind({});
