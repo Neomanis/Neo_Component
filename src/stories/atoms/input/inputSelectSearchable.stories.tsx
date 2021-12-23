@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
@@ -64,7 +65,6 @@ Default.args = {
 Updatable.args = {
     isUpdateField: true,
     isSearchable: true,
-    // eslint-disable-next-line no-console
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     //meant not to display isClearable button since isUpdateField = true
     isClearable: true,
@@ -109,7 +109,6 @@ NotSearchable.args = {
     isUpdateField: true,
     isSearchable: false,
     placeholder: "story Searchable",
-    // eslint-disable-next-line no-console
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     data: [
         {
@@ -155,7 +154,6 @@ Multiple.args = {
     defaultValue: [3, 7],
     isMulti: true,
     refForm: "example 1",
-    // eslint-disable-next-line no-console
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     data: [
         {

@@ -1,9 +1,10 @@
-import React, { ReactElement, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useCallback, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
+import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
     data: Array<{ label: string; value: string }>;
@@ -45,13 +46,15 @@ const InputSelectSearchable = ({
     timerSetting = 5000,
     updateFunction,
 }: Props): ReactElement => {
-    const values = data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
-        acc.push({ value: parseInt(curVal.value), label: curVal.label });
-        return acc;
-    }, []);
+    const values = useCallback(() => {
+        return data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
+            acc.push({ value: parseInt(curVal.value), label: curVal.label });
+            return acc;
+        }, []);
+    }, [data]);
 
     const [state, dispatch] = useReducer(inputReducer, {
-        stateFormated: values.find((el) => el.value === defaultValue),
+        stateFormated: values().find((el) => el.value === defaultValue),
         isCancelable: false,
         isCooldown: false,
         isSuccess: false,
@@ -64,89 +67,10 @@ const InputSelectSearchable = ({
     const isLastMount = useRef(false);
 
     const myLanguage = i18n.getFixedT(languageUser);
-    /* eslint-disable no-unused-vars */
-    const customStyles = {
-        clearIndicator: (provided, state) => ({
-            ...provided,
-            display: "bloc",
-            padding: 0,
-            position: "absolute",
-            right: 30,
-            top: 10,
-            border: "none",
-        }),
-        container: (provided, state) => ({
-            ...provided,
-            background: "#15304C",
-            padding: 0,
-            margin: 0,
-            color: "#DAE5E5",
-        }),
-        control: (provided, state) => ({
-            ...provided,
-            width: "100%",
-            color: "#DAE5E5",
-            background: "#15304C",
-            border: "none",
-        }),
-        dropdownIndicator: (provided, state) => ({
-            ...provided,
-            display: "bloc",
-            padding: 0,
-            position: "absolute",
-            right: 5,
-            top: 10,
-            border: "none",
-        }),
-        indicatorSeparator: (provided, state) => ({
-            ...provided,
-            display: "none",
-        }),
-        input: (provided, state) => ({
-            ...provided,
-            color: "#DAE5E5",
-            margin: 0,
-        }),
-        menu: (provided, state) => ({
-            ...provided,
-            background: "#15304C",
-        }),
-        multiValue: (provided, state) => ({
-            ...provided,
-            color: "#DAE5E5",
-            background: "#FF1166",
-        }),
-        multiValueLabel: (provided, state) => ({
-            ...provided,
-            background: "#152535",
-            color: "#DAE5E5",
-        }),
-        noOptionsMessage: (provided, state) => ({
-            ...provided,
-            background: "#15304C",
-            borderRaduis: 10,
-            margin: 0,
-        }),
-        option: (provided, state: { isSelected }) => ({
-            ...provided,
-            "&:hover": {
-                background: "#366688",
-                cursor: "pointer",
-            },
-            background: "#15304C",
-            color: state.isSelected ? "#FF1166" : "#DAE5E5",
-            padding: 10,
-        }),
-        singleValue: (provided, state) => ({
-            ...provided,
-            color: "#DAE5E5",
-        }),
-    };
-    /* eslint-enable no-unused-vars */
 
     function handleOnChangeSimple(val: { value: number; label: string } | null): void {
         if (val) {
-            const newTracking = values.find((el) => el.value === val.value);
+            const newTracking = values().find((el) => el.value === val.value);
             dispatch({ type: "TRACK_STATE", payload: newTracking });
         } else {
             dispatch({ type: "TRACK_STATE", payload: null });
@@ -176,7 +100,7 @@ const InputSelectSearchable = ({
         }>
     ): void {
         const valArrayNumber = val.map((el) => el.value);
-        const formatedState = values.filter((el) => valArrayNumber.includes(el.value));
+        const formatedState = values().filter((el) => valArrayNumber.includes(el.value));
         if (isUpdateField) {
             dispatch({ type: "TRACK_STATE", payload: formatedState });
             dispatch({ type: "UPDATING", payload: valArrayNumber });
@@ -222,12 +146,12 @@ const InputSelectSearchable = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="w-full flex items-center" data-testid="inputSelect-body">
+        <div className="w-full flex items-center" data-testid="inputSelectSearchable-body">
             <Select
                 className="flex items-center w-full my-1  rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
                 styles={customStyles}
-                options={values}
+                options={values()}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
                 noOptionsMessage={(obj: { inputValue: string }) =>
@@ -238,8 +162,8 @@ const InputSelectSearchable = ({
                 placeholder={placeholder}
                 defaultValue={
                     !isMulti
-                        ? values.filter((el) => el.value === defaultValue)
-                        : values.filter((el) => (defaultValue as number[]).includes(el.value))
+                        ? values().filter((el) => el.value === defaultValue)
+                        : values().filter((el) => (defaultValue as number[]).includes(el.value))
                 }
                 value={state.stateFormated}
                 closeMenuOnSelect={!isMulti}
@@ -258,7 +182,7 @@ const InputSelectSearchable = ({
                 }}
             />
 
-            <div className="mx-3 w-9">
+            <div className="mx-3 w-9" data-testid="inputSelectSearchableDot-body">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -281,8 +205,8 @@ const InputSelectSearchable = ({
                             dispatch({
                                 type: "TRACK_STATE",
                                 payload: !isMulti
-                                    ? values.filter((el) => el.value === state.previous)
-                                    : values.filter((el) => (state.previous as number[]).includes(el.value)),
+                                    ? values().filter((el) => el.value === state.previous)
+                                    : values().filter((el) => (state.previous as number[]).includes(el.value)),
                             });
                         }}
                         positionClassname={dotPosition}
