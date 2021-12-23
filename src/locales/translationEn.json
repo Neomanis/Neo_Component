@@ -105,6 +105,7 @@
             "message": "Hello, a technician wants to take control over your computer, do you accept?",
             "neoDiagnostic": "Oh no, user accepted the request but it seems that I cannot contact Neo Diagnostic",
             "rejected": "User rejected the request",
+            "sent": "Request sent, waiting for user approval",
             "timedOut": "Hmmm, user seems away, the notification timed out"
         },
         "persistantShell": "Persistent shell",

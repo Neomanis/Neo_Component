@@ -105,6 +105,7 @@
             "message": "Bonjour, un technicien souhaite prendre le contrôle de votre ordinateur, acceptez-vous ?",
             "neoDiagnostic": "Oh non ! L'utilisateur a accepté la demande, mais je n'arrive pas a contacter Neo Diagnostic",
             "rejected": "L'utilisateur a refusé la demande",
+            "sent": "Demande envoyée, en attente de l'approbation de l'utilisateur",
             "timedOut": "Hmmm, l'utilisateur semble être absent, la notification a expiré"
         },
         "persistantShell": "Shell persistant",
