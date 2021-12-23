@@ -1,4 +1,7 @@
+import { MultiValue } from "react-select";
+
 type State = {
+    stateFormated?: { value: number; label: string } | null | MultiValue<{ value: number; label: string }>;
     isCancelable: boolean;
     isCooldown: boolean;
     isSuccess: boolean;
@@ -9,6 +12,10 @@ type State = {
 };
 
 type Action =
+    | {
+          type: "TRACK_STATE";
+          payload: { value: number; label: string } | MultiValue<{ value: number; label: string }> | null;
+      }
     | { type: "CANCEL_UPDATE" }
     | { type: "CLEAR_SUCCESS" }
     | { type: "DEBUG"; payload: number | number[] | string | Date }
@@ -19,10 +26,12 @@ type Action =
     | { type: "SHOW_DOT" }
     | { type: "UPDATE_SUCCESS" }
     | { type: "ON_CHANGE"; payload: string }
-    | { type: "UPDATING"; payload: string | number | Date };
+    | { type: "UPDATING"; payload: string | number | Date | number[] };
 
 export default function inputReducer(state: State, action: Action): State {
     switch (action.type) {
+        case "TRACK_STATE":
+            return { ...state, stateFormated: action.payload };
         case "CANCEL_UPDATE":
             return { ...state, isCooldown: false, isSuccess: false, isCancelable: false, updated: state.previous };
         case "CLEAR_SUCCESS":
@@ -50,6 +59,7 @@ export default function inputReducer(state: State, action: Action): State {
             };
         case "RESET":
             return {
+                ...state,
                 isCancelable: false,
                 isCooldown: false,
                 isSuccess: false,

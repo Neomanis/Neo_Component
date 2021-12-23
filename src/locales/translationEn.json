@@ -53,6 +53,10 @@
         "severity": "Severity",
         "type": "Type"
     },
+    "inputSelectSearchable": {
+        "value": "value",
+        "noOptionMessage": "not found"
+    },
     "inputTextArea": {
         "content": "Content"
     },
