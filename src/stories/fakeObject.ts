@@ -1,4 +1,4 @@
-import { IGlpiRequest, IGlpiUsers, IInputSelect, ITicket } from "../interface";
+import { IGlpiRequest, IGlpiUsers, IInputSelect, INotification, ITicket } from "../interface";
 
 export const fakeTicket: ITicket = {
     id: 32,
@@ -270,4 +270,16 @@ export const fakeGlpiGroups: IGlpiRequest[] = [
 
 export const fakeTicketResources: Partial<ITicket> = {
     resources: [{ type: "Mana", item: { id: 2 }, tickets: [] }],
+};
+
+export const fakeNotification: INotification = {
+    notification: {
+        id: 0,
+        content: "Where is Ryan ? lfgf dg sogfdos ogfdso gofdso gofdsog fids i igfdos gifdso i gkfdk igfdos igfods",
+        createdAt: "20/03/5655 50",
+        objectId: 5958,
+        objectType: "test",
+        type: "test",
+    },
+    read: false,
 };

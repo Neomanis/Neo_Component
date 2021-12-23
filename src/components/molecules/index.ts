@@ -6,6 +6,7 @@ import HoverTicket from "./ticket/hoverTicket";
 import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
 import NotificationCard from "./notification/notificationCard";
+import NotificationContainer from "./notification/notificationContainer";
 import OutageCard from "./notification/outageCard";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 import SearchField from "./searchField";
@@ -26,6 +27,7 @@ export {
     InputChat,
     MessageChat,
     NotificationCard,
+    NotificationContainer,
     OutageCard,
     RecursiveDiagnosticComponent,
     SearchField,
