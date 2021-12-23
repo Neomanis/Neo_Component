@@ -67,7 +67,6 @@
         "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
         "helpButton": "Ok thanks!",
         "inputPlaceholder": "Send",
-        "neobotToasterRefresh": "Neobot is gathering some new information about this ticket...",
         "renameTicketButton": "I would like to name my ticket",
         "renameTicketQuestion": "How do you want to name this ticket?",
         "renameTicketValidation": "The ticket's name has been updated.",
@@ -75,6 +74,10 @@
         "talkToBotResponse": "Great! I will take care of your ticket. We will diagnose and solve your problem. The ticket will be escalated if it's not possible. You can interrupt my diagnosis at any time and escalate the ticket to a technician.",
         "talkToHuman": "I need to talk to a human now!",
         "talkToHumanResponse": "Okay, we are escalating your ticket to a technician. You can contact me again to diagnose your problem by clicking on the 'Diagnostic with Neobot' button below.",
+        "toaster": {
+            "newMessage": "You have received a new message on this ticket!",
+            "ticketUpdate": "Neobot is gathering some new information about this ticket..."
+        },
         "undoTicket": "I made a mistake, can we stop now?",
         "undoTicketResponse": "Alright, I close this ticket",
         "validateUndo": "Are you sure to close this ticket?"
@@ -99,6 +102,16 @@
     },
     "remote": {
         "controlButton": "Remote Control",
+        "notification": {
+            "blocked": "User seems to have blocked OS notification, maybe you should contact him",
+            "dismissed": "User dismissed the notification",
+            "message": "Hello, a technician wants to take control over your computer, do you accept?",
+            "neoDiagnostic": "Oh no, user accepted the request but it seems that I cannot contact Neo Diagnostic",
+            "rejected": "User rejected the request",
+            "sent": "Request sent, waiting for user approval",
+            "timedOut": "Hmmm, user seems away, the notification timed out",
+            "tryAgain": "Would you like to retry?"
+        },
         "persistantShell": "Persistent shell",
         "shellButton": "Remote Shell"
     },
@@ -195,7 +208,9 @@
         "keyDetected": "DETECTED KEYWORDS",
         "markResolved": "MARKS IT AS RESOLVED",
         "neoHelper": {
-            "waitTechnician": "A technician will contact you as soon as possible to help."
+            "waitTechnician": "A technician will contact you as soon as possible.",
+            "inProgress": "Your request is being processed.",
+            "pending": "Your request is pending, we are collecting more informations."
         },
         "search": "Search",
         "solveQuestion": "Marks it as solved ?",

@@ -65,7 +65,7 @@ const TechnicalQuestionItem = ({
                 </div>
             </div>
             <div className="flex justify-between mt-2">
-                <div className="hiddenLigneNo1 truncate mr-5" dangerouslySetInnerHTML={{ __html: content }}></div>
+                <div className="hiddenLineNumberOne truncate mr-5" dangerouslySetInnerHTML={{ __html: content }}></div>
                 <div className="flex items-center">
                     <Tooltip
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"

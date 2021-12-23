@@ -62,13 +62,13 @@
     fill: #ffffffdc;
 }
 
-.hiddenLigneNo1 > * {
+.hiddenLineNumberOne > * {
     display: none;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.hiddenLigneNo1 > *:nth-child(1) {
+.hiddenLineNumberOne > *:nth-child(1) {
     display: block;
 }
