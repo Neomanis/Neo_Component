@@ -4,35 +4,35 @@ import { mount } from "@cypress/react";
 const data = [
     {
         label: "Abricot",
-        value: "1",
+        value: 1,
     },
     {
         label: "Banane",
-        value: "2",
+        value: 2,
     },
     {
         label: "Cactus",
-        value: "3",
+        value: 3,
     },
     {
         label: "Detergent",
-        value: "4",
+        value: 4,
     },
     {
         label: "Destruction",
-        value: "5",
+        value: 5,
     },
     {
         label: "Decheance",
-        value: "6",
+        value: 6,
     },
     {
         label: "Detritus",
-        value: "7",
+        value: 7,
     },
     {
         label: "Emergeance",
-        value: "8",
+        value: 8,
     },
 ];
 

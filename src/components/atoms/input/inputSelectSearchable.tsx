@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
@@ -7,7 +7,7 @@ import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
-    data: Array<{ label: string; value: string }>;
+    data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     dotPosition?: string;
     errorMessage?: string;
@@ -46,15 +46,8 @@ const InputSelectSearchable = ({
     timerSetting = 5000,
     updateFunction,
 }: Props): ReactElement => {
-    const values = useCallback(() => {
-        return data.reduce<{ value: number; label: string }[]>((acc, curVal) => {
-            acc.push({ value: parseInt(curVal.value), label: curVal.label });
-            return acc;
-        }, []);
-    }, [data]);
-
     const [state, dispatch] = useReducer(inputReducer, {
-        stateFormated: values().find((el) => el.value === defaultValue),
+        stateFormated: data.find((el) => el.value === defaultValue),
         isCancelable: false,
         isCooldown: false,
         isSuccess: false,
@@ -70,7 +63,7 @@ const InputSelectSearchable = ({
 
     function handleOnChangeSimple(val: { value: number; label: string } | null): void {
         if (val) {
-            const newTracking = values().find((el) => el.value === val.value);
+            const newTracking = data.find((el) => el.value === val.value);
             dispatch({ type: "TRACK_STATE", payload: newTracking });
         } else {
             dispatch({ type: "TRACK_STATE", payload: null });
@@ -100,7 +93,7 @@ const InputSelectSearchable = ({
         }>
     ): void {
         const valArrayNumber = val.map((el) => el.value);
-        const formatedState = values().filter((el) => valArrayNumber.includes(el.value));
+        const formatedState = data.filter((el) => valArrayNumber.includes(el.value));
         if (isUpdateField) {
             dispatch({ type: "TRACK_STATE", payload: formatedState });
             dispatch({ type: "UPDATING", payload: valArrayNumber });
@@ -151,7 +144,7 @@ const InputSelectSearchable = ({
                 className="flex items-center w-full my-1  rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
                 styles={customStyles}
-                options={values()}
+                options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
                 noOptionsMessage={(obj: { inputValue: string }) =>
@@ -164,8 +157,8 @@ const InputSelectSearchable = ({
                 placeholder={placeholder}
                 defaultValue={
                     !isMulti
-                        ? values().filter((el) => el.value === defaultValue)
-                        : values().filter((el) => (defaultValue as number[]).includes(el.value))
+                        ? data.filter((el) => el.value === defaultValue)
+                        : data.filter((el) => (defaultValue as number[]).includes(el.value))
                 }
                 value={state.stateFormated}
                 closeMenuOnSelect={!isMulti}
@@ -207,8 +200,8 @@ const InputSelectSearchable = ({
                             dispatch({
                                 type: "TRACK_STATE",
                                 payload: !isMulti
-                                    ? values().filter((el) => el.value === state.previous)
-                                    : values().filter((el) => (state.previous as number[]).includes(el.value)),
+                                    ? data.filter((el) => el.value === state.previous)
+                                    : data.filter((el) => (state.previous as number[]).includes(el.value)),
                             });
                         }}
                         positionClassname={dotPosition}
