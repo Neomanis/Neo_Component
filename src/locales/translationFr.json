@@ -67,7 +67,6 @@
         "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
         "helpButton": "D'accord merci !",
         "inputPlaceholder": "Envoyer",
-        "neobotToasterRefresh": "Neobot recupère de nouvelles informations sur ce ticket...",
         "renameTicketButton": "Je voudrais nommer mon ticket",
         "renameTicketQuestion": "Comment voulez-vous nommer ce ticket ?",
         "renameTicketValidation": "Le nom du ticket a bien été modifié.",
@@ -75,6 +74,10 @@
         "talkToBotResponse": "Super ! Je m'occupe de votre ticket. Nous allons diagnostiquer et résoudre votre problème. Le ticket sera escaladé si ce n'est pas possible. Vous pouvez interrompte mon diagnostique à tout moment et escalader le ticket vers un technicien.",
         "talkToHuman": "Je veux parler à un humain maintenant !",
         "talkToHumanResponse": "Ok, nous escaladons votre ticket vers un technicien. Vous pouvez me recontacter pour que j'établisse un diagnostique de votre problème en cliquant sur 'Etablir un diagnostic' juste en dessous.",
+        "toaster": {
+            "newMessage": "Vous avez reçu un nouveau message sur ce ticket !",
+            "ticketUpdate": "Neobot recupère de nouvelles informations sur ce ticket..."
+        },
         "undoTicket": "J'ai fait une erreur, peut-on s'arrêter là ?",
         "undoTicketResponse": "Très bien, je clos le ticket",
         "validateUndo": "Êtes-vous sûr de vouloir clore le ticket ?"
@@ -106,7 +109,8 @@
             "neoDiagnostic": "Oh non ! L'utilisateur a accepté la demande, mais je n'arrive pas a contacter Neo Diagnostic",
             "rejected": "L'utilisateur a refusé la demande",
             "sent": "Demande envoyée, en attente de l'approbation de l'utilisateur",
-            "timedOut": "Hmmm, l'utilisateur semble être absent, la notification a expiré"
+            "timedOut": "Hmmm, l'utilisateur semble être absent, la notification a expiré",
+            "tryAgain": "Souhaitez-vous réessayer ?"
         },
         "persistantShell": "Shell persistant",
         "shellButton": "Terminal Distant"
