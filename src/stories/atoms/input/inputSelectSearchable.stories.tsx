@@ -25,6 +25,7 @@ export const Multiple = Template.bind({});
 Default.args = {
     isClearable: true,
     placeholder: "story Searchable",
+    containerClassName: "w-full flex items-center",
     isSearchable: true,
     defaultValue: 3,
     refForm: "example 1",
@@ -85,6 +86,7 @@ Labeled.args = {
 };
 Updatable.args = {
     isUpdateField: true,
+    containerClassName: "w-full flex items-center",
     isSearchable: true,
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     //meant not to display isClearable button since isUpdateField = true
@@ -128,6 +130,7 @@ Updatable.args = {
 };
 NotSearchable.args = {
     isUpdateField: true,
+    containerClassName: "w-full flex items-center",
     isSearchable: false,
     placeholder: "story Searchable",
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
@@ -170,6 +173,7 @@ NotSearchable.args = {
 Multiple.args = {
     isClearable: true,
     isUpdateField: true,
+    containerClassName: "w-full flex items-center",
     placeholder: "story Searchable",
     isSearchable: true,
     defaultValue: [3, 7],
