@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import Select, { MultiValue } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
@@ -23,6 +23,7 @@ interface Props {
     languageUser?: string;
     placeholder?: string;
     refForm: string;
+    register?: UseFormRegister<FieldValues>;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
@@ -46,6 +47,7 @@ const InputSelectSearchable = ({
     languageUser = "en_US",
     placeholder,
     refForm,
+    register,
     setStateValue,
     setValue,
     targetId,
@@ -113,6 +115,7 @@ const InputSelectSearchable = ({
     }
 
     useEffect(() => {
+        register && register(refForm);
         dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
