@@ -11,13 +11,14 @@ export default {
 
 const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
     return (
-        <div className="w-1/4">
+        <div className="w-1/4 h-96 bg-neo-bg-A">
             <InputSelectSearchable {...args} />
         </div>
     );
 };
 
 export const Default = Template.bind({});
+export const Labeled = Template.bind({});
 export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
@@ -59,6 +60,26 @@ Default.args = {
         {
             label: "Emergeance",
             value: 8,
+        },
+    ],
+};
+Labeled.args = {
+    label: "Label Time!",
+    containerClassName: "w-full flex items-center",
+    labelClassName: "text-neo-light-grey whitespace-nowrap mx-2",
+    isClearable: true,
+    placeholder: "story Searchable",
+    isSearchable: true,
+    defaultValue: 3,
+    refForm: "example 1",
+    data: [
+        {
+            label: "Abricot",
+            value: 1,
+        },
+        {
+            label: "Banane",
+            value: 2,
         },
     ],
 };

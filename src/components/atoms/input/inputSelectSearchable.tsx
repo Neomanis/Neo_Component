@@ -7,6 +7,7 @@ import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
+    containerClassName?: string;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     dotPosition?: string;
@@ -17,8 +18,10 @@ interface Props {
     isMulti?: boolean;
     isSearchable: boolean;
     isUpdateField?: boolean;
+    label?: string;
+    labelClassName?: string;
     languageUser?: string;
-    placeholder: string;
+    placeholder?: string;
     refForm: string;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
@@ -28,6 +31,7 @@ interface Props {
 }
 
 const InputSelectSearchable = ({
+    containerClassName,
     data,
     defaultValue,
     dotPosition,
@@ -37,6 +41,8 @@ const InputSelectSearchable = ({
     isMulti = false,
     isSearchable = true,
     isUpdateField = false,
+    label,
+    labelClassName,
     languageUser = "en_US",
     placeholder,
     refForm,
@@ -139,7 +145,8 @@ const InputSelectSearchable = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="w-full flex items-center" data-testid="inputSelectSearchable-body">
+        <div className={containerClassName} data-testid="inputSelectSearchable-body">
+            {label && <label className={labelClassName}>{label}</label>}
             <Select
                 className="flex items-center w-full my-1  rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
@@ -154,7 +161,7 @@ const InputSelectSearchable = ({
                 }
                 isMulti={isMulti}
                 form={refForm}
-                placeholder={placeholder}
+                placeholder={placeholder ?? ""}
                 defaultValue={
                     !isMulti
                         ? data.filter((el) => el.value === defaultValue)
