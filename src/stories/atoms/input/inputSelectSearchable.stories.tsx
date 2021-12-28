@@ -24,6 +24,7 @@ export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
     customStyleOveride: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         input: (provided, state) => ({
             ...provided,
             color: "#FF1166",
