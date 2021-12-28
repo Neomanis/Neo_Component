@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
-import Select, { MultiValue } from "react-select";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
@@ -8,6 +8,11 @@ import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
     containerClassName?: string;
+    customStyleOverride?: StylesConfig<
+        { label: string; value: number },
+        boolean,
+        GroupBase<{ label: string; value: number }>
+    >;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     dotPosition?: string;
@@ -23,6 +28,7 @@ interface Props {
     languageUser?: string;
     placeholder?: string;
     refForm: string;
+    register?: UseFormRegister<FieldValues>;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
@@ -32,6 +38,7 @@ interface Props {
 
 const InputSelectSearchable = ({
     containerClassName,
+    customStyleOverride,
     data,
     defaultValue,
     dotPosition,
@@ -46,6 +53,7 @@ const InputSelectSearchable = ({
     languageUser = "en_US",
     placeholder,
     refForm,
+    register,
     setStateValue,
     setValue,
     targetId,
@@ -112,7 +120,19 @@ const InputSelectSearchable = ({
         }
     }
 
+    function overrideBaseCustomStyle(
+        baseStyle: StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>>,
+        customStyleOverride: StylesConfig<
+            { label: string; value: number },
+            boolean,
+            GroupBase<{ label: string; value: number }>
+        >
+    ): StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>> {
+        return { ...baseStyle, ...customStyleOverride };
+    }
+
     useEffect(() => {
+        register && register(refForm);
         dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
@@ -148,9 +168,9 @@ const InputSelectSearchable = ({
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
             {label && <label className={labelClassName}>{label}</label>}
             <Select
-                className="flex items-center w-full my-1  rounded-md text-xs font-bold"
+                className="flex items-center w-full my-1 rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
-                styles={customStyles}
+                styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
                 options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
@@ -163,9 +183,11 @@ const InputSelectSearchable = ({
                 form={refForm}
                 placeholder={placeholder ?? ""}
                 defaultValue={
-                    !isMulti
+                    !isMulti && defaultValue
                         ? data.filter((el) => el.value === defaultValue)
-                        : data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : isMulti && defaultValue
+                        ? data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : []
                 }
                 value={state.stateFormated}
                 closeMenuOnSelect={!isMulti}

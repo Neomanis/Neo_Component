@@ -160,6 +160,7 @@
         "info": "Info",
         "inputDescription": "Description",
         "inputTitle": "Title",
+        "keywords": "Keywords",
         "openDate": "Opening date",
         "openTime": "Opening time",
         "priority": "Priority",

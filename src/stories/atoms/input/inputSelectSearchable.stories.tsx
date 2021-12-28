@@ -23,6 +23,13 @@ export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
+    customStyleOverride: {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        input: (provided, state) => ({
+            ...provided,
+            color: "#FF1166",
+        }),
+    },
     isClearable: true,
     placeholder: "story Searchable",
     containerClassName: "w-full flex items-center",
@@ -90,6 +97,7 @@ Updatable.args = {
     isSearchable: true,
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     //meant not to display isClearable button since isUpdateField = true
+    defaultValue: 2,
     isClearable: true,
     placeholder: "story Searchable",
     data: [
