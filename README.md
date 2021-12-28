@@ -125,3 +125,9 @@ You can use cypress to create e2e testing. To do so simply add a `.spec.js` file
 -   `cypress:run:ct --spec ./src/test/path/to/file.spec.tsx` -> it will launch test only on the specified file
 
 -   `cypress:open:ct` -> it will open an electron app to monitor your tests suites, usefull when you create your test because it has hot reload included
+
+## React-Select
+
+### Overriding styles
+
+-   In order to override style in react-select component, you can use the `customStyleOveride` props to set inner elements with custom styles. You can go visite this page to see what and how to use it (https://react-select.com/styles).

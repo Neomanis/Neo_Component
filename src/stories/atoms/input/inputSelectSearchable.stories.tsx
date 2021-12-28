@@ -23,6 +23,12 @@ export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
+    customStyleOveride: {
+        input: (provided, state) => ({
+            ...provided,
+            color: "#FF1166",
+        }),
+    },
     isClearable: true,
     placeholder: "story Searchable",
     containerClassName: "w-full flex items-center",

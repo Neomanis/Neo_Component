@@ -60,7 +60,7 @@ export const customStyles = {
     noOptionsMessage: (provided, state) => ({
         ...provided,
         background: "#15304C",
-        borderRaduis: 10,
+        borderRadius: 10,
         margin: 0,
     }),
     option: (provided, state: { isSelected }) => ({

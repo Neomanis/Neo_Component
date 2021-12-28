@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import Select, { MultiValue } from "react-select";
+import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
@@ -8,6 +8,11 @@ import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
     containerClassName?: string;
+    customStyleOveride?: StylesConfig<
+        { label: string; value: number },
+        boolean,
+        GroupBase<{ label: string; value: number }>
+    >;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     dotPosition?: string;
@@ -33,6 +38,7 @@ interface Props {
 
 const InputSelectSearchable = ({
     containerClassName,
+    customStyleOveride,
     data,
     defaultValue,
     dotPosition,
@@ -114,6 +120,17 @@ const InputSelectSearchable = ({
         }
     }
 
+    function overrideBaseCustomStyle(
+        baseStyle: StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>>,
+        customStyleOveride: StylesConfig<
+            { label: string; value: number },
+            boolean,
+            GroupBase<{ label: string; value: number }>
+        >
+    ): StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>> {
+        return { ...baseStyle, ...customStyleOveride };
+    }
+
     useEffect(() => {
         register && register(refForm);
         dispatch({ type: "RESET", payload: defaultValue });
@@ -151,9 +168,9 @@ const InputSelectSearchable = ({
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
             {label && <label className={labelClassName}>{label}</label>}
             <Select
-                className="flex items-center w-full my-1  rounded-md text-xs font-bold"
+                className="flex items-center w-full my-1 rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
-                styles={customStyles}
+                styles={overrideBaseCustomStyle(customStyles, customStyleOveride)}
                 options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
