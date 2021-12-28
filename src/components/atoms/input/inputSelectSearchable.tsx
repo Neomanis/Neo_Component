@@ -77,28 +77,27 @@ const InputSelectSearchable = ({
 
     const myLanguage = i18n.getFixedT(languageUser);
 
-    function handleOnChangeSimple(val: { value: number; label: string } | null): void {
-        if (val && doValueLogic) {
-            const newTracking = data.find((el) => el.value === val.value);
-            dispatch({ type: "TRACK_STATE", payload: newTracking });
+    function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
+        if (selected && doValueLogic) {
+            dispatch({ type: "TRACK_STATE", payload: selected });
         } else {
             dispatch({ type: "TRACK_STATE", payload: null });
         }
 
         if (isUpdateField) {
-            if (val?.value !== state.previous) {
-                dispatch({ type: "UPDATING", payload: val?.value });
+            if (selected?.value !== state.previous) {
+                dispatch({ type: "UPDATING", payload: selected?.value });
             } else {
                 dispatch({ type: "CANCEL_UPDATE" });
             }
         } else {
-            dispatch({ type: "RESET", payload: val?.value });
+            dispatch({ type: "RESET", payload: selected?.value });
         }
-        if (setValue && val) {
-            setValue(refForm, val.value);
+        if (setValue) {
+            setValue(refForm, selected?.value);
         }
-        if (setStateValue && val) {
-            setStateValue(val.value);
+        if (setStateValue) {
+            setStateValue(selected?.value);
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
@@ -106,22 +105,18 @@ const InputSelectSearchable = ({
     }
 
     function handleChangeMulti(
-        val: MultiValue<{
+        selecteds: MultiValue<{
             value: number;
             label: string;
         }>
     ): void {
-        const valArrayNumber = val.map((el) => el.value);
-        const formatedState = data.filter((el) => valArrayNumber.includes(el.value));
+        const values = selecteds.map((el) => el.value);
         if (isUpdateField) {
-            dispatch({ type: "TRACK_STATE", payload: formatedState });
-            dispatch({ type: "UPDATING", payload: valArrayNumber });
+            dispatch({ type: "TRACK_STATE", payload: selecteds });
+            dispatch({ type: "UPDATING", payload: values });
         }
-        if (setValue && val) {
-            setValue(
-                refForm,
-                formatedState.map((el) => el.value)
-            );
+        if (setValue) {
+            setValue(refForm, values);
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
