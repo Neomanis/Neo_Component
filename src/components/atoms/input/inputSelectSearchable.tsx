@@ -93,7 +93,7 @@ const InputSelectSearchable = ({
             dispatch({ type: "RESET", payload: val?.value });
         }
         if (setValue && val) {
-            setValue(refForm, val?.value);
+            setValue(refForm, val.value);
         }
         if (setStateValue && val) {
             setStateValue(val.value);
