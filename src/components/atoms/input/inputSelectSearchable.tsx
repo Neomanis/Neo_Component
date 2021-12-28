@@ -95,6 +95,9 @@ const InputSelectSearchable = ({
         if (setValue && val) {
             setValue(refForm, val?.value);
         }
+        if (setStateValue && val) {
+            setStateValue(val.value);
+        }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
         }
