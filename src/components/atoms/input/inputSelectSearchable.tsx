@@ -183,9 +183,11 @@ const InputSelectSearchable = ({
                 form={refForm}
                 placeholder={placeholder ?? ""}
                 defaultValue={
-                    !isMulti
+                    !isMulti && defaultValue
                         ? data.filter((el) => el.value === defaultValue)
-                        : data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : isMulti && defaultValue
+                        ? data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : []
                 }
                 value={state.stateFormated}
                 closeMenuOnSelect={!isMulti}

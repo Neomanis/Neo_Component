@@ -97,6 +97,7 @@ Updatable.args = {
     isSearchable: true,
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     //meant not to display isClearable button since isUpdateField = true
+    defaultValue: 2,
     isClearable: true,
     placeholder: "story Searchable",
     data: [
