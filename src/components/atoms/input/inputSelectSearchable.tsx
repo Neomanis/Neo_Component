@@ -15,6 +15,7 @@ interface Props {
     >;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
+    doValueLogic?: boolean;
     dotPosition?: string;
     errorMessage?: string;
     id?: string;
@@ -41,6 +42,7 @@ const InputSelectSearchable = ({
     customStyleOverride,
     data,
     defaultValue,
+    doValueLogic = true,
     dotPosition,
     errorMessage,
     isClearable = false,
@@ -76,7 +78,7 @@ const InputSelectSearchable = ({
     const myLanguage = i18n.getFixedT(languageUser);
 
     function handleOnChangeSimple(val: { value: number; label: string } | null): void {
-        if (val) {
+        if (val && doValueLogic) {
             const newTracking = data.find((el) => el.value === val.value);
             dispatch({ type: "TRACK_STATE", payload: newTracking });
         } else {
