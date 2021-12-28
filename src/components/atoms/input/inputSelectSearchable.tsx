@@ -8,7 +8,7 @@ import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
     containerClassName?: string;
-    customStyleOveride?: StylesConfig<
+    customStyleOverride?: StylesConfig<
         { label: string; value: number },
         boolean,
         GroupBase<{ label: string; value: number }>
@@ -38,7 +38,7 @@ interface Props {
 
 const InputSelectSearchable = ({
     containerClassName,
-    customStyleOveride,
+    customStyleOverride,
     data,
     defaultValue,
     dotPosition,
@@ -170,7 +170,7 @@ const InputSelectSearchable = ({
             <Select
                 className="flex items-center w-full my-1 rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
-                styles={overrideBaseCustomStyle(customStyles, customStyleOveride)}
+                styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
                 options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}

@@ -130,4 +130,4 @@ You can use cypress to create e2e testing. To do so simply add a `.spec.js` file
 
 ### Overriding styles
 
--   In order to override style in react-select component, you can use the `customStyleOveride` props to set inner elements with custom styles. You can go visite this page to see what and how to use it (https://react-select.com/styles).
+-   In order to override style in react-select component, you can use the `customStyleOverride` props to set inner elements with custom styles. You can go visite this page to see what and how to use it (https://react-select.com/styles).
