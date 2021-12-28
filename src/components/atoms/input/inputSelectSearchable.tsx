@@ -122,13 +122,13 @@ const InputSelectSearchable = ({
 
     function overrideBaseCustomStyle(
         baseStyle: StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>>,
-        customStyleOveride: StylesConfig<
+        customStyleOverride: StylesConfig<
             { label: string; value: number },
             boolean,
             GroupBase<{ label: string; value: number }>
         >
     ): StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>> {
-        return { ...baseStyle, ...customStyleOveride };
+        return { ...baseStyle, ...customStyleOverride };
     }
 
     useEffect(() => {

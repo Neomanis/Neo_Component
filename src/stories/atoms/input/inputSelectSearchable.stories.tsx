@@ -23,7 +23,7 @@ export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
-    customStyleOveride: {
+    customStyleOverride: {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         input: (provided, state) => ({
             ...provided,

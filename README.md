@@ -47,11 +47,10 @@ Exemple : `yarn add file:../Neo_Component/neomanis-neo-component-v1.6.6.tgz`
 
 Now it will take your local package
 
-⚠️⚠️⚠️<br/>
-Before you commit and push your work in the other project, don't forget to remove the local package from the project and do a proper install <br/>
+<br/>
+⚠️ Before you commit and push your work in the other project, don't forget to remove the local package from the project and do a proper install <br/>
 `yarn remove @neomanis/neo-component`<br/>
 `yarn add @neomanis/neo-component`<br/>
-⚠️⚠️⚠️
 
 ### Method 2 (using yarn link):
 
