@@ -118,7 +118,7 @@ const InputSelectSearchable = ({
             dispatch({ type: "UPDATING", payload: valArrayNumber });
         }
         if (setValue && val) {
-            setValue(refForm, val);
+            setValue(refForm, formatedState);
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
