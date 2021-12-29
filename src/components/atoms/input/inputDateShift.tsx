@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useEffect } from "react";
 import { FieldValues, UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 import InputDateTime from "./inputDateTime";
-import InputSelect from "./inputSelect";
+import InputSelectSearchable from "./inputSelectSearchable";
 
 interface Props {
     date: Date;
@@ -14,7 +14,7 @@ interface Props {
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
-    tabProps: Array<{ id: number; value: string }>;
+    tabProps: Array<{ value: number; label: string }>;
     updateFunction?: (refForm: string, value: string) => void;
 }
 
@@ -76,7 +76,8 @@ const InputDateShift = ({
                 />
             </div>
             <div className="w-1/2">
-                <InputSelect
+                <InputSelectSearchable
+                    isSearchable
                     data={tabProps}
                     defaultValue={-1}
                     isUpdateField={isUpdateField}
