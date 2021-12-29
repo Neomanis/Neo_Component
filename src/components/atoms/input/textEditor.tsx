@@ -10,7 +10,7 @@ import Dot from "../dot";
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
     defaultValue?: string;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -27,7 +27,7 @@ interface Props {
 const TextEditor = ({
     clearErrors,
     defaultValue = "",
-    dotPosition,
+    dotClassName,
     errorMessage,
     isError,
     isUpdateField = false,
@@ -137,7 +137,7 @@ const TextEditor = ({
                     modules={modules}
                     formats={formats}
                 />
-                <div className="w-5 mx-3 mt-2">
+                <div className={`w-5 ${dotClassName}`}>
                     {(isError || state.isCancelable || state.isSuccess) && (
                         <Dot
                             errorMessage={errorMessage}
@@ -156,7 +156,6 @@ const TextEditor = ({
                                 }
                                 dispatch({ type: "CANCEL_UPDATE" });
                             }}
-                            positionClassname={dotPosition}
                             trigger={state.trigger}
                             timer={timerSetting}
                         />

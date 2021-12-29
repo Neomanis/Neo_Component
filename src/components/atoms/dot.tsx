@@ -12,7 +12,6 @@ interface Props {
     isSuccess: boolean;
     isUpdateField: boolean;
     onClickCallback: () => void;
-    positionClassname?: string;
     timer?: number;
     trigger?: boolean;
 }
@@ -25,7 +24,6 @@ const Dot = ({
     isSuccess,
     isUpdateField,
     onClickCallback,
-    positionClassname,
     timer = 5000,
     trigger,
 }: Props): ReactElement => {
@@ -42,7 +40,7 @@ const Dot = ({
 
     return (
         <div
-            className={`${positionClassname} relative w-5 p-1 text-center rounded-full text-white ${
+            className={`relative w-5 p-1 text-center rounded-full text-white ${
                 (isCancelable || isError) && "bg-neo-red cursor-pointer"
             } ${isSuccess && "bg-neo-green"}`}
             onClick={(): void => {

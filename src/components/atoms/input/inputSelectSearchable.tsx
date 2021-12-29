@@ -16,7 +16,7 @@ interface Props {
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     doValueLogic?: boolean;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     id?: string;
     isClearable?: boolean;
@@ -43,7 +43,7 @@ const InputSelectSearchable = ({
     data,
     defaultValue,
     doValueLogic = true,
-    dotPosition,
+    dotClassName,
     errorMessage,
     isClearable = false,
     isError,
@@ -209,7 +209,7 @@ const InputSelectSearchable = ({
                 }}
             />
 
-            <div className="mx-3 w-9" data-testid="inputSelectSearchableDot-body">
+            <div className={`w-5 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -236,7 +236,6 @@ const InputSelectSearchable = ({
                                     : data.filter((el) => (state.previous as number[]).includes(el.value)),
                             });
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}
