@@ -9,7 +9,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 interface Props {
     className?: string;
     defaultValue: Date;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     fCallBack?: (date: Date | null) => void;
     inputClassName?: string;
@@ -34,7 +34,7 @@ interface Props {
 const InputDateTime = ({
     className,
     defaultValue,
-    dotPosition,
+    dotClassName,
     errorMessage,
     fCallBack,
     inputClassName,
@@ -148,7 +148,7 @@ const InputDateTime = ({
                     timeIntervals={15}
                 />
             </label>
-            <div className="w-5">
+            <div className={`w-5 ${dotClassName}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -157,7 +157,6 @@ const InputDateTime = ({
                         isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
                         isError={isError}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
