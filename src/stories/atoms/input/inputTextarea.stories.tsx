@@ -16,4 +16,10 @@ Default.args = {
     placeholder: "Exemple",
     refForm: "exempleArea",
     required: false,
+    classNames: {
+        dot: "self-start mt-2 ml-2",
+        textArea: "w-full bg-neo-bg-B p-2 rounded-md shadow-md h-40",
+        container: "flex items-center w-full",
+        labelBody: "flex-1",
+    },
 };
