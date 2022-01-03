@@ -5,8 +5,14 @@ import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 
 interface Props {
+    classNames?: {
+        container?: string;
+        dot?: string;
+        labelBody?: string;
+        labelText?: string;
+        textArea?: string;
+    };
     defaultValue?: string;
-    dotClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -23,8 +29,8 @@ interface Props {
 }
 
 const InputTextarea = ({
+    classNames,
     defaultValue,
-    dotClassName,
     errorMessage,
     isError,
     isUpdateField = false,
@@ -83,12 +89,12 @@ const InputTextarea = ({
     }, [state.updated, state.previous]);
     const inputRegister = register && register(refForm, { required });
     return (
-        <div className="w-full h-52 flex text-white" data-testid="inputTextarea-body">
-            <label className="w-full h-full">
-                <div className="text-sm font-bold mr-2 mb-4">{label}</div>
+        <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
+            <label className={classNames.labelBody ?? ""}>
+                <div className={classNames.labelText ?? ""}>{label}</div>
                 <textarea
                     {...(register && register(refForm, { required }))}
-                    className="w-full h-5/6 bg-neo-bg-B rounded border-2 border-neo-light-grey px-2 py-1 "
+                    className={classNames.textArea ?? ""}
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
                         if (isUpdateField && state.previous !== e.target.value && !isError) {
@@ -115,7 +121,7 @@ const InputTextarea = ({
                     placeholder={placeholder}
                 ></textarea>
             </label>
-            <div className={`w-5 ${dotClassName}`}>
+            <div className={`w-5 ${classNames.dot ?? ""}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}

@@ -183,6 +183,7 @@ const InputSelectSearchable = ({
                     )}`
                 }
                 isMulti={isMulti}
+                menuPlacement="auto"
                 form={refForm}
                 placeholder={placeholder ?? ""}
                 defaultValue={
