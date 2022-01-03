@@ -35,7 +35,7 @@
         "the": "the"
     },
     "globalErrors": {
-        "404": "OUPSS ! PAGES NOT FOUND !",
+        "404": "OUPSS! PAGES NOT FOUND!",
         "servicesUnavailable": "Services are unavailable, please wait",
         "somethingWentWrong": "Something went wrong"
     },
@@ -101,11 +101,11 @@
     "notification": {
         "title": "Notifications",
         "clearAll": "Clear all notifications",
-        "empty": "Such empty !",
+        "empty": "Such empty!",
         "seeAll": "See all"
     },
     "outage": {
-        "empty": "Everything is fine !",
+        "empty": "Everything is fine!",
         "inputSelectPlaceholder": "Shift"
     },
     "remote": {
@@ -209,7 +209,7 @@
         "botReport": "Neobot Report",
         "chatHistory": "CHAT HISTORY",
         "deleted": "deleted",
-        "deleteQuestion": "Delete this ticket ?",
+        "deleteQuestion": "Delete this ticket?",
         "display": "Display",
         "entity": "Entity",
         "errorDelete": "Deletion failed",
@@ -226,7 +226,7 @@
             "problemAppearsAgainDesc": "This action will reopen your ticket."
         },
         "search": "Search",
-        "solveQuestion": "Marks it as solved ?",
+        "solveQuestion": "Marks it as solved?",
         "solveTicket": "MARKS IT AS SOLVED",
         "subjectDetected": "DETECTED SUBJECTS",
         "systemDiag": "SYSTEM DIAGNOSTIC",

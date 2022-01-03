@@ -52,5 +52,5 @@ Default.args = {
     fCallBackSeeAll: () => console.log("SeeAll"),
     languageUser: "fr_FR",
     title: "Notification",
-    viewItem: 2,
+    viewItem: 4,
 };
