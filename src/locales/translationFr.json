@@ -218,7 +218,7 @@
             "inProgress": "Votre demande est en cours de traitement.",
             "pending": "Votre demande est en attente, nous collectons de plus amples informations.",
             "problemSolved": "Problème résolu ?",
-            "problemSolvedDesc": "Cette action marquera votre ticket comme résolus.",
+            "problemSolvedDesc": "Cette action marquera votre ticket comme résolu.",
             "problemAppearsAgain": "Problème toujours présent ?",
             "problemAppearsAgainDesc": "Cette action réouvrira votre ticket."
         },
