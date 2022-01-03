@@ -26,11 +26,13 @@
     "formatDateToNow": {
         "begin": "",
         "end": "",
-        "middle": ", "
+        "middle": "',' "
     },
     "global": {
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "at": "at",
+        "the": "the"
     },
     "globalErrors": {
         "404": "OUPSS ! PAGES NOT FOUND !",

@@ -24,13 +24,15 @@
         "goService": "Services"
     },
     "formatDateToNow": {
-        "begin": " le ",
+        "begin": "'le' ",
         "end": "",
-        "middle": " à "
+        "middle": " 'à' "
     },
     "global": {
         "yes": "Oui",
-        "no": "Non"
+        "no": "Non",
+        "at": "à",
+        "the": "le"
     },
     "globalErrors": {
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
