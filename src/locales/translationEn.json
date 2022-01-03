@@ -80,6 +80,8 @@
         "talkToBotResponse": "Great! I will take care of your ticket. We will diagnose and solve your problem. The ticket will be escalated if it's not possible. You can interrupt my diagnosis at any time and escalate the ticket to a technician.",
         "talkToHuman": "I need to talk to a human now!",
         "talkToHumanResponse": "Okay, we are escalating your ticket to a technician. You can contact me again to diagnose your problem by clicking on the 'Diagnostic with Neobot' button below.",
+        "ticketSolvedMessage": "Thank you for telling me that your problem is gone, this ticket is now marked as solved.",
+        "ticketReoponendMessage": "Sorry to hear that your problem is there again, this ticket is now reopened.",
         "toaster": {
             "newMessage": "You have received a new message on this ticket!",
             "ticketUpdate": "Neobot is gathering some new information about this ticket..."
