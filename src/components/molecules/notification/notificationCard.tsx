@@ -31,7 +31,7 @@ const NotificationCard = ({
                 setIsFolded(!isFolded);
                 fReadNotification(notificationId, userUid);
             }}
-            className="cursor-pointer w-full bg-neo-bg-B bg-opacity-50 flex items-center justify-between p-3 rounded-md "
+            className="cursor-pointer w-full bg-neo-bg-B bg-opacity-50 flex items-center justify-between p-3 rounded-md"
         >
             <div className="text-white w-11/12 pr-2">
                 <p className={`${isFolded && "line-clamp-2"} mb-3 text-sm`}>{content}</p>

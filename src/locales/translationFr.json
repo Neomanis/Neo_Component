@@ -30,7 +30,9 @@
     },
     "global": {
         "yes": "Oui",
-        "no": "Non"
+        "no": "Non",
+        "at": "à",
+        "the": "le"
     },
     "globalErrors": {
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
@@ -98,8 +100,9 @@
     },
     "notification": {
         "title": "Notifications",
-        "clearAll": "Tout supprimer",
-        "empty": "Plus de notifications !"
+        "clearAll": "Supprimer tous les notifications",
+        "empty": "Plus de notifications !",
+        "seeAll": "Tout voir"
     },
     "outage": {
         "empty": "Tout va bien !",
