@@ -217,9 +217,9 @@
             "waitTechnician": "Un technicien vous contactera dès que possible.",
             "inProgress": "Votre demande est en cours de traitement.",
             "pending": "Votre demande est en attente, nous collectons de plus amples informations.",
-            "problemSolved": "Problème résolu?",
+            "problemSolved": "Problème résolu ?",
             "problemSolvedDesc": "Cette action marquera votre ticket comme résolus.",
-            "problemAppearsAgain": "Problème toujours présent?",
+            "problemAppearsAgain": "Problème toujours présent ?",
             "problemAppearsAgainDesc": "Cette action réouvrira votre ticket."
         },
         "search": "Rechercher",
