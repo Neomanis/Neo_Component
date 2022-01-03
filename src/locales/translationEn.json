@@ -219,7 +219,11 @@
         "neoHelper": {
             "waitTechnician": "A technician will contact you as soon as possible.",
             "inProgress": "Your request is being processed.",
-            "pending": "Your request is pending, we are collecting more informations."
+            "pending": "Your request is pending, we are collecting more informations.",
+            "problemSolved": "Problem solved?",
+            "problemSolvedDesc": "This action will mark your ticket as solved.",
+            "problemAppearsAgain": "Problem appears again?",
+            "problemAppearsAgainDesc": "This action will reopen your ticket."
         },
         "search": "Search",
         "solveQuestion": "Marks it as solved ?",
