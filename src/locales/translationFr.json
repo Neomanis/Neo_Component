@@ -24,9 +24,9 @@
         "goService": "Services"
     },
     "formatDateToNow": {
-        "begin": "'le' ",
+        "begin": " le ",
         "end": "",
-        "middle": " 'à' "
+        "middle": " à "
     },
     "global": {
         "yes": "Oui",
@@ -99,7 +99,8 @@
     "notification": {
         "title": "Notifications",
         "clearAll": "Supprimer tous les notifications",
-        "empty": "Plus de notifications !"
+        "empty": "Plus de notifications !",
+        "seeAll": "Tout voir"
     },
     "outage": {
         "empty": "Tout va bien !",

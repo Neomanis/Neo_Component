@@ -40,7 +40,7 @@ const NotificationContainer = ({
                     {childrenlength && <p>({childrenlength})</p>}
                 </div>
                 <Button
-                    data={"See all"}
+                    data={myLanguage("notification.seeAll")}
                     fCallback={(): void => {
                         setFullView(!fullView);
                         fCallBackSeeAll && fCallBackSeeAll();

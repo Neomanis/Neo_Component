@@ -50,7 +50,7 @@ Default.args = {
     clearAllNotifications: true,
     fCallBackClear: () => console.log("clear"),
     fCallBackSeeAll: () => console.log("SeeAll"),
-    languageUser: "en_US",
+    languageUser: "fr_FR",
     title: "Notification",
     viewItem: 2,
 };

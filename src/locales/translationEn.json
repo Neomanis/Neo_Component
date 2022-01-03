@@ -26,7 +26,7 @@
     "formatDateToNow": {
         "begin": "",
         "end": "",
-        "middle": "',' "
+        "middle": ", "
     },
     "global": {
         "yes": "Yes",
@@ -99,7 +99,8 @@
     "notification": {
         "title": "Notifications",
         "clearAll": "Clear all notifications",
-        "empty": "Such empty !"
+        "empty": "Such empty !",
+        "seeAll": "See all"
     },
     "outage": {
         "empty": "Everything is fine !",
