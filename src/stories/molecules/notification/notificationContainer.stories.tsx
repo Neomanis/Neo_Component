@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-
-import { NotificationCard, NotificationContainer } from "../../../components/molecules";
-import { getFormatedTimeToNow } from "../../../components/utils";
 import { fakeNotification } from "../../fakeObject";
+import NotificationContainer from "../../../components/molecules/notification/notificationContainer";
+import NotificationCard from "../../../components/molecules/notification/notificationCard";
 
 export default {
     component: NotificationContainer,
@@ -19,28 +18,39 @@ const Template: ComponentStory<typeof NotificationContainer> = (args) => {
     );
 };
 
-const notifications = [fakeNotification, fakeNotification, fakeNotification];
-export const Default = Template.bind({});
+const notifications = [
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+    fakeNotification,
+];
 
+export const Default = Template.bind({});
 Default.args = {
     children: notifications.map((notification, key) => {
         return (
-            <div key={key} className="w-full pb-2">
+            <div className="pb-2" key={key}>
                 <NotificationCard
                     content={notification.notification.content}
-                    date={getFormatedTimeToNow(notification.notification.createdAt)}
-                    fDeleteNotification={(id, uid) => console.log(id, uid)}
-                    fReadNotification={(id, uid) => console.log(id, uid)}
+                    date={notification.notification.createdAt}
+                    fDeleteNotification={() => console.log("delete")}
+                    fReadNotification={() => console.log("read")}
                     notificationId={notification.notification.id}
-                    read={notification.read}
-                    userUid={"ttest"}
+                    read={false}
+                    userUid="21"
                 />
             </div>
         );
     }),
-    childrenlength: 2,
+    childrenlength: notifications.length,
     clearAllNotifications: true,
-    fCallBackClear: () => console.log("ok"),
+    fCallBackClear: () => console.log("clear"),
+    fCallBackSeeAll: () => console.log("SeeAll"),
     languageUser: "en_US",
     title: "Notification",
+    viewItem: 2,
 };

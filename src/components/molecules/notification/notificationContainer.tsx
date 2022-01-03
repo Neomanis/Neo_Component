@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useState, useRef, useEffect } from "react";
 import { Button, Title } from "../../atoms";
 
 type Props = {
@@ -7,8 +7,10 @@ type Props = {
     childrenlength?: number;
     clearAllNotifications?: boolean;
     fCallBackClear?: () => void;
+    fCallBackSeeAll?: () => void;
     languageUser?: string;
     title: string;
+    viewItem?: number;
 };
 
 const NotificationContainer = ({
@@ -16,11 +18,20 @@ const NotificationContainer = ({
     childrenlength,
     clearAllNotifications,
     fCallBackClear,
+    fCallBackSeeAll,
     languageUser = "en_US",
     title,
+    viewItem = 2,
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
     const [fullView, setFullView] = useState(false);
+    const [heightItem, setHeightItem] = useState(100);
+    const refHeight = useRef<HTMLHeadingElement>(null);
+
+    useEffect(() => {
+        setHeightItem(refHeight.current.children[0].getBoundingClientRect().height * viewItem);
+    }, [viewItem]);
+
     return (
         <div>
             <div className="flex items-center justify-between w-full text-sm uppercase border-b-2 py-1 border-neo-bg-B mb-3">
@@ -30,12 +41,22 @@ const NotificationContainer = ({
                 </div>
                 <Button
                     data={"See all"}
-                    fCallback={(): void => setFullView(!fullView)}
+                    fCallback={(): void => {
+                        setFullView(!fullView);
+                        fCallBackSeeAll && fCallBackSeeAll();
+                    }}
                     className="flex hover:text-neo-light-grey transition-colors text-neo-link text-sm"
                     iconClassName="ml-2"
                 />
             </div>
-            <div className={`${!fullView && "h-32 overflow-scroll no-scrollbar"}`}>{children}</div>
+            <div
+                className={`${!fullView && "overflow-scroll no-scrollbar"} transition-all overflow-hidden`}
+                style={
+                    !fullView ? { height: heightItem } : { height: refHeight.current.getBoundingClientRect().height }
+                }
+            >
+                <div ref={refHeight}>{children}</div>
+            </div>
             {clearAllNotifications && (
                 <div className="w-full flex justify-center py-2">
                     <Button
