@@ -102,7 +102,8 @@
         "empty": "Such empty !"
     },
     "outage": {
-        "empty": "Everything is fine !"
+        "empty": "Everything is fine !",
+        "inputSelectPlaceholder": "Shift"
     },
     "remote": {
         "controlButton": "Remote Control",
