@@ -8,7 +8,7 @@ interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
     defaultValue?: string;
     disabled?: boolean;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     inputClassName?: string;
     isError?: boolean;
@@ -34,7 +34,7 @@ const Input = ({
     clearErrors,
     defaultValue,
     disabled,
-    dotPosition,
+    dotClassName,
     errorMessage,
     inputClassName,
     isError,
@@ -139,7 +139,7 @@ const Input = ({
                     type={typeInput}
                 />
             </label>
-            <div className="w-5 absolute -right-4">
+            <div className={`w-5 ${dotClassName}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -158,7 +158,6 @@ const Input = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}

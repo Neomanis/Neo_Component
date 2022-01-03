@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Title, InputSimpleSelect, InputChoice } from "../../atoms";
+import { Title, InputSelectSearchable, InputChoice } from "../../atoms";
 
 interface Props {
     datas: { label: string; value: string }[];
@@ -16,18 +16,18 @@ const ChatCard = ({ datas, fCallBack, placeholder, title, type }: Props): ReactE
             option = (
                 <>
                     <Title className={"text-white"} type="h3" data={title} />
-                    <InputSimpleSelect
-                        className={"mt-2"}
-                        data={datas}
-                        onChangeCallBack={(data) =>
+                    <InputSelectSearchable
+                        refForm="dropdown"
+                        isSearchable
+                        containerClassName={"mt-2"}
+                        data={datas.map((data) => ({ label: data.label, value: parseInt(data.value) }))}
+                        setStateValue={(data) =>
                             fCallBack({
-                                value: data,
-                                text: datas.find((option) => option.value === data)?.label,
+                                value: data.toString(),
+                                text: datas.find((option) => option.value === data.toString())?.label,
                             })
                         }
-                        optionClassName={""}
                         placeholder={placeholder}
-                        selectClassName={"text-white border-2"}
                     />
                 </>
             );

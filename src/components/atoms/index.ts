@@ -14,10 +14,7 @@ import InputChoice from "./input/inputChoice";
 import InputDateShift from "./input/inputDateShift";
 import InputDateTime from "./input/inputDateTime";
 import InputFile from "./input/inputFile";
-import InputMultipleSelect from "./input/inputMultipleSelect";
-import InputSelect from "./input/inputSelect";
 import InputSelectSearchable from "./input/inputSelectSearchable";
-import InputSimpleSelect from "./input/inputSimpleSelect";
 import InputTextarea from "./input/inputTextarea";
 import Loader from "./loader";
 import Pill from "./pill";
@@ -47,10 +44,7 @@ export {
     InputDateShift,
     InputDateTime,
     InputFile,
-    InputMultipleSelect,
-    InputSelect,
     InputSelectSearchable,
-    InputSimpleSelect,
     InputTextarea,
     Loader,
     Pill,

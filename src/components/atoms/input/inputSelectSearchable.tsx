@@ -1,15 +1,22 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
-import { FieldValues, UseFormSetValue } from "react-hook-form";
-import Select, { MultiValue } from "react-select";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 
 interface Props {
+    containerClassName?: string;
+    customStyleOverride?: StylesConfig<
+        { label: string; value: number },
+        boolean,
+        GroupBase<{ label: string; value: number }>
+    >;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
-    dotPosition?: string;
+    doValueLogic?: boolean;
+    dotClassName?: string;
     errorMessage?: string;
     id?: string;
     isClearable?: boolean;
@@ -17,9 +24,12 @@ interface Props {
     isMulti?: boolean;
     isSearchable: boolean;
     isUpdateField?: boolean;
+    label?: string;
+    labelClassName?: string;
     languageUser?: string;
-    placeholder: string;
+    placeholder?: string;
     refForm: string;
+    register?: UseFormRegister<FieldValues>;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
@@ -28,18 +38,24 @@ interface Props {
 }
 
 const InputSelectSearchable = ({
+    containerClassName,
+    customStyleOverride,
     data,
     defaultValue,
-    dotPosition,
+    doValueLogic = true,
+    dotClassName,
     errorMessage,
     isClearable = false,
     isError,
     isMulti = false,
     isSearchable = true,
     isUpdateField = false,
+    label,
+    labelClassName,
     languageUser = "en_US",
     placeholder,
     refForm,
+    register,
     setStateValue,
     setValue,
     targetId,
@@ -61,25 +77,27 @@ const InputSelectSearchable = ({
 
     const myLanguage = i18n.getFixedT(languageUser);
 
-    function handleOnChangeSimple(val: { value: number; label: string } | null): void {
-        if (val) {
-            const newTracking = data.find((el) => el.value === val.value);
-            dispatch({ type: "TRACK_STATE", payload: newTracking });
+    function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
+        if (selected && doValueLogic) {
+            dispatch({ type: "TRACK_STATE", payload: selected });
         } else {
             dispatch({ type: "TRACK_STATE", payload: null });
         }
 
         if (isUpdateField) {
-            if (val?.value !== state.previous) {
-                dispatch({ type: "UPDATING", payload: val?.value });
+            if (selected?.value !== state.previous) {
+                dispatch({ type: "UPDATING", payload: selected?.value });
             } else {
                 dispatch({ type: "CANCEL_UPDATE" });
             }
         } else {
-            dispatch({ type: "RESET", payload: val?.value });
+            dispatch({ type: "RESET", payload: selected?.value });
         }
-        if (setValue && val) {
-            setValue(refForm, val?.value);
+        if (setValue) {
+            setValue(refForm, selected?.value);
+        }
+        if (setStateValue) {
+            setStateValue(selected?.value);
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
@@ -87,26 +105,37 @@ const InputSelectSearchable = ({
     }
 
     function handleChangeMulti(
-        val: MultiValue<{
+        selecteds: MultiValue<{
             value: number;
             label: string;
         }>
     ): void {
-        const valArrayNumber = val.map((el) => el.value);
-        const formatedState = data.filter((el) => valArrayNumber.includes(el.value));
+        const values = selecteds.map((el) => el.value);
         if (isUpdateField) {
-            dispatch({ type: "TRACK_STATE", payload: formatedState });
-            dispatch({ type: "UPDATING", payload: valArrayNumber });
+            dispatch({ type: "TRACK_STATE", payload: selecteds });
+            dispatch({ type: "UPDATING", payload: values });
         }
-        if (setValue && val) {
-            setValue(refForm, val);
+        if (setValue) {
+            setValue(refForm, values);
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
         }
     }
 
+    function overrideBaseCustomStyle(
+        baseStyle: StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>>,
+        customStyleOverride: StylesConfig<
+            { label: string; value: number },
+            boolean,
+            GroupBase<{ label: string; value: number }>
+        >
+    ): StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>> {
+        return { ...baseStyle, ...customStyleOverride };
+    }
+
     useEffect(() => {
+        register && register(refForm);
         dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
@@ -139,11 +168,12 @@ const InputSelectSearchable = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className="w-full flex items-center" data-testid="inputSelectSearchable-body">
+        <div className={containerClassName} data-testid="inputSelectSearchable-body">
+            {label && <label className={labelClassName}>{label}</label>}
             <Select
-                className="flex items-center w-full my-1  rounded-md text-xs font-bold"
+                className="flex items-center w-full my-1 rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
-                styles={customStyles}
+                styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
                 options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
@@ -154,11 +184,13 @@ const InputSelectSearchable = ({
                 }
                 isMulti={isMulti}
                 form={refForm}
-                placeholder={placeholder}
+                placeholder={placeholder ?? ""}
                 defaultValue={
-                    !isMulti
+                    !isMulti && defaultValue
                         ? data.filter((el) => el.value === defaultValue)
-                        : data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : isMulti && defaultValue
+                        ? data.filter((el) => (defaultValue as number[]).includes(el.value))
+                        : []
                 }
                 value={state.stateFormated}
                 closeMenuOnSelect={!isMulti}
@@ -177,7 +209,7 @@ const InputSelectSearchable = ({
                 }}
             />
 
-            <div className="mx-3 w-9" data-testid="inputSelectSearchableDot-body">
+            <div className={`w-5 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -204,7 +236,6 @@ const InputSelectSearchable = ({
                                     : data.filter((el) => (state.previous as number[]).includes(el.value)),
                             });
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}

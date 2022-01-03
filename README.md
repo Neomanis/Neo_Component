@@ -47,11 +47,9 @@ Exemple : `yarn add file:../Neo_Component/neomanis-neo-component-v1.6.6.tgz`
 
 Now it will take your local package
 
-⚠️⚠️⚠️<br/>
-Before you commit and push your work in the other project, don't forget to remove the local package from the project and do a proper install <br/>
+⚠️ Before you commit and push your work in the other project, don't forget to remove the local package from the project and do a proper install <br/>
 `yarn remove @neomanis/neo-component`<br/>
 `yarn add @neomanis/neo-component`<br/>
-⚠️⚠️⚠️
 
 ### Method 2 (using yarn link):
 
@@ -125,3 +123,90 @@ You can use cypress to create e2e testing. To do so simply add a `.spec.js` file
 -   `cypress:run:ct --spec ./src/test/path/to/file.spec.tsx` -> it will launch test only on the specified file
 
 -   `cypress:open:ct` -> it will open an electron app to monitor your tests suites, usefull when you create your test because it has hot reload included
+
+## React-Select
+
+### Overriding styles
+
+-   In order to override style in react-select component, you can use the `customStyleOverride` props to set inner elements with custom styles. You can go visite this page to see what and how to use it (https://react-select.com/styles).
+
+-   Here is the base styled from our library:
+
+```js
+clearIndicator: (provided, state) => ({
+        ...provided,
+        display: "bloc",
+        padding: 0,
+        position: "absolute",
+        right: 30,
+        top: 10,
+        border: "none",
+    }),
+    container: (provided, state) => ({
+        ...provided,
+        background: "#15304C",
+        padding: 0,
+        margin: 0,
+        color: "#DAE5E5",
+    }),
+    control: (provided, state) => ({
+        ...provided,
+        width: "100%",
+        color: "#DAE5E5",
+        background: "#15304C",
+        border: "none",
+    }),
+    dropdownIndicator: (provided, state) => ({
+        ...provided,
+        display: "bloc",
+        padding: 0,
+        position: "absolute",
+        right: 5,
+        top: 10,
+        border: "none",
+    }),
+    indicatorSeparator: (provided, state) => ({
+        ...provided,
+        display: "none",
+    }),
+    input: (provided, state) => ({
+        ...provided,
+        color: "#DAE5E5",
+        margin: 0,
+    }),
+    menu: (provided, state) => ({
+        ...provided,
+        background: "#15304C",
+    }),
+    multiValue: (provided, state) => ({
+        ...provided,
+        color: "#DAE5E5",
+        background: "#FF1166",
+        margin: 1,
+    }),
+    multiValueLabel: (provided, state) => ({
+        ...provided,
+        background: "#152535",
+        color: "#DAE5E5",
+    }),
+    noOptionsMessage: (provided, state) => ({
+        ...provided,
+        background: "#15304C",
+        borderRadius: 10,
+        margin: 0,
+    }),
+    option: (provided, state: { isSelected }) => ({
+        ...provided,
+        "&:hover": {
+            background: "#366688",
+            cursor: "pointer",
+        },
+        background: "#15304C",
+        color: state.isSelected ? "#FF1166" : "#DAE5E5",
+        padding: 10,
+    }),
+    singleValue: (provided, state) => ({
+        ...provided,
+        color: "#DAE5E5",
+    }),
+```

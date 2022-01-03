@@ -10,7 +10,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 interface Props {
     activeItems?: Array<IInputSelect>;
     defaultItems?: Array<number>;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -27,7 +27,7 @@ interface Props {
 const InputMultipleSelect = ({
     activeItems,
     defaultItems = [],
-    dotPosition,
+    dotClassName,
     errorMessage,
     isError,
     isUpdateField = false,
@@ -179,7 +179,7 @@ const InputMultipleSelect = ({
                 })}
             </div>
 
-            <div className="mx-3 mt-2 w-6">
+            <div className={`w-5 ${dotClassName}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -197,7 +197,6 @@ const InputMultipleSelect = ({
                                 selectInput.current.value = "-1";
                             }
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}

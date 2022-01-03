@@ -6,7 +6,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 
 interface Props {
     defaultValue?: string;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -24,7 +24,7 @@ interface Props {
 
 const InputTextarea = ({
     defaultValue,
-    dotPosition,
+    dotClassName,
     errorMessage,
     isError,
     isUpdateField = false,
@@ -115,7 +115,7 @@ const InputTextarea = ({
                     placeholder={placeholder}
                 ></textarea>
             </label>
-            <div className="w-5">
+            <div className={`w-5 ${dotClassName}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -133,7 +133,6 @@ const InputTextarea = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}

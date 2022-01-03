@@ -8,7 +8,7 @@ import Dot from "../dot";
 interface Props {
     data: Array<IInputSelect>;
     defaultValue?: number;
-    dotPosition?: string;
+    dotClassName?: string;
     errorMessage?: string;
     id?: string;
     isError?: boolean;
@@ -30,7 +30,7 @@ interface Props {
 const InputSelect = ({
     data,
     defaultValue,
-    dotPosition,
+    dotClassName,
     errorMessage,
     id,
     isError,
@@ -142,7 +142,7 @@ const InputSelect = ({
                         : null}
                 </select>
             </label>
-            <div className="mx-3 w-9">
+            <div className={`w-5 ${dotClassName}`}>
                 {(isError || state.isCancelable || state.isSuccess) && (
                     <Dot
                         errorMessage={errorMessage}
@@ -163,7 +163,6 @@ const InputSelect = ({
                             }
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
-                        positionClassname={dotPosition}
                         trigger={state.trigger}
                     />
                 )}
