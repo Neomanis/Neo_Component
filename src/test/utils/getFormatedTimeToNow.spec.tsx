@@ -63,13 +63,13 @@ describe("Date to now format functions", () => {
         const date = new Date();
         date.setHours(date.getHours() - 240);
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "en_US")).to.equal(
-            format(date, "P',' p", { locale: enUS })
+            format(date, "P, p", { locale: enUS })
         );
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "en_GB")).to.equal(
-            format(date, "P',' p", { locale: enGB })
+            format(date, "P, p", { locale: enGB })
         );
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "fr_FR")).to.equal(
-            format(date, "'le' P 'à' p", { locale: fr })
+            format(date, "le P à p", { locale: fr })
         );
     });
 });
