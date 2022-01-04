@@ -73,7 +73,7 @@
         "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
         "helpButton": "Ok thanks!",
         "inputPlaceholder": "Send",
-        "renameTicketButton": "I would like to name my ticket",
+        "renameTicketButton": "(Optional) I would like to name my ticket",
         "renameTicketQuestion": "How do you want to name this ticket?",
         "renameTicketValidation": "The ticket's name has been updated.",
         "talkToBot": "Diagnostic with Neobot",
