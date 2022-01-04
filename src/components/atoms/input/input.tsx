@@ -1,11 +1,13 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
+    customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
     disabled?: boolean;
     dotClassName?: string;
@@ -32,6 +34,7 @@ interface Props {
 
 const Input = ({
     clearErrors,
+    customValidation,
     defaultValue,
     disabled,
     dotClassName,
@@ -99,7 +102,7 @@ const Input = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
 
-    const inputRegister = register && register(refForm, { required });
+    const inputRegister = register && register(refForm, { required, validate: { ...customValidation } });
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full flex justify-center">

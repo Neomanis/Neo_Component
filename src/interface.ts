@@ -445,6 +445,10 @@ export interface IUpdateTicket {
     [x: string]: string | number | number[] | Partial<IResource>[] | string[];
 }
 
+export interface IReactHookFormCustomValidation<Type> {
+    [x: string]: (value: Type) => boolean;
+}
+
 export interface ITechnicalQuestionAnswer {
     id: number;
     text: string;
