@@ -327,7 +327,7 @@ export interface ISessionToken {
 }
 
 export interface ITechnicalQuestion {
-    ticketId: number;
+    ticketId: number | null;
     title: string;
     text: string;
     user: { name: string; level?: string };
@@ -338,7 +338,7 @@ export interface ITechnicalQuestion {
 }
 export interface ITechnicalQuestionResponse {
     id: number;
-    ticketId: number;
+    ticketId: number | null;
     title: string;
     text: string;
     solved: boolean;
