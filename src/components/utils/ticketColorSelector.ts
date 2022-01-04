@@ -28,12 +28,12 @@ export function getStatusColor(statusId: number, isHex: boolean): string {
             hex: "#2fa8fc",
         },
         solved: {
-            tailwind: "bg-neo-bg-A",
-            hex: "#152535",
+            tailwind: "neo-violet",
+            hex: "#6845ba",
         },
         closed: {
-            tailwind: "bg-neo-bg-A",
-            hex: "#152535",
+            tailwind: "neo-grey",
+            hex: "#473c61",
         },
     };
 
