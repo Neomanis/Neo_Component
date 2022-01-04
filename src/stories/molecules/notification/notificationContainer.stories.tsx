@@ -37,7 +37,7 @@ Default.args = {
             </div>
         );
     }),
-    childrenlength: notifications.length,
+    childrenLength: notifications.length,
     clearAllNotifications: true,
     fCallBackClear: () => console.log("clear"),
     fCallBackSeeAll: () => console.log("SeeAll"),
