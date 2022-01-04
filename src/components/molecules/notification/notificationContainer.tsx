@@ -4,7 +4,7 @@ import { Button, Title } from "../../atoms";
 
 type Props = {
     children: ReactNode;
-    childrenlength?: number;
+    childrenLength?: number;
     clearAllNotifications?: boolean;
     fCallBackClear?: () => void;
     fCallBackSeeAll?: () => void;
@@ -15,7 +15,7 @@ type Props = {
 
 const NotificationContainer = ({
     children,
-    childrenlength,
+    childrenLength,
     clearAllNotifications,
     fCallBackClear,
     fCallBackSeeAll,
@@ -29,25 +29,30 @@ const NotificationContainer = ({
     const refHeight = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {
-        setHeightItem(refHeight.current.children[0].getBoundingClientRect().height * viewItem);
-    }, [viewItem]);
+        setHeightItem(
+            refHeight.current.children[0].getBoundingClientRect().height *
+                (viewItem <= childrenLength ? viewItem : childrenLength)
+        );
+    }, [viewItem, childrenLength]);
 
     return (
         <div>
             <div className="flex items-center justify-between w-full text-sm uppercase border-b-2 py-1 border-neo-bg-B mb-3">
                 <div className="flex items-center text-neo-light-grey">
                     <Title data={title} type="h2" className="mr-2" />
-                    {childrenlength && <p>({childrenlength})</p>}
+                    {childrenLength && <p>({childrenLength})</p>}
                 </div>
-                <Button
-                    data={myLanguage("notification.seeAll")}
-                    fCallback={(): void => {
-                        setFullView(!fullView);
-                        fCallBackSeeAll && fCallBackSeeAll();
-                    }}
-                    className="flex hover:text-neo-light-grey transition-colors text-neo-link text-sm"
-                    iconClassName="ml-2"
-                />
+                {viewItem < childrenLength && (
+                    <Button
+                        data={!fullView ? myLanguage("notification.seeAll") : myLanguage("notification.seeLess")}
+                        fCallback={(): void => {
+                            setFullView(!fullView);
+                            fCallBackSeeAll && fCallBackSeeAll();
+                        }}
+                        className="flex hover:text-neo-light-grey transition-colors text-neo-link text-sm"
+                        iconClassName="ml-2"
+                    />
+                )}
             </div>
             <div
                 className={`${!fullView && "overflow-scroll no-scrollbar"} transition-all overflow-hidden`}

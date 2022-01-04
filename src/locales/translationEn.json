@@ -104,7 +104,8 @@
         "title": "Notifications",
         "clearAll": "Clear all notifications",
         "empty": "Such empty!",
-        "seeAll": "See all"
+        "seeAll": "See all",
+        "seeLess": "See less"
     },
     "outage": {
         "empty": "Everything is fine!",
