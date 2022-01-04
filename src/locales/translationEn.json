@@ -264,6 +264,7 @@
         "similarQuestion": "Similar question",
         "switchValueRelated": "Show my related questions",
         "switchValueSolved": "Show me solved questions",
+        "ticketNotFound": "Specified ticket does not exist",
         "unansweredQuestionTitle": "Unanswered questions",
         "unfollow": "Unfollow"
     },
