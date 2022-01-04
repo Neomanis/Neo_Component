@@ -18,16 +18,7 @@ const Template: ComponentStory<typeof NotificationContainer> = (args) => {
     );
 };
 
-const notifications = [
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-    fakeNotification,
-];
+const notifications = [fakeNotification, fakeNotification, fakeNotification];
 
 export const Default = Template.bind({});
 Default.args = {
@@ -52,5 +43,5 @@ Default.args = {
     fCallBackSeeAll: () => console.log("SeeAll"),
     languageUser: "fr_FR",
     title: "Notification",
-    viewItem: 4,
+    viewItem: 3,
 };

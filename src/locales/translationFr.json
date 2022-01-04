@@ -104,7 +104,8 @@
         "title": "Notifications",
         "clearAll": "Supprimer tout",
         "empty": "Plus de notifications !",
-        "seeAll": "Tout voir"
+        "seeAll": "Tout voir",
+        "seeLess": "Voir moin"
     },
     "outage": {
         "empty": "Tout va bien !",
