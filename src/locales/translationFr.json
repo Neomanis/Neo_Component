@@ -102,7 +102,7 @@
     },
     "notification": {
         "title": "Notifications",
-        "clearAll": "Supprimer tous les notifications",
+        "clearAll": "Supprimer tout",
         "empty": "Plus de notifications !",
         "seeAll": "Tout voir"
     },

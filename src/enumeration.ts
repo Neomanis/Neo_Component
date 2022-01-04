@@ -26,7 +26,7 @@ export const statusSelection = [
     { id: 2, value: "In progress (assigned)" },
     { id: 3, value: "In progress (planned)" },
     { id: 4, value: "Pending" },
-    { id: 5, value: "Resolved" },
+    { id: 5, value: "Solved" },
     { id: 6, value: "Closed" },
 ];
 
