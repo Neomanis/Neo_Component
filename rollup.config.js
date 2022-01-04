@@ -7,6 +7,7 @@ import typescript from "rollup-plugin-typescript2";
 import svgr from "@svgr/rollup";
 import packageJson from "./package.json";
 import json from "@rollup/plugin-json";
+import copy from "rollup-plugin-copy";
 
 export default {
     input: "src/index.ts",
@@ -26,5 +27,8 @@ export default {
         commonjs(),
         typescript({ useTsconfigDeclarationDir: true, tsconfig: "./tsconfig.prod.json" }),
         json(),
+        copy({
+            targets: [{ src: "tailwind.config.js", dest: "build" }],
+        }),
     ],
 };

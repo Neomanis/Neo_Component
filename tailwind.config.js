@@ -41,10 +41,13 @@ module.exports = {
                         DEFAULT: "#FFCC66",
                         sand: "#e2dc8f",
                     },
+                    violet: "#6845ba",
+                    grey: "#473c61",
                 },
             },
         },
         screens: {
+            xs: "400px",
             sm: "640px",
             md: "768px",
             lg: "1024px",
@@ -104,7 +107,7 @@ module.exports = {
         },
         animation: {
             none: "none",
-            spin: "spin 1s linear infinite",
+            spin: "spin 1.5s linear infinite",
             spinReverse: "spinReverse 0.2s linear ",
             spinReverseN: "spinReverseN 0.2s linear ",
             ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
@@ -118,10 +121,14 @@ module.exports = {
             leftH: "leftH 0.3s linear",
             rightH: "rightH 0.3s linear",
             shakeX: "shakeX 2s infinite",
+            slideChatIn: "slideChatIn 0.5s ease-in-out",
+            slideChatOut: "slideChatOut 0.5s ease-in-out",
             slideIn: "slideIn 0.3s ease-in-out",
             slideOut: "slideOut 0.5s ease-in-out",
-            slideTop: "sideTop 0.5s ease-in-out",
+            slideTop: "slideTop 0.5s ease-in-out",
             slideTopReverse: "slideTopReverse 0.5s ease-in-out",
+            slideBottom: "slideBottom 0.5s ease-in-out",
+            slideBottomReverse: "slideBottomReverse 0.5s ease-in-out",
             positionDelete: "positionDelete 0.3s ease-in-out",
             widthCardOpen: "widthCardOpen 0.3s ease-in-out",
             widthCardClose: "widthCardClose 0.3s ease-in-out",
@@ -211,6 +218,7 @@ module.exports = {
             0: "0px",
             2: "2px",
             4: "4px",
+            6: "6px",
             8: "8px",
         },
         boxShadow: {
@@ -487,6 +495,9 @@ module.exports = {
             "5/6": "83.333333%",
             full: "100%",
             screen: "100vh",
+            compactTicket: "700px",
+            chatModal: "600px",
+            inputHeight: "38px",
         }),
         inset: (theme, { negative }) => ({
             auto: "auto",
@@ -515,10 +526,10 @@ module.exports = {
             },
             widthModalAnim: {
                 from: { width: 0 },
-                to: { width: "76vw" },
+                to: { width: "100%" },
             },
             widthModalAnimOut: {
-                from: { width: "74vw" },
+                from: { width: "100%" },
                 to: { width: 0 },
             },
             widthCardOpen: {
@@ -545,6 +556,22 @@ module.exports = {
                 from: { transform: "translateX(0)" },
                 to: { transform: "translateX(-20px)" },
             },
+            slideChatIn: {
+                "0%": {
+                    transform: "translateX(-500px)",
+                },
+                "100%": {
+                    transform: "translateX(0)",
+                },
+            },
+            slideChatOut: {
+                "0%": {
+                    transform: "translateX(0)",
+                },
+                "100%": {
+                    transform: "translateX(-500px)",
+                },
+            },
             slideIn: {
                 "0%": {
                     transform: "translateX(500px)",
@@ -564,7 +591,7 @@ module.exports = {
                     transform: "translateX(110%)",
                 },
             },
-            sideTop: {
+            slideTop: {
                 from: { transform: "translateY(110%)" },
                 to: { transform: "translateY(-16px)" },
             },
@@ -577,6 +604,18 @@ module.exports = {
                 },
                 "100%": {
                     transform: "translateY(110%)",
+                },
+            },
+            slideBottom: {
+                from: { transform: "translateY(-200%)" },
+                to: { transform: "translateY(-16px)" },
+            },
+            slideBottomReverse: {
+                "0%": {
+                    transform: "translateY(-16px)",
+                },
+                "100%": {
+                    transform: "translateY(-200%)",
                 },
             },
             fadeIn: {
@@ -745,6 +784,7 @@ module.exports = {
         maxWidth: (theme, { breakpoints }) => ({
             none: "none",
             0: "0rem",
+            xxs: "12rem",
             xs: "20rem",
             sm: "24rem",
             md: "28rem",
@@ -1019,6 +1059,7 @@ module.exports = {
             screen: "100vw",
             min: "min-content",
             max: "max-content",
+            compactTicket: "413px",
         }),
         zIndex: {
             auto: "auto",
@@ -1058,6 +1099,7 @@ module.exports = {
         backdropBlur: ["responsive"],
         backdropBrightness: ["responsive"],
         backdropContrast: ["responsive"],
+        backdropDropShadow: ["responsive"],
         backdropFilter: ["responsive"],
         backdropGrayscale: ["responsive"],
         backdropHueRotate: ["responsive"],
