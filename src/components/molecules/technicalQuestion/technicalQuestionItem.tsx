@@ -16,7 +16,7 @@ interface Props {
     languageUser: string;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number;
+    ticketId: number | null;
     title: string;
 }
 
@@ -58,9 +58,11 @@ const TechnicalQuestionItem = ({
                     <div className="flex">
                         <p>{createUser}</p>
                         <p className="text-white text-opacity-80 mx-2">{createLevel}</p>
-                        <p>
-                            {myLanguage("tQuestion.forTicket")} {ticketId}
-                        </p>
+                        {ticketId && (
+                            <p>
+                                {myLanguage("tQuestion.forTicket")} {ticketId}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
