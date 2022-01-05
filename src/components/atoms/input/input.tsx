@@ -1,11 +1,14 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
 
 interface Props {
+    className?: string;
     clearErrors?: UseFormClearErrors<FieldValues>;
+    customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
     disabled?: boolean;
     dotClassName?: string;
@@ -14,9 +17,9 @@ interface Props {
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
-    className?: string;
     onBlurCallBack?: () => void;
     onChangeCallBack?: (e: string) => void;
+    onDotCancelCallBack?: (value: string) => void;
     onFocusCallBack?: () => void;
     pattern?: string;
     placeholder?: string;
@@ -31,7 +34,9 @@ interface Props {
 }
 
 const Input = ({
+    className,
     clearErrors,
+    customValidation,
     defaultValue,
     disabled,
     dotClassName,
@@ -40,9 +45,9 @@ const Input = ({
     isError,
     isUpdateField = false,
     label,
-    className,
     onBlurCallBack,
     onChangeCallBack,
+    onDotCancelCallBack,
     onFocusCallBack,
     pattern,
     placeholder,
@@ -99,7 +104,7 @@ const Input = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
 
-    const inputRegister = register && register(refForm, { required });
+    const inputRegister = register && register(refForm, { required, validate: { ...customValidation } });
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full flex justify-center">
@@ -149,6 +154,9 @@ const Input = ({
                         isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
+                            if (onDotCancelCallBack) {
+                                onDotCancelCallBack(state.previous as string);
+                            }
                             if (setValue && clearErrors) {
                                 setValue(refForm, state.previous);
                                 clearErrors();
