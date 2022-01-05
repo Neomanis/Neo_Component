@@ -1,52 +1,36 @@
 import React, { ReactElement } from "react";
-import { faChevronDown, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../atoms";
 
 interface Props {
+    classNames?: {
+        container?: string;
+        text?: string;
+        buttonContainer?: string;
+        buttonValidate?: string;
+        buttonCancel?: string;
+    };
     fCallBackCancel: () => void;
     fCallBackValidate: () => void;
     text?: string;
-    posText?: string;
-    paddingTxt?: string;
 }
 
 export default function ValidationCard({
-    fCallBackCancel,
+    classNames = {
+        container: "flex text-white items-center justify-center border-2 border-neo-link bg-neo-bg-B rounded-md py-2",
+        buttonContainer: "flex row px-2",
+    },
     fCallBackValidate,
+    fCallBackCancel,
     text = "",
-    posText = "",
-    paddingTxt = "pl-4",
 }: Props): ReactElement {
-    let flexType = "row";
-    switch (posText) {
-        case "top":
-            paddingTxt = "px-2";
-            flexType = "flex-col";
-            break;
-        case "bottom":
-            paddingTxt = "px-2";
-            flexType = "flex-col-reverse";
-            break;
-        case "left":
-            flexType = "flex-row";
-            break;
-        case "right":
-            paddingTxt = "pr-4";
-            flexType = "flex-row-reverse";
-            break;
-        default:
-            flexType = "row";
-            break;
-    }
     return (
-        <div
-            className={`flex ${flexType} text-white items-center justify-center border-2 border-neo-link bg-neo-bg-B rounded-md py-2`}
-        >
-            {text != "" && <p className={`${paddingTxt} py-1`}>{text}</p>}
-            <div className="flex row px-2">
+        <div className={classNames.container}>
+            {text != "" && <p className={classNames.text}>{text}</p>}
+            <div className={classNames.buttonContainer}>
                 <div className="transform hover:scale-110">
                     <Button
-                        fontIcon={faChevronDown}
+                        fontIcon={faCheck}
                         className={"text-neo-green flex items-center justify-center rounded-lg mx-2"}
                         fCallback={(): void => {
                             fCallBackValidate();
