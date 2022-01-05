@@ -33,6 +33,7 @@ DefaultNotif.args = {
 };
 export const DefaultWorkflow = Template.bind({});
 DefaultWorkflow.args = {
+    sender: "Toto",
     date: "3 hours ago",
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",

@@ -6,6 +6,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 interface Props {
     textColor: string;
     title: string;
+    sender: string;
     date: string;
     content: string;
     svg: ReactElement;
@@ -22,6 +23,7 @@ interface Props {
 const NotificationItem = ({
     textColor = "text-neo-light-grey",
     title,
+    sender,
     date,
     content,
     svg,
@@ -60,7 +62,9 @@ const NotificationItem = ({
                     {svg}
                 </div>
                 <div className={`${textColor} pl-4 pr-2`}>
-                    <p className="text-sm">{date}</p>
+                    <p className="text-sm">
+                        {sender}, {date}
+                    </p>
                     <Title type="h3" data={title} className=" text-base uppercase font-bold mb-1" />
                     <p className={`${isFolded && "line-clamp-2"} text-xs`}>{content}</p>
                 </div>
