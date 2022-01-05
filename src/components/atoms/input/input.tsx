@@ -6,6 +6,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 import Dot from "../dot";
 
 interface Props {
+    className?: string;
     clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
@@ -16,9 +17,9 @@ interface Props {
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
-    className?: string;
     onBlurCallBack?: () => void;
     onChangeCallBack?: (e: string) => void;
+    onDotCancelCallBack?: (value: string) => void;
     onFocusCallBack?: () => void;
     pattern?: string;
     placeholder?: string;
@@ -33,6 +34,7 @@ interface Props {
 }
 
 const Input = ({
+    className,
     clearErrors,
     customValidation,
     defaultValue,
@@ -43,9 +45,9 @@ const Input = ({
     isError,
     isUpdateField = false,
     label,
-    className,
     onBlurCallBack,
     onChangeCallBack,
+    onDotCancelCallBack,
     onFocusCallBack,
     pattern,
     placeholder,
@@ -152,6 +154,9 @@ const Input = ({
                         isSuccess={state.isSuccess}
                         isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
+                            if (onDotCancelCallBack) {
+                                onDotCancelCallBack(state.previous as string);
+                            }
                             if (setValue && clearErrors) {
                                 setValue(refForm, state.previous);
                                 clearErrors();
