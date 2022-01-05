@@ -33,6 +33,11 @@ const NotificationContainer = ({
             refHeight.current.children[0].getBoundingClientRect().height *
                 (viewItem <= childrenLength ? viewItem : childrenLength)
         );
+        if (fullView) {
+            viewItem + 1 > childrenLength && fCallBackSeeAll();
+            viewItem + 1 > childrenLength && setFullView(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [viewItem, childrenLength]);
 
     return (
