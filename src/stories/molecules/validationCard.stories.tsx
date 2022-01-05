@@ -18,6 +18,10 @@ const Template: ComponentStory<typeof ValidationCard> = (args) => {
 
 export const ValidationCardDefault = Template.bind({});
 ValidationCardDefault.args = {
+    classNames: {
+        container: "flex bg-neo-link rounded-md",
+        buttonContainer: "flex justify-center items-center",
+    },
     // eslint-disable-next-line no-console
     fCallBackCancel: () => console.log("CANCELED!"),
     // eslint-disable-next-line no-console
