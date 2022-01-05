@@ -3,11 +3,11 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../atoms";
 
 interface Props {
-    classNameContainer: string;
-    classNameText: string;
-    classNameButtonContainer: string;
-    classNameButtonValidate: string;
-    classNameButtonCancel: string;
+    classNameContainer?: string;
+    classNameText?: string;
+    classNameButtonContainer?: string;
+    classNameButtonValidate?: string;
+    classNameButtonCancel?: string;
     fCallBackCancel: () => void;
     fCallBackValidate: () => void;
     text?: string;
