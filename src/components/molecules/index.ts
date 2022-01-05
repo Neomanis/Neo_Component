@@ -7,6 +7,7 @@ import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
 import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
+import NotificationItem from "./notification/notificationItem";
 import OutageCard from "./notification/outageCard";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 import SearchField from "./searchField";
@@ -28,6 +29,7 @@ export {
     MessageChat,
     NotificationCard,
     NotificationContainer,
+    NotificationItem,
     OutageCard,
     RecursiveDiagnosticComponent,
     SearchField,
