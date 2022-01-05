@@ -278,6 +278,8 @@
     "workflow": {
         "title": "Workflow requests",
         "request": "requests",
-        "error": "request failed"
+        "error": "request failed",
+        "validate": "valider",
+        "refuse": "refuser"
     }
 }

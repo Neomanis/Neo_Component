@@ -35,7 +35,7 @@ const WorkflowCard = ({
             <div className="flex flex-col text-white w-full">
                 <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>
                     <span className="font-medium" style={{ fontSize: "1.02rem" }}>
-                        {sender}{" "}
+                        {sender}
                     </span>
                     {workflowRequestText}
                     <span style={{ fontSize: "1.02rem" }}> {content}</span>

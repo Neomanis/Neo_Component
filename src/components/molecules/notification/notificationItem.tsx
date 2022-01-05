@@ -2,9 +2,11 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Button, Icon, Title } from "../../atoms";
 import { CloseLogo } from "../../../img/svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import i18next from "i18next";
 
 interface Props {
     textColor: string;
+    languageUser?: string;
     title: string;
     sender: string;
     date: string;
@@ -22,6 +24,7 @@ interface Props {
 
 const NotificationItem = ({
     textColor = "text-neo-light-grey",
+    languageUser = "en_US",
     title,
     sender,
     date,
@@ -36,6 +39,7 @@ const NotificationItem = ({
     read,
     userUid,
 }: Props): ReactElement => {
+    const myLanguage = i18next.getFixedT(languageUser);
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const [isError, setIsError] = useState(false);
 
@@ -62,9 +66,11 @@ const NotificationItem = ({
                     {svg}
                 </div>
                 <div className={`${textColor} pl-4 pr-2`}>
-                    <p className="text-sm">
-                        {sender}, {date}
-                    </p>
+                    <div className="text-sm flex">
+                        {sender && <p className="mr-2 font-bold">{sender}</p>}
+                        <p>{date}</p>
+                    </div>
+
                     <Title type="h3" data={title} className=" text-base uppercase font-bold mb-1" />
                     <p className={`${isFolded && "line-clamp-2"} text-xs`}>{content}</p>
                 </div>
@@ -87,16 +93,16 @@ const NotificationItem = ({
                 (!isError ? (
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
-                            className="bg-neo-link hover:bg-neo-blue-secondary rounded uppercase font-bold py-2 w-24"
-                            data="validate"
+                            className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
+                            data={myLanguage("workflow.validate")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(true);
                             }}
                         />
                         <Button
-                            className="bg-neo-link hover:bg-neo-blue-secondary rounded uppercase font-bold py-2 w-24"
-                            data="refuse"
+                            className="bg-neo-link hover:bg-neo-red rounded uppercase font-bold py-2 w-24"
+                            data={myLanguage("workflow.refuse")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(false);
