@@ -42,8 +42,8 @@ const NotificationContainer = ({
 
     return (
         <div>
-            <div className="flex items-center justify-between w-full text-sm uppercase border-b-2 py-1 border-neo-bg-B mb-3">
-                <div className="flex items-center text-neo-light-grey">
+            <div className="flex items-center justify-between w-full text-xs uppercase border-b-2 py-1 border-neo-bg-B mb-3">
+                <div className="flex items-center text-neo-light-grey ">
                     <Title data={title} type="h2" className="mr-2 font-bold" />
                     {childrenLength && <p>({childrenLength})</p>}
                 </div>
@@ -54,7 +54,7 @@ const NotificationContainer = ({
                             setFullView(!fullView);
                             fCallBackSeeAll && fCallBackSeeAll();
                         }}
-                        className="flex hover:text-neo-light-grey transition-colors text-neo-link text-sm"
+                        className="flex hover:text-neo-light-grey transition-colors text-neo-link text-xxs"
                         iconClassName="ml-2"
                     />
                 )}
@@ -72,7 +72,7 @@ const NotificationContainer = ({
                     <Button
                         data={myLanguage("notification.clearAll")}
                         fCallback={(): void => fCallBackClear()}
-                        className="flex hover:text-neo-light-grey transition-colors text-neo-link mb-1 font-bold text-sm"
+                        className="flex hover:text-neo-light-grey transition-colors text-neo-link mb-1 font-bold text-xs"
                         iconClassName="ml-2"
                     />
                 </div>

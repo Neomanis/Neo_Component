@@ -13,7 +13,7 @@ export default {
 
 const Template: ComponentStory<typeof NotificationContainer> = (args) => {
     return (
-        <div className="bg-neo-bg-A p-2 flex items-center" style={{ width: 400 }}>
+        <div className="bg-neo-bg-A p-2 flex items-center" style={{ width: 290 }}>
             <NotificationContainer {...args} />
         </div>
     );
@@ -44,6 +44,6 @@ Default.args = {
     fCallBackClear: () => console.log("clear"),
     fCallBackSeeAll: () => console.log("SeeAll"),
     languageUser: "fr_FR",
-    title: "Notification",
+    title: "DEMANDES DE WORKFLOW",
     viewItem: 3,
 };

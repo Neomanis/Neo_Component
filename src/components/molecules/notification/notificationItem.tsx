@@ -65,9 +65,9 @@ const NotificationItem = ({
                     )}
                     {svg}
                 </div>
-                <div className={`${textColor} pl-4 pr-2`}>
+                <div className={`${textColor} pl-4 pr-1`}>
                     {(sender || date) && (
-                        <div className="text-sm flex">
+                        <div className="text-xs flex">
                             {sender && <p className="mr-2 font-bold">{sender}</p>}
                             {date && <p>{date}</p>}
                         </div>
@@ -78,11 +78,11 @@ const NotificationItem = ({
                             {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
                         </p>
                     )}
-                    <p className={`${isFolded && "line-clamp-2"} text-xs mt-1`}>{content}</p>
+                    <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
                 </div>
 
                 {fDeleteNotification && (
-                    <div className="flex items-center mr-2 cursor-pointer">
+                    <div className="flex items-center mr-1 cursor-pointer">
                         <Icon
                             svg={<CloseLogo fill="#7DAAB7" />}
                             className="w-3 h-3"
