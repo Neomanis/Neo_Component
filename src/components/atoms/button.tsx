@@ -6,7 +6,7 @@ interface Props {
     className?: string;
     data?: string;
     disabled?: boolean;
-    fCallback?: () => void;
+    fCallback?: (e?) => void;
     fontIcon?: IconProp;
     iconClassName?: string;
     svg?: ReactElement;
