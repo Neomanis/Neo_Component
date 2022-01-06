@@ -278,7 +278,7 @@
     "workflow": {
         "title": "Workflow requests",
         "request": "requests",
-        "error": "request failed",
+        "error": "Error while sending your decision",
         "validate": "validate",
         "refuse": "refuse"
     }

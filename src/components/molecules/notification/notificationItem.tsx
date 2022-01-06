@@ -16,7 +16,6 @@ interface Props {
     fManageWorkflow: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
     fReadNotification?: (notificationId: number, userUid: string) => void;
     notificationId?: number;
-    workflowErrorText?: string;
     workflowId?: number;
     read?: boolean;
     userUid: string;
@@ -35,7 +34,6 @@ const NotificationItem = ({
     fReadNotification,
     notificationId,
     workflowId,
-    workflowErrorText,
     read,
     userUid,
 }: Props): ReactElement => {
@@ -90,7 +88,7 @@ const NotificationItem = ({
                 )}
             </div>
             {fManageWorkflow &&
-                (!isError ? (
+                (isError ? (
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
                             className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
@@ -111,7 +109,7 @@ const NotificationItem = ({
                     </div>
                 ) : (
                     <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>
-                        {workflowErrorText ? workflowErrorText : "Error !"}
+                        {myLanguage("workflow.error")}
                     </p>
                 ))}
         </div>
