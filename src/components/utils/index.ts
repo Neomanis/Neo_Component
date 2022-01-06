@@ -10,6 +10,7 @@ import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getPriorityColor } from "./ticketColorSelector";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
+import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
 
 export {
     displayRequesterName,
@@ -18,6 +19,10 @@ export {
     formatMessage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
+    getOutageTextColor,
+    getOutageDivideColor,
+    getOutageBorderColor,
+    getOutageSVGColor,
     getPriorityColor,
     getRecipientsNameByIds,
     getRequesterUid,

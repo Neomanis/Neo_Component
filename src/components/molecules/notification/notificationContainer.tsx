@@ -44,7 +44,7 @@ const NotificationContainer = ({
         <div>
             <div className="flex items-center justify-between w-full text-sm uppercase border-b-2 py-1 border-neo-bg-B mb-3">
                 <div className="flex items-center text-neo-light-grey">
-                    <Title data={title} type="h2" className="mr-2" />
+                    <Title data={title} type="h2" className="mr-2 font-bold" />
                     {childrenLength && <p>({childrenLength})</p>}
                 </div>
                 {viewItem < childrenLength && (

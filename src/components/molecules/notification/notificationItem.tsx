@@ -10,6 +10,7 @@ interface Props {
     title?: string;
     sender?: string;
     date?: string;
+    outageDate?: { startAt: string; endAt?: string };
     content: string;
     svg: ReactElement;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
@@ -27,6 +28,7 @@ const NotificationItem = ({
     title,
     sender,
     date,
+    outageDate,
     content,
     svg,
     fDeleteNotification,
@@ -52,7 +54,7 @@ const NotificationItem = ({
                 setIsFolded(!isFolded);
             }}
         >
-            <div className="flex w-full">
+            <div className="flex w-full cursor-pointer">
                 <div className="mt-1 relative">
                     {fReadNotification && (
                         <Icon
@@ -70,12 +72,17 @@ const NotificationItem = ({
                             {date && <p>{date}</p>}
                         </div>
                     )}
-                    {title && <Title type="h3" data={title} className=" text-base uppercase font-bold mb-1" />}
-                    <p className={`${isFolded && "line-clamp-2"} text-xs`}>{content}</p>
+                    {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
+                    {outageDate && outageDate.startAt && (
+                        <p className="text-xxs font-bold">
+                            {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
+                        </p>
+                    )}
+                    <p className={`${isFolded && "line-clamp-2"} text-xs mt-1`}>{content}</p>
                 </div>
 
                 {fDeleteNotification && (
-                    <div className="flex items-center mr-2">
+                    <div className="flex items-center mr-2 cursor-pointer">
                         <Icon
                             svg={<CloseLogo fill="#7DAAB7" />}
                             className="w-3 h-3"

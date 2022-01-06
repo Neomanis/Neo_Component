@@ -44,9 +44,10 @@ DefaultWorkflow.args = {
     textColor: "text-neo-yellow-sand",
 };
 export const DefaultOutage = Template.bind({});
+
 DefaultOutage.args = {
     title: "Outage title",
-    date: "3 hours ago",
+    outageDate: { startAt: "20/03/5555 20:60", endAt: "22/03/4444 60:40" },
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
     svg: <CautionLogo fill="#ED943B" className="w-12 h-12" />,
