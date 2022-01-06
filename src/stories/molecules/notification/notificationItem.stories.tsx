@@ -29,10 +29,11 @@ DefaultNotif.args = {
     fReadNotification: (notificationId, userUid) => console.log("Read", notificationId, userUid),
     notificationId: 1,
     read: false,
-    userUid: "21",
+    userUid: "ttest",
 };
 export const DefaultWorkflow = Template.bind({});
 DefaultWorkflow.args = {
+    title: "Demandes",
     sender: "Toto",
     date: "3 hours ago",
     content:
@@ -50,6 +51,6 @@ DefaultOutage.args = {
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
     svg: <CautionLogo fill="#ED943B" className="w-12 h-12" />,
     notificationId: 1,
-    userUid: "21",
+    userUid: "ttest",
     textColor: "text-neo-urgency",
 };

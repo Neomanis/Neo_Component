@@ -7,18 +7,18 @@ import i18next from "i18next";
 interface Props {
     textColor: string;
     languageUser?: string;
-    title: string;
-    sender: string;
-    date: string;
+    title?: string;
+    sender?: string;
+    date?: string;
     content: string;
     svg: ReactElement;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
-    fManageWorkflow: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+    fManageWorkflow?: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
     fReadNotification?: (notificationId: number, userUid: string) => void;
     notificationId?: number;
     workflowId?: number;
     read?: boolean;
-    userUid: string;
+    userUid?: string;
 }
 
 const NotificationItem = ({
@@ -42,7 +42,7 @@ const NotificationItem = ({
     const [isError, setIsError] = useState(false);
 
     async function sendWorkFlow(value: boolean): Promise<void> {
-        await fManageWorkflow(workflowId, value, setIsError);
+        fManageWorkflow && (await fManageWorkflow(workflowId, value, setIsError));
     }
     return (
         <div
@@ -64,12 +64,13 @@ const NotificationItem = ({
                     {svg}
                 </div>
                 <div className={`${textColor} pl-4 pr-2`}>
-                    <div className="text-sm flex">
-                        {sender && <p className="mr-2 font-bold">{sender}</p>}
-                        <p>{date}</p>
-                    </div>
-
-                    <Title type="h3" data={title} className=" text-base uppercase font-bold mb-1" />
+                    {(sender || date) && (
+                        <div className="text-sm flex">
+                            {sender && <p className="mr-2 font-bold">{sender}</p>}
+                            {date && <p>{date}</p>}
+                        </div>
+                    )}
+                    {title && <Title type="h3" data={title} className=" text-base uppercase font-bold mb-1" />}
                     <p className={`${isFolded && "line-clamp-2"} text-xs`}>{content}</p>
                 </div>
 
@@ -81,14 +82,14 @@ const NotificationItem = ({
                             fCallBack={(e) => {
                                 e.stopPropagation();
                                 setIsFolded(true);
-                                fDeleteNotification(notificationId, userUid);
+                                userUid && fDeleteNotification(notificationId, userUid);
                             }}
                         />
                     </div>
                 )}
             </div>
             {fManageWorkflow &&
-                (isError ? (
+                (!isError ? (
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
                             className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
