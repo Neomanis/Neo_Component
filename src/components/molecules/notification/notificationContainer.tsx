@@ -25,7 +25,7 @@ const NotificationContainer = ({
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
     const [fullView, setFullView] = useState(false);
-    const [heightItem, setHeightItem] = useState(100);
+    const [heightItem, setHeightItem] = useState(50);
     const refHeight = useRef<HTMLHeadingElement>(null);
 
     useEffect(() => {

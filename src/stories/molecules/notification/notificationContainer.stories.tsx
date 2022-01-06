@@ -3,7 +3,8 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { fakeNotification } from "../../fakeObject";
 import NotificationContainer from "../../../components/molecules/notification/notificationContainer";
-import NotificationCard from "../../../components/molecules/notification/notificationCard";
+import { NotificationItem } from "../../../components/molecules";
+import { IconNotification } from "../../../img/svg";
 
 export default {
     component: NotificationContainer,
@@ -18,21 +19,22 @@ const Template: ComponentStory<typeof NotificationContainer> = (args) => {
     );
 };
 
-const notifications = [fakeNotification, fakeNotification, fakeNotification];
+const notifications = [fakeNotification, fakeNotification, fakeNotification, fakeNotification];
 
 export const Default = Template.bind({});
 Default.args = {
     children: notifications.map((notification, key) => {
         return (
-            <div className="pb-2" key={key}>
-                <NotificationCard
+            <div className="pb-4" key={key}>
+                <NotificationItem
                     content={notification.notification.content}
                     date={notification.notification.createdAt}
                     fDeleteNotification={() => console.log("delete")}
                     fReadNotification={() => console.log("read")}
                     notificationId={notification.notification.id}
                     read={false}
-                    userUid="21"
+                    userUid="ttest"
+                    svg={<IconNotification fill="#fff" className="w-10 h-10" />}
                 />
             </div>
         );

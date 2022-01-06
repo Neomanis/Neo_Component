@@ -5,7 +5,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 
 interface Props {
-    textColor: string;
+    textColor?: string;
     languageUser?: string;
     title?: string;
     sender?: string;
