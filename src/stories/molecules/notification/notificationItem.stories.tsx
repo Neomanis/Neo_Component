@@ -20,7 +20,6 @@ const Template: ComponentStory<typeof NotificationItem> = (args) => {
 
 export const DefaultNotif = Template.bind({});
 DefaultNotif.args = {
-    title: "Notif title",
     date: "3 hours ago",
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
@@ -29,10 +28,11 @@ DefaultNotif.args = {
     fReadNotification: (notificationId, userUid) => console.log("Read", notificationId, userUid),
     notificationId: 1,
     read: false,
-    userUid: "21",
+    userUid: "ttest",
 };
 export const DefaultWorkflow = Template.bind({});
 DefaultWorkflow.args = {
+    title: "Demandes",
     sender: "Toto",
     date: "3 hours ago",
     content:
@@ -43,13 +43,14 @@ DefaultWorkflow.args = {
     textColor: "text-neo-yellow-sand",
 };
 export const DefaultOutage = Template.bind({});
+
 DefaultOutage.args = {
     title: "Outage title",
-    date: "3 hours ago",
+    outageDate: { startAt: "20/03/5555 20:60", endAt: "22/03/4444 60:40" },
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
     svg: <CautionLogo fill="#ED943B" className="w-12 h-12" />,
     notificationId: 1,
-    userUid: "21",
+    userUid: "ttest",
     textColor: "text-neo-urgency",
 };

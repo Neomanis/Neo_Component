@@ -276,7 +276,7 @@
         "missingVnc": "Aucun contrôle distant disponible"
     },
     "workflow": {
-        "title": "Demandes de Workflow ",
+        "title": "Demandes de Workflow",
         "request": "Demandes",
         "error": "Erreur lors de l'envoi de votre décision",
         "validate": "valider",
