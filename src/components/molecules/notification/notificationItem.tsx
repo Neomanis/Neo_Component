@@ -54,33 +54,34 @@ const NotificationItem = ({
                 setIsFolded(!isFolded);
             }}
         >
-            <div className="flex w-full cursor-pointer">
-                <div className="mt-1 relative">
-                    {fReadNotification && (
-                        <Icon
-                            className={`text-xxs absolute top-0 right-0
+            <div className="flex justify-between w-full cursor-pointer">
+                <div className="flex">
+                    <div className="mt-1 relative">
+                        {fReadNotification && (
+                            <Icon
+                                className={`text-xxs absolute top-0 right-0
                     ${read ? " text-neo-light-grey opacity-30" : "text-neo-red"}`}
-                            fontIcon={faCircle}
-                        />
-                    )}
-                    {svg}
+                                fontIcon={faCircle}
+                            />
+                        )}
+                        {svg}
+                    </div>
+                    <div className={`${textColor} pl-4`}>
+                        {(sender || date) && (
+                            <div className="text-xs flex">
+                                {sender && <p className="mr-2 font-bold">{sender}</p>}
+                                {date && <p>{date}</p>}
+                            </div>
+                        )}
+                        {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
+                        {outageDate && outageDate.startAt && (
+                            <p className="text-xxs font-bold">
+                                {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
+                            </p>
+                        )}
+                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
+                    </div>
                 </div>
-                <div className={`${textColor} pl-4 pr-1`}>
-                    {(sender || date) && (
-                        <div className="text-xs flex">
-                            {sender && <p className="mr-2 font-bold">{sender}</p>}
-                            {date && <p>{date}</p>}
-                        </div>
-                    )}
-                    {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
-                    {outageDate && outageDate.startAt && (
-                        <p className="text-xxs font-bold">
-                            {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
-                        </p>
-                    )}
-                    <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
-                </div>
-
                 {fDeleteNotification && (
                     <div className="flex items-center mr-1 cursor-pointer">
                         <Icon
