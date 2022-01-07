@@ -21,8 +21,7 @@ const Template: ComponentStory<typeof NotificationItem> = (args) => {
 export const DefaultNotif = Template.bind({});
 DefaultNotif.args = {
     date: "3 hours ago",
-    content:
-        "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
+    content: "outage content",
     svg: <IconNotification fill="#fff" className="w-12 h-12" />,
     fDeleteNotification: (notificationId, userUid) => console.log("delete", notificationId, userUid),
     fReadNotification: (notificationId, userUid) => console.log("Read", notificationId, userUid),
