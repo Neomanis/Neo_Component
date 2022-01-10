@@ -3,6 +3,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import { InputSelectSearchable } from "../../../components/atoms";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
     component: InputSelectSearchable,
@@ -10,10 +11,24 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
+    const {
+        setValue,
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ mode: "onChange" });
+    const onSubmit: SubmitHandler<unknown> = async (data) => {
+        // eslint-disable-next-line no-console
+        console.log(data);
+    };
+    console.log(errors);
+
     return (
-        <div className="w-1/4 h-96 bg-neo-bg-A">
-            <InputSelectSearchable {...args} />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-1/4 h-96 bg-neo-bg-A">
+            <InputSelectSearchable {...args} setValue={setValue} register={register} refForm="input" />
+            {errors && <p className="text-red-600 text-xs">{errors?.input?.message}</p>}
+            <button>Submit</button>
+        </form>
     );
 };
 
@@ -35,6 +50,8 @@ Default.args = {
     containerClassName: "w-full flex items-center",
     isSearchable: true,
     defaultValue: 3,
+    required: true,
+    errorIsRequiredMessage: "Please select a option !",
     refForm: "example 1",
     data: [
         {
@@ -78,7 +95,7 @@ Labeled.args = {
     isClearable: true,
     placeholder: "story Searchable",
     isSearchable: true,
-    defaultValue: 3,
+    errorIsRequiredMessage: "Please select a option !",
     refForm: "example 1",
     data: [
         {
@@ -186,6 +203,7 @@ Multiple.args = {
     isSearchable: true,
     defaultValue: [3, 7],
     isMulti: true,
+    required: true,
     refForm: "example 1",
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     data: [

@@ -3,6 +3,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
+import { IReactHookFormCustomValidation } from "../../../interface";
 
 interface Props {
     classNames?: {
@@ -12,8 +13,10 @@ interface Props {
         labelText?: string;
         textArea?: string;
     };
+    customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
+    errorIsRequiredMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
@@ -30,8 +33,10 @@ interface Props {
 
 const InputTextarea = ({
     classNames,
+    customValidation,
     defaultValue,
     errorMessage,
+    errorIsRequiredMessage,
     isError,
     isUpdateField = false,
     label,
@@ -55,6 +60,10 @@ const InputTextarea = ({
         updated: defaultValue,
     });
     const isLastMount = useRef(false);
+
+    const inputRegister =
+        register &&
+        register(refForm, { required: required && errorIsRequiredMessage, validate: { ...customValidation } });
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue as string });
@@ -87,13 +96,12 @@ const InputTextarea = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
-    const inputRegister = register && register(refForm, { required });
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
             <label className={classNames.labelBody ?? ""}>
                 <div className={classNames.labelText ?? ""}>{label}</div>
                 <textarea
-                    {...(register && register(refForm, { required }))}
+                    {...inputRegister}
                     className={classNames.textArea ?? ""}
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
