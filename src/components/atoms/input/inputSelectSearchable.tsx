@@ -5,7 +5,6 @@ import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
-import { LoDashImplicitNumberArrayWrapper } from "cypress/types/lodash";
 import { IReactHookFormCustomValidation } from "../../../interface";
 
 interface Props {
@@ -37,7 +36,7 @@ interface Props {
     required?: boolean;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
-    targetId?: LoDashImplicitNumberArrayWrapper;
+    targetId?: number;
     timerSetting?: number;
     updateFunction?: (field: string, value: number | number[]) => void;
 }

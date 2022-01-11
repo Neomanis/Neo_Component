@@ -21,6 +21,7 @@ const Template: ComponentStory<typeof InputTextarea> = (args) => {
         // eslint-disable-next-line no-console
         console.log(data);
     };
+    // eslint-disable-next-line no-console
     console.log(errors);
 
     return (
