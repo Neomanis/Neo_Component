@@ -33,3 +33,8 @@ export const Default2 = Template.bind({});
 Default2.args = {
     buttonSub: true,
 };
+
+export const WithPrivateOption = Template.bind({});
+WithPrivateOption.args = {
+    privateMessage: true,
+};

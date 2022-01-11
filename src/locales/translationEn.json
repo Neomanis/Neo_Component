@@ -13,7 +13,8 @@
         "userTelephony": "User > Telephony"
     },
     "chat": {
-        "send": "Send a message ..."
+        "send": "Send a message ...",
+        "privateMessage": "Private message"
     },
     "configScreen": {
         "address": "Itsm address",
