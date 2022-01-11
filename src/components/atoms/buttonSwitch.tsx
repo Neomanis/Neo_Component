@@ -60,7 +60,7 @@ const ButtonSwitch = ({
             disabled={disabled}
             type={type}
         >
-            {isActive ? <div className="px-2">{activeData}</div> : <div className="px-2">{inactiveData}</div>}
+            {isActive ? <div>{activeData}</div> : <div>{inactiveData}</div>}
             {activeSvg && inactiveSvg && (
                 <div className={`${isActive ? activeSvgClassName : inactiveSvgClassName} p-1`}>
                     {isActive ? activeSvg : inactiveSvg}

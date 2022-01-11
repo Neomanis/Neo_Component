@@ -13,7 +13,8 @@
         "userTelephony": "Utilisateur > Téléphone"
     },
     "chat": {
-        "send": "Envoyer un message ..."
+        "send": "Envoyer un message ...",
+        "privateMessage": "Message privé"
     },
     "configScreen": {
         "address": "Adresse",

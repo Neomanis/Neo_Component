@@ -32,13 +32,13 @@ const Template: ComponentStory<typeof ButtonSwitch> = (args) => <ButtonSwitch {.
 
 export const Default = Template.bind({});
 Default.args = {
-    activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500",
+    activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500 px-2",
     activeData: "active",
     activeFontIcon: faWind,
     activeIconClassName: "",
     // eslint-disable-next-line no-console
     fCallback: () => console.log("click ! "),
-    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500",
+    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500 px-2",
     inactiveData: "inactive",
     inactiveFontIcon: faAd,
     inactiveIconClassName: "",
@@ -48,11 +48,11 @@ Default.args = {
 
 export const DefaultSvg = Template.bind({});
 DefaultSvg.args = {
-    activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500",
+    activeClassName: "flex bg-purple-500 text-white rounded px-1 hover:bg-red-500 px-2",
     activeData: "active",
     // eslint-disable-next-line no-console
     fCallback: () => console.log("click ! "),
-    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500",
+    inactiveClassName: "flex bg-red-500 text-white rounded px-1 hover:bg-purple-500 px-2",
     inactiveData: "inactive",
     inactiveSvg: <ClockLogo fill="#fff" />,
     activeSvg: <IconMaintenance fill="#fff" />,
