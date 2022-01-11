@@ -38,7 +38,7 @@ const InputChat = ({
             className={`${
                 className
                     ? className
-                    : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link"
+                    : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link justify-between"
             }`}
         >
             <div className="p-2 opacity-50 w-10">
