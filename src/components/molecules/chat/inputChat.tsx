@@ -1,14 +1,19 @@
 import React, { ReactElement } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { IconAdd } from "../../../img/svg";
-import { Input } from "../../atoms";
+import { ButtonSwitch, Input, Tooltip } from "../../atoms";
+import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
+import { i18n } from "../../../i18n";
 
 interface Props {
+    buttonSub?: boolean;
     cardOpen?: boolean;
     className?: string;
+    fCallbackPrivateMessage?: () => void;
     inputClassName?: string;
-    buttonSub?: boolean;
+    languageUser?: string;
     placeholder: string;
+    privateMessage?: boolean;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
@@ -17,18 +22,23 @@ interface Props {
 const InputChat = ({
     cardOpen,
     className,
+    fCallbackPrivateMessage,
     inputClassName,
+    languageUser = "en_US",
     placeholder,
+    privateMessage,
     refForm,
     register,
     setValue,
 }: Props): ReactElement => {
+    const myLanguage = i18n.getFixedT(languageUser);
+
     return (
         <div
             className={`${
                 className
                     ? className
-                    : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link"
+                    : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link justify-between"
             }`}
         >
             <div className="p-2 opacity-50 w-10">
@@ -51,6 +61,23 @@ const InputChat = ({
                     typeInput="text"
                 />
             </div>
+            {privateMessage && (
+                <div className="p-2 w-10">
+                    <Tooltip
+                        data={myLanguage("chat.privateMessage")}
+                        className="pt-3 text-xs"
+                        component={
+                            <ButtonSwitch
+                                activeFontIcon={faLock}
+                                inactiveFontIcon={faLockOpen}
+                                activeClassName="flex text-neo-green"
+                                inactiveClassName="flex text-neo-light-grey opacity-50"
+                                fCallback={fCallbackPrivateMessage}
+                            />
+                        }
+                    />
+                </div>
+            )}
         </div>
     );
 };
