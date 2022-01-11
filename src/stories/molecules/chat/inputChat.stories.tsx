@@ -37,4 +37,6 @@ Default2.args = {
 export const WithPrivateOption = Template.bind({});
 WithPrivateOption.args = {
     privateMessage: true,
+    // eslint-disable-next-line no-console
+    fCallbackPrivateMessage: () => console.log("mp"),
 };
