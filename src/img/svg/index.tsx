@@ -12,7 +12,7 @@ import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
-import { ReactComponent as IconChartPie } from ".nm_ico_chart-pie.svg";
+import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
