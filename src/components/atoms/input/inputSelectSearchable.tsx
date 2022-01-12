@@ -5,6 +5,7 @@ import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
+import { IReactHookFormCustomValidation } from "../../../interface";
 
 interface Props {
     containerClassName?: string;
@@ -13,6 +14,7 @@ interface Props {
         boolean,
         GroupBase<{ label: string; value: number }>
     >;
+    customValidation?: IReactHookFormCustomValidation<number | number[]>;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     doValueLogic?: boolean;
@@ -30,9 +32,10 @@ interface Props {
     placeholder?: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
+    required?: boolean;
     setStateValue?: (value: number) => void;
     setValue?: UseFormSetValue<FieldValues>;
-    targetId?: number | undefined;
+    targetId?: number;
     timerSetting?: number;
     updateFunction?: (field: string, value: number | number[]) => void;
 }
@@ -40,6 +43,7 @@ interface Props {
 const InputSelectSearchable = ({
     containerClassName,
     customStyleOverride,
+    customValidation,
     data,
     defaultValue,
     doValueLogic = true,
@@ -56,6 +60,7 @@ const InputSelectSearchable = ({
     placeholder,
     refForm,
     register,
+    required = false,
     setStateValue,
     setValue,
     targetId,
@@ -74,8 +79,9 @@ const InputSelectSearchable = ({
     });
 
     const isLastMount = useRef(false);
-
     const myLanguage = i18n.getFixedT(languageUser);
+    const inputRegister =
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
         if (selected && doValueLogic) {
@@ -135,7 +141,6 @@ const InputSelectSearchable = ({
     }
 
     useEffect(() => {
-        register && register(refForm);
         dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
@@ -171,6 +176,7 @@ const InputSelectSearchable = ({
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
             {label && <label className={labelClassName}>{label}</label>}
             <Select
+                {...inputRegister}
                 className="flex items-center w-full my-1 rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
                 styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
@@ -211,14 +217,13 @@ const InputSelectSearchable = ({
             />
 
             <div className={`w-5 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);

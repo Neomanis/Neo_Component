@@ -8,8 +8,13 @@ export default {
     title: "Atoms/Input/InputChoice",
 } as Meta;
 
-const Template: ComponentStory<typeof InputChoice> = (args) => <InputChoice {...args} />;
-
+const Template: ComponentStory<typeof InputChoice> = (args) => {
+    return (
+        <div className="bg-neo-bg-B p-2">
+            <InputChoice {...args} />
+        </div>
+    );
+};
 export const Default = Template.bind({});
 Default.args = {
     className: "",

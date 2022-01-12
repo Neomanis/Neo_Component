@@ -3,6 +3,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
+import { IReactHookFormCustomValidation } from "../../../interface";
 
 interface Props {
     classNames?: {
@@ -12,6 +13,7 @@ interface Props {
         labelText?: string;
         textArea?: string;
     };
+    customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
     isError?: boolean;
@@ -30,6 +32,7 @@ interface Props {
 
 const InputTextarea = ({
     classNames,
+    customValidation,
     defaultValue,
     errorMessage,
     isError,
@@ -55,6 +58,9 @@ const InputTextarea = ({
         updated: defaultValue,
     });
     const isLastMount = useRef(false);
+
+    const inputRegister =
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue as string });
@@ -87,13 +93,12 @@ const InputTextarea = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
-    const inputRegister = register && register(refForm, { required });
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
             <label className={classNames.labelBody ?? ""}>
                 <div className={classNames.labelText ?? ""}>{label}</div>
                 <textarea
-                    {...(register && register(refForm, { required }))}
+                    {...inputRegister}
                     className={classNames.textArea ?? ""}
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
@@ -122,14 +127,13 @@ const InputTextarea = ({
                 ></textarea>
             </label>
             <div className={`w-5 ${classNames.dot ?? ""}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);

@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import { Input } from "../atoms";
 
 import {
@@ -22,6 +22,7 @@ const SearchField = ({ fCallBack, placeholder, refForm, register, setValue, setF
     const [width, setWidth] = useState(32);
     const [inputFocus, setInputFocus] = useState(false);
     const [inputEmpty, setInputEmpty] = useState(true);
+    const timerCall = useRef<NodeJS.Timeout>();
 
     function onEscape(e: React.KeyboardEvent<HTMLDivElement>) {
         if (e.keyCode === 27) {
@@ -35,17 +36,23 @@ const SearchField = ({ fCallBack, placeholder, refForm, register, setValue, setF
     return (
         <div
             onMouseEnter={() => {
-                setTimeout(() => {
+                timerCall.current = setTimeout(() => {
                     setFocus(refForm);
-                }, 400);
+                }, 1000);
                 setWidth(200);
             }}
-            onMouseLeave={() => !inputFocus && inputEmpty && setWidth(32)}
-            className="flex items-center justify-between "
-            style={{ width: width + "px", transition: "0.5s linear" }}
+            onMouseLeave={() => {
+                !inputFocus && inputEmpty && setWidth(32);
+                clearTimeout(timerCall.current);
+            }}
+            className="flex items-center justify-between"
+            style={{ width: width + "px", transition: "0.5s linear", transitionDelay: "400ms" }}
         >
-            <div className=" bg-neo-bg-B h-8 flex items-center rounded-full overflow-hidden">
-                <div className={`${width > 32 && "animate-onSpin"} ${width < 200 && "animate-onSpinReverse"} px-2`}>
+            <div className="bg-neo-bg-B h-8 flex items-center rounded-full overflow-hidden">
+                <div
+                    className={`${width > 32 && "animate-onSpin"} ${width < 200 && "animate-onSpinReverse"} px-2 de`}
+                    style={{ animationDelay: "400ms" }}
+                >
                     <div className="w-4">
                         <IconSearch fill="#fff" />
                     </div>

@@ -149,13 +149,12 @@ const InputDateTime = ({
                 />
             </label>
             <div className={`w-5 ${dotClassName}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         isError={isError}
                         trigger={state.trigger}
                         onClickCallback={(): void => {

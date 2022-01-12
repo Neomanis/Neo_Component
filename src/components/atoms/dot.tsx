@@ -7,10 +7,9 @@ import Tooltip from "./tooltip";
 interface Props {
     errorMessage?: string;
     isCancelable?: boolean;
-    isCooldown: boolean;
+    isCooldown?: boolean;
     isError?: boolean | undefined;
     isSuccess: boolean;
-    isUpdateField: boolean;
     onClickCallback: () => void;
     timer?: number;
     trigger?: boolean;
@@ -22,7 +21,6 @@ const Dot = ({
     isCooldown,
     isError,
     isSuccess,
-    isUpdateField,
     onClickCallback,
     timer = 5000,
     trigger,
@@ -81,20 +79,8 @@ const Dot = ({
                     </circle>
                 </svg>
             )}
-            {isCancelable && (
-                <div className={`text-xs relative `}>
-                    {!isError && <Icon fontIcon={faUndo} />}
-                    {isError && errorMessage && (
-                        <Tooltip
-                            className="bg-neo-red text-white px-4 py-1 rounded"
-                            data={errorMessage}
-                            fontIcon={faExclamationTriangle}
-                            fontIconClassName="text-white"
-                        />
-                    )}
-                </div>
-            )}
-            {!isUpdateField && isError && errorMessage && (
+            {isCancelable && !isError && <div className="text-xs relative">{<Icon fontIcon={faUndo} />}</div>}
+            {isError && errorMessage && (
                 <div className="text-xs">
                     <Tooltip
                         className="bg-neo-red text-white px-4 py-1 rounded"

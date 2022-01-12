@@ -5,9 +5,7 @@ describe("Dot", () => {
     it("should be visible and display correctly", () => {
         mount(
             <Dot
-                isCooldown={false}
-                isSuccess={false}
-                isUpdateField={false}
+                isSuccess={true}
                 onClickCallback={() => {
                     // eslint-disable-next-line no-console
                     console.log("empty");
