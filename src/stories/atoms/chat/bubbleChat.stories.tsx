@@ -18,8 +18,9 @@ const Template: ComponentStory<typeof BubbleChat> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    bgColor: " bg-neo-bg-B",
+    bgColor: "bg-neo-bg-B",
     content: "I am more monster than man.",
+    privateBorder: false,
 };
 
 export const Bot = Template.bind({});

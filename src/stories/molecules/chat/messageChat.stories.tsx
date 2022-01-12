@@ -24,6 +24,7 @@ Default.args = {
     date: "12:12",
     name: "Ragnaros The Firelord",
     isMe: true,
+    privateMessage: true,
 };
 export const DefaultDot = Template.bind({});
 DefaultDot.args = {

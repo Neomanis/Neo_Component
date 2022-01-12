@@ -1,10 +1,12 @@
 import React, { ReactElement, useState } from "react";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
-import { BubbleChat, Img } from "../../atoms";
+import { BubbleChat, Icon, Img } from "../../atoms";
 interface Props {
     content: string;
     date: string;
     isMe: boolean;
+    messagePrivate?: boolean;
     name: string;
     avatar?: {
         encodedAvatar: string;
@@ -13,7 +15,7 @@ interface Props {
     };
 }
 
-const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement => {
+const MessageChat = ({ content, date, isMe, messagePrivate, name, avatar }: Props): ReactElement => {
     const [hover, setHover] = useState(false);
     return (
         <div>
@@ -31,6 +33,7 @@ const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement
                 >
                     <p>{name}</p>
                     <p className="px-2">{date}</p>
+                    {messagePrivate && <Icon fontIcon={faLock} />}
                 </div>
             </div>
             <div
@@ -55,7 +58,13 @@ const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement
                     )}
                 </div>
                 <div className="mx-3">
-                    <BubbleChat bgColor={isMe && "bg-neo-bg-B"} border={!isMe} content={content} />
+                    <BubbleChat
+                        bgColor={isMe && !messagePrivate ? "bg-neo-bg-B" : "bg-neo-blue"}
+                        // bgColor={isMe ? (isMe && !messagePrivate ? "bg-neo-bg-B" : "bg-neo-blue") : ""}
+                        border={!isMe}
+                        content={content}
+                        privateBorder={messagePrivate}
+                    />
                 </div>
             </div>
         </div>
