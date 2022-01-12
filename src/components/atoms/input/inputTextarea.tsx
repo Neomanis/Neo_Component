@@ -16,7 +16,6 @@ interface Props {
     customValidation?: IReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
-    errorIsRequiredMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
@@ -36,7 +35,6 @@ const InputTextarea = ({
     customValidation,
     defaultValue,
     errorMessage,
-    errorIsRequiredMessage,
     isError,
     isUpdateField = false,
     label,
@@ -62,8 +60,7 @@ const InputTextarea = ({
     const isLastMount = useRef(false);
 
     const inputRegister =
-        register &&
-        register(refForm, { required: required && errorIsRequiredMessage, validate: { ...customValidation } });
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue as string });
@@ -130,14 +127,13 @@ const InputTextarea = ({
                 ></textarea>
             </label>
             <div className={`w-5 ${classNames.dot ?? ""}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);

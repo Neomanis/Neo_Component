@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import { Input } from "../../../components/atoms";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
     component: Input,
@@ -9,21 +10,36 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof Input> = (args) => {
+    const {
+        setValue,
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ mode: "onChange" });
+    const onSubmit: SubmitHandler<unknown> = async (data) => {
+        // eslint-disable-next-line no-console
+        console.log(data);
+    };
     return (
-        <div className="  ">
-            <Input {...args} />
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-neo-bg-A p-3">
+            <Input
+                {...args}
+                register={register}
+                setValue={setValue}
+                refForm="exemple"
+                isError={errors?.exemple && true}
+            />
+            <button>Submit</button>
+        </form>
     );
 };
 
 export const InputDefault = Template.bind({});
 InputDefault.args = {
-    inputClassName: " bg-transparent border-neo-bg-B border-b-2 focus:outline-none text-white",
-    className: "my-2 bg-neo-bg-A pb-2 pt-1 px-3 rounded-xl w-full relative",
+    inputClassName: "bg-neo-bg-B p-2 rounded text-white mr-2",
     // eslint-disable-next-line no-console
-    onChangeCallBack: (): void => console.log("submitError"),
-    refForm: "login",
     required: true,
+    errorMessage: "error",
     typeInput: "input",
     placeholder: "Default Input",
 };

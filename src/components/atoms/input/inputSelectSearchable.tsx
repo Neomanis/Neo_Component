@@ -14,13 +14,12 @@ interface Props {
         boolean,
         GroupBase<{ label: string; value: number }>
     >;
-    customValidation?: IReactHookFormCustomValidation<string>;
+    customValidation?: IReactHookFormCustomValidation<number | number[]>;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     doValueLogic?: boolean;
     dotClassName?: string;
     errorMessage?: string;
-    errorIsRequiredMessage?: string;
     id?: string;
     isClearable?: boolean;
     isError?: boolean;
@@ -50,7 +49,6 @@ const InputSelectSearchable = ({
     doValueLogic = true,
     dotClassName,
     errorMessage,
-    errorIsRequiredMessage,
     isClearable = false,
     isError,
     isMulti = false,
@@ -83,8 +81,7 @@ const InputSelectSearchable = ({
     const isLastMount = useRef(false);
     const myLanguage = i18n.getFixedT(languageUser);
     const inputRegister =
-        register &&
-        register(refForm, { required: required && errorIsRequiredMessage, validate: { ...customValidation } });
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
         if (selected && doValueLogic) {
@@ -219,15 +216,14 @@ const InputSelectSearchable = ({
                 }}
             />
 
-            <div className={`w-5 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                {(isError || state.isCancelable || state.isSuccess) && (
+            <div className={`w-5 ml-1 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);

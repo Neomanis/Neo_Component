@@ -13,7 +13,6 @@ interface Props {
     disabled?: boolean;
     dotClassName?: string;
     errorMessage?: string;
-    errorIsRequiredMessage?: string;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -42,7 +41,6 @@ const Input = ({
     disabled,
     dotClassName,
     errorMessage,
-    errorIsRequiredMessage,
     inputClassName,
     isError,
     isUpdateField = false,
@@ -107,8 +105,7 @@ const Input = ({
     }, [state.updated, state.previous]);
 
     const inputRegister =
-        register &&
-        register(refForm, { required: required && errorIsRequiredMessage, validate: { ...customValidation } });
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full flex justify-center">
@@ -149,14 +146,13 @@ const Input = ({
                 />
             </label>
             <div className={`w-5 ${dotClassName}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (onDotCancelCallBack) {
                                 onDotCancelCallBack(state.previous as string);

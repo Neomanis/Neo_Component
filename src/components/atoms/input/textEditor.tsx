@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useReducer, useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { IReactHookFormCustomValidation } from "../../../interface";
 import "../../../styles/textEditor.css";
 
 import inputReducer from "../../utils/reducers/inputReducer";
@@ -9,6 +10,7 @@ import Dot from "../dot";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
+    customValidation?: IReactHookFormCustomValidation<number | number[]>;
     defaultValue?: string;
     dotClassName?: string;
     errorMessage?: string;
@@ -26,6 +28,7 @@ interface Props {
 
 const TextEditor = ({
     clearErrors,
+    customValidation,
     defaultValue = "",
     dotClassName,
     errorMessage,
@@ -80,7 +83,7 @@ const TextEditor = ({
     ];
 
     useEffect(() => {
-        register && register(refForm, { required });
+        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -138,14 +141,13 @@ const TextEditor = ({
                     formats={formats}
                 />
                 <div className={`w-5 ${dotClassName}`}>
-                    {(isError || state.isCancelable || state.isSuccess) && (
+                    {(isUpdateField || isError) && (
                         <Dot
                             errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
                             isCooldown={state.isCooldown}
                             isError={isError}
                             isSuccess={state.isSuccess}
-                            isUpdateField={isUpdateField}
                             onClickCallback={(): void => {
                                 if (setValue && clearErrors) {
                                     setValue(refForm, state.previous);

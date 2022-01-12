@@ -143,14 +143,13 @@ const InputSelect = ({
                 </select>
             </label>
             <div className={`w-5 ${dotClassName}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (setValue && state.previous) {
                                 setValue(refForm, state.previous);

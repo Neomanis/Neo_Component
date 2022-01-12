@@ -180,14 +180,13 @@ const InputMultipleSelect = ({
             </div>
 
             <div className={`w-5 ${dotClassName}`}>
-                {(isError || state.isCancelable || state.isSuccess) && (
+                {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
                         isCooldown={state.isCooldown}
                         isError={isError}
                         isSuccess={state.isSuccess}
-                        isUpdateField={isUpdateField}
                         onClickCallback={(): void => {
                             if (state.timeoutId) {
                                 clearTimeout(state.timeoutId);

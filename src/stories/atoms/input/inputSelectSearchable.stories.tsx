@@ -21,12 +21,15 @@ const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
         // eslint-disable-next-line no-console
         console.log(data);
     };
-    console.log(errors);
-
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="w-1/4 h-96 bg-neo-bg-A">
-            <InputSelectSearchable {...args} setValue={setValue} register={register} refForm="input" />
-            {errors && <p className="text-red-600 text-xs">{errors?.input?.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-neo-bg-A p-2">
+            <InputSelectSearchable
+                {...args}
+                setValue={setValue}
+                register={register}
+                refForm="input"
+                isError={errors?.input && true}
+            />
             <button>Submit</button>
         </form>
     );
@@ -47,12 +50,13 @@ Default.args = {
     },
     isClearable: true,
     placeholder: "story Searchable",
+    errorMessage: "error",
     containerClassName: "w-full flex items-center",
     isSearchable: true,
     defaultValue: 3,
     required: true,
-    errorIsRequiredMessage: "Please select a option !",
     refForm: "example 1",
+    isError: true,
     data: [
         {
             label: "Abricot",
@@ -95,7 +99,6 @@ Labeled.args = {
     isClearable: true,
     placeholder: "story Searchable",
     isSearchable: true,
-    errorIsRequiredMessage: "Please select a option !",
     refForm: "example 1",
     data: [
         {

@@ -25,9 +25,14 @@ const Template: ComponentStory<typeof InputTextarea> = (args) => {
     console.log(errors);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="h-96 bg-neo-bg-A">
-            <InputTextarea {...args} setValue={setValue} register={register} />
-            {errors && <p className="text-red-600 text-xs">{errors?.exempleArea?.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-neo-bg-A">
+            <InputTextarea
+                {...args}
+                setValue={setValue}
+                register={register}
+                refForm="exemple"
+                isError={errors?.exemple && true}
+            />
             <button>Submit</button>
         </form>
     );
@@ -37,10 +42,9 @@ export const Default = Template.bind({});
 Default.args = {
     label: "Exemple",
     placeholder: "Exemple",
-    refForm: "exempleArea",
     required: true,
-    errorIsRequiredMessage: "No text !",
-    isUpdateField: false,
+    errorMessage: "No text !",
+    isUpdateField: true,
     classNames: {
         dot: "self-start mt-2 ml-2",
         textArea: "w-full bg-neo-bg-B p-2 rounded-md shadow-md h-40",
