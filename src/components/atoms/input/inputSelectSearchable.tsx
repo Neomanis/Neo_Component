@@ -216,7 +216,7 @@ const InputSelectSearchable = ({
                 }}
             />
 
-            <div className={`w-5 ml-1 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
+            <div className={`w-5 ${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                 {(isUpdateField || isError) && (
                     <Dot
                         errorMessage={errorMessage}
