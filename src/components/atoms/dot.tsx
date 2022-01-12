@@ -7,7 +7,7 @@ import Tooltip from "./tooltip";
 interface Props {
     errorMessage?: string;
     isCancelable?: boolean;
-    isCooldown: boolean;
+    isCooldown?: boolean;
     isError?: boolean | undefined;
     isSuccess: boolean;
     onClickCallback: () => void;
