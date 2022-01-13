@@ -21,9 +21,9 @@ describe("BubbleChat", () => {
     });
 
     it("should show bubble chat border if border is define", () => {
-        mount(<BubbleChat content="Helloworld" border={true} />);
+        mount(<BubbleChat content="Helloworld" border="border-neo-bg-B" />);
 
-        cy.get('[data-testid="bubbleChat-body"]').should("have.class", "border-2 border-neo-bg-B");
+        cy.get('[data-testid="bubbleChat-body"]').should("have.class", "border-neo-bg-B border-2");
     });
 
     it("should not show bubble chat border if border is not define", () => {

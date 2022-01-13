@@ -24,7 +24,7 @@ Default.args = {
     content: "BURN BABY BURN!",
     date: "12:12",
     name: "Ragnaros The Firelord",
-    privateMessage: true,
+    privateMessage: false,
 };
 export const DefaultDot = Template.bind({});
 DefaultDot.args = {
