@@ -1,10 +1,11 @@
 import { format } from "date-fns";
 import { IChatMessage, IGlpiUsers } from "../../interface";
 
-export function formatMessage(message: string, senderId: number): IChatMessage {
+export function formatMessage(message: string, senderId: number, isPrivate: number): IChatMessage {
     return {
         content: message,
         users_id: senderId,
+        is_private: isPrivate,
         date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
     };
 }
