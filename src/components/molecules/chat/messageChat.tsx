@@ -6,7 +6,7 @@ interface Props {
     content: string;
     date: string;
     isMe: boolean;
-    messagePrivate?: boolean;
+    privateMessage?: boolean;
     name: string;
     avatar?: {
         encodedAvatar: string;
@@ -15,8 +15,9 @@ interface Props {
     };
 }
 
-const MessageChat = ({ content, date, isMe, messagePrivate, name, avatar }: Props): ReactElement => {
+const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: Props): ReactElement => {
     const [hover, setHover] = useState(false);
+
     return (
         <div>
             <div
@@ -33,17 +34,16 @@ const MessageChat = ({ content, date, isMe, messagePrivate, name, avatar }: Prop
                 >
                     <p>{name}</p>
                     <p className="px-2">{date}</p>
-                    {messagePrivate && <Icon fontIcon={faLock} />}
                 </div>
             </div>
             <div
                 className={`
                 ${isMe && "flex-row-reverse"} 
-                w-full flex items-center`}
+                w-full flex items-center relative`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >
-                <div className="min-w-max">
+                <div className="min-w-max ">
                     {avatar ? (
                         <Img
                             type="imgProfile"
@@ -57,13 +57,17 @@ const MessageChat = ({ content, date, isMe, messagePrivate, name, avatar }: Prop
                         <Img type="imgProfile" className={"rounded-full w-11"} />
                     )}
                 </div>
-                <div className="mx-3">
+                <div className="mx-3 relative">
+                    {privateMessage && (
+                        <Icon
+                            className={`${!isMe ? "-left-2" : "-right-2"} text-neo-red absolute top-0 drop-shadow-md `}
+                            fontIcon={faLock}
+                        />
+                    )}
                     <BubbleChat
-                        bgColor={isMe && !messagePrivate ? "bg-neo-bg-B" : "bg-neo-blue"}
-                        // bgColor={isMe ? (isMe && !messagePrivate ? "bg-neo-bg-B" : "bg-neo-blue") : ""}
-                        border={!isMe}
+                        bgColor={isMe && "bg-neo-bg-B "}
+                        border={!isMe && "border-neo-bg-B"}
                         content={content}
-                        privateBorder={messagePrivate}
                     />
                 </div>
             </div>

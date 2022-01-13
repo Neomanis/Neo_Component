@@ -70,7 +70,7 @@ const InputChat = ({
                             <ButtonSwitch
                                 activeFontIcon={faLock}
                                 inactiveFontIcon={faLockOpen}
-                                activeClassName="flex text-neo-green"
+                                activeClassName="flex text-neo-red"
                                 inactiveClassName="flex text-neo-light-grey opacity-50"
                                 fCallback={fCallbackPrivateMessage}
                             />

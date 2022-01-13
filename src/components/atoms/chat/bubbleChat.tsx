@@ -1,17 +1,14 @@
 import React, { ReactElement } from "react";
 interface Props {
     bgColor?: string;
-    border?: boolean;
+    border?: string;
     content: string;
-    privateBorder?: boolean;
 }
 
-const BubbleChat = ({ bgColor, border, content, privateBorder }: Props): ReactElement => {
+const BubbleChat = ({ bgColor, border, content }: Props): ReactElement => {
     return (
         <div
-            className={`${bgColor}
-            ${border && !privateBorder ? "border-2 border-neo-bg-B" : "border-2 border-neo-blue "}
-             text-xxs rounded-md p-2  text-neo-light-grey`}
+            className={`${bgColor} ${border} ${border && "border-2"} text-xxs rounded-md p-2 text-neo-light-grey`}
             data-testid="bubbleChat-body"
         >
             {content}
