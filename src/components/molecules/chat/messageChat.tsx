@@ -1,10 +1,12 @@
 import React, { ReactElement, useState } from "react";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 
-import { BubbleChat, Img } from "../../atoms";
+import { BubbleChat, Icon, Img } from "../../atoms";
 interface Props {
     content: string;
     date: string;
     isMe: boolean;
+    privateMessage?: boolean;
     name: string;
     avatar?: {
         encodedAvatar: string;
@@ -13,8 +15,9 @@ interface Props {
     };
 }
 
-const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement => {
+const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: Props): ReactElement => {
     const [hover, setHover] = useState(false);
+
     return (
         <div>
             <div
@@ -36,11 +39,11 @@ const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement
             <div
                 className={`
                 ${isMe && "flex-row-reverse"} 
-                w-full flex items-center`}
+                w-full flex items-center relative`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >
-                <div className="min-w-max">
+                <div className="min-w-max ">
                     {avatar ? (
                         <Img
                             type="imgProfile"
@@ -54,8 +57,18 @@ const MessageChat = ({ content, date, isMe, name, avatar }: Props): ReactElement
                         <Img type="imgProfile" className={"rounded-full w-11"} />
                     )}
                 </div>
-                <div className="mx-3">
-                    <BubbleChat bgColor={isMe && "bg-neo-bg-B"} border={!isMe} content={content} />
+                <div className="mx-3 relative">
+                    {privateMessage && (
+                        <Icon
+                            className={`${!isMe ? "-left-2" : "-right-2"} text-neo-red absolute top-0 drop-shadow-md `}
+                            fontIcon={faLock}
+                        />
+                    )}
+                    <BubbleChat
+                        bgColor={isMe && "bg-neo-bg-B "}
+                        border={!isMe && "border-neo-bg-B"}
+                        content={content}
+                    />
                 </div>
             </div>
         </div>
