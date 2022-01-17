@@ -1,29 +1,32 @@
 import React, { ReactElement, useState, useEffect, useRef } from "react";
-import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
+import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
-import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
-import { getFormatedTimeToNow } from "../../utils/getFormatedTimeToNow";
+import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getPriorityColor } from "../../utils/priorityTools";
+import { getDateCompletionPercentage, getFormatedTimeToNow } from "../../utils/dateTools";
 
 //translations
 import i18next from "i18next";
 import { ClockLogo, TicketLogo } from "../../../img/svg";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { Status } from "../../../enumeration";
 
 interface Props {
-    ticket?: ITicket;
     currentTicket?: ITicket;
-    fOverCallBack?: (val: { ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }) => void;
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
+    fOverCallBack?: (val: { ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }) => void;
     iconBG?: boolean;
     languageUser?: string;
+    ticket?: ITicket;
 }
 
 const Ticket = ({
-    ticket,
-    fOverCallBack,
     currentTicket,
     fOpenModalCurrentTicket,
+    fOverCallBack,
     iconBG,
     languageUser,
+    ticket,
 }: Props): ReactElement => {
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
     const ref = useRef<HTMLHeadingElement>(null);
@@ -111,12 +114,30 @@ const Ticket = ({
                         >
                             <p className="truncate mx-2">{ticket.name}</p>
                         </div>
-                        <div className="text-white text-sm flex justify-center item-center">
-                            <div className="w-4 h-4 mr-1">
-                                <ClockLogo fill="#fff" />
+                        {getDateCompletionPercentage(
+                            ticket.date_creation,
+                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                        ) >= 75 && ticket.status !== Status.Pending ? (
+                            <div
+                                className={`h-5 ${
+                                    getDateCompletionPercentage(
+                                        ticket.date_creation,
+                                        ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                    ) <= 99
+                                        ? "text-neo-urgency"
+                                        : "text-neo-urgency-major"
+                                }`}
+                            >
+                                <Icon fontIcon={faExclamationTriangle} />
                             </div>
-                            <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
-                        </div>
+                        ) : (
+                            <div className="text-white text-sm flex justify-center item-center">
+                                <div className="w-4 h-4 mr-1">
+                                    <ClockLogo fill="#fff" />
+                                </div>
+                                <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
+                            </div>
+                        )}
                     </div>
                     <div
                         className="absolute"

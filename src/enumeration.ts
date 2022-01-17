@@ -17,39 +17,33 @@ export enum Priority {
 }
 
 export const typeSelection = [
-    { id: 1, value: "Incident" },
-    { id: 2, value: "Request" },
+    { id: 1, value: "incident" },
+    { id: 2, value: "request" },
 ];
 
 export const statusSelection = [
-    { id: 1, value: "New" },
-    { id: 2, value: "In progress (assigned)" },
-    { id: 3, value: "In progress (planned)" },
-    { id: 4, value: "Pending" },
-    { id: 5, value: "Solved" },
-    { id: 6, value: "Closed" },
-];
-
-export const prioritySelection = [
-    { id: 1, value: "Very Low" },
-    { id: 2, value: "Low" },
-    { id: 3, value: "Medium" },
-    { id: 4, value: "High" },
-    { id: 5, value: "Very High" },
-    { id: 6, value: "Major" },
+    { id: 1, value: "new" },
+    { id: 2, value: "inProgressAssigned" },
+    { id: 3, value: "inProgressPlanned" },
+    { id: 4, value: "pending" },
+    { id: 5, value: "solved" },
+    { id: 6, value: "closed" },
 ];
 
 export const scaleSelection = [
-    { id: 2, value: "Low" },
-    { id: 3, value: "Medium" },
-    { id: 4, value: "High" },
+    { id: 1, value: "veryLow" },
+    { id: 2, value: "low" },
+    { id: 3, value: "medium" },
+    { id: 4, value: "high" },
+    { id: 5, value: "veryHigh" },
+    { id: 6, value: "major" },
 ];
 
 export const validationSelection = [
-    { id: 1, value: "Not subject to validation" },
-    { id: 2, value: "Waiting for validation" },
-    { id: 3, value: "Accepted" },
-    { id: 4, value: "Refused" },
+    { id: 1, value: "noValidation" },
+    { id: 2, value: "waiting" },
+    { id: 3, value: "accepted" },
+    { id: 4, value: "refused" },
 ];
 
 export const categories = [

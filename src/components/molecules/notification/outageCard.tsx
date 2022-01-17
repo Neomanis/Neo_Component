@@ -1,7 +1,7 @@
 import React from "react";
 import { IOutage } from "../../../interface";
 import { Title, IconOutageCategorie } from "../../atoms";
-import { formatDate } from "../../utils/getFormatedTimeToNow";
+import { formatDate } from "../../utils/dateTools";
 
 interface Props {
     data: IOutage;

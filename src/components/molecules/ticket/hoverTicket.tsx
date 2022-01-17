@@ -1,12 +1,15 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
-import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
-import { Button, Hexagon, IconTicketCategorie, Img } from "../../atoms";
+import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getPriorityColor } from "../../utils/priorityTools";
+import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations
 import i18next from "i18next";
-import { getFormatedTimeToNowExtended } from "../../utils/getFormatedTimeToNow";
+import { getDateCompletionPercentage, getFormatedTimeToNowExtended } from "../../utils/dateTools";
 import { ChatLogo, ClockLogo, DiagLogo, ExpandLogo } from "../../../img/svg";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { Status } from "../../../enumeration";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
@@ -14,10 +17,10 @@ interface Props {
     fMouseLeave?: () => void;
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
     fTicketModalOpen?: () => void;
+    keywords: string[];
     languageUser: string;
     ticket: ITicket;
     ticketRequester?: string;
-    keywords: string[];
 }
 
 const HoverTicket = ({
@@ -26,10 +29,10 @@ const HoverTicket = ({
     fMouseLeave,
     fOpenModalCurrentTicket,
     fTicketModalOpen,
+    keywords,
     languageUser,
     ticket,
     ticketRequester,
-    keywords,
 }: Props): ReactElement => {
     const position = dataView?.current ? dataView?.current.getBoundingClientRect() : null;
     const myLanguage = i18next.getFixedT(languageUser);
@@ -108,14 +111,37 @@ const HoverTicket = ({
                                 <div className="text-2xl mr-4">
                                     <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
                                 </div>
-                                <div className="flex items-center">
-                                    <div className="w-5 mr-1">
-                                        <ClockLogo fill="#DAE5E5" />
+                                {getDateCompletionPercentage(
+                                    ticket.date_creation,
+                                    ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                ) >= 75 && ticket.status !== Status.Pending ? (
+                                    <div
+                                        className={`flex items-center ${
+                                            getDateCompletionPercentage(
+                                                ticket.date_creation,
+                                                ticket.status === Status.New
+                                                    ? ticket.time_to_own
+                                                    : ticket.time_to_resolve
+                                            ) <= 99
+                                                ? "text-neo-urgency"
+                                                : "text-neo-urgency-major"
+                                        }`}
+                                    >
+                                        <Icon fontIcon={faExclamationTriangle} className="mr-1" />
+                                        <p className="text-xs">
+                                            {myLanguage(`ticketForm.${ticket.status === Status.New ? "tto" : "ttr"}`)}
+                                        </p>
                                     </div>
-                                    <p className="text-xs">
-                                        {getFormatedTimeToNowExtended(ticket.date_creation, languageUser)}
-                                    </p>
-                                </div>
+                                ) : (
+                                    <div className="flex items-center">
+                                        <div className="w-5 mr-1">
+                                            <ClockLogo fill="#DAE5E5" />
+                                        </div>
+                                        <p className="text-xs">
+                                            {getFormatedTimeToNowExtended(ticket.date_creation, languageUser)}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                             <div className="flex items-center justify-center">
                                 <div className="flex flex-col items-end">

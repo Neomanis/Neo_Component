@@ -36,8 +36,10 @@ function dateHandler(date: string): string {
     return date;
 }
 
-export function formatDate(date: string, lang = "en_GB"): string {
-    return format(new Date(dateHandler(date)), "P p", { locale: getDateFnsLocaleFromUserLang(lang) });
+export function formatDate(date: string, lang = "en_GB", dayOfWeek = false): string {
+    return format(new Date(dateHandler(date)), `${dayOfWeek ? "EEEE " : ""}P p`, {
+        locale: getDateFnsLocaleFromUserLang(lang),
+    });
 }
 
 export function formatDateToNow(incomingDate: string, lang: string): string {
@@ -63,4 +65,11 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
         });
     }
     return formatedDate;
+}
+
+export function getDateCompletionPercentage(startDate: string, endDate: string): number {
+    const start = new Date(startDate).getTime();
+    const end = new Date(endDate).getTime();
+    const now = new Date().getTime();
+    return Math.round(((now - start) / (end - start)) * 100);
 }

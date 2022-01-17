@@ -381,6 +381,8 @@ export interface ITicket {
     type: number;
     global_validation: number;
     date_creation: string;
+    time_to_own: string | null;
+    time_to_resolve: string | null;
     similarTickets: ISimilarTicket[];
     resources: IResource[];
     userRequester: number[];
@@ -460,4 +462,13 @@ export interface ITechnicalQuestionAnswer {
     updateDate: string;
     accepted: boolean;
     upvoters: string[];
+}
+
+export interface ColorTypes {
+    tailwind: string;
+    hex: string;
+}
+
+export interface Colors {
+    [key: string]: ColorTypes;
 }

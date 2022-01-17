@@ -3,11 +3,13 @@ import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction
 import {
     formatDate,
     formatDateToNow,
+    getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
-} from "./getFormatedTimeToNow";
+} from "./dateTools";
+import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
-import { getStatusColor, getPriorityColor } from "./ticketColorSelector";
+import { getStatusColor } from "./ticketColorSelector";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
@@ -17,13 +19,15 @@ export {
     formatDate,
     formatDateToNow,
     formatMessage,
+    getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
-    getOutageTextColor,
-    getOutageDivideColor,
     getOutageBorderColor,
+    getOutageDivideColor,
     getOutageSVGColor,
+    getOutageTextColor,
     getPriorityColor,
+    getPriorityValue,
     getRecipientsNameByIds,
     getRequesterUid,
     getServiceStatusColor,
