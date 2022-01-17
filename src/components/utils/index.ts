@@ -3,9 +3,11 @@ import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction
 import {
     formatDate,
     formatDateToNow,
+    getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
-} from "./getFormatedTimeToNow";
+} from "./dateTools";
+import { getPriorityValue } from "./getPriorityValue";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getPriorityColor } from "./ticketColorSelector";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
@@ -17,13 +19,15 @@ export {
     formatDate,
     formatDateToNow,
     formatMessage,
+    getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
-    getOutageTextColor,
-    getOutageDivideColor,
     getOutageBorderColor,
+    getOutageDivideColor,
     getOutageSVGColor,
+    getOutageTextColor,
     getPriorityColor,
+    getPriorityValue,
     getRecipientsNameByIds,
     getRequesterUid,
     getServiceStatusColor,

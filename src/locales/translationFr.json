@@ -149,6 +149,22 @@
         "refreshButton": "Refresh-auto",
         "uncheckAllButton": "Tout déselectionner"
     },
+    "scaleLevelM": {
+        "high": "Haut",
+        "low": "Bas",
+        "major": "Majeur",
+        "medium": "Moyen",
+        "veryHigh": "Très haut",
+        "veryLow": "Très bas"
+    },
+    "scaleLevelF": {
+        "high": "Haute",
+        "low": "Basse",
+        "major": "Majeure",
+        "medium": "Moyenne",
+        "veryHigh": "Très haute",
+        "veryLow": "Très basse"
+    },
     "ticketAdvancesSearch": {
         "filter": "Ajouter un filtre",
         "title": "Recherche avancée"
@@ -178,6 +194,8 @@
         "source": "Source",
         "status": "Statut",
         "successSubmit": "Ticket créé avec succès",
+        "tto": "Prise en compte",
+        "ttr": "Résolution",
         "type": "Type",
         "updated": "Dernière modification ",
         "urgency": "Urgence",
@@ -241,6 +259,24 @@
             "pending": "EN ATTENTE"
         },
         "ticketDetails": "DETAILS TICKET"
+    },
+    "ticketStatus": {
+        "closed": "Clos",
+        "inProgressAssigned": "En cours (assigné)",
+        "inProgressPlanned": "En cours (planifié)",
+        "new": "Nouveau",
+        "pending": "En attente",
+        "solved": "Résolu"
+    },
+    "ticketTypes": {
+        "incident": "Incident",
+        "request": "Demande"
+    },
+    "ticketValidation": {
+        "accepted": "Accepté",
+        "noValidation": "Non sujet à la validation",
+        "refused": "Refusé",
+        "waiting": "Attente de validation"
     },
     "titles": {
         "dashBoard": "Accueil",

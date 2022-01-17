@@ -149,6 +149,22 @@
         "refreshButton": "Auto-refresh",
         "uncheckAllButton": "Uncheck all"
     },
+    "scaleLevelM": {
+        "high": "High",
+        "low": "Low",
+        "major": "Major",
+        "medium": "Medium",
+        "veryHigh": "Very high",
+        "veryLow": "Very low"
+    },
+    "scaleLevelF": {
+        "high": "High",
+        "low": "Low",
+        "major": "Major",
+        "medium": "Medium",
+        "veryHigh": "Very high",
+        "veryLow": "Very low"
+    },
     "ticketAdvancesSearch": {
         "filter": "Add filter",
         "title": "Advanced search"
@@ -178,6 +194,8 @@
         "source": "Request source",
         "status": "Status",
         "successSubmit": "Ticket successfully created",
+        "tto": "TTO",
+        "ttr": "TTR",
         "type": "Type",
         "updated": "Last update ",
         "urgency": "Urgency",
@@ -241,6 +259,24 @@
             "pending": "PENDING"
         },
         "ticketDetails": "TICKET DETAILS"
+    },
+    "ticketStatus": {
+        "closed": "Closed",
+        "inProgressAssigned": "In progress (assigned)",
+        "inProgressPlanned": "In progress (planned)",
+        "new": "New",
+        "pending": "Pending",
+        "solved": "Solved"
+    },
+    "ticketTypes": {
+        "incident": "Incident",
+        "request": "Request"
+    },
+    "ticketValidation": {
+        "accepted": "Accepted",
+        "noValidation": "Not subject to validation",
+        "refused": "Refused",
+        "waiting": "Waiting for validation"
     },
     "titles": {
         "dashBoard": "Dashboard",
