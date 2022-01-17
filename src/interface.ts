@@ -463,3 +463,12 @@ export interface ITechnicalQuestionAnswer {
     accepted: boolean;
     upvoters: string[];
 }
+
+export interface ColorTypes {
+    tailwind: string;
+    hex: string;
+}
+
+export interface Colors {
+    [key: string]: ColorTypes;
+}

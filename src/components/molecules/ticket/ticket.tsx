@@ -1,7 +1,8 @@
 import React, { ReactElement, useState, useEffect, useRef } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
-import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
+import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getFormatedTimeToNow } from "../../utils/dateTools";
 
 //translations

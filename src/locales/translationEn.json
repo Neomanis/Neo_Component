@@ -149,7 +149,7 @@
         "refreshButton": "Auto-refresh",
         "uncheckAllButton": "Uncheck all"
     },
-    "scaleLevelM": {
+    "scaleLevelMale": {
         "high": "High",
         "low": "Low",
         "major": "Major",
@@ -157,7 +157,7 @@
         "veryHigh": "Very high",
         "veryLow": "Very low"
     },
-    "scaleLevelF": {
+    "scaleLevelFemale": {
         "high": "High",
         "low": "Low",
         "major": "Major",

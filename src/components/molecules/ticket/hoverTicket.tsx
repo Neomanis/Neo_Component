@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
-import { getPriorityColor, getStatusColor } from "../../utils/ticketColorSelector";
+import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getPriorityColor } from "../../utils/priorityTools";
 import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
 //translations

@@ -149,7 +149,7 @@
         "refreshButton": "Refresh-auto",
         "uncheckAllButton": "Tout déselectionner"
     },
-    "scaleLevelM": {
+    "scaleLevelMale": {
         "high": "Haut",
         "low": "Bas",
         "major": "Majeur",
@@ -157,7 +157,7 @@
         "veryHigh": "Très haut",
         "veryLow": "Très bas"
     },
-    "scaleLevelF": {
+    "scaleLevelFemale": {
         "high": "Haute",
         "low": "Basse",
         "major": "Majeure",
@@ -274,7 +274,7 @@
     },
     "ticketValidation": {
         "accepted": "Accepté",
-        "noValidation": "Non sujet à la validation",
+        "noValidation": "Non sujet à validation",
         "refused": "Refusé",
         "waiting": "Attente de validation"
     },

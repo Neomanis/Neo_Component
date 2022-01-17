@@ -7,9 +7,9 @@ import {
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
 } from "./dateTools";
-import { getPriorityValue } from "./getPriorityValue";
+import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
-import { getStatusColor, getPriorityColor } from "./ticketColorSelector";
+import { getStatusColor } from "./ticketColorSelector";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
