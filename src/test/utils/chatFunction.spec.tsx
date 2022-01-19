@@ -9,9 +9,10 @@ describe("Chat functions", () => {
     });
 
     it("should format a message to IChatMessage", () => {
-        expect(formatMessage("This is my message", 12)).to.eql({
+        expect(formatMessage("This is my message", 12, 0)).to.eql({
             content: "This is my message",
             users_id: 12,
+            is_private: 0,
             date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
         });
     });
