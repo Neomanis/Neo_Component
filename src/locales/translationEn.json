@@ -284,7 +284,8 @@
         "total": "Total",
         "openByNeoBot": "Tickets opened by NeoBot",
         "ticketsOpen": "Tickets opened",
-        "ticketSolved": "Ticket solved",
+        "ticketSolved": "Tickets solved",
+        "ticketOwn": "Tickets handled",
         "neoBot": {
             "solved": "Solved by neoBot",
             "notSolved": "Not solved by neoBot",
