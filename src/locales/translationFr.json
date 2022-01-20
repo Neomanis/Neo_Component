@@ -286,8 +286,8 @@
         "ticketsOpen": "Tickets ouverts",
         "ticketSolved": "Tickets résolus",
         "neoBot": {
-            "solved": "Résolu par neoBot",
-            "notSolved": "Non résolu par neoBot",
+            "solved": "Résolus par neoBot",
+            "notSolved": "Non résolus par neoBot",
             "cancel": "Annulé par l'utilisateur"
         },
         "dateSelector": {
@@ -298,13 +298,13 @@
             "all": "Depuis le début"
         },
         "TTR": {
-            "met": "TTR atteint",
-            "notMet": "TTR non atteint",
+            "met": "TTR respecté",
+            "notMet": "TTR non respecté",
             "almostNotMet": "TTR presque dépassé"
         },
         "TTO": {
-            "met": "TTO atteint",
-            "notMet": "TTO non atteint",
+            "met": "TTO respecté",
+            "notMet": "TTO non respecté",
             "almostNotMet": "TTO presque dépassé"
         }
     },

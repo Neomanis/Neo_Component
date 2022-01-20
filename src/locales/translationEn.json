@@ -282,8 +282,8 @@
         "tabTitleNow": "Now",
         "tabTitleRange": "Range",
         "total": "Total",
-        "openByNeoBot": "Tickets open by NeoBot",
-        "ticketsOpen": "Tickets open",
+        "openByNeoBot": "Tickets opened by NeoBot",
+        "ticketsOpen": "Tickets opened",
         "ticketSolved": "Ticket solved",
         "neoBot": {
             "solved": "Solved by neoBot",
@@ -298,14 +298,14 @@
             "all": "Since the beginning"
         },
         "TTR": {
-            "met": "Met TTR",
-            "notMet": "Not met TTR",
-            "almostNotMet": "Almost not met TTR"
+            "met": "TTR met ",
+            "notMet": "TTR not met",
+            "almostNotMet": "TTR nearly overdue"
         },
         "TTO": {
-            "met": "Met TTO",
-            "notMet": "Not met TTO",
-            "almostNotMet": "Almost not met TTO"
+            "met": "TTO met",
+            "notMet": "TTO not met",
+            "almostNotMet": "TTO nearly overdue"
         }
     },
     "titles": {
