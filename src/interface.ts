@@ -472,3 +472,29 @@ export interface ColorTypes {
 export interface Colors {
     [key: string]: ColorTypes;
 }
+
+export interface TicketsStatistics {
+    currentTicketsState: {
+        almostNotMetTTO: number;
+        almostNotMetTTR: number;
+        notMetTTO: number;
+        notMetTTR: number;
+        ticketByStatus: { [key: string]: number };
+        total: number;
+    };
+    ticketByPeriod: {
+        totalTTO: number;
+        totalTTR: number;
+        metTTO: number;
+        metTTR: number;
+        nbOpened: number;
+        nbSolved: number;
+        openByNeobot: {
+            opened: number;
+            solved: number;
+            escalated: number;
+            canceled: number;
+            byPassed: number;
+        };
+    };
+}
