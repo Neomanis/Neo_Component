@@ -278,6 +278,36 @@
         "refused": "Refused",
         "waiting": "Waiting for validation"
     },
+    "ticketStatistics": {
+        "tabTitleNow": "Now",
+        "tabTitleRange": "Range",
+        "total": "Total",
+        "openByNeoBot": "Tickets opened by NeoBot",
+        "ticketsOpen": "Tickets opened",
+        "ticketSolved": "Ticket solved",
+        "neoBot": {
+            "solved": "Solved by neoBot",
+            "notSolved": "Not solved by neoBot",
+            "cancel": "Canceled by user"
+        },
+        "dateSelector": {
+            "week": "Last week",
+            "month": "Last month",
+            "quarter": "Last quarter",
+            "year": "Last year",
+            "all": "Since the beginning"
+        },
+        "TTR": {
+            "met": "TTR met",
+            "notMet": "TTR not met",
+            "almostNotMet": "TTR nearly overdue"
+        },
+        "TTO": {
+            "met": "TTO met",
+            "notMet": "TTO not met",
+            "almostNotMet": "TTO nearly overdue"
+        }
+    },
     "titles": {
         "dashBoard": "Dashboard",
         "inbox": "Inbox",

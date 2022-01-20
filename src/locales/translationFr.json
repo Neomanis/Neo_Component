@@ -278,6 +278,36 @@
         "refused": "Refusé",
         "waiting": "Attente de validation"
     },
+    "ticketStatistics": {
+        "tabTitleNow": "Maintenant",
+        "tabTitleRange": "Maintenant",
+        "total": "Total",
+        "openByNeoBot": "Tickets ouverts par NeoBot",
+        "ticketsOpen": "Tickets ouverts",
+        "ticketSolved": "Tickets résolus",
+        "neoBot": {
+            "solved": "Résolus par neoBot",
+            "notSolved": "Non résolus par neoBot",
+            "cancel": "Annulés par l'utilisateur"
+        },
+        "dateSelector": {
+            "week": "Semaine dernière",
+            "month": "Dernier mois",
+            "quarter": "Dernier trimestre",
+            "year": "Dernière année",
+            "all": "Depuis le début"
+        },
+        "TTR": {
+            "met": "TTR respecté",
+            "notMet": "TTR non respecté",
+            "almostNotMet": "TTR presque dépassé"
+        },
+        "TTO": {
+            "met": "TTO respecté",
+            "notMet": "TTO non respecté",
+            "almostNotMet": "TTO presque dépassé"
+        }
+    },
     "titles": {
         "dashBoard": "Accueil",
         "inbox": "File d'attente",

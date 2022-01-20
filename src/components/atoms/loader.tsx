@@ -6,7 +6,7 @@ import Icon from "./icon";
 import Title from "./title";
 interface Props {
     data?: string;
-    type?: string;
+    type?: "circleOnly";
     className?: string;
 }
 const Loader = ({ data, type, className }: Props): ReactElement => {
