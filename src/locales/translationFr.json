@@ -280,11 +280,12 @@
     },
     "ticketStatistics": {
         "tabTitleNow": "Maintenant",
-        "tabTitleRange": "Maintenant",
+        "tabTitleRange": "Période",
         "total": "Total",
         "openByNeoBot": "Tickets ouverts par NeoBot",
         "ticketsOpen": "Tickets ouverts",
         "ticketSolved": "Tickets résolus",
+        "ticketInProgress": "Tickets en cours",
         "neoBot": {
             "solved": "Résolus par neoBot",
             "notSolved": "Non résolus par neoBot",
@@ -298,14 +299,14 @@
             "all": "Depuis le début"
         },
         "TTR": {
-            "met": "TTR respecté",
-            "notMet": "TTR non respecté",
-            "almostNotMet": "TTR presque dépassé"
+            "met": "TTR respectés",
+            "notMet": "TTR non respectés",
+            "almostNotMet": "TTR presque dépassés"
         },
         "TTO": {
-            "met": "TTO respecté",
-            "notMet": "TTO non respecté",
-            "almostNotMet": "TTO presque dépassé"
+            "met": "TTO respectés",
+            "notMet": "TTO non respectés",
+            "almostNotMet": "TTO presque dépassés"
         }
     },
     "titles": {
