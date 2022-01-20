@@ -289,7 +289,7 @@
         "neoBot": {
             "solved": "Résolus par neoBot",
             "notSolved": "Non résolus par neoBot",
-            "cancel": "Annulé par l'utilisateur"
+            "cancel": "Annulés par l'utilisateur"
         },
         "dateSelector": {
             "week": "Semaine dernière",
