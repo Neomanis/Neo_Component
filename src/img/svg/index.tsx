@@ -1,4 +1,3 @@
-//import svg LOGO
 import { ReactComponent as CautionLogo } from "./nm_ico_caution.svg";
 import { ReactComponent as ChatLogo } from "./nm_ico_chat.svg";
 import { ReactComponent as ClockLogo } from "./nm_ico_time.svg";
@@ -10,6 +9,7 @@ import { ReactComponent as HexagonLineAdd } from "./nm_design_hexagon_line_add.s
 import { ReactComponent as HexagonRotate } from "./nm_design_kb_bg.svg";
 import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
+import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
@@ -71,6 +71,7 @@ export {
     HexagonRotate,
     HexagonShape,
     IconAdd,
+    IconAdvancedSearch,
     IconArrowLeft,
     IconArrowRight,
     IconChartPie,
