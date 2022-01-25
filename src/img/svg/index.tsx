@@ -11,7 +11,6 @@ import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
 import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.svg";
 import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
-import { ReactComponent as IconAnalytics } from "./nm_ico_analytics.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
@@ -25,7 +24,7 @@ import { ReactComponent as IconDiagtoolBox } from "./nm_ico_diagtoolbox.svg";
 import { ReactComponent as IconEmptystar } from "./nm_ico_rating_emptystar.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
 import { ReactComponent as IconHalfStar } from "./nm_ico_rating_halfstar.svg";
-import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware-systems.svg";
+import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.svg";
 import { ReactComponent as IconInbox } from "./nm_ico_inbox.svg";
 import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
 import { ReactComponent as IconInventory } from "./nm_ico_inventory.svg";
@@ -44,6 +43,7 @@ import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
 import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
 import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
+import { ReactComponent as IconStatistics } from "./nm_ico_statistics.svg";
 import { ReactComponent as IconStatusBar } from "./nm_ico_statusbar_long.svg";
 import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.svg";
 import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
@@ -79,7 +79,6 @@ export {
     IconAdd,
     IconAdvancedSearch,
     IconAgent,
-    IconAnalytics,
     IconArrowLeft,
     IconArrowLogin,
     IconArrowRight,
@@ -112,6 +111,7 @@ export {
     IconRetract,
     IconSearch,
     IconSetting,
+    IconStatistics,
     IconStatusBar,
     IconStatusBarShort,
     IconSystemStatus,
