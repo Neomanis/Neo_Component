@@ -9,12 +9,9 @@ import { ReactComponent as HexagonLineAdd } from "./nm_design_hexagon_line_add.s
 import { ReactComponent as HexagonRotate } from "./nm_design_kb_bg.svg";
 import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
-<<<<<<< HEAD
 import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.svg";
-=======
 import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
 import { ReactComponent as IconAnalytics } from "./nm_ico_analytics.svg";
->>>>>>> b98bf5b (new ico & modify existant ico)
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
@@ -80,12 +77,9 @@ export {
     HexagonRotate,
     HexagonShape,
     IconAdd,
-<<<<<<< HEAD
     IconAdvancedSearch,
-=======
     IconAgent,
     IconAnalytics,
->>>>>>> b98bf5b (new ico & modify existant ico)
     IconArrowLeft,
     IconArrowLogin,
     IconArrowRight,
