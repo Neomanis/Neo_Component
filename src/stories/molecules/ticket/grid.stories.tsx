@@ -44,4 +44,5 @@ DefaultHelper.args = {
     ticketList: [fakeTicket, fakeTicket, fakeTicket],
     withHover: false,
     reverseGrid: true,
+    neoHelper: true,
 };

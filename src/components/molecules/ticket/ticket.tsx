@@ -16,9 +16,10 @@ interface Props {
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
     languageUser?: string;
     ticket?: ITicket;
+    neoHelper?: boolean;
 }
 
-const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket }: Props): ReactElement => {
+const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, neoHelper }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser ? languageUser : "en_US");
 
     function isSameStatus(): boolean {
@@ -163,7 +164,7 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket }
                         <div className="absolute w-12">
                             <TicketLogo fill="#152535" />
                         </div>
-                        <Hexagon bgColor="#172f4b" />
+                        <Hexagon bgColor={neoHelper && "#172f4b"} />
                     </div>
                 </div>
             )}
