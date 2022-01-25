@@ -1,6 +1,6 @@
 import Grid from "../../../components/molecules/ticket/grid";
 import { mount } from "@cypress/react";
-import { fakeGlpiUsers, fakeTicket } from "../../../stories/fakeObject";
+import { fakeTicket } from "../../../stories/fakeObject";
 
 describe("Grid", () => {
     it("should render properly", () => {
@@ -117,43 +117,19 @@ describe("Grid", () => {
         cy.get('[data-testid="grid-page-number"]').should("have.text", "1/7");
     });
 
-    it("should show hoverTicket on hover", () => {
-        mount(
-            <Grid
-                cols={2}
-                rows={2}
-                languageUser="fr_FR"
-                glpiUsers={fakeGlpiUsers}
-                ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
-                showPagination
-                withHover
-            />
-        );
-        cy.get('[data-testid="grid-ticket"]').first().trigger("mouseover");
-        cy.get('[data-testid="hoverTicket-body"]').should("be.visible");
-        cy.get('[data-testid="hoverTicket-body"]').first().trigger("mouseout");
-        cy.get('[data-testid="hoverTicket-body"]').should("not.exist");
-    });
-
     it("should trigger all callback", () => {
-        const fChatModalOpen = cy.stub().as("chatModalOpen-callback");
         const fOpenModalCurrentTicket = cy.stub().as("openModalCurrentTicket-callback");
         const fCurrentTicket = cy.stub().as("currentTicket-callback");
-        const fTicketModalOpen = cy.stub().as("ticketModalOpen-callback");
 
         mount(
             <Grid
                 cols={2}
                 rows={2}
                 languageUser="fr_FR"
-                glpiUsers={fakeGlpiUsers}
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
-                withHover
-                fChatModalOpen={fChatModalOpen}
                 fOpenModalCurrentTicket={fOpenModalCurrentTicket}
                 fCurrentTicket={fCurrentTicket}
-                fTicketModalOpen={fTicketModalOpen}
             />
         );
 

@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { IGlpiRequest, IGlpiUsers, ITicket } from "../../../interface";
+import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
 import Ticket from "./ticket";
@@ -8,19 +8,13 @@ interface Props {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
-    fChatModalOpen?: () => void;
     fCurrentTicket?: (ticket: ITicket) => void;
     fOpenModalCurrentTicket?: () => void;
-    fTicketModalOpen?: () => void;
-    glpiGroups?: IGlpiRequest[];
-    glpiUsers?: IGlpiUsers[];
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
-    showBackgroundIcon?: boolean;
     showPagination?: boolean;
     ticketList?: ITicket[];
-    withHover?: boolean;
 }
 
 interface BlankHexagon {
