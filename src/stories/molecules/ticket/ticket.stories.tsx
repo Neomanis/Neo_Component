@@ -24,5 +24,5 @@ Default.args = {
 export const DefaultVoidIcon = Template.bind({});
 DefaultVoidIcon.args = {
     iconBG: faClock,
-    neoHelper: true,
+    ticketBG: true,
 };

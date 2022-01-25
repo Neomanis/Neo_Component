@@ -15,7 +15,7 @@ interface Props {
     rows: number;
     showPagination?: boolean;
     ticketList?: ITicket[];
-    neoHelper?: boolean;
+    ticketBG?: boolean;
 }
 
 interface BlankHexagon {
@@ -34,7 +34,7 @@ const Grid = ({
     rows,
     showPagination,
     ticketList,
-    neoHelper,
+    ticketBG,
 }: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -144,7 +144,7 @@ const Grid = ({
                                                 languageUser={languageUser}
                                             />
                                         ) : (
-                                            <Ticket neoHelper={neoHelper ? true : false} />
+                                            <Ticket ticketBG={ticketBG ? true : false} />
                                         )}
                                     </div>
                                 ))}
