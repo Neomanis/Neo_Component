@@ -1,6 +1,6 @@
 import Grid from "../../../components/molecules/ticket/grid";
 import { mount } from "@cypress/react";
-import { fakeTicket } from "../../../stories/fakeObject";
+import { fakeGlpiUsers, fakeTicket } from "../../../stories/fakeObject";
 
 describe("Grid", () => {
     it("should render properly", () => {
@@ -118,7 +118,6 @@ describe("Grid", () => {
     });
 
     it("should trigger all callback", () => {
-        const fOpenModalCurrentTicket = cy.stub().as("openModalCurrentTicket-callback");
         const fCurrentTicket = cy.stub().as("currentTicket-callback");
 
         mount(
@@ -128,7 +127,6 @@ describe("Grid", () => {
                 languageUser="fr_FR"
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
-                fOpenModalCurrentTicket={fOpenModalCurrentTicket}
                 fCurrentTicket={fCurrentTicket}
             />
         );
@@ -136,13 +134,5 @@ describe("Grid", () => {
         cy.get('[data-testid="grid-ticket"]').first().click();
         cy.get("@openModalCurrentTicket-callback").should("have.been.called");
         cy.get("@currentTicket-callback").should("have.been.called");
-
-        cy.get('[data-testid="hoverTicket-openChat-button"]').click();
-        cy.get("@chatModalOpen-callback").should("have.been.called");
-
-        cy.get('[data-testid="hoverTicket-expandTicket-button"]').click();
-        cy.get("@openModalCurrentTicket-callback").should("have.been.called");
-        cy.get("@currentTicket-callback").should("have.been.called");
-        cy.get("@ticketModalOpen-callback").should("have.been.called");
     });
 });
