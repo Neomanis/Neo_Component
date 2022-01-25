@@ -18,6 +18,7 @@ module.exports = {
                         DEFAULT: "#22AAFF",
                         secondary: "#366688",
                         modal: "#0f283f",
+                        planned: "#89D2FF",
                     },
                     expanded: "#17212B",
                     light: {
@@ -43,6 +44,16 @@ module.exports = {
                     },
                     violet: "#6845ba",
                     grey: "#473c61",
+                    ticketUrgency: {
+                        very: {
+                            low: "#89D2FF",
+                            high: "#F7284F",
+                        },
+                        low: "#366688",
+                        medium: "#15304C",
+                        high: "#ED943B",
+                        major: "#D41F1F",
+                    },
                 },
             },
         },

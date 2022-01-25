@@ -117,56 +117,23 @@ describe("Grid", () => {
         cy.get('[data-testid="grid-page-number"]').should("have.text", "1/7");
     });
 
-    it("should show hoverTicket on hover", () => {
-        mount(
-            <Grid
-                cols={2}
-                rows={2}
-                languageUser="fr_FR"
-                glpiUsers={fakeGlpiUsers}
-                ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
-                showPagination
-                withHover
-            />
-        );
-        cy.get('[data-testid="grid-ticket"]').first().trigger("mouseover");
-        cy.get('[data-testid="hoverTicket-body"]').should("be.visible");
-        cy.get('[data-testid="hoverTicket-body"]').first().trigger("mouseout");
-        cy.get('[data-testid="hoverTicket-body"]').should("not.exist");
-    });
-
     it("should trigger all callback", () => {
-        const fChatModalOpen = cy.stub().as("chatModalOpen-callback");
-        const fOpenModalCurrentTicket = cy.stub().as("openModalCurrentTicket-callback");
         const fCurrentTicket = cy.stub().as("currentTicket-callback");
-        const fTicketModalOpen = cy.stub().as("ticketModalOpen-callback");
-
+        const fOpenModalCurrentTicket = cy.stub().as("openModalCurrentTicket-callback");
         mount(
             <Grid
                 cols={2}
                 rows={2}
                 languageUser="fr_FR"
-                glpiUsers={fakeGlpiUsers}
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
-                withHover
-                fChatModalOpen={fChatModalOpen}
-                fOpenModalCurrentTicket={fOpenModalCurrentTicket}
                 fCurrentTicket={fCurrentTicket}
-                fTicketModalOpen={fTicketModalOpen}
+                fOpenModalCurrentTicket={fOpenModalCurrentTicket}
             />
         );
 
         cy.get('[data-testid="grid-ticket"]').first().click();
         cy.get("@openModalCurrentTicket-callback").should("have.been.called");
         cy.get("@currentTicket-callback").should("have.been.called");
-
-        cy.get('[data-testid="hoverTicket-openChat-button"]').click();
-        cy.get("@chatModalOpen-callback").should("have.been.called");
-
-        cy.get('[data-testid="hoverTicket-expandTicket-button"]').click();
-        cy.get("@openModalCurrentTicket-callback").should("have.been.called");
-        cy.get("@currentTicket-callback").should("have.been.called");
-        cy.get("@ticketModalOpen-callback").should("have.been.called");
     });
 });

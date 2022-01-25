@@ -1,29 +1,21 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-
-import { IGlpiRequest, IGlpiUsers, ITicket } from "../../../interface";
-import { displayRequesterName } from "../../utils";
+import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
-import HoverTicket from "./hoverTicket";
 import Ticket from "./ticket";
 
 interface Props {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
-    fChatModalOpen?: () => void;
     fCurrentTicket?: (ticket: ITicket) => void;
     fOpenModalCurrentTicket?: () => void;
-    fTicketModalOpen?: () => void;
-    glpiGroups?: IGlpiRequest[];
-    glpiUsers?: IGlpiUsers[];
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
-    showBackgroundIcon?: boolean;
     showPagination?: boolean;
     ticketList?: ITicket[];
-    withHover?: boolean;
+    ticketBG?: boolean;
 }
 
 interface BlankHexagon {
@@ -35,28 +27,20 @@ const Grid = ({
     className,
     cols,
     currentTicket,
-    fChatModalOpen,
     fCurrentTicket,
     fOpenModalCurrentTicket,
-    fTicketModalOpen,
-    glpiGroups,
-    glpiUsers,
     languageUser,
     reverseGrid,
     rows,
-    showBackgroundIcon,
     showPagination,
     ticketList,
-    withHover,
+    ticketBG,
 }: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
     // third is the number of rows
     const [grids, setGrids] = useState<(ITicket | BlankHexagon)[][][]>([]);
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
-    const [hoverTicket, setHoverTicket] =
-        useState<{ ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }>();
-
     const getGridsPaginationNumber = useCallback(() => {
         return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
     }, [ticketList, rows, cols]);
@@ -106,22 +90,6 @@ const Grid = ({
 
     return (
         <>
-            {withHover && hoverTicket && (
-                <HoverTicket
-                    dataView={hoverTicket.position}
-                    fChatModalOpen={() => fChatModalOpen && fChatModalOpen()}
-                    fMouseLeave={(): void => setHoverTicket(undefined)}
-                    fOpenModalCurrentTicket={(ticket) => {
-                        fOpenModalCurrentTicket && fOpenModalCurrentTicket();
-                        fCurrentTicket && fCurrentTicket(ticket);
-                    }}
-                    fTicketModalOpen={() => fTicketModalOpen && fTicketModalOpen()}
-                    languageUser={languageUser}
-                    ticket={hoverTicket.ticket}
-                    ticketRequester={displayRequesterName(hoverTicket.ticket, glpiUsers, glpiGroups)}
-                    keywords={hoverTicket.ticket.keywords}
-                />
-            )}
             <div className={`${cols === 1 ? "w-52" : ""} ${className}`} data-testid="grid-body">
                 {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
@@ -173,11 +141,10 @@ const Grid = ({
                                                     fOpenModalCurrentTicket && fOpenModalCurrentTicket();
                                                     fCurrentTicket && fCurrentTicket(ticket);
                                                 }}
-                                                fOverCallBack={setHoverTicket}
                                                 languageUser={languageUser}
                                             />
                                         ) : (
-                                            <Ticket iconBG={showBackgroundIcon} />
+                                            <Ticket ticketBG={ticketBG ? true : false} />
                                         )}
                                     </div>
                                 ))}

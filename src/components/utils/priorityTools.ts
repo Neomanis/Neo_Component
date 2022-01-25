@@ -47,28 +47,28 @@ export function getPriorityValue(impact: number, urgency: number): number | unde
 export function getPriorityColor(priorityId: number, isHex: boolean): string {
     const priorityColors: Colors = {
         verylow: {
-            hex: "#7FEF7F",
-            tailwind: "bg-neo-urgency-very-low",
+            hex: "#89D2FF",
+            tailwind: "bg-neo-ticketUrgency-very-low",
         },
         low: {
-            hex: "#B6C25D",
-            tailwind: "bg-neo-urgency-low",
+            hex: "#366688",
+            tailwind: "bg-neo-ticketUrgency-low",
         },
         medium: {
-            hex: "#ED943B",
-            tailwind: "bg-neo-urgency",
+            hex: "#15304C",
+            tailwind: "bg-neo-ticketUrgency-medium",
         },
         high: {
-            hex: "#EF713C",
-            tailwind: "bg-neo-urgency-high",
+            hex: "#ED943B",
+            tailwind: "bg-neo-ticketUrgency-high",
         },
         veryhigh: {
-            hex: "#F24D3D",
-            tailwind: "bg-neo-urgency-very-high",
+            hex: "#F7284F",
+            tailwind: "bg-neo-ticketUrgency-very-high",
         },
         major: {
-            hex: "#F42A3E",
-            tailwind: "bg-neo-urgency-major",
+            hex: "#D41F1F",
+            tailwind: "bg-neo-ticketUrgency-major",
         },
     };
     if (priorityId >= 1 && priorityId <= 6) {

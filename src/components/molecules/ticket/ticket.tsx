@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect, useRef } from "react";
+import React, { ReactElement } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/ticketColorSelector";
@@ -7,44 +7,20 @@ import { getDateCompletionPercentage, getFormatedTimeToNow } from "../../utils/d
 
 //translations
 import i18next from "i18next";
-import { ClockLogo, TicketLogo } from "../../../img/svg";
+import { ClockLogo, IconCheck, IconTicketClosed, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
 
 interface Props {
     currentTicket?: ITicket;
     fOpenModalCurrentTicket?: (ticket: ITicket) => void;
-    fOverCallBack?: (val: { ticket: ITicket; position: React.RefObject<HTMLHeadingElement> }) => void;
-    iconBG?: boolean;
     languageUser?: string;
     ticket?: ITicket;
+    ticketBG?: boolean;
 }
 
-const Ticket = ({
-    currentTicket,
-    fOpenModalCurrentTicket,
-    fOverCallBack,
-    iconBG,
-    languageUser,
-    ticket,
-}: Props): ReactElement => {
-    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
-    const ref = useRef<HTMLHeadingElement>(null);
+const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, ticketBG }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser ? languageUser : "en_US");
-    //settings variable ready
-
-    function onMouseEnterHandler(): void {
-        const timeout = setTimeout(() => {
-            fOverCallBack && fOverCallBack({ ticket: ticket, position: ref });
-        }, 500);
-        setTimeoutId(timeout);
-    }
-
-    function onMouseLeaveHandler(): void {
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-        }
-    }
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
@@ -74,83 +50,105 @@ const Ticket = ({
         return "";
     }
 
-    useEffect(() => {
-        return (): void => {
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            }
-        };
-    });
-
     return (
         <>
             {ticket ? (
                 <div
                     className="useOnClickOutsideException w-40 h-40 cursor-pointer transform hover:scale-105 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto"
                     onClick={(): void => fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket)}
-                    onMouseEnter={(): void => onMouseEnterHandler()}
-                    onMouseLeave={(): void => onMouseLeaveHandler()}
-                    ref={ref}
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
+                        {getDateCompletionPercentage(
+                            ticket.date_creation,
+                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                        ) >= 75 &&
+                            ticket.status !== Status.Pending && (
+                                <div
+                                    className={`h-5 absolute top-4 right-14 
+                                    ${
+                                        getDateCompletionPercentage(
+                                            ticket.date_creation,
+                                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                        ) <= 99
+                                            ? "text-neo-urgency"
+                                            : "text-neo-urgency-major"
+                                    }`}
+                                >
+                                    <div
+                                        className="w-2 h-4 bg-white absolute"
+                                        style={{ width: 5, height: 14, top: 5, left: 9 }}
+                                    ></div>
+                                    <Icon className="text-xl absolute left-0" fontIcon={faExclamationTriangle} />
+                                </div>
+                            )}
+
                         <Hexagon
                             isSelected={currentTicket === ticket}
                             strokeColor={ticket.status && getStatusColor(ticket.status, true)}
                         />
                     </div>
-                    <div className={`flex flex-col items-center w-full opacity-${getOpacity()}`} style={{ zIndex: 2 }}>
-                        <div className="mx-1">
-                            <div className="mx-2">
-                                <IconTicketCategorie id={ticket.itilcategories_id} />
-                            </div>
-                            <div className="font-bold">
-                                <Title type="h3" data={myLanguage("ticketScreen.id") + " " + ticket.id.toString()} />
+                    <div
+                        className={`flex flex-col items-center relative w-full 
+                        opacity-${getOpacity()}`}
+                        style={{ zIndex: 2 }}
+                    >
+                        <div className="text-neo-bg-A">
+                            <IconTicketCategorie id={ticket.itilcategories_id} />
+                            <div className="font-extrabold text-xs">
+                                <Title type="h3" data={myLanguage("ticketScreen.id") + " " + ticket.id.toString()} />
                             </div>
                         </div>
                         <div
-                            className={`h-8 w-32 text-white text-center text-xs flex items-center justify-center mt-1 mb-2 ${
-                                ticket.priority && getPriorityColor(ticket.priority, false)
+                            className={`text-center text-xs flex items-center justify-center mt-1 mb-3
+                            ${
+                                (ticket.status === 1 || ticket.status === 2) &&
+                                ticket.priority &&
+                                getPriorityColor(ticket.priority, false)
                             }`}
+                            style={{ width: 125, height: 45 }}
                         >
-                            <p className="truncate mx-2">{ticket.name}</p>
-                        </div>
-                        {getDateCompletionPercentage(
-                            ticket.date_creation,
-                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
-                        ) >= 75 && ticket.status !== Status.Pending ? (
-                            <div
-                                className={`h-5 ${
-                                    getDateCompletionPercentage(
-                                        ticket.date_creation,
-                                        ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
-                                    ) <= 99
-                                        ? "text-neo-urgency"
-                                        : "text-neo-urgency-major"
-                                }`}
+                            <p
+                                className={`mx-2 text-xxs text-line-2 font-bold 
+                                ${ticket.status === 1 || ticket.status === 2 ? "text-white" : "text-neo-bg-A"}`}
                             >
-                                <Icon fontIcon={faExclamationTriangle} />
-                            </div>
-                        ) : (
-                            <div className="text-white text-sm flex justify-center item-center">
-                                <div className="w-4 h-4 mr-1">
-                                    <ClockLogo fill="#fff" />
+                                {ticket.name}
+                            </p>
+                        </div>
+                        <div>
+                            {ticket && ticket.status !== 5 && ticket.status !== 6 && (
+                                <div className="text-white text-xxs flex justify-center item-center transform -translate-y-1">
+                                    <div className="w-3 h-3 mr-2" style={{ marginTop: 2 }}>
+                                        <ClockLogo fill="#fff" />
+                                    </div>
+                                    <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
                                 </div>
-                                <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
-                            </div>
-                        )}
+                            )}
+                            {ticket && ticket.status === 5 && (
+                                <IconTicketClosed fill="#152535" className="w-7 h-7 -mt-3" />
+                            )}
+                            {ticket && ticket.status === 6 && (
+                                <div className="relative w-7 h-7 -mt-3">
+                                    <IconCheck className="absolute -right-1" />
+                                    <TicketLogo className="absolute" fill={"#15304C"} />
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <div
-                        className="absolute"
-                        style={{
-                            width: "135px",
-                            bottom: "13px",
-                            left: "13px",
-                            borderTop: "40px solid rgba(0,0,0, 0.15)",
-                            borderRight: "50px solid transparent",
-                            borderLeft: "50px solid transparent",
-                            zIndex: 1,
-                        }}
-                    ></div>
+                    {ticket && ticket.status !== 5 && ticket.status !== 6 && (
+                        <svg
+                            version="1.1"
+                            viewBox="-23 140 220 80"
+                            className="absolute -bottom-2 opacity-20"
+                            style={{ zIndex: 1 }}
+                        >
+                            <path
+                                d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
+                                fill={"#000"}
+                                fillOpacity="1"
+                                strokeLinejoin="round"
+                            ></path>
+                        </svg>
+                    )}
                     <div className="absolute w-full" style={{ zIndex: 0 }}>
                         <Hexagon
                             type="ticket"
@@ -163,16 +161,10 @@ const Ticket = ({
             ) : (
                 <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
                     <div className="absolute w-full flex items-center justify-center">
-                        {iconBG ? (
-                            <>
-                                <div className="absolute w-12">
-                                    <TicketLogo fill="#152535" />
-                                </div>
-                                <Hexagon bgColor="#172f4b" />
-                            </>
-                        ) : (
-                            <Hexagon />
-                        )}
+                        <div className="absolute w-12">
+                            <TicketLogo fill="#152535" />
+                        </div>
+                        <Hexagon bgColor={ticketBG && "#172f4b"} />
                     </div>
                 </div>
             )}

@@ -18,12 +18,11 @@ const Template: ComponentStory<typeof Ticket> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
     ticket: fakeTicket,
+    shadow: true,
 };
-
-export const DefaultVoid = Template.bind({});
-DefaultVoid.args = {};
 
 export const DefaultVoidIcon = Template.bind({});
 DefaultVoidIcon.args = {
     iconBG: faClock,
+    ticketBG: true,
 };
