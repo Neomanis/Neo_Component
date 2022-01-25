@@ -70,9 +70,9 @@
     },
     "nav": {
         "dashboard": "Tableau de bord",
-        "ticketDetails": "Détails de ticket",
-        "ressources": "Ressources",
-        "agents": "Liste des NeoHelpers",
+        "tickets": "Tickets",
+        "resources": "Ressources",
+        "agents": "NeoHelpers",
         "technicalQuestions": "Questions techniques",
         "statistics": "Statistiques"
     },

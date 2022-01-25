@@ -70,9 +70,9 @@
     },
     "nav": {
         "dashboard": "Dashboard",
-        "ticketDetails": "Ticket details",
-        "ressources": "Ressources",
-        "agents": "Neohelpers list",
+        "tickets": "Tickets",
+        "resources": "Resources",
+        "agents": "NeoHelpers",
         "technicalQuestions": "Technicals Questions",
         "statistics": "Statistics"
     },
