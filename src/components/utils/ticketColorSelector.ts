@@ -7,25 +7,25 @@ export function getStatusColor(statusId: number, isHex: boolean): string {
             tailwind: "bg-neo-light-grey",
             hex: "#dae5e5",
         },
-        pending: {
-            tailwind: "bg-neo-yellow-sand",
-            hex: "#E2DC8F",
-        },
         assigned: {
             tailwind: "bg-neo-blue",
             hex: "#2fa8fc",
         },
         planned: {
-            tailwind: "bg-neo-blue",
-            hex: "#2fa8fc",
+            tailwind: "bg-neo-blue-planned",
+            hex: "#89D2FF",
+        },
+        pending: {
+            tailwind: "bg-neo-yellow-sand",
+            hex: "#E2DC8F",
         },
         solved: {
-            tailwind: "neo-violet",
-            hex: "#6845ba",
+            tailwind: "neo-green",
+            hex: "#7FEF7F",
         },
         closed: {
-            tailwind: "neo-grey",
-            hex: "#473c61",
+            tailwind: "neo-green",
+            hex: "#7FEF7F",
         },
     };
 

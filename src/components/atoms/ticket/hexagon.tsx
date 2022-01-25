@@ -28,7 +28,7 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: P
                         fillOpacity={transformOpacity()}
                         stroke={"#172f4b"}
                         strokeLinejoin="round"
-                        strokeWidth="10"
+                        strokeWidth="5"
                     ></path>
                 </svg>
             );
@@ -41,7 +41,7 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: P
                         fillOpacity="1"
                         stroke={bgColor ? bgColor : "#2fa8fc"}
                         strokeLinejoin="round"
-                        strokeWidth="10"
+                        strokeWidth="5"
                         style={isNotif ? { filter: "drop-shadow(#ff0000 0px 0px 10px)" } : undefined}
                     ></path>
                 </svg>
@@ -56,7 +56,7 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: P
                             fillOpacity="1"
                             stroke="#15304b"
                             strokeLinejoin="round"
-                            strokeWidth="10"
+                            strokeWidth="5"
                             style={{ filter: "drop-shadow(#ff0000 0px 0px 10px)" }}
                         ></path>
                     </svg>
@@ -72,7 +72,7 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: P
                         fillOpacity="1"
                         stroke={bgColor ? bgColor : "#2fa8fc"}
                         strokeLinejoin="round"
-                        strokeWidth="10"
+                        strokeWidth="5"
                     ></path>
                 </svg>
             );
@@ -99,7 +99,7 @@ const Hexagon = ({ bgColor, isNotif, isSelected, opacity, type, strokeColor }: P
                         fillOpacity={bgColor ? "1" : "0"}
                         strokeLinejoin="round"
                         stroke={strokeColor ? (isSelected ? strokeColor : "#172f4b") : "#172f4b"}
-                        strokeWidth="10"
+                        strokeWidth="5"
                     ></path>
                 </svg>
             );
