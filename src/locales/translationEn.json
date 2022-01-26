@@ -68,6 +68,14 @@
         "errorSubmit": "Login or password incorrect",
         "submitButton": "Login"
     },
+    "nav": {
+        "dashboard": "Dashboard",
+        "tickets": "Tickets",
+        "resources": "Resources",
+        "agents": "NeoHelpers",
+        "technicalQuestions": "Technicals Questions",
+        "statistics": "Statistics"
+    },
     "neoHelperChat": {
         "askHelp": "How does it work?",
         "helpTitle": "How does it work?",

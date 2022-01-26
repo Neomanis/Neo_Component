@@ -68,6 +68,14 @@
         "errorSubmit": "Identifiant ou mot de passe incorrect",
         "submitButton": "Entrer"
     },
+    "nav": {
+        "dashboard": "Tableau de bord",
+        "tickets": "Tickets",
+        "resources": "Ressources",
+        "agents": "NeoHelpers",
+        "technicalQuestions": "Questions techniques",
+        "statistics": "Statistiques"
+    },
     "neoHelperChat": {
         "askHelp": "Comment ça marche ?",
         "helpTitle": "Comment ça marche ?",
