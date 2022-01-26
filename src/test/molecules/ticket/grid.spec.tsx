@@ -1,6 +1,6 @@
 import Grid from "../../../components/molecules/ticket/grid";
 import { mount } from "@cypress/react";
-import { fakeGlpiUsers, fakeTicket } from "../../../stories/fakeObject";
+import { fakeTicket } from "../../../stories/fakeObject";
 
 describe("Grid", () => {
     it("should render properly", () => {
