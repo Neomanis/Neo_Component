@@ -162,7 +162,7 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, 
                 <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
                     <div className="absolute w-full flex items-center justify-center">
                         <div className="absolute w-12">
-                            <TicketLogo fill="#152535" />
+                            <TicketLogo fill={ticketBG ? "#152535" : "#15304C"} />
                         </div>
                         <Hexagon bgColor={ticketBG && "#172f4b"} />
                     </div>
