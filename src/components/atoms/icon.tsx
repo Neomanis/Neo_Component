@@ -10,9 +10,10 @@ interface Props {
     svg?: ReactElement;
     redDot?: boolean;
     type?: string;
+    testId?: string;
 }
 
-const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): ReactElement => {
+const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type, testId = "" }: Props): ReactElement => {
     switch (type) {
         case "iconLink":
             return (
@@ -48,7 +49,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type }: Props): Rea
                 <div
                     className={`${className} flex items-center justify-center`}
                     onClick={fCallBack}
-                    data-testid="icon-default-body"
+                    data-testid={`icon-default-body ${testId}`}
                 >
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
