@@ -111,7 +111,7 @@
     },
     "notification": {
         "title": "Notifications",
-        "clearAll": "Clear all notifications",
+        "clearAll": "Clear all",
         "empty": "Such empty!",
         "seeAll": "See more",
         "seeLess": "See less"
@@ -291,6 +291,7 @@
     "ticketStatistics": {
         "tabTitleNow": "Now",
         "tabTitleRange": "Range",
+        "title": "Statistics",
         "total": "Total",
         "openByNeoBot": "Tickets opened by NeoBot",
         "ticketsOpen": "Tickets opened",
