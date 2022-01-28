@@ -72,4 +72,27 @@ describe("ShadowBoxWrapper", () => {
         cy.get('[data-testid="shadowBoxWrapperBottomShadowBox"]').should("exist");
         cy.get('[data-testid="shadowBoxWrapperTopShadowBox"]').should("not.exist");
     });
+    it("should not display shadowboxes if content is not overflowing", () => {
+        mount(
+            <div className="relative h-32">
+                <ShadowBoxWrapper
+                    classNames={{
+                        container: "overflow-y-scroll no-scrollbar h-28",
+                        topShadowBox: "w-full h-10 absolute top-0 z-20",
+                        bottomShadowBox: "w-full h-10 absolute bottom-0 z-20",
+                    }}
+                    linearGradient={{
+                        first: "rgba(21,37,53,1)",
+                        second: "rgba(21, 48, 76,1)",
+                    }}
+                >
+                    <li className="h-8">Yolo 1</li>
+                    <li className="h-8">Yolo 2</li>
+                    <li className="h-8">Yolo 3</li>
+                </ShadowBoxWrapper>
+            </div>
+        );
+        cy.get('[data-testid="shadowBoxWrapperBottomShadowBox"]').should("not.exist");
+        cy.get('[data-testid="shadowBoxWrapperTopShadowBox"]').should("not.exist");
+    });
 });

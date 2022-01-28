@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useRef, useState } from "react";
+import React, { ReactElement, ReactNode, useLayoutEffect, useRef, useState } from "react";
 
 interface Props {
     children: ReactNode;
@@ -34,6 +34,17 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient }: Props): Reac
             setShowBottomShadowBox(true);
         }
     }
+
+    function isOverflow(element: HTMLUListElement): boolean {
+        return element.scrollHeight > element.clientHeight;
+    }
+
+    useLayoutEffect(() => {
+        if (listContainerRef.current && !isOverflow(listContainerRef.current)) {
+            setShowTopShadowBox(false);
+            setShowBottomShadowBox(false);
+        }
+    }, [children]);
 
     return (
         <ul
