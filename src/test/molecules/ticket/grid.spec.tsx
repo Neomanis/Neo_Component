@@ -119,7 +119,6 @@ describe("Grid", () => {
 
     it("should trigger all callback", () => {
         const fCurrentTicket = cy.stub().as("currentTicket-callback");
-        const fOpenModalCurrentTicket = cy.stub().as("openModalCurrentTicket-callback");
         mount(
             <Grid
                 cols={2}
@@ -128,12 +127,10 @@ describe("Grid", () => {
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
                 fCurrentTicket={fCurrentTicket}
-                fOpenModalCurrentTicket={fOpenModalCurrentTicket}
             />
         );
 
         cy.get('[data-testid="grid-ticket"]').first().click();
-        cy.get("@openModalCurrentTicket-callback").should("have.been.called");
         cy.get("@currentTicket-callback").should("have.been.called");
     });
 });
