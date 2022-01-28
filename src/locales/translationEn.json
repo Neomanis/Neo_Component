@@ -193,6 +193,7 @@
         "inputDescription": "Description",
         "inputTitle": "Title",
         "keywords": "Keywords",
+        "noKeywords": "No keywords",
         "openDate": "Opening date",
         "openTime": "Opening time",
         "priority": "Priority",
@@ -223,6 +224,7 @@
             "awaitingState": "Awaiting state"
         },
         "entity": "ENTITY",
+        "lastMessage": "Last message",
         "exit": "Exit",
         "ipRemote": "IP remote",
         "knowledge": "Knowledge",

@@ -13,13 +13,21 @@ import { Status } from "../../../enumeration";
 
 interface Props {
     currentTicket?: ITicket;
-    fOpenModalCurrentTicket?: (ticket: ITicket) => void;
+    fCallBackClick?: (ticket: ITicket) => void;
+    fCallBackHover?: (ticket?: ITicket) => void;
     languageUser?: string;
     ticket?: ITicket;
     ticketBG?: boolean;
 }
 
-const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, ticketBG }: Props): ReactElement => {
+const Ticket = ({
+    currentTicket,
+    fCallBackClick,
+    fCallBackHover,
+    languageUser,
+    ticket,
+    ticketBG,
+}: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser ? languageUser : "en_US");
 
     function isSameStatus(): boolean {
@@ -55,7 +63,9 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, 
             {ticket ? (
                 <div
                     className="useOnClickOutsideException w-40 h-40 cursor-pointer transform hover:scale-105 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto"
-                    onClick={(): void => fOpenModalCurrentTicket && fOpenModalCurrentTicket(ticket)}
+                    onClick={(): void => fCallBackClick && fCallBackClick(ticket)}
+                    onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
+                    onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {getDateCompletionPercentage(
@@ -129,7 +139,7 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, 
                             {ticket && ticket.status === 6 && (
                                 <div className="relative w-7 h-7 -mt-3">
                                     <IconCheck className="absolute -right-1" />
-                                    <TicketLogo className="absolute" fill={"#15304C"} />
+                                    <TicketLogo className="absolute" fill="#15304C" />
                                 </div>
                             )}
                         </div>
@@ -143,7 +153,7 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, 
                         >
                             <path
                                 d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
-                                fill={"#000"}
+                                fill="#000"
                                 fillOpacity="1"
                                 strokeLinejoin="round"
                             ></path>
@@ -161,7 +171,7 @@ const Ticket = ({ currentTicket, fOpenModalCurrentTicket, languageUser, ticket, 
             ) : (
                 <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
                     <div className="absolute w-full flex items-center justify-center">
-                        <div className="absolute w-12">
+                        <div className="absolute">
                             <TicketLogo fill={ticketBG ? "#152535" : "#15304C"} />
                         </div>
                         <Hexagon bgColor={ticketBG && "#172f4b"} />

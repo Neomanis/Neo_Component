@@ -9,7 +9,7 @@ interface Props {
     cols: number;
     currentTicket?: ITicket;
     fCurrentTicket?: (ticket: ITicket) => void;
-    fOpenModalCurrentTicket?: () => void;
+    fCallBackHover?: (ticket?: ITicket) => void;
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
@@ -28,7 +28,7 @@ const Grid = ({
     cols,
     currentTicket,
     fCurrentTicket,
-    fOpenModalCurrentTicket,
+    fCallBackHover,
     languageUser,
     reverseGrid,
     rows,
@@ -137,9 +137,11 @@ const Grid = ({
                                             <Ticket
                                                 ticket={item as ITicket}
                                                 currentTicket={currentTicket}
-                                                fOpenModalCurrentTicket={(ticket) => {
-                                                    fOpenModalCurrentTicket && fOpenModalCurrentTicket();
+                                                fCallBackClick={(ticket) => {
                                                     fCurrentTicket && fCurrentTicket(ticket);
+                                                }}
+                                                fCallBackHover={(ticket) => {
+                                                    fCallBackHover && fCallBackHover(ticket);
                                                 }}
                                                 languageUser={languageUser}
                                             />
