@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, MouseEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
@@ -6,7 +6,7 @@ interface Props {
     className?: string;
     data?: string;
     disabled?: boolean;
-    fCallback?: (e?) => void;
+    fCallback?: (e: MouseEvent) => void;
     fontIcon?: IconProp;
     iconClassName?: string;
     svg?: ReactElement;

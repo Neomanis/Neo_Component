@@ -10,12 +10,14 @@ import {
 } from "./dateTools";
 import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
-import { getStatusColor } from "./ticketColorSelector";
+import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
+import { capitalizeFirstLetter, lowerCaseFirstLetter, mapEnumToInputSelectSearchableData } from "./tools";
 
 export {
+    capitalizeFirstLetter,
     displayRequesterName,
     formatDate,
     formatDateToNow,
@@ -34,8 +36,11 @@ export {
     getRequesterUid,
     getServiceStatusColor,
     getStatusColor,
+    getStatusText,
     getUserName,
     inputReducer,
+    lowerCaseFirstLetter,
+    mapEnumToInputSelectSearchableData,
     stripHtml,
     useIsFirstRender,
 };

@@ -1,5 +1,6 @@
 import { Colors } from "../../interface";
 import { Priority } from "../../enumeration";
+import { ITailwindColorApplication } from "../..";
 
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },
@@ -44,36 +45,72 @@ export function getPriorityValue(impact: number, urgency: number): number | unde
     return priorityValues.find((priority) => priority.impact === impact && priority.urgency === urgency)?.priority;
 }
 
-export function getPriorityColor(priorityId: number, isHex: boolean): string {
+export function getPriorityColor(
+    priorityId: number,
+    isHex: boolean,
+    tailwindType?: keyof ITailwindColorApplication
+): string {
     const priorityColors: Colors = {
         verylow: {
             hex: "#89D2FF",
-            tailwind: "bg-neo-ticketUrgency-very-low",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-very-low",
+                border: "border-neo-ticketUrgency-very-low",
+                text: "text-neo-ticketUrgency-very-low",
+            },
         },
         low: {
             hex: "#366688",
-            tailwind: "bg-neo-ticketUrgency-low",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-low",
+                border: "border-neo-ticketUrgency-low",
+                text: "text-neo-ticketUrgency-low",
+            },
         },
         medium: {
             hex: "#15304C",
-            tailwind: "bg-neo-ticketUrgency-medium",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-medium",
+                border: "border-neo-ticketUrgency-medium",
+                text: "text-neo-ticketUrgency-medium",
+            },
         },
         high: {
             hex: "#ED943B",
-            tailwind: "bg-neo-ticketUrgency-high",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-high",
+                border: "border-neo-ticketUrgency-high",
+                text: "text-neo-ticketUrgency-high",
+            },
         },
         veryhigh: {
             hex: "#F7284F",
-            tailwind: "bg-neo-ticketUrgency-very-high",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-very-high",
+                border: "border-neo-ticketUrgency-very-high",
+                text: "text-neo-ticketUrgency-very-high",
+            },
         },
         major: {
             hex: "#D41F1F",
-            tailwind: "bg-neo-ticketUrgency-major",
+            tailwind: {
+                bg: "bg-neo-ticketUrgency-major",
+                border: "border-neo-ticketUrgency-major",
+                text: "text-neo-ticketUrgency-major",
+            },
+        },
+        neutral: {
+            hex: "#FFFFFF",
+            tailwind: {
+                bg: "bg-neo-light-grey",
+                border: "border-neo-light-grey",
+                text: "text-neo-light-grey",
+            },
         },
     };
     if (priorityId >= 1 && priorityId <= 6) {
         const key: keyof Colors = Priority[priorityId].toLowerCase();
-        return isHex ? priorityColors[key].hex : priorityColors[key].tailwind;
+        return isHex ? priorityColors[key].hex : priorityColors[key].tailwind[tailwindType];
     }
-    return isHex ? "#FFFFFF" : "bg-neo-light-grey";
+    return isHex ? priorityColors.neutral.hex : priorityColors.neutral.tailwind[tailwindType];
 }

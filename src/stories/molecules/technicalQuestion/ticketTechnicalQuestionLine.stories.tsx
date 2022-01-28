@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof TicketTechnicalQuestionLine> = (args) => {
     return (
-        <div className="w-full p-4 bg-neo-bg-B">
+        <div className="w-1/2 p-4 bg-neo-bg-A">
             <TicketTechnicalQuestionLine {...args} />
         </div>
     );
@@ -18,8 +18,8 @@ const Template: ComponentStory<typeof TicketTechnicalQuestionLine> = (args) => {
 
 export const TechnicalQuestionDefault = Template.bind({});
 TechnicalQuestionDefault.args = {
-    answersNumber: 42,
+    answersNumber: 0,
     openTechnicalQuestion: () => console.log("yo"),
-    solved: true,
+    solved: false,
     title: "No rat shall survive… burn them all to honor Hashut!",
 };

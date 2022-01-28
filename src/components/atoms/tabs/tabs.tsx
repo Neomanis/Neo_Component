@@ -22,7 +22,7 @@ const Tabs = ({ children }: Props): ReactElement => {
                         index={index}
                         key={index}
                         selectedTab={selectedTab}
-                        title={item.props.title}
+                        tabTitle={item.props.tabTitle}
                     />
                 ))}
             </ul>

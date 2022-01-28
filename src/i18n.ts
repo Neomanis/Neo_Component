@@ -4,22 +4,22 @@ import { initReactI18next } from "react-i18next";
 import translationEN from "./locales/translationEn.json";
 import translationFR from "./locales/translationFr.json";
 
-export const defaultLanguage = "en_GB";
+export const defaultLanguage = "en-GB";
 
 // the translations
-const resources = {
-    en_GB: {
+export const resources = {
+    "en-GB": {
         translation: translationEN,
     },
-    en_US: {
+    "en-US": {
         translation: translationEN,
     },
-    fr_FR: {
+    "fr-FR": {
         translation: translationFR,
     },
 };
 // the supported getGlpiLanguages NEEDS TO BE UPDATED WHEN NEW LANGUAGES ARE ADDED!!
-export const supportedLngs = ["fr_FR", "en_GB", "en_US"];
+export const supportedLngs = ["fr-FR", "en-GB", "en-US"];
 
 i18n
     // pass the i18n instance to react-i18next.

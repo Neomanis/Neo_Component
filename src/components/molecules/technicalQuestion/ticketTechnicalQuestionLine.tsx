@@ -1,8 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
 import i18next from "i18next";
 
 import { Icon } from "../../atoms";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     answersNumber: number | undefined;
@@ -20,20 +21,31 @@ const TicketTechnicalQuestionLine = ({
     title,
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
+    const titleRef = useRef<HTMLDivElement>(null);
 
     return (
         <div
-            className="bg-neo-bg-B grid grid-cols-6 gap-2 rounded-full text-base cursor-pointer text-white h-8 items-center"
+            className={`h-20 w-full bg-neo-bg-B rounded-md border-r-8 p-4 flex flex-col justify-between ${
+                solved ? "border-neo-green" : "border-neo-red"
+            }`}
             onClick={() => openTechnicalQuestion()}
         >
-            <div className="col-span-4 ml-2 truncate">{title}</div>
-            <div className="text-opacity-80">{`${answersNumber ?? 0} ${myLanguage("ticketModalInfo.answer")}`}</div>
             <div
-                className={`
-                ${solved ? "bg-neo-green" : "bg-neo-red"} 
-                col-end-7 rounded-r-full text-white self-stretch`}
+                ref={titleRef}
+                className={`text-neo-light-grey font-bold text-xs`}
+                style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                }}
             >
-                <Icon fontIcon={solved ? faUserCheck : faUserTimes} className="h-full" />
+                {title}
+            </div>
+            <div className="font-bold text-xxs text-neo-blue-secondary">
+                {t("ticketModalInfo.answer", { count: answersNumber })}
             </div>
         </div>
     );

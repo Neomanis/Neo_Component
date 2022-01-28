@@ -234,7 +234,8 @@
     },
     "ticketModalInfo": {
         "actions": "Actions",
-        "answer": "réponse",
+        "answer_one": "{{count}} réponse",
+        "answer_other": "{{count}} réponses",
         "details": "Détails",
         "diagnostics": {
             "name": "Diagnostics",
@@ -291,11 +292,11 @@
         "ticketDetails": "DETAILS TICKET"
     },
     "ticketStatus": {
+        "assigned": "En cours (assigné)",
         "closed": "Clos",
-        "inProgressAssigned": "En cours (assigné)",
-        "inProgressPlanned": "En cours (planifié)",
         "new": "Nouveau",
         "pending": "En attente",
+        "planned": "En cours (planifié)",
         "solved": "Résolu"
     },
     "ticketTypes": {

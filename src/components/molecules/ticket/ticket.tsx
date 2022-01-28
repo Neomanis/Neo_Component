@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
-import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 
@@ -113,7 +113,7 @@ const Ticket = ({
                             ${
                                 (ticket.status === 1 || ticket.status === 2) &&
                                 ticket.priority &&
-                                getPriorityColor(ticket.priority, false)
+                                getPriorityColor(ticket.priority, false, "bg")
                             }`}
                             style={{ width: 125, height: 45 }}
                         >
