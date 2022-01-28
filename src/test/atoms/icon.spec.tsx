@@ -18,6 +18,6 @@ describe("Icon", () => {
     });
     it("should be visible and display icon default type", () => {
         mount(<Icon fontIcon={faCheckSquare} />);
-        cy.get('[data-testid="icon-default-body"]').should("be.visible");
+        cy.get('[data-testid="icon-default-body "]').should("be.visible");
     });
 });
