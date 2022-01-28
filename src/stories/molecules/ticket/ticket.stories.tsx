@@ -12,7 +12,11 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof Ticket> = (args) => {
-    return <Ticket {...args} languageUser={i18n.language} />;
+    return (
+        <div className="bg-neo-bg-A">
+            <Ticket {...args} languageUser={i18n.language} />
+        </div>
+    );
 };
 
 export const Default = Template.bind({});

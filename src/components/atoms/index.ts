@@ -18,7 +18,6 @@ import InputSelectSearchable from "./input/inputSelectSearchable";
 import InputTextarea from "./input/inputTextarea";
 import Loader from "./loader";
 import Pill from "./pill";
-import RequesterInfo from "./ticket/requesterInfo";
 import SwitchToggle from "./switchToggle";
 import Tab from "./tabs/tab";
 import Tabs from "./tabs/tabs";
@@ -48,7 +47,6 @@ export {
     InputTextarea,
     Loader,
     Pill,
-    RequesterInfo,
     SwitchToggle,
     Tab,
     Tabs,

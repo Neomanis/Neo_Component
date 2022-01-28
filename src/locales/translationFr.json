@@ -193,6 +193,7 @@
         "inputDescription": "Description",
         "inputTitle": "Titre",
         "keywords": "Mots-clés",
+        "noKeywords": "Pas de mots-clés",
         "openDate": "Date d'ouverture",
         "openTime": "Heure",
         "priority": "Priorité",
@@ -223,6 +224,7 @@
             "awaitingState": "En attente"
         },
         "entity": "ENTREPRISE",
+        "lastMessage": "Dernier message",
         "exit": "Sortie",
         "ipRemote": "IP distante",
         "knowledge": "Connaissance",

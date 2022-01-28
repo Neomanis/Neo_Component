@@ -4,19 +4,19 @@ import { Colors } from "../../interface";
 export function getStatusColor(statusId: number, isHex: boolean): string {
     const statusColors: Colors = {
         new: {
-            tailwind: "bg-neo-light-grey",
+            tailwind: "neo-light-grey",
             hex: "#dae5e5",
         },
         assigned: {
-            tailwind: "bg-neo-blue",
+            tailwind: "neo-blue",
             hex: "#2fa8fc",
         },
         planned: {
-            tailwind: "bg-neo-blue-planned",
+            tailwind: "neo-blue-planned",
             hex: "#89D2FF",
         },
         pending: {
-            tailwind: "bg-neo-yellow-sand",
+            tailwind: "neo-yellow-sand",
             hex: "#E2DC8F",
         },
         solved: {
