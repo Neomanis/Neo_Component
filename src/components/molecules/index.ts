@@ -11,6 +11,7 @@ import NotificationItem from "./notification/notificationItem";
 import OutageCard from "./notification/outageCard";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 import SearchField from "./searchField";
+import ShadowBoxWrapper from "./shadowBoxWrapper";
 import SimilarTicket from "./ticket/similarTicket";
 import TechnicalQuestionItem from "./technicalQuestion/technicalQuestionItem";
 import Ticket from "./ticket/ticket";
@@ -33,6 +34,7 @@ export {
     OutageCard,
     RecursiveDiagnosticComponent,
     SearchField,
+    ShadowBoxWrapper,
     SimilarTicket,
     TechnicalQuestionItem,
     Ticket,
