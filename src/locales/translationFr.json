@@ -291,6 +291,7 @@
     "ticketStatistics": {
         "tabTitleNow": "Maintenant",
         "tabTitleRange": "Période",
+        "title": "Statistiques",
         "total": "Total",
         "openByNeoBot": "Tickets ouverts par NeoBot",
         "ticketsOpen": "Tickets ouverts",
