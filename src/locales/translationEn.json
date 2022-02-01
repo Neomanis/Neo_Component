@@ -48,6 +48,30 @@
         "endAt": "End at",
         "startAt": "Start at"
     },
+    "translateDate": {
+        "second": "Second",
+        "minute": "Minute",
+        "hour": "Hour",
+        "day": "Day",
+        "month": "Month",
+        "year": "Year",
+        "contract": {
+            "second": "sec",
+            "minute": "min",
+            "seconds": "sec",
+            "minutes": "min",
+            "hour": "H",
+            "day": "D",
+            "month": "M",
+            "year": "Y"
+        },
+        "seconds": "Seconds",
+        "minutes": "Minutes",
+        "housr": "Housr",
+        "days": "Days",
+        "months": "Months",
+        "years": "Years"
+    },
     "inputSelect": {
         "event": "Event",
         "major": "Major",
@@ -93,7 +117,7 @@
         "ticketReoponendMessage": "Sorry to hear that your problem is there again, this ticket is now reopened.",
         "toaster": {
             "newMessage": "You have received a new message on this ticket!",
-            "ticketUpdate": "Neobot is gathering some new information about this ticket..."
+            "ticketUp ": "Neobot is gathering some new information about this ticket..."
         },
         "undoTicket": "I made a mistake, can we stop now?",
         "undoTicketResponse": "Alright, I close this ticket",

@@ -28,7 +28,7 @@ export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     }
 }
 
-function dateHandler(date: string): string {
+export function dateHandler(date: string): string {
     if (!date.includes("T")) {
         return date.replace(" ", "T") + "+01:00";
     }

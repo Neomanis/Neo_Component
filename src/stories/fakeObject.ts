@@ -17,7 +17,7 @@ export const fakeTicket: ITicket = {
     itilcategories_id: 6,
     type: 1,
     global_validation: 1,
-    date_creation: "2021-07-12 15:52:44",
+    date_creation: "2022-02-01 17:10:44",
     time_to_own: "2021-07-12 15:52:44",
     time_to_resolve: "2021-07-12 15:52:44",
     userRequester: [1],

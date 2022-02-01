@@ -48,6 +48,30 @@
         "endAt": "Termine le",
         "startAt": "Commence le"
     },
+    "translateDate": {
+        "second": "Seconde",
+        "minute": "Minute",
+        "hour": "Heure",
+        "day": "Jour",
+        "month": "Mois",
+        "year": "Ans",
+        "contract": {
+            "second": "sec",
+            "minute": "min",
+            "seconds": "sec",
+            "minutes": "min",
+            "hour": "H",
+            "day": "J",
+            "month": "M",
+            "year": "A"
+        },
+        "seconds": "Secondes",
+        "minutes": "Minutes",
+        "hours": "Heures",
+        "days": "Jours",
+        "months": "Mois",
+        "years": "Ans"
+    },
     "inputSelect": {
         "event": "Evènement",
         "major": "Majeure",
