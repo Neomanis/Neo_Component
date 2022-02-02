@@ -17,7 +17,6 @@ const OutageTab = ({ data, svgFill }: Props): React.ReactElement => {
     ) {
         colorOutage = "bg-neo-light-grey";
     }
-
     return (
         <div
             onClick={() => {
