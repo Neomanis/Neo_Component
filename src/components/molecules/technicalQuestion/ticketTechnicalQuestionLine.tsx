@@ -1,9 +1,5 @@
-import React, { ReactElement, useEffect, useRef } from "react";
-import { faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
+import React, { ReactElement } from "react";
 import i18next from "i18next";
-
-import { Icon } from "../../atoms";
-import { useTranslation } from "react-i18next";
 
 interface Props {
     answersNumber: number | undefined;
@@ -21,8 +17,6 @@ const TicketTechnicalQuestionLine = ({
     title,
 }: Props): ReactElement => {
     const myLanguage = i18next.getFixedT(languageUser);
-    const { t } = useTranslation();
-    const titleRef = useRef<HTMLDivElement>(null);
 
     return (
         <div
@@ -32,7 +26,6 @@ const TicketTechnicalQuestionLine = ({
             onClick={() => openTechnicalQuestion()}
         >
             <div
-                ref={titleRef}
                 className={`text-neo-light-grey font-bold text-xs`}
                 style={{
                     display: "-webkit-box",
@@ -45,7 +38,7 @@ const TicketTechnicalQuestionLine = ({
                 {title}
             </div>
             <div className="font-bold text-xxs text-neo-blue-secondary">
-                {t("ticketModalInfo.answer", { count: answersNumber })}
+                {myLanguage("ticketModalInfo.answer", { count: answersNumber })}
             </div>
         </div>
     );

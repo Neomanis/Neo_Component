@@ -14,7 +14,13 @@ import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
-import { capitalizeFirstLetter, lowerCaseFirstLetter, mapEnumToInputSelectSearchableData } from "./tools";
+import {
+    capitalizeFirstLetter,
+    getContrastBasedOnHexColor,
+    getHexColorFromTailwindColor,
+    lowerCaseFirstLetter,
+    mapEnumToInputSelectSearchableData,
+} from "./tools";
 
 export {
     capitalizeFirstLetter,
@@ -22,10 +28,12 @@ export {
     formatDate,
     formatDateToNow,
     formatMessage,
+    getContrastBasedOnHexColor,
     getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
     getTimeToNowWithTranslation,
+    getHexColorFromTailwindColor,
     getOutageBorderColor,
     getOutageDivideColor,
     getOutageSVGColor,

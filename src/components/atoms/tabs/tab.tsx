@@ -2,16 +2,7 @@ import React, { ReactElement, ReactNode } from "react";
 
 type Props = {
     children: ReactNode;
-    tabTitle: {
-        buttonClassName?: string;
-        buttonClassNameSelected?: string;
-        buttonSvg?: ReactElement;
-        buttonSvgClassName?: string;
-        buttonSvgClassNameSelected?: string;
-        className?: string;
-        classNameSelected?: string;
-        title: string;
-    };
+    title: string;
 };
 
 const Tab = ({ children }: Props): ReactElement => {

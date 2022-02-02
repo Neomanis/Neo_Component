@@ -209,7 +209,7 @@
         "errorRequired": "required field",
         "errorSubmit": "Error: changes will be lost",
         "impact": "Impact",
-        "info": "Info",
+        "informations": "Information",
         "inputDescription": "Description",
         "inputTitle": "Title",
         "keywords": "Keywords",
@@ -260,7 +260,7 @@
         "assignedToGroup": "Group",
         "assignedToUser": "User",
         "botReport": "Neobot Report",
-        "chatHistory": "CHAT HISTORY",
+        "chatHistory": "Chat History",
         "deleted": "deleted",
         "deleteQuestion": "Delete this ticket?",
         "display": "Display",
@@ -280,7 +280,7 @@
         },
         "search": "Search",
         "solveQuestion": "Marks it as solved?",
-        "solveTicket": "MARKS IT AS SOLVED",
+        "solveTicket": "Solve ticket",
         "subjectDetected": "DETECTED SUBJECTS",
         "systemDiag": "SYSTEM DIAGNOSTIC",
         "ticketFilters": {
@@ -297,6 +297,14 @@
         "new": "New",
         "pending": "Pending",
         "planned": "In progress (planned)",
+        "solved": "Solved"
+    },
+    "ticketStatusSimplified": {
+        "assigned": "In progress",
+        "closed": "Closed",
+        "new": "New",
+        "pending": "Pending",
+        "planned": "In progress",
         "solved": "Solved"
     },
     "ticketTypes": {

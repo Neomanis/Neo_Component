@@ -209,7 +209,7 @@
         "errorRequired": "Champ requis",
         "errorSubmit": "Erreur: les modifications seront perdues",
         "impact": "Impact",
-        "info": "Informations",
+        "informations": "Informations",
         "inputDescription": "Description",
         "inputTitle": "Titre",
         "keywords": "Mots-clés",
@@ -260,7 +260,7 @@
         "assignedToGroup": "Groupe",
         "assignedToUser": "Utilisateur",
         "botReport": "Rapport de Neobot",
-        "chatHistory": "HISTORIQUE DE CHAT",
+        "chatHistory": "Historique de Chat",
         "deleted": "supprimé",
         "deleteQuestion": "Supprimer ce ticket ?",
         "display": "Afficher",
@@ -280,7 +280,7 @@
         },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
-        "solveTicket": "MARQUÉ COMME RÉSOLU",
+        "solveTicket": "Résoudre le ticket",
         "subjectDetected": "SUJETS",
         "systemDiag": "DIAGNOSTIC SYSTEME",
         "ticketFilters": {
@@ -297,6 +297,14 @@
         "new": "Nouveau",
         "pending": "En attente",
         "planned": "En cours (planifié)",
+        "solved": "Résolu"
+    },
+    "ticketStatusSimplified": {
+        "assigned": "En cours",
+        "closed": "Clos",
+        "new": "Nouveau",
+        "pending": "En attente",
+        "planned": "En cours",
         "solved": "Résolu"
     },
     "ticketTypes": {
