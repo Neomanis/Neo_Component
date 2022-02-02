@@ -20,6 +20,12 @@
         "address": "Itsm address",
         "currentConf": "Current itsm config"
     },
+    "dot": {
+        "error": "error",
+        "success": "success",
+        "update": "updating",
+        "cancel": "cancel"
+    },
     "dropdown": {
         "errorLang": "Error : language modification failed",
         "goService": "Services"

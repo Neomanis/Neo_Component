@@ -20,6 +20,12 @@
         "address": "Adresse",
         "currentConf": "Configuration actuelle"
     },
+    "dot": {
+        "error": "erreur",
+        "success": "enregistré",
+        "update": "mise à jour",
+        "cancel": "annuler"
+    },
     "dropdown": {
         "errorLang": "Erreur : la modification de la langue a échouée",
         "goService": "Services"
