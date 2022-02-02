@@ -140,7 +140,7 @@ const TextEditor = ({
                     modules={modules}
                     formats={formats}
                 />
-                <div className={`w-5 ${dotClassName}`}>
+                <div className={`${dotClassName}`}>
                     {(isUpdateField || isError) && (
                         <Dot
                             errorMessage={errorMessage}

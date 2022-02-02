@@ -194,8 +194,8 @@ export interface IGlpiUsers {
     usertitles_id?: number;
 }
 export interface IGlpiRequest {
-    id?: number;
-    name?: string;
+    id: number;
+    name: string;
     is_helpdesk_default?: number;
     is_followup_default?: number;
     is_mail_default?: number;
@@ -464,8 +464,14 @@ export interface ITechnicalQuestionAnswer {
     upvoters: string[];
 }
 
+export interface ITailwindColorApplication {
+    bg: string;
+    text: string;
+    border: string;
+}
+
 export interface ColorTypes {
-    tailwind: string;
+    tailwind: ITailwindColorApplication;
     hex: string;
 }
 
@@ -497,4 +503,9 @@ export interface TicketsStatistics {
             byPassed: number;
         };
     };
+}
+
+export interface IInputSelectSearchableData {
+    label: string;
+    value: number;
 }

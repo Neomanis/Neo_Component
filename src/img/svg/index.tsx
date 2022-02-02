@@ -15,8 +15,8 @@ import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
-import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
+import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
@@ -49,6 +49,7 @@ import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.s
 import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
 import { ReactComponent as IconTicketClosed } from "./nm_ico_ticket_closed.svg";
+import { ReactComponent as IconTicketSolved } from "./nm_ico_ticket_solved.svg";
 import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_texte.svg";
 import { ReactComponent as LogoBlancSvg } from "./nm_logo_couleur_blanc.svg";
 import { ReactComponent as LogoBleuNoText } from "./nm_logo_couleur_bleu_sans_texte.svg";
@@ -59,6 +60,7 @@ import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
 import { ReactComponent as NeoLogo } from "./nm_logo_couleur_blanc_toast.svg";
 import { ReactComponent as NeoLogoSad } from "./nm_logo_couleur_blanc_toast-sad.svg";
 import { ReactComponent as Planet } from "./nm_design_planet.svg";
+import { ReactComponent as StatusContainer } from "./nm_status_container.svg";
 import { ReactComponent as TabLogo } from "./nm_ico_popup.svg";
 import { ReactComponent as TicketBottom } from "./nm_design_ticket_bottom.svg";
 import { ReactComponent as TicketCenter } from "./nm_design_ticket_center.svg";
@@ -83,8 +85,8 @@ export {
     IconArrowLogin,
     IconArrowRight,
     IconChartPie,
-    IconChevron,
     IconCheck,
+    IconChevron,
     IconCloud,
     IconConsole,
     IconDashboard,
@@ -117,6 +119,7 @@ export {
     IconSystemStatus,
     IconTechnicalQuestions,
     IconTicketClosed,
+    IconTicketSolved,
     LogoBlancNoText,
     LogoBlancSvg,
     LogoBleuNoText,
@@ -127,6 +130,7 @@ export {
     NeoLogo,
     NeoLogoSad,
     Planet,
+    StatusContainer,
     TabLogo,
     TicketBottom,
     TicketCenter,

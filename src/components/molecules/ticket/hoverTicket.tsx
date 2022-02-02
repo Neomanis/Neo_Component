@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { ITicket } from "../../../interface";
-import { getStatusColor } from "../../utils/ticketColorSelector";
+import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
 
@@ -75,7 +75,7 @@ const HoverTicket = ({
             <div className={`useOnClickOutsideException flex animate-postionHover`}>
                 <div className={`w-24 z-10 animate-leftH `} style={{ transform: "translateX(20px)" }}>
                     <div
-                        className={`absolute ${getPriorityColor(ticket.priority, false)}`}
+                        className={`absolute ${getPriorityColor(ticket.priority, false, "bg")}`}
                         style={{ width: 58, height: 29, top: 61, left: 38 }}
                     ></div>
                     <Hexagon
@@ -194,7 +194,7 @@ const HoverTicket = ({
                 </div>
                 <div className={`w-24 z-10 animate-rightH `} style={{ transform: "translateX(-20px)" }}>
                     <div
-                        className={`absolute ${getPriorityColor(ticket.priority, false)}`}
+                        className={`absolute ${getPriorityColor(ticket.priority, false, "bg")}`}
                         style={{ width: 58, height: 29, top: 61, right: 39 }}
                     ></div>
                     <Hexagon type={"rightHalf"} bgColor={getStatusColor(ticket.status, true)} />

@@ -209,7 +209,7 @@
         "errorRequired": "Champ requis",
         "errorSubmit": "Erreur: les modifications seront perdues",
         "impact": "Impact",
-        "info": "Informations",
+        "informations": "Informations",
         "inputDescription": "Description",
         "inputTitle": "Titre",
         "keywords": "Mots-clés",
@@ -234,7 +234,8 @@
     },
     "ticketModalInfo": {
         "actions": "Actions",
-        "answer": "réponse",
+        "answer_one": "{{count}} réponse",
+        "answer_other": "{{count}} réponses",
         "details": "Détails",
         "diagnostics": {
             "name": "Diagnostics",
@@ -259,7 +260,7 @@
         "assignedToGroup": "Groupe",
         "assignedToUser": "Utilisateur",
         "botReport": "Rapport de Neobot",
-        "chatHistory": "HISTORIQUE DE CHAT",
+        "chatHistory": "Historique de Chat",
         "deleted": "supprimé",
         "deleteQuestion": "Supprimer ce ticket ?",
         "display": "Afficher",
@@ -279,7 +280,7 @@
         },
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
-        "solveTicket": "MARQUÉ COMME RÉSOLU",
+        "solveTicket": "Résoudre le ticket",
         "subjectDetected": "SUJETS",
         "systemDiag": "DIAGNOSTIC SYSTEME",
         "ticketFilters": {
@@ -291,11 +292,19 @@
         "ticketDetails": "DETAILS TICKET"
     },
     "ticketStatus": {
+        "assigned": "En cours (assigné)",
         "closed": "Clos",
-        "inProgressAssigned": "En cours (assigné)",
-        "inProgressPlanned": "En cours (planifié)",
         "new": "Nouveau",
         "pending": "En attente",
+        "planned": "En cours (planifié)",
+        "solved": "Résolu"
+    },
+    "ticketStatusSimplified": {
+        "assigned": "En cours",
+        "closed": "Clos",
+        "new": "Nouveau",
+        "pending": "En attente",
+        "planned": "En cours",
         "solved": "Résolu"
     },
     "ticketTypes": {

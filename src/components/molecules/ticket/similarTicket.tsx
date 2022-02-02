@@ -1,53 +1,39 @@
 import React, { ReactElement } from "react";
-import { faClock } from "@fortawesome/free-regular-svg-icons";
 
-import { Icon, IconTicketCategorie } from "../../atoms";
-import { getFormatedTimeToNowExtended, getPriorityColor } from "../../utils";
-import { IconTicketClosed, TicketLogo } from "../../../img/svg";
+import { IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
+import { Status } from "../../../enumeration";
 import { ISimilarTicket } from "../../../interface";
+import { getStatusColor } from "../../utils";
 
 interface Props {
     fOpenSimilarTicket?: (ticket: ISimilarTicket) => void;
-    languageUser: string;
     ticket: ISimilarTicket;
 }
 
-const SimilarTicket = ({ fOpenSimilarTicket, languageUser, ticket }: Props): ReactElement => {
+const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
+    function getTicketLogoByStatus(status: number): ReactElement {
+        if (status === Status.Solved) {
+            return <IconTicketSolved fill="#152535" />;
+        }
+        if (status === Status.Closed) {
+            return <IconTicketClosed fill="#152535" />;
+        }
+
+        return <TicketLogo fill={"#15304C"} />;
+    }
+
     return (
-        <div
-            className="bg-neo-bg-B flex cursor-pointer text-white rounded-full h-8 w-full"
-            onClick={(): void => fOpenSimilarTicket(ticket)}
-        >
+        <div className="h-12 bg-neo-bg-B flex rounded-md cursor-pointer" onClick={() => fOpenSimilarTicket(ticket)}>
             <div
-                className={`${getPriorityColor(
-                    ticket.priority,
-                    false
-                )} w-1/3 text-neo-bg-B rounded-l-full flex items-center font-semibold`}
+                className={`h-full w-16 flex justify-center rounded-l-md items-center 
+                    ${getStatusColor(ticket.status, false, "bg")}
+                `}
             >
-                <div>
-                    {ticket.status > 4 ? (
-                        <IconTicketClosed className="w-10 px-2" fill="#172f4b" />
-                    ) : (
-                        <TicketLogo className="w-10 px-2" fill="#172f4b" />
-                    )}
-                </div>
-                <div className="flex w-28 justify-self-start" data-testid="ticketId">
-                    {ticket?.id}
-                </div>
+                {getTicketLogoByStatus(ticket.status)}
             </div>
-            <div className="flex px-2 group justify-between w-full">
-                <div className="flex items-center">
-                    <IconTicketCategorie id={ticket ? ticket.itilcategories_id : 0} />
-                </div>
-                <div className="flex items-center px-1" data-testid="ticketName">
-                    <p className="line-clamp-1 text-white text-sm w-full">{ticket.name}</p>
-                </div>
-                <div className="items-center whitespace-nowrap text-neo-link hidden group-hover:flex">
-                    <p className="ml-2 text-xs ">{getFormatedTimeToNowExtended(ticket?.date_creation, languageUser)}</p>
-                </div>
-                <div className="flex items-center px-1 whitespace-nowrap text-neo-link ml-auto">
-                    <Icon fontIcon={faClock} />
-                </div>
+            <div className="flex flex-col px-4 py-1 w-11/12">
+                <div className={`font-bold text-sm ${getStatusColor(ticket.status, false, "text")}`}>{ticket.id}</div>
+                <div className={`text-neo-light-grey font-bold text-xs truncate`}>{ticket.name}</div>
             </div>
         </div>
     );

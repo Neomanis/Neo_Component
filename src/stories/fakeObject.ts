@@ -265,9 +265,9 @@ export const fakeGlpiUsers: IGlpiUsers[] = [
 ];
 
 export const fakeGlpiGroups: IGlpiRequest[] = [
-    { id: 1, completename: "Gojira" },
-    { id: 2, completename: "Ne Obliviscaris" },
-    { id: 3, completename: "Parkway Drive" },
+    { id: 1, completename: "Gojira", name: "gojira" },
+    { id: 2, completename: "Ne Obliviscaris", name: "ne_obliviscaris" },
+    { id: 3, completename: "Parkway Drive", name: "parkway_drive" },
 ];
 
 export const fakeTicketResources: Partial<ITicket> = {
