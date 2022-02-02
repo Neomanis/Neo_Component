@@ -48,26 +48,22 @@
         "endAt": "End at",
         "startAt": "Start at"
     },
-    "translateDate": {
+    "date": {
         "second": "Second",
         "minute": "Minute",
         "hour": "Hour",
         "day": "Day",
         "month": "Month",
         "year": "Year",
-        "contract": {
+        "abbreviated": {
             "second": "sec",
             "minute": "min",
             "seconds": "sec",
-            "minutes": "min",
-            "hour": "H",
-            "day": "D",
-            "month": "M",
-            "year": "Y"
+            "minutes": "min"
         },
         "seconds": "Seconds",
         "minutes": "Minutes",
-        "housr": "Housr",
+        "housr": "Hours",
         "days": "Days",
         "months": "Months",
         "years": "Years"

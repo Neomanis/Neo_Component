@@ -9,30 +9,26 @@ export function getFormatedTimeToNow(date: string): string {
     return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
 }
 
-export function getTimeToNowWithTranslation(date: string, langue?: string): string {
+export function getTimeToNowWithTranslation(date: string, lang?: string): string {
     const dateTicket = new Date(date);
-    const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
-    const myLanguage = i18next.getFixedT(langue ? langue : "en_US");
 
-    if (formatedDate[1] === "hour" || formatedDate[1] === "hours") {
+    const myLanguage = i18next.getFixedT(lang ? lang : "en_US");
+
+    // if formatDistanceToNowStrict is using 'hour' unit, we have to compute difference
+    // between dates ourselves to display hours and minutes in HH:mm format
+    if (formatedDate[1].startsWith("hour")) {
+        const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
         return JSON.stringify(timeDistanceToNow.hours) + " : " + JSON.stringify(timeDistanceToNow.minutes);
-    } else {
-        return (
-            formatedDate[0] +
-            " " +
-            myLanguage(
-                `translateDate.${
-                    formatedDate[1] === "second" ||
-                    formatedDate[1] === "minute" ||
-                    formatedDate[1] === "seconds" ||
-                    formatedDate[1] === "minutes"
-                        ? "contract." + formatedDate[1]
-                        : formatedDate[1]
-                }`
-            )
-        );
     }
+
+    // if formatDistanceToNowStrict is usign 'minute' or 'second' unit, we will use abbreviated translation
+    if (formatedDate[1].startsWith("second") || formatedDate[1].startsWith("minute")) {
+        return formatedDate[0] + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
+    }
+
+    // in other cases, we just use classic translation
+    return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`);
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {

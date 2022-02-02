@@ -48,22 +48,18 @@
         "endAt": "Termine le",
         "startAt": "Commence le"
     },
-    "translateDate": {
+    "date": {
         "second": "Seconde",
         "minute": "Minute",
         "hour": "Heure",
         "day": "Jour",
         "month": "Mois",
-        "year": "Ans",
-        "contract": {
+        "year": "An",
+        "abbreviated": {
             "second": "sec",
             "minute": "min",
             "seconds": "sec",
-            "minutes": "min",
-            "hour": "H",
-            "day": "J",
-            "month": "M",
-            "year": "A"
+            "minutes": "min"
         },
         "seconds": "Secondes",
         "minutes": "Minutes",
