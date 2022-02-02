@@ -24,5 +24,6 @@ InfoDotDefault.args = {
     closable: true,
     fCallBackCancel: () => console.log("CANCELED!"),
     isSuccess: true,
+    startCooldown: false,
     updateCooldown: 2,
 };

@@ -7,6 +7,7 @@ interface Props {
     languageUser?: string;
     fCallBackCancel?: () => void;
     isSuccess: boolean;
+    startCooldown: boolean;
     updateCooldown?: number;
 }
 
@@ -16,6 +17,7 @@ const InfoDot = ({
     languageUser = "en_US",
     fCallBackCancel,
     isSuccess,
+    startCooldown = true,
     updateCooldown = 5,
 }: Props): ReactElement => {
     const myLanguage = i18n.getFixedT(languageUser);
@@ -25,7 +27,7 @@ const InfoDot = ({
     const [closeDisplay, setCloseDisplay] = useState(true);
 
     useEffect(() => {
-        if (message == "update") {
+        if (startCooldown && message == "update") {
             setTimeout(() => {
                 setProgress(100);
             }, 50);
@@ -42,7 +44,7 @@ const InfoDot = ({
         }
         return () => clearTimeout(timerCall.current);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [message]);
+    }, [startCooldown, message]);
 
     function renderSwitchDotMessage(message: string) {
         switch (message) {
