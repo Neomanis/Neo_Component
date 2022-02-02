@@ -3,7 +3,7 @@ import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/ticketColorSelector";
 import { getPriorityColor } from "../../utils/priorityTools";
-import { getDateCompletionPercentage, getFormatedTimeToNow } from "../../utils/dateTools";
+import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 
 //translations
 import i18next from "i18next";
@@ -127,10 +127,13 @@ const Ticket = ({
                         <div>
                             {ticket && ticket.status !== 5 && ticket.status !== 6 && (
                                 <div className="text-white text-xxs flex justify-center item-center transform -translate-y-1">
-                                    <div className="w-3 h-3 mr-2" style={{ marginTop: 2 }}>
+                                    <div className="w-3 h-3 mr-1" style={{ marginTop: 2 }}>
                                         <ClockLogo fill="#fff" />
                                     </div>
-                                    <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
+                                    <p>
+                                        {ticket.date_creation &&
+                                            getTimeToNowWithTranslation(ticket.date_creation, languageUser)}
+                                    </p>
                                 </div>
                             )}
                             {ticket && ticket.status === 5 && (

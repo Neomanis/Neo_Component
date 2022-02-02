@@ -48,6 +48,26 @@
         "endAt": "End at",
         "startAt": "Start at"
     },
+    "date": {
+        "second": "Second",
+        "minute": "Minute",
+        "hour": "Hour",
+        "day": "Day",
+        "month": "Month",
+        "year": "Year",
+        "abbreviated": {
+            "second": "sec",
+            "minute": "min",
+            "seconds": "sec",
+            "minutes": "min"
+        },
+        "seconds": "Seconds",
+        "minutes": "Minutes",
+        "hours": "Hours",
+        "days": "Days",
+        "months": "Months",
+        "years": "Years"
+    },
     "inputSelect": {
         "event": "Event",
         "major": "Major",

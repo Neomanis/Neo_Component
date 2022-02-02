@@ -6,6 +6,7 @@ import {
     getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
+    getTimeToNowWithTranslation,
 } from "./dateTools";
 import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
@@ -22,6 +23,7 @@ export {
     getDateCompletionPercentage,
     getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
+    getTimeToNowWithTranslation,
     getOutageBorderColor,
     getOutageDivideColor,
     getOutageSVGColor,

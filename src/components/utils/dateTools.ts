@@ -1,16 +1,39 @@
-import { formatDistanceToNowStrict, Locale, format } from "date-fns";
+import { formatDistanceToNowStrict, Locale, format, intervalToDuration } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
+import i18next from "i18next";
 import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
-    const dateTicket = new Date(dateHandler(date));
+    const dateTicket = new Date(date);
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
     return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
 }
 
+export function getTimeToNowWithTranslation(date: string, lang?: string): string {
+    const dateTicket = new Date(date);
+    const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
+
+    const myLanguage = i18next.getFixedT(lang ? lang : "en_US");
+
+    // if formatDistanceToNowStrict is using 'hour' unit, we have to compute difference
+    // between dates ourselves to display hours and minutes in HH:mm format
+    if (formatedDate[1].startsWith("hour")) {
+        const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
+        return JSON.stringify(timeDistanceToNow.hours) + " : " + JSON.stringify(timeDistanceToNow.minutes);
+    }
+
+    // if formatDistanceToNowStrict is usign 'minute' or 'second' unit, we will use abbreviated translation
+    if (formatedDate[1].startsWith("second") || formatedDate[1].startsWith("minute")) {
+        return formatedDate[0] + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
+    }
+
+    // in other cases, we just use classic translation
+    return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`);
+}
+
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {
     const locale = getDateFnsLocaleFromUserLang(lang);
-    const formatToDate = new Date(dateHandler(date));
+    const formatToDate = new Date(date);
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }
@@ -28,23 +51,15 @@ export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     }
 }
 
-function dateHandler(date: string): string {
-    if (!date.includes("T")) {
-        return date.replace(" ", "T") + "+01:00";
-    }
-
-    return date;
-}
-
 export function formatDate(date: string, lang = "en_GB", dayOfWeek = false): string {
-    return format(new Date(dateHandler(date)), `${dayOfWeek ? "EEEE " : ""}P p`, {
+    return format(new Date(date), `${dayOfWeek ? "EEEE " : ""}P p`, {
         locale: getDateFnsLocaleFromUserLang(lang),
     });
 }
 
 export function formatDateToNow(incomingDate: string, lang: string): string {
     let formatedDate: string;
-    const date = new Date(dateHandler(incomingDate));
+    const date = new Date(incomingDate);
     const timestampDiff = (new Date().getTime() - new Date(date).getTime()) / 1000;
     const myLanguage = i18n.getFixedT(lang);
     const begin = myLanguage("formatDateToNow.begin");
