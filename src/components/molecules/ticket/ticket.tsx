@@ -3,14 +3,14 @@ import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/ticketColorSelector";
 import { getPriorityColor } from "../../utils/priorityTools";
-import { dateHandler, getDateCompletionPercentage } from "../../utils/dateTools";
+import { getDateCompletionPercentage } from "../../utils/dateTools";
 
 //translations
 import i18next from "i18next";
 import { ClockLogo, IconCheck, IconTicketClosed, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
-import { formatDistanceToNowStrict } from "date-fns";
+import { formatDistanceToNowStrict, intervalToDuration } from "date-fns";
 
 interface Props {
     currentTicket?: ITicket;
@@ -60,14 +60,12 @@ const Ticket = ({
     }
 
     function getFormatedTimeToNow(date: string): string {
-        const dateTicket = new Date(dateHandler(date));
-        const timeDistanceToNow = new Date(new Date().getTime() - dateTicket.getTime() - 3600000);
+        const dateTicket = new Date(date);
+        const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
         const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
 
         if (formatedDate[1] === "hour" || formatedDate[1] === "hours") {
-            return (
-                JSON.stringify(timeDistanceToNow.getHours()) + " : " + JSON.stringify(timeDistanceToNow.getMinutes())
-            );
+            return JSON.stringify(timeDistanceToNow.hours) + " : " + JSON.stringify(timeDistanceToNow.minutes);
         } else {
             return (
                 formatedDate[0] +
