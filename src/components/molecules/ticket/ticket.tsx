@@ -3,14 +3,13 @@ import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
 import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/ticketColorSelector";
 import { getPriorityColor } from "../../utils/priorityTools";
-import { getDateCompletionPercentage } from "../../utils/dateTools";
+import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 
 //translations
 import i18next from "i18next";
 import { ClockLogo, IconCheck, IconTicketClosed, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
-import { formatDistanceToNowStrict, intervalToDuration } from "date-fns";
 
 interface Props {
     currentTicket?: ITicket;
@@ -57,31 +56,6 @@ const Ticket = ({
             return currentTicket.id !== ticket.id && isSameStatus() ? "30" : "";
         }
         return "";
-    }
-
-    function getFormatedTimeToNow(date: string): string {
-        const dateTicket = new Date(date);
-        const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
-        const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
-
-        if (formatedDate[1] === "hour" || formatedDate[1] === "hours") {
-            return JSON.stringify(timeDistanceToNow.hours) + " : " + JSON.stringify(timeDistanceToNow.minutes);
-        } else {
-            return (
-                formatedDate[0] +
-                " " +
-                myLanguage(
-                    `translateDate.${
-                        formatedDate[1] === "second" ||
-                        formatedDate[1] === "minute" ||
-                        formatedDate[1] === "seconds" ||
-                        formatedDate[1] === "minutes"
-                            ? "contract." + formatedDate[1]
-                            : formatedDate[1]
-                    }`
-                )
-            );
-        }
     }
 
     return (
@@ -156,7 +130,10 @@ const Ticket = ({
                                     <div className="w-3 h-3 mr-1" style={{ marginTop: 2 }}>
                                         <ClockLogo fill="#fff" />
                                     </div>
-                                    <p>{ticket.date_creation && getFormatedTimeToNow(ticket.date_creation)}</p>
+                                    <p>
+                                        {ticket.date_creation &&
+                                            getTimeToNowWithTranslation(ticket.date_creation, languageUser)}
+                                    </p>
                                 </div>
                             )}
                             {ticket && ticket.status === 5 && (
