@@ -19,8 +19,9 @@ module.exports = {
                         secondary: "#366688",
                         modal: "#0f283f",
                         planned: "#89D2FF",
+                        extraDark: "#111F2E",
                     },
-                    expanded: "#111F2E",
+                    expanded: "#17212B",
                     light: {
                         grey: "#DAE5E5",
                     },
