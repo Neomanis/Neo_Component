@@ -12,6 +12,7 @@ import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
+import useLocalStorage from "./hooks/useLocalStorage";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
 import {
@@ -51,4 +52,5 @@ export {
     mapEnumToInputSelectSearchableData,
     stripHtml,
     useIsFirstRender,
+    useLocalStorage,
 };

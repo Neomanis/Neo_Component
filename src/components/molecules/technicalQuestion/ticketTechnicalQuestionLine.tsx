@@ -20,9 +20,9 @@ const TicketTechnicalQuestionLine = ({
 
     return (
         <div
-            className={`h-20 w-full bg-neo-bg-B rounded-md border-r-8 p-4 flex flex-col justify-between ${
-                solved ? "border-neo-green" : "border-neo-red"
-            }`}
+            className={`h-20 w-full bg-neo-bg-B rounded-md border-r-8 p-4 flex flex-col justify-between cursor-pointer 
+                ${solved ? "border-neo-green" : "border-neo-red"}
+            `}
             onClick={() => openTechnicalQuestion()}
         >
             <div

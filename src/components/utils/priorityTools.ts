@@ -1,6 +1,5 @@
-import { Colors } from "../../interface";
+import { Colors, ITailwindColorApplication } from "../../interface";
 import { Priority } from "../../enumeration";
-import { ITailwindColorApplication } from "../..";
 
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },

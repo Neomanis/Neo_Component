@@ -25,11 +25,9 @@ const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
     return (
         <div className="h-12 bg-neo-bg-B flex rounded-md cursor-pointer" onClick={() => fOpenSimilarTicket(ticket)}>
             <div
-                className={`h-full w-16 flex justify-center rounded-l-md items-center ${getStatusColor(
-                    ticket.status,
-                    false,
-                    "bg"
-                )}`}
+                className={`h-full w-16 flex justify-center rounded-l-md items-center 
+                    ${getStatusColor(ticket.status, false, "bg")}
+                `}
             >
                 {getTicketLogoByStatus(ticket.status)}
             </div>
