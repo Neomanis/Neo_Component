@@ -10,3 +10,5 @@ export const parameters = {
         fr_FR: "Français",
     },
 };
+
+export const decorators = [(Story) => <div className="inter">{Story()}</div>];
