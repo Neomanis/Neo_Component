@@ -38,7 +38,9 @@ const TicketTechnicalQuestionLine = ({
                 {title}
             </div>
             <div className="font-bold text-xxs text-neo-blue-secondary">
-                {myLanguage("ticketModalInfo.answer", { count: answersNumber })}
+                {answersNumber > 1
+                    ? myLanguage("ticketModalInfo.answer_other", { count: answersNumber })
+                    : myLanguage("ticketModalInfo.answer_one", { count: answersNumber })}
             </div>
         </div>
     );
