@@ -501,7 +501,7 @@ export interface TicketsStatistics {
             solved: number;
             escalated: number;
             canceled: number;
-            byPassed: number;
+            bypassed: number;
         };
     };
 }
