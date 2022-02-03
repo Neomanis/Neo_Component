@@ -22,7 +22,7 @@ const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
         console.log(data);
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className=" bg-neo-bg-A p-2">
+        <form onSubmit={handleSubmit(onSubmit)} className=" bg-neo-bg-A pt-5 relative">
             <InputSelectSearchable
                 {...args}
                 setValue={setValue}
@@ -51,8 +51,9 @@ Default.args = {
     isClearable: true,
     placeholder: "story Searchable",
     errorMessage: "error",
-    containerClassName: "w-full flex items-center",
+    containerClassName: "",
     isSearchable: true,
+    isUpdateField: true,
     defaultValue: 3,
     required: true,
     refForm: "example 1",
@@ -94,11 +95,12 @@ Default.args = {
 };
 Labeled.args = {
     label: "Label Time!",
-    containerClassName: "w-full flex items-center",
+    containerClassName: "",
     labelClassName: "text-neo-light-grey whitespace-nowrap mx-2",
     isClearable: true,
     placeholder: "story Searchable",
     isSearchable: true,
+    isUpdateField: true,
     refForm: "example 1",
     data: [
         {
@@ -113,7 +115,7 @@ Labeled.args = {
 };
 Updatable.args = {
     isUpdateField: true,
-    containerClassName: "w-full flex items-center",
+    containerClassName: "",
     isSearchable: true,
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     //meant not to display isClearable button since isUpdateField = true
@@ -158,7 +160,7 @@ Updatable.args = {
 };
 NotSearchable.args = {
     isUpdateField: true,
-    containerClassName: "w-full flex items-center",
+    containerClassName: "",
     isSearchable: false,
     placeholder: "story Searchable",
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),

@@ -14,7 +14,11 @@ export default {
     },
 } as Meta;
 
-const Template: ComponentStory<typeof InputDateTime> = (args) => <InputDateTime {...args} />;
+const Template: ComponentStory<typeof InputDateTime> = (args) => (
+    <div className="bg-neo-bg-A p-3">
+        <InputDateTime {...args} />
+    </div>
+);
 
 export const InputDateTimeUpdate = Template.bind({});
 InputDateTimeUpdate.args = {

@@ -3,7 +3,7 @@ import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } fro
 import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import Dot from "../dot";
+import InfoDot from "../infoDot";
 
 interface Props {
     className?: string;
@@ -108,8 +108,35 @@ const Input = ({
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
-            <label className="w-full flex justify-center">
-                {label}
+            <label className="w-full">
+                <div className="flex justify-between items-center">
+                    <p>{label}</p>
+                    <div className={dotClassName}>
+                        {(isUpdateField || isError) && (
+                            <InfoDot
+                                isCancelable={state.isCancelable}
+                                isUpdate={state.isCooldown}
+                                isError={isError}
+                                isSuccess={state.isSuccess}
+                                fCallBackCancel={(): void => {
+                                    if (onDotCancelCallBack) {
+                                        onDotCancelCallBack(state.previous as string);
+                                    }
+                                    if (setValue && clearErrors) {
+                                        setValue(refForm, state.previous);
+                                        clearErrors();
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }}
+                                trigger={state.trigger}
+                            />
+                        )}
+                    </div>
+                </div>
+
                 <input
                     data-testid="input"
                     {...inputRegister}
@@ -145,31 +172,6 @@ const Input = ({
                     type={typeInput}
                 />
             </label>
-            <div className={`w-5 ${dotClassName}`}>
-                {(isUpdateField || isError) && (
-                    <Dot
-                        errorMessage={errorMessage}
-                        isCancelable={state.isCancelable}
-                        isCooldown={state.isCooldown}
-                        isError={isError}
-                        isSuccess={state.isSuccess}
-                        onClickCallback={(): void => {
-                            if (onDotCancelCallBack) {
-                                onDotCancelCallBack(state.previous as string);
-                            }
-                            if (setValue && clearErrors) {
-                                setValue(refForm, state.previous);
-                                clearErrors();
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }}
-                        trigger={state.trigger}
-                    />
-                )}
-            </div>
         </div>
     );
 };

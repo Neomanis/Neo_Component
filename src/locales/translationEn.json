@@ -104,6 +104,7 @@
     },
     "neoHelperChat": {
         "askHelp": "How does it work?",
+        "canceled": "Stop",
         "helpTitle": "How does it work?",
         "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
         "helpButton": "Ok thanks!",

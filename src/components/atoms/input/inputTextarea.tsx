@@ -1,9 +1,8 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-
-import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { IReactHookFormCustomValidation } from "../../../interface";
+import InfoDot from "../infoDot";
 
 interface Props {
     classNames?: {
@@ -96,7 +95,30 @@ const InputTextarea = ({
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
             <label className={classNames.labelBody ?? ""}>
-                <div className={classNames.labelText ?? ""}>{label}</div>
+                <div className="flex justify-between items-center">
+                    <div className={classNames.labelText ?? ""}>{label}</div>
+                    <div className={`${classNames.dot ?? ""}`}>
+                        {(isUpdateField || isError) && (
+                            <InfoDot
+                                isCancelable={state.isCancelable}
+                                isUpdate={state.isCooldown}
+                                isError={isError}
+                                isSuccess={state.isSuccess}
+                                fCallBackCancel={(): void => {
+                                    if (setValue && state.previous) {
+                                        setValue(refForm, state.previous);
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }}
+                                trigger={state.trigger}
+                                updateCooldown={timerSetting}
+                            />
+                        )}
+                    </div>
+                </div>
                 <textarea
                     {...inputRegister}
                     className={classNames.textArea ?? ""}
@@ -126,27 +148,6 @@ const InputTextarea = ({
                     placeholder={placeholder}
                 ></textarea>
             </label>
-            <div className={`w-5 ${classNames.dot ?? ""}`}>
-                {(isUpdateField || isError) && (
-                    <Dot
-                        errorMessage={errorMessage}
-                        isCancelable={state.isCancelable}
-                        isCooldown={state.isCooldown}
-                        isError={isError}
-                        isSuccess={state.isSuccess}
-                        onClickCallback={(): void => {
-                            if (setValue && state.previous) {
-                                setValue(refForm, state.previous);
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }}
-                        trigger={state.trigger}
-                    />
-                )}
-            </div>
         </div>
     );
 };

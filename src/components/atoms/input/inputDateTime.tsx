@@ -3,9 +3,9 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
+import InfoDot from "../infoDot";
+
 interface Props {
     className?: string;
     defaultValue: Date;
@@ -35,7 +35,6 @@ const InputDateTime = ({
     className,
     defaultValue,
     dotClassName,
-    errorMessage,
     fCallBack,
     inputClassName,
     isError,
@@ -114,7 +113,30 @@ const InputDateTime = ({
     return (
         <div className={`${className}`} data-testid="inputDateTime-body">
             <label className={`${labelClassName}`}>
-                {label}
+                <div className="flex justify-between items-center">
+                    <p>{label}</p>
+                    <div className={`${dotClassName}`}>
+                        {(isUpdateField || isError) && (
+                            <InfoDot
+                                isCancelable={state.isCancelable}
+                                isUpdate={state.isCooldown}
+                                isSuccess={state.isSuccess}
+                                isError={isError}
+                                trigger={state.trigger}
+                                fCallBackCancel={(): void => {
+                                    if (setValue && state.previous) {
+                                        setValue(refForm, state.previous);
+                                        setStartDate(state.previous as Date);
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }}
+                            />
+                        )}
+                    </div>
+                </div>
                 <DatePicker
                     className={`${inputClassName}`}
                     placeholderText={placeholder}
@@ -148,28 +170,6 @@ const InputDateTime = ({
                     timeIntervals={15}
                 />
             </label>
-            <div className={`w-5 ${dotClassName}`}>
-                {(isUpdateField || isError) && (
-                    <Dot
-                        errorMessage={errorMessage}
-                        isCancelable={state.isCancelable}
-                        isCooldown={state.isCooldown}
-                        isSuccess={state.isSuccess}
-                        isError={isError}
-                        trigger={state.trigger}
-                        onClickCallback={(): void => {
-                            if (setValue && state.previous) {
-                                setValue(refForm, state.previous);
-                                setStartDate(state.previous as Date);
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }}
-                    />
-                )}
-            </div>
         </div>
     );
 };

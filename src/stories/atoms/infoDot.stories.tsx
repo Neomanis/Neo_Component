@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import InfoDot from "../../components/atoms/infoDot";
 import { ComponentStory, Meta } from "@storybook/react";
@@ -21,9 +22,11 @@ const Template: ComponentStory<typeof InfoDot> = (args) => {
 export const InfoDotDefault = Template.bind({});
 InfoDotDefault.args = {
     className: "absolute top-0 right-0",
-    closable: true,
+    isCancelable: true,
     fCallBackCancel: () => console.log("CANCELED!"),
     isSuccess: true,
-    startCooldown: false,
+    isUpdate: true,
+    isError: true,
     updateCooldown: 2,
+    trigger: false,
 };
