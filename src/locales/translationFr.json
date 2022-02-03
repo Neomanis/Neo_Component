@@ -278,6 +278,7 @@
             "problemAppearsAgain": "Problème toujours présent ?",
             "problemAppearsAgainDesc": "Cette action réouvrira votre ticket."
         },
+        "reopenTicket": "Réouvrir le ticket",
         "search": "Rechercher",
         "solveQuestion": "Marqué comme résolu ?",
         "solveTicket": "Résoudre le ticket",
