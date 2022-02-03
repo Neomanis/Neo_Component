@@ -292,6 +292,41 @@
         },
         "ticketDetails": "DETAILS TICKET"
     },
+    "ticketStatistics": {
+        "tabTitleNow": "Maintenant",
+        "tabTitleRange": "Période",
+        "title": "Statistiques",
+        "total": "Total",
+        "openByNeoBot": "Tickets ouverts par NeoBot",
+        "ticketsOpenByTech": "Tickets ouverts par un tech",
+        "ticketSolved": "Tickets résolus",
+        "ticketHandled": "Tickets pris en charge",
+        "neoBot": {
+            "bypassed": "Neobot contourné",
+            "cancel": "Annulés par l'utilisateur",
+            "notSolved": "Non résolus",
+            "solved": "Résolus par neoBot",
+            "solvedByTech": "Résolus par un tech",
+            "used": "Neobot utilisé"
+        },
+        "dateSelector": {
+            "week": "Semaine dernière",
+            "month": "Dernier mois",
+            "quarter": "Dernier trimestre",
+            "year": "Dernière année",
+            "all": "Depuis le début"
+        },
+        "TTR": {
+            "met": "TTR respectés",
+            "notMet": "TTR non respectés",
+            "almostNotMet": "TTR presque dépassés"
+        },
+        "TTO": {
+            "met": "TTO respectés",
+            "notMet": "TTO non respectés",
+            "almostNotMet": "TTO presque dépassés"
+        }
+    },
     "ticketStatus": {
         "assigned": "En cours (assigné)",
         "closed": "Clos",
@@ -317,38 +352,6 @@
         "noValidation": "Non sujet à validation",
         "refused": "Refusé",
         "waiting": "Attente de validation"
-    },
-    "ticketStatistics": {
-        "tabTitleNow": "Maintenant",
-        "tabTitleRange": "Période",
-        "title": "Statistiques",
-        "total": "Total",
-        "openByNeoBot": "Tickets ouverts par NeoBot",
-        "ticketsOpen": "Tickets ouverts",
-        "ticketSolved": "Tickets résolus",
-        "ticketHandled": "Tickets pris en charge",
-        "neoBot": {
-            "solved": "Résolus par neoBot",
-            "notSolved": "Non résolus par neoBot",
-            "cancel": "Annulés par l'utilisateur"
-        },
-        "dateSelector": {
-            "week": "Semaine dernière",
-            "month": "Dernier mois",
-            "quarter": "Dernier trimestre",
-            "year": "Dernière année",
-            "all": "Depuis le début"
-        },
-        "TTR": {
-            "met": "TTR respectés",
-            "notMet": "TTR non respectés",
-            "almostNotMet": "TTR presque dépassés"
-        },
-        "TTO": {
-            "met": "TTO respectés",
-            "notMet": "TTO non respectés",
-            "almostNotMet": "TTO presque dépassés"
-        }
     },
     "titles": {
         "dashBoard": "Accueil",

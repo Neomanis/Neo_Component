@@ -292,6 +292,41 @@
         },
         "ticketDetails": "TICKET DETAILS"
     },
+    "ticketStatistics": {
+        "tabTitleNow": "Now",
+        "tabTitleRange": "Range",
+        "title": "Statistics",
+        "total": "Total",
+        "openByNeoBot": "Tickets opened by NeoBot",
+        "ticketsOpenByTech": "Tickets opened by a tech",
+        "ticketSolved": "Tickets solved",
+        "ticketHandled": "Tickets handled",
+        "neoBot": {
+            "bypassed": "Neobot bypassed",
+            "cancel": "Canceled by user",
+            "notSolved": "Not solved",
+            "solved": "Solved by neoBot",
+            "solvedByTech": "Solved by a tech",
+            "used": "Neobot used"
+        },
+        "dateSelector": {
+            "week": "Last week",
+            "month": "Last month",
+            "quarter": "Last quarter",
+            "year": "Last year",
+            "all": "Since the beginning"
+        },
+        "TTR": {
+            "met": "TTR met",
+            "notMet": "TTR not met",
+            "almostNotMet": "TTR nearly overdue"
+        },
+        "TTO": {
+            "met": "TTO met",
+            "notMet": "TTO not met",
+            "almostNotMet": "TTO nearly overdue"
+        }
+    },
     "ticketStatus": {
         "assigned": "In progress (assigned)",
         "closed": "Closed",
@@ -317,38 +352,6 @@
         "noValidation": "Not subject to validation",
         "refused": "Refused",
         "waiting": "Waiting for validation"
-    },
-    "ticketStatistics": {
-        "tabTitleNow": "Now",
-        "tabTitleRange": "Range",
-        "title": "Statistics",
-        "total": "Total",
-        "openByNeoBot": "Tickets opened by NeoBot",
-        "ticketsOpen": "Tickets opened",
-        "ticketSolved": "Tickets solved",
-        "ticketHandled": "Tickets handled",
-        "neoBot": {
-            "solved": "Solved by neoBot",
-            "notSolved": "Not solved by neoBot",
-            "cancel": "Canceled by user"
-        },
-        "dateSelector": {
-            "week": "Last week",
-            "month": "Last month",
-            "quarter": "Last quarter",
-            "year": "Last year",
-            "all": "Since the beginning"
-        },
-        "TTR": {
-            "met": "TTR met",
-            "notMet": "TTR not met",
-            "almostNotMet": "TTR nearly overdue"
-        },
-        "TTO": {
-            "met": "TTO met",
-            "notMet": "TTO not met",
-            "almostNotMet": "TTO nearly overdue"
-        }
     },
     "titles": {
         "dashBoard": "Dashboard",
