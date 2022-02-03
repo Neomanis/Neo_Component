@@ -25,12 +25,4 @@ describe("InfoDot", () => {
         mount(<InfoDot isSuccess={true} isCancelable={true} className="test" updateCooldown={1} />);
         cy.get('[data-testid="dotSuccess"]').should("have.text", "SUCCESS").and("have.class", "text-neo-green");
     });
-    it("should render isSuccess false props properly", () => {
-        mount(<InfoDot isSuccess={false} isCancelable={true} className="test" updateCooldown={1} />);
-        cy.get('[data-testid="dotError"]').should("have.text", "ERROR").and("have.class", "text-neo-red");
-    });
-    it("should render updating message properly", () => {
-        mount(<InfoDot isSuccess={false} isCancelable={true} className="test" />);
-        cy.get('[data-testid="dotUpdating"]').should("have.text", "UPDATING").and("have.class", "text-neo-blue");
-    });
 });
