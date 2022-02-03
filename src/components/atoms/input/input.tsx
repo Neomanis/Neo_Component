@@ -117,6 +117,7 @@ const Input = ({
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isError={isError}
+                                errorMessage={errorMessage}
                                 isSuccess={state.isSuccess}
                                 fCallBackCancel={(): void => {
                                     if (onDotCancelCallBack) {

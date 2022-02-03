@@ -116,6 +116,7 @@ const TextEditor = ({
                         }}
                         trigger={state.trigger}
                         updateCooldown={timerSetting}
+                        errorMessage={errorMessage}
                     />
                 )}
             </div>

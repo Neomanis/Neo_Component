@@ -52,6 +52,7 @@ const InputDateTime = ({
     targetId,
     timerSetting = 5000,
     updateFunction,
+    errorMessage,
 }: Props): ReactElement => {
     const [startDate, setStartDate] = useState<Date | null>(defaultValue);
     const [state, dispatch] = useReducer(inputReducer, {
@@ -118,6 +119,7 @@ const InputDateTime = ({
                     <div className={`${dotClassName}`}>
                         {(isUpdateField || isError) && (
                             <InfoDot
+                                errorMessage={errorMessage}
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isSuccess={state.isSuccess}

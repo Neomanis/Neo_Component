@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { i18n } from "../../i18n";
 
 interface Props {
+    errorMessage?: string;
     className?: string;
     isCancelable?: boolean;
     isSuccess?: boolean;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const InfoDot = ({
+    errorMessage,
     className,
     isCancelable,
     isSuccess,
@@ -21,7 +23,7 @@ const InfoDot = ({
     isError,
     languageUser = "en_US",
     fCallBackCancel,
-    updateCooldown = 4,
+    updateCooldown = 4000,
     trigger,
 }: Props): ReactElement => {
     const myLanguage = i18n.getFixedT(languageUser);
@@ -55,7 +57,7 @@ const InfoDot = ({
                     <div
                         style={{
                             width: progress + "%",
-                            transition: updateCooldown + "s linear",
+                            transition: updateCooldown / 1000 + "s linear",
                             transitionDelay: "0.5s",
                             borderColor: "#22AAFF",
                         }}
@@ -65,7 +67,7 @@ const InfoDot = ({
             )}
             {isError && (
                 <div data-testid="dotError" className="text-neo-red text-xs font-bold">
-                    {myLanguage("dot.error").toUpperCase()}
+                    {errorMessage ? errorMessage : myLanguage("dot.error").toUpperCase()}
                 </div>
             )}
             {isCancelable && (

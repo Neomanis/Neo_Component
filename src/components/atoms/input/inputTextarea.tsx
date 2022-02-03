@@ -115,6 +115,7 @@ const InputTextarea = ({
                                 }}
                                 trigger={state.trigger}
                                 updateCooldown={timerSetting}
+                                errorMessage={errorMessage}
                             />
                         )}
                     </div>

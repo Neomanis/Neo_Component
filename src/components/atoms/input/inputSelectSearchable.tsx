@@ -179,6 +179,7 @@ const InputSelectSearchable = ({
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                     {(isUpdateField || isError) && (
                         <InfoDot
+                            errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
                             isUpdate={state.isCooldown}
                             isError={isError}
