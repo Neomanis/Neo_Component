@@ -30,4 +30,5 @@ AreaUpdate.args = {
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     timerSetting: 3000,
     className: "h-full w-full",
+    dotClassName: "flex justify-end mb-1",
 };

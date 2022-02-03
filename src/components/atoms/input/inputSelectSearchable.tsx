@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
-import Dot from "../dot";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { IReactHookFormCustomValidation } from "../../../interface";
+import InfoDot from "../infoDot";
 
 interface Props {
     containerClassName?: string;
@@ -174,7 +174,39 @@ const InputSelectSearchable = ({
 
     return (
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
-            {label && <label className={labelClassName}>{label}</label>}
+            <div className="flex justify-between">
+                <label className={labelClassName}>{label}</label>
+                <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
+                    {(isUpdateField || isError) && (
+                        <InfoDot
+                            errorMessage={errorMessage}
+                            isCancelable={state.isCancelable}
+                            isUpdate={state.isCooldown}
+                            isError={isError}
+                            isSuccess={state.isSuccess}
+                            fCallBackCancel={(): void => {
+                                if (setValue && state.previous) {
+                                    setValue(refForm, state.previous);
+                                }
+                                if (setStateValue && state.previous) {
+                                    setStateValue(state.previous as number);
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
+                                dispatch({ type: "CANCEL_UPDATE" });
+                                dispatch({
+                                    type: "TRACK_STATE",
+                                    payload: !isMulti
+                                        ? data.filter((el) => el.value === state.previous)
+                                        : data.filter((el) => (state.previous as number[]).includes(el.value)),
+                                });
+                            }}
+                            trigger={state.trigger}
+                        />
+                    )}
+                </div>
+            </div>
             <Select
                 {...inputRegister}
                 className="flex items-center w-full my-1 rounded-md text-xs font-bold"
@@ -215,37 +247,6 @@ const InputSelectSearchable = ({
                     }
                 }}
             />
-
-            <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                {(isUpdateField || isError) && (
-                    <Dot
-                        errorMessage={errorMessage}
-                        isCancelable={state.isCancelable}
-                        isCooldown={state.isCooldown}
-                        isError={isError}
-                        isSuccess={state.isSuccess}
-                        onClickCallback={(): void => {
-                            if (setValue && state.previous) {
-                                setValue(refForm, state.previous);
-                            }
-                            if (setStateValue && state.previous) {
-                                setStateValue(state.previous as number);
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                            dispatch({ type: "CANCEL_UPDATE" });
-                            dispatch({
-                                type: "TRACK_STATE",
-                                payload: !isMulti
-                                    ? data.filter((el) => el.value === state.previous)
-                                    : data.filter((el) => (state.previous as number[]).includes(el.value)),
-                            });
-                        }}
-                        trigger={state.trigger}
-                    />
-                )}
-            </div>
         </div>
     );
 };

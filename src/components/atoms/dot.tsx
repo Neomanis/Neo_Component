@@ -8,7 +8,7 @@ interface Props {
     errorMessage?: string;
     isCancelable?: boolean;
     isCooldown?: boolean;
-    isError?: boolean | undefined;
+    isError?: boolean;
     isSuccess: boolean;
     onClickCallback: () => void;
     timer?: number;

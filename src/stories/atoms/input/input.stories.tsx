@@ -42,4 +42,5 @@ InputDefault.args = {
     errorMessage: "error",
     typeInput: "input",
     placeholder: "Default Input",
+    isUpdateField: true,
 };

@@ -46,9 +46,9 @@ Default.args = {
     errorMessage: "No text !",
     isUpdateField: true,
     classNames: {
-        dot: "self-start mt-2 ml-2",
+        dot: "h-full",
         textArea: "w-full bg-neo-bg-B p-2 rounded-md shadow-md h-40",
-        container: "flex items-center w-full",
+        container: "flex items-center w-full relative",
         labelBody: "flex-1",
     },
     // eslint-disable-next-line no-console

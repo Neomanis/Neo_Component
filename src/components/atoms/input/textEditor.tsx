@@ -6,7 +6,7 @@ import { IReactHookFormCustomValidation } from "../../../interface";
 import "../../../styles/textEditor.css";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import Dot from "../dot";
+import InfoDot from "../infoDot";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -97,6 +97,29 @@ const TextEditor = ({
 
     return (
         <div className={className} key={key} data-testid="textEditor-body">
+            <div className={dotClassName}>
+                {(isUpdateField || isError) && (
+                    <InfoDot
+                        isCancelable={state.isCancelable}
+                        isUpdate={state.isCooldown}
+                        isError={isError}
+                        isSuccess={state.isSuccess}
+                        fCallBackCancel={(): void => {
+                            if (setValue && clearErrors) {
+                                setValue(refForm, state.previous);
+                                clearErrors();
+                            }
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                            dispatch({ type: "CANCEL_UPDATE" });
+                        }}
+                        trigger={state.trigger}
+                        updateCooldown={timerSetting}
+                        errorMessage={errorMessage}
+                    />
+                )}
+            </div>
             <div className="flex w-full h-full">
                 <ReactQuill
                     value={state.updated as string}
@@ -140,29 +163,6 @@ const TextEditor = ({
                     modules={modules}
                     formats={formats}
                 />
-                <div className={`${dotClassName}`}>
-                    {(isUpdateField || isError) && (
-                        <Dot
-                            errorMessage={errorMessage}
-                            isCancelable={state.isCancelable}
-                            isCooldown={state.isCooldown}
-                            isError={isError}
-                            isSuccess={state.isSuccess}
-                            onClickCallback={(): void => {
-                                if (setValue && clearErrors) {
-                                    setValue(refForm, state.previous);
-                                    clearErrors();
-                                }
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }}
-                            trigger={state.trigger}
-                            timer={timerSetting}
-                        />
-                    )}
-                </div>
             </div>
         </div>
     );

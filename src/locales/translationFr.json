@@ -20,6 +20,12 @@
         "address": "Adresse",
         "currentConf": "Configuration actuelle"
     },
+    "dot": {
+        "error": "erreur",
+        "success": "enregistré",
+        "update": "mise à jour",
+        "cancel": "annuler"
+    },
     "dropdown": {
         "errorLang": "Erreur : la modification de la langue a échouée",
         "goService": "Services"
@@ -98,6 +104,7 @@
     },
     "neoHelperChat": {
         "askHelp": "Comment ça marche ?",
+        "canceled": "Stop",
         "helpTitle": "Comment ça marche ?",
         "helpText": "Je m'appelle Neobot, je suis une IA créée pour définir et essayer de résoudre votre problème. Parlez moi comme vous parleriez à un technicien je m'occuperai du reste !",
         "helpButton": "D'accord merci !",
