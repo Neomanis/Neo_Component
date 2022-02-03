@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { GroupBase, StylesConfig } from "react-select";
 
 export interface IAuthRoute {
     user: IUser;
@@ -509,3 +510,9 @@ export interface IInputSelectSearchableData {
     label: string;
     value: number;
 }
+
+export type TInputSelectSearchableCss = StylesConfig<
+    { label: string; value: number },
+    boolean,
+    GroupBase<{ label: string; value: number }>
+>;
