@@ -3,3 +3,5 @@ node_modules
 package.json
 build
 dist
+.eslintrc.js
+.eslintrc.i18n-json.js
