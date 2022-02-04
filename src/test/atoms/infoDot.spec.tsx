@@ -13,7 +13,7 @@ describe("InfoDot", () => {
         mount(<InfoDot isSuccess={true} isCancelable={true} fCallBackCancel={fCallback} />);
         cy.get('[data-testid="dotClose"]').should("exist").and("have.text", "CANCEL");
     });
-    it("should disable closable props properly", () => {
+    it("should disable isCancelable props properly", () => {
         mount(<InfoDot isSuccess={false} isCancelable={false} className="test" />);
         cy.get('[data-testid="dotClose"]').should("not.exist");
     });
@@ -24,5 +24,26 @@ describe("InfoDot", () => {
     it("should render isSuccess props properly", () => {
         mount(<InfoDot isSuccess={true} isCancelable={true} className="test" updateCooldown={1} />);
         cy.get('[data-testid="dotSuccess"]').should("have.text", "SUCCESS").and("have.class", "text-neo-green");
+    });
+    it("should render isError props properly", () => {
+        mount(<InfoDot isError={true} isSuccess={false} isCancelable={true} className="test" updateCooldown={1} />);
+        cy.get('[data-testid="dotError"]').should("have.text", "ERROR").and("have.class", "text-neo-red");
+    });
+    it("should render errorMessage props properly", () => {
+        mount(
+            <InfoDot
+                errorMessage="error occured"
+                isError={true}
+                isSuccess={false}
+                isCancelable={true}
+                className="test"
+                updateCooldown={1}
+            />
+        );
+        cy.get('[data-testid="dotError"]').should("have.text", "error occured").and("have.class", "text-neo-red");
+    });
+    it("should render updating message properly", () => {
+        mount(<InfoDot isUpdate={true} trigger={true} isSuccess={false} isCancelable={true} className="test" />);
+        cy.get('[data-testid="dotUpdating"]').should("have.text", "UPDATING").and("have.class", "text-neo-blue");
     });
 });
