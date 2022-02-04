@@ -11,6 +11,6 @@ describe("getPriorityColor", () => {
 describe("getStatusText", () => {
     it("should return status from enumeration to lower case", () => {
         expect(getStatusText(Status.New)).to.eql("new");
-        expect(getStatusText(Status.Pending)).to.eql("#Pending");
+        expect(getStatusText(Status.Pending)).to.eql("pending");
     });
 });
