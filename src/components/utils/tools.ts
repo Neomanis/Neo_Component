@@ -1,5 +1,7 @@
 import { TFunction } from "i18next";
-import { IInputSelectSearchableData } from "../../interface";
+import { getPriorityColor, getStatusColor } from ".";
+import { Status } from "../..";
+import { IInputSelectSearchableData, ITailwindColorApplication } from "../../interface";
 
 type EnumType = {
     [key: number]: string;
@@ -89,4 +91,16 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
         neoColors = neoColors[color];
     });
     return typeof neoColors === "string" ? neoColors : undefined;
+}
+
+export function getStatusOrPriorityColor(
+    status: number,
+    priority: number,
+    isHex: boolean,
+    tailwindType?: keyof ITailwindColorApplication
+): string {
+    if (status === Status.Solved || status === Status.Closed) {
+        return getStatusColor(status, isHex, tailwindType);
+    }
+    return getPriorityColor(priority, isHex, tailwindType);
 }
