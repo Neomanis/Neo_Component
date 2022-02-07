@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { IChatMessage, IGlpiUsers } from "../../interface";
 
 export function formatMessage(message: string, senderId: number, isPrivate = 0): IChatMessage {
@@ -6,7 +5,7 @@ export function formatMessage(message: string, senderId: number, isPrivate = 0):
         content: message,
         users_id: senderId,
         is_private: isPrivate,
-        date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+        date_creation: new Date().toISOString(),
     };
 }
 

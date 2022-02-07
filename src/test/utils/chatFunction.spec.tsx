@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { formatMessage, getRecipientsNameByIds, stripHtml } from "../../components/utils";
 
 describe("Chat functions", () => {
@@ -13,7 +12,7 @@ describe("Chat functions", () => {
             content: "This is my message",
             users_id: 12,
             is_private: 0,
-            date_creation: format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+            date_creation: new Date().toISOString(),
         });
     });
 
