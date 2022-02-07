@@ -442,9 +442,12 @@ export interface IWorkflow {
     content: string;
     accepted: boolean | null;
     createdAt: string;
-    data?: Record<string, unknown>;
+    data: IWorkflowData;
 }
 
+interface IWorkflowData {
+    ticketId: number;
+}
 export interface IUpdateTicket {
     [x: string]: string | number | number[] | Partial<IResource>[] | string[];
 }
