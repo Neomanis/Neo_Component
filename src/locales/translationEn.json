@@ -1,405 +1,405 @@
 {
-    "button": {
-        "create": "New Ticket"
+  "button": {
+    "create": "New Ticket"
+  },
+  "categories": {
+    "server": "Server",
+    "serverNetwork": "Server > Network",
+    "tool": "Tool",
+    "user": "User",
+    "userNetwork": "User > Network",
+    "userPrinter": "User > Printing",
+    "userSystem": "User > System",
+    "userTelephony": "User > Telephony"
+  },
+  "chat": {
+    "privateMessage": "Private message",
+    "send": "Send a message ..."
+  },
+  "configScreen": {
+    "address": "Itsm address",
+    "currentConf": "Current itsm config"
+  },
+  "date": {
+    "abbreviated": {
+      "minute": "min",
+      "minutes": "min",
+      "second": "sec",
+      "seconds": "sec"
     },
-    "categories": {
-        "server": "Server",
-        "serverNetwork": "Server > Network",
-        "tool": "Tool",
-        "user": "User",
-        "userNetwork": "User > Network",
-        "userPrinter": "User > Printing",
-        "userSystem": "User > System",
-        "userTelephony": "User > Telephony"
+    "day": "Day",
+    "days": "Days",
+    "hour": "Hour",
+    "hours": "Hours",
+    "minute": "Minute",
+    "minutes": "Minutes",
+    "month": "Month",
+    "months": "Months",
+    "second": "Second",
+    "seconds": "Seconds",
+    "year": "Year",
+    "years": "Years"
+  },
+  "dot": {
+    "cancel": "cancel",
+    "error": "error",
+    "success": "success",
+    "update": "updating"
+  },
+  "dropdown": {
+    "errorLang": "Error : language modification failed",
+    "goService": "Services"
+  },
+  "formatDateToNow": {
+    "begin": "",
+    "end": "",
+    "middle": "',' "
+  },
+  "global": {
+    "at": "at",
+    "no": "No",
+    "the": "the",
+    "yes": "Yes"
+  },
+  "globalErrors": {
+    "404": "OUPSS! PAGES NOT FOUND!",
+    "servicesUnavailable": "Services are unavailable, please wait",
+    "somethingWentWrong": "Something went wrong"
+  },
+  "inputDateShift": {
+    "displayAt": "Display at",
+    "hideAt": "Hide at"
+  },
+  "inputDateTime": {
+    "endAt": "End at",
+    "startAt": "Start at"
+  },
+  "inputSelect": {
+    "event": "Event",
+    "major": "Major",
+    "minor": "Minor",
+    "outage": "Outage",
+    "severity": "Severity",
+    "type": "Type"
+  },
+  "inputSelectSearchable": {
+    "noOptionMessage": "not found",
+    "value": "value"
+  },
+  "inputTextArea": {
+    "content": "Content"
+  },
+  "loginScreen": {
+    "errorPartial": "Both field are required",
+    "errorSubmit": "Login or password incorrect",
+    "submitButton": "Login"
+  },
+  "nav": {
+    "agents": "NeoHelpers",
+    "dashboard": "Dashboard",
+    "resources": "Resources",
+    "statistics": "Statistics",
+    "technicalQuestions": "Technicals Questions",
+    "tickets": "Tickets"
+  },
+  "neoHelperChat": {
+    "askHelp": "How does it work?",
+    "canceled": "Stop",
+    "helpButton": "Ok thanks!",
+    "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
+    "helpTitle": "How does it work?",
+    "inputPlaceholder": "Send",
+    "renameTicketButton": "(Optional) I would like to name my ticket",
+    "renameTicketQuestion": "How do you want to name this ticket?",
+    "renameTicketValidation": "The ticket's name has been updated.",
+    "talkToBot": "Diagnostic with Neobot",
+    "talkToBotResponse": "Great! I will take care of your ticket. We will diagnose and solve your problem. The ticket will be escalated if it's not possible. You can interrupt my diagnosis at any time and escalate the ticket to a technician.",
+    "talkToHuman": "Can I talk to a human?",
+    "talkToHumanResponse": "Okay, we are escalating your ticket to a technician. You can contact me again to diagnose your problem by clicking on the 'Diagnostic with Neobot' button below.",
+    "ticketReoponendMessage": "Sorry to hear that your problem is there again, this ticket is now reopened.",
+    "ticketSolvedMessage": "Thank you for telling me that your problem is gone, this ticket is now marked as solved.",
+    "toaster": {
+      "newMessage": "You have received a new message on this ticket!",
+      "ticketUpdate": "Neobot is gathering some new information about this ticket..."
     },
-    "chat": {
-        "send": "Send a message ...",
-        "privateMessage": "Private message"
-    },
-    "configScreen": {
-        "address": "Itsm address",
-        "currentConf": "Current itsm config"
-    },
-    "dot": {
-        "error": "error",
-        "success": "success",
-        "update": "updating",
-        "cancel": "cancel"
-    },
-    "dropdown": {
-        "errorLang": "Error : language modification failed",
-        "goService": "Services"
-    },
-    "formatDateToNow": {
-        "begin": "",
-        "end": "",
-        "middle": "',' "
-    },
-    "global": {
-        "yes": "Yes",
-        "no": "No",
-        "at": "at",
-        "the": "the"
-    },
-    "globalErrors": {
-        "404": "OUPSS! PAGES NOT FOUND!",
-        "servicesUnavailable": "Services are unavailable, please wait",
-        "somethingWentWrong": "Something went wrong"
-    },
-    "inputDateShift": {
-        "displayAt": "Display at",
-        "hideAt": "Hide at"
-    },
-    "inputDateTime": {
-        "endAt": "End at",
-        "startAt": "Start at"
-    },
-    "date": {
-        "second": "Second",
-        "minute": "Minute",
-        "hour": "Hour",
-        "day": "Day",
-        "month": "Month",
-        "year": "Year",
-        "abbreviated": {
-            "second": "sec",
-            "minute": "min",
-            "seconds": "sec",
-            "minutes": "min"
-        },
-        "seconds": "Seconds",
-        "minutes": "Minutes",
-        "hours": "Hours",
-        "days": "Days",
-        "months": "Months",
-        "years": "Years"
-    },
-    "inputSelect": {
-        "event": "Event",
-        "major": "Major",
-        "minor": "Minor",
-        "outage": "Outage",
-        "severity": "Severity",
-        "type": "Type"
-    },
-    "inputSelectSearchable": {
-        "value": "value",
-        "noOptionMessage": "not found"
-    },
-    "inputTextArea": {
-        "content": "Content"
-    },
-    "loginScreen": {
-        "errorPartial": "Both field are required",
-        "errorSubmit": "Login or password incorrect",
-        "submitButton": "Login"
-    },
-    "nav": {
-        "dashboard": "Dashboard",
-        "tickets": "Tickets",
-        "resources": "Resources",
-        "agents": "NeoHelpers",
-        "technicalQuestions": "Technicals Questions",
-        "statistics": "Statistics"
-    },
-    "neoHelperChat": {
-        "askHelp": "How does it work?",
-        "canceled": "Stop",
-        "helpTitle": "How does it work?",
-        "helpText": "My name is Neobot, I'm an AI that will define and try to solve your problem. Talk to me as if you were talking to a technician, I will take care of the rest!",
-        "helpButton": "Ok thanks!",
-        "inputPlaceholder": "Send",
-        "renameTicketButton": "(Optional) I would like to name my ticket",
-        "renameTicketQuestion": "How do you want to name this ticket?",
-        "renameTicketValidation": "The ticket's name has been updated.",
-        "talkToBot": "Diagnostic with Neobot",
-        "talkToBotResponse": "Great! I will take care of your ticket. We will diagnose and solve your problem. The ticket will be escalated if it's not possible. You can interrupt my diagnosis at any time and escalate the ticket to a technician.",
-        "talkToHuman": "Can I talk to a human?",
-        "talkToHumanResponse": "Okay, we are escalating your ticket to a technician. You can contact me again to diagnose your problem by clicking on the 'Diagnostic with Neobot' button below.",
-        "ticketSolvedMessage": "Thank you for telling me that your problem is gone, this ticket is now marked as solved.",
-        "ticketReoponendMessage": "Sorry to hear that your problem is there again, this ticket is now reopened.",
-        "toaster": {
-            "newMessage": "You have received a new message on this ticket!",
-            "ticketUpdate": "Neobot is gathering some new information about this ticket..."
-        },
-        "undoTicket": "I made a mistake, can we stop now?",
-        "undoTicketResponse": "Alright, I close this ticket",
-        "validateUndo": "Are you sure to close this ticket?"
-    },
-    "neoHelperScreen": {
-        "empty": "Nothing to see here",
-        "title": "NeoHelper agents",
-        "switchAvailability": "Show only available NeoHelper agents"
-    },
-    "neoHelperSettings": {
-        "usernameTitle": "USER NAME",
-        "computernameTitle": "COMPUTER NAME",
-        "preferences": "Preferences"
-    },
+    "undoTicket": "I made a mistake, can we stop now?",
+    "undoTicketResponse": "Alright, I close this ticket",
+    "validateUndo": "Are you sure to close this ticket?"
+  },
+  "neoHelperScreen": {
+    "empty": "Nothing to see here",
+    "switchAvailability": "Show only available NeoHelper agents",
+    "title": "NeoHelper agents"
+  },
+  "neoHelperSettings": {
+    "computernameTitle": "COMPUTER NAME",
+    "preferences": "Preferences",
+    "usernameTitle": "USER NAME"
+  },
+  "notification": {
+    "clearAll": "Clear all",
+    "empty": "Such empty!",
+    "seeAll": "See more",
+    "seeLess": "See less",
+    "title": "Notifications"
+  },
+  "outage": {
+    "empty": "Everything is fine!",
+    "inputSelectPlaceholder": "Shift"
+  },
+  "remote": {
+    "controlButton": "Remote Control",
     "notification": {
-        "title": "Notifications",
-        "clearAll": "Clear all",
-        "empty": "Such empty!",
-        "seeAll": "See more",
-        "seeLess": "See less"
+      "blocked": "User seems to have blocked OS notification, maybe you should contact him",
+      "dismissed": "User dismissed the notification",
+      "message": "Hello, a technician wants to take control over your computer, do you accept?",
+      "neoDiagnostic": "Oh no, user accepted the request but it seems that I cannot contact Neo Diagnostic",
+      "rejected": "User rejected the request",
+      "sent": "Request sent, waiting for user approval",
+      "timedOut": "Hmmm, user seems away, the notification timed out",
+      "tryAgain": "Would you like to retry?"
     },
-    "outage": {
-        "empty": "Everything is fine!",
-        "inputSelectPlaceholder": "Shift"
+    "persistantShell": "Persistent shell",
+    "shellButton": "Remote Shell"
+  },
+  "resourceCategory": {
+    "Computer": "Computers",
+    "Monitor": "Monitors",
+    "Networkequipment": "Networks",
+    "Peripheral": "Peripherals",
+    "Phone": "Phones",
+    "Printer": "Printers",
+    "Rack": "Racks",
+    "Software": "Softwares"
+  },
+  "scaleLevelFemale": {
+    "high": "High",
+    "low": "Low",
+    "major": "Major",
+    "medium": "Medium",
+    "veryHigh": "Very high",
+    "veryLow": "Very low"
+  },
+  "scaleLevelMale": {
+    "high": "High",
+    "low": "Low",
+    "major": "Major",
+    "medium": "Medium",
+    "veryHigh": "Very high",
+    "veryLow": "Very low"
+  },
+  "selectShift": {
+    "1d": "1 day",
+    "1h": "1h",
+    "2d": "2 days",
+    "3d": "3 days",
+    "6h": "6h"
+  },
+  "serviceList": {
+    "checkAllButton": "Check all",
+    "refreshButton": "Auto-refresh",
+    "uncheckAllButton": "Uncheck all"
+  },
+  "tQuestion": {
+    "answeredQuestionTitle": "Answered questions",
+    "follow": "Follow",
+    "forTicket": "Related to ticket",
+    "modalLeftTitle": "Technical Question",
+    "modalRightTitle": "Answers",
+    "similarQuestion": "Similar question",
+    "switchValueRelated": "Show my related questions",
+    "switchValueSolved": "Show me solved questions",
+    "ticketNotFound": "Specified ticket does not exist",
+    "unansweredQuestionTitle": "Unanswered questions",
+    "unfollow": "Unfollow"
+  },
+  "ticketAdvancesSearch": {
+    "filter": "Add filter",
+    "title": "Advanced search"
+  },
+  "ticketForm": {
+    "actors": "Actors",
+    "assigned": "Assigned to",
+    "assignedGroup": "Assigned to group",
+    "by": " by ",
+    "category": "Category",
+    "created": "Create Ticket",
+    "errorDateTime": "Future date not allowed",
+    "errorInvalidInput": "invalid input",
+    "errorRequired": "required field",
+    "errorSubmit": "Error: changes will be lost",
+    "impact": "Impact",
+    "informations": "Information",
+    "inputDescription": "Description",
+    "inputTitle": "Title",
+    "keywords": "Keywords",
+    "noKeywords": "No keywords",
+    "openDate": "Opening date",
+    "openTime": "Opening time",
+    "priority": "Priority",
+    "requester": "Requester",
+    "requesterGroup": "Requester group",
+    "resources": "Resources",
+    "source": "Request source",
+    "status": "Status",
+    "successSubmit": "Ticket successfully created",
+    "tto": "TTO",
+    "ttr": "TTR",
+    "type": "Type",
+    "updated": "Last update ",
+    "urgency": "Urgency",
+    "validation": "Validation",
+    "watcher": "Watcher",
+    "watcherGroup": "Watcher group"
+  },
+  "ticketModalInfo": {
+    "actions": "Actions",
+    "answer_one": "{{count}} answer",
+    "answer_other": "{{count}} answers",
+    "details": "Details",
+    "diagnostics": {
+      "awaitingState": "Awaiting state",
+      "name": "Diagnostics",
+      "negativeAnswer": "Negative answer",
+      "noDiagnostic": "No diagnostic",
+      "positiveAnswer": "Positive answer"
     },
-    "remote": {
-        "controlButton": "Remote Control",
-        "notification": {
-            "blocked": "User seems to have blocked OS notification, maybe you should contact him",
-            "dismissed": "User dismissed the notification",
-            "message": "Hello, a technician wants to take control over your computer, do you accept?",
-            "neoDiagnostic": "Oh no, user accepted the request but it seems that I cannot contact Neo Diagnostic",
-            "rejected": "User rejected the request",
-            "sent": "Request sent, waiting for user approval",
-            "timedOut": "Hmmm, user seems away, the notification timed out",
-            "tryAgain": "Would you like to retry?"
-        },
-        "persistantShell": "Persistent shell",
-        "shellButton": "Remote Shell"
+    "entity": "ENTITY",
+    "exit": "Exit",
+    "ipRemote": "IP remote",
+    "knowledge": "Knowledge",
+    "lastMessage": "Last message",
+    "name": "Name",
+    "portRemote": "Port remote",
+    "similarTickets": "Similar Tickets",
+    "technicalQuestion": "Ask some help",
+    "tools": "Tools",
+    "user": "USER"
+  },
+  "ticketScreen": {
+    "assignedToGroup": "Group",
+    "assignedToUser": "User",
+    "botReport": "Neobot Report",
+    "chatHistory": "Chat History",
+    "deleteQuestion": "Delete this ticket?",
+    "deleted": "deleted",
+    "display": "Display",
+    "entity": "Entity",
+    "errorDelete": "Deletion failed",
+    "id": "Ticket",
+    "keyDetected": "DETECTED KEYWORDS",
+    "markResolved": "MARKS IT AS RESOLVED",
+    "neoHelper": {
+      "inProgress": "Your request is being processed.",
+      "pending": "Your request is pending, we are collecting more informations.",
+      "problemAppearsAgain": "Problem appears again?",
+      "problemAppearsAgainDesc": "This action will reopen your ticket.",
+      "problemSolved": "Problem solved?",
+      "problemSolvedDesc": "This action will mark your ticket as solved.",
+      "waitTechnician": "A technician will contact you as soon as possible."
     },
-    "resourceCategory": {
-        "Computer": "Computers",
-        "Monitor": "Monitors",
-        "Networkequipment": "Networks",
-        "Peripheral": "Peripherals",
-        "Phone": "Phones",
-        "Printer": "Printers",
-        "Rack": "Racks",
-        "Software": "Softwares"
-    },
-    "selectShift": {
-        "1h": "1h",
-        "6h": "6h",
-        "1d": "1 day",
-        "2d": "2 days",
-        "3d": "3 days"
-    },
-    "serviceList": {
-        "checkAllButton": "Check all",
-        "refreshButton": "Auto-refresh",
-        "uncheckAllButton": "Uncheck all"
-    },
-    "scaleLevelMale": {
-        "high": "High",
-        "low": "Low",
-        "major": "Major",
-        "medium": "Medium",
-        "veryHigh": "Very high",
-        "veryLow": "Very low"
-    },
-    "scaleLevelFemale": {
-        "high": "High",
-        "low": "Low",
-        "major": "Major",
-        "medium": "Medium",
-        "veryHigh": "Very high",
-        "veryLow": "Very low"
-    },
-    "ticketAdvancesSearch": {
-        "filter": "Add filter",
-        "title": "Advanced search"
-    },
-    "ticketForm": {
-        "actors": "Actors",
-        "assigned": "Assigned to",
-        "assignedGroup": "Assigned to group",
-        "by": " by ",
-        "category": "Category",
-        "created": "Create Ticket",
-        "errorDateTime": "Future date not allowed",
-        "errorInvalidInput": "invalid input",
-        "errorRequired": "required field",
-        "errorSubmit": "Error: changes will be lost",
-        "impact": "Impact",
-        "informations": "Information",
-        "inputDescription": "Description",
-        "inputTitle": "Title",
-        "keywords": "Keywords",
-        "noKeywords": "No keywords",
-        "openDate": "Opening date",
-        "openTime": "Opening time",
-        "priority": "Priority",
-        "requester": "Requester",
-        "requesterGroup": "Requester group",
-        "resources": "Resources",
-        "source": "Request source",
-        "status": "Status",
-        "successSubmit": "Ticket successfully created",
-        "tto": "TTO",
-        "ttr": "TTR",
-        "type": "Type",
-        "updated": "Last update ",
-        "urgency": "Urgency",
-        "validation": "Validation",
-        "watcher": "Watcher",
-        "watcherGroup": "Watcher group"
-    },
-    "ticketModalInfo": {
-        "actions": "Actions",
-        "answer_one": "{{count}} answer",
-        "answer_other": "{{count}} answers",
-        "details": "Details",
-        "diagnostics": {
-            "name": "Diagnostics",
-            "positiveAnswer": "Positive answer",
-            "negativeAnswer": "Negative answer",
-            "noDiagnostic": "No diagnostic",
-            "awaitingState": "Awaiting state"
-        },
-        "entity": "ENTITY",
-        "lastMessage": "Last message",
-        "exit": "Exit",
-        "ipRemote": "IP remote",
-        "knowledge": "Knowledge",
-        "name": "Name",
-        "portRemote": "Port remote",
-        "similarTickets": "Similar Tickets",
-        "technicalQuestion": "Ask some help",
-        "tools": "Tools",
-        "user": "USER"
-    },
-    "ticketScreen": {
-        "assignedToGroup": "Group",
-        "assignedToUser": "User",
-        "botReport": "Neobot Report",
-        "chatHistory": "Chat History",
-        "deleted": "deleted",
-        "deleteQuestion": "Delete this ticket?",
-        "display": "Display",
-        "entity": "Entity",
-        "errorDelete": "Deletion failed",
-        "id": "Ticket",
-        "keyDetected": "DETECTED KEYWORDS",
-        "markResolved": "MARKS IT AS RESOLVED",
-        "neoHelper": {
-            "waitTechnician": "A technician will contact you as soon as possible.",
-            "inProgress": "Your request is being processed.",
-            "pending": "Your request is pending, we are collecting more informations.",
-            "problemSolved": "Problem solved?",
-            "problemSolvedDesc": "This action will mark your ticket as solved.",
-            "problemAppearsAgain": "Problem appears again?",
-            "problemAppearsAgainDesc": "This action will reopen your ticket."
-        },
-        "reopenTicket": "Reopen ticket",
-        "search": "Search",
-        "solveQuestion": "Marks it as solved?",
-        "solveTicket": "Solve ticket",
-        "subjectDetected": "DETECTED SUBJECTS",
-        "systemDiag": "SYSTEM DIAGNOSTIC",
-        "ticketFilters": {
-            "allTickets": "ALL TICKETS",
-            "new": "NEW",
-            "ongoing": "ONGOING",
-            "pending": "PENDING"
-        },
-        "ticketDetails": "TICKET DETAILS"
-    },
-    "ticketStatistics": {
-        "tabTitleNow": "Now",
-        "tabTitleRange": "Range",
-        "title": "Statistics",
-        "total": "Total",
-        "openByNeoBot": "Tickets opened by NeoBot",
-        "ticketsOpenByTech": "Tickets opened by a tech",
-        "ticketSolved": "Tickets solved",
-        "ticketHandled": "Tickets handled",
-        "neoBot": {
-            "bypassed": "Neobot bypassed",
-            "cancel": "Canceled by user",
-            "notSolved": "Not solved",
-            "solved": "Solved by neoBot",
-            "solvedByTech": "Solved by a tech",
-            "used": "Neobot used"
-        },
-        "dateSelector": {
-            "week": "Last week",
-            "month": "Last month",
-            "quarter": "Last quarter",
-            "year": "Last year",
-            "all": "Since the beginning"
-        },
-        "TTR": {
-            "met": "TTR met",
-            "notMet": "TTR not met",
-            "almostNotMet": "TTR nearly overdue"
-        },
-        "TTO": {
-            "met": "TTO met",
-            "notMet": "TTO not met",
-            "almostNotMet": "TTO nearly overdue"
-        }
-    },
-    "ticketStatus": {
-        "assigned": "In progress (assigned)",
-        "closed": "Closed",
-        "new": "New",
-        "pending": "Pending",
-        "planned": "In progress (planned)",
-        "solved": "Solved"
-    },
-    "ticketStatusSimplified": {
-        "assigned": "In progress",
-        "closed": "Closed",
-        "new": "New",
-        "pending": "Pending",
-        "planned": "In progress",
-        "solved": "Solved"
-    },
-    "ticketTypes": {
-        "incident": "Incident",
-        "request": "Request"
-    },
-    "ticketValidation": {
-        "accepted": "Accepted",
-        "noValidation": "Not subject to validation",
-        "refused": "Refused",
-        "waiting": "Waiting for validation"
-    },
-    "titles": {
-        "dashBoard": "Dashboard",
-        "inbox": "Inbox",
-        "inventory": "Inventory",
-        "iNeedHelp": "I Need Help",
-        "outage": "Maintenance",
-        "newTicket": "New Ticket",
-        "newTickets": "New Tickets",
-        "notifications": "Notifications",
-        "neobotReport": "Neobot Report",
-        "latestNews": "Latest News",
-        "resourcesScreen": "Resources",
-        "technicalEvent": "Technical events",
-        "unassigned": "Unassigned tickets",
-        "userTickets": "My tickets"
-    },
-    "tQuestion": {
-        "answeredQuestionTitle": "Answered questions",
-        "follow": "Follow",
-        "forTicket": "Related to ticket",
-        "modalLeftTitle": "Technical Question",
-        "modalRightTitle": "Answers",
-        "similarQuestion": "Similar question",
-        "switchValueRelated": "Show my related questions",
-        "switchValueSolved": "Show me solved questions",
-        "ticketNotFound": "Specified ticket does not exist",
-        "unansweredQuestionTitle": "Unanswered questions",
-        "unfollow": "Unfollow"
-    },
-    "validationCard": {
-        "deleteValidation": "Delete this"
-    },
-    "vncScreen": {
-        "missingVnc": "No remote control available"
-    },
-    "workflow": {
-        "title": "Workflow requests",
-        "request": "Requests",
-        "error": "Error while sending your decision",
-        "validate": "validate",
-        "refuse": "refuse"
+    "reopenTicket": "Reopen ticket",
+    "search": "Search",
+    "solveQuestion": "Marks it as solved?",
+    "solveTicket": "Solve ticket",
+    "subjectDetected": "DETECTED SUBJECTS",
+    "systemDiag": "SYSTEM DIAGNOSTIC",
+    "ticketDetails": "TICKET DETAILS",
+    "ticketFilters": {
+      "allTickets": "ALL TICKETS",
+      "new": "NEW",
+      "ongoing": "ONGOING",
+      "pending": "PENDING"
     }
+  },
+  "ticketStatistics": {
+    "TTO": {
+      "almostNotMet": "TTO nearly overdue",
+      "met": "TTO met",
+      "notMet": "TTO not met"
+    },
+    "TTR": {
+      "almostNotMet": "TTR nearly overdue",
+      "met": "TTR met",
+      "notMet": "TTR not met"
+    },
+    "dateSelector": {
+      "all": "Since the beginning",
+      "month": "Last month",
+      "quarter": "Last quarter",
+      "week": "Last week",
+      "year": "Last year"
+    },
+    "neoBot": {
+      "bypassed": "Neobot bypassed",
+      "cancel": "Canceled by user",
+      "notSolved": "Not solved",
+      "solved": "Solved by neoBot",
+      "solvedByTech": "Solved by a tech",
+      "used": "Neobot used"
+    },
+    "openByNeoBot": "Tickets opened by NeoBot",
+    "tabTitleNow": "Now",
+    "tabTitleRange": "Range",
+    "ticketHandled": "Tickets handled",
+    "ticketSolved": "Tickets solved",
+    "ticketsOpenByTech": "Tickets opened by a tech",
+    "title": "Statistics",
+    "total": "Total"
+  },
+  "ticketStatus": {
+    "assigned": "In progress (assigned)",
+    "closed": "Closed",
+    "new": "New",
+    "pending": "Pending",
+    "planned": "In progress (planned)",
+    "solved": "Solved"
+  },
+  "ticketStatusSimplified": {
+    "assigned": "In progress",
+    "closed": "Closed",
+    "new": "New",
+    "pending": "Pending",
+    "planned": "In progress",
+    "solved": "Solved"
+  },
+  "ticketTypes": {
+    "incident": "Incident",
+    "request": "Request"
+  },
+  "ticketValidation": {
+    "accepted": "Accepted",
+    "noValidation": "Not subject to validation",
+    "refused": "Refused",
+    "waiting": "Waiting for validation"
+  },
+  "titles": {
+    "dashBoard": "Dashboard",
+    "iNeedHelp": "I Need Help",
+    "inbox": "Inbox",
+    "inventory": "Inventory",
+    "latestNews": "Latest News",
+    "neobotReport": "Neobot Report",
+    "newTicket": "New Ticket",
+    "newTickets": "New Tickets",
+    "notifications": "Notifications",
+    "outage": "Maintenance",
+    "resourcesScreen": "Resources",
+    "technicalEvent": "Technical events",
+    "unassigned": "Unassigned tickets",
+    "userTickets": "My tickets"
+  },
+  "validationCard": {
+    "deleteValidation": "Delete this"
+  },
+  "vncScreen": {
+    "missingVnc": "No remote control available"
+  },
+  "workflow": {
+    "error": "Error while sending your decision",
+    "refuse": "refuse",
+    "request": "Requests",
+    "title": "Workflow requests",
+    "validate": "validate"
+  }
 }
