@@ -442,6 +442,7 @@ export interface IWorkflow {
     content: string;
     accepted: boolean | null;
     createdAt: string;
+    data?: Record<string, unknown>;
 }
 
 export interface IUpdateTicket {
