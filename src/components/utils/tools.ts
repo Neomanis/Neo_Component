@@ -1,6 +1,7 @@
 import { TFunction } from "i18next";
-import { getPriorityColor, getStatusColor } from ".";
-import { Status } from "../..";
+import { getStatusColor } from "../utils/statusTools";
+import { getPriorityColor } from "../utils/priorityTools";
+import { Status } from "../../enumeration";
 import { IInputSelectSearchableData, ITailwindColorApplication } from "../../interface";
 
 type EnumType = {
