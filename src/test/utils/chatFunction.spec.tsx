@@ -8,12 +8,11 @@ describe("Chat functions", () => {
     });
 
     it("should format a message to IChatMessage", () => {
-        expect(formatMessage("This is my message", 12, 0)).to.eql({
-            content: "This is my message",
-            users_id: 12,
-            is_private: 0,
-            date_creation: new Date().toISOString(),
-        });
+        const formatedMessage = formatMessage("This is my message", 12, 0);
+        expect(formatedMessage.content).to.eql("This is my message");
+        expect(formatedMessage.users_id).to.eql(12);
+        expect(formatedMessage.is_private).to.eql(0);
+        expect(formatedMessage.date_creation).to.contain(new Date().toISOString().slice(0, -5));
     });
 
     it("should return a array of recipient's name", () => {
