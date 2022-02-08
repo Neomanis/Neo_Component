@@ -5,10 +5,16 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 interface Props {
     content: string;
     date: string;
-    fManageWorkflow: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+    fManageWorkflow: (
+        id: number,
+        value: boolean,
+        ticketId: number,
+        errorSetter: Dispatch<SetStateAction<boolean>>
+    ) => Promise<void>;
     sender: string;
     workflowErrorText: string;
     workflowId: number;
+    ticketId: number;
     workflowRequestText: string;
 }
 
@@ -18,6 +24,7 @@ const WorkflowCard = ({
     fManageWorkflow,
     sender,
     workflowId,
+    ticketId,
     workflowErrorText,
     workflowRequestText,
 }: Props): ReactElement => {
@@ -47,14 +54,18 @@ const WorkflowCard = ({
                             className={
                                 "flex border rounded-full p-1 w-8 h-8 border-neo-green hover:bg-neo-green  text-neo-green hover:text-neo-bg-B transition duration-200 items-center justify-center"
                             }
-                            fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, true, setIsError)}
+                            fCallback={async (): Promise<void> =>
+                                await fManageWorkflow(workflowId, true, ticketId, setIsError)
+                            }
                             fontIcon={faCheck}
                         />
                         <Button
                             className={
                                 "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo-orange hover:bg-neo-orange text-neo-orange hover:text-neo-bg-B transition duration-200 items-center justify-center"
                             }
-                            fCallback={async (): Promise<void> => await fManageWorkflow(workflowId, false, setIsError)}
+                            fCallback={async (): Promise<void> =>
+                                await fManageWorkflow(workflowId, false, ticketId, setIsError)
+                            }
                             fontIcon={faTimes}
                         />
                     </div>
