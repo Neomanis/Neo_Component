@@ -97,6 +97,7 @@
     },
     "nav": {
         "agents": "NeoHelpers",
+        "books": "Livres",
         "dashboard": "Tableau de bord",
         "resources": "Ressources",
         "statistics": "Statistiques",

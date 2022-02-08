@@ -13,7 +13,7 @@ import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.s
 import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
-import { ReactComponent as IconBook } from "./nm_ico_book.svg";
+import { ReactComponent as IconBook } from "./nm_ico_books.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
