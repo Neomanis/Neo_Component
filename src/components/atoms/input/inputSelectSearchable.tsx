@@ -177,13 +177,14 @@ const InputSelectSearchable = ({
             <div className="flex justify-between">
                 <label className={labelClassName}>{label}</label>
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                    {(isUpdateField || isError) && (
+                    {(isUpdateField || isError || state.isCancelable || state.isCooldown || state.isSuccess) && (
                         <InfoDot
                             errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
                             isUpdate={state.isCooldown}
                             isError={isError}
                             isSuccess={state.isSuccess}
+                            trigger={state.trigger}
                             fCallBackCancel={(): void => {
                                 if (setValue && state.previous) {
                                     setValue(refForm, state.previous);
@@ -202,7 +203,6 @@ const InputSelectSearchable = ({
                                         : data.filter((el) => (state.previous as number[]).includes(el.value)),
                                 });
                             }}
-                            trigger={state.trigger}
                         />
                     )}
                 </div>
