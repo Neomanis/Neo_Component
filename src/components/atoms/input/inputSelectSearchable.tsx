@@ -177,7 +177,7 @@ const InputSelectSearchable = ({
             <div className="flex justify-between">
                 <label className={labelClassName}>{label}</label>
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                    {(isUpdateField || isError || state.isCancelable || state.isCooldown || state.isSuccess) && (
+                    {(isUpdateField || isError) && (
                         <InfoDot
                             errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
