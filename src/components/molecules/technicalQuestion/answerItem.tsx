@@ -30,7 +30,6 @@ const AnswerItem = ({
     createUser,
     createUserQuestion,
     id,
-    isQuestionSolved,
     languageUser,
     text,
     updateAnswer,
@@ -59,7 +58,7 @@ const AnswerItem = ({
             <div className="flex justify-between">
                 <div className="flex">
                     <div>{formatDate(createDate)}</div>
-                    {!isQuestionSolved && userUid === createUserQuestion && (
+                    {!accepted && userUid === createUserQuestion && (
                         <div>
                             <Button fontIcon={faThumbsUp} className="ml-4" fCallback={() => acceptAnswer(id)} />
                         </div>
