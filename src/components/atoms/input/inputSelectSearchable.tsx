@@ -184,6 +184,7 @@ const InputSelectSearchable = ({
                             isUpdate={state.isCooldown}
                             isError={isError}
                             isSuccess={state.isSuccess}
+                            trigger={state.trigger}
                             fCallBackCancel={(): void => {
                                 if (setValue && state.previous) {
                                     setValue(refForm, state.previous);
@@ -202,7 +203,6 @@ const InputSelectSearchable = ({
                                         : data.filter((el) => (state.previous as number[]).includes(el.value)),
                                 });
                             }}
-                            trigger={state.trigger}
                         />
                     )}
                 </div>
