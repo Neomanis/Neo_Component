@@ -7,7 +7,7 @@ import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../
 
 //translations
 import i18next from "i18next";
-import { ClockLogo, IconCheck, IconTicketClosed, TicketLogo } from "../../../img/svg";
+import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
 
@@ -137,13 +137,10 @@ const Ticket = ({
                                 </div>
                             )}
                             {ticket && ticket.status === 5 && (
-                                <IconTicketClosed fill="#152535" className="w-7 h-7 -mt-3" />
+                                <IconTicketSolved fill="#152535" className="w-7 h-7 -mt-3" />
                             )}
                             {ticket && ticket.status === 6 && (
-                                <div className="relative w-7 h-7 -mt-3">
-                                    <IconCheck className="absolute -right-1" />
-                                    <TicketLogo className="absolute" fill="#15304C" />
-                                </div>
+                                <IconTicketClosed fill="#152535" className="w-7 h-7 -mt-3" />
                             )}
                         </div>
                     </div>
