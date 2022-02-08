@@ -13,6 +13,7 @@ import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.s
 import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
+import { ReactComponent as IconBook } from "./nm_ico_book.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
@@ -30,7 +31,6 @@ import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
 import { ReactComponent as IconInventory } from "./nm_ico_inventory.svg";
 import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
 import { ReactComponent as IconKbOn } from "./nm_ico_kb_on.svg";
-import { ReactComponent as IconKnowledge } from "./nm_ico_knowledge.svg";
 import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
 import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
@@ -84,6 +84,7 @@ export {
     IconArrowLeft,
     IconArrowLogin,
     IconArrowRight,
+    IconBook,
     IconChartPie,
     IconCheck,
     IconChevron,
@@ -100,7 +101,6 @@ export {
     IconInventory,
     IconKbOff,
     IconKbOn,
-    IconKnowledge,
     IconLogin,
     IconLogout,
     IconMaintenance,
