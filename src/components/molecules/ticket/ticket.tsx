@@ -53,9 +53,21 @@ const Ticket = ({
         // if selected ticket id is different than ticket id we return a string value equal to a number
         // reflecting opacity tailwind value, that will be reused in hexagon as well
         if (currentTicket) {
-            return currentTicket.id !== ticket.id && isSameStatus() ? "30" : "";
+            return isSameStatus() ? "30" : "";
         }
         return "";
+    }
+
+    function isTTOorTTRStale(): boolean {
+        return (
+            getDateCompletionPercentage(
+                ticket.date_creation,
+                ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+            ) >= 75 &&
+            ticket.status !== Status.Pending &&
+            ticket.status !== Status.Solved &&
+            ticket.status !== Status.Closed
+        );
     }
 
     return (
@@ -66,15 +78,12 @@ const Ticket = ({
                     onClick={(): void => fCallBackClick && fCallBackClick(ticket)}
                     onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
                     onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
+                    data-testid="ticket-body"
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
-                        {getDateCompletionPercentage(
-                            ticket.date_creation,
-                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
-                        ) >= 75 &&
-                            ticket.status !== Status.Pending && (
-                                <div
-                                    className={`h-5 absolute top-4 right-14 
+                        {isTTOorTTRStale() && (
+                            <div
+                                className={`h-5 absolute top-4 right-14 
                                     ${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
@@ -83,14 +92,15 @@ const Ticket = ({
                                             ? "text-neo-urgency"
                                             : "text-neo-urgency-major"
                                     }`}
-                                >
-                                    <div
-                                        className="w-2 h-4 bg-white absolute"
-                                        style={{ width: 5, height: 14, top: 5, left: 9 }}
-                                    ></div>
-                                    <Icon className="text-xl absolute left-0" fontIcon={faExclamationTriangle} />
-                                </div>
-                            )}
+                                data-testid="ticket-tto-ttr-warning"
+                            >
+                                <div
+                                    className="w-2 h-4 bg-white absolute"
+                                    style={{ width: 5, height: 14, top: 5, left: 9 }}
+                                ></div>
+                                <Icon className="text-xl absolute left-0" fontIcon={faExclamationTriangle} />
+                            </div>
+                        )}
 
                         <Hexagon
                             isSelected={currentTicket === ticket}
@@ -101,6 +111,7 @@ const Ticket = ({
                         className={`flex flex-col items-center relative w-full 
                         opacity-${getOpacity()}`}
                         style={{ zIndex: 2 }}
+                        data-testid="ticket-opacity"
                     >
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} />
@@ -137,10 +148,18 @@ const Ticket = ({
                                 </div>
                             )}
                             {ticket && ticket.status === 5 && (
-                                <IconTicketSolved fill="#152535" className="w-7 h-7 -mt-3" />
+                                <IconTicketSolved
+                                    fill="#152535"
+                                    className="w-7 h-7 -mt-3"
+                                    data-testid="ticket-icon-solved"
+                                />
                             )}
                             {ticket && ticket.status === 6 && (
-                                <IconTicketClosed fill="#152535" className="w-7 h-7 -mt-3" />
+                                <IconTicketClosed
+                                    fill="#152535"
+                                    className="w-7 h-7 -mt-3"
+                                    data-testid="ticket-icon-closed"
+                                />
                             )}
                         </div>
                     </div>
@@ -150,6 +169,7 @@ const Ticket = ({
                             viewBox="-23 140 220 80"
                             className="absolute -bottom-2 opacity-20"
                             style={{ zIndex: 1 }}
+                            data-testid="ticket-fill-svg"
                         >
                             <path
                                 d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
