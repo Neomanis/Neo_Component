@@ -24,6 +24,7 @@ Default.args = {
     fManageWorkflow: () => console.log("hello"),
     sender: "Toto",
     workflowId: 1,
+    ticketId: 15,
     workflowErrorText: "sorry you can't",
     workflowRequestText: "request",
 };

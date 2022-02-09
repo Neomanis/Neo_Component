@@ -14,10 +14,16 @@ interface Props {
     content: string;
     svg: ReactElement;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
-    fManageWorkflow?: (id: number, value: boolean, errorSetter: Dispatch<SetStateAction<boolean>>) => Promise<void>;
+    fManageWorkflow?: (
+        id: number,
+        value: boolean,
+        ticketId: number,
+        errorSetter: Dispatch<SetStateAction<boolean>>
+    ) => Promise<void>;
     fReadNotification?: (notificationId: number, userUid: string) => void;
     notificationId?: number;
     workflowId?: number;
+    ticketId?: number;
     read?: boolean;
     userUid?: string;
 }
@@ -36,6 +42,7 @@ const NotificationItem = ({
     fReadNotification,
     notificationId,
     workflowId,
+    ticketId,
     read,
     userUid,
 }: Props): ReactElement => {
@@ -44,7 +51,7 @@ const NotificationItem = ({
     const [isError, setIsError] = useState(false);
 
     async function sendWorkFlow(value: boolean): Promise<void> {
-        fManageWorkflow && (await fManageWorkflow(workflowId, value, setIsError));
+        fManageWorkflow && (await fManageWorkflow(workflowId, value, ticketId, setIsError));
     }
     return (
         <div

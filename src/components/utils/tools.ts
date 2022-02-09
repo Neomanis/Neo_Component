@@ -1,6 +1,6 @@
 import { TFunction } from "i18next";
-import { getStatusColor } from "../utils/statusTools";
-import { getPriorityColor } from "../utils/priorityTools";
+import { getPriorityColor } from "./priorityTools";
+import { getStatusColor } from "./statusTools";
 import { Status } from "../../enumeration";
 import { IInputSelectSearchableData, ITailwindColorApplication } from "../../interface";
 
