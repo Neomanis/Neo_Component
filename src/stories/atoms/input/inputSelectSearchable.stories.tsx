@@ -203,7 +203,7 @@ NotSearchable.args = {
 Multiple.args = {
     isClearable: true,
     isUpdateField: true,
-    containerClassName: "w-full flex items-center",
+    containerClassName: "",
     placeholder: "story Searchable",
     isSearchable: true,
     defaultValue: [3, 7],

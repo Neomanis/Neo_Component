@@ -5,7 +5,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { IReactHookFormCustomValidation } from "../../../interface";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
 
 interface Props {
@@ -189,11 +189,11 @@ const InputSelectSearchable = ({
 
     return (
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
-            <div className="flex justify-between">
+            <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                 <label className={labelClassName}>{label}</label>
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                     {(isUpdateField || isError) && (
-                        <InfoDot
+                        <Updater
                             errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
                             isUpdate={state.isCooldown}

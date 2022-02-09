@@ -3,7 +3,7 @@ import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } fro
 import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     className?: string;
@@ -115,11 +115,11 @@ const Input = ({
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full">
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <p>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isError={isError}
