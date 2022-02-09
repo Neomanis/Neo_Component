@@ -13,6 +13,9 @@ interface Props {
     disabled?: boolean;
     dotClassName?: string;
     errorMessage?: string;
+    inputBoxClassName?: string;
+    prefixClassName?: string;
+    prefix?: string;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -40,6 +43,9 @@ const Input = ({
     defaultValue,
     disabled,
     dotClassName,
+    inputBoxClassName,
+    prefix,
+    prefixClassName,
     errorMessage,
     inputClassName,
     isError,
@@ -137,41 +143,43 @@ const Input = ({
                         )}
                     </div>
                 </div>
-
-                <input
-                    data-testid="input"
-                    {...inputRegister}
-                    className={`${inputClassName} w-full`}
-                    defaultValue={defaultValue}
-                    disabled={disabled}
-                    onBlur={(e): void => {
-                        onBlurCallBack && onBlurCallBack();
-                        if (isUpdateField && state.previous !== e.target.value && !isError) {
-                            dispatch({ type: "UPDATING", payload: e.target.value });
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+                <div className={inputBoxClassName}>
+                    <span className={prefixClassName}>{prefix}</span>
+                    <input
+                        data-testid="input"
+                        {...inputRegister}
+                        className={`${inputClassName} w-full`}
+                        defaultValue={defaultValue}
+                        disabled={disabled}
+                        onBlur={(e): void => {
+                            onBlurCallBack && onBlurCallBack();
+                            if (isUpdateField && state.previous !== e.target.value && !isError) {
+                                dispatch({ type: "UPDATING", payload: e.target.value });
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
-                        }
-                    }}
-                    onFocus={() => onFocusCallBack && onFocusCallBack()}
-                    onChange={(e): void => {
-                        onChangeCallBack && onChangeCallBack(e.target.value);
-                        inputRegister && inputRegister.onChange(e);
-                        if (isUpdateField) {
-                            if (state.previous !== e.target.value) {
-                                dispatch({ type: "SHOW_DOT" });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
+                        }}
+                        onFocus={() => onFocusCallBack && onFocusCallBack()}
+                        onChange={(e): void => {
+                            onChangeCallBack && onChangeCallBack(e.target.value);
+                            inputRegister && inputRegister.onChange(e);
+                            if (isUpdateField) {
+                                if (state.previous !== e.target.value) {
+                                    dispatch({ type: "SHOW_DOT" });
+                                } else {
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                        }
-                    }}
-                    pattern={pattern}
-                    placeholder={placeholder}
-                    type={typeInput}
-                />
+                        }}
+                        pattern={pattern}
+                        placeholder={placeholder}
+                        type={typeInput}
+                    />
+                </div>
             </label>
         </div>
     );

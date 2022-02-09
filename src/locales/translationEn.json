@@ -217,6 +217,16 @@
     },
     "ticketAdvancesSearch": {
         "filter": "Add filter",
+        "prefix": {
+            "assigned": "Assigned to",
+            "category": "Category is",
+            "date": "Date is",
+            "description": "Description is",
+            "keywords": "Keywords are",
+            "requester": "Requester is",
+            "status": "Status is",
+            "title": "Title is"
+        },
         "title": "Advanced search"
     },
     "ticketForm": {
