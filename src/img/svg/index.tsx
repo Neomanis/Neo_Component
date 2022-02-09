@@ -15,6 +15,7 @@ import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconBook } from "./nm_ico_books.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
+import { ReactComponent as IconBigAdvancedSearch } from "./nm_ico_big_advanced_search.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
@@ -43,6 +44,7 @@ import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
 import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
 import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
+import { ReactComponent as IconSquareClose } from "./nm_ico_square_close.svg";
 import { ReactComponent as IconStatistics } from "./nm_ico_statistics.svg";
 import { ReactComponent as IconStatusBar } from "./nm_ico_statusbar_long.svg";
 import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.svg";
@@ -85,6 +87,7 @@ export {
     IconArrowLogin,
     IconArrowRight,
     IconBook,
+    IconBigAdvancedSearch,
     IconChartPie,
     IconCheck,
     IconChevron,
@@ -113,6 +116,7 @@ export {
     IconRetract,
     IconSearch,
     IconSetting,
+    IconSquareClose,
     IconStatistics,
     IconStatusBar,
     IconStatusBarShort,

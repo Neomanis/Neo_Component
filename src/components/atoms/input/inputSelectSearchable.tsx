@@ -6,9 +6,23 @@ import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { IReactHookFormCustomValidation } from "../../../interface";
 import InfoDot from "../infoDot";
+import { SelectComponents } from "react-select/dist/declarations/src/components";
 
 interface Props {
     containerClassName?: string;
+    customComponents?: Partial<
+        SelectComponents<
+            {
+                label: string;
+                value: number;
+            },
+            boolean,
+            GroupBase<{
+                label: string;
+                value: number;
+            }>
+        >
+    >;
     customStyleOverride?: StylesConfig<
         { label: string; value: number },
         boolean,
@@ -42,6 +56,7 @@ interface Props {
 
 const InputSelectSearchable = ({
     containerClassName,
+    customComponents,
     customStyleOverride,
     customValidation,
     data,
@@ -232,6 +247,7 @@ const InputSelectSearchable = ({
                         : []
                 }
                 value={state.stateFormated}
+                components={customComponents}
                 closeMenuOnSelect={!isMulti}
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 onChange={(val, action): void => {
