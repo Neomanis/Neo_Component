@@ -109,7 +109,7 @@ const Input = ({
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full">
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <p>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (

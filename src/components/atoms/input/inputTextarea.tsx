@@ -95,7 +95,7 @@ const InputTextarea = ({
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
             <label className={classNames.labelBody ?? ""}>
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <div className={classNames.labelText ?? ""}>{label}</div>
                     <div className={`${classNames.dot ?? ""}`}>
                         {(isUpdateField || isError) && (

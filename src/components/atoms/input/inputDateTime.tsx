@@ -114,7 +114,7 @@ const InputDateTime = ({
     return (
         <div className={`${className}`} data-testid="inputDateTime-body">
             <label className={`${labelClassName}`}>
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <p>{label}</p>
                     <div className={`${dotClassName}`}>
                         {(isUpdateField || isError) && (

@@ -174,7 +174,7 @@ const InputSelectSearchable = ({
 
     return (
         <div className={containerClassName} data-testid="inputSelectSearchable-body">
-            <div className="flex justify-between">
+            <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                 <label className={labelClassName}>{label}</label>
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                     {(isUpdateField || isError) && (
