@@ -5,7 +5,7 @@ import inputReducer from "../../utils/reducers/inputReducer";
 import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { IReactHookFormCustomValidation } from "../../../interface";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     containerClassName?: string;
@@ -178,7 +178,7 @@ const InputSelectSearchable = ({
                 <label className={labelClassName}>{label}</label>
                 <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
                     {(isUpdateField || isError) && (
-                        <InfoDot
+                        <Updater
                             errorMessage={errorMessage}
                             isCancelable={state.isCancelable}
                             isUpdate={state.isCooldown}

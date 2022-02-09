@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { IReactHookFormCustomValidation } from "../../../interface";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     classNames?: {
@@ -99,7 +99,7 @@ const InputTextarea = ({
                     <div className={classNames.labelText ?? ""}>{label}</div>
                     <div className={`${classNames.dot ?? ""}`}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isError={isError}

@@ -3,7 +3,7 @@ import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } fro
 import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     className?: string;
@@ -113,7 +113,7 @@ const Input = ({
                     <p>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isError={isError}

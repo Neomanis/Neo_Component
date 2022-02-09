@@ -4,7 +4,7 @@ import { format, isEqual, isAfter } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     className?: string;
@@ -118,7 +118,7 @@ const InputDateTime = ({
                     <p>{label}</p>
                     <div className={`${dotClassName}`}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 errorMessage={errorMessage}
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
