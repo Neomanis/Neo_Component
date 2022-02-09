@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { GroupBase, StylesConfig } from "react-select";
+export { components } from "react-select";
 
 export interface IAuthRoute {
     user: IUser;
