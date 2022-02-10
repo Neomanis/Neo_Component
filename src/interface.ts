@@ -9,6 +9,15 @@ export interface IAuthRoute {
     path: string;
     roles: string[];
 }
+
+export interface IBookDescription {
+    name: string;
+    filename: string;
+    description?: string;
+    chapters: number;
+    prerequisites: string[];
+}
+
 export interface ICategoryResources {
     [x: string]: IResourceItem[];
 }
