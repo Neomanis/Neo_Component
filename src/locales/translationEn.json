@@ -1,4 +1,11 @@
 {
+    "bookForm": {
+        "computername": "Computer",
+        "launch": "Launch",
+        "NumberOfChapters": "Number of chapters",
+        "prerequisites": "Prerequisites",
+        "running": "Running"
+    },
     "button": {
         "create": "New Ticket"
     },
