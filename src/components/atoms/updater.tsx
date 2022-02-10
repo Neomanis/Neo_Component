@@ -1,9 +1,9 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { i18n } from "../../i18n";
 
 interface Props {
-    errorMessage?: string;
     className?: string;
+    errorMessage?: string;
     isCancelable?: boolean;
     isSuccess?: boolean;
     isUpdate?: boolean;
@@ -14,7 +14,7 @@ interface Props {
     trigger?: boolean;
 }
 
-const InfoDot = ({
+const Updater = ({
     errorMessage,
     className,
     isCancelable,
@@ -28,20 +28,24 @@ const InfoDot = ({
 }: Props): ReactElement => {
     const myLanguage = i18n.getFixedT(languageUser);
     const [progress, setProgress] = useState(0);
-    const timerCall = useRef<NodeJS.Timeout>();
-    const timerAnnim = useRef<NodeJS.Timeout>();
+    const [viewBorder, setViewBorder] = useState(true);
 
     useEffect(() => {
-        if (!trigger) {
-            clearTimeout(timerAnnim.current);
-            clearTimeout(timerCall.current);
-            setProgress(0);
-        } else {
-            timerAnnim.current = setTimeout(() => {
+        if (isUpdate) {
+            setTimeout(() => {
                 setProgress(100);
-            }, 50);
+            }, 100);
+        } else {
+            setProgress(0);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isUpdate, trigger]);
+
+    useEffect(() => {
+        setViewBorder(false);
+        setTimeout(() => {
+            setProgress(0);
+            setViewBorder(true);
+        }, 50);
     }, [trigger]);
 
     return (
@@ -51,18 +55,20 @@ const InfoDot = ({
                     {myLanguage("dot.success").toUpperCase()}
                 </div>
             )}
-            {isUpdate && trigger && (
-                <div data-testid="dotUpdating" className="text-neo-blue text-xs font-bold whitespace-nowrap relative">
+            {isUpdate && (
+                <div data-testid="dotUpdating" className="text-neo-blue  text-xs font-bold whitespace-nowrap relative">
                     {myLanguage("dot.update").toUpperCase()}
-                    <div
-                        style={{
-                            width: progress + "%",
-                            transition: updateCooldown / 1000 + "s linear",
-                            transitionDelay: "0.5s",
-                            borderColor: "#22AAFF",
-                        }}
-                        className="absolute border-b-2 bottom-0 left-0"
-                    ></div>
+                    {viewBorder && (
+                        <div
+                            style={{
+                                width: progress + "%",
+                                transition: updateCooldown / 1000 + "s linear",
+                                transitionDelay: "0.5s",
+                                borderColor: "#22AAFF",
+                            }}
+                            className="absolute border-b-2 bottom-0 left-0"
+                        ></div>
+                    )}
                 </div>
             )}
             {isError && (
@@ -74,11 +80,7 @@ const InfoDot = ({
                 <div
                     data-testid="dotClose"
                     className="pl-2 text-neo-red cursor-pointer text-xs font-bold"
-                    onClick={(): void => {
-                        fCallBackCancel();
-                        setProgress(0);
-                        clearTimeout(timerCall.current);
-                    }}
+                    onClick={(): void => fCallBackCancel()}
                 >
                     {myLanguage("dot.cancel").toUpperCase()}
                 </div>
@@ -87,4 +89,4 @@ const InfoDot = ({
     );
 };
 
-export default InfoDot;
+export default Updater;

@@ -3,7 +3,7 @@ import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } fro
 import { IReactHookFormCustomValidation } from "../../../interface";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     className?: string;
@@ -13,6 +13,9 @@ interface Props {
     disabled?: boolean;
     dotClassName?: string;
     errorMessage?: string;
+    inputBoxClassName?: string;
+    prefixClassName?: string;
+    prefix?: string;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -40,6 +43,9 @@ const Input = ({
     defaultValue,
     disabled,
     dotClassName,
+    inputBoxClassName,
+    prefix,
+    prefixClassName,
     errorMessage,
     inputClassName,
     isError,
@@ -109,11 +115,11 @@ const Input = ({
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full">
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <p>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}
                                 isError={isError}
@@ -137,41 +143,43 @@ const Input = ({
                         )}
                     </div>
                 </div>
-
-                <input
-                    data-testid="input"
-                    {...inputRegister}
-                    className={`${inputClassName} w-full`}
-                    defaultValue={defaultValue}
-                    disabled={disabled}
-                    onBlur={(e): void => {
-                        onBlurCallBack && onBlurCallBack();
-                        if (isUpdateField && state.previous !== e.target.value && !isError) {
-                            dispatch({ type: "UPDATING", payload: e.target.value });
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+                <div className={inputBoxClassName}>
+                    <span className={prefixClassName}>{prefix}</span>
+                    <input
+                        data-testid="input"
+                        {...inputRegister}
+                        className={`${inputClassName} w-full`}
+                        defaultValue={defaultValue}
+                        disabled={disabled}
+                        onBlur={(e): void => {
+                            onBlurCallBack && onBlurCallBack();
+                            if (isUpdateField && state.previous !== e.target.value && !isError) {
+                                dispatch({ type: "UPDATING", payload: e.target.value });
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
-                        }
-                    }}
-                    onFocus={() => onFocusCallBack && onFocusCallBack()}
-                    onChange={(e): void => {
-                        onChangeCallBack && onChangeCallBack(e.target.value);
-                        inputRegister && inputRegister.onChange(e);
-                        if (isUpdateField) {
-                            if (state.previous !== e.target.value) {
-                                dispatch({ type: "SHOW_DOT" });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
+                        }}
+                        onFocus={() => onFocusCallBack && onFocusCallBack()}
+                        onChange={(e): void => {
+                            onChangeCallBack && onChangeCallBack(e.target.value);
+                            inputRegister && inputRegister.onChange(e);
+                            if (isUpdateField) {
+                                if (state.previous !== e.target.value) {
+                                    dispatch({ type: "SHOW_DOT" });
+                                } else {
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
-                        }
-                    }}
-                    pattern={pattern}
-                    placeholder={placeholder}
-                    type={typeInput}
-                />
+                        }}
+                        pattern={pattern}
+                        placeholder={placeholder}
+                        type={typeInput}
+                    />
+                </div>
             </label>
         </div>
     );

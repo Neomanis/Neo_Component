@@ -4,7 +4,7 @@ import { format, isEqual, isAfter } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     className?: string;
@@ -114,11 +114,11 @@ const InputDateTime = ({
     return (
         <div className={`${className}`} data-testid="inputDateTime-body">
             <label className={`${labelClassName}`}>
-                <div className="flex justify-between items-center">
+                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <p>{label}</p>
                     <div className={`${dotClassName}`}>
                         {(isUpdateField || isError) && (
-                            <InfoDot
+                            <Updater
                                 errorMessage={errorMessage}
                                 isCancelable={state.isCancelable}
                                 isUpdate={state.isCooldown}

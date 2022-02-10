@@ -6,7 +6,7 @@ import { IReactHookFormCustomValidation } from "../../../interface";
 import "../../../styles/textEditor.css";
 
 import inputReducer from "../../utils/reducers/inputReducer";
-import InfoDot from "../infoDot";
+import Updater from "../updater";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -99,7 +99,7 @@ const TextEditor = ({
         <div className={className} key={key} data-testid="textEditor-body">
             <div className={dotClassName}>
                 {(isUpdateField || isError) && (
-                    <InfoDot
+                    <Updater
                         isCancelable={state.isCancelable}
                         isUpdate={state.isCooldown}
                         isError={isError}

@@ -224,6 +224,17 @@
     },
     "ticketAdvancesSearch": {
         "filter": "Add filter",
+        "prefix": {
+            "assigned": "Assigned to",
+            "category": "Category is",
+            "date": "Date is",
+            "description": "Description is",
+            "id": "Ticket number is",
+            "keywords": "Keywords are",
+            "requester": "Requester is",
+            "status": "Status is",
+            "title": "Title is"
+        },
         "title": "Advanced search"
     },
     "ticketForm": {
@@ -237,6 +248,7 @@
         "errorInvalidInput": "invalid input",
         "errorRequired": "required field",
         "errorSubmit": "Error: changes will be lost",
+        "id": "Ticket number",
         "impact": "Impact",
         "informations": "Information",
         "inputDescription": "Description",
