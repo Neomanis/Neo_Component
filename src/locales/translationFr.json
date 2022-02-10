@@ -1,5 +1,6 @@
 {
     "bookForm": {
+        "bookLaunchFailed": "L'exécution du livre a échoué",
         "computername": "Ordinateur",
         "launch": "Lancer",
         "NumberOfChapters": "Nombre de chapitres",

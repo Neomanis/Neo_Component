@@ -1,5 +1,6 @@
 {
     "bookForm": {
+        "bookLaunchFailed": "Book launch failed",
         "computername": "Computer",
         "launch": "Launch",
         "NumberOfChapters": "Number of chapters",
