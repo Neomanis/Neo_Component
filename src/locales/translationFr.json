@@ -3,7 +3,7 @@
         "bookLaunchFailed": "L'exécution du livre a échoué",
         "computername": "Ordinateur",
         "launch": "Lancer",
-        "NumberOfChapters": "Nombre de chapitres",
+        "numberOfChapters": "Nombre de chapitres",
         "prerequisites": "Prérequis",
         "running": "En cours"
     },

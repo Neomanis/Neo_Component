@@ -20,6 +20,7 @@ interface Props {
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
+    labelClassName?: string;
     onBlurCallBack?: () => void;
     onChangeCallBack?: (e: string) => void;
     onDotCancelCallBack?: (value: string) => void;
@@ -51,6 +52,7 @@ const Input = ({
     isError,
     isUpdateField = false,
     label,
+    labelClassName,
     onBlurCallBack,
     onChangeCallBack,
     onDotCancelCallBack,
@@ -116,7 +118,7 @@ const Input = ({
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full">
                 <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
-                    <p>{label}</p>
+                    <p className={labelClassName}>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (
                             <Updater
