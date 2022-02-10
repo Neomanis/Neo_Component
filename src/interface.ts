@@ -13,7 +13,7 @@ export interface IAuthRoute {
 export interface IBookDescription {
     name: string;
     filename: string;
-    description?: string;
+    description: string;
     chapters: number;
     prerequisites: string[];
 }
