@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "2.21.7",
+  "version": "2.21.8",
   "main": "build/index.js",
   "files": [
     "build"

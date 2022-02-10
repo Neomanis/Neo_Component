@@ -1,4 +1,11 @@
 {
+    "bookForm": {
+        "computername": "Ordinateur",
+        "launch": "Lancer",
+        "NumberOfChapters": "Nombre de chapitres",
+        "prerequisites": "Prérequis",
+        "running": "En cours"
+    },
     "button": {
         "create": "Nouveau Ticket"
     },
