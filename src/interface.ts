@@ -18,6 +18,14 @@ export interface IBookDescription {
     prerequisites: string[];
 }
 
+export interface IBookFormData {
+    bookname: string;
+    ticketId: string;
+    username: string;
+    computername: string;
+    diagnostics: Record<string, unknown>;
+}
+
 export interface ICategoryResources {
     [x: string]: IResourceItem[];
 }
