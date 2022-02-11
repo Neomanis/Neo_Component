@@ -312,6 +312,7 @@
         "errorDelete": "Deletion failed",
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
+        "launchABook": "Launch a book",
         "markResolved": "MARKS IT AS RESOLVED",
         "neoHelper": {
             "inProgress": "Your request is being processed.",
@@ -412,9 +413,6 @@
         "technicalEvent": "Technical events",
         "unassigned": "Unassigned tickets",
         "userTickets": "My tickets"
-    },
-    "toolArea": {
-        "launchABook": "Launch a book"
     },
     "validationCard": {
         "deleteValidation": "Delete this"

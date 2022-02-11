@@ -312,6 +312,7 @@
         "errorDelete": "Erreur lors de la suppression du message",
         "id": "Ticket",
         "keyDetected": "MOTS-CLES",
+        "launchABook": "Lancer un livre",
         "markResolved": "MARQUE COMME RESOLU",
         "neoHelper": {
             "inProgress": "Votre demande est en cours de traitement.",
@@ -412,9 +413,6 @@
         "technicalEvent": "Interventions Techniques",
         "unassigned": "Tickets non assignés",
         "userTickets": "Mes Tickets"
-    },
-    "toolArea": {
-        "launchABook": "Lancer un livre"
     },
     "validationCard": {
         "deleteValidation": "Supprimer cet"
