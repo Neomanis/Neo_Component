@@ -23,7 +23,7 @@ export interface IBookFormData {
     ticketId: string;
     username: string;
     computername: string;
-    diagnostics: Record<string, unknown>;
+    diagnostics: IDiagnostic | undefined;
 }
 
 export interface ICategoryResources {
@@ -93,7 +93,7 @@ export interface IDiagnostic {
             }>;
         }>;
     }>;
-    awaiting: Array<{
+    awaiting?: Array<{
         bookNames: string[];
         runId: string;
         currentChapter: {
