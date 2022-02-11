@@ -1,5 +1,7 @@
 {
     "bookForm": {
+        "awaiting": "Pending",
+        "otherBookAwaiting": "Other book pending",
         "bookLaunchFailed": "Book launch failed",
         "computername": "Computer",
         "launch": "Launch",
@@ -310,6 +312,7 @@
         "errorDelete": "Deletion failed",
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
+        "launchABook": "Launch a book",
         "markResolved": "MARKS IT AS RESOLVED",
         "neoHelper": {
             "inProgress": "Your request is being processed.",
