@@ -1,5 +1,6 @@
 {
     "bookForm": {
+        "awaiting": "Awaiting",
         "bookLaunchFailed": "Book launch failed",
         "computername": "Computer",
         "launch": "Launch",

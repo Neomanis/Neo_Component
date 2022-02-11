@@ -1,5 +1,6 @@
 {
     "bookForm": {
+        "awaiting": "En attente",
         "bookLaunchFailed": "L'exécution du livre a échoué",
         "computername": "Ordinateur",
         "launch": "Lancer",
