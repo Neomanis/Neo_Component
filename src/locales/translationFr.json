@@ -411,6 +411,9 @@
         "unassigned": "Tickets non assignés",
         "userTickets": "Mes Tickets"
     },
+    "toolArea": {
+        "launchABook": "Lancer un livre"
+    },
     "validationCard": {
         "deleteValidation": "Supprimer cet"
     },

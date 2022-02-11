@@ -411,6 +411,9 @@
         "unassigned": "Unassigned tickets",
         "userTickets": "My tickets"
     },
+    "toolArea": {
+        "launchABook": "Launch a book"
+    },
     "validationCard": {
         "deleteValidation": "Delete this"
     },
