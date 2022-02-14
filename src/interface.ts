@@ -412,6 +412,7 @@ export interface ITicket {
     groupWatcher: number[];
     groupAssignedTo: number[];
     keywords: string[];
+    computerName: string | null;
 }
 export interface ITicketCreate {
     name?: string;
