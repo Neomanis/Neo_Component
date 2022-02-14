@@ -530,6 +530,17 @@ export interface IInputSelectSearchableData {
     label: string;
     value: number;
 }
+export interface ITicketLocalStorage {
+    id: number;
+    priority: number;
+    status: number;
+}
+export interface ITicketChatLocalStorage extends ITicketLocalStorage {
+    category: number;
+    userRequester: number[];
+    userWatcher: number[];
+    userAssignedTo: number[];
+}
 
 export type TInputSelectSearchableCss = StylesConfig<
     { label: string; value: number },
