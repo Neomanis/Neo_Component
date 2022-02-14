@@ -1,4 +1,14 @@
 {
+    "bookForm": {
+        "awaiting": "En attente",
+        "bookLaunchFailed": "L'exécution du livre a échoué",
+        "computername": "Ordinateur",
+        "launch": "Lancer",
+        "numberOfChapters": "Nombre de chapitres",
+        "otherBookAwaiting": "Autre livre en attente",
+        "prerequisites": "Prérequis",
+        "running": "En cours"
+    },
     "button": {
         "create": "Nouveau Ticket"
     },
@@ -222,6 +232,7 @@
             "category": "La catégorie est",
             "date": "La date est",
             "description": "La description est",
+            "id": "Le numéro du ticket est",
             "keywords": "Les mots-clés sont",
             "requester": "Le demandeur est",
             "status": "Le statut est",
@@ -240,6 +251,7 @@
         "errorInvalidInput": "Champ invalide",
         "errorRequired": "Champ requis",
         "errorSubmit": "Erreur: les modifications seront perdues",
+        "id": "Numéro de ticket",
         "impact": "Impact",
         "informations": "Informations",
         "inputDescription": "Description",
@@ -300,6 +312,7 @@
         "errorDelete": "Erreur lors de la suppression du message",
         "id": "Ticket",
         "keyDetected": "MOTS-CLES",
+        "launchABook": "Lancer un livre",
         "markResolved": "MARQUE COMME RESOLU",
         "neoHelper": {
             "inProgress": "Votre demande est en cours de traitement.",

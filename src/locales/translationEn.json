@@ -1,4 +1,14 @@
 {
+    "bookForm": {
+        "awaiting": "Pending",
+        "bookLaunchFailed": "Book launch failed",
+        "computername": "Computer",
+        "launch": "Launch",
+        "numberOfChapters": "Number of chapters",
+        "otherBookAwaiting": "Other book pending",
+        "prerequisites": "Prerequisites",
+        "running": "Running"
+    },
     "button": {
         "create": "New Ticket"
     },
@@ -222,6 +232,7 @@
             "category": "Category is",
             "date": "Date is",
             "description": "Description is",
+            "id": "Ticket number is",
             "keywords": "Keywords are",
             "requester": "Requester is",
             "status": "Status is",
@@ -240,6 +251,7 @@
         "errorInvalidInput": "invalid input",
         "errorRequired": "required field",
         "errorSubmit": "Error: changes will be lost",
+        "id": "Ticket number",
         "impact": "Impact",
         "informations": "Information",
         "inputDescription": "Description",
@@ -300,6 +312,7 @@
         "errorDelete": "Deletion failed",
         "id": "Ticket",
         "keyDetected": "DETECTED KEYWORDS",
+        "launchABook": "Launch a book",
         "markResolved": "MARKS IT AS RESOLVED",
         "neoHelper": {
             "inProgress": "Your request is being processed.",

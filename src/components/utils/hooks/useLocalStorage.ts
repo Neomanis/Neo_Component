@@ -5,6 +5,9 @@ type SetValue<T> = Dispatch<SetStateAction<T>>;
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     const readValue = (): T => {
         const item = window.localStorage.getItem(key);
+        if (item === "undefined") {
+            return undefined;
+        }
         return item ? (JSON.parse(item) as T) : initialValue;
     };
 

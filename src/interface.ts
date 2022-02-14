@@ -9,6 +9,23 @@ export interface IAuthRoute {
     path: string;
     roles: string[];
 }
+
+export interface IBookDescription {
+    name: string;
+    filename: string;
+    description: string;
+    chapters: number;
+    prerequisites: string[];
+}
+
+export interface IBookFormData {
+    bookname: string;
+    ticketId: string;
+    username: string;
+    computername: string;
+    diagnostics: Record<string, unknown>;
+}
+
 export interface ICategoryResources {
     [x: string]: IResourceItem[];
 }
@@ -76,7 +93,7 @@ export interface IDiagnostic {
             }>;
         }>;
     }>;
-    awaiting: Array<{
+    awaiting?: Array<{
         bookNames: string[];
         runId: string;
         currentChapter: {
@@ -512,6 +529,17 @@ export interface TicketsStatistics {
 export interface IInputSelectSearchableData {
     label: string;
     value: number;
+}
+export interface ITicketLocalStorage {
+    id: number;
+    priority: number;
+    status: number;
+}
+export interface ITicketChatLocalStorage extends ITicketLocalStorage {
+    category: number;
+    userRequester: number[];
+    userWatcher: number[];
+    userAssignedTo: number[];
 }
 
 export type TInputSelectSearchableCss = StylesConfig<
