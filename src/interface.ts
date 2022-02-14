@@ -434,6 +434,7 @@ export interface ITicketCreate {
     groupRequester?: number[];
     groupWatcher?: number[];
     groupAssignedTo?: number[];
+    computerName?: string;
 }
 export interface IUser {
     uid?: string;
