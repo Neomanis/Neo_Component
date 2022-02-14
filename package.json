@@ -106,6 +106,7 @@
     "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-commit \"yarn lint:translation\" && npx husky add .husky/pre-push \"yarn cypress:run:ct\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:translation": "eslint --no-eslintrc --config .eslintrc.i18n-json.js --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/locales",
+    "lint:translation:fix": "eslint --no-eslintrc --config .eslintrc.i18n-json.js --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/locales --fix && prettier --write src/locales/**/*.json",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",
     "prettier:fix": "prettier --write **/*.{tsx,ts,js}",
