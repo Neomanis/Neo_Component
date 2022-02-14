@@ -11,7 +11,7 @@ const Title = ({ className, data, type, style }: Props): ReactElement => {
     switch (type) {
         case "h1":
             return (
-                <h1 className={`niveauGrotesk ${className}`} style={style} data-testid="title-h1-body">
+                <h1 className={className} style={style} data-testid="title-h1-body">
                     {data}
                 </h1>
             );
