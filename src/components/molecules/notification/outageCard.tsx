@@ -1,39 +1,95 @@
-import React from "react";
+import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { i18n } from "../../../i18n";
 import { IOutage } from "../../../interface";
-import { Title, IconOutageCategorie } from "../../atoms";
+import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
+import ValidationCard from "../validationCard";
 
 interface Props {
     data: IOutage;
-    svgFill?: string;
+    hoverInCallBack: () => void;
+    hoverOutCallBack: () => void;
+    modifCallBack: (data: IOutage) => void;
+    deleteCallBack: (id: number) => void;
+    language?: string;
 }
 
-const OutageTab = ({ data, svgFill }: Props): React.ReactElement => {
-    const [isFolded, setIsFolded] = React.useState<boolean>(true);
+const OutageCard = ({
+    data,
+    hoverInCallBack,
+    hoverOutCallBack,
+    modifCallBack,
+    deleteCallBack,
+    language = "en_US",
+}: Props): React.ReactElement => {
+    const myLanguage = i18n.getFixedT(language);
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
+    let colorSVGOutage = data.severity === "major" ? "#F42A3E" : "#ED943B";
+    const [openValidationCard, setOpenValidationCard] = useState(false);
+
     if (
         new Date(data.startAt) > new Date() ||
         (data.endAt && data.hideAt && new Date(data.endAt) < new Date() && new Date() < new Date(data.hideAt))
     ) {
-        colorOutage = "bg-neo-light-grey";
+        colorOutage = "neo-light-grey";
+        colorSVGOutage = "#DAE5E5";
     }
+
     return (
         <div
-            onClick={() => {
-                setIsFolded(!isFolded);
-            }}
-            className={`cursor-pointer w-full bg-${colorOutage} flex items-center justify-between rounded-md px-2`}
+            onMouseEnter={() => hoverInCallBack()}
+            onMouseLeave={() => hoverOutCallBack()}
+            className={`w-full h-full text-${colorOutage} bg-neo-blue-extraDark p-5 grid grid-cols-10 rounded-xl`}
         >
-            <div className=" flex justify-center items-center sm:w-2/12 w-3/12">
-                <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={svgFill} className="w-full p-2" />
+            <div className="col-span-2 flex flex-col justify-between ">
+                <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
+                {!openValidationCard ? (
+                    <div className="flex justify-around mr-2">
+                        <Button
+                            fontIcon={faPen}
+                            className={"text-neo-link hover:text-neo-blue hover:scale-110"}
+                            fCallback={(): void => modifCallBack(data)}
+                        />
+
+                        <Button
+                            fontIcon={faTrashAlt}
+                            className={"text-neo-link hover:text-neo-red hover:scale-110"}
+                            fCallback={(): void => setOpenValidationCard(true)}
+                        />
+                    </div>
+                ) : (
+                    <ValidationCard
+                        classNames={{
+                            container: "",
+                            buttonContainer: "flex justify-around mr-2",
+                            text: "text-xxs text-white",
+                        }}
+                        fCallBackCancel={(): void => setOpenValidationCard(false)}
+                        fCallBackValidate={(): void => {
+                            setOpenValidationCard(false);
+                            deleteCallBack(data.id);
+                        }}
+                        text={myLanguage("validationCard.deleteValidation") + " " + data.type + " ?"}
+                    />
+                )}
             </div>
-            <div className="pl-2 py-2 sm:w-10/12 w-9/12">
-                <Title data={data.title} type={"h4"} className="font-bold leading-tight uppercase text-sm truncate " />
-                <p className={`${isFolded && "line-clamp-2"} text-xxs mb-2`}>{data.content}</p>
-                <p className="text-xxs">{`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}</p>
+            <div className="col-span-8 flex flex-col justify-around">
+                <Title
+                    data={data.title}
+                    type={"h2"}
+                    className={`font-extrabold uppercase text-lg line-clamp-2 border-b-2 border-${colorOutage}`}
+                    style={{ lineHeight: "110%" }}
+                />
+                <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">
+                    {`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}
+                </p>
+                <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
+                    {data.content}
+                </p>
             </div>
         </div>
     );
 };
 
-export default OutageTab;
+export default OutageCard;

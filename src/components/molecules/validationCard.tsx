@@ -31,7 +31,7 @@ export default function ValidationCard({
                 <div className="transform hover:scale-110">
                     <Button
                         fontIcon={faCheck}
-                        className={"text-neo-green flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-green flex items-center justify-center rounded-lg"}
                         fCallback={(): void => {
                             fCallBackValidate();
                         }}
@@ -40,7 +40,7 @@ export default function ValidationCard({
                 <div className="transform hover:scale-110">
                     <Button
                         fontIcon={faTimes}
-                        className={"text-neo-red flex items-center justify-center rounded-lg mx-2"}
+                        className={"text-neo-red flex items-center justify-center rounded-lg"}
                         fCallback={(): void => fCallBackCancel()}
                     />
                 </div>

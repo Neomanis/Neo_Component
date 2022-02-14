@@ -2,17 +2,17 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { OutageCard } from "../../../components/molecules";
+import { OutageItem } from "../../../components/molecules";
 
 export default {
-    component: OutageCard,
-    title: "Molecules/Notification/OutageCard",
+    component: OutageItem,
+    title: "Molecules/Notification/OutageItem",
 } as Meta;
 
-const Template: ComponentStory<typeof OutageCard> = (args) => {
+const Template: ComponentStory<typeof OutageItem> = (args) => {
     return (
-        <div className="w-80 h-36">
-            <OutageCard {...args} />
+        <div className=" bg-neo-bg-A p-2 w-44">
+            <OutageItem {...args} />
         </div>
     );
 };
@@ -21,7 +21,7 @@ export const Default = Template.bind({});
 Default.args = {
     data: {
         id: 1,
-        title: "Outage kkhfhhfh fkdskfdk k fkdskfkdskfk",
+        title: "Outage kkhfhhfh",
         content:
             "outage content   Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos quod cum nihil quasi deleniti, ut, labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
         severity: "",
@@ -31,8 +31,7 @@ Default.args = {
         displayAt: "2021-09-05T06:58:34.000Z",
         hideAt: null,
     },
-    hoverInCallBack: () => console.log("in"),
-    hoverOutCallBack: () => console.log("out"),
-    modifCallBack: (data) => console.log(data),
-    deleteCallBack: (id) => console.log(id),
+    hoverInCallBack: (outage, position) => console.log("outage: " + outage, "position: " + position),
+    hoverOutCallBack: (outage, position) => console.log("outage: " + outage, "position: " + position),
+    isNotSelected: false,
 };

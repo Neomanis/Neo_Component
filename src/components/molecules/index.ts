@@ -9,6 +9,7 @@ import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
 import NotificationItem from "./notification/notificationItem";
 import OutageCard from "./notification/outageCard";
+import OutageItem from "./notification/outageItem";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
 import SearchField from "./searchField";
 import ShadowBoxWrapper from "./shadowBoxWrapper";
@@ -31,6 +32,7 @@ export {
     NotificationCard,
     NotificationContainer,
     NotificationItem,
+    OutageItem,
     OutageCard,
     RecursiveDiagnosticComponent,
     SearchField,

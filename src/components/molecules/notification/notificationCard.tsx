@@ -39,7 +39,7 @@ const NotificationCard = ({
                 setIsFolded(!isFolded);
                 fReadNotification(notificationId, userUid);
             }}
-            className={`cursor-pointer flex items-center justify-between rounded-md w-64 relative ${className}`}
+            className={`cursor-pointer flex items-center justify-between rounded-md relative ${className}`}
             data-testid="notifCard-read"
         >
             <div className="flex">
@@ -69,7 +69,7 @@ const NotificationCard = ({
 
             <Icon
                 svg={<CloseLogo fill="#7DAAB7" />}
-                className="cursor-pointer w-2 h-2 transform hover:scale-125 absolute right-0 top-5"
+                className="cursor-pointer w-2 h-2 transform hover:scale-125 absolute right-2 top-5"
                 fCallBack={(e) => {
                     e.stopPropagation();
                     setIsFolded(true);
