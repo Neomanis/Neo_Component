@@ -29,6 +29,7 @@ export const fakeTicket: ITicket = {
     keywords: [],
     resources: [],
     similarTickets: [],
+    computerName: null,
 };
 
 export const fakeDiag = {
