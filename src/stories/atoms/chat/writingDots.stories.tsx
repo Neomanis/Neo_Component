@@ -17,4 +17,9 @@ const Template: ComponentStory<typeof WritingDots> = (args) => {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+    animation: "animate-pulseDots",
+    className: "",
+    delay: 250,
+    dotClassName: "",
+};
