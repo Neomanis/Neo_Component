@@ -20,6 +20,7 @@ import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQues
 import Toaster from "./toaster";
 import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
+import WritingDots from "../atoms/chat/writingDots";
 
 export {
     AnswerForm,
@@ -44,4 +45,5 @@ export {
     Toaster,
     ValidationCard,
     WorkflowCard,
+    WritingDots,
 };
