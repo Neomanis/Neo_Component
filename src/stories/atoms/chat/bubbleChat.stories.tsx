@@ -25,6 +25,6 @@ Default.args = {
 
 export const Bot = Template.bind({});
 Bot.args = {
-    border: true,
+    border: "border-white",
     content: "I've been really busy being dead. You know, after you MURDERED ME.",
 };
