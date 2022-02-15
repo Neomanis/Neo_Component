@@ -1,9 +1,11 @@
 {
     "bookForm": {
         "awaiting": "Pending",
+        "bookDetails": "Book details",
         "bookLaunchFailed": "Book launch failed",
         "computername": "Computer",
         "launch": "Launch",
+        "launchedDiagnostics": "Launched diagnostics",
         "numberOfChapters": "Number of chapters",
         "otherBookAwaiting": "Other book pending",
         "prerequisites": "Prerequisites",
