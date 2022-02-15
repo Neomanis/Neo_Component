@@ -3,7 +3,7 @@ import { faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { BubbleChat, Icon, Img } from "../../atoms";
 interface Props {
-    content: string;
+    content: string | ReactElement;
     date: string;
     isMe: boolean;
     privateMessage?: boolean;
