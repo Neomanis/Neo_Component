@@ -1,9 +1,11 @@
 {
     "bookForm": {
         "awaiting": "En attente",
+        "bookDetails": "Détails du livre",
         "bookLaunchFailed": "L'exécution du livre a échoué",
         "computername": "Ordinateur",
         "launch": "Lancer",
+        "launchedDiagnostics": "Diagnostics lancés",
         "numberOfChapters": "Nombre de chapitres",
         "otherBookAwaiting": "Autre livre en attente",
         "prerequisites": "Prérequis",
