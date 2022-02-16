@@ -27,7 +27,9 @@ describe("WritingDots", () => {
     it("should create correct delay between dots", () => {
         mount(<WritingDots delay={250} />);
 
-        cy.get('[data-testid="writingDots-body"]').find("div:nth-child(2)").should("have.class", "animation-delay-250");
-        cy.get('[data-testid="writingDots-body"]').find("div:last-child").should("have.class", "animation-delay-500");
+        cy.get('[data-testid="writingDots-body"]')
+            .find("div:nth-child(2)")
+            .should("have.css", "animation-delay", "0.25s");
+        cy.get('[data-testid="writingDots-body"]').find("div:last-child").should("have.css", "animation-delay", "0.5s");
     });
 });
