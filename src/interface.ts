@@ -395,7 +395,7 @@ export interface ISimilarTicket {
 }
 export interface ITicket {
     id: number;
-    entities_id: number;
+    entity_id: number;
     name: string;
     date: string;
     closedate: string;
@@ -469,7 +469,7 @@ export interface IUser {
         id: number;
         name: string;
     }[];
-    selected_entitie_id?: number;
+    selected_entity_id?: number;
 }
 
 export interface IWorkflow {
