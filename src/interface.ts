@@ -395,6 +395,7 @@ export interface ISimilarTicket {
 }
 export interface ITicket {
     id: number;
+    entities_id: number;
     name: string;
     date: string;
     closedate: string;
