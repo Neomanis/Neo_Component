@@ -152,7 +152,11 @@ export interface IGlpiUsers {
     duedatewarning_less?: number;
     duedatewarning_unit?: string;
     end_date?: string;
-    entities_id?: number;
+    entities?: {
+        id: number;
+        name: string;
+    }[];
+
     firstname?: string;
     followup_private?: number;
     groups_id?: number;
@@ -391,6 +395,7 @@ export interface ISimilarTicket {
 }
 export interface ITicket {
     id: number;
+    entity_id: number;
     name: string;
     date: string;
     closedate: string;
@@ -460,6 +465,11 @@ export interface IUser {
         mimetype: string;
         originalname: string;
     };
+    entities?: {
+        id: number;
+        name: string;
+    }[];
+    selected_entity_id?: number;
 }
 
 export interface IWorkflow {
