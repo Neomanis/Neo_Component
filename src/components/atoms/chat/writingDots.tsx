@@ -18,8 +18,16 @@ const WritingDots = ({
     return (
         <div className={` ${className} flex py-1 px-2 text-white text-3xs`} data-testid="writingDots-body">
             <Icon className={`${dotClassName} ${animation}`} fontIcon={faCircle} />
-            <Icon className={`${dotClassName} ${animation} px-1 animation-delay-${delay}`} fontIcon={faCircle} />
-            <Icon className={`${dotClassName} ${animation} animation-delay-${delay * 2}`} fontIcon={faCircle} />
+            <Icon
+                className={`${dotClassName} ${animation} px-1`}
+                fontIcon={faCircle}
+                style={{ animationDelay: delay.toString() + "ms" }}
+            />
+            <Icon
+                className={`${dotClassName} ${animation}`}
+                fontIcon={faCircle}
+                style={{ animationDelay: (delay * 2).toString() + "ms" }}
+            />
         </div>
     );
 };

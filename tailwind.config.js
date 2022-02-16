@@ -1267,5 +1267,5 @@ module.exports = {
         wordBreak: ["responsive"],
         zIndex: ["responsive", "focus-within", "focus"],
     },
-    plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-animation-delay")],
+    plugins: [require("@tailwindcss/line-clamp")],
 };
