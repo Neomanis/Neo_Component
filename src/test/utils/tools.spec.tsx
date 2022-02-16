@@ -76,8 +76,6 @@ describe("sleep", () => {
         const dateNow = Date.now();
         await sleep(500);
         const dateAfter = Date.now();
-        expect(dateAfter - dateNow)
-            .to.above(500)
-            .and.to.below(600);
+        expect(dateAfter - dateNow).to.above(500);
     });
 });
