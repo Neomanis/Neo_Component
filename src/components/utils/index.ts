@@ -22,6 +22,7 @@ import {
     getStatusOrPriorityColor,
     lowerCaseFirstLetter,
     mapEnumToInputSelectSearchableData,
+    sleep,
 } from "./tools";
 
 export {
@@ -52,6 +53,7 @@ export {
     inputReducer,
     lowerCaseFirstLetter,
     mapEnumToInputSelectSearchableData,
+    sleep,
     stripHtml,
     useIsFirstRender,
     useLocalStorage,
