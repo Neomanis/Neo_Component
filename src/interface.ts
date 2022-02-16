@@ -152,7 +152,11 @@ export interface IGlpiUsers {
     duedatewarning_less?: number;
     duedatewarning_unit?: string;
     end_date?: string;
-    entities_id?: [number];
+    entities?: {
+        id: number;
+        name: string;
+    }[];
+
     firstname?: string;
     followup_private?: number;
     groups_id?: number;
@@ -454,7 +458,11 @@ export interface IUser {
         mimetype: string;
         originalname: string;
     };
-    entities?: [{ id: number; name: string }];
+    entities?: {
+        id: number;
+        name: string;
+    }[];
+    selected_entitie_id?: number;
 }
 
 export interface IWorkflow {
