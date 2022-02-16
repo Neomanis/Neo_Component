@@ -6,6 +6,7 @@ import {
     getContrastBasedOnHexColor,
     getHexColorFromTailwindColor,
     getStatusOrPriorityColor,
+    sleep,
 } from "../../components/utils/tools";
 import { i18n } from "../../i18n";
 
@@ -67,5 +68,14 @@ describe("getStatusOrPriorityColor", () => {
     it("should return a priority color or status color based on status", () => {
         expect(getStatusOrPriorityColor(Status.New, Scale.Medium, false, "bg")).to.eql("bg-neo-ticketUrgency-medium");
         expect(getStatusOrPriorityColor(Status.Solved, Scale.VeryLow, true, "bg")).to.eql("#7FEF7F");
+    });
+});
+
+describe("sleep", () => {
+    it("should wait for defined amount of time", async () => {
+        const dateNow = Date.now();
+        await sleep(500);
+        const dateAfter = Date.now();
+        expect(dateAfter - dateNow).to.above(500);
     });
 });
