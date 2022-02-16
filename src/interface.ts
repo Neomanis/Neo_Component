@@ -156,7 +156,7 @@ export interface IGlpiUsers {
         id: number;
         name: string;
     }[];
-
+    entities_id?: number;
     firstname?: string;
     followup_private?: number;
     groups_id?: number;
@@ -395,7 +395,7 @@ export interface ISimilarTicket {
 }
 export interface ITicket {
     id: number;
-    entity_id: number;
+    entities_id: number;
     name: string;
     date: string;
     closedate: string;
