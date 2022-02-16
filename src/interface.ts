@@ -337,9 +337,15 @@ export interface IResourcesMultipleSelect {
     type: string;
 }
 export interface IService {
+    id: number;
     name: string;
     url: string;
-    port: string;
+    requiredDependencies: string[];
+    otherDependencies: string[];
+    createdAt: string;
+    status: number;
+    username: string | null;
+    computerName: string | null;
 }
 export interface IStatus {
     statusCode: number;

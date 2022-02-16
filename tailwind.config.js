@@ -1,3 +1,4 @@
+const tailwindcss = require("tailwindcss");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
@@ -124,6 +125,7 @@ module.exports = {
             spinReverseN: "spinReverseN 0.2s linear ",
             ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
             pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            pulseDots: "pulseDots 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
             bounce: "bounce 1s infinite",
             bounceSlow: "bounceSlow 1.5s infinite",
             widthAnim: "widthAnim 0.3s linear",
@@ -345,6 +347,7 @@ module.exports = {
             ],
         },
         fontSize: {
+            "3xs": ["0.40rem", { lineHeight: "0.80rem" }],
             xxs: ["0.60rem", { lineHeight: "1rem" }],
             xs: ["0.75rem", { lineHeight: "1rem" }],
             sm: ["0.875rem", { lineHeight: "1.25rem" }],
@@ -701,6 +704,12 @@ module.exports = {
             pulse: {
                 "50%": {
                     opacity: ".5",
+                },
+            },
+            pulseDots: {
+                "50%": {
+                    opacity: ".3",
+                    transform: "scale(.9)",
                 },
             },
             bounce: {

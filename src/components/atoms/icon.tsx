@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { CSSProperties, ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
@@ -9,22 +9,23 @@ interface Props {
     fontIcon?: IconProp;
     svg?: ReactElement;
     redDot?: boolean;
+    style?: CSSProperties;
     type?: string;
     testId?: string;
 }
 
-const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type, testId = "" }: Props): ReactElement => {
+const Icon = ({ className, fCallBack, fontIcon, svg, redDot, style, type, testId = "" }: Props): ReactElement => {
     switch (type) {
         case "iconLink":
             return (
-                <div className={className} onClick={fCallBack} data-testid="icon-link-body">
+                <div className={className} style={style} onClick={fCallBack} data-testid="icon-link-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
                 </div>
             );
         case "placeholderInput":
             return (
-                <div className={`${className}`} data-testid="icon-placeholder-body">
+                <div className={className} style={style} data-testid="icon-placeholder-body">
                     {!svg && fontIcon && (
                         <FontAwesomeIcon
                             icon={fontIcon}
@@ -36,7 +37,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type, testId = "" }
             );
         case "iconWithRedDot":
             return (
-                <div className={className} data-testid="icon-reddot-body">
+                <div className={className} style={style} data-testid="icon-reddot-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {redDot && (
                         <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />
@@ -48,6 +49,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, type, testId = "" }
             return (
                 <div
                     className={`${className} flex items-center justify-center`}
+                    style={style}
                     onClick={fCallBack}
                     data-testid={`icon-default-body ${testId}`}
                 >

@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 interface Props {
     bgColor?: string;
     border?: string;
-    content: string;
+    content: string | ReactElement;
 }
 
 const BubbleChat = ({ bgColor, border, content }: Props): ReactElement => {
