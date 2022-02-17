@@ -290,7 +290,8 @@
             "noDiagnostic": "Pas de diagnostic",
             "positiveAnswer": "Retour positif"
         },
-        "entity": "ENTREPRISE",
+        "entities": "Entités",
+        "entity": "Entité",
         "exit": "Sortie",
         "ipRemote": "IP distante",
         "knowledge": "Connaissance",
