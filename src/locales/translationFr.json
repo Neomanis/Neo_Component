@@ -234,6 +234,7 @@
             "category": "La catégorie est",
             "date": "La date est",
             "description": "La description est",
+            "entity": "L'entité est",
             "id": "Le numéro du ticket est",
             "keywords": "Les mots-clés sont",
             "requester": "Le demandeur est",

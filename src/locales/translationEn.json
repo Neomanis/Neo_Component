@@ -234,6 +234,7 @@
             "category": "Category is",
             "date": "Date is",
             "description": "Description is",
+            "entity": "Entity is",
             "id": "Ticket number is",
             "keywords": "Keywords are",
             "requester": "Requester is",
@@ -290,8 +291,8 @@
             "noDiagnostic": "No diagnostic",
             "positiveAnswer": "Positive answer"
         },
-        "entity_one": "Entities",
-        "entity_other": "Entity",
+        "entity_one": "Entity",
+        "entity_other": "Entities",
         "exit": "Exit",
         "ipRemote": "IP remote",
         "knowledge": "Knowledge",
