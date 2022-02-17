@@ -290,8 +290,8 @@
             "noDiagnostic": "No diagnostic",
             "positiveAnswer": "Positive answer"
         },
-        "entities": "Entities",
-        "entity": "Entity",
+        "entity_one": "Entities",
+        "entity_other": "Entity",
         "exit": "Exit",
         "ipRemote": "IP remote",
         "knowledge": "Knowledge",
