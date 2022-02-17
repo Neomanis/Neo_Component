@@ -233,6 +233,7 @@ export interface IGlpiRequest {
     completename?: string;
 }
 export interface IInputs {
+    entities_id?: number;
     itilcategories_id: string;
     description: string;
     impact: string;
@@ -426,6 +427,7 @@ export interface ITicket {
     computerName: string | null;
 }
 export interface ITicketCreate {
+    entities_id?: number;
     name?: string;
     status?: number;
     users_id_recipient?: number;
