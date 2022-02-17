@@ -290,8 +290,8 @@
             "noDiagnostic": "Pas de diagnostic",
             "positiveAnswer": "Retour positif"
         },
-        "entity_one": "Entités",
-        "entity_other": "Entité",
+        "entity_one": "Entité",
+        "entity_other": "Entités",
         "exit": "Sortie",
         "ipRemote": "IP distante",
         "knowledge": "Connaissance",
@@ -402,6 +402,7 @@
         "waiting": "Attente de validation"
     },
     "titles": {
+        "all": "Tous",
         "dashBoard": "Accueil",
         "iNeedHelp": "Besoin d'aide",
         "inbox": "File d'attente",

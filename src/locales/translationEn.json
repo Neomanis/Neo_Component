@@ -402,6 +402,7 @@
         "waiting": "Waiting for validation"
     },
     "titles": {
+        "all": "All",
         "dashBoard": "Dashboard",
         "iNeedHelp": "I Need Help",
         "inbox": "Inbox",
