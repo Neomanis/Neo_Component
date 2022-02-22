@@ -581,3 +581,24 @@ export type TInputSelectSearchableCustomComponent = Partial<
         }>
     >
 >;
+
+export type TStatusTraductionKey = "assigned" | "closed" | "new" | "pending" | "planned" | "solved";
+export type TScaleTraductionKey = "high" | "low" | "major" | "medium" | "veryHigh" | "veryLow";
+export type TResourceCategoriesTraductionKey =
+    | "computer"
+    | "monitor"
+    | "networkequipment"
+    | "peripheral"
+    | "phone"
+    | "printer"
+    | "rack"
+    | "software";
+export type TRemoteNotificationTraductionKey =
+    | "blocked"
+    | "dismissed"
+    | "message"
+    | "neoDiagnostic"
+    | "rejected"
+    | "sent"
+    | "timedOut"
+    | "tryAgain";
