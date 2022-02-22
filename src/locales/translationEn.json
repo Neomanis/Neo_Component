@@ -214,6 +214,9 @@
         "refreshButton": "Auto-refresh",
         "uncheckAllButton": "Uncheck all"
     },
+    "settingsScreen": {
+        "title": "Settings"
+    },
     "tQuestion": {
         "answeredQuestionTitle": "Answered questions",
         "follow": "Follow",
