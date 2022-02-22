@@ -121,8 +121,10 @@ module.exports = {
         animation: {
             none: "none",
             spin: "spin 1.5s linear infinite",
+            spinBack: "spinReverseN 1.5s linear infinite",
             spinReverse: "spinReverse 0.2s linear ",
             spinReverseN: "spinReverseN 0.2s linear ",
+            spinSlow: "spin 2.5s linear infinite",
             ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
             pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
             pulseDots: "pulseDots 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
@@ -135,6 +137,7 @@ module.exports = {
             leftH: "leftH 0.3s linear",
             rightH: "rightH 0.3s linear",
             shakeX: "shakeX 2s infinite",
+            show: "show 2s infinite",
             slideChatIn: "slideChatIn 0.5s ease-in-out",
             slideChatOut: "slideChatOut 0.5s ease-in-out",
             slideIn: "slideIn 0.3s ease-in-out",
@@ -658,6 +661,20 @@ module.exports = {
                     opacity: "1",
                 },
             },
+            show: {
+                "0%": {
+                    opacity: "0",
+                },
+                "45%": {
+                    opacity: "0",
+                },
+                "55%": {
+                    opacity: "1",
+                },
+                "100%": {
+                    opacity: "1",
+                },
+            },
             spin: {
                 to: {
                     transform: "rotate(360deg)",
@@ -715,6 +732,16 @@ module.exports = {
             bounce: {
                 "0%, 100%": {
                     transform: "translateY(-25%)",
+                    animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
+                },
+                "50%": {
+                    transform: "none",
+                    animationTimingFunction: "cubic-bezier(0,0,0.2,1)",
+                },
+            },
+            bounceSmall: {
+                "0%, 100%": {
+                    transform: "translateY(-5%)",
                     animationTimingFunction: "cubic-bezier(0.8,0,1,1)",
                 },
                 "50%": {
