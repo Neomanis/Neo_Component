@@ -2,17 +2,11 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Button, Icon, Title } from "../../atoms";
 import { CloseLogo } from "../../../img/svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import i18next from "i18next";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
-    textColor?: string;
-    languageUser?: string;
-    title?: string;
-    sender?: string;
-    date?: string;
-    outageDate?: { startAt: string; endAt?: string };
     content: string;
-    svg: ReactElement;
+    date?: string;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
     fManageWorkflow?: (
         id: number,
@@ -22,31 +16,36 @@ interface Props {
     ) => Promise<void>;
     fReadNotification?: (notificationId: number, userUid: string) => void;
     notificationId?: number;
-    workflowId?: number;
-    ticketId?: number;
+    outageDate?: { startAt: string; endAt?: string };
     read?: boolean;
+    sender?: string;
+    svg: ReactElement;
+    textColor?: string;
+    ticketId?: number;
+    title?: string;
     userUid?: string;
+    workflowId?: number;
 }
 
 const NotificationItem = ({
-    textColor = "text-neo-light-grey",
-    languageUser = "en_US",
-    title,
-    sender,
-    date,
-    outageDate,
     content,
-    svg,
+    date,
     fDeleteNotification,
     fManageWorkflow,
     fReadNotification,
     notificationId,
-    workflowId,
-    ticketId,
+    outageDate,
     read,
+    sender,
+    svg,
+    textColor = "text-neo-light-grey",
+    ticketId,
+    title,
     userUid,
+    workflowId,
 }: Props): ReactElement => {
-    const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
+
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const [isError, setIsError] = useState(false);
 
@@ -108,7 +107,7 @@ const NotificationItem = ({
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
                             className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
-                            data={myLanguage("workflow.validate")}
+                            data={t("workflow.validate")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(true);
@@ -116,7 +115,7 @@ const NotificationItem = ({
                         />
                         <Button
                             className="bg-neo-link hover:bg-neo-red rounded uppercase font-bold py-2 w-24"
-                            data={myLanguage("workflow.refuse")}
+                            data={t("workflow.refuse")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(false);
@@ -124,9 +123,7 @@ const NotificationItem = ({
                         />
                     </div>
                 ) : (
-                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>
-                        {myLanguage("workflow.error")}
-                    </p>
+                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("workflow.error")}</p>
                 ))}
         </div>
     );

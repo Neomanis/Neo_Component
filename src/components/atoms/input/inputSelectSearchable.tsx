@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import inputReducer from "../../utils/reducers/inputReducer";
-import { i18n } from "../../../i18n";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { IReactHookFormCustomValidation } from "../../../interface";
 import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     containerClassName?: string;
@@ -42,7 +42,6 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
-    languageUser?: string;
     placeholder?: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
@@ -71,7 +70,6 @@ const InputSelectSearchable = ({
     isUpdateField = false,
     label,
     labelClassName,
-    languageUser = "en_US",
     placeholder,
     refForm,
     register,
@@ -94,7 +92,7 @@ const InputSelectSearchable = ({
     });
 
     const isLastMount = useRef(false);
-    const myLanguage = i18n.getFixedT(languageUser);
+    const { t } = useTranslation();
     const inputRegister =
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
@@ -231,7 +229,7 @@ const InputSelectSearchable = ({
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
                 noOptionsMessage={(obj: { inputValue: string }) =>
-                    `${myLanguage("inputSelectSearchable.value")} ${obj.inputValue} ${myLanguage(
+                    `${t("inputSelectSearchable.value")} ${obj.inputValue} ${t(
                         "inputSelectSearchable.noOptionMessage"
                     )}`
                 }

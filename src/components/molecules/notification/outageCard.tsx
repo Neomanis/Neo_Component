@@ -1,6 +1,6 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-import { i18n } from "../../../i18n";
+import { useTranslation } from "react-i18next";
 import { IOutage } from "../../../interface";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
@@ -12,7 +12,6 @@ interface Props {
     hoverOutCallBack: () => void;
     modifCallBack: (data: IOutage) => void;
     deleteCallBack: (id: number) => void;
-    language?: string;
 }
 
 const OutageCard = ({
@@ -21,9 +20,8 @@ const OutageCard = ({
     hoverOutCallBack,
     modifCallBack,
     deleteCallBack,
-    language = "en_US",
 }: Props): React.ReactElement => {
-    const myLanguage = i18n.getFixedT(language);
+    const { t } = useTranslation();
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
     let colorSVGOutage = data.severity === "major" ? "#F42A3E" : "#ED943B";
     const [openValidationCard, setOpenValidationCard] = useState(false);
@@ -70,7 +68,7 @@ const OutageCard = ({
                             setOpenValidationCard(false);
                             deleteCallBack(data.id);
                         }}
-                        text={myLanguage("validationCard.deleteValidation") + " " + data.type + " ?"}
+                        text={t("validationCard.deleteValidation") + " " + data.type + " ?"}
                     />
                 )}
             </div>

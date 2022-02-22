@@ -3,13 +3,11 @@ import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { Button, Hexagon, Icon, IconTicketCategorie, Img } from "../../atoms";
-
-//translations
-import i18next from "i18next";
 import { getDateCompletionPercentage, getFormatedTimeToNowExtended } from "../../utils/dateTools";
 import { ChatLogo, ClockLogo, DiagLogo, ExpandLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     dataView?: React.RefObject<HTMLHeadingElement>;
@@ -35,7 +33,8 @@ const HoverTicket = ({
     ticketRequester,
 }: Props): ReactElement => {
     const position = dataView?.current ? dataView?.current.getBoundingClientRect() : null;
-    const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function displayModalWithinScreen(positionData: any): any {
         //the value 156px is equal to the half of the open modal (384 / 2 = 192px)
@@ -88,13 +87,13 @@ const HoverTicket = ({
                         <div className="flex flex-col text-left justify-between w-2/3">
                             <div className="text-white">
                                 <div className="text-xl ">
-                                    {myLanguage("ticketScreen.id")} {ticket.id}
+                                    {t("ticketScreen.id")} {ticket.id}
                                 </div>
                                 <div>{ticket.name}</div>
                             </div>
                             {keywords.length > 0 && (
                                 <div className="text-xs">
-                                    <div className="text-white font-bold">{myLanguage("ticketScreen.keyDetected")}</div>
+                                    <div className="text-white font-bold">{t("ticketScreen.keyDetected")}</div>
                                     <div className="truncate text-white w-3/4">
                                         {keywords.map((kw, i, keywords) => {
                                             if (i + 1 === keywords.length) {
@@ -129,7 +128,7 @@ const HoverTicket = ({
                                     >
                                         <Icon fontIcon={faExclamationTriangle} className="mr-1" />
                                         <p className="text-xs">
-                                            {myLanguage(`ticketForm.${ticket.status === Status.New ? "tto" : "ttr"}`)}
+                                            {t(`ticketForm.${ticket.status === Status.New ? "tto" : "ttr"}`)}
                                         </p>
                                     </div>
                                 ) : (

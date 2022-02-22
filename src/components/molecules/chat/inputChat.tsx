@@ -3,7 +3,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { IconAdd } from "../../../img/svg";
 import { ButtonSwitch, Input, Tooltip } from "../../atoms";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
-import { i18n } from "../../../i18n";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     buttonSub?: boolean;
@@ -24,14 +24,13 @@ const InputChat = ({
     className,
     fCallbackPrivateMessage,
     inputClassName,
-    languageUser = "en_US",
     placeholder,
     privateMessage,
     refForm,
     register,
     setValue,
 }: Props): ReactElement => {
-    const myLanguage = i18n.getFixedT(languageUser);
+    const { t } = useTranslation();
 
     return (
         <div
@@ -64,7 +63,7 @@ const InputChat = ({
             {privateMessage && (
                 <div className="p-2 w-10">
                     <Tooltip
-                        data={myLanguage("chat.privateMessage")}
+                        data={t("chat.privateMessage")}
                         className="pt-3 text-xs"
                         component={
                             <ButtonSwitch
