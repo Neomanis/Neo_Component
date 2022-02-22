@@ -6,3 +6,4 @@ export * from "./interface";
 export * from "./i18n";
 export * from "./img/svg";
 export * from "./img/png";
+export * from "./react-i18n";
