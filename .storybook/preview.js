@@ -3,11 +3,11 @@ import { i18n } from "../src/i18n";
 export const parameters = {
     // viewMode: "docs",
     i18n,
-    locale: "en_GB",
+    locale: "en-GB",
     locales: {
-        en_GB: "English",
-        en_US: "English",
-        fr_FR: "Français",
+        "en-GB": "English",
+        "en-US": "English",
+        "fr-FR": "Français",
     },
 };
 

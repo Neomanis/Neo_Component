@@ -1,9 +1,8 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash, faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
-import i18next from "i18next";
-
 import { formatDate } from "../../utils";
 import { Icon, Title, Tooltip } from "../../atoms";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     content: string;
@@ -13,7 +12,6 @@ interface Props {
     followed: boolean;
     followTechnicalQuestion: (id: number) => void;
     id: number;
-    languageUser: string;
     openTechnicalQuestion: () => void;
     solved: boolean;
     ticketId: number | null;
@@ -28,13 +26,13 @@ const TechnicalQuestionItem = ({
     followed = false,
     followTechnicalQuestion,
     id,
-    languageUser,
     openTechnicalQuestion,
     solved,
     ticketId,
     title,
 }: Props): ReactElement => {
-    const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
+
     return (
         <li
             key={id}
@@ -60,7 +58,7 @@ const TechnicalQuestionItem = ({
                         <p className="text-white text-opacity-80 mx-2">{createLevel}</p>
                         {ticketId && (
                             <p>
-                                {myLanguage("tQuestion.forTicket")} {ticketId}
+                                {t("tQuestion.forTicket")} {ticketId}
                             </p>
                         )}
                     </div>
@@ -71,7 +69,7 @@ const TechnicalQuestionItem = ({
                 <div className="flex items-center">
                     <Tooltip
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
-                        data={followed ? myLanguage("tQuestion.follow") : myLanguage("tQuestion.unfollow")}
+                        data={followed ? t("tQuestion.follow") : t("tQuestion.unfollow")}
                         fCallback={(e) => {
                             e.stopPropagation();
                             followTechnicalQuestion(id);

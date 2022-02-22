@@ -1,30 +1,21 @@
 import React, { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import i18next from "i18next";
 import { faSave, faTimes } from "@fortawesome/free-solid-svg-icons";
-
 import { Button, TextEditor } from "../../atoms";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     closeCallback?: () => void;
     isUpdateField?: boolean;
-    languageUser: string;
     onSubmitAnswer?: (data: { text: string }) => void;
     text?: string;
     updateFunction?: (refForm: string, value: string) => void;
 }
 
-const AnswerForm = ({
-    closeCallback,
-    isUpdateField,
-    languageUser,
-    onSubmitAnswer,
-    text,
-    updateFunction,
-}: Props): ReactElement => {
+const AnswerForm = ({ closeCallback, isUpdateField, onSubmitAnswer, text, updateFunction }: Props): ReactElement => {
     const { register, setValue, handleSubmit, formState } = useForm({ mode: "onSubmit" });
 
-    const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
 
     const onSubmit: SubmitHandler<{ text: string }> = async (data) => {
         onSubmitAnswer && onSubmitAnswer(data);
@@ -37,7 +28,7 @@ const AnswerForm = ({
                     register={register}
                     refForm="text"
                     required
-                    errorMessage={myLanguage("ticketForm.errorRequired")}
+                    errorMessage={t("ticketForm.errorRequired")}
                     isError={formState?.errors.text}
                     setValue={setValue}
                     isUpdateField={isUpdateField}

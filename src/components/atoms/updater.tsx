@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { i18n } from "../../i18n";
+import { useTranslation } from "../../i18n";
 
 interface Props {
     className?: string;
@@ -8,7 +8,6 @@ interface Props {
     isSuccess?: boolean;
     isUpdate?: boolean;
     isError?: boolean;
-    languageUser?: string;
     fCallBackCancel?: () => void;
     updateCooldown?: number;
     trigger?: boolean;
@@ -21,12 +20,11 @@ const Updater = ({
     isSuccess,
     isUpdate,
     isError,
-    languageUser = "en_US",
     fCallBackCancel,
     updateCooldown = 4000,
     trigger,
 }: Props): ReactElement => {
-    const myLanguage = i18n.getFixedT(languageUser);
+    const { t } = useTranslation();
     const [progress, setProgress] = useState(0);
     const [viewBorder, setViewBorder] = useState(true);
 
@@ -52,12 +50,12 @@ const Updater = ({
         <div data-testid="dotClassName" className={`flex ${className}`}>
             {isSuccess && (
                 <div data-testid="dotSuccess" className="text-neo-green text-xs font-bold">
-                    {myLanguage("dot.success").toUpperCase()}
+                    {t("dot.success").toUpperCase()}
                 </div>
             )}
             {isUpdate && (
                 <div data-testid="dotUpdating" className="text-neo-blue  text-xs font-bold whitespace-nowrap relative">
-                    {myLanguage("dot.update").toUpperCase()}
+                    {t("dot.update").toUpperCase()}
                     {viewBorder && (
                         <div
                             style={{
@@ -73,7 +71,7 @@ const Updater = ({
             )}
             {isError && (
                 <div data-testid="dotError" className="text-neo-red text-xs font-bold">
-                    {errorMessage ? errorMessage : myLanguage("dot.error").toUpperCase()}
+                    {errorMessage ? errorMessage : t("dot.error").toUpperCase()}
                 </div>
             )}
             {isCancelable && (
@@ -82,7 +80,7 @@ const Updater = ({
                     className="pl-2 text-neo-red cursor-pointer text-xs font-bold"
                     onClick={(): void => fCallBackCancel()}
                 >
-                    {myLanguage("dot.cancel").toUpperCase()}
+                    {t("dot.cancel").toUpperCase()}
                 </div>
             )}
         </div>

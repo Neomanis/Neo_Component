@@ -25,7 +25,7 @@ export default {
         image(),
         resolve(),
         commonjs(),
-        typescript({ useTsconfigDeclarationDir: true, tsconfig: "./tsconfig.prod.json" }),
+        typescript({ useTsconfigDeclarationDir: true, tsconfig: "./tsconfig.prod.json", clean: true }),
         json(),
         copy({
             targets: [{ src: "tailwind.config.js", dest: "build" }],

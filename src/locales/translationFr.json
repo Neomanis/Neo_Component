@@ -177,30 +177,28 @@
         "shellButton": "Terminal Distant"
     },
     "resourceCategory": {
-        "Computer": "Ordinateurs",
-        "Monitor": "Écrans",
-        "Networkequipment": "Réseaux",
-        "Peripheral": "Périphériques",
-        "Phone": "Téléphones",
-        "Printer": "Imprimantes",
-        "Rack": "Baies",
-        "Software": "Logiciels"
+        "computer": "Ordinateurs",
+        "monitor": "Écrans",
+        "networkequipment": "Réseaux",
+        "peripheral": "Périphériques",
+        "phone": "Téléphones",
+        "printer": "Imprimantes",
+        "rack": "Baies",
+        "software": "Logiciels"
     },
-    "scaleLevelFemale": {
-        "high": "Haute",
-        "low": "Basse",
-        "major": "Majeure",
-        "medium": "Moyenne",
-        "veryHigh": "Très haute",
-        "veryLow": "Très basse"
-    },
-    "scaleLevelMale": {
+    "scaleLevel": {
         "high": "Haut",
+        "high_female": "Haute",
         "low": "Bas",
+        "low_female": "Basse",
         "major": "Majeur",
+        "major_female": "Majeure",
         "medium": "Moyen",
+        "medium_female": "Moyenne",
         "veryHigh": "Très haut",
-        "veryLow": "Très bas"
+        "veryHigh_female": "Très haute",
+        "veryLow": "Très bas",
+        "veryLow_female": "Très basse"
     },
     "selectShift": {
         "1d": "1 jour",

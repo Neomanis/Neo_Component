@@ -177,30 +177,28 @@
         "shellButton": "Remote Shell"
     },
     "resourceCategory": {
-        "Computer": "Computers",
-        "Monitor": "Monitors",
-        "Networkequipment": "Networks",
-        "Peripheral": "Peripherals",
-        "Phone": "Phones",
-        "Printer": "Printers",
-        "Rack": "Racks",
-        "Software": "Softwares"
+        "computer": "Computers",
+        "monitor": "Monitors",
+        "networkequipment": "Networks",
+        "peripheral": "Peripherals",
+        "phone": "Phones",
+        "printer": "Printers",
+        "rack": "Racks",
+        "software": "Softwares"
     },
-    "scaleLevelFemale": {
+    "scaleLevel": {
         "high": "High",
+        "high_female": "High",
         "low": "Low",
+        "low_female": "Low",
         "major": "Major",
+        "major_female": "Major",
         "medium": "Medium",
+        "medium_female": "Medium",
         "veryHigh": "Very high",
-        "veryLow": "Very low"
-    },
-    "scaleLevelMale": {
-        "high": "High",
-        "low": "Low",
-        "major": "Major",
-        "medium": "Medium",
-        "veryHigh": "Very high",
-        "veryLow": "Very low"
+        "veryHigh_female": "Very high",
+        "veryLow": "Very low",
+        "veryLow_female": "Very low"
     },
     "selectShift": {
         "1d": "1 day",
