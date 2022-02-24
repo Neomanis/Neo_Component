@@ -88,6 +88,7 @@
         "startAt": "Commence le"
     },
     "inputSelect": {
+        "entity": "Entité concernée",
         "event": "Evènement",
         "major": "Majeure",
         "minor": "Mineure",

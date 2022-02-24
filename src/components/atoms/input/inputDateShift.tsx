@@ -1,25 +1,11 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { FieldValues, UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { GroupBase, StylesConfig } from "react-select";
 
 import InputDateTime from "./inputDateTime";
 import InputSelectSearchable from "./inputSelectSearchable";
 
 interface Props {
-    classNames?: {
-        container?: string;
-        inputDateTime?: string;
-        inputDateTimeDot?: string;
-        inputDateTimeInput?: string;
-        inputDateTimeLabel?: string;
-        inputSelect?: string;
-        inputSelectCustomStyle?: StylesConfig<
-            { label: string; value: number },
-            boolean,
-            GroupBase<{ label: string; value: number }>
-        >;
-        inputSelectDot?: string;
-    };
+    className?: string;
     date: Date;
     getValues?: UseFormGetValues<FieldValues>;
     inputSelectPlaceholder?: string;
@@ -35,7 +21,7 @@ interface Props {
 }
 
 const InputDateShift = ({
-    classNames,
+    className,
     date,
     getValues,
     inputSelectPlaceholder,
@@ -68,12 +54,12 @@ const InputDateShift = ({
     }, [dateAdd]);
 
     return (
-        <div className={`${classNames?.container}`} data-testid="inputDateShift-body">
+        <div className={`${className ? className : "flex"}`} data-testid="inputDateShift-body">
             <InputDateTime
-                className={`${classNames?.inputDateTime}`}
-                inputClassName={`${classNames?.inputDateTimeInput}`}
-                labelClassName={`${classNames?.inputDateTimeLabel}`}
-                dotClassName={`${classNames?.inputDateTimeDot}`}
+                className={``}
+                inputClassName={``}
+                labelClassName={``}
+                dotClassName={``}
                 defaultValue={dateShift}
                 fCallBack={(data) => {
                     setDateAdd(data);
@@ -90,11 +76,11 @@ const InputDateShift = ({
                 updateFunction={updateFunction}
             />
             <InputSelectSearchable
-                dotClassName={`${classNames?.inputSelectDot}`}
-                containerClassName={`${classNames?.inputSelect}`}
-                customStyleOverride={classNames?.inputSelectCustomStyle}
+                dotClassName={``}
+                containerClassName={``}
                 isSearchable={false}
                 data={tabProps}
+                label={" "}
                 placeholder={inputSelectPlaceholder}
                 isUpdateField={isUpdateField}
                 refForm={"select-" + refForm}

@@ -41,6 +41,7 @@ export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
+    label: "Label Time!",
     customStyleOverride: {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         input: (provided, state) => ({

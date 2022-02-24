@@ -112,35 +112,37 @@ const InputDateTime = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className={`${className}`} data-testid="inputDateTime-body">
-            <label className={`${labelClassName}`}>
-                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
-                    <p>{label}</p>
-                    <div className={`${dotClassName}`}>
-                        {(isUpdateField || isError) && (
-                            <Updater
-                                errorMessage={errorMessage}
-                                isCancelable={state.isCancelable}
-                                isUpdate={state.isCooldown}
-                                isSuccess={state.isSuccess}
-                                isError={isError}
-                                trigger={state.trigger}
-                                fCallBackCancel={(): void => {
-                                    if (setValue && state.previous) {
-                                        setValue(refForm, state.previous);
-                                        setStartDate(state.previous as Date);
-                                    }
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
-                                    }
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }}
-                            />
-                        )}
+        <div>
+            <label className={`${className ? className : ""}`} data-testid="inputDateTime-body">
+                {(isUpdateField || isError || label) && (
+                    <div className={`h-6 flex justify-between`}>
+                        <p className={`${labelClassName ? labelClassName : "text-white"}`}>{label}</p>
+                        <div className={`${dotClassName ? dotClassName : ""}`}>
+                            {(isUpdateField || isError) && (
+                                <Updater
+                                    errorMessage={errorMessage}
+                                    isCancelable={state.isCancelable}
+                                    isUpdate={state.isCooldown}
+                                    isSuccess={state.isSuccess}
+                                    isError={isError}
+                                    trigger={state.trigger}
+                                    fCallBackCancel={(): void => {
+                                        if (setValue && state.previous) {
+                                            setValue(refForm, state.previous);
+                                            setStartDate(state.previous as Date);
+                                        }
+                                        if (state.timeoutId) {
+                                            clearTimeout(state.timeoutId);
+                                        }
+                                        dispatch({ type: "CANCEL_UPDATE" });
+                                    }}
+                                />
+                            )}
+                        </div>
                     </div>
-                </div>
+                )}
                 <DatePicker
-                    className={`${inputClassName}`}
+                    className={`${inputClassName ? inputClassName : "bg-neo-bg-B rounded text-white py-2 px-1"}`}
                     placeholderText={placeholder}
                     required={required}
                     selected={startDate}
