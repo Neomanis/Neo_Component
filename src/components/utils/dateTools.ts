@@ -13,7 +13,7 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
     const dateTicket = new Date(date);
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
 
-    const myLanguage = i18next.getFixedT(lang ? lang : "en_US");
+    const myLanguage = i18next.getFixedT(lang ? lang : "en-US");
 
     // if formatDistanceToNowStrict is using 'hour' unit, we have to compute difference
     // between dates ourselves to display hours and minutes in HH:mm format
@@ -40,18 +40,18 @@ export function getFormatedTimeToNowExtended(date: string, lang: string): string
 
 export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     switch (lang) {
-        case "en_US":
+        case "en-US":
             return enUS;
-        case "fr_FR":
+        case "fr-FR":
             return fr;
-        case "en_GB":
+        case "en-GB":
             return enGB;
         default:
             return enGB;
     }
 }
 
-export function formatDate(date: string, lang = "en_GB", dayOfWeek = false): string {
+export function formatDate(date: string, lang = "en-GB", dayOfWeek = false): string {
     return format(new Date(date), `${dayOfWeek ? "EEEE " : ""}P p`, {
         locale: getDateFnsLocaleFromUserLang(lang),
     });

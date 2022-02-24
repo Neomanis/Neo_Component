@@ -11,12 +11,16 @@ type EnumType = {
 export function mapEnumToInputSelectSearchableData(
     enumarable: EnumType,
     tFunction?: TFunction,
-    traductionKey?: string
+    traductionKey?: string,
+    traductionOption?: { context?: string; count?: number }
 ): IInputSelectSearchableData[] {
     const enumarableValues = Object.keys(enumarable).filter((key) => isNaN(Number(key)));
     const enumarableKeys = Object.keys(enumarable).filter((key) => !isNaN(Number(key)));
     return enumarableValues.map((key, index) => ({
-        label: tFunction && traductionKey ? tFunction(`${traductionKey}.${lowerCaseFirstLetter(key)}`) : key,
+        label:
+            tFunction && traductionKey
+                ? tFunction(`${traductionKey}.${lowerCaseFirstLetter(key)}`, { ...traductionOption })
+                : key,
         value: parseInt(enumarableKeys[index]),
     }));
 }

@@ -14,7 +14,6 @@ interface Props {
     createUserQuestion: string;
     id: number;
     isQuestionSolved: boolean;
-    languageUser: string;
     text: string;
     updateAnswer: (id: number, text: string) => void;
     upvote: (id: number) => void;
@@ -30,7 +29,6 @@ const AnswerItem = ({
     createUser,
     createUserQuestion,
     id,
-    languageUser,
     text,
     updateAnswer,
     upvote,
@@ -44,7 +42,6 @@ const AnswerItem = ({
             <AnswerForm
                 closeCallback={() => setUpdate(false)}
                 isUpdateField
-                languageUser={languageUser}
                 text={text}
                 updateFunction={(refForm, value) => {
                     setUpdate(false);

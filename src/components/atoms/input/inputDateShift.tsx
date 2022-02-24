@@ -56,10 +56,6 @@ const InputDateShift = ({
     return (
         <div className={`${className ? className : "flex"}`} data-testid="inputDateShift-body">
             <InputDateTime
-                className={``}
-                inputClassName={``}
-                labelClassName={``}
-                dotClassName={``}
                 defaultValue={dateShift}
                 fCallBack={(data) => {
                     setDateAdd(data);
@@ -75,23 +71,24 @@ const InputDateShift = ({
                 targetId={Math.round(dateShift.getTime() / 1000)}
                 updateFunction={updateFunction}
             />
-            <InputSelectSearchable
-                dotClassName={``}
-                containerClassName={``}
-                isSearchable={false}
-                data={tabProps}
-                label={" "}
-                placeholder={inputSelectPlaceholder}
-                isUpdateField={isUpdateField}
-                refForm={"select-" + refForm}
-                register={register}
-                setStateValue={(value) => updateDate(value)}
-                setValue={setValue}
-                targetId={
-                    Math.round(dateAdd ? dateAdd.getTime() / 1000 : 0) || Math.round(date ? date.getTime() / 1000 : 0)
-                }
-                updateFunction={() => updateFunction && updateFunction(refForm, getValues(refForm))}
-            />
+            <div className="w-32 ml-14">
+                <InputSelectSearchable
+                    isSearchable={false}
+                    data={tabProps}
+                    label={" "}
+                    placeholder={inputSelectPlaceholder}
+                    isUpdateField={isUpdateField}
+                    refForm={"select-" + refForm}
+                    register={register}
+                    setStateValue={(value) => updateDate(value)}
+                    setValue={setValue}
+                    targetId={
+                        Math.round(dateAdd ? dateAdd.getTime() / 1000 : 0) ||
+                        Math.round(date ? date.getTime() / 1000 : 0)
+                    }
+                    updateFunction={() => updateFunction && updateFunction(refForm, getValues(refForm))}
+                />
+            </div>
         </div>
     );
 };

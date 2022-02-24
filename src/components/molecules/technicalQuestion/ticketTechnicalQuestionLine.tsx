@@ -1,22 +1,15 @@
 import React, { ReactElement } from "react";
-import i18next from "i18next";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     answersNumber: number | undefined;
     openTechnicalQuestion: () => void;
-    languageUser: string;
     solved: boolean;
     title: string;
 }
 
-const TicketTechnicalQuestionLine = ({
-    answersNumber,
-    openTechnicalQuestion,
-    languageUser,
-    solved,
-    title,
-}: Props): ReactElement => {
-    const myLanguage = i18next.getFixedT(languageUser);
+const TicketTechnicalQuestionLine = ({ answersNumber, openTechnicalQuestion, solved, title }: Props): ReactElement => {
+    const { t } = useTranslation();
 
     return (
         <div
@@ -39,8 +32,8 @@ const TicketTechnicalQuestionLine = ({
             </div>
             <div className="font-bold text-xxs text-neo-blue-secondary">
                 {answersNumber > 1
-                    ? myLanguage("ticketModalInfo.answer_other", { count: answersNumber })
-                    : myLanguage("ticketModalInfo.answer_one", { count: answersNumber })}
+                    ? t("ticketModalInfo.answer_other", { count: answersNumber })
+                    : t("ticketModalInfo.answer_one", { count: answersNumber })}
             </div>
         </div>
     );

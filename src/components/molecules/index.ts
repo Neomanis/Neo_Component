@@ -21,6 +21,7 @@ import Toaster from "./toaster";
 import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
 import WritingDots from "../atoms/chat/writingDots";
+import NeoBotProcess from "./chat/neoBotProcess";
 
 export {
     AnswerForm,
@@ -30,6 +31,7 @@ export {
     HoverTicket,
     InputChat,
     MessageChat,
+    NeoBotProcess,
     NotificationCard,
     NotificationContainer,
     NotificationItem,

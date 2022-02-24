@@ -4,12 +4,10 @@ import { ITicket } from "../../../interface";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
-
-//translations
-import i18next from "i18next";
 import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
+import { useTranslation } from "../../../i18n";
 
 interface Props {
     currentTicket?: ITicket;
@@ -28,7 +26,7 @@ const Ticket = ({
     ticket,
     ticketBG,
 }: Props): ReactElement => {
-    const myLanguage = i18next.getFixedT(languageUser ? languageUser : "en_US");
+    const { t } = useTranslation();
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
@@ -116,7 +114,7 @@ const Ticket = ({
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} />
                             <div className="font-extrabold text-xs">
-                                <Title type="h3" data={myLanguage("ticketScreen.id") + " " + ticket.id.toString()} />
+                                <Title type="h3" data={t("ticketScreen.id") + " " + ticket.id.toString()} />
                             </div>
                         </div>
                         <div

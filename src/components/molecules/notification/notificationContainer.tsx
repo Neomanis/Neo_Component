@@ -1,5 +1,5 @@
-import i18next from "i18next";
 import React, { ReactElement, ReactNode, useState, useRef, useEffect } from "react";
+import { useTranslation } from "../../../i18n";
 import { Button, Title } from "../../atoms";
 
 type Props = {
@@ -19,11 +19,11 @@ const NotificationContainer = ({
     clearAllNotifications,
     fCallBackClear,
     fCallBackSeeAll,
-    languageUser = "en_US",
     title,
     viewItem = 2,
 }: Props): ReactElement => {
-    const myLanguage = i18next.getFixedT(languageUser);
+    const { t } = useTranslation();
+
     const [fullView, setFullView] = useState(false);
     const [heightItem, setHeightItem] = useState(50);
     const refHeight = useRef<HTMLHeadingElement>(null);
@@ -49,7 +49,7 @@ const NotificationContainer = ({
                 </div>
                 {viewItem < childrenLength && (
                     <Button
-                        data={!fullView ? myLanguage("notification.seeAll") : myLanguage("notification.seeLess")}
+                        data={!fullView ? t("notification.seeAll") : t("notification.seeLess")}
                         fCallback={(): void => {
                             setFullView(!fullView);
                             fCallBackSeeAll && fCallBackSeeAll();
@@ -70,7 +70,7 @@ const NotificationContainer = ({
             {clearAllNotifications && (
                 <div className="w-full flex justify-center py-2">
                     <Button
-                        data={myLanguage("notification.clearAll")}
+                        data={t("notification.clearAll")}
                         fCallback={(): void => fCallBackClear()}
                         className="flex hover:text-neo-light-grey transition-colors text-neo-link mb-1 font-bold text-xs"
                         iconClassName="ml-2"
