@@ -63,7 +63,7 @@ const InputChat = ({
             {privateMessage && (
                 <div className="p-2 w-10">
                     <Tooltip
-                        data={t("chat.privateMessage")}
+                        data={t("chat.private")}
                         className="pt-3 text-xs"
                         component={
                             <ButtonSwitch

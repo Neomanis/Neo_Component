@@ -239,9 +239,7 @@ const InputSelectSearchable = ({
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}
                 noOptionsMessage={(obj: { inputValue: string }) =>
-                    `${t("inputSelectSearchable.value")} ${obj.inputValue} ${t(
-                        "inputSelectSearchable.noOptionMessage"
-                    )}`
+                    `${t("global.value")} ${obj.inputValue} ${t("error.notFound")}`
                 }
                 isMulti={isMulti}
                 menuPlacement="auto"

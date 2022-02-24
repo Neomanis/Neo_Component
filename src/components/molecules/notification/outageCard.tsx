@@ -68,7 +68,7 @@ const OutageCard = ({
                             setOpenValidationCard(false);
                             deleteCallBack(data.id);
                         }}
-                        text={t("validationCard.deleteValidation") + " " + data.type + " ?"}
+                        text={t("global.deleteThis") + " " + data.type + " ?"}
                     />
                 )}
             </div>

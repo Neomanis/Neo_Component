@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "main": "build/index.js",
   "files": [
     "build"
@@ -78,7 +78,7 @@
     "date-fns": "^2.25.0",
     "i18next": "^21.3.3",
     "react-datepicker": "^4.2.1",
-    "react-i18next": "^11.15.3",
+    "react-i18next": "^11.15.5",
     "react-quill": "^2.0.0-beta.4",
     "react-select": "^5.2.1",
     "tailwindcss": "yarn:@tailwindcss/postcss7-compat"

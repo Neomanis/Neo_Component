@@ -114,7 +114,7 @@ const Ticket = ({
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} />
                             <div className="font-extrabold text-xs">
-                                <Title type="h3" data={t("ticketScreen.id") + " " + ticket.id.toString()} />
+                                <Title type="h3" data={t("ticket.id") + " " + ticket.id.toString()} />
                             </div>
                         </div>
                         <div
