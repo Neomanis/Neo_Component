@@ -42,7 +42,7 @@ fi
 -   Avoid full uppercase translation, use `toUpperCase()` in your javascript
 -   Avoid having the name of the previous key in the translation key
     -   `❌ "ticket": { "newTicket": "New ticket"}`
-    -   `✔️ "ticket": { "new": "New ticket"}`
+    -   `✅ "ticket": { "new": "New ticket"}`
 
 ### Plural
 
