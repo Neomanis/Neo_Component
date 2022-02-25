@@ -34,6 +34,78 @@ if [ -t 1 ]; then
 fi
 ```
 
+## How to add a new translation
+
+-   First look in the translation files in `src/locales` if your translation already exist
+-   Translation are sorted by lexical field
+-   If you think some translation could be better sorted, go ahead !
+-   Avoid full uppercase translation, use `toUpperCase()` in your javascript
+-   Avoid having the name of the previous key in the translation key
+    -   `❌ "ticket": { "newTicket": "New ticket"}`
+    -   `✔️ "ticket": { "new": "New ticket"}`
+
+### Plural
+
+You can add singular and plural translation by having one key with `_one` for singular and `_other` for plural
+
+In your translation file:
+
+```json
+"ticket":  {
+    "new_one": "New Ticket",
+    "new_other": "New Tickets",
+}
+```
+
+In your javascript:
+
+```js
+t("ticket.new", { count: 1 }); // New Ticket
+t("ticket.new", { count: 326 }); // New Tickets
+```
+
+### Variable
+
+You can have some variable injected in your translation using the `{{yourVariable}}` syntax, it works with count or anything
+
+In your translation file:
+
+```json
+"ticket":  {
+    "withNumber_one": "{{count}} ticket",
+    "withNumber_other": "{{count}} tickets",
+}
+```
+
+In your javascript:
+
+```js
+t("ticket.withNumber", { count: 1 }); // 1 ticket
+t("ticket.withNumber", { count: 326 }); // 326 tickets
+```
+
+### Context
+
+You can add context to your translation, here is a exemple for gender
+
+In your translation file:
+
+```json
+"scale":  {
+    "low": "Bas",
+    "low_female": "Basse",
+    "high": "Haut",
+    "high_female": "Haute",
+}
+```
+
+In your javascript:
+
+```js
+t("scale.low"); // Bas
+t("scale.low", { context: "female" }); // Basse
+```
+
 ## How to test the package locally
 
 ### Method 1:

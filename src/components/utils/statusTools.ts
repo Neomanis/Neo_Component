@@ -1,5 +1,5 @@
 import { Status } from "../../enumeration";
-import { Colors, ITailwindColorApplication } from "../../interface";
+import { Colors, ITailwindColorApplication, TStatusTraductionKey } from "../../interface";
 
 const statusColors: Colors = {
     new: {
@@ -44,6 +44,6 @@ export function getStatusColor(
     return isHex ? statusColors[key].hex : statusColors[key].tailwind[tailwindType];
 }
 
-export function getStatusText(statusId: number): string {
-    return Status[statusId].toLowerCase();
+export function getStatusText(statusId: number): TStatusTraductionKey {
+    return Status[statusId].toLowerCase() as TStatusTraductionKey;
 }

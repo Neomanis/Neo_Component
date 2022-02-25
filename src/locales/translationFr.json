@@ -11,7 +11,7 @@
     "category": {
         "resource": {
             "computer_one": "Ordinateur",
-            "computer_oother": "Ordinateurs",
+            "computer_other": "Ordinateurs",
             "monitor_one": "Écran",
             "monitor_other": "Écrans",
             "networkequipment_one": "Réseau",
@@ -86,7 +86,7 @@
         "hour_other": "Heures",
         "minute_one": "Minute",
         "minute_other": "Minutes",
-        "month_one": "Moi",
+        "month_one": "Mois",
         "month_other": "Mois",
         "second_one": "Seconde",
         "second_other": "Secondes",
@@ -182,6 +182,7 @@
         "title": "Titre",
         "tools": "Outils",
         "total": "Total",
+        "uiLanguage": "Langue de l'interface",
         "uncheckAll": "Tout déselectionner",
         "unfollow": "Ne plus suivre",
         "update": "mise à jour",
@@ -317,7 +318,7 @@
             "withCount_one": "{{count}} réponse",
             "withCount_other": "{{count}} réponses"
         },
-        "answeredQuestion": "Questions répondues",
+        "answered": "Questions répondues",
         "relatedTicket": "Liée au ticket",
         "showRelated": "Montrer mes questions liées",
         "showSolved": "Montrer les questions résolues",

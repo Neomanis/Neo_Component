@@ -11,7 +11,7 @@
     "category": {
         "resource": {
             "computer_one": "Computer",
-            "computer_oother": "Computers",
+            "computer_other": "Computers",
             "monitor_one": "Monitor",
             "monitor_other": "Monitors",
             "networkequipment_one": "Network",
@@ -182,6 +182,7 @@
         "title": "Title",
         "tools": "Tools",
         "total": "Total",
+        "uiLanguage": "Ui language",
         "uncheckAll": "Uncheck all",
         "unfollow": "Unfollow",
         "update": "updating",
@@ -317,7 +318,7 @@
             "withCount_one": "{{count}} answer",
             "withCount_other": "{{count}} answers"
         },
-        "answeredQuestion": "Answered questions",
+        "answered": "Answered questions",
         "relatedTicket": "Related to ticket",
         "showRelated": "Show my related questions",
         "showSolved": "Show me solved questions",
