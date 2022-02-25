@@ -107,7 +107,7 @@ const NotificationItem = ({
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
                             className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
-                            data={t("workflow.validate")}
+                            data={t("global.validate")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(true);
@@ -115,7 +115,7 @@ const NotificationItem = ({
                         />
                         <Button
                             className="bg-neo-link hover:bg-neo-red rounded uppercase font-bold py-2 w-24"
-                            data={t("workflow.refuse")}
+                            data={t("global.refuse")}
                             fCallback={(e) => {
                                 e.stopPropagation();
                                 sendWorkFlow(false);
@@ -123,7 +123,7 @@ const NotificationItem = ({
                         />
                     </div>
                 ) : (
-                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("workflow.error")}</p>
+                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("error.workflow")}</p>
                 ))}
         </div>
     );
