@@ -62,9 +62,9 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
     const date = new Date(incomingDate);
     const timestampDiff = (new Date().getTime() - new Date(date).getTime()) / 1000;
     const myLanguage = i18n.getFixedT(lang);
-    const begin = myLanguage("formatDateToNow.begin");
-    const middle = myLanguage("formatDateToNow.middle");
-    const end = myLanguage("formatDateToNow.end");
+    const begin = myLanguage("date.formatDateToNow.begin");
+    const middle = myLanguage("date.formatDateToNow.middle");
+    const end = myLanguage("date.formatDateToNow.end");
 
     if (timestampDiff < 24 * 60 * 60 && date.getDay() === new Date().getDay()) {
         formatedDate = format(date, `p`, {
