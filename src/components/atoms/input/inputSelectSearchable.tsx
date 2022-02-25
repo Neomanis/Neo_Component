@@ -98,6 +98,13 @@ const InputSelectSearchable = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        if (isError && state.timeoutId) {
+            dispatch({ type: "CANCEL_UPDATE" });
+            clearTimeout(state.timeoutId);
+        }
+    }, [isError, state.timeoutId]);
+
     function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
         if (selected && doValueLogic) {
             dispatch({ type: "TRACK_STATE", payload: selected });

@@ -112,69 +112,72 @@ const InputDateTime = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div>
-            <label className={`${className ? className : ""}`} data-testid="inputDateTime-body">
-                {(isUpdateField || isError || label) && (
-                    <div className={`h-6 flex justify-between`}>
-                        <p className={`${labelClassName ? labelClassName : "text-white"}`}>{label}</p>
-                        <div className={`${dotClassName ? dotClassName : ""}`}>
-                            {(isUpdateField || isError) && (
-                                <Updater
-                                    errorMessage={errorMessage}
-                                    isCancelable={state.isCancelable}
-                                    isUpdate={state.isCooldown}
-                                    isSuccess={state.isSuccess}
-                                    isError={isError}
-                                    trigger={state.trigger}
-                                    fCallBackCancel={(): void => {
-                                        if (setValue && state.previous) {
-                                            setValue(refForm, state.previous);
-                                            setStartDate(state.previous as Date);
-                                        }
-                                        if (state.timeoutId) {
-                                            clearTimeout(state.timeoutId);
-                                        }
-                                        dispatch({ type: "CANCEL_UPDATE" });
-                                    }}
-                                />
-                            )}
-                        </div>
-                    </div>
-                )}
-                <DatePicker
-                    className={`${inputClassName ? inputClassName : "bg-neo-bg-B rounded text-white py-2 px-1"}`}
-                    placeholderText={placeholder}
-                    required={required}
-                    selected={startDate}
-                    showTimeSelect
-                    showTimeInput={showTimeInput ? showTimeInput : false}
-                    onChange={(date: Date | null): void => {
-                        fCallBack && fCallBack(date);
-                        setStartDate(date);
-                        setValue && setValue(refForm, date, { shouldValidate: true });
-                        if (isUpdateField) {
-                            if (date && !isError) {
-                                if (!isEqual(state.previous as Date, date)) {
-                                    dispatch({ type: "UPDATING", payload: date });
-                                } else {
+        <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
+            {(isUpdateField || isError || label) && (
+                <div className={`h-6 flex justify-between`}>
+                    <p className={`${labelClassName ? labelClassName : "text-white"}`}>{label}</p>
+                    <div className={`${dotClassName ? dotClassName : ""}`}>
+                        {(isUpdateField || isError) && (
+                            <Updater
+                                errorMessage={errorMessage}
+                                isCancelable={state.isCancelable}
+                                isUpdate={state.isCooldown}
+                                isSuccess={state.isSuccess}
+                                isError={isError}
+                                trigger={state.trigger}
+                                fCallBackCancel={(): void => {
+                                    if (setValue && state.previous) {
+                                        setValue(refForm, state.previous);
+                                        setStartDate(state.previous as Date);
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
                                     dispatch({ type: "CANCEL_UPDATE" });
-                                }
+                                }}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
+            <DatePicker
+                className={`
+                    ${
+                        inputClassName
+                            ? inputClassName
+                            : "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full"
+                    }`}
+                placeholderText={placeholder}
+                required={required}
+                selected={startDate}
+                showTimeSelect
+                showTimeInput={showTimeInput ? showTimeInput : false}
+                onChange={(date: Date | null): void => {
+                    fCallBack && fCallBack(date);
+                    setStartDate(date);
+                    setValue && setValue(refForm, date, { shouldValidate: true });
+                    if (isUpdateField) {
+                        if (date && !isError) {
+                            if (!isEqual(state.previous as Date, date)) {
+                                dispatch({ type: "UPDATING", payload: date });
                             } else {
-                                dispatch({ type: "SHOW_DOT" });
+                                dispatch({ type: "CANCEL_UPDATE" });
                             }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
+                        } else {
+                            dispatch({ type: "SHOW_DOT" });
                         }
-                    }}
-                    maxDate={maxDate}
-                    minDate={minDate}
-                    dateFormat="yyyy/MM/dd HH:mm"
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                />
-            </label>
-        </div>
+                        if (state.timeoutId) {
+                            clearTimeout(state.timeoutId);
+                        }
+                    }
+                }}
+                maxDate={maxDate}
+                minDate={minDate}
+                dateFormat="yyyy/MM/dd HH:mm"
+                timeFormat="HH:mm"
+                timeIntervals={15}
+            />
+        </label>
     );
 };
 

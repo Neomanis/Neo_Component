@@ -6,6 +6,8 @@ import InputSelectSearchable from "./inputSelectSearchable";
 
 interface Props {
     className?: string;
+    classNameInputDate?: string;
+    classNameInputSelect?: string;
     date: Date;
     getValues?: UseFormGetValues<FieldValues>;
     inputSelectPlaceholder?: string;
@@ -22,6 +24,8 @@ interface Props {
 
 const InputDateShift = ({
     className,
+    classNameInputDate,
+    classNameInputSelect,
     date,
     getValues,
     inputSelectPlaceholder,
@@ -54,24 +58,27 @@ const InputDateShift = ({
     }, [dateAdd]);
 
     return (
-        <div className={`${className ? className : "flex"}`} data-testid="inputDateShift-body">
-            <InputDateTime
-                defaultValue={dateShift}
-                fCallBack={(data) => {
-                    setDateAdd(data);
-                    setValue && setValue("select-" + refForm, -1);
-                }}
-                isUpdateField={isUpdateField}
-                label={label}
-                maxDate={maxDate}
-                minDate={minDate}
-                refForm={refForm}
-                register={register}
-                setValue={setValue}
-                targetId={Math.round(dateShift.getTime() / 1000)}
-                updateFunction={updateFunction}
-            />
-            <div className="w-32 ml-14">
+        <div className={`${className ? className : "flex w-full"}`} data-testid="inputDateShift-body">
+            <div className={classNameInputDate ? classNameInputDate : "w-52 mr-14"}>
+                <InputDateTime
+                    labelClassName="text-xs font-bold text-white"
+                    defaultValue={dateShift}
+                    fCallBack={(data) => {
+                        setDateAdd(data);
+                        setValue && setValue("select-" + refForm, -1);
+                    }}
+                    isUpdateField={isUpdateField}
+                    label={label}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    refForm={refForm}
+                    register={register}
+                    setValue={setValue}
+                    targetId={Math.round(dateShift.getTime() / 1000)}
+                    updateFunction={updateFunction}
+                />
+            </div>
+            <div className={classNameInputSelect ? classNameInputSelect : "w-32"}>
                 <InputSelectSearchable
                     isSearchable={false}
                     data={tabProps}
