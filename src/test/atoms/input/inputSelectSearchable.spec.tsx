@@ -40,6 +40,7 @@ describe("InputSelectSearchable", () => {
     it("should be visible", () => {
         mount(
             <InputSelectSearchable
+                isUpdateField={true}
                 isClearable={true}
                 placeholder="test-section"
                 isSearchable

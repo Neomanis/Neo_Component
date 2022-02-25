@@ -93,8 +93,17 @@ const InputSelectSearchable = ({
 
     const isLastMount = useRef(false);
     const { t } = useTranslation();
-    const inputRegister =
+    useEffect(() => {
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (isError && state.timeoutId) {
+            dispatch({ type: "CANCEL_UPDATE" });
+            clearTimeout(state.timeoutId);
+        }
+    }, [isError, state.timeoutId]);
 
     function handleOnChangeSimple(selected: { value: number; label: string } | null): void {
         if (selected && doValueLogic) {
@@ -113,7 +122,7 @@ const InputSelectSearchable = ({
             dispatch({ type: "RESET", payload: selected?.value });
         }
         if (setValue) {
-            setValue(refForm, selected?.value);
+            setValue(refForm, selected?.value, { shouldValidate: true });
         }
         if (setStateValue) {
             setStateValue(selected?.value);
@@ -135,7 +144,7 @@ const InputSelectSearchable = ({
             dispatch({ type: "UPDATING", payload: values });
         }
         if (setValue) {
-            setValue(refForm, values);
+            setValue(refForm, values, { shouldValidate: true });
         }
         if (state.timeoutId) {
             clearTimeout(state.timeoutId);
@@ -155,7 +164,7 @@ const InputSelectSearchable = ({
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
-        setValue && setValue(refForm, defaultValue);
+        setValue && setValue(refForm, defaultValue, { shouldValidate: true });
         return () => {
             isLastMount.current = true;
         };
@@ -186,43 +195,44 @@ const InputSelectSearchable = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className={containerClassName} data-testid="inputSelectSearchable-body">
-            <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
-                <label className={labelClassName}>{label}</label>
-                <div className={`${dotClassName}`} data-testid="inputSelectSearchableDot-body">
-                    {(isUpdateField || isError) && (
-                        <Updater
-                            errorMessage={errorMessage}
-                            isCancelable={state.isCancelable}
-                            isUpdate={state.isCooldown}
-                            isError={isError}
-                            isSuccess={state.isSuccess}
-                            trigger={state.trigger}
-                            fCallBackCancel={(): void => {
-                                if (setValue && state.previous) {
-                                    setValue(refForm, state.previous);
-                                }
-                                if (setStateValue && state.previous) {
-                                    setStateValue(state.previous as number);
-                                }
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
-                                dispatch({ type: "CANCEL_UPDATE" });
-                                dispatch({
-                                    type: "TRACK_STATE",
-                                    payload: !isMulti
-                                        ? data.filter((el) => el.value === state.previous)
-                                        : data.filter((el) => (state.previous as number[]).includes(el.value)),
-                                });
-                            }}
-                        />
-                    )}
+        <div className={containerClassName ? containerClassName : "w-full"} data-testid="inputSelectSearchable-body">
+            {(isUpdateField || isError || label) && (
+                <div className="h-6 flex justify-between items-center">
+                    <label className={labelClassName ? labelClassName : "text-white"}>{label}</label>
+                    <div className={`${dotClassName ? dotClassName : ""}`} data-testid="inputSelectSearchableDot-body">
+                        {(isUpdateField || isError) && (
+                            <Updater
+                                errorMessage={errorMessage}
+                                isCancelable={state.isCancelable}
+                                isUpdate={state.isCooldown}
+                                isError={isError}
+                                isSuccess={state.isSuccess}
+                                trigger={state.trigger}
+                                fCallBackCancel={(): void => {
+                                    if (setValue && state.previous) {
+                                        setValue(refForm, state.previous, { shouldValidate: true });
+                                    }
+                                    if (setStateValue && state.previous) {
+                                        setStateValue(state.previous as number);
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                    dispatch({
+                                        type: "TRACK_STATE",
+                                        payload: !isMulti
+                                            ? data.filter((el) => el.value === state.previous)
+                                            : data.filter((el) => (state.previous as number[]).includes(el.value)),
+                                    });
+                                }}
+                            />
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
             <Select
-                {...inputRegister}
-                className="flex items-center w-full my-1 rounded-md text-xs font-bold"
+                className="flex items-center w-full rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
                 styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
                 options={data}
