@@ -88,7 +88,6 @@
         "startAt": "Start at"
     },
     "inputSelect": {
-        "entity": "affected entity",
         "event": "Event",
         "major": "Major",
         "minor": "Minor",
