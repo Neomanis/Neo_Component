@@ -18,7 +18,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
         setStoredValue(value);
 
         // We dispatch a custom event so every useLocalStorage hook are notified
-        window.dispatchEvent(new Event("local-storage"));
+        window.dispatchEvent(new Event(`local-storage-${key}`));
     };
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     window.addEventListener("storage", handleStorageChange);
 
     // this is a custom event, triggered in setValue
-    window.addEventListener("local-storage", handleStorageChange);
+    window.addEventListener(`local-storage-${key}`, handleStorageChange);
 
     return [storedValue, setValue];
 }
