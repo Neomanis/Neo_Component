@@ -8,6 +8,7 @@ import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../..
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
+import { useDraggable } from "@dnd-kit/core";
 
 interface Props {
     currentTicket?: ITicket;
@@ -27,6 +28,11 @@ const Ticket = ({
     ticketBG,
 }: Props): ReactElement => {
     const { t } = useTranslation();
+
+    const { attributes, listeners, setNodeRef } = useDraggable({
+        id: "elHexagonDeLaMuerte" + (ticket?.id ?? Math.random()),
+        data: ticket,
+    });
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
@@ -77,6 +83,9 @@ const Ticket = ({
                     onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
                     onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                     data-testid="ticket-body"
+                    ref={setNodeRef}
+                    {...listeners}
+                    {...attributes}
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {isTTOorTTRStale() && (

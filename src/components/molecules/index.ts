@@ -22,10 +22,12 @@ import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
 import WritingDots from "../atoms/chat/writingDots";
 import NeoBotProcess from "./chat/neoBotProcess";
+import DraggedTicket from "./ticket/draggedTicket";
 
 export {
     AnswerForm,
     AnswerItem,
+    DraggedTicket,
     ChatCard,
     Grid,
     HoverTicket,

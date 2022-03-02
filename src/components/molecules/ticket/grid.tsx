@@ -3,8 +3,9 @@ import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
 import Ticket from "./ticket";
+import { useDroppable } from "@dnd-kit/core";
 
-interface Props {
+export interface GridProps {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
@@ -16,6 +17,7 @@ interface Props {
     showPagination?: boolean;
     ticketList?: ITicket[];
     ticketBG?: boolean;
+    isDroppable?: boolean;
 }
 
 interface BlankHexagon {
@@ -35,12 +37,18 @@ const Grid = ({
     showPagination,
     ticketList,
     ticketBG,
-}: Props): ReactElement => {
+    isDroppable,
+}: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
     // third is the number of rows
     const [grids, setGrids] = useState<(ITicket | BlankHexagon)[][][]>([]);
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
+
+    const { setNodeRef } = useDroppable({
+        id: "droppable" + cols + rows,
+    });
+
     const getGridsPaginationNumber = useCallback(() => {
         return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
     }, [ticketList, rows, cols]);
@@ -74,7 +82,7 @@ const Grid = ({
 
         setGrids(gridsInitialization);
     }
-
+    console.log("GRID");
     function changePage(direction: "prev" | "next"): void {
         if (direction === "prev") {
             setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? getGridsPaginationNumber() - 1 : pageNumber - 1));
@@ -90,7 +98,11 @@ const Grid = ({
 
     return (
         <>
-            <div className={`${cols === 1 ? "w-52" : ""} ${className}`} data-testid="grid-body">
+            <div
+                className={`${cols === 1 ? "w-52" : ""} ${className}`}
+                data-testid="grid-body"
+                ref={isDroppable ? setNodeRef : null}
+            >
                 {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">
