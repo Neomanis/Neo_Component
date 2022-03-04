@@ -12,6 +12,7 @@ import { useDraggable } from "@dnd-kit/core";
 
 interface Props {
     currentTicket?: ITicket;
+    draggableId?: string;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
     languageUser?: string;
@@ -21,6 +22,7 @@ interface Props {
 
 const Ticket = ({
     currentTicket,
+    draggableId,
     fCallBackClick,
     fCallBackHover,
     languageUser,
@@ -30,7 +32,7 @@ const Ticket = ({
     const { t } = useTranslation();
 
     const { attributes, listeners, setNodeRef } = useDraggable({
-        id: "elHexagonDeLaMuerte" + (ticket?.id ?? Math.random()),
+        id: draggableId,
         data: ticket,
     });
 
@@ -83,9 +85,9 @@ const Ticket = ({
                     onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
                     onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                     data-testid="ticket-body"
-                    ref={setNodeRef}
-                    {...listeners}
-                    {...attributes}
+                    ref={draggableId ? setNodeRef : null}
+                    {...(draggableId ? listeners : {})}
+                    {...(draggableId ? attributes : {})}
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {isTTOorTTRStale() && (

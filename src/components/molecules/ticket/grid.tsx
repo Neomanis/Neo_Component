@@ -156,6 +156,7 @@ const Grid = ({
                                                     fCallBackHover && fCallBackHover(ticket);
                                                 }}
                                                 languageUser={languageUser}
+                                                draggableId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
                                             />
                                         ) : (
                                             <Ticket ticketBG={ticketBG ? true : false} />
