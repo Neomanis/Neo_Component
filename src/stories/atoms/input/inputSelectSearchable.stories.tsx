@@ -11,12 +11,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
-    const {
-        setValue,
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({ mode: "onChange" });
+    const { setValue, register, handleSubmit, formState } = useForm({ mode: "onChange" });
     const onSubmit: SubmitHandler<unknown> = async (data) => {
         // eslint-disable-next-line no-console
         console.log(data);
@@ -27,8 +22,11 @@ const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
                 {...args}
                 setValue={setValue}
                 register={register}
-                refForm="input"
-                isError={errors?.input && true}
+                refForm="select"
+                isError={formState?.errors.select}
+                customValidation={{
+                    multipleRequired: (value) => (value as number[]).length > 0,
+                }}
             />
             <button>Submit</button>
         </form>
@@ -41,6 +39,7 @@ export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
 Default.args = {
+    label: "Label Time!",
     customStyleOverride: {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         input: (provided, state) => ({
@@ -57,7 +56,7 @@ Default.args = {
     defaultValue: 3,
     required: true,
     refForm: "example 1",
-    isError: true,
+    isError: false,
     data: [
         {
             label: "Abricot",

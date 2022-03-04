@@ -87,13 +87,13 @@ const HoverTicket = ({
                         <div className="flex flex-col text-left justify-between w-2/3">
                             <div className="text-white">
                                 <div className="text-xl ">
-                                    {t("ticketScreen.id")} {ticket.id}
+                                    {t("ticket.id")} {ticket.id}
                                 </div>
                                 <div>{ticket.name}</div>
                             </div>
                             {keywords.length > 0 && (
                                 <div className="text-xs">
-                                    <div className="text-white font-bold">{t("ticketScreen.keyDetected")}</div>
+                                    <div className="text-white font-bold">{t("ticket.keywords")}</div>
                                     <div className="truncate text-white w-3/4">
                                         {keywords.map((kw, i, keywords) => {
                                             if (i + 1 === keywords.length) {
@@ -128,7 +128,7 @@ const HoverTicket = ({
                                     >
                                         <Icon fontIcon={faExclamationTriangle} className="mr-1" />
                                         <p className="text-xs">
-                                            {t(`ticketForm.${ticket.status === Status.New ? "tto" : "ttr"}`)}
+                                            {t(`ticket.${ticket.status === Status.New ? "tto" : "ttr"}`)}
                                         </p>
                                     </div>
                                 ) : (

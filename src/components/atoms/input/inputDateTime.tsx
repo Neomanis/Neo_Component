@@ -112,11 +112,11 @@ const InputDateTime = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className={`${className}`} data-testid="inputDateTime-body">
-            <label className={`${labelClassName}`}>
-                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
-                    <p>{label}</p>
-                    <div className={`${dotClassName}`}>
+        <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
+            {(isUpdateField || isError || label) && (
+                <div className={`h-6 flex justify-between`}>
+                    <p className={`${labelClassName ? labelClassName : "text-white"}`}>{label}</p>
+                    <div className={`${dotClassName ? dotClassName : ""}`}>
                         {(isUpdateField || isError) && (
                             <Updater
                                 errorMessage={errorMessage}
@@ -139,40 +139,45 @@ const InputDateTime = ({
                         )}
                     </div>
                 </div>
-                <DatePicker
-                    className={`${inputClassName}`}
-                    placeholderText={placeholder}
-                    required={required}
-                    selected={startDate}
-                    showTimeSelect
-                    showTimeInput={showTimeInput ? showTimeInput : false}
-                    onChange={(date: Date | null): void => {
-                        fCallBack && fCallBack(date);
-                        setStartDate(date);
-                        setValue && setValue(refForm, date, { shouldValidate: true });
-                        if (isUpdateField) {
-                            if (date && !isError) {
-                                if (!isEqual(state.previous as Date, date)) {
-                                    dispatch({ type: "UPDATING", payload: date });
-                                } else {
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }
+            )}
+            <DatePicker
+                className={`
+                    ${
+                        inputClassName
+                            ? inputClassName
+                            : "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full"
+                    }`}
+                placeholderText={placeholder}
+                required={required}
+                selected={startDate}
+                showTimeSelect
+                showTimeInput={showTimeInput ? showTimeInput : false}
+                onChange={(date: Date | null): void => {
+                    fCallBack && fCallBack(date);
+                    setStartDate(date);
+                    setValue && setValue(refForm, date, { shouldValidate: true });
+                    if (isUpdateField) {
+                        if (date && !isError) {
+                            if (!isEqual(state.previous as Date, date)) {
+                                dispatch({ type: "UPDATING", payload: date });
                             } else {
-                                dispatch({ type: "SHOW_DOT" });
+                                dispatch({ type: "CANCEL_UPDATE" });
                             }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
+                        } else {
+                            dispatch({ type: "SHOW_DOT" });
                         }
-                    }}
-                    maxDate={maxDate}
-                    minDate={minDate}
-                    dateFormat="yyyy/MM/dd HH:mm"
-                    timeFormat="HH:mm"
-                    timeIntervals={15}
-                />
-            </label>
-        </div>
+                        if (state.timeoutId) {
+                            clearTimeout(state.timeoutId);
+                        }
+                    }
+                }}
+                maxDate={maxDate}
+                minDate={minDate}
+                dateFormat="yyyy/MM/dd HH:mm"
+                timeFormat="HH:mm"
+                timeIntervals={15}
+            />
+        </label>
     );
 };
 

@@ -31,9 +31,7 @@ const TicketTechnicalQuestionLine = ({ answersNumber, openTechnicalQuestion, sol
                 {title}
             </div>
             <div className="font-bold text-xxs text-neo-blue-secondary">
-                {answersNumber > 1
-                    ? t("ticketModalInfo.answer_other", { count: answersNumber })
-                    : t("ticketModalInfo.answer_one", { count: answersNumber })}
+                {t("technicalQuestion.answer.withCount", { count: answersNumber })}
             </div>
         </div>
     );

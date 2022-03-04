@@ -22,18 +22,10 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => (
 
 export const InputDateTimeUpdate = Template.bind({});
 InputDateTimeUpdate.args = {
-    errorMessage: "error",
+    errorMessage: "ERROR",
     isError: true,
     isUpdateField: true,
     refForm: "date_creation",
     showTimeInput: true,
-};
-
-export const InputDateTimeNoUpdate = Template.bind({});
-InputDateTimeNoUpdate.args = {
-    errorMessage: "error",
-    isError: true,
-    isUpdateField: false,
-    refForm: "date_creation",
-    showTimeInput: true,
+    label: "label",
 };

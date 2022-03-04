@@ -49,7 +49,7 @@ const NotificationContainer = ({
                 </div>
                 {viewItem < childrenLength && (
                     <Button
-                        data={!fullView ? t("notification.seeAll") : t("notification.seeLess")}
+                        data={!fullView ? t("global.seeAll") : t("global.seeLess")}
                         fCallback={(): void => {
                             setFullView(!fullView);
                             fCallBackSeeAll && fCallBackSeeAll();
@@ -70,7 +70,7 @@ const NotificationContainer = ({
             {clearAllNotifications && (
                 <div className="w-full flex justify-center py-2">
                     <Button
-                        data={t("notification.clearAll")}
+                        data={t("global.clearAll")}
                         fCallback={(): void => fCallBackClear()}
                         className="flex hover:text-neo-light-grey transition-colors text-neo-link mb-1 font-bold text-xs"
                         iconClassName="ml-2"

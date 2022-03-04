@@ -24,7 +24,7 @@ describe("mapEnumToInputSelectSearchableData", () => {
     });
     it("should return a translated input select searchable data from a enum", () => {
         const t = i18n.getFixedT("en_GB");
-        const inputSelectData = mapEnumToInputSelectSearchableData(Status, t, "ticketStatus");
+        const inputSelectData = mapEnumToInputSelectSearchableData(Status, t, "status");
         expect(inputSelectData).to.eql([
             { label: "New", value: 1 },
             { label: "In progress (assigned)", value: 2 },

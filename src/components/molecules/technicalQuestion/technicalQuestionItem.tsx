@@ -58,7 +58,7 @@ const TechnicalQuestionItem = ({
                         <p className="text-white text-opacity-80 mx-2">{createLevel}</p>
                         {ticketId && (
                             <p>
-                                {t("tQuestion.forTicket")} {ticketId}
+                                {t("technicalQuestion.relatedTicket")} {ticketId}
                             </p>
                         )}
                     </div>
@@ -69,7 +69,7 @@ const TechnicalQuestionItem = ({
                 <div className="flex items-center">
                     <Tooltip
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
-                        data={followed ? t("tQuestion.follow") : t("tQuestion.unfollow")}
+                        data={followed ? t("global.follow") : t("global.unfollow")}
                         fCallback={(e) => {
                             e.stopPropagation();
                             followTechnicalQuestion(id);

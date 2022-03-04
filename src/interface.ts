@@ -280,6 +280,7 @@ export interface IOpenAndUserTickets {
     [x: string]: ITicket[];
 }
 export interface IOutage {
+    entities: { id: number; name: string }[];
     id: number;
     title: string;
     content: string;

@@ -28,7 +28,7 @@ const AnswerForm = ({ closeCallback, isUpdateField, onSubmitAnswer, text, update
                     register={register}
                     refForm="text"
                     required
-                    errorMessage={t("ticketForm.errorRequired")}
+                    errorMessage={t("error.required")}
                     isError={formState?.errors.text}
                     setValue={setValue}
                     isUpdateField={isUpdateField}

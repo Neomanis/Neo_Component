@@ -9,7 +9,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputDateShift> = (args) => (
-    <div className="w-1/2 h-screen bg-neo-bg-A">
+    <div className="w-full bg-neo-bg-A p-3">
         <InputDateShift {...args} />
     </div>
 );
@@ -27,10 +27,5 @@ Default.args = {
     label: "Exemple Label",
     tabProps: shifts,
     inputSelectPlaceholder: "shift",
-    classNames: {
-        container: "w-1/3 flex flex-col m-2",
-        inputDateTimeLabel: "text-xs font-bold text-white",
-        inputDateTimeInput: "bg-neo-bg-B p-2 mb-1 justify-self-start",
-        inputSelect: "w-full",
-    },
+    isUpdateField: true,
 };

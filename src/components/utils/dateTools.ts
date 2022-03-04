@@ -1,6 +1,5 @@
 import { formatDistanceToNowStrict, Locale, format, intervalToDuration } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
-import i18next from "i18next";
 import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
@@ -13,7 +12,7 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
     const dateTicket = new Date(date);
     const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
 
-    const myLanguage = i18next.getFixedT(lang ? lang : "en-US");
+    const myLanguage = i18n.getFixedT(lang ? lang : "en-US");
 
     // if formatDistanceToNowStrict is using 'hour' unit, we have to compute difference
     // between dates ourselves to display hours and minutes in HH:mm format
@@ -26,9 +25,11 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
     if (formatedDate[1].startsWith("second") || formatedDate[1].startsWith("minute")) {
         return formatedDate[0] + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
     }
-
+    if (formatedDate[1].slice(-1) === "s") {
+        formatedDate[1] = formatedDate[1].slice(0, -1);
+    }
     // in other cases, we just use classic translation
-    return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`);
+    return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`, { count: Number(formatedDate[0]) });
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string): string {
@@ -62,9 +63,9 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
     const date = new Date(incomingDate);
     const timestampDiff = (new Date().getTime() - new Date(date).getTime()) / 1000;
     const myLanguage = i18n.getFixedT(lang);
-    const begin = myLanguage("formatDateToNow.begin");
-    const middle = myLanguage("formatDateToNow.middle");
-    const end = myLanguage("formatDateToNow.end");
+    const begin = myLanguage("date.formatDateToNow.begin");
+    const middle = myLanguage("date.formatDateToNow.middle");
+    const end = myLanguage("date.formatDateToNow.end");
 
     if (timestampDiff < 24 * 60 * 60 && date.getDay() === new Date().getDay()) {
         formatedDate = format(date, `p`, {

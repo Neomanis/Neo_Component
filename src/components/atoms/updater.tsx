@@ -50,12 +50,12 @@ const Updater = ({
         <div data-testid="dotClassName" className={`flex ${className}`}>
             {isSuccess && (
                 <div data-testid="dotSuccess" className="text-neo-green text-xs font-bold">
-                    {t("dot.success").toUpperCase()}
+                    {t("global.success").toUpperCase()}
                 </div>
             )}
             {isUpdate && (
                 <div data-testid="dotUpdating" className="text-neo-blue  text-xs font-bold whitespace-nowrap relative">
-                    {t("dot.update").toUpperCase()}
+                    {t("global.update").toUpperCase()}
                     {viewBorder && (
                         <div
                             style={{
@@ -71,7 +71,7 @@ const Updater = ({
             )}
             {isError && (
                 <div data-testid="dotError" className="text-neo-red text-xs font-bold">
-                    {errorMessage ? errorMessage : t("dot.error").toUpperCase()}
+                    {errorMessage ? errorMessage : t("error.title", { count: 1 }).toUpperCase()}
                 </div>
             )}
             {isCancelable && (
@@ -80,7 +80,7 @@ const Updater = ({
                     className="pl-2 text-neo-red cursor-pointer text-xs font-bold"
                     onClick={(): void => fCallBackCancel()}
                 >
-                    {t("dot.cancel").toUpperCase()}
+                    {t("global.cancel").toUpperCase()}
                 </div>
             )}
         </div>
