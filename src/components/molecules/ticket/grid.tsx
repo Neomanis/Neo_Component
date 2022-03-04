@@ -5,7 +5,7 @@ import { Button } from "../../atoms";
 import Ticket from "./ticket";
 import { useDroppable } from "@dnd-kit/core";
 
-export interface GridProps {
+interface GridProps {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
