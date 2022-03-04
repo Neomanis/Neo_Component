@@ -1,5 +1,13 @@
-import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from "@dnd-kit/core";
-import React, { ReactElement, useRef, useState } from "react";
+import {
+    DndContext,
+    DragEndEvent,
+    DragOverlay,
+    DragStartEvent,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from "@dnd-kit/core";
+import React, { ReactElement, useState } from "react";
 import { ITicket, Ticket } from "../..";
 import Grid, { GridProps } from "./ticket/grid";
 
@@ -14,26 +22,31 @@ const DndTest = ({ gridProps1, gridProps2 }: Props): ReactElement => {
 
     const [draggedItem, setDraggedItem] = useState<ITicket | undefined>();
 
+    const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
+
     function handleDragStart(event: DragStartEvent) {
         setDraggedItem(event.active.data.current as ITicket);
     }
 
     function handleDragEnd(event: DragEndEvent) {
-        if (event.over && event.over.id === "droppable" + 4 + 4) {
-            setInventory((old) => [...old, event.active.data.current as ITicket]);
-            setInbox((old) => old.filter((ticket) => ticket.id !== (event.active.data.current as ITicket).id));
+        if (event.over && event.over.id === "yoloswag") {
+            setInventory((old) => [...old, draggedItem]);
+            setInbox((old) => old.filter((ticket) => ticket.id !== draggedItem.id));
+            setDraggedItem(undefined);
         }
     }
 
     return (
-        <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+        <DndContext sensors={sensors} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
             <div className="flex justify-between">
                 <Grid {...gridProps1} ticketList={inbox} />
-                <Grid {...gridProps2} ticketList={inventory} />
+                <Grid {...gridProps2} ticketList={inventory} droppableId="yoloswag" />
             </div>
-            <DragOverlay>
-                <Ticket ticket={draggedItem} />
-            </DragOverlay>
+            {draggedItem && (
+                <DragOverlay dropAnimation={null}>
+                    <Ticket ticket={draggedItem} />
+                </DragOverlay>
+            )}
         </DndContext>
     );
 };

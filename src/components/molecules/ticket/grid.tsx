@@ -17,7 +17,7 @@ export interface GridProps {
     showPagination?: boolean;
     ticketList?: ITicket[];
     ticketBG?: boolean;
-    isDroppable?: boolean;
+    droppableId?: string;
 }
 
 interface BlankHexagon {
@@ -37,7 +37,7 @@ const Grid = ({
     showPagination,
     ticketList,
     ticketBG,
-    isDroppable,
+    droppableId,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -46,7 +46,7 @@ const Grid = ({
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
     const { setNodeRef } = useDroppable({
-        id: "droppable" + cols + rows,
+        id: droppableId,
     });
 
     const getGridsPaginationNumber = useCallback(() => {
@@ -82,7 +82,7 @@ const Grid = ({
 
         setGrids(gridsInitialization);
     }
-    console.log("GRID");
+
     function changePage(direction: "prev" | "next"): void {
         if (direction === "prev") {
             setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? getGridsPaginationNumber() - 1 : pageNumber - 1));
@@ -101,7 +101,7 @@ const Grid = ({
             <div
                 className={`${cols === 1 ? "w-52" : ""} ${className}`}
                 data-testid="grid-body"
-                ref={isDroppable ? setNodeRef : null}
+                ref={droppableId ? setNodeRef : null}
             >
                 {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
