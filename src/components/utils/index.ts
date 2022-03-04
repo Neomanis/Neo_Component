@@ -24,6 +24,7 @@ import {
     mapEnumToInputSelectSearchableData,
     sleep,
 } from "./tools";
+import { frontEncrypt } from "./crypto/frontUtils";
 
 export {
     capitalizeFirstLetter,
@@ -31,6 +32,7 @@ export {
     formatDate,
     formatDateToNow,
     formatMessage,
+    frontEncrypt,
     getContrastBasedOnHexColor,
     getDateCompletionPercentage,
     getFormatedTimeToNow,
