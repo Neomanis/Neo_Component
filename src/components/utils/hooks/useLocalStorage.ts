@@ -26,15 +26,16 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleStorageChange = () => {
-        setStoredValue(readValue());
-    };
-
     // this only works for other documents, not the current one
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("storage", (event) => {
+        if (event.key !== key) {
+            return;
+        }
+        setStoredValue(readValue());
+    });
 
     // this is a custom event, triggered in setValue
-    window.addEventListener(`local-storage-${key}`, handleStorageChange);
+    window.addEventListener(`local-storage-${key}`, () => setStoredValue(readValue()));
 
     return [storedValue, setValue];
 }
