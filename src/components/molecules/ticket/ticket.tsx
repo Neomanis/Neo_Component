@@ -8,11 +8,9 @@ import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../..
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
-import { useDraggable } from "@dnd-kit/core";
 
-interface Props {
+export interface TicketProps {
     currentTicket?: ITicket;
-    draggableId?: string;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
     languageUser?: string;
@@ -22,19 +20,13 @@ interface Props {
 
 const Ticket = ({
     currentTicket,
-    draggableId,
     fCallBackClick,
     fCallBackHover,
     languageUser,
     ticket,
     ticketBG,
-}: Props): ReactElement => {
+}: TicketProps): ReactElement => {
     const { t } = useTranslation();
-
-    const { attributes, listeners, setNodeRef } = useDraggable({
-        id: draggableId,
-        data: ticket,
-    });
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
@@ -85,9 +77,6 @@ const Ticket = ({
                     onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
                     onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                     data-testid="ticket-body"
-                    ref={draggableId ? setNodeRef : null}
-                    {...(draggableId ? listeners : {})}
-                    {...(draggableId ? attributes : {})}
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {isTTOorTTRStale() && (
@@ -211,4 +200,4 @@ const Ticket = ({
     );
 };
 
-export default Ticket;
+export default React.memo(Ticket);

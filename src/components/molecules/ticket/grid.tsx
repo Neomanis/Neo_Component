@@ -4,6 +4,7 @@ import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
 import Ticket from "./ticket";
 import { useDroppable } from "@dnd-kit/core";
+import DraggableTicket from "./draggableTicket";
 
 interface GridProps {
     className?: string;
@@ -29,15 +30,15 @@ const Grid = ({
     className,
     cols,
     currentTicket,
-    fCurrentTicket,
+    droppableId,
     fCallBackHover,
+    fCurrentTicket,
     languageUser,
     reverseGrid,
     rows,
     showPagination,
-    ticketList,
     ticketBG,
-    droppableId,
+    ticketList,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -52,6 +53,12 @@ const Grid = ({
     const getGridsPaginationNumber = useCallback(() => {
         return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
     }, [ticketList, rows, cols]);
+
+    const currentTicketCallBack = useCallback(
+        (ticket: ITicket) => fCurrentTicket && fCurrentTicket(ticket),
+        [fCurrentTicket]
+    );
+    const hoverCallBack = useCallback((ticket: ITicket) => fCallBackHover && fCallBackHover(ticket), [fCallBackHover]);
 
     function isTypeOfTicket(item: ITicket | BlankHexagon) {
         return Boolean((item as ITicket).similarTickets);
@@ -146,16 +153,14 @@ const Grid = ({
                                 {row.map((item, key) => (
                                     <div key={"ticket-" + key} className="-mx-2" data-testid="grid-ticket">
                                         {isTypeOfTicket(item) ? (
-                                            <Ticket
-                                                ticket={item as ITicket}
-                                                currentTicket={currentTicket}
-                                                fCallBackClick={(ticket) => {
-                                                    fCurrentTicket && fCurrentTicket(ticket);
+                                            <DraggableTicket
+                                                ticketProps={{
+                                                    currentTicket,
+                                                    fCallBackClick: currentTicketCallBack,
+                                                    fCallBackHover: hoverCallBack,
+                                                    languageUser,
+                                                    ticket: item as ITicket,
                                                 }}
-                                                fCallBackHover={(ticket) => {
-                                                    fCallBackHover && fCallBackHover(ticket);
-                                                }}
-                                                languageUser={languageUser}
                                                 draggableId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
                                             />
                                         ) : (
@@ -172,4 +177,4 @@ const Grid = ({
     );
 };
 
-export default Grid;
+export default React.memo(Grid);
