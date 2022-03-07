@@ -11,4 +11,7 @@ describe("JSEncrypt", () => {
         jsEncrypt.setPrivateKey(privateKey);
         expect(jsEncrypt.decrypt(encrypted)).to.equal(password);
     });
+    it("Should throw", () => {
+        expect(() => frontEncrypt(password, "bad RSA key")).to.throw("Encryption went wrong");
+    });
 });
