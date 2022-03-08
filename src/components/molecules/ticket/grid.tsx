@@ -2,11 +2,11 @@ import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
-import Ticket from "./ticket";
 import { useDroppable } from "@dnd-kit/core";
 import DraggableTicket from "./draggableTicket";
+import DroppableTicket from "./droppableTicket";
 
-interface GridProps {
+export interface GridProps {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
@@ -74,19 +74,16 @@ const Grid = ({
             for (let index = 0; index < rows; index++) {
                 grid.push(
                     // cols creation
-                    Array.from({ length: cols }, (_, i) => {
-                        let item: ITicket | BlankHexagon = { id: i, name: "blank" };
-                        if (tickets[0]) {
-                            item = tickets[0];
-                            tickets.shift();
-                        }
-                        return item;
-                    })
+                    Array.from({ length: cols }, (_, i) => ({ id: i, name: "blank" }))
                 );
             }
             gridsInitialization.push(grid);
         }
 
+        tickets.forEach((ticket) => {
+            const { col, grid, row } = ticket.position;
+            gridsInitialization[grid][row][col] = ticket;
+        });
         setGrids(gridsInitialization);
     }
 
@@ -129,29 +126,29 @@ const Grid = ({
                         />
                     </div>
                 )}
-                {grids.map((grid, key) => (
+                {grids.map((grid, gridKey) => (
                     <div
                         className={`transform scale-73 -mt-8  
                     ${cols > 3 ? "-translate-x-8" : ""}
                     ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} 
-                    ${currentPageNumber !== key ? "hidden" : ""}`}
-                        id={"gridId-" + key}
-                        key={"grid-" + key}
+                    ${currentPageNumber !== gridKey ? "hidden" : ""}`}
+                        id={"gridId-" + gridKey}
+                        key={"grid-" + gridKey}
                         data-testid="grid-element"
                     >
-                        {grid.map((row, id) => (
+                        {grid.map((row, rowKey) => (
                             <div
                                 className={`flex transform scale-120 z-auto 
                                     ${
                                         reverseGrid
-                                            ? Number.isInteger(id / 2) && "translate-x-23"
-                                            : !Number.isInteger(id / 2) && "translate-x-23"
+                                            ? Number.isInteger(rowKey / 2) && "translate-x-23"
+                                            : !Number.isInteger(rowKey / 2) && "translate-x-23"
                                     }`}
-                                key={"row-" + id}
+                                key={"row-" + rowKey}
                                 data-testid="grid-row"
                             >
-                                {row.map((item, key) => (
-                                    <div key={"ticket-" + key} className="-mx-2" data-testid="grid-ticket">
+                                {row.map((item, itemKey) => (
+                                    <div key={"ticket-" + itemKey} className="-mx-2" data-testid="grid-ticket">
                                         {isTypeOfTicket(item) ? (
                                             <DraggableTicket
                                                 ticketProps={{
@@ -161,10 +158,14 @@ const Grid = ({
                                                     languageUser,
                                                     ticket: item as ITicket,
                                                 }}
-                                                draggableId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
+                                                // dndId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
+                                                dndId={`${gridKey}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
                                             />
                                         ) : (
-                                            <Ticket ticketBG={ticketBG ? true : false} />
+                                            <DraggableTicket
+                                                ticketProps={{}}
+                                                dndId={`${gridKey}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
+                                            />
                                         )}
                                     </div>
                                 ))}

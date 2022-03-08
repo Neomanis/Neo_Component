@@ -426,6 +426,11 @@ export interface ITicket {
     groupAssignedTo: number[];
     keywords: string[];
     computerName: string | null;
+    position?: {
+        row: number;
+        col: number;
+        grid: number;
+    };
 }
 export interface ITicketCreate {
     entities_id?: number;
