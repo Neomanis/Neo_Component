@@ -31,6 +31,7 @@ export const fakeTicket: ITicket = {
     resources: [],
     similarTickets: [],
     computerName: null,
+    position: { col: 4, grid: 0, row: 3 },
 };
 
 export const fakeDiag = {
