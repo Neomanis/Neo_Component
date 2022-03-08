@@ -222,12 +222,12 @@
             "title": "Maintenance",
             "type": "Type"
         },
+        "title": "Notifications",
         "type": {
             "get-new-message": "Nouveau message",
             "orchestrator-alert": "Alerte orcherstrator",
             "ticket-update": "Mise à jour de ticket"
         },
-        "title": "Notifications",
         "workflow": {
             "title": "Demandes de Workflow"
         }
