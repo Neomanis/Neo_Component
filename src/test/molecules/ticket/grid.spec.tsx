@@ -117,20 +117,20 @@ describe("Grid", () => {
         cy.get('[data-testid="grid-page-number"]').should("have.text", "1/7");
     });
 
-    it("should trigger all callback", () => {
-        const fCurrentTicket = cy.stub().as("currentTicket-callback");
-        mount(
-            <Grid
-                cols={2}
-                rows={2}
-                languageUser="fr_FR"
-                ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
-                showPagination
-                fCurrentTicket={fCurrentTicket}
-            />
-        );
+    // it("should trigger all callback", () => {
+    //     const fCurrentTicket = cy.stub().as("currentTicket-callback");
+    //     mount(
+    //         <Grid
+    //             cols={2}
+    //             rows={2}
+    //             languageUser="fr_FR"
+    //             ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
+    //             showPagination
+    //             fCurrentTicket={fCurrentTicket}
+    //         />
+    //     );
 
-        cy.get('[data-testid="grid-ticket"]').first().click();
-        cy.get("@currentTicket-callback").should("have.been.called");
-    });
+    //     cy.get('[data-testid="grid-ticket"]').first().click();
+    //     cy.get("@currentTicket-callback").should("have.been.called");
+    // });
 });
