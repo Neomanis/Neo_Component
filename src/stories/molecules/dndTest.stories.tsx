@@ -19,4 +19,7 @@ const Template: ComponentStory<typeof DndTest> = (args) => {
 export const ToasterDefault = Template.bind({});
 ToasterDefault.args = {
     title: "Hello there",
+    rows: 4,
+    cols: 5,
+    fCurrentTicket: () => console.log("ok"),
 };

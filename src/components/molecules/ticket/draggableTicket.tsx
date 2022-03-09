@@ -17,7 +17,8 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
         id: dndId,
         data: ticketProps.ticket,
     });
-    const { setNodeRef: droppableRef } = useDroppable({
+
+    const { active, setNodeRef: droppableRef } = useDroppable({
         id: dndId,
     });
 
@@ -27,7 +28,8 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
             ref={ticketProps.ticket ? combinedRef : droppableRef}
             {...listeners}
             {...attributes}
-            className={`${ticketProps.ticket ? "cursor-pointer" : "cursor-default"}`}
+            className={`${ticketProps.ticket ? "cursor-pointer" : "cursor-default"} 
+            ${dndId === active?.id && "opacity-50"}`}
         >
             <Ticket {...ticketProps} />
         </div>

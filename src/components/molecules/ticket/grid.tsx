@@ -2,9 +2,8 @@ import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
-import { useDroppable } from "@dnd-kit/core";
 import DraggableTicket from "./draggableTicket";
-import DroppableTicket from "./droppableTicket";
+import { useDroppable } from "@dnd-kit/core";
 
 export interface GridProps {
     className?: string;
@@ -37,7 +36,6 @@ const Grid = ({
     reverseGrid,
     rows,
     showPagination,
-    ticketBG,
     ticketList,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
