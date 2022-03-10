@@ -5,7 +5,7 @@ import { Button } from "../../atoms";
 import DndTicket from "./dndTicket";
 import { useDroppable } from "@dnd-kit/core";
 
-export interface GridProps {
+interface Props {
     className?: string;
     cols: number;
     currentTicket?: ITicket;
@@ -39,7 +39,7 @@ const Grid = ({
     rows,
     showPagination,
     ticketList,
-}: GridProps): ReactElement => {
+}: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
     // third is the number of rows
