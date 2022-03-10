@@ -356,7 +356,7 @@
         "impact": "Impact",
         "inProgress": "Votre demande est en cours de traitement.",
         "information": "Information",
-        "keywords": "mots-clés",
+        "keywords": "Mots-clés",
         "markResolved": "Marque comme résolu",
         "my": "Mes tickets",
         "new_one": "Nouveau Ticket",
@@ -398,6 +398,6 @@
             "waiting": "Attente de validation"
         },
         "watcher": "Observateur",
-        "watcherGroup": "Groupe observateurp"
+        "watcherGroup": "Groupe observateur"
     }
 }
