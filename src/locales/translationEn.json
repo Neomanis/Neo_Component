@@ -69,8 +69,8 @@
     },
     "date": {
         "abbreviated": {
-            "minute": "min",
-            "second": "sec"
+            "minutes": "min",
+            "seconds": "sec"
         },
         "day_one": "Day",
         "day_other": "Days",
