@@ -9,7 +9,7 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
 
-interface Props {
+export interface TicketProps {
     currentTicket?: ITicket;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
@@ -25,7 +25,7 @@ const Ticket = ({
     languageUser,
     ticket,
     ticketBG,
-}: Props): ReactElement => {
+}: TicketProps): ReactElement => {
     const { t } = useTranslation();
 
     function isSameStatus(): boolean {
@@ -200,4 +200,4 @@ const Ticket = ({
     );
 };
 
-export default Ticket;
+export default React.memo(Ticket);

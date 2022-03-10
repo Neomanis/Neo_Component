@@ -2,7 +2,8 @@ import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
-import Ticket from "./ticket";
+import DndTicket from "./dndTicket";
+import { useDroppable } from "@dnd-kit/core";
 
 interface Props {
     className?: string;
@@ -10,12 +11,14 @@ interface Props {
     currentTicket?: ITicket;
     fCurrentTicket?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
+    fNewPositionedTicket?: (tickets: ITicket[]) => void;
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
     showPagination?: boolean;
     ticketList?: ITicket[];
     ticketBG?: boolean;
+    droppableId?: "inventory" | "inbox";
 }
 
 interface BlankHexagon {
@@ -27,23 +30,35 @@ const Grid = ({
     className,
     cols,
     currentTicket,
-    fCurrentTicket,
+    droppableId,
     fCallBackHover,
+    fCurrentTicket,
+    fNewPositionedTicket,
     languageUser,
     reverseGrid,
     rows,
     showPagination,
     ticketList,
-    ticketBG,
 }: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
     // third is the number of rows
     const [grids, setGrids] = useState<(ITicket | BlankHexagon)[][][]>([]);
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
+
+    const { setNodeRef } = useDroppable({
+        id: droppableId,
+    });
+
     const getGridsPaginationNumber = useCallback(() => {
         return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
     }, [ticketList, rows, cols]);
+
+    const currentTicketCallBack = useCallback(
+        (ticket: ITicket) => fCurrentTicket && fCurrentTicket(ticket),
+        [fCurrentTicket]
+    );
+    const hoverCallBack = useCallback((ticket: ITicket) => fCallBackHover && fCallBackHover(ticket), [fCallBackHover]);
 
     function isTypeOfTicket(item: ITicket | BlankHexagon) {
         return Boolean((item as ITicket).similarTickets);
@@ -61,7 +76,7 @@ const Grid = ({
                     // cols creation
                     Array.from({ length: cols }, (_, i) => {
                         let item: ITicket | BlankHexagon = { id: i, name: "blank" };
-                        if (tickets[0]) {
+                        if (tickets[0] && droppableId === "inbox") {
                             item = tickets[0];
                             tickets.shift();
                         }
@@ -71,7 +86,51 @@ const Grid = ({
             }
             gridsInitialization.push(grid);
         }
+        const ticketWithNoPosition: ITicket[] = [];
+        let ticketWithNoPositionIndex = 0;
 
+        if (droppableId === "inventory") {
+            tickets.forEach((ticket) => {
+                if (ticket.position) {
+                    const { col, grid, row } = ticket.position;
+                    gridsInitialization[grid][row][col] = ticket;
+                } else {
+                    ticketWithNoPosition.push(ticket);
+                }
+            });
+        }
+
+        if (ticketWithNoPosition.length > 0) {
+            gridsInitialization.some((grid, gridIndex) => {
+                if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                    return true;
+                }
+                grid.some((row, rowIndex) => {
+                    if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                        return true;
+                    }
+                    row.some((item, colIndex) => {
+                        if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                            return true;
+                        }
+                        if (!isTypeOfTicket(item)) {
+                            ticketWithNoPosition[ticketWithNoPositionIndex] = {
+                                ...ticketWithNoPosition[ticketWithNoPositionIndex],
+                                position: {
+                                    col: colIndex,
+                                    grid: gridIndex,
+                                    row: rowIndex,
+                                },
+                            };
+                            (gridsInitialization[gridIndex][rowIndex][colIndex] =
+                                ticketWithNoPosition[ticketWithNoPositionIndex]),
+                                ticketWithNoPositionIndex++;
+                        }
+                    });
+                });
+            });
+            fNewPositionedTicket(ticketWithNoPosition);
+        }
         setGrids(gridsInitialization);
     }
 
@@ -90,7 +149,11 @@ const Grid = ({
 
     return (
         <>
-            <div className={`${cols === 1 ? "w-52" : ""} ${className}`} data-testid="grid-body">
+            <div
+                className={`${cols === 1 ? "w-52" : ""} ${className}`}
+                data-testid="grid-body"
+                ref={droppableId ? setNodeRef : null}
+            >
                 {showPagination && getGridsPaginationNumber() > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">
@@ -110,53 +173,52 @@ const Grid = ({
                         />
                     </div>
                 )}
-                {grids.map((grid, key) => (
-                    <div
-                        className={`transform scale-73 -mt-8  
+                <div
+                    className={`transform scale-73 -mt-8  
                     ${cols > 3 ? "-translate-x-8" : ""}
-                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} 
-                    ${currentPageNumber !== key ? "hidden" : ""}`}
-                        id={"gridId-" + key}
-                        key={"grid-" + key}
-                        data-testid="grid-element"
-                    >
-                        {grid.map((row, id) => (
+                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} `}
+                    data-testid="grid-element"
+                >
+                    {grids.length > 0 &&
+                        grids[currentPageNumber].map((row, rowKey) => (
                             <div
                                 className={`flex transform scale-120 z-auto 
                                     ${
                                         reverseGrid
-                                            ? Number.isInteger(id / 2) && "translate-x-23"
-                                            : !Number.isInteger(id / 2) && "translate-x-23"
+                                            ? Number.isInteger(rowKey / 2) && "translate-x-23"
+                                            : !Number.isInteger(rowKey / 2) && "translate-x-23"
                                     }`}
-                                key={"row-" + id}
+                                key={"row-" + rowKey}
                                 data-testid="grid-row"
                             >
-                                {row.map((item, key) => (
-                                    <div key={"ticket-" + key} className="-mx-2" data-testid="grid-ticket">
+                                {row.map((item, itemKey) => (
+                                    <div key={"ticket-" + itemKey} className="-mx-2" data-testid="grid-ticket">
                                         {isTypeOfTicket(item) ? (
-                                            <Ticket
-                                                ticket={item as ITicket}
-                                                currentTicket={currentTicket}
-                                                fCallBackClick={(ticket) => {
-                                                    fCurrentTicket && fCurrentTicket(ticket);
+                                            <DndTicket
+                                                ticketProps={{
+                                                    currentTicket,
+                                                    fCallBackClick: currentTicketCallBack,
+                                                    fCallBackHover: hoverCallBack,
+                                                    languageUser,
+                                                    ticket: item as ITicket,
                                                 }}
-                                                fCallBackHover={(ticket) => {
-                                                    fCallBackHover && fCallBackHover(ticket);
-                                                }}
-                                                languageUser={languageUser}
+                                                // dndId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
                                             />
                                         ) : (
-                                            <Ticket ticketBG={ticketBG ? true : false} />
+                                            <DndTicket
+                                                ticketProps={{}}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
+                                            />
                                         )}
                                     </div>
                                 ))}
                             </div>
                         ))}
-                    </div>
-                ))}
+                </div>
             </div>
         </>
     );
 };
 
-export default Grid;
+export default React.memo(Grid);
