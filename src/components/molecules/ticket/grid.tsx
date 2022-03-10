@@ -2,7 +2,7 @@ import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { ITicket } from "../../../interface";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
-import DraggableTicket from "./draggableTicket";
+import DndTicket from "./dndTicket";
 import { useDroppable } from "@dnd-kit/core";
 
 export interface GridProps {
@@ -11,13 +11,14 @@ export interface GridProps {
     currentTicket?: ITicket;
     fCurrentTicket?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
+    fNewPositionedTicket?: (tickets: ITicket[]) => void;
     languageUser: string;
     reverseGrid?: boolean;
     rows: number;
     showPagination?: boolean;
     ticketList?: ITicket[];
     ticketBG?: boolean;
-    droppableId?: string;
+    droppableId?: "inventory" | "inbox";
 }
 
 interface BlankHexagon {
@@ -32,6 +33,7 @@ const Grid = ({
     droppableId,
     fCallBackHover,
     fCurrentTicket,
+    fNewPositionedTicket,
     languageUser,
     reverseGrid,
     rows,
@@ -72,16 +74,63 @@ const Grid = ({
             for (let index = 0; index < rows; index++) {
                 grid.push(
                     // cols creation
-                    Array.from({ length: cols }, (_, i) => ({ id: i, name: "blank" }))
+                    Array.from({ length: cols }, (_, i) => {
+                        let item: ITicket | BlankHexagon = { id: i, name: "blank" };
+                        if (tickets[0] && droppableId === "inbox") {
+                            item = tickets[0];
+                            tickets.shift();
+                        }
+                        return item;
+                    })
                 );
             }
             gridsInitialization.push(grid);
         }
+        const ticketWithNoPosition: ITicket[] = [];
+        let ticketWithNoPositionIndex = 0;
 
-        tickets.forEach((ticket) => {
-            const { col, grid, row } = ticket.position;
-            gridsInitialization[grid][row][col] = ticket;
-        });
+        if (droppableId === "inventory") {
+            tickets.forEach((ticket) => {
+                if (ticket.position) {
+                    const { col, grid, row } = ticket.position;
+                    gridsInitialization[grid][row][col] = ticket;
+                } else {
+                    ticketWithNoPosition.push(ticket);
+                }
+            });
+        }
+
+        if (ticketWithNoPosition.length > 0) {
+            gridsInitialization.some((grid, gridIndex) => {
+                if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                    return true;
+                }
+                grid.some((row, rowIndex) => {
+                    if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                        return true;
+                    }
+                    row.some((item, colIndex) => {
+                        if (ticketWithNoPosition.length === ticketWithNoPositionIndex) {
+                            return true;
+                        }
+                        if (!isTypeOfTicket(item)) {
+                            ticketWithNoPosition[ticketWithNoPositionIndex] = {
+                                ...ticketWithNoPosition[ticketWithNoPositionIndex],
+                                position: {
+                                    col: colIndex,
+                                    grid: gridIndex,
+                                    row: rowIndex,
+                                },
+                            };
+                            (gridsInitialization[gridIndex][rowIndex][colIndex] =
+                                ticketWithNoPosition[ticketWithNoPositionIndex]),
+                                ticketWithNoPositionIndex++;
+                        }
+                    });
+                });
+            });
+            fNewPositionedTicket(ticketWithNoPosition);
+        }
         setGrids(gridsInitialization);
     }
 
@@ -124,17 +173,14 @@ const Grid = ({
                         />
                     </div>
                 )}
-                {grids.map((grid, gridKey) => (
-                    <div
-                        className={`transform scale-73 -mt-8  
+                <div
+                    className={`transform scale-73 -mt-8  
                     ${cols > 3 ? "-translate-x-8" : ""}
-                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} 
-                    ${currentPageNumber !== gridKey ? "hidden" : ""}`}
-                        id={"gridId-" + gridKey}
-                        key={"grid-" + gridKey}
-                        data-testid="grid-element"
-                    >
-                        {grid.map((row, rowKey) => (
+                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} `}
+                    data-testid="grid-element"
+                >
+                    {grids.length > 0 &&
+                        grids[currentPageNumber].map((row, rowKey) => (
                             <div
                                 className={`flex transform scale-120 z-auto 
                                     ${
@@ -148,7 +194,7 @@ const Grid = ({
                                 {row.map((item, itemKey) => (
                                     <div key={"ticket-" + itemKey} className="-mx-2" data-testid="grid-ticket">
                                         {isTypeOfTicket(item) ? (
-                                            <DraggableTicket
+                                            <DndTicket
                                                 ticketProps={{
                                                     currentTicket,
                                                     fCallBackClick: currentTicketCallBack,
@@ -157,20 +203,19 @@ const Grid = ({
                                                     ticket: item as ITicket,
                                                 }}
                                                 // dndId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
-                                                dndId={`${gridKey}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
                                             />
                                         ) : (
-                                            <DraggableTicket
+                                            <DndTicket
                                                 ticketProps={{}}
-                                                dndId={`${gridKey}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
                                             />
                                         )}
                                     </div>
                                 ))}
                             </div>
                         ))}
-                    </div>
-                ))}
+                </div>
             </div>
         </>
     );

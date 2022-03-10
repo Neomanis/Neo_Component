@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import Ticket, { TicketProps } from "./ticket";
 import { useCombinedRefs } from "../../utils/hooks/useCombinedRef";
+import { Loader } from "../../atoms";
 
 interface DraggableTicketProps {
     dndId: string;
@@ -28,10 +29,16 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
             ref={ticketProps.ticket ? combinedRef : droppableRef}
             {...listeners}
             {...attributes}
-            className={`${ticketProps.ticket ? "cursor-pointer" : "cursor-default"} 
-            ${dndId === active?.id && "opacity-50"}`}
+            className={`relative ${ticketProps.ticket ? "cursor-pointer" : "cursor-default"}`}
         >
-            <Ticket {...ticketProps} />
+            {ticketProps.ticket?.isPositionLoading && (
+                <div className="absolute transform top-1/2 z-50" style={{ left: "72px" }}>
+                    <Loader type="circleOnly" className="text-neo-red" />
+                </div>
+            )}
+            <div className={`${(dndId === active?.id || ticketProps.ticket?.isPositionLoading) && "opacity-50"}`}>
+                <Ticket {...ticketProps} />
+            </div>
         </div>
     );
 };
