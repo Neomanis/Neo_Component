@@ -51,7 +51,7 @@ const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: Prop
                                 src: `data:${avatar?.mimetype};base64,${avatar.encodedAvatar}`,
                                 alt: `${avatar?.originalname}`,
                             }}
-                            className={"rounded-full w-11"}
+                            className={"rounded-full w-11 h-11"}
                         />
                     ) : (
                         <Img type="imgProfile" className={"rounded-full w-11"} />
