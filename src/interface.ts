@@ -481,6 +481,15 @@ export interface IUser {
     selected_entity_id?: number;
 }
 
+export interface IUserInfo {
+    username: string;
+    avatar: {
+        encodedAvatar: string;
+        mimetype: string;
+        originalname: string;
+    };
+}
+
 export interface IWorkflow {
     id: number;
     sender: string;
