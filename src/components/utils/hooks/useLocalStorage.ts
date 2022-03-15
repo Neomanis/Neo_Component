@@ -2,7 +2,11 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
+const LOCAL_STORAGE_VERSION = 1;
+
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+    key = `${LOCAL_STORAGE_VERSION}-${key}`;
+
     const readValue = (): T => {
         const item = window.localStorage.getItem(key);
         if (item === "undefined") {

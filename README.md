@@ -33,7 +33,9 @@ if [ -t 1 ]; then
   exec < /dev/tty
 fi
 ```
+## Local storage
 
+If you are making breaking change to local storage don't forget to update the LOCAL_STORAGE_VERSION in useLocalStorage file
 ## How to add a new translation
 
 -   First look in the translation files in `src/locales` if your translation already exist
