@@ -571,12 +571,10 @@ export interface IInputSelectSearchableData {
     label: string;
     value: number;
 }
-export interface ITicketLocalStorage {
+export interface ILocalStorageTicket {
     id: number;
     priority: number;
     status: number;
-}
-export interface ITicketChatLocalStorage extends ITicketLocalStorage {
     category: number;
     userRequester: number[];
     userWatcher: number[];
