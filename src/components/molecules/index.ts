@@ -28,11 +28,7 @@ export {
     AnswerItem,
     ChatCard,
     Grid,
-<<<<<<< HEAD
-=======
-    HoverTicket,
     InlineShadowBoxWrapper,
->>>>>>> 04f11a8 (horizontal shadowbox)
     InputChat,
     MessageChat,
     NeoBotProcess,
