@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import InlineShadowBoxWrapper from "../../components/molecules/inlineShadowBoxWrapper";
 import { ComponentStory, Meta } from "@storybook/react";
 
@@ -8,9 +8,10 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InlineShadowBoxWrapper> = (args) => {
+    const refP = useRef<HTMLUListElement>(null);
     return (
         <div className="h-32 flex items-center relative w-min">
-            <InlineShadowBoxWrapper {...args}>
+            <InlineShadowBoxWrapper refP={refP} {...args}>
                 <li className="bg-neo-bg-B text-white justify-center items-center p-2">Item1</li>
                 <li className="bg-neo-bg-B text-white justify-center items-center p-2">Item4</li>
                 <li className="bg-neo-bg-B text-white justify-center items-center p-2">Item8</li>

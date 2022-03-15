@@ -1,6 +1,7 @@
-import React, { ReactElement, ReactNode, useLayoutEffect, useRef, useState } from "react";
+import React, { ReactElement, ReactNode, RefObject, useLayoutEffect, useState } from "react";
 
 interface Props {
+    refP: RefObject<HTMLUListElement>;
     children: ReactNode;
     classNames: {
         leftShadowBox: string;
@@ -13,11 +14,9 @@ interface Props {
     };
 }
 
-const InlineShadowBoxWrapper = ({ children, classNames, linearGradient }: Props): ReactElement => {
+const InlineShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props): ReactElement => {
     const [showLeftShadowBox, setShowLeftShadowBox] = useState(false);
     const [showRightShadowBox, setShowRightShadowBox] = useState(true);
-
-    const listContainerRef = useRef<HTMLUListElement>(null);
 
     function detectScroll(ref: HTMLUListElement): void {
         const scrollPercentage = ref.scrollLeft / (ref.scrollWidth - ref.clientWidth);
@@ -40,7 +39,7 @@ const InlineShadowBoxWrapper = ({ children, classNames, linearGradient }: Props)
     }
 
     useLayoutEffect(() => {
-        if (listContainerRef.current && !isOverflow(listContainerRef.current)) {
+        if (refP.current && !isOverflow(refP.current)) {
             setShowLeftShadowBox(false);
             setShowRightShadowBox(false);
         }
@@ -48,10 +47,10 @@ const InlineShadowBoxWrapper = ({ children, classNames, linearGradient }: Props)
 
     return (
         <ul
-            ref={listContainerRef}
+            ref={refP}
             className={classNames.container}
-            onScroll={() => listContainerRef.current && detectScroll(listContainerRef.current)}
-            data-testid="shadowBoxWrapperContainer"
+            onScroll={() => refP.current && detectScroll(refP.current)}
+            data-testid="inlineShadowBoxWrapperContainer"
         >
             {showLeftShadowBox && (
                 <div
@@ -59,7 +58,7 @@ const InlineShadowBoxWrapper = ({ children, classNames, linearGradient }: Props)
                     style={{
                         background: `linear-gradient(90deg, ${linearGradient.first} 0%, ${linearGradient.second} 35%, rgba(255,0,0,0) 100%)`,
                     }}
-                    data-testid="shadowBoxWrapperLeftShadowBox"
+                    data-testid="inlineShadowBoxWrapperLeftShadowBox"
                 ></div>
             )}
             {children}
@@ -69,7 +68,7 @@ const InlineShadowBoxWrapper = ({ children, classNames, linearGradient }: Props)
                     style={{
                         background: `linear-gradient(270deg, ${linearGradient.first} 0%, ${linearGradient.second} 35%, rgba(255,0,0,0) 100%)`,
                     }}
-                    data-testid="shadowBoxWrapperRightShadowBox"
+                    data-testid="inlineShadowBoxWrapperRightShadowBox"
                 ></div>
             )}
         </ul>
