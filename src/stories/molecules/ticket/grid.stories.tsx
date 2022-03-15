@@ -31,7 +31,6 @@ Default.args = {
     ticketList: Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) })),
     showPagination: true,
     reverseGrid: false,
-    withHover: true,
 };
 
 export const DefaultHelper = Template.bind({});
@@ -42,7 +41,6 @@ DefaultHelper.args = {
     showBackgroundIcon: true,
     rows: 4,
     ticketList: [fakeTicket, fakeTicket, fakeTicket],
-    withHover: false,
     reverseGrid: true,
     ticketBG: true,
 };

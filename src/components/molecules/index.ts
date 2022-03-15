@@ -2,7 +2,6 @@ import AnswerForm from "./technicalQuestion/answerForm";
 import AnswerItem from "./technicalQuestion/answerItem";
 import ChatCard from "./chat/chatCard";
 import Grid from "./ticket/grid";
-import HoverTicket from "./ticket/hoverTicket";
 import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
 import NotificationCard from "./notification/notificationCard";
@@ -28,7 +27,6 @@ export {
     AnswerItem,
     ChatCard,
     Grid,
-    HoverTicket,
     InputChat,
     MessageChat,
     NeoBotProcess,
