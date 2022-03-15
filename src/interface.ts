@@ -276,6 +276,11 @@ export interface INotification {
     };
     read: boolean;
 }
+export interface INotificationSetting {
+    event: string;
+    type: string;
+    enable: boolean;
+}
 export interface IOpenAndUserTickets {
     [x: string]: ITicket[];
 }
@@ -598,6 +603,7 @@ export type TInputSelectSearchableCustomComponent = Partial<
     >
 >;
 
+export type TNotificationTypeTraductionKey = "get-new-message" | "orchestrator-alert" | "ticket-update";
 export type TStatusTraductionKey = "assigned" | "closed" | "new" | "pending" | "planned" | "solved";
 export type TScaleTraductionKey = "high" | "low" | "major" | "medium" | "veryHigh" | "veryLow";
 export type TResourceCategoriesTraductionKey =

@@ -135,6 +135,7 @@
         "workflow": "Erreur lors de l'envoi de votre décision"
     },
     "global": {
+        "acceptAll": "Tout accepter",
         "all": "Tout",
         "all_female_one": "Toute",
         "all_female_other": "Toutes",
@@ -169,6 +170,7 @@
         "prerequisites": "Prérequis",
         "range": "Période",
         "refuse": "refuser",
+        "refuseAll": "Tout refuser",
         "request": "Demande",
         "search": "Rechercher",
         "seeAll": "Voir plus",
@@ -221,6 +223,11 @@
             "type": "Type"
         },
         "title": "Notifications",
+        "type": {
+            "get-new-message": "Nouveau message",
+            "orchestrator-alert": "Alerte orcherstrator",
+            "ticket-update": "Mise à jour de ticket"
+        },
         "workflow": {
             "title": "Demandes de Workflow"
         }
