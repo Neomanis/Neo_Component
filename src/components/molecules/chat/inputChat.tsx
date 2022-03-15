@@ -12,7 +12,7 @@ interface Props {
     fCallbackPrivateMessage?: () => void;
     inputClassName?: string;
     languageUser?: string;
-    placeholder: string;
+    placeholder?: string;
     privateMessage?: boolean;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
@@ -37,31 +37,29 @@ const InputChat = ({
             className={`${
                 className
                     ? className
-                    : "flex items-center bg-neo-bg-B relative text-white rounded-md divide-x-2 divide-neo-link justify-between"
+                    : "flex items-center bg-neo-bg-B text-white rounded-md divide-x-2 divide-neo-bg-A h-11 "
             }`}
         >
-            <div className="p-2 opacity-50 w-10">
+            <div className="p-2 opacity-50 w-10 flex justify-center" style={{ minWidth: 40 }}>
                 <IconAdd fill="#7daab7" />
             </div>
-            <div className="flex items-center ">
-                <Input
-                    disabled={cardOpen}
-                    inputClassName={`${
-                        inputClassName
-                            ? inputClassName
-                            : "bg-transparent w-full border-none text-neo-light-grey focus:outline-none py-2 px-3"
-                    }`}
-                    isUpdateField={false}
-                    placeholder={placeholder}
-                    refForm={refForm}
-                    register={register}
-                    required
-                    setValue={setValue}
-                    typeInput="text"
-                />
-            </div>
+            <Input
+                disabled={cardOpen}
+                inputClassName={`${
+                    inputClassName
+                        ? inputClassName
+                        : "bg-transparent w-full border-none text-neo-link focus:outline-none py-3 px-4 text-sm placeholder-neo-link"
+                }`}
+                isUpdateField={false}
+                placeholder={placeholder}
+                refForm={refForm}
+                register={register}
+                required
+                setValue={setValue}
+                typeInput="text"
+            />
             {privateMessage && (
-                <div className="p-2 w-10">
+                <div className="py-3 px-2 w-10">
                     <Tooltip
                         data={t("chat.private")}
                         className="pt-3 text-xs"
@@ -70,7 +68,7 @@ const InputChat = ({
                                 activeFontIcon={faLock}
                                 inactiveFontIcon={faLockOpen}
                                 activeClassName="flex text-neo-red"
-                                inactiveClassName="flex text-neo-light-grey opacity-50"
+                                inactiveClassName="flex text-neo-link opacity-50"
                                 fCallback={fCallbackPrivateMessage}
                             />
                         }

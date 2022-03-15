@@ -29,14 +29,10 @@ const Template: ComponentStory<typeof InputChat> = (args) => {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Default2 = Template.bind({});
-Default2.args = {
-    buttonSub: true,
-};
-
 export const WithPrivateOption = Template.bind({});
 WithPrivateOption.args = {
     privateMessage: true,
     // eslint-disable-next-line no-console
     fCallbackPrivateMessage: () => console.log("mp"),
+    placeholder: "Send a message",
 };

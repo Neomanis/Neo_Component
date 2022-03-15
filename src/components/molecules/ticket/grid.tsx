@@ -30,6 +30,7 @@ const Grid = ({
     className,
     cols,
     currentTicket,
+    ticketBG,
     droppableId,
     fCallBackHover,
     fCurrentTicket,
@@ -207,7 +208,7 @@ const Grid = ({
                                             />
                                         ) : (
                                             <DndTicket
-                                                ticketProps={{}}
+                                                ticketProps={{ ticketBG: ticketBG }}
                                                 dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
                                             />
                                         )}

@@ -31,6 +31,7 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     required: boolean;
     setValue?: UseFormSetValue<FieldValues>;
+    style?: React.CSSProperties;
     targetId?: number | undefined;
     timerSetting?: number;
     typeInput: string;
@@ -63,6 +64,7 @@ const Input = ({
     register,
     required,
     setValue,
+    style,
     targetId,
     timerSetting = 5000,
     typeInput,
@@ -180,6 +182,7 @@ const Input = ({
                         pattern={pattern}
                         placeholder={placeholder}
                         type={typeInput}
+                        style={style}
                     />
                 </div>
             </label>
