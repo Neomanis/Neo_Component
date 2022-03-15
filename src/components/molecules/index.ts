@@ -21,12 +21,14 @@ import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
 import WritingDots from "../atoms/chat/writingDots";
 import NeoBotProcess from "./chat/neoBotProcess";
+import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
 
 export {
     AnswerForm,
     AnswerItem,
     ChatCard,
     Grid,
+    InlineShadowBoxWrapper,
     InputChat,
     MessageChat,
     NeoBotProcess,

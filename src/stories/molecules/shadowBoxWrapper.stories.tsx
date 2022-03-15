@@ -22,8 +22,8 @@ const Template: ComponentStory<typeof ShadowBoxWrapper> = (args) => {
     );
 };
 
-export const ToasterDefault = Template.bind({});
-ToasterDefault.args = {
+export const ShadowBoxWrapperDefault = Template.bind({});
+ShadowBoxWrapperDefault.args = {
     classNames: {
         container: "overflow-y-scroll no-scrollbar h-28",
         topShadowBox: "w-full h-10 absolute top-0 z-20",
