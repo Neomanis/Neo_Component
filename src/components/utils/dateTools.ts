@@ -18,12 +18,16 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
     // between dates ourselves to display hours and minutes in HH:mm format
     if (formatedDate[1].startsWith("hour")) {
         const timeDistanceToNow = intervalToDuration({ start: new Date(), end: dateTicket });
-        return JSON.stringify(timeDistanceToNow.hours) + " : " + JSON.stringify(timeDistanceToNow.minutes);
+        return (
+            ("0" + JSON.stringify(timeDistanceToNow.hours)).slice(-2) +
+            " : " +
+            ("0" + JSON.stringify(timeDistanceToNow.minutes)).slice(-2)
+        );
     }
 
     // if formatDistanceToNowStrict is usign 'minute' or 'second' unit, we will use abbreviated translation
     if (formatedDate[1].startsWith("second") || formatedDate[1].startsWith("minute")) {
-        return formatedDate[0] + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
+        return ("0" + formatedDate[0]).slice(-2) + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
     }
     if (formatedDate[1].slice(-1) === "s") {
         formatedDate[1] = formatedDate[1].slice(0, -1);
