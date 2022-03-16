@@ -1,5 +1,6 @@
 {
     "book": {
+        "back": "Retour",
         "chaptersNumber": "Nombre de chapitres",
         "details": "Détails du livre",
         "launch": "Lancer un livre",

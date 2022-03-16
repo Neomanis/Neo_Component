@@ -1,5 +1,6 @@
 {
     "book": {
+        "back": "Back",
         "chaptersNumber": "Number of chapters",
         "details": "Book details",
         "launch": "Launch a book",
