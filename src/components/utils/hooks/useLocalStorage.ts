@@ -25,21 +25,27 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
         window.dispatchEvent(new Event(`local-storage-${key}`));
     };
 
-    useEffect(() => {
-        setStoredValue(readValue());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    // this only works for other documents, not the current one
-    window.addEventListener("storage", (event) => {
+    function storageListener(event: StorageEvent) {
         if (event.key !== key) {
             return;
         }
         setStoredValue(readValue());
-    });
+    }
 
-    // this is a custom event, triggered in setValue
-    window.addEventListener(`local-storage-${key}`, () => setStoredValue(readValue()));
+    useEffect(() => {
+        setStoredValue(readValue());
+        // this only works for other documents, not the current one
+        window.addEventListener("storage", storageListener);
+
+        // this is a custom event, triggered in setValue
+        window.addEventListener(`local-storage-${key}`, () => setStoredValue(readValue()));
+
+        return () => {
+            window.removeEventListener("storage", storageListener);
+            window.removeEventListener(`local-storage-${key}`, () => setStoredValue(readValue()));
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return [storedValue, setValue];
 }
