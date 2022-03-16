@@ -12,7 +12,7 @@ import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
-import useLocalStorage from "./hooks/useLocalStorage";
+import useLocalStorage, { LOCAL_STORAGE_VERSION } from "./hooks/useLocalStorage";
 import inputReducer from "./reducers/inputReducer";
 import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutageTextColor } from "./outagesColors";
 import {
@@ -59,4 +59,5 @@ export {
     stripHtml,
     useIsFirstRender,
     useLocalStorage,
+    LOCAL_STORAGE_VERSION,
 };
