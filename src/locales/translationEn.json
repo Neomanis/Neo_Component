@@ -1,6 +1,5 @@
 {
     "book": {
-        "back": "Back",
         "chaptersNumber": "Number of chapters",
         "details": "Book details",
         "launch": "Launch a book",
@@ -145,6 +144,7 @@
         "askHelp": "Ask some help",
         "at": "at",
         "autoRefresh": "Auto-refresh",
+        "back": "Back",
         "by": " by ",
         "cancel": "cancel",
         "checkAll": "Check all",
