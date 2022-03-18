@@ -581,6 +581,48 @@ export interface ILocalStorageTicket {
     userAssignedTo: number[];
 }
 
+export interface IAction {
+    name: string;
+    id: number;
+    actionParams: {
+        type: string;
+        name?: string;
+        directory?: string;
+        params: Record<string, string>[];
+        target?: Record<string, string>;
+    };
+    desc: string;
+    follow: {
+        yes: { id: number; type: string };
+        no?: { id: number; type: string };
+    };
+    position: {
+        x: number;
+        y: number;
+    };
+}
+
+export interface IExit {
+    name: string;
+    type: string;
+    id: number;
+    action: string;
+    position: {
+        x: number;
+        y: number;
+    };
+}
+
+export interface IBook {
+    actions: IAction[];
+    chapters: number;
+    description: string;
+    exits: IExit[];
+    filename: string;
+    name: string;
+    prerequisites: string[];
+}
+
 export type TInputSelectSearchableCss = StylesConfig<
     { label: string; value: number },
     boolean,
