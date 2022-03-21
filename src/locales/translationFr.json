@@ -1,7 +1,12 @@
 {
     "book": {
         "chaptersNumber": "Nombre de chapitres",
+        "closureOrWorkflow": "Confirmation / Demande de Workflow",
         "details": "Détails du livre",
+        "exit": {
+            "escalate": "Sortie escaladée",
+            "solved": "Sortie résolue"
+        },
         "launch": "Lancer un livre",
         "launchFailed": "L'exécution du livre a échoué",
         "otherPending": "Autre livre en attente",
@@ -167,6 +172,7 @@
         "name": "Nom",
         "no": "Non",
         "now": "Maintenant",
+        "other": "Autres",
         "preferences": "Préférences",
         "prerequisites": "Prérequis",
         "range": "Période",

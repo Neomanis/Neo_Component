@@ -1,7 +1,12 @@
 {
     "book": {
         "chaptersNumber": "Number of chapters",
+        "closureOrWorkflow": "Closure / Workflow Request",
         "details": "Book details",
+        "exit": {
+            "escalate": "Exit escalated",
+            "solved": "Exit solved"
+        },
         "launch": "Launch a book",
         "launchFailed": "Book launch failed",
         "otherPending": "Other book pending",
@@ -167,6 +172,7 @@
         "name": "Name",
         "no": "No",
         "now": "Now",
+        "other": "Other",
         "preferences": "Preferences",
         "prerequisites": "Prerequisites",
         "range": "Range",
