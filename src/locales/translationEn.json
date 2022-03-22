@@ -123,6 +123,10 @@
         "404": "OUPSS! PAGES NOT FOUND!",
         "dateTime": "Future date not allowed",
         "delete": "Deletion failed",
+        "file": {
+            "file-invalid-type": "Wrong file type",
+            "file-too-large": "File is larger than 2MB"
+        },
         "invalidInput": "invalid input",
         "notFound": "not found",
         "partial": "Both field are required",
@@ -146,10 +150,12 @@
         "all_female_other": "All",
         "all_male_one": "All",
         "all_male_other": "All",
+        "apply": "Apply",
         "askHelp": "Ask some help",
         "at": "at",
         "autoRefresh": "Auto-refresh",
         "back": "Back",
+        "browseFiles": "Browse files",
         "by": " by ",
         "cancel": "cancel",
         "checkAll": "Check all",
@@ -201,6 +207,11 @@
         "validate": "validate",
         "value": "value",
         "yes": "Yes"
+    },
+    "image": {
+        "changeAvatar": "Change avatar",
+        "dragAndDrop": "Drag 'n' drop your avatar here",
+        "types": "png, jpg, jpeg and svg"
     },
     "itsm": {
         "address": "Itsm address",
