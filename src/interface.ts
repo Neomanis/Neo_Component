@@ -484,6 +484,8 @@ export interface IUser {
         name: string;
     }[];
     selected_entity_id?: number;
+    xmppServer?: string;
+    xmppLogin?: string;
 }
 
 export interface IUserInfo {

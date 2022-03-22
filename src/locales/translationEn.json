@@ -137,7 +137,9 @@
         "ticketNotFound": "Specified ticket does not exist",
         "title_one": "Error",
         "title_other": "Errors",
-        "workflow": "Error while sending your decision"
+        "workflow": "Error while sending your decision",
+        "xmppServerList": "Could not get xmpp servers list",
+        "xmppServerSet": "Fail to set xmpp server"
     },
     "global": {
         "acceptAll": "Accept all",
@@ -237,6 +239,10 @@
         },
         "workflow": {
             "title": "Workflow requests"
+        },
+        "xmpp": {
+            "login": "XMPP login",
+            "server": "XMPP server"
         }
     },
     "remote": {
