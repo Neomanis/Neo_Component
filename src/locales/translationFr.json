@@ -123,6 +123,10 @@
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
         "dateTime": "Date dans le futur interdite",
         "delete": "Erreur lors de la suppression",
+        "file": {
+            "file-invalid-type": "Mauvais type de fichier",
+            "file-too-large": "Le fichier fait plus de 2 Mo"
+        },
         "invalidInput": "Champ invalide",
         "notFound": "Non trouvé",
         "partial": "Veuillez remplir les deux champs",
@@ -148,12 +152,14 @@
         "all_female_other": "Toutes",
         "all_male_one": "Tout",
         "all_male_other": "Tous",
+        "apply": "Appliquer",
         "askHelp": "Demander de l'aide",
         "at": "à",
         "autoRefresh": "Refresh-auto",
         "back": "Retour",
+        "browseFiles": "Parcourir les fichiers",
         "by": " par ",
-        "cancel": "annuler",
+        "cancel": "Annuler",
         "checkAll": "Tout sélectionner",
         "clearAll": "Supprimer tout",
         "computerName": "Nom de l'ordinateur",
@@ -203,6 +209,11 @@
         "validate": "valider",
         "value": "valeur",
         "yes": "Oui"
+    },
+    "image": {
+        "changeAvatar": "Changer l'avatar",
+        "dragAndDrop": "Glisser et déposer votre avatar ici",
+        "types": "png, jpg, jpeg and svg"
     },
     "itsm": {
         "address": "Adresse",

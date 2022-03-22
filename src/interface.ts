@@ -474,11 +474,7 @@ export interface IUser {
     language?: string;
     level?: string;
     groups?: string[];
-    avatar?: {
-        encodedAvatar: string;
-        mimetype: string;
-        originalname: string;
-    };
+    avatar?: IAvatar;
     entities?: {
         id: number;
         name: string;
@@ -486,6 +482,12 @@ export interface IUser {
     selected_entity_id?: number;
     xmppServer?: string;
     xmppLogin?: string;
+}
+
+export interface IAvatar {
+    encodedAvatar: string;
+    mimetype: string;
+    originalname: string;
 }
 
 export interface IUserInfo {
@@ -645,6 +647,7 @@ export type TInputSelectSearchableCustomComponent = Partial<
     >
 >;
 
+export type TFileErrorTraductionKey = "file-invalid-type" | "file-too-large";
 export type TNotificationTypeTraductionKey = "get-new-message" | "orchestrator-alert" | "ticket-update";
 export type TStatusTraductionKey = "assigned" | "closed" | "new" | "pending" | "planned" | "solved";
 export type TScaleTraductionKey = "high" | "low" | "major" | "medium" | "veryHigh" | "veryLow";
