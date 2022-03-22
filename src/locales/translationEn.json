@@ -142,8 +142,8 @@
         "title_one": "Error",
         "title_other": "Errors",
         "workflow": "Error while sending your decision",
-        "xmppServerList": "Could not get xmpp servers list",
-        "xmppServerSet": "Fail to set xmpp server"
+        "xmppServerList": "Could not get XMPP servers list",
+        "xmppServerSet": "Fail to set XMPP server"
     },
     "global": {
         "acceptAll": "Accept all",

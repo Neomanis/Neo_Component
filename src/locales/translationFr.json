@@ -142,8 +142,8 @@
         "title_one": "Erreur",
         "title_other": "Erreurs",
         "workflow": "Erreur lors de l'envoi de votre décision",
-        "xmppServerList": "Echec lors de la récupération de la liste des serveurs xmpp",
-        "xmppServerSet": "Erreur lors de l'enregistrement du serveur xmpp"
+        "xmppServerList": "Erreur lors de la récupération des serveurs XMPP",
+        "xmppServerSet": "Erreur lors de l'enregistrement du serveur XMPP"
     },
     "global": {
         "acceptAll": "Tout accepter",
@@ -252,8 +252,8 @@
             "title": "Demandes de Workflow"
         },
         "xmpp": {
-            "login": "identifiant XMPP",
-            "server": "serveur XMPP"
+            "login": "Identifiant XMPP",
+            "server": "Serveur XMPP"
         }
     },
     "remote": {
