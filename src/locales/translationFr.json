@@ -141,7 +141,9 @@
         "ticketNotFound": "Le ticket spécifié n'existe pas",
         "title_one": "Erreur",
         "title_other": "Erreurs",
-        "workflow": "Erreur lors de l'envoi de votre décision"
+        "workflow": "Erreur lors de l'envoi de votre décision",
+        "xmppServerList": "Erreur lors de la récupération des serveurs XMPP",
+        "xmppServerSet": "Erreur lors de l'enregistrement du serveur XMPP"
     },
     "global": {
         "acceptAll": "Tout accepter",
@@ -248,6 +250,10 @@
         },
         "workflow": {
             "title": "Demandes de Workflow"
+        },
+        "xmpp": {
+            "login": "Identifiant XMPP",
+            "server": "Serveur XMPP"
         }
     },
     "remote": {
