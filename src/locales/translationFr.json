@@ -211,7 +211,7 @@
     "image": {
         "changeAvatar": "Changer l'avatar",
         "dragAndDrop": "Glisser et déposer votre avatar ici",
-        "types": "Seulement png, jpg, jpeg and svg"
+        "types": "png, jpg, jpeg and svg"
     },
     "itsm": {
         "address": "Adresse",
