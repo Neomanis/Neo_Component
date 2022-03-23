@@ -480,8 +480,10 @@ export interface IUser {
         name: string;
     }[];
     selected_entity_id?: number;
-    xmppServer?: string;
-    xmppLogin?: string;
+    xmpp?: {
+        server: string;
+        login?: string;
+    };
 }
 
 export interface IAvatar {
