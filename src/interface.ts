@@ -587,6 +587,11 @@ export interface ILocalStorageTicket {
     userAssignedTo: number[];
 }
 
+export interface IFollow {
+    yes: { id: number; type: string };
+    no?: { id: number; type: string };
+}
+
 export interface IAction {
     name: string;
     id: number;
@@ -598,10 +603,7 @@ export interface IAction {
         target?: Record<string, string>;
     };
     desc: string;
-    follow: {
-        yes: { id: number; type: string };
-        no?: { id: number; type: string };
-    };
+    follow: IFollow;
     position: {
         x: number;
         y: number;
@@ -627,6 +629,17 @@ export interface IBook {
     filename: string;
     name: string;
     prerequisites: string[];
+}
+
+export interface EdgeData {
+    link: { follow: "yes" | "no"; type: string };
+    removeEdge: (edgeId: string) => void;
+    updateEdge: (edgeId: string) => void;
+}
+
+export interface NodeData {
+    label: JSX.Element;
+    chapter: IAction | IExit;
 }
 
 export type TInputSelectSearchableCss = StylesConfig<

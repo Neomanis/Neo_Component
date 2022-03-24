@@ -121,6 +121,11 @@
     },
     "error": {
         "404": "OUPSS ! CETTE PAGE N'EXISTE PAS !",
+        "book": {
+            "action": {
+                "connection": "Les actions doivent avoir une connexion oui et/ou une connexion non"
+            }
+        },
         "dateTime": "Date dans le futur interdite",
         "delete": "Erreur lors de la suppression",
         "file": {
