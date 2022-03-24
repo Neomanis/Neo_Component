@@ -254,6 +254,15 @@
         "xmpp": {
             "login": "XMPP login",
             "server": "XMPP server"
+        },
+        "xmppServerForm": {
+            "address": "Address",
+            "deleteServer": "Delete this server?",
+            "login": "Login",
+            "name": "Name",
+            "password": "Password",
+            "saveButton": "Save",
+            "title": "Xmpp server settings"
         }
     },
     "remote": {

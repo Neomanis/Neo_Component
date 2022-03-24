@@ -254,6 +254,15 @@
         "xmpp": {
             "login": "Identifiant XMPP",
             "server": "Serveur XMPP"
+        },
+        "xmppServerForm": {
+            "address": "Adresse",
+            "deleteServer": "Supprimer ce serveur ?",
+            "login": "Identifiant",
+            "name": "Nom",
+            "password": "Mot de passe",
+            "saveButton": "Enregistrer",
+            "title": "Paramètres de serveur xmpp"
         }
     },
     "remote": {
