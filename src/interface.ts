@@ -631,13 +631,13 @@ export interface IBook {
     prerequisites: string[];
 }
 
-export interface EdgeData {
+export interface IEdgeData {
     link: { follow: "yes" | "no"; type: string };
     removeEdge: (edgeId: string) => void;
     updateEdge: (edgeId: string) => void;
 }
 
-export interface NodeData {
+export interface INodeData {
     label: JSX.Element;
     chapter: IAction | IExit;
 }
