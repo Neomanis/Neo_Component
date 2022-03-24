@@ -262,6 +262,7 @@
             "name": "Nom",
             "password": "Mot de passe",
             "saveButton": "Enregistrer",
+            "succesfullyCreated": "Serveur créé",
             "title": "Paramètres de serveur xmpp"
         }
     },
