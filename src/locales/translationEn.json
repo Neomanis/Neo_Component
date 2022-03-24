@@ -153,6 +153,7 @@
     },
     "global": {
         "acceptAll": "Accept all",
+        "address": "Address",
         "all": "All",
         "all_female_one": "All",
         "all_female_other": "All",
@@ -187,12 +188,14 @@
         "no": "No",
         "now": "Now",
         "other": "Other",
+        "password": "Password",
         "preferences": "Preferences",
         "prerequisites": "Prerequisites",
         "range": "Range",
         "refuse": "refuse",
         "refuseAll": "Refuse All",
         "request": "Requests",
+        "save": "Save",
         "search": "Search",
         "seeAll": "See more",
         "seeLess": "See less",
@@ -258,8 +261,11 @@
             "title": "Workflow requests"
         },
         "xmpp": {
+            "deleteServer": "Delete this server?",
             "login": "XMPP login",
-            "server": "XMPP server"
+            "server": "XMPP server",
+            "serverSettings": "Xmpp server settings",
+            "succesfullyCreated": "Server succesfully created"
         }
     },
     "remote": {
