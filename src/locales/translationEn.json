@@ -121,6 +121,12 @@
     },
     "error": {
         "404": "OUPSS! PAGES NOT FOUND!",
+        "book": {
+            "action": {
+                "connection": "Actions should have one yes connection and/or one no connection"
+            },
+            "invalid": "Invalid book"
+        },
         "dateTime": "Future date not allowed",
         "delete": "Deletion failed",
         "file": {
