@@ -1,6 +1,6 @@
 import JSEncrypt from "jsencrypt";
-import { frontEncrypt } from "../../components/utils/crypto/frontUtils";
-import { publicKey, privateKey } from "../keys-pair/keys";
+import { frontEncrypt } from "../../../components/utils/crypto/frontUtils";
+import { publicKey, privateKey } from "./keys";
 
 const password = "Konbawa";
 describe("JSEncrypt", () => {
