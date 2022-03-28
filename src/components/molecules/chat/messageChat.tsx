@@ -44,12 +44,12 @@ const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: Prop
                 onMouseLeave={() => setHover(false)}
             >
                 <div className="min-w-max ">
-                    {avatar ? (
+                    {avatar && avatar.encodedAvatar !== null ? (
                         <Img
                             type="imgProfile"
                             data={{
-                                src: `data:${avatar?.mimetype};base64,${avatar.encodedAvatar}`,
-                                alt: `${avatar?.originalname}`,
+                                src: avatar.encodedAvatar,
+                                alt: avatar.originalname,
                             }}
                             className={"rounded-full w-11 h-11"}
                         />
