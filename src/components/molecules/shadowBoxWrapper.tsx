@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, RefObject, useLayoutEffect, useState } from "react";
+import React, { ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
 
 interface Props {
     refP?: RefObject<HTMLUListElement>;
@@ -17,6 +17,8 @@ interface Props {
 const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props): ReactElement => {
     const [showTopShadowBox, setShowTopShadowBox] = useState(false);
     const [showBottomShadowBox, setShowBottomShadowBox] = useState(true);
+
+    const listContainerRef = useRef<HTMLUListElement>(null);
 
     function detectScroll(ref: HTMLUListElement): void {
         const scrollPercentage = ref.scrollTop / (ref.scrollHeight - ref.clientHeight);
@@ -39,7 +41,10 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props)
     }
 
     useLayoutEffect(() => {
-        if (refP.current && !isOverflow(refP.current)) {
+        if (refP && refP.current && !isOverflow(refP.current)) {
+            setShowTopShadowBox(false);
+            setShowBottomShadowBox(false);
+        } else if (listContainerRef.current && !isOverflow(listContainerRef.current)) {
             setShowTopShadowBox(false);
             setShowBottomShadowBox(false);
         }
@@ -47,9 +52,13 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props)
 
     return (
         <ul
-            ref={refP}
+            ref={refP ? refP : listContainerRef}
             className={classNames.container}
-            onScroll={() => refP.current && detectScroll(refP.current)}
+            onScroll={() =>
+                refP
+                    ? refP.current && detectScroll(refP.current)
+                    : listContainerRef.current && detectScroll(listContainerRef.current)
+            }
             data-testid="shadowBoxWrapperContainer"
         >
             {showTopShadowBox && (
