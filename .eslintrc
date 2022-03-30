@@ -8,7 +8,6 @@
     "rules": {
         "no-console": "warn",
         "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
-        "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error"
     },
     "overrides": [
@@ -23,3 +22,4 @@
         "plugin:prettier/recommended"
     ]
 }
+

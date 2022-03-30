@@ -145,7 +145,6 @@ const Grid = ({
 
     useEffect(() => {
         createGrids(ticketList ? Array.from(ticketList) : []);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketList]);
 
     return (

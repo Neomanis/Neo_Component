@@ -84,15 +84,12 @@ const TextEditor = ({
 
     useEffect(() => {
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         setKey(key + 1);
         dispatch({ type: "RESET", payload: getHTMLValue(defaultValue) as string });
         setValue && setValue(refForm, getHTMLValue(defaultValue));
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetId]);
 
     return (

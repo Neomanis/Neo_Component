@@ -67,7 +67,6 @@ const InputTextarea = ({
         return () => {
             isLastMount.current = true;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetId]);
 
     useEffect(() => {
@@ -90,7 +89,6 @@ const InputTextarea = ({
                 }
             };
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
