@@ -48,6 +48,7 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props)
             setShowTopShadowBox(false);
             setShowBottomShadowBox(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [children]);
 
     return (
