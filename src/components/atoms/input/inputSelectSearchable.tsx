@@ -95,7 +95,6 @@ const InputSelectSearchable = ({
     const { t } = useTranslation();
     useEffect(() => {
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -168,7 +167,6 @@ const InputSelectSearchable = ({
         return () => {
             isLastMount.current = true;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [targetId]);
 
     useEffect(() => {
@@ -191,7 +189,6 @@ const InputSelectSearchable = ({
                 }
             };
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.updated, state.previous]);
 
     return (

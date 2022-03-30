@@ -44,7 +44,6 @@ function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
             window.removeEventListener("storage", storageListener);
             window.removeEventListener(`local-storage-${key}`, () => setStoredValue(readValue()));
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return [storedValue, setValue];
