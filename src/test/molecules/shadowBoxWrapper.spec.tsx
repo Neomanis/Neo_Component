@@ -7,11 +7,11 @@ interface Props {
 }
 
 const ShadowBoxWrapperWithRef = ({ multipleChild }: Props): ReactElement => {
-    const refP = useRef<HTMLUListElement>(null);
+    const refParent = useRef<HTMLUListElement>(null);
     return (
         <div className="h-32 flex items-center relative w-min">
             <ShadowBoxWrapper
-                refP={refP}
+                refParent={refParent}
                 classNames={{
                     container: "overflow-y-scroll no-scrollbar h-28",
                     topShadowBox: "w-full h-10 absolute top-0 z-20",

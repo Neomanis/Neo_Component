@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof ShadowBoxWrapper> = (args) => {
     const refP = useRef<HTMLUListElement>(null);
     return (
         <div className="bg-neo-bg-A p-3 h-32 flex items-center relative" style={{ width: "300px" }}>
-            <ShadowBoxWrapper refP={refP} {...args}>
+            <ShadowBoxWrapper refParent={refP} {...args}>
                 <li className="bg-neo-bg-B h-8 flex justify-center items-center p-2">Item 1</li>
                 <li className="bg-neo-bg-B h-8 flex justify-center items-center p-2">Item 4</li>
                 <li className="bg-neo-bg-B h-8 flex justify-center items-center p-2">Item 8</li>

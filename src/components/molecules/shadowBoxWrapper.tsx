@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
 
 interface Props {
-    refP?: RefObject<HTMLUListElement>;
+    refParent?: RefObject<HTMLUListElement>;
     children: ReactNode;
     classNames: {
         topShadowBox: string;
@@ -14,7 +14,7 @@ interface Props {
     };
 }
 
-const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props): ReactElement => {
+const ShadowBoxWrapper = ({ children, classNames, linearGradient, refParent }: Props): ReactElement => {
     const [showTopShadowBox, setShowTopShadowBox] = useState(false);
     const [showBottomShadowBox, setShowBottomShadowBox] = useState(true);
 
@@ -41,7 +41,7 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props)
     }
 
     useLayoutEffect(() => {
-        if (refP && refP.current && !isOverflow(refP.current)) {
+        if (refParent && refParent.current && !isOverflow(refParent.current)) {
             setShowTopShadowBox(false);
             setShowBottomShadowBox(false);
         } else if (listContainerRef.current && !isOverflow(listContainerRef.current)) {
@@ -53,11 +53,11 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: Props)
 
     return (
         <ul
-            ref={refP ? refP : listContainerRef}
+            ref={refParent ? refParent : listContainerRef}
             className={classNames.container}
             onScroll={() =>
-                refP
-                    ? refP.current && detectScroll(refP.current)
+                refParent
+                    ? refParent.current && detectScroll(refParent.current)
                     : listContainerRef.current && detectScroll(listContainerRef.current)
             }
             data-testid="shadowBoxWrapperContainer"
