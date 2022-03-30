@@ -592,16 +592,18 @@ export interface IFollow {
     no?: { id: number; type: string };
 }
 
+export interface IActionParams {
+    type: string;
+    name?: string;
+    directory?: string;
+    params: Record<string, string | string[] | Record<string, string>[]>[];
+    target?: Record<string, string>;
+}
+
 export interface IAction {
     name: string;
     id: number;
-    actionParams: {
-        type: string;
-        name?: string;
-        directory?: string;
-        params: Record<string, string>[];
-        target?: Record<string, string>;
-    };
+    actionParams: IActionParams;
     desc: string;
     follow: IFollow;
     position: {
