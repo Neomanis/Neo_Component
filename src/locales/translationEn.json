@@ -133,10 +133,11 @@
             "file-invalid-type": "Wrong file type",
             "file-too-large": "File is larger than 2MB"
         },
-        "invalidInput": "invalid input",
-        "notFound": "not found",
+        "invalidInput": "Invalid input",
+        "invalidUrl": "Invalid URL",
+        "notFound": "Not found",
         "partial": "Both field are required",
-        "required": "required field",
+        "required": "Required field",
         "servicesUnavailable": "Services are unavailable, please wait",
         "somethingWentWrong": "Something went wrong",
         "submit": {
@@ -155,6 +156,7 @@
         "acceptAll": "Accept all",
         "addParam": "Add param",
         "address": "Address",
+        "admin": "Administration",
         "all": "All",
         "all_female_one": "All",
         "all_female_other": "All",
