@@ -64,7 +64,12 @@ const TechnicalQuestionItem = ({
                 }  px-4 flex flex-col justify-center flex-grow py-3`}
             >
                 <div data-testid="tq-middle-top" className="flex justify-between items-center w-full">
-                    <Title type={"h2"} data={title} className="font-bold text-lg mr-2 truncate text-white" />
+                    <Title
+                        type={"h2"}
+                        data={title}
+                        className="font-bold text-lg mr-2 truncate text-white"
+                        style={{ maxWidth: "265px" }}
+                    />
                     <Tooltip
                         position="top"
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"

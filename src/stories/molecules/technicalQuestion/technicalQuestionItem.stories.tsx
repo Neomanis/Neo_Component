@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
     return (
-        <div className="">
+        <div style={{ width: 600 }}>
             <TechnicalQuestionItem {...args} />
         </div>
     );
