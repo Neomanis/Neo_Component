@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { formatDate, getPriorityColor } from "../../utils";
 import { Title, Tooltip } from "../../atoms";
