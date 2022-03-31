@@ -134,7 +134,7 @@
             "file-too-large": "Le fichier fait plus de 2 Mo"
         },
         "invalidInput": "Champ invalide",
-        "invalidUrl": "l'URL n'est pas valide",
+        "invalidUrl": "URL invalide",
         "notFound": "Non trouvé",
         "partial": "Veuillez remplir les deux champs",
         "required": "Champ requis",
