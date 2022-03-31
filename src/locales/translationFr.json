@@ -134,6 +134,7 @@
             "file-too-large": "Le fichier fait plus de 2 Mo"
         },
         "invalidInput": "Champ invalide",
+        "invalidUrl": "l'URL n'est pas valide",
         "notFound": "Non trouvé",
         "partial": "Veuillez remplir les deux champs",
         "required": "Champ requis",
@@ -155,6 +156,7 @@
         "acceptAll": "Tout accepter",
         "addParam": "Ajouter un paramètre",
         "address": "Adresse",
+        "admin": "Administration",
         "all": "Tout",
         "all_female_one": "Toute",
         "all_female_other": "Toutes",
