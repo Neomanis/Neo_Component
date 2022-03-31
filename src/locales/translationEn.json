@@ -134,6 +134,7 @@
             "file-too-large": "File is larger than 2MB"
         },
         "invalidInput": "invalid input",
+        "invalidUrl": "invalid URL",
         "notFound": "not found",
         "partial": "Both field are required",
         "required": "required field",
@@ -154,6 +155,7 @@
     "global": {
         "acceptAll": "Accept all",
         "address": "Address",
+        "admin": "Administration",
         "all": "All",
         "all_female_one": "All",
         "all_female_other": "All",
