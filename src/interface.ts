@@ -598,6 +598,7 @@ export interface IActionParams {
     directory?: string;
     params: Record<string, string | string[] | Record<string, string>[]>[];
     target?: Record<string, string>;
+    outputs?: string[];
 }
 
 export interface IAction {
