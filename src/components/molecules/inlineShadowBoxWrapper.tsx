@@ -43,7 +43,6 @@ const InlineShadowBoxWrapper = ({ children, classNames, linearGradient, refP }: 
             setShowLeftShadowBox(false);
             setShowRightShadowBox(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [children]);
 
     return (

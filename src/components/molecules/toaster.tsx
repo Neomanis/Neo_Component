@@ -48,7 +48,6 @@ const Toaster = ({
             }, (refreshDuration + 1) * 1000);
         }
         return () => clearTimeout(timerCall.current);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [refreshing]);
 
     function renderSwitchNeoLogo(emotion) {

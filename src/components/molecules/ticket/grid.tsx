@@ -31,7 +31,7 @@ const Grid = ({
     cols,
     currentTicket,
     ticketBG,
-    droppableId,
+    droppableId = "inbox",
     fCallBackHover,
     fCurrentTicket,
     fNewPositionedTicket,
@@ -123,9 +123,9 @@ const Grid = ({
                                     row: rowIndex,
                                 },
                             };
-                            (gridsInitialization[gridIndex][rowIndex][colIndex] =
-                                ticketWithNoPosition[ticketWithNoPositionIndex]),
-                                ticketWithNoPositionIndex++;
+                            gridsInitialization[gridIndex][rowIndex][colIndex] =
+                                ticketWithNoPosition[ticketWithNoPositionIndex];
+                            ticketWithNoPositionIndex++;
                         }
                     });
                 });
@@ -145,7 +145,6 @@ const Grid = ({
 
     useEffect(() => {
         createGrids(ticketList ? Array.from(ticketList) : []);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ticketList]);
 
     return (
