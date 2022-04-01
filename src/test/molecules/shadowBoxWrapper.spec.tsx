@@ -32,8 +32,6 @@ const ShadowBoxWrapperWithRef = ({ multipleChild }: Props): ReactElement => {
     );
 };
 
-export default ShadowBoxWrapperWithRef;
-
 describe("ShadowBoxWrapper", () => {
     it("should have to correct classNames and linear gradient", () => {
         mount(
