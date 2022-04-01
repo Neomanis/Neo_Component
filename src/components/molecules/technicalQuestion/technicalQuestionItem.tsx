@@ -1,9 +1,15 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { formatDate, getPriorityColor } from "../../utils";
+import {
+    formatDate,
+    getContrastBasedOnHexColor,
+    getHexColorFromTailwindColor,
+    getStatusOrPriorityColor,
+} from "../../utils";
 import { Title, Tooltip } from "../../atoms";
 import { useTranslation } from "../../../i18n";
-import { IconTechnicalQuestions, TicketLogo } from "../../../img/svg";
+import { IconTechnicalQuestions } from "../../../img/svg";
+import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
     createDate: string;
@@ -15,8 +21,9 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number | null;
+    ticketId: number;
     ticketPriority: number;
+    ticketStatus: number;
     title: string;
 }
 
@@ -32,6 +39,7 @@ const TechnicalQuestionItem = ({
     solved,
     ticketId,
     ticketPriority,
+    ticketStatus,
     title,
 }: Props): ReactElement => {
     const { t } = useTranslation();
@@ -104,16 +112,30 @@ const TechnicalQuestionItem = ({
 
             <div
                 data-testid="tq-end"
-                className={`flex justify-between px-4 rounded-r-lg ${getPriorityColor(ticketPriority, false, "bg")}`}
+                className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
+                    ticketStatus,
+                    ticketPriority,
+                    false,
+                    "bg"
+                )}`}
             >
-                <div className="flex items-center">
-                    <TicketLogo fill={`${ticketPriority >= 1 && ticketPriority <= 6 ? "#FFFFFF" : "#152535"}`} />
+                <div data-testid="tq-svg" className="flex items-center">
+                    {getTicketLogoByStatus(
+                        ticketStatus,
+                        getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
+                            "black"
+                            ? getHexColorFromTailwindColor("neo-blue-extraDark")
+                            : "#FFFFFF"
+                    )}
+
                     <div data-testid="tq-ticket-infos">
                         {ticketId && (
                             <p
                                 data-testid="tq-ticket-related"
                                 className={` ${
-                                    ticketPriority >= 1 && ticketPriority <= 6
+                                    getContrastBasedOnHexColor(
+                                        getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                    ) === "white"
                                         ? "text-white"
                                         : "text-neo-blue-secondary"
                                 }  font-bold pl-4 text-xs`}
@@ -122,7 +144,9 @@ const TechnicalQuestionItem = ({
                                 <p
                                     data-testid="tq-ticketId"
                                     className={`${
-                                        ticketPriority >= 1 && ticketPriority <= 6
+                                        getContrastBasedOnHexColor(
+                                            getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                        ) === "white"
                                             ? "text-white"
                                             : "text-neo-blue-extraDark"
                                     }  font-extrabold text-lg`}
