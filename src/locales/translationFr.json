@@ -11,7 +11,10 @@
         "launchFailed": "L'exécution du livre a échoué",
         "otherPending": "Autre livre en attente",
         "title_one": "Livre",
-        "title_other": "Livres"
+        "title_other": "Livres",
+        "toaster": {
+            "updateSuccess": "Livre mis à jour avec succès"
+        }
     },
     "category": {
         "resource": {
