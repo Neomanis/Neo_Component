@@ -17,8 +17,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-body"]').click();
@@ -40,8 +41,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-middle-top"]').find(">div").click();
@@ -65,8 +67,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-middle-top"]').find(">div").click();
@@ -90,8 +93,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-head"]').should("have.class", "bg-neo-link");
@@ -115,8 +119,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-head"]').should("have.class", "bg-neo-blue");
@@ -140,8 +145,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-pill"]').should("have.class", "bg-neo-red");
@@ -162,8 +168,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-pill"]').should("have.class", "bg-neo-green");
@@ -184,8 +191,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-middle-top"]').find(">h2").should("have.text", "Title");
@@ -209,8 +217,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-ticket-infos"]').find(">p").should("exist");
@@ -232,11 +241,12 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticketId={666}
-                ticketPriority={4}
+                ticketPriority={6}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
-        cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-ticketUrgency-high");
+        cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-ticketUrgency-major");
         cy.get('[data-testid="tq-ticket-related"]').should("have.class", "text-white");
         cy.get('[data-testid="tq-ticketId"]').should("have.class", "text-white");
     });
@@ -258,10 +268,64 @@ describe("TechnicalQuestionItem", () => {
                 ticketId={666}
                 ticketPriority={0}
                 title={"Title"}
+                ticketStatus={0}
             />
         );
         cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-light-grey");
         cy.get('[data-testid="tq-ticket-related"]').should("have.class", "text-neo-blue-secondary");
         cy.get('[data-testid="tq-ticketId"]').should("have.class", "text-neo-blue-extraDark");
+    });
+
+    it("should render ticketStatus props properly", () => {
+        const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
+        const openTechnicalQuestionCallback = cy.stub().as("open-callback");
+        mount(
+            <TechnicalQuestionItem
+                createDate={"2021-11-15T13:34:48.551Z"}
+                createLevel={"Tech"}
+                createUser={"John Doe"}
+                followed={false}
+                followTechnicalQuestion={followTechnicalQuestionCallback}
+                id={2}
+                isSelected={false}
+                openTechnicalQuestion={openTechnicalQuestionCallback}
+                solved={true}
+                ticketId={666}
+                ticketPriority={0}
+                title={"Title"}
+                ticketStatus={5}
+            />
+        );
+        cy.get('[data-testid="tq-svg"]')
+            .find(">svg")
+            .should("exist")
+            .and("have.id", "nm_ico_ticket_solved_svg__Calque_1");
+        cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-green");
+    });
+
+    it("should render ticketStatus props properly", () => {
+        const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
+        const openTechnicalQuestionCallback = cy.stub().as("open-callback");
+        mount(
+            <TechnicalQuestionItem
+                createDate={"2021-11-15T13:34:48.551Z"}
+                createLevel={"Tech"}
+                createUser={"John Doe"}
+                followed={false}
+                followTechnicalQuestion={followTechnicalQuestionCallback}
+                id={2}
+                isSelected={false}
+                openTechnicalQuestion={openTechnicalQuestionCallback}
+                solved={true}
+                ticketId={666}
+                ticketPriority={0}
+                title={"Title"}
+                ticketStatus={6}
+            />
+        );
+        cy.get('[data-testid="tq-svg"]')
+            .find(">svg")
+            .should("exist")
+            .and("have.id", "nm_ico_ticket_closed_svg__Calque_1");
     });
 });

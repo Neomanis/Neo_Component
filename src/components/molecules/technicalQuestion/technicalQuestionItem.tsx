@@ -1,9 +1,10 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { formatDate, getPriorityColor } from "../../utils";
+import { formatDate, getContrastBasedOnHexColor, getStatusOrPriorityColor } from "../../utils";
 import { Title, Tooltip } from "../../atoms";
+import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
-import { IconTechnicalQuestions, TicketLogo } from "../../../img/svg";
+import { IconTechnicalQuestions, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 
 interface Props {
     createDate: string;
@@ -15,8 +16,9 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number | null;
+    ticketId: number;
     ticketPriority: number;
+    ticketStatus: number;
     title: string;
 }
 
@@ -32,9 +34,32 @@ const TechnicalQuestionItem = ({
     solved,
     ticketId,
     ticketPriority,
+    ticketStatus,
     title,
 }: Props): ReactElement => {
     const { t } = useTranslation();
+    function getTicketLogoByStatus(ticketStatus: number): ReactElement {
+        if (ticketStatus === Status.Solved) {
+            return (
+                <IconTicketSolved
+                    fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
+                />
+            );
+        }
+        if (ticketStatus === Status.Closed) {
+            return (
+                <IconTicketClosed
+                    fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
+                />
+            );
+        }
+
+        return (
+            <TicketLogo
+                fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
+            />
+        );
+    }
 
     return (
         <li
@@ -104,16 +129,24 @@ const TechnicalQuestionItem = ({
 
             <div
                 data-testid="tq-end"
-                className={`flex justify-between px-4 rounded-r-lg ${getPriorityColor(ticketPriority, false, "bg")}`}
+                className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
+                    ticketStatus,
+                    ticketPriority,
+                    false,
+                    "bg"
+                )}`}
             >
-                <div className="flex items-center">
-                    <TicketLogo fill={`${ticketPriority >= 1 && ticketPriority <= 6 ? "#FFFFFF" : "#152535"}`} />
+                <div data-testid="tq-svg" className="flex items-center">
+                    {getTicketLogoByStatus(ticketStatus)}
+
                     <div data-testid="tq-ticket-infos">
                         {ticketId && (
                             <p
                                 data-testid="tq-ticket-related"
                                 className={` ${
-                                    ticketPriority >= 1 && ticketPriority <= 6
+                                    getContrastBasedOnHexColor(
+                                        getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                    ) === "white"
                                         ? "text-white"
                                         : "text-neo-blue-secondary"
                                 }  font-bold pl-4 text-xs`}
@@ -122,7 +155,9 @@ const TechnicalQuestionItem = ({
                                 <p
                                     data-testid="tq-ticketId"
                                     className={`${
-                                        ticketPriority >= 1 && ticketPriority <= 6
+                                        getContrastBasedOnHexColor(
+                                            getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                        ) === "white"
                                             ? "text-white"
                                             : "text-neo-blue-extraDark"
                                     }  font-extrabold text-lg`}

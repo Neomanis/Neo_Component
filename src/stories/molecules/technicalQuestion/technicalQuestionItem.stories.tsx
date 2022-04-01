@@ -30,5 +30,6 @@ TechnicalQuestionItemDefault.args = {
     solved: true,
     ticketId: 666,
     ticketPriority: 4,
+    ticketStatus: 1,
     title: "You strive for victory",
 };
