@@ -11,7 +11,10 @@
         "launchFailed": "Book launch failed",
         "otherPending": "Other book pending",
         "title_one": "Book",
-        "title_other": "Books"
+        "title_other": "Books",
+        "toaster": {
+            "updateSuccess": "Successfully updated book"
+        }
     },
     "category": {
         "resource": {
