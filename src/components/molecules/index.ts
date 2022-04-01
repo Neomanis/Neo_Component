@@ -1,9 +1,12 @@
 import AnswerForm from "./technicalQuestion/answerForm";
 import AnswerItem from "./technicalQuestion/answerItem";
+import AvatarEditor from "./user/avatarEditor";
 import ChatCard from "./chat/chatCard";
 import Grid from "./ticket/grid";
+import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
 import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
+import NeoBotProcess from "./chat/neoBotProcess";
 import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
 import NotificationItem from "./notification/notificationItem";
@@ -17,15 +20,15 @@ import TechnicalQuestionItem from "./technicalQuestion/technicalQuestionItem";
 import Ticket from "./ticket/ticket";
 import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQuestionLine";
 import Toaster from "./toaster";
+import UserInfo from "./user/userInfo";
 import ValidationCard from "./validationCard";
 import WorkflowCard from "./notification/workflowCard";
 import WritingDots from "../atoms/chat/writingDots";
-import NeoBotProcess from "./chat/neoBotProcess";
-import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
 
 export {
     AnswerForm,
     AnswerItem,
+    AvatarEditor,
     ChatCard,
     Grid,
     InlineShadowBoxWrapper,
@@ -35,8 +38,8 @@ export {
     NotificationCard,
     NotificationContainer,
     NotificationItem,
-    OutageItem,
     OutageCard,
+    OutageItem,
     RecursiveDiagnosticComponent,
     SearchField,
     ShadowBoxWrapper,
@@ -45,6 +48,7 @@ export {
     Ticket,
     TicketTechnicalQuestionLine,
     Toaster,
+    UserInfo,
     ValidationCard,
     WorkflowCard,
     WritingDots,
