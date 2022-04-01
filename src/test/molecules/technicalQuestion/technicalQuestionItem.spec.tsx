@@ -296,10 +296,7 @@ describe("TechnicalQuestionItem", () => {
                 ticketStatus={5}
             />
         );
-        cy.get('[data-testid="tq-svg"]')
-            .find(">svg")
-            .should("exist")
-            .and("have.id", "nm_ico_ticket_solved_svg__Calque_1");
+        cy.get('[data-testid="ico-ticket-solved"]').should("exist");
         cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-green");
     });
 
@@ -323,9 +320,6 @@ describe("TechnicalQuestionItem", () => {
                 ticketStatus={6}
             />
         );
-        cy.get('[data-testid="tq-svg"]')
-            .find(">svg")
-            .should("exist")
-            .and("have.id", "nm_ico_ticket_closed_svg__Calque_1");
+        cy.get('[data-testid="ico-ticket-closed"]').should("exist");
     });
 });

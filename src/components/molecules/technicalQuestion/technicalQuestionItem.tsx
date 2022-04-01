@@ -1,10 +1,16 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { formatDate, getContrastBasedOnHexColor, getStatusOrPriorityColor } from "../../utils";
+import {
+    formatDate,
+    getContrastBasedOnHexColor,
+    getHexColorFromTailwindColor,
+    getStatusOrPriorityColor,
+} from "../../utils";
 import { Title, Tooltip } from "../../atoms";
 import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
 import { IconTechnicalQuestions, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
+import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
     createDate: string;
@@ -38,28 +44,6 @@ const TechnicalQuestionItem = ({
     title,
 }: Props): ReactElement => {
     const { t } = useTranslation();
-    function getTicketLogoByStatus(ticketStatus: number): ReactElement {
-        if (ticketStatus === Status.Solved) {
-            return (
-                <IconTicketSolved
-                    fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
-                />
-            );
-        }
-        if (ticketStatus === Status.Closed) {
-            return (
-                <IconTicketClosed
-                    fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
-                />
-            );
-        }
-
-        return (
-            <TicketLogo
-                fill={`${getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true))}`}
-            />
-        );
-    }
 
     return (
         <li
@@ -137,7 +121,13 @@ const TechnicalQuestionItem = ({
                 )}`}
             >
                 <div data-testid="tq-svg" className="flex items-center">
-                    {getTicketLogoByStatus(ticketStatus)}
+                    {getTicketLogoByStatus(
+                        ticketStatus,
+                        getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
+                            "black"
+                            ? getHexColorFromTailwindColor("neo-blue-extraDark")
+                            : "#FFFFFF"
+                    )}
 
                     <div data-testid="tq-ticket-infos">
                         {ticketId && (

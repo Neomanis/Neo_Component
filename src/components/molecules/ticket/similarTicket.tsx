@@ -4,6 +4,7 @@ import { IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg
 import { Status } from "../../../enumeration";
 import { ISimilarTicket } from "../../../interface";
 import { getStatusColor } from "../../utils";
+import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
     fOpenSimilarTicket?: (ticket: ISimilarTicket) => void;
@@ -11,17 +12,6 @@ interface Props {
 }
 
 const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
-    function getTicketLogoByStatus(status: number): ReactElement {
-        if (status === Status.Solved) {
-            return <IconTicketSolved fill="#152535" />;
-        }
-        if (status === Status.Closed) {
-            return <IconTicketClosed fill="#152535" />;
-        }
-
-        return <TicketLogo fill={"#15304C"} />;
-    }
-
     return (
         <div className="h-12 bg-neo-bg-B flex rounded-md cursor-pointer" onClick={() => fOpenSimilarTicket(ticket)}>
             <div
@@ -29,7 +19,10 @@ const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
                     ${getStatusColor(ticket.status, false, "bg")}
                 `}
             >
-                {getTicketLogoByStatus(ticket.status)}
+                {getTicketLogoByStatus(
+                    ticket.status,
+                    ticket.status === (Status.Solved | Status.Closed) ? "#152535" : "#15304C"
+                )}
             </div>
             <div className="flex flex-col px-4 py-1 w-11/12">
                 <div className={`font-bold text-sm ${getStatusColor(ticket.status, false, "text")}`}>{ticket.id}</div>
