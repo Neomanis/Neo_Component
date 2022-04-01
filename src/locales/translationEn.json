@@ -13,7 +13,7 @@
         "title_one": "Book",
         "title_other": "Books",
         "toaster": {
-            "updateSuccess": "Successfully updated book"
+            "updateSuccess": "Book successfully updated "
         }
     },
     "category": {
