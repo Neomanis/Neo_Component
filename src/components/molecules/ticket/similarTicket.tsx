@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 
-import { IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { Status } from "../../../enumeration";
 import { ISimilarTicket } from "../../../interface";
 import { getStatusColor } from "../../utils";

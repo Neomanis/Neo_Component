@@ -7,9 +7,8 @@ import {
     getStatusOrPriorityColor,
 } from "../../utils";
 import { Title, Tooltip } from "../../atoms";
-import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
-import { IconTechnicalQuestions, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
+import { IconTechnicalQuestions } from "../../../img/svg";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
