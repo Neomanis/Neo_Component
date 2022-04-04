@@ -1,7 +1,7 @@
-import AvatarHandler from "../../components/organism/avatarHandler";
-import { mount } from "@cypress/react";
 import { imgAvatar } from "../../stories/fakeAvatar";
 import { IUser } from "../../interface";
+import { mount } from "@cypress/react";
+import AvatarHandler from "../../components/organism/avatarHandler";
 
 const defaultUser = {
     uid: "ttest",

@@ -1,15 +1,13 @@
-import AvatarEditor from "../../../components/molecules/user/avatarEditor";
-import { mount } from "@cypress/react";
-import "cypress-file-upload";
-
-import { IAvatar, IUser, TFileErrorTraductionKey } from "../../../interface";
-import { CloseLogo } from "../../../img/svg";
 import { Button } from "../../../components/atoms";
+import { CloseLogo } from "../../../img/svg";
 import { createRef, Dispatch, ReactElement, SetStateAction, useEffect, useState } from "react";
-import ReactAvatarEditor from "react-avatar-editor";
-import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
+import { IAvatar, IUser, TFileErrorTraductionKey } from "../../../interface";
 import { imgAvatar } from "../../../stories/fakeAvatar";
+import { mount } from "@cypress/react";
 import { useTranslation } from "react-i18next";
+import AvatarEditor from "../../../components/molecules/user/avatarEditor";
+import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
+import ReactAvatarEditor from "react-avatar-editor";
 
 interface Props {
     divEditorClassName?: string;
@@ -78,7 +76,6 @@ const AvatarEditorTest = ({
 
     useEffect(() => {
         setError({ show: false, messages: [] });
-        // set props avatarImage
     }, [image]);
 
     return (

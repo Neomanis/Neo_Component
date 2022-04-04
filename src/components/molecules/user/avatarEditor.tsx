@@ -70,7 +70,6 @@ const AvatarEditor = ({
 
     useEffect(() => {
         setError({ show: false, messages: [] });
-        // set props avatarImage
     }, [image]);
 
     return (

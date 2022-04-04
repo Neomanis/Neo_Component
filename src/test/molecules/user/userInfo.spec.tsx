@@ -1,8 +1,7 @@
-import UserInfo from "../../../components/molecules/user/userInfo";
-import { mount } from "@cypress/react";
-
-import { IUser } from "../../../interface";
 import { imgAvatar } from "../../../stories/fakeAvatar";
+import { IUser } from "../../../interface";
+import { mount } from "@cypress/react";
+import UserInfo from "../../../components/molecules/user/userInfo";
 
 const defaultUser = {
     uid: "ttest",
