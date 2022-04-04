@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "3.3.30",
+  "version": "3.4.0",
   "main": "build/index.js",
   "files": [
     "build"
@@ -79,7 +79,9 @@
     "date-fns": "^2.25.0",
     "i18next": "^21.3.3",
     "jsencrypt": "^3.2.1",
+    "react-avatar-editor": "^12.0.0",
     "react-datepicker": "^4.2.1",
+    "react-dropzone": "^12.0.4",
     "react-i18next": "^11.15.5",
     "react-quill": "^2.0.0-beta.4",
     "react-select": "^5.2.1",
