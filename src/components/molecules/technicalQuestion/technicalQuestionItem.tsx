@@ -1,34 +1,45 @@
 import React, { ReactElement } from "react";
-import { faEye, faEyeSlash, faUserCheck, faUserTimes } from "@fortawesome/free-solid-svg-icons";
-import { formatDate } from "../../utils";
-import { Icon, Title, Tooltip } from "../../atoms";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import {
+    formatDate,
+    getContrastBasedOnHexColor,
+    getHexColorFromTailwindColor,
+    getStatusOrPriorityColor,
+} from "../../utils";
+import { Title, Tooltip } from "../../atoms";
 import { useTranslation } from "../../../i18n";
+import { IconTechnicalQuestions } from "../../../img/svg";
+import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
-    content: string;
     createDate: string;
     createLevel: string | null;
     createUser: string;
     followed: boolean;
     followTechnicalQuestion: (id: number) => void;
     id: number;
+    isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number | null;
+    ticketId: number;
+    ticketPriority: number;
+    ticketStatus: number;
     title: string;
 }
 
 const TechnicalQuestionItem = ({
-    content,
     createDate,
     createLevel,
     createUser,
     followed = false,
     followTechnicalQuestion,
     id,
+    isSelected = false,
     openTechnicalQuestion,
     solved,
     ticketId,
+    ticketPriority,
+    ticketStatus,
     title,
 }: Props): ReactElement => {
     const { t } = useTranslation();
@@ -36,38 +47,39 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none bg-neo-bg-B m-4 py-2 px-4 text-white rounded-md cursor-pointer useOnClickOutsideException z-10"
+            className="list-none m-4 text-white cursor-pointer useOnClickOutsideException z-10 flex justify-between items-stretch"
             onClick={() => {
                 openTechnicalQuestion();
             }}
+            data-testid="tq-body"
         >
-            <div className="flex justify-between items-center">
-                <div className="w-3/5">
-                    <div className="flex">
-                        <Title type={"h2"} data={title} className="font-bold text-xl mr-2 truncate" />
-                        <Icon
-                            fontIcon={solved ? faUserCheck : faUserTimes}
-                            className={`${solved ? "text-neo-green" : "text-neo-red"}`}
-                        />
-                    </div>
-                    {createDate && <p className="text-white text-opacity-80 text-xs">{formatDate(createDate)}</p>}
-                </div>
-                <div>
-                    <div className="flex">
-                        <p>{createUser}</p>
-                        <p className="text-white text-opacity-80 mx-2">{createLevel}</p>
-                        {ticketId && (
-                            <p>
-                                {t("technicalQuestion.relatedTicket")} {ticketId}
-                            </p>
-                        )}
-                    </div>
-                </div>
+            <div
+                data-testid="tq-head"
+                className={`${isSelected ? "bg-neo-blue" : "bg-neo-link"} p-4 rounded-l-lg relative`}
+            >
+                <IconTechnicalQuestions fill={`${isSelected ? "#FFFFFF" : "#15304C"}`} />
+                <div
+                    data-testid="tq-pill"
+                    className={`absolute w-1.5 h-11 rounded-lg my-auto top-0 bottom-0 right-0 transform translate-x-1/2 ${
+                        solved ? "bg-neo-green" : "bg-neo-red"
+                    }`}
+                ></div>
             </div>
-            <div className="flex justify-between mt-2">
-                <div className="hiddenLineNumberOne truncate mr-5" dangerouslySetInnerHTML={{ __html: content }}></div>
-                <div className="flex items-center">
+            <div
+                data-testid="tq-middle"
+                className={`${
+                    isSelected ? "bg-neo-blue" : "bg-neo-bg-B"
+                }  px-4 flex flex-col justify-center flex-grow py-3`}
+            >
+                <div data-testid="tq-middle-top" className="flex justify-between items-center w-full">
+                    <Title
+                        type={"h2"}
+                        data={title}
+                        className="font-bold text-lg mr-2 truncate text-white"
+                        style={{ maxWidth: "265px" }}
+                    />
                     <Tooltip
+                        position="top"
                         className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
                         data={followed ? t("global.follow") : t("global.unfollow")}
                         fCallback={(e) => {
@@ -75,7 +87,75 @@ const TechnicalQuestionItem = ({
                             followTechnicalQuestion(id);
                         }}
                         fontIcon={followed ? faEye : faEyeSlash}
+                        fontIconClassName={isSelected ? "text-white" : "text-neo-link"}
                     />
+                </div>
+                <div
+                    data-testid="tq-middle-bottom"
+                    className={` ${
+                        isSelected ? "text-white" : "text-neo-blue-secondary"
+                    }  flex w-full justify-between items-center text-xs`}
+                >
+                    {createDate && (
+                        <p data-testid="tq-date" className="font-bold">
+                            {formatDate(createDate)}
+                        </p>
+                    )}
+                    <div className="flex font-bold">
+                        <p data-testid="tq-user" className="pr-3">
+                            {createUser}
+                        </p>
+                        <p data-testid="tq-level">{createLevel}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                data-testid="tq-end"
+                className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
+                    ticketStatus,
+                    ticketPriority,
+                    false,
+                    "bg"
+                )}`}
+            >
+                <div data-testid="tq-svg" className="flex items-center">
+                    {getTicketLogoByStatus(
+                        ticketStatus,
+                        getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
+                            "black"
+                            ? getHexColorFromTailwindColor("neo-blue-extraDark")
+                            : "#FFFFFF"
+                    )}
+
+                    <div data-testid="tq-ticket-infos">
+                        {ticketId && (
+                            <p
+                                data-testid="tq-ticket-related"
+                                className={` ${
+                                    getContrastBasedOnHexColor(
+                                        getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                    ) === "white"
+                                        ? "text-white"
+                                        : "text-neo-blue-secondary"
+                                }  font-bold pl-4 text-xs`}
+                            >
+                                {t("technicalQuestion.relatedTicket")}
+                                <p
+                                    data-testid="tq-ticketId"
+                                    className={`${
+                                        getContrastBasedOnHexColor(
+                                            getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                        ) === "white"
+                                            ? "text-white"
+                                            : "text-neo-blue-extraDark"
+                                    }  font-extrabold text-lg`}
+                                >
+                                    {ticketId}
+                                </p>
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
         </li>

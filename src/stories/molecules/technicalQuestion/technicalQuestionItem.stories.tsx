@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
     return (
-        <div className="">
+        <div style={{ width: 600 }}>
             <TechnicalQuestionItem {...args} />
         </div>
     );
@@ -19,16 +19,17 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
 
 export const TechnicalQuestionItemDefault = Template.bind({});
 TechnicalQuestionItemDefault.args = {
-    content:
-        "<p>We do not seek your confession, only your tormbbbbbbbbbbbbbbbbbbbbbb xcwhchxshc hcdsh hcdsh cdhsqcdshent.</p><p>We do not seek your confession, only your torment.</p> <p>We do not seek your confession, only your torment.</p>",
     createDate: "2021-11-15T13:34:48.551Z",
     createLevel: "Level 1",
     createUser: "Leman Russ",
     followed: false,
     followTechnicalQuestion: () => console.log("hey"),
     id: 2,
+    isSelected: false,
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,
     ticketId: 666,
+    ticketPriority: 4,
+    ticketStatus: 1,
     title: "You strive for victory",
 };

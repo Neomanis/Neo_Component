@@ -11,7 +11,10 @@
         "launchFailed": "L'exécution du livre a échoué",
         "otherPending": "Autre livre en attente",
         "title_one": "Livre",
-        "title_other": "Livres"
+        "title_other": "Livres",
+        "toaster": {
+            "updateSuccess": "Livre mis à jour avec succès"
+        }
     },
     "category": {
         "resource": {
@@ -134,7 +137,7 @@
             "file-too-large": "Le fichier fait plus de 2 Mo"
         },
         "invalidInput": "Champ invalide",
-        "invalidUrl": "l'URL n'est pas valide",
+        "invalidUrl": "URL invalide",
         "notFound": "Non trouvé",
         "partial": "Veuillez remplir les deux champs",
         "required": "Champ requis",

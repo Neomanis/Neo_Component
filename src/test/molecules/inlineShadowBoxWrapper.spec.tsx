@@ -34,8 +34,6 @@ const TestInlineShadowBoxWrapper = ({ width }: Props): ReactElement => {
     );
 };
 
-export default TestInlineShadowBoxWrapper;
-
 describe("ShadowBoxWrapper", () => {
     it("should have to correct classNames and linear gradient", () => {
         mount(<TestInlineShadowBoxWrapper width="w-60" />);
