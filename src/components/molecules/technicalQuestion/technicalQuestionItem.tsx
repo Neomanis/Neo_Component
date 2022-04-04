@@ -21,7 +21,7 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number;
+    ticketId: number | null;
     ticketPriority: number;
     ticketStatus: number;
     title: string;
