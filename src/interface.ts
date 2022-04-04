@@ -263,7 +263,9 @@ export interface IInputSelect {
     value?: string;
 }
 export interface IItsmConfig {
-    address: string;
+    address?: string;
+    timeZone?: string;
+    inventory?: string;
 }
 export interface INotification {
     notification: {
