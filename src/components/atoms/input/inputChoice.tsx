@@ -3,8 +3,8 @@ import React, { ReactElement } from "react";
 interface Props {
     cardClassName?: string;
     className?: string;
-    data: { label: string; value: string }[];
-    fCallBack?: (data: string) => void;
+    data: { label: string; value: number }[];
+    fCallBack?: (data: { label: string; value: number }) => void;
     label?: string;
     labelClassName?: string;
     titleClassName?: string;
@@ -31,8 +31,8 @@ const InputChoice = ({
                     >
                         <div
                             className="cursor-pointer bg-neo-link  transform hover:scale-105 transition-transform rounded-sm text-center"
-                            id={item.value + key}
-                            onClick={() => fCallBack && fCallBack(item.value)}
+                            id={`${item.value} ${key}`}
+                            onClick={() => fCallBack && fCallBack({ label: item.label, value: item.value })}
                         >
                             <div className="w-60 cursor-pointer">{item.label}</div>
                         </div>
