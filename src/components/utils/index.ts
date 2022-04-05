@@ -25,6 +25,7 @@ import {
     sleep,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
+import { getTicketLogoByStatus } from "./ticketLogoByStatus";
 
 export {
     capitalizeFirstLetter,
@@ -50,14 +51,15 @@ export {
     getStatusColor,
     getStatusOrPriorityColor,
     getStatusText,
+    getTicketLogoByStatus,
     getTimeToNowWithTranslation,
     getUserName,
     inputReducer,
+    LOCAL_STORAGE_VERSION,
     lowerCaseFirstLetter,
     mapEnumToInputSelectSearchableData,
     sleep,
     stripHtml,
     useIsFirstRender,
     useLocalStorage,
-    LOCAL_STORAGE_VERSION,
 };
