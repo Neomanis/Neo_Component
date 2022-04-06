@@ -42,6 +42,7 @@ const AnswerItem = ({
                 <div className="flex">
                     <div className="text-white font-bold text-lg mr-2">{upvoters.length}</div>
                     <Button
+                        testId="tq-answer-upvote"
                         fontIcon={faArrowUp}
                         fCallback={() => upvote(id)}
                         className={`cursor-pointer text-xl -mt-0.5 hover:text-neo-blue ${
@@ -50,6 +51,7 @@ const AnswerItem = ({
                     />
                     {!isAccepted && connectedUserUid === questionAuthor && (
                         <Button
+                            testId="tq-answer-accept"
                             fontIcon={faCheck}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-green"
                             fCallback={() => acceptAnswer(id)}
@@ -57,6 +59,7 @@ const AnswerItem = ({
                     )}
                     {author === connectedUserUid && (
                         <Button
+                            testId="tq-answer-update"
                             fontIcon={faEdit}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-blue"
                             fCallback={() => setUpdate((oldUpdate) => !oldUpdate)}

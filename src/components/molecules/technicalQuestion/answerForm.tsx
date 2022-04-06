@@ -20,7 +20,7 @@ const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Pro
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="p-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-2" data-testid="tq-answer-form-body">
             <div className="flex flex-col">
                 <TextEditor
                     register={register}
