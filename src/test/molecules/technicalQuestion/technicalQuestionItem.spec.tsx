@@ -222,7 +222,7 @@ describe("TechnicalQuestionItem", () => {
                 ticketStatus={0}
             />
         );
-        cy.get('[data-testid="tq-ticket-infos"]').find(">p").should("exist");
+        cy.get('[data-testid="tq-ticket-infos"]').find(">div").should("exist");
         cy.get('[data-testid="tq-ticketId"]').should("have.text", "666");
     });
 

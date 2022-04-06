@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { faArrowUp, faEdit, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faCheck, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 import { formatDate } from "../../utils";
 import AnswerForm from "./answerForm";
@@ -7,77 +7,83 @@ import { Button } from "../../atoms";
 
 interface Props {
     acceptAnswer: (answerId: number) => void;
-    accepted: boolean;
-    createDate: string;
-    createLevel: string | null;
-    createUser: string;
-    createUserQuestion: string;
+    author: string;
+    authorLevel: string | null;
+    connectedUserUid?: string;
+    creationDate: string;
     id: number;
-    isQuestionSolved: boolean;
+    isAccepted: boolean;
+    questionAuthor: string;
     text: string;
     updateAnswer: (id: number, text: string) => void;
     upvote: (id: number) => void;
     upvoters: string[];
-    userUid?: string;
 }
 
 const AnswerItem = ({
     acceptAnswer,
-    accepted,
-    createDate,
-    createLevel,
-    createUser,
-    createUserQuestion,
+    author,
+    authorLevel,
+    connectedUserUid,
+    creationDate,
     id,
+    isAccepted,
+    questionAuthor,
     text,
     updateAnswer,
     upvote,
     upvoters,
-    userUid,
 }: Props): ReactElement => {
     const [update, setUpdate] = useState(false);
 
-    if (update) {
-        return (
-            <AnswerForm
-                closeCallback={() => setUpdate(false)}
-                isUpdateField
-                text={text}
-                updateFunction={(refForm, value) => {
-                    setUpdate(false);
-                    updateAnswer(id, value);
-                }}
-            />
-        );
-    }
     return (
-        <div className={`text-white bg-neo-bg-B p-2 rounded-xl mb-4 ${accepted && "border-2 border-neo-green"}`}>
-            <div className="flex justify-between">
+        <div className={`bg-neo-blue-extraDark rounded-lg p-4 ${isAccepted && "border-4 border-neo-green"}`}>
+            <div className="flex justify-between mb-9 items-center">
                 <div className="flex">
-                    <div>{formatDate(createDate)}</div>
-                    {!accepted && userUid === createUserQuestion && (
-                        <div>
-                            <Button fontIcon={faThumbsUp} className="ml-4" fCallback={() => acceptAnswer(id)} />
-                        </div>
-                    )}
-                </div>
-                <div className="flex items-center">
-                    <p className="mr-2">{createUser}</p>
-                    {createLevel ?? <p className="text-white text-opacity-80 mr-2">{createLevel}</p>}
-                    {createUser === userUid && (
-                        <Button fontIcon={faEdit} className="mr-2" fCallback={() => setUpdate(true)} />
-                    )}
-                    <div className="flex flex-col items-center">
+                    <div className="text-white font-bold text-lg mr-2">{upvoters.length}</div>
+                    <Button
+                        testId="tq-answer-upvote"
+                        fontIcon={faArrowUp}
+                        fCallback={() => upvote(id)}
+                        className={`cursor-pointer text-xl -mt-0.5 hover:text-neo-blue ${
+                            connectedUserUid && upvoters.includes(connectedUserUid) ? "text-neo-blue" : "text-neo-link"
+                        } `}
+                    />
+                    {!isAccepted && connectedUserUid === questionAuthor && (
                         <Button
-                            fontIcon={faArrowUp}
-                            fCallback={() => upvote(id)}
-                            className={`${userUid && upvoters.includes(userUid) && "text-neo-blue"} cursor-pointer`}
+                            testId="tq-answer-accept"
+                            fontIcon={faCheck}
+                            className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-green"
+                            fCallback={() => acceptAnswer(id)}
                         />
-                        <div>{upvoters.length}</div>
+                    )}
+                    {author === connectedUserUid && (
+                        <Button
+                            testId="tq-answer-update"
+                            fontIcon={faEdit}
+                            className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-blue"
+                            fCallback={() => setUpdate((oldUpdate) => !oldUpdate)}
+                        />
+                    )}
+                    <div className="flex text-neo-blue-secondary font-bold ml-11">
+                        <p className="mr-2">{author}</p>
+                        {authorLevel ?? <p className="text-white text-opacity-80 mr-2">{authorLevel}</p>}
                     </div>
                 </div>
+                <div className="text-neo-blue-secondary font-bold">{formatDate(creationDate)}</div>
             </div>
-            <div className="text-white" dangerouslySetInnerHTML={{ __html: text }}></div>
+            {update ? (
+                <AnswerForm
+                    isUpdateField
+                    text={text}
+                    updateFunction={(refForm, value) => {
+                        setUpdate(false);
+                        updateAnswer(id, value);
+                    }}
+                />
+            ) : (
+                <div className="text-white" dangerouslySetInnerHTML={{ __html: text }}></div>
+            )}
         </div>
     );
 };

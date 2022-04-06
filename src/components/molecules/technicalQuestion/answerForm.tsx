@@ -1,18 +1,16 @@
 import React, { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { faSave, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button, TextEditor } from "../../atoms";
 import { useTranslation } from "../../../i18n";
 
 interface Props {
-    closeCallback?: () => void;
     isUpdateField?: boolean;
     onSubmitAnswer?: (data: { text: string }) => void;
     text?: string;
     updateFunction?: (refForm: string, value: string) => void;
 }
 
-const AnswerForm = ({ closeCallback, isUpdateField, onSubmitAnswer, text, updateFunction }: Props): ReactElement => {
+const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Props): ReactElement => {
     const { register, setValue, handleSubmit, formState } = useForm({ mode: "onSubmit" });
 
     const { t } = useTranslation();
@@ -22,8 +20,8 @@ const AnswerForm = ({ closeCallback, isUpdateField, onSubmitAnswer, text, update
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="mb-6">
-            <div className="flex justify-center items-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="p-2" data-testid="tq-answer-form-body">
+            <div className="flex flex-col">
                 <TextEditor
                     register={register}
                     refForm="text"
@@ -34,14 +32,20 @@ const AnswerForm = ({ closeCallback, isUpdateField, onSubmitAnswer, text, update
                     isUpdateField={isUpdateField}
                     updateFunction={updateFunction}
                     defaultValue={text}
-                    className={"w-full h-48 mb-6 ml-2"}
+                    className={"w-full h-48 mb-14"}
                 />
-                <div className="flex flex-col">
-                    {isUpdateField && (
-                        <Button fontIcon={faTimes} className="text-xl text-white mb-5" fCallback={closeCallback} />
-                    )}
-                    {!isUpdateField && <Button fontIcon={faSave} type="submit" className="text-xl text-white" />}
-                </div>
+                {!isUpdateField && (
+                    <div className="flex justify-end">
+                        <Button
+                            type="submit"
+                            className="h-11 w-40 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
+                            data={t("technicalQuestion.answer.create")}
+                            style={{
+                                background: "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
+                            }}
+                        />
+                    </div>
+                )}
             </div>
         </form>
     );

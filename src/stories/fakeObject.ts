@@ -288,3 +288,15 @@ export const fakeNotification: INotification = {
     },
     read: false,
 };
+
+export const fakeAnswer = {
+    isAccepted: false,
+    creationDate: "2021-11-10T15:21:13.856Z",
+    authorLevel: "Level 1",
+    author: "Lion El'Jonson",
+    questionAuthor: "Fulgrim",
+    connectedUserUid: "Lion El'Jonson",
+    id: 1,
+    text: "Insult me again, brother, and theoretically I will punch you in your practical face.",
+    upvoters: ["Fulgrim", "Lion El'Jonson"],
+};
