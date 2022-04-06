@@ -41,12 +41,20 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refParent }: P
     }
 
     useLayoutEffect(() => {
-        if (refParent && refParent.current && !isOverflow(refParent.current)) {
-            setShowTopShadowBox(false);
-            setShowBottomShadowBox(false);
-        } else if (listContainerRef.current && !isOverflow(listContainerRef.current)) {
-            setShowTopShadowBox(false);
-            setShowBottomShadowBox(false);
+        if (refParent && refParent.current) {
+            if (!isOverflow(refParent.current)) {
+                setShowTopShadowBox(false);
+                setShowBottomShadowBox(false);
+            } else {
+                detectScroll(refParent.current);
+            }
+        } else if (listContainerRef.current) {
+            if (!isOverflow(listContainerRef.current)) {
+                setShowTopShadowBox(false);
+                setShowBottomShadowBox(false);
+            } else {
+                detectScroll(listContainerRef.current);
+            }
         }
     }, [children]);
 
