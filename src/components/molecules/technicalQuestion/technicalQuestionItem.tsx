@@ -130,7 +130,7 @@ const TechnicalQuestionItem = ({
 
                     <div data-testid="tq-ticket-infos">
                         {ticketId && (
-                            <p
+                            <div
                                 data-testid="tq-ticket-related"
                                 className={` ${
                                     getContrastBasedOnHexColor(
@@ -153,7 +153,7 @@ const TechnicalQuestionItem = ({
                                 >
                                     {ticketId}
                                 </p>
-                            </p>
+                            </div>
                         )}
                     </div>
                 </div>
