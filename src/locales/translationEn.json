@@ -375,6 +375,7 @@
     },
     "technicalQuestion": {
         "answer": {
+            "create": "Add an answer",
             "title_one": "Answer",
             "title_other": "Answers",
             "withCount_one": "{{count}} answer",
@@ -382,7 +383,7 @@
         },
         "answered": "Answered questions",
         "relatedTicket": "Related to ticket",
-        "showRelated": "Show my related questions",
+        "showRelated": "Show my questions",
         "showSolved": "Show me solved questions",
         "similar": "Similar question",
         "title_one": "Technical Question",

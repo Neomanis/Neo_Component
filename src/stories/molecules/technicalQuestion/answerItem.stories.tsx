@@ -17,17 +17,18 @@ const Template: ComponentStory<typeof AnswerItem> = (args) => {
 };
 
 export const AnswerItemDefault = Template.bind({});
+
 AnswerItemDefault.args = {
     acceptAnswer: () => console.log("yo"),
-    accepted: false,
-    createDate: "18/11/2021 09:23",
-    createLevel: "Level 1",
-    createUser: "Lion El'Jonson",
-    createUserQuestion: "Fulgrim",
+    isAccepted: false,
+    creationDate: "2021-11-10T15:21:13.856Z",
+    authorLevel: "Level 1",
+    author: "Lion El'Jonson",
+    questionAuthor: "Fulgrim",
+    connectedUserUid: "Lion El'Jonson",
     id: 1,
-    isQuestionSolved: false,
     text: "Insult me again, brother, and theoretically I will punch you in your practical face.",
     updateAnswer: () => console.log("yo"),
     upvote: () => console.log("yo"),
-    upvoters: ["Fulgrim"],
+    upvoters: ["Fulgrim", "Lion El'Jonson"],
 };

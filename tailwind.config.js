@@ -527,6 +527,7 @@ module.exports = {
             compactTicket: "700px",
             chatModal: "600px",
             inputHeight: "38px",
+            answerPanel: "520px",
         }),
         inset: (theme, { negative }) => ({
             auto: "auto",
