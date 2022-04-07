@@ -17,6 +17,7 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
+    localeLang?: Locale;
     maxDate?: Date;
     minDate?: Date;
     pattern?: string;
@@ -41,6 +42,7 @@ const InputDateTime = ({
     isUpdateField = false,
     label,
     labelClassName,
+    localeLang,
     maxDate,
     minDate,
     placeholder,
@@ -174,6 +176,7 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 timeIntervals={15}
+                locale={localeLang && localeLang}
             />
         </label>
     );
