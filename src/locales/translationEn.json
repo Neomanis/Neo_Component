@@ -194,6 +194,8 @@
         "information": "Information",
         "lastSeen": "Last connection",
         "launch": "Launch",
+        "license_one": "License",
+        "license_other": "Licenses",
         "login": "Login",
         "logout": "Logout",
         "name": "Name",

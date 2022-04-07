@@ -20,6 +20,7 @@ import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
+import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
 import { ReactComponent as IconDiagtoolBox } from "./nm_ico_diagtoolbox.svg";
@@ -93,6 +94,7 @@ export {
     IconCheck,
     IconChevron,
     IconCloud,
+    IconComputer,
     IconConsole,
     IconDashboard,
     IconDiagtoolBox,
