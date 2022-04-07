@@ -245,8 +245,8 @@
     },
     "itsm": {
         "address": "Itsm address",
-        "currentConfig": "Current itsmConfigustion",
-        "itsmTitle": "Itsm configustion"
+        "currentConf": "Current itsm configuration",
+        "itsmTitle": "Itsm configuration"
     },
     "neoBot": {
         "report": "Neobot Report"
