@@ -28,9 +28,11 @@ TechnicalQuestionItemDefault.args = {
     isSelected: false,
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,
-    ticketId: 666,
-    ticketPriority: 4,
-    ticketStatus: 1,
+    ticket: {
+        ticketId: 666,
+        priority: 4,
+        status: 1,
+    },
     title: "You strive for victory",
 };
 
@@ -45,8 +47,6 @@ TechnicalQuestionItemTicketNull.args = {
     isSelected: false,
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,
-    ticketId: null,
-    ticketPriority: 4,
-    ticketStatus: 1,
+    ticket: undefined,
     title: "You strive for victory",
 };

@@ -21,9 +21,7 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticketId: number | null;
-    ticketPriority: number;
-    ticketStatus: number;
+    ticket?: { ticketId: number; priority: number; status: number };
     title: string;
 }
 
@@ -37,9 +35,7 @@ const TechnicalQuestionItem = ({
     isSelected = false,
     openTechnicalQuestion,
     solved,
-    ticketId,
-    ticketPriority,
-    ticketStatus,
+    ticket,
     title,
 }: Props): ReactElement => {
     const { t } = useTranslation();
@@ -69,7 +65,7 @@ const TechnicalQuestionItem = ({
                 data-testid="tq-middle"
                 className={`${
                     isSelected ? "bg-neo-blue" : "bg-neo-bg-B"
-                }  px-4 flex flex-col justify-center flex-grow py-3 ${!ticketId && "rounded-r-lg"}`}
+                }  px-4 flex flex-col justify-center flex-grow py-3 ${!ticket && "rounded-r-lg"}`}
             >
                 <div data-testid="tq-middle-top" className="flex justify-between items-center w-full">
                     <Title
@@ -109,32 +105,33 @@ const TechnicalQuestionItem = ({
                     </div>
                 </div>
             </div>
-            {ticketId && (
+            {ticket && (
                 <div
                     data-testid="tq-end"
                     className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
-                        ticketStatus,
-                        ticketPriority,
+                        ticket.status,
+                        ticket.priority,
                         false,
                         "bg"
                     )}`}
                 >
                     <div data-testid="tq-svg" className="flex items-center">
                         {getTicketLogoByStatus(
-                            ticketStatus,
-                            getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
-                                "black"
+                            ticket.status,
+                            getContrastBasedOnHexColor(
+                                getStatusOrPriorityColor(ticket.status, ticket.priority, true)
+                            ) === "black"
                                 ? getHexColorFromTailwindColor("neo-blue-extraDark")
                                 : "#FFFFFF"
                         )}
 
                         <div data-testid="tq-ticket-infos">
-                            {ticketId && (
+                            {ticket && (
                                 <div
                                     data-testid="tq-ticket-related"
                                     className={` ${
                                         getContrastBasedOnHexColor(
-                                            getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                            getStatusOrPriorityColor(ticket.status, ticket.priority, true)
                                         ) === "white"
                                             ? "text-white"
                                             : "text-neo-blue-secondary"
@@ -145,13 +142,13 @@ const TechnicalQuestionItem = ({
                                         data-testid="tq-ticketId"
                                         className={`${
                                             getContrastBasedOnHexColor(
-                                                getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                                getStatusOrPriorityColor(ticket.status, ticket.priority, true)
                                             ) === "white"
                                                 ? "text-white"
                                                 : "text-neo-blue-extraDark"
                                         }  font-extrabold text-lg`}
                                     >
-                                        {ticketId}
+                                        {ticket.ticketId}
                                     </p>
                                 </div>
                             )}
