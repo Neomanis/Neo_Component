@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter } from "date-fns";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import * as language from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
@@ -17,7 +18,7 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
-    localeLang?: Locale;
+    lang?: string;
     maxDate?: Date;
     minDate?: Date;
     pattern?: string;
@@ -42,7 +43,7 @@ const InputDateTime = ({
     isUpdateField = false,
     label,
     labelClassName,
-    localeLang,
+    lang,
     maxDate,
     minDate,
     placeholder,
@@ -66,6 +67,21 @@ const InputDateTime = ({
         trigger: false,
         updated: defaultValue,
     });
+
+    switch (lang) {
+        case "fr-FR":
+            registerLocale("selectedLang", language["fr"]);
+            break;
+        case "en-GB":
+            registerLocale("selectedLang", language["enGB"]);
+            break;
+        case "en-US":
+            registerLocale("selectedLang", language["enUS"]);
+            break;
+        default:
+            registerLocale("selectedLang", language["enUS"]);
+            break;
+    }
 
     const isLastMount = useRef(false);
 
@@ -176,7 +192,7 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 timeIntervals={15}
-                locale={localeLang && localeLang}
+                locale="selectedLang"
             />
         </label>
     );
