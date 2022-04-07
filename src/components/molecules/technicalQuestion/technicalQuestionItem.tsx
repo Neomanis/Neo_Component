@@ -69,7 +69,7 @@ const TechnicalQuestionItem = ({
                 data-testid="tq-middle"
                 className={`${
                     isSelected ? "bg-neo-blue" : "bg-neo-bg-B"
-                }  px-4 flex flex-col justify-center flex-grow py-3`}
+                }  px-4 flex flex-col justify-center flex-grow py-3 ${!ticketId && "rounded-r-lg"}`}
             >
                 <div data-testid="tq-middle-top" className="flex justify-between items-center w-full">
                     <Title
@@ -109,55 +109,56 @@ const TechnicalQuestionItem = ({
                     </div>
                 </div>
             </div>
-
-            <div
-                data-testid="tq-end"
-                className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
-                    ticketStatus,
-                    ticketPriority,
-                    false,
-                    "bg"
-                )}`}
-            >
-                <div data-testid="tq-svg" className="flex items-center">
-                    {getTicketLogoByStatus(
+            {ticketId && (
+                <div
+                    data-testid="tq-end"
+                    className={`flex justify-between px-4 rounded-r-lg ${getStatusOrPriorityColor(
                         ticketStatus,
-                        getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
-                            "black"
-                            ? getHexColorFromTailwindColor("neo-blue-extraDark")
-                            : "#FFFFFF"
-                    )}
+                        ticketPriority,
+                        false,
+                        "bg"
+                    )}`}
+                >
+                    <div data-testid="tq-svg" className="flex items-center">
+                        {getTicketLogoByStatus(
+                            ticketStatus,
+                            getContrastBasedOnHexColor(getStatusOrPriorityColor(ticketStatus, ticketPriority, true)) ===
+                                "black"
+                                ? getHexColorFromTailwindColor("neo-blue-extraDark")
+                                : "#FFFFFF"
+                        )}
 
-                    <div data-testid="tq-ticket-infos">
-                        {ticketId && (
-                            <div
-                                data-testid="tq-ticket-related"
-                                className={` ${
-                                    getContrastBasedOnHexColor(
-                                        getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
-                                    ) === "white"
-                                        ? "text-white"
-                                        : "text-neo-blue-secondary"
-                                }  font-bold pl-4 text-xs`}
-                            >
-                                {t("technicalQuestion.relatedTicket")}
-                                <p
-                                    data-testid="tq-ticketId"
-                                    className={`${
+                        <div data-testid="tq-ticket-infos">
+                            {ticketId && (
+                                <div
+                                    data-testid="tq-ticket-related"
+                                    className={` ${
                                         getContrastBasedOnHexColor(
                                             getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
                                         ) === "white"
                                             ? "text-white"
-                                            : "text-neo-blue-extraDark"
-                                    }  font-extrabold text-lg`}
+                                            : "text-neo-blue-secondary"
+                                    }  font-bold pl-4 text-xs`}
                                 >
-                                    {ticketId}
-                                </p>
-                            </div>
-                        )}
+                                    {t("technicalQuestion.relatedTicket")}
+                                    <p
+                                        data-testid="tq-ticketId"
+                                        className={`${
+                                            getContrastBasedOnHexColor(
+                                                getStatusOrPriorityColor(ticketStatus, ticketPriority, true)
+                                            ) === "white"
+                                                ? "text-white"
+                                                : "text-neo-blue-extraDark"
+                                        }  font-extrabold text-lg`}
+                                    >
+                                        {ticketId}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </li>
     );
 };
