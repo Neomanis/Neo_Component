@@ -21,8 +21,12 @@ const InputChoice = ({
 }: Props): ReactElement => {
     return (
         <div className={`${className}`} data-testid="inputChoice-body">
-            {label && <div className={`${titleClassName}`}>{label}</div>}
-            <ul className={`${cardClassName} flex flex-wrap justify-center`}>
+            {label && (
+                <div className={`${titleClassName}`} data-testid="inputChoice-label">
+                    {label}
+                </div>
+            )}
+            <ul className={`${cardClassName} flex flex-wrap justify-center`} data-testid="inputChoice-list">
                 {data.map((item, key) => (
                     <div
                         className={`${labelClassName}
