@@ -38,10 +38,14 @@ const Button = ({
             disabled={disabled}
             style={style}
         >
-            {svg && <div className={svgClassName}>{svg}</div>}
+            {svg && (
+                <div className={svgClassName} data-testid="button-svg">
+                    {svg}
+                </div>
+            )}
             {data}
             {fontIcon && (
-                <div className={iconClassName}>
+                <div className={iconClassName} data-testid="button-icon">
                     <FontAwesomeIcon icon={fontIcon} />
                 </div>
             )}
