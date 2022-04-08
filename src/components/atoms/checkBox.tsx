@@ -22,7 +22,7 @@ const Checkbox = ({ checked, data, fCallBack, name, testId, classNameInput, clas
                 onChange={fCallBack}
                 type="checkbox"
             />
-            <label htmlFor={name} className={classNameLabel}>
+            <label htmlFor={name} className={classNameLabel} data-testid="checkBox-label">
                 {data}
             </label>
         </>
