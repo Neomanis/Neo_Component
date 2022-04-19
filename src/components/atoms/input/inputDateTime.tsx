@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useReducer, useRef, useState } from "re
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
-import * as language from "date-fns/locale";
+import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
@@ -32,6 +32,10 @@ interface Props {
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
 }
+
+registerLocale("en-GB", enGB);
+registerLocale("en-US", enUS);
+registerLocale("fr-FR", fr);
 
 const InputDateTime = ({
     className,
@@ -67,21 +71,6 @@ const InputDateTime = ({
         trigger: false,
         updated: defaultValue,
     });
-
-    switch (lang) {
-        case "fr-FR":
-            registerLocale("selectedLang", language["fr"]);
-            break;
-        case "en-GB":
-            registerLocale("selectedLang", language["enGB"]);
-            break;
-        case "en-US":
-            registerLocale("selectedLang", language["enUS"]);
-            break;
-        default:
-            registerLocale("selectedLang", language["enUS"]);
-            break;
-    }
 
     const isLastMount = useRef(false);
 
@@ -192,7 +181,7 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 timeIntervals={15}
-                locale="selectedLang"
+                locale={lang}
             />
         </label>
     );

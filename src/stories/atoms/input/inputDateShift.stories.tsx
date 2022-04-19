@@ -25,6 +25,7 @@ export const Default = Template.bind({});
 Default.args = {
     date: date,
     label: "Exemple Label",
+    lang: "fr-FR",
     tabProps: shifts,
     inputSelectPlaceholder: "shift",
     isUpdateField: true,
