@@ -315,6 +315,12 @@
         "title_one": "Resource",
         "title_other": "Resources"
     },
+    "role": {
+        "administrator": "Administrator",
+        "supervisor": "Supervisor",
+        "technician": "Technician",
+        "user": "User"
+    },
     "scaleLevel": {
         "high": "High",
         "high_female": "High",
