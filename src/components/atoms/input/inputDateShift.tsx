@@ -1,8 +1,10 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { FieldValues, UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { fr, enGB, enUS } from "date-fns/locale";
 
 import InputDateTime from "./inputDateTime";
 import InputSelectSearchable from "./inputSelectSearchable";
+import { registerLocale } from "react-datepicker";
 
 interface Props {
     className?: string;
@@ -13,6 +15,7 @@ interface Props {
     inputSelectPlaceholder?: string;
     isUpdateField?: boolean;
     label: string;
+    lang?: string;
     maxDate?: Date;
     minDate?: Date;
     refForm: string;
@@ -21,6 +24,10 @@ interface Props {
     tabProps: Array<{ value: number; label: string }>;
     updateFunction?: (refForm: string, value: string) => void;
 }
+
+registerLocale("en-GB", enGB);
+registerLocale("en-US", enUS);
+registerLocale("fr-FR", fr);
 
 const InputDateShift = ({
     className,
@@ -31,6 +38,7 @@ const InputDateShift = ({
     inputSelectPlaceholder,
     isUpdateField = false,
     label,
+    lang,
     maxDate,
     minDate,
     refForm,
@@ -75,6 +83,7 @@ const InputDateShift = ({
                     setValue={setValue}
                     targetId={Math.round(dateShift.getTime() / 1000)}
                     updateFunction={updateFunction}
+                    lang={lang}
                 />
             </div>
             <div className={classNameInputSelect ? classNameInputSelect : "w-32"}>

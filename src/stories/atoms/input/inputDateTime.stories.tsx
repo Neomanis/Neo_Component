@@ -28,4 +28,5 @@ InputDateTimeUpdate.args = {
     refForm: "date_creation",
     showTimeInput: true,
     label: "label",
+    lang: "fr-FR",
 };

@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter } from "date-fns";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
@@ -17,6 +18,7 @@ interface Props {
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
+    lang?: string;
     maxDate?: Date;
     minDate?: Date;
     pattern?: string;
@@ -31,6 +33,10 @@ interface Props {
     updateFunction?: (refForm: string, value: string) => void;
 }
 
+registerLocale("en-GB", enGB);
+registerLocale("en-US", enUS);
+registerLocale("fr-FR", fr);
+
 const InputDateTime = ({
     className,
     defaultValue,
@@ -41,6 +47,7 @@ const InputDateTime = ({
     isUpdateField = false,
     label,
     labelClassName,
+    lang,
     maxDate,
     minDate,
     placeholder,
@@ -174,6 +181,7 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 timeIntervals={15}
+                locale={lang}
             />
         </label>
     );
