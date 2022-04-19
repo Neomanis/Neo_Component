@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
+import React, { CSSProperties, ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
 
 interface Props {
     refParent?: RefObject<HTMLUListElement>;
@@ -12,9 +12,10 @@ interface Props {
         first: string;
         second: string;
     };
+    containerStyle?: CSSProperties;
 }
 
-const ShadowBoxWrapper = ({ children, classNames, linearGradient, refParent }: Props): ReactElement => {
+const ShadowBoxWrapper = ({ children, classNames, linearGradient, refParent, containerStyle }: Props): ReactElement => {
     const [showTopShadowBox, setShowTopShadowBox] = useState(false);
     const [showBottomShadowBox, setShowBottomShadowBox] = useState(true);
 
@@ -62,6 +63,7 @@ const ShadowBoxWrapper = ({ children, classNames, linearGradient, refParent }: P
         <ul
             ref={refParent ? refParent : listContainerRef}
             className={classNames.container}
+            style={containerStyle}
             onScroll={() =>
                 refParent
                     ? refParent.current && detectScroll(refParent.current)
