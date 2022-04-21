@@ -2,7 +2,6 @@ import React from "react";
 import SimilarTicket from "../../../components/molecules/ticket/similarTicket";
 import { ComponentStory, Meta } from "@storybook/react";
 import { fakeTicket } from "../../fakeObject";
-import { i18n } from "../../../i18n";
 
 export default {
     title: "Molecules/Ticket/SimilarTicket",

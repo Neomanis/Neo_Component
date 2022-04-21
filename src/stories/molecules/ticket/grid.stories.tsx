@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { i18n } from "../../../i18n";
 import { Grid } from "../../../components/molecules";
 import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
 
