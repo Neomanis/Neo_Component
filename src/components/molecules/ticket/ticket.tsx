@@ -7,7 +7,7 @@ import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../
 import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
-import { useTranslation, i18n } from "../../../i18n";
+import { useTranslation } from "../../../i18n";
 
 export interface TicketProps {
     currentTicket?: ITicket;
@@ -18,7 +18,7 @@ export interface TicketProps {
 }
 
 const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketBG }: TicketProps): ReactElement => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
