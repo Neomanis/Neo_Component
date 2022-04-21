@@ -12,7 +12,6 @@ interface Props {
     fCurrentTicket?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
     fNewPositionedTicket?: (tickets: ITicket[]) => void;
-    languageUser: string;
     reverseGrid?: boolean;
     rows: number;
     showPagination?: boolean;
@@ -35,7 +34,6 @@ const Grid = ({
     fCallBackHover,
     fCurrentTicket,
     fNewPositionedTicket,
-    languageUser,
     reverseGrid,
     rows,
     showPagination,
@@ -199,7 +197,6 @@ const Grid = ({
                                                     currentTicket,
                                                     fCallBackClick: currentTicketCallBack,
                                                     fCallBackHover: hoverCallBack,
-                                                    languageUser,
                                                     ticket: item as ITicket,
                                                 }}
                                                 // dndId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}

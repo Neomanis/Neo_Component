@@ -7,25 +7,17 @@ import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../
 import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Status } from "../../../enumeration";
-import { useTranslation } from "../../../i18n";
+import { useTranslation, i18n } from "../../../i18n";
 
 export interface TicketProps {
     currentTicket?: ITicket;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
-    languageUser?: string;
     ticket?: ITicket;
     ticketBG?: boolean;
 }
 
-const Ticket = ({
-    currentTicket,
-    fCallBackClick,
-    fCallBackHover,
-    languageUser,
-    ticket,
-    ticketBG,
-}: TicketProps): ReactElement => {
+const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketBG }: TicketProps): ReactElement => {
     const { t } = useTranslation();
 
     function isSameStatus(): boolean {
@@ -141,7 +133,7 @@ const Ticket = ({
                                     </div>
                                     <p>
                                         {ticket.date_creation &&
-                                            getTimeToNowWithTranslation(ticket.date_creation, languageUser)}
+                                            getTimeToNowWithTranslation(ticket.date_creation, i18n.language)}
                                     </p>
                                 </div>
                             )}
