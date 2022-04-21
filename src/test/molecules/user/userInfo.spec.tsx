@@ -26,7 +26,7 @@ describe("UserInfo", () => {
 
         mount(<UserInfo user={defaultUser} setShowAvatarEditor={showAvatarEditor} />);
         cy.get('[data-testid="global-div-info-user"]').should("be.visible");
-        cy.get('[data-testid="global-div-info-user"]').should("have.text", "Test TechTECHNICIEN");
+        cy.get('[data-testid="global-div-info-user"]').should("have.text", "Test TechTECHNICIAN");
     });
 
     it("should change style when asked", () => {
