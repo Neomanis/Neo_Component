@@ -6,7 +6,7 @@ import UserInfo from "../../../components/molecules/user/userInfo";
 const defaultUser = {
     uid: "ttest",
     name: { firstName: "Tech", lastName: "Test" },
-    role: "technicien",
+    role: "Technician",
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,
@@ -26,7 +26,7 @@ describe("UserInfo", () => {
 
         mount(<UserInfo user={defaultUser} setShowAvatarEditor={showAvatarEditor} />);
         cy.get('[data-testid="global-div-info-user"]').should("be.visible");
-        cy.get('[data-testid="global-div-info-user"]').should("have.text", "Test TechTECHNICIEN");
+        cy.get('[data-testid="global-div-info-user"]').should("have.text", "Test TechTECHNICIAN");
     });
 
     it("should change style when asked", () => {

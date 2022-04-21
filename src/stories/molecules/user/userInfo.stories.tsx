@@ -22,7 +22,7 @@ Default.args = {
     user: {
         uid: "ttest",
         name: { firstName: "Tech", lastName: "Test" },
-        role: "technicien",
+        role: "Technician",
         language: "fr-FR",
         avatar: {
             encodedAvatar: imgAvatar,
@@ -37,8 +37,8 @@ WithoutAvatar.args = {
     user: {
         uid: "ttest",
         name: { firstName: "Tech", lastName: "Test" },
-        role: "technicien",
-        language: "fr_FR",
+        role: "Technician",
+        language: "fr-FR",
     },
 };
 
@@ -47,8 +47,8 @@ WithStyle.args = {
     user: {
         uid: "ttest",
         name: { firstName: "Tech", lastName: "Test" },
-        role: "technicien",
-        language: "fr_FR",
+        role: "Technician",
+        language: "fr-FR",
         avatar: {
             encodedAvatar: imgAvatar,
             mimetype: "image/png",

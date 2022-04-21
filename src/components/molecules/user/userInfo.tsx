@@ -1,4 +1,5 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import { Role } from "@neomanis/neo-types";
 import { useTranslation } from "react-i18next";
 import { DefaultUserPicture } from "../../../img/png";
 import { IconAdd } from "../../../img/svg";
@@ -64,7 +65,7 @@ const UserInfo = ({
                     {`${user.name?.lastName ?? ""} ${user.name?.firstName ?? ""}`}
                 </p>
                 <p className={roleClassName} data-testid="role-info-user">
-                    {user.role?.toUpperCase() ?? ""}
+                    {user.role ? t(`role.${user.role.toLowerCase() as Role}`).toUpperCase() : ""}
                 </p>
             </div>
         </div>
