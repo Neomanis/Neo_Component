@@ -13,7 +13,7 @@ export default {
 const Template: ComponentStory<typeof Grid> = (args) => {
     return (
         <div className="p-4 bg-neo-bg-A">
-            <Grid {...args} languageUser={i18n.language} />
+            <Grid {...args} />
         </div>
     );
 };

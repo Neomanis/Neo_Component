@@ -14,7 +14,7 @@ export default {
 const Template: ComponentStory<typeof Ticket> = (args) => {
     return (
         <div className="bg-neo-bg-A">
-            <Ticket {...args} languageUser={i18n.language} />
+            <Ticket {...args} />
         </div>
     );
 };
