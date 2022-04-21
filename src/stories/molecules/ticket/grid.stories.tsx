@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { i18n } from "../../../i18n";
 import { Grid } from "../../../components/molecules";
 import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
 
@@ -13,7 +12,7 @@ export default {
 const Template: ComponentStory<typeof Grid> = (args) => {
     return (
         <div className="p-4 bg-neo-bg-A">
-            <Grid {...args} languageUser={i18n.language} />
+            <Grid {...args} />
         </div>
     );
 };

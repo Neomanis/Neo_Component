@@ -36,7 +36,7 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
     return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`, { count: Number(formatedDate[0]) });
 }
 
-export function getFormatedTimeToNowExtended(date: string, lang: string): string {
+export function getFormatedTimeToNowExtended(date: string, lang: string | undefined): string {
     const locale = getDateFnsLocaleFromUserLang(lang);
     const formatToDate = new Date(date);
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });

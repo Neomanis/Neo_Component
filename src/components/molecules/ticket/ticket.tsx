@@ -13,20 +13,12 @@ export interface TicketProps {
     currentTicket?: ITicket;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: ITicket) => void;
-    languageUser?: string;
     ticket?: ITicket;
     ticketBG?: boolean;
 }
 
-const Ticket = ({
-    currentTicket,
-    fCallBackClick,
-    fCallBackHover,
-    languageUser,
-    ticket,
-    ticketBG,
-}: TicketProps): ReactElement => {
-    const { t } = useTranslation();
+const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketBG }: TicketProps): ReactElement => {
+    const { t, i18n } = useTranslation();
 
     function isSameStatus(): boolean {
         // currentTicket.status && ticket.status are only here for typescript in the first place
@@ -141,7 +133,7 @@ const Ticket = ({
                                     </div>
                                     <p>
                                         {ticket.date_creation &&
-                                            getTimeToNowWithTranslation(ticket.date_creation, languageUser)}
+                                            getTimeToNowWithTranslation(ticket.date_creation, i18n.language)}
                                     </p>
                                 </div>
                             )}
