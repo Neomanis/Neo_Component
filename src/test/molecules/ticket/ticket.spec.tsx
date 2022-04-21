@@ -46,7 +46,7 @@ describe("ticket", () => {
             <Ticket
                 ticket={{ ...fakeTicket, id: 101 }}
                 currentTicket={{ ...fakeTicket, id: 101 }}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
             />
         );
         cy.get('[data-testid="ticket-opacity"]').should("not.have.class", "opacity-30");
@@ -67,7 +67,7 @@ describe("ticket", () => {
                     time_to_own: ttoDate.toISOString(),
                 }}
                 currentTicket={{ ...fakeTicket, id: 101 }}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
             />
         );
         cy.get('[data-testid="ticket-tto-ttr-warning"]').should("exist").should("have.class", "text-neo-urgency-major");
@@ -88,7 +88,7 @@ describe("ticket", () => {
                     time_to_resolve: ttrDate.toISOString(),
                     status: 2,
                 }}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
             />
         );
         cy.get('[data-testid="ticket-tto-ttr-warning"]').should("exist").should("have.class", "text-neo-urgency");

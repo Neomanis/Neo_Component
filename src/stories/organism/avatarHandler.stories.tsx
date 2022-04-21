@@ -43,7 +43,7 @@ WithStyle.args = {
         uid: "ttest",
         name: { firstName: "Tech", lastName: "Test" },
         role: "technicien",
-        language: "fr_FR",
+        language: "fr-FR",
         avatar: {
             encodedAvatar: imgAvatar,
             mimetype: "image/png",

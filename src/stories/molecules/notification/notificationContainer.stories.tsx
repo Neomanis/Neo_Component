@@ -43,7 +43,7 @@ Default.args = {
     clearAllNotifications: true,
     fCallBackClear: () => console.log("clear"),
     fCallBackSeeAll: () => console.log("SeeAll"),
-    languageUser: "fr_FR",
+    languageUser: "fr-FR",
     title: "DEMANDES DE WORKFLOW",
     viewItem: 3,
 };

@@ -8,14 +8,14 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
         cy.get('[data-testid="grid-body"]').should("be.visible");
     });
     it("should render empty ticket hexagon if there is no tickets", () => {
-        mount(<Grid cols={2} rows={2} languageUser="fr_FR" />);
+        mount(<Grid cols={2} rows={2} languageUser="fr-FR" />);
         cy.get('[data-testid="ticket-empty-body"]').should("have.length", 4);
     });
     it("should not show the pagination ", () => {
@@ -23,7 +23,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
@@ -34,7 +34,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
@@ -46,7 +46,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 reverseGrid
             />
@@ -60,7 +60,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={[
                     { ...fakeTicket, position: { col: 0, grid: 0, row: 0 } },
                     ...Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) })),
@@ -76,7 +76,7 @@ describe("Grid", () => {
             <Grid
                 cols={1}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
@@ -87,7 +87,7 @@ describe("Grid", () => {
             <Grid
                 cols={4}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 28 }, () => ({
                     ...fakeTicket,
                     id: Math.floor(Math.random() * 20),
@@ -101,7 +101,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
             />
@@ -120,7 +120,7 @@ describe("Grid", () => {
             <Grid
                 cols={2}
                 rows={2}
-                languageUser="fr_FR"
+                languageUser="fr-FR"
                 ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
                 showPagination
                 fCurrentTicket={fCurrentTicket}
