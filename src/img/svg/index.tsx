@@ -35,6 +35,7 @@ import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
 import { ReactComponent as IconKbOn } from "./nm_ico_kb_on.svg";
 import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
 import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
+import { ReactComponent as IconLicenses } from "./nm_ico_licenses.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
 import { ReactComponent as IconOther } from "./nm_ico_other.svg";
@@ -111,6 +112,7 @@ export {
     IconKbOn,
     IconLogin,
     IconLogout,
+    IconLicenses,
     IconMaintenance,
     IconNotification,
     IconOther,
