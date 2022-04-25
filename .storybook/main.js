@@ -3,7 +3,18 @@ const path = require("path");
 module.exports = {
     stories: ["../src/**/*.stories.tsx"],
     // Add any Storybook addons you want here: https://storybook.js.org/addons/
-    addons: ["@storybook/addon-essentials", "storybook-react-i18next"],
+    addons: [
+        "@storybook/addon-essentials",
+        "storybook-react-i18next",
+        {
+            name: "@storybook/addon-postcss",
+            options: {
+                postcssLoaderOptions: {
+                    implementation: require("postcss"),
+                },
+            },
+        },
+    ],
     webpackFinal: async (config) => {
         config.module.rules.push({
             test: /\,css&/,
@@ -27,16 +38,9 @@ module.exports = {
             },
         });
 
-        const assetRule = config.module.rules.find(({ test }) => test.test(".svg"));
-
-        const assetLoader = {
-            loader: assetRule.loader,
-            options: assetRule.options || assetRule.query,
-        };
-
         config.module.rules.unshift({
             test: /\.svg$/,
-            use: ["@svgr/webpack", assetLoader],
+            use: ["@svgr/webpack"],
         });
 
         return config;

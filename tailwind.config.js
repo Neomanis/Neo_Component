@@ -1,10 +1,8 @@
-const tailwindcss = require("tailwindcss");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-    purge: [],
+    content: ["./src/**/*.{js,jsx,ts,tsx}"],
     presets: [],
-    darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
             //color perso neomanis
@@ -72,7 +70,7 @@ module.exports = {
             current: "currentColor",
             black: colors.black,
             white: colors.white,
-            gray: colors.coolGray,
+            gray: colors.gray,
             red: colors.red,
             yellow: colors.amber,
             green: colors.emerald,
