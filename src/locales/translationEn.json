@@ -3,6 +3,7 @@
         "chaptersNumber": "Number of chapters",
         "closureOrWorkflow": "Closure / Workflow Request",
         "details": "Book details",
+        "dragAndDrop": "Drag and drop on Canvas",
         "exit": {
             "escalate": "Exit escalated",
             "solved": "Exit solved"
