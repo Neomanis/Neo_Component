@@ -1,9 +1,9 @@
 import { IChatMessage, IGlpiUsers } from "../../interface";
 
-export function formatMessage(message: string, senderId: number, isPrivate = 0): IChatMessage {
+export function formatMessage(message: string, sender: string, isPrivate = 0): IChatMessage {
     return {
         content: message,
-        users_id: senderId,
+        sender: sender,
         is_private: isPrivate,
         date_creation: new Date().toISOString(),
     };

@@ -38,7 +38,7 @@ export interface IChatMessage {
     itemtype?: string;
     items_id?: number;
     date?: string;
-    users_id: number;
+    sender: string;
     users_id_editor?: number;
     content: string;
     is_private?: number;
