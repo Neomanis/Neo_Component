@@ -427,6 +427,8 @@
         "all": "All tickets",
         "assigned": "Assigned to",
         "assignedGroup": "Assigned to group",
+        "defaultContent": "Ticket without content",
+        "defaultName": "Ticket without name",
         "deleteQuestion": "Delete this ticket?",
         "description": "Description",
         "details": "Ticket details",
