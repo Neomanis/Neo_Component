@@ -36,6 +36,8 @@ import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
 import { ReactComponent as IconKbOn } from "./nm_ico_kb_on.svg";
 import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
 import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
+import { ReactComponent as IconLock } from "./nm_ico_lock.svg";
+import { ReactComponent as IconLockOpen } from "./nm_ico_lock_open.svg";
 import { ReactComponent as IconLicenses } from "./nm_ico_licenses.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
@@ -56,6 +58,7 @@ import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
 import { ReactComponent as IconTicketClosed } from "./nm_ico_ticket_closed.svg";
 import { ReactComponent as IconTicketSolved } from "./nm_ico_ticket_solved.svg";
+import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
 import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_texte.svg";
 import { ReactComponent as LogoBlancSvg } from "./nm_logo_couleur_blanc.svg";
 import { ReactComponent as LogoBleuNoText } from "./nm_logo_couleur_bleu_sans_texte.svg";
@@ -114,6 +117,8 @@ export {
     IconKbOn,
     IconLogin,
     IconLogout,
+    IconLock,
+    IconLockOpen,
     IconLicenses,
     IconMaintenance,
     IconNotification,
@@ -134,6 +139,7 @@ export {
     IconTechnicalQuestions,
     IconTicketClosed,
     IconTicketSolved,
+    IconTrash,
     LogoBlancNoText,
     LogoBlancSvg,
     LogoBleuNoText,
