@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Status } from "../../enumeration";
+import { Status } from "@neomanis/neo-types";
 import { IconTicketClosed, IconTicketSolved, TicketLogo } from "../../img/svg";
 
 export function getTicketLogoByStatus(ticketStatus: number, fill: string): ReactElement {

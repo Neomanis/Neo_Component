@@ -1,5 +1,4 @@
-import { Colors, TailwindColorApplication } from "@neomanis/neo-types";
-import { Priority } from "../../enumeration";
+import { Colors, TailwindColorApplication, Priority } from "@neomanis/neo-types";
 
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },

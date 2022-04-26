@@ -1,4 +1,4 @@
-import { Status } from "../../enumeration";
+import { Status } from "@neomanis/neo-types";
 import { getTicketLogoByStatus } from "../../components/utils/ticketLogoByStatus";
 import { mount } from "@cypress/react";
 

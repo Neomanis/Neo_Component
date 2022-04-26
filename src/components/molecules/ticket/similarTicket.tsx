@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 
-import { Status } from "../../../enumeration";
-import { SimilarTicket } from "@neomanis/neo-types";
+import { SimilarTicket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 

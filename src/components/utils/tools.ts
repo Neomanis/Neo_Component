@@ -1,8 +1,7 @@
 import { TFunction } from "i18next";
 import { getPriorityColor } from "./priorityTools";
 import { getStatusColor } from "./statusTools";
-import { Status } from "../../enumeration";
-import { InputSelectSearchableData, TailwindColorApplication } from "@neomanis/neo-types";
+import { InputSelectSearchableData, TailwindColorApplication, Status } from "@neomanis/neo-types";
 
 type EnumType = {
     [key: number]: string;

@@ -1,5 +1,4 @@
-import { Status } from "../../enumeration";
-import { Colors, TailwindColorApplication, StatusTraductionKey } from "@neomanis/neo-types";
+import { Colors, TailwindColorApplication, StatusTraductionKey, Status } from "@neomanis/neo-types";
 
 const statusColors: Colors = {
     new: {

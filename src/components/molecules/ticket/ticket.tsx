@@ -1,12 +1,11 @@
 import React, { ReactElement } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
-import { Ticket } from "@neomanis/neo-types";
+import { Ticket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
 
 export interface TicketProps {
