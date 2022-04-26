@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { InputChat } from "../../../components/molecules";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ITechnicalQuestion } from "../../../interface";
+import { TechnicalQuestion } from "@neomanis/neo-types";
 
 export default {
     component: InputChat,
@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof InputChat> = (args) => {
     const { setValue, register, handleSubmit } = useForm({ mode: "onChange" });
-    const onSubmit: SubmitHandler<ITechnicalQuestion> = async (data) => {
+    const onSubmit: SubmitHandler<TechnicalQuestion> = async (data) => {
         // eslint-disable-next-line no-console
         console.log(data);
     };

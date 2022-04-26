@@ -3987,6 +3987,13 @@
   dependencies:
     parchment "^1.1.2"
 
+"@types/react-avatar-editor@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-avatar-editor/-/react-avatar-editor-12.0.0.tgz#f800d63fd8fef1d149340d2b295a086fd58eb01e"
+  integrity sha512-835jSnCdQ2Kgrtz2sTYKMv9YSGJG0j2vd8C0sxWtYJoYOmYPs8nt25rTsbCOha3SVzWNiuw1TOQCVqN0iBQgrw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-datepicker@^4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@types/react-datepicker/-/react-datepicker-4.1.7.tgz#2df051ddf6d2694700ccd1c57b60855d62215454"

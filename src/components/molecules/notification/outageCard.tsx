@@ -1,16 +1,16 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { IOutage } from "../../../interface";
+import { Outage } from "@neomanis/neo-types";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
 
 interface Props {
-    data: IOutage;
+    data: Outage;
     hoverInCallBack: () => void;
     hoverOutCallBack: () => void;
-    modifCallBack: (data: IOutage) => void;
+    modifCallBack: (data: Outage) => void;
     deleteCallBack: (id: number) => void;
 }
 

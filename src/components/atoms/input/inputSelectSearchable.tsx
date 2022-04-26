@@ -3,7 +3,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import inputReducer from "../../utils/reducers/inputReducer";
 import { customStyles } from "../../utils/inputSelectSearchableCss";
-import { IReactHookFormCustomValidation } from "../../../interface";
+import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
 import { useTranslation } from "../../../i18n";
@@ -28,7 +28,7 @@ interface Props {
         boolean,
         GroupBase<{ label: string; value: number }>
     >;
-    customValidation?: IReactHookFormCustomValidation<number | number[]>;
+    customValidation?: ReactHookFormCustomValidation<number | number[]>;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
     doValueLogic?: boolean;

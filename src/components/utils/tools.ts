@@ -2,7 +2,7 @@ import { TFunction } from "i18next";
 import { getPriorityColor } from "./priorityTools";
 import { getStatusColor } from "./statusTools";
 import { Status } from "../../enumeration";
-import { IInputSelectSearchableData, ITailwindColorApplication } from "../../interface";
+import { InputSelectSearchableData, TailwindColorApplication } from "@neomanis/neo-types";
 
 type EnumType = {
     [key: number]: string;
@@ -13,7 +13,7 @@ export function mapEnumToInputSelectSearchableData(
     tFunction?: TFunction,
     traductionKey?: string,
     traductionOption?: { context?: string; count?: number }
-): IInputSelectSearchableData[] {
+): InputSelectSearchableData[] {
     const enumarableValues = Object.keys(enumarable).filter((key) => isNaN(Number(key)));
     const enumarableKeys = Object.keys(enumarable).filter((key) => !isNaN(Number(key)));
     return enumarableValues.map((key, index) => ({
@@ -102,7 +102,7 @@ export function getStatusOrPriorityColor(
     status: number,
     priority: number,
     isHex: boolean,
-    tailwindType?: keyof ITailwindColorApplication
+    tailwindType?: keyof TailwindColorApplication
 ): string {
     if (status === Status.Solved || status === Status.Closed || status === Status.Pending) {
         return getStatusColor(status, isHex, tailwindType);

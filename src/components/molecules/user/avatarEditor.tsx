@@ -3,16 +3,16 @@ import { Button } from "../../atoms";
 import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
 import ReactAvatarEditor from "react-avatar-editor";
 import { useTranslation } from "react-i18next";
-import { IAvatar, IUser, TFileErrorTraductionKey } from "../../../interface";
+import { User, FileErrorTraductionKey, Avatar } from "@neomanis/neo-types";
 import { CloseLogo } from "../../../img/svg";
 
 interface Props {
     divEditorClassName?: string;
     dropZoneClassName?: string;
     editorWidth: number;
-    fCallBackUploadAvatar: (avatar: IAvatar) => void;
+    fCallBackUploadAvatar: (avatar: Avatar) => void;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: IUser;
+    user: User;
 }
 
 const AvatarEditor = ({
@@ -49,7 +49,7 @@ const AvatarEditor = ({
     function handleError(errors: FileRejection[]) {
         const errorMessages: string[] = [];
         errors[0].errors.forEach((error) => {
-            errorMessages.push(t(`error.file.${error.code as TFileErrorTraductionKey}`));
+            errorMessages.push(t(`error.file.${error.code as FileErrorTraductionKey}`));
         });
         setError({ show: true, messages: errorMessages });
     }

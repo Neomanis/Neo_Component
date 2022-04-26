@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useReducer, useState } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { IReactHookFormCustomValidation } from "../../../interface";
+import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import "../../../styles/textEditor.css";
 
 import inputReducer from "../../utils/reducers/inputReducer";
@@ -10,7 +10,7 @@ import Updater from "../updater";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
-    customValidation?: IReactHookFormCustomValidation<number | number[]>;
+    customValidation?: ReactHookFormCustomValidation<number | number[]>;
     defaultValue?: string;
     dotClassName?: string;
     errorMessage?: string;

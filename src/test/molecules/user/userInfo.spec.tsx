@@ -1,5 +1,5 @@
 import { imgAvatar } from "../../../stories/fakeAvatar";
-import { IUser } from "../../../interface";
+import { User } from "@neomanis/neo-types";
 import { mount } from "@cypress/react";
 import UserInfo from "../../../components/molecules/user/userInfo";
 
@@ -13,12 +13,12 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as IUser;
+} as User;
 
 const defaultEmptyUser = {
     uid: "ttest",
     language: "fr-FR",
-} as IUser;
+} as User;
 
 describe("UserInfo", () => {
     it("should be visible and display content props value", () => {
