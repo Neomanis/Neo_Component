@@ -8,9 +8,9 @@ describe("Chat functions", () => {
     });
 
     it("should format a message to IChatMessage", () => {
-        const formatedMessage = formatMessage("This is my message", 12, 0);
+        const formatedMessage = formatMessage("This is my message", "toto", 0);
         expect(formatedMessage.content).to.eql("This is my message");
-        expect(formatedMessage.users_id).to.eql(12);
+        expect(formatedMessage.sender).to.eql("toto");
         expect(formatedMessage.is_private).to.eql(0);
         expect(formatedMessage.date_creation).to.contain(new Date().toISOString().slice(0, -5));
     });
