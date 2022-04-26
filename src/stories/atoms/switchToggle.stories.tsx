@@ -20,8 +20,21 @@ const Template: ComponentStory<typeof SwitchToggle> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-    defaultStatus: true,
+    defaultStatus: false,
     // eslint-disable-next-line no-console
     fCallBack: () => console.log("switch"),
     value: "Exemple switch",
+};
+
+export const WithStyle = Template.bind({});
+WithStyle.args = {
+    defaultStatus: true,
+    labelClassName: "h-4 text-neo-green",
+    uncheckBgColor: "neo-red",
+    uncheckPillColor: "neo-red",
+    checkBgColor: "neo-blue",
+    checkPillColor: "neo-blue",
+    // eslint-disable-next-line no-console
+    fCallBack: () => console.log("switch"),
+    value: "Exemple switch with style",
 };

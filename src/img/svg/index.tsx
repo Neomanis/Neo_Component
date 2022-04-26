@@ -47,6 +47,7 @@ import { ReactComponent as IconRemoteControl } from "./nm_ico_remotecontrol.svg"
 import { ReactComponent as IconRemoteShell } from "./nm_ico_remoteshell.svg";
 import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
 import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
+import { ReactComponent as IconScissors } from "./nm_ico_scissors.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
 import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
 import { ReactComponent as IconSquareChat } from "./nm_ico_square_chat.svg";
@@ -128,6 +129,7 @@ export {
     IconRemoteShell,
     IconRessources,
     IconRetract,
+    IconScissors,
     IconSearch,
     IconSetting,
     IconSquareChat,

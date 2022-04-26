@@ -3,12 +3,26 @@ import React, { ReactElement, useEffect, useState } from "react";
 interface Props {
     defaultStatus: boolean;
     fCallBack?: () => void;
-    value: string;
+    value?: string;
     id?: string;
     labelClassName?: string;
+    uncheckBgColor?: string;
+    uncheckPillColor?: string;
+    checkBgColor?: string;
+    checkPillColor?: string;
 }
 
-const SwitchToggle = ({ defaultStatus, fCallBack, value, id, labelClassName }: Props): ReactElement => {
+const SwitchToggle = ({
+    defaultStatus,
+    fCallBack,
+    value,
+    id,
+    labelClassName,
+    uncheckBgColor,
+    uncheckPillColor,
+    checkBgColor,
+    checkPillColor,
+}: Props): ReactElement => {
     const [checked, setChecked] = useState(defaultStatus);
 
     function toggleSwitch(): void {
@@ -24,11 +38,22 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value, id, labelClassName }: P
 
     return (
         <div className="flex items-center" data-testid="switchToggle-body">
-            <div className="relative w-10 inline-block mr-2">
+            <div className="relative w-10 inline-block">
                 <input
                     checked={checked}
-                    className={`absolute block w-4 h-4 m-1 rounded-full bg-neo-bg-A appearance-none cursor-pointer transform duration-150 ease-linear
-                    ${checked && "translate-x-full "}`}
+                    data-testid="switchToggle-pill"
+                    className={`absolute block w-4 h-4 m-1 rounded-full appearance-none cursor-pointer transform duration-150 ease-linear 
+                    ${checked && "translate-x-full "} 
+                    ${
+                        checked
+                            ? checkPillColor
+                                ? "bg-" + checkPillColor
+                                : "bg-neo-bg-A"
+                            : uncheckPillColor
+                            ? "bg-" + uncheckPillColor
+                            : "bg-neo-bg-A"
+                    }
+                    `}
                     id={id}
                     onChange={(): void => {
                         toggleSwitch();
@@ -36,15 +61,31 @@ const SwitchToggle = ({ defaultStatus, fCallBack, value, id, labelClassName }: P
                     type="checkbox"
                 />
                 <label
-                    className={`block overflow-hidden h-6 rounded-full bg-neo-blue-secondary cursor-pointer duration-150 ease-linear ${
-                        checked && "bg-neo-green"
-                    }`}
+                    data-testid="switchToggle-bg"
+                    className={`block overflow-hidden h-6 rounded-full cursor-pointer duration-150 ease-linear 
+                    ${
+                        checked
+                            ? checkBgColor
+                                ? "bg-" + checkBgColor
+                                : "bg-neo-green"
+                            : uncheckBgColor
+                            ? "bg-" + uncheckBgColor
+                            : "bg-neo-blue-secondary"
+                    }
+
+                    `}
                     htmlFor={id}
                 ></label>
             </div>
-            <label className={`text-xs text-neo-blue-secondary cursor-pointer ${labelClassName}`} htmlFor={id}>
-                {value}
-            </label>
+            {value && (
+                <label
+                    data-testid="switchToggle-label"
+                    className={` ml-2 text-xs text-neo-blue-secondary cursor-pointer ${labelClassName}`}
+                    htmlFor={id}
+                >
+                    {value}
+                </label>
+            )}
         </div>
     );
 };
