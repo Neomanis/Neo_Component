@@ -1,5 +1,4 @@
-import { Colors, ITailwindColorApplication } from "../../interface";
-import { Priority } from "../../enumeration";
+import { Colors, TailwindColorApplication, Priority } from "@neomanis/neo-types";
 
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },
@@ -106,7 +105,7 @@ const priorityColors: Colors = {
 export function getPriorityColor(
     priorityId: number,
     isHex: boolean,
-    tailwindType?: keyof ITailwindColorApplication
+    tailwindType?: keyof TailwindColorApplication
 ): string {
     if (priorityId >= 1 && priorityId <= 6) {
         const key: keyof Colors = Priority[priorityId].toLowerCase();

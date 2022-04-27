@@ -1,6 +1,6 @@
-import { IChatMessage, IGlpiUsers } from "../../interface";
+import { ChatMessage, GlpiUsers } from "@neomanis/neo-types";
 
-export function formatMessage(message: string, sender: string, isPrivate = 0): IChatMessage {
+export function formatMessage(message: string, sender: string, isPrivate = 0): ChatMessage {
     return {
         content: message,
         sender: sender,
@@ -9,7 +9,7 @@ export function formatMessage(message: string, sender: string, isPrivate = 0): I
     };
 }
 
-export function getRecipientsNameByIds(glpiUsers: IGlpiUsers[], ids: number[]): string[] {
+export function getRecipientsNameByIds(glpiUsers: GlpiUsers[], ids: number[]): string[] {
     const recipients: string[] = [];
     ids.forEach((id) => {
         const recipient = glpiUsers.find((user) => id === user.id)?.name;

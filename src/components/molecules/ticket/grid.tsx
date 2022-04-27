@@ -1,5 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { ITicket } from "../../../interface";
+import { Ticket } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
 import DndTicket from "./dndTicket";
@@ -8,14 +8,14 @@ import { useDroppable } from "@dnd-kit/core";
 interface Props {
     className?: string;
     cols: number;
-    currentTicket?: ITicket;
-    fCurrentTicket?: (ticket: ITicket) => void;
-    fCallBackHover?: (ticket?: ITicket) => void;
-    fNewPositionedTicket?: (tickets: ITicket[]) => void;
+    currentTicket?: Ticket;
+    fCurrentTicket?: (ticket: Ticket) => void;
+    fCallBackHover?: (ticket?: Ticket) => void;
+    fNewPositionedTicket?: (tickets: Ticket[]) => void;
     reverseGrid?: boolean;
     rows: number;
     showPagination?: boolean;
-    ticketList?: ITicket[];
+    ticketList?: Ticket[];
     ticketBG?: boolean;
     droppableId?: "inventory" | "inbox";
 }
@@ -42,7 +42,7 @@ const Grid = ({
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
     // third is the number of rows
-    const [grids, setGrids] = useState<(ITicket | BlankHexagon)[][][]>([]);
+    const [grids, setGrids] = useState<(Ticket | BlankHexagon)[][][]>([]);
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
     const { setNodeRef } = useDroppable({
@@ -54,27 +54,27 @@ const Grid = ({
     }, [ticketList, rows, cols]);
 
     const currentTicketCallBack = useCallback(
-        (ticket: ITicket) => fCurrentTicket && fCurrentTicket(ticket),
+        (ticket: Ticket) => fCurrentTicket && fCurrentTicket(ticket),
         [fCurrentTicket]
     );
-    const hoverCallBack = useCallback((ticket: ITicket) => fCallBackHover && fCallBackHover(ticket), [fCallBackHover]);
+    const hoverCallBack = useCallback((ticket: Ticket) => fCallBackHover && fCallBackHover(ticket), [fCallBackHover]);
 
-    function isTypeOfTicket(item: ITicket | BlankHexagon) {
-        return Boolean((item as ITicket).similarTickets);
+    function isTypeOfTicket(item: Ticket | BlankHexagon) {
+        return Boolean((item as Ticket).similarTickets);
     }
 
-    function createGrids(tickets: ITicket[]) {
-        const gridsInitialization: (ITicket | BlankHexagon)[][][] = [];
+    function createGrids(tickets: Ticket[]) {
+        const gridsInitialization: (Ticket | BlankHexagon)[][][] = [];
 
         // grids creation
         for (let gridIndex = 0; gridIndex < getGridsPaginationNumber(); gridIndex++) {
-            const grid: (ITicket | BlankHexagon)[][] = [];
+            const grid: (Ticket | BlankHexagon)[][] = [];
             // rows creation
             for (let index = 0; index < rows; index++) {
                 grid.push(
                     // cols creation
                     Array.from({ length: cols }, (_, i) => {
-                        let item: ITicket | BlankHexagon = { id: i, name: "blank" };
+                        let item: Ticket | BlankHexagon = { id: i, name: "blank" };
                         if (tickets[0] && droppableId === "inbox") {
                             item = tickets[0];
                             tickets.shift();
@@ -85,7 +85,7 @@ const Grid = ({
             }
             gridsInitialization.push(grid);
         }
-        const ticketWithNoPosition: ITicket[] = [];
+        const ticketWithNoPosition: Ticket[] = [];
         let ticketWithNoPositionIndex = 0;
 
         if (droppableId === "inventory") {
@@ -172,7 +172,7 @@ const Grid = ({
                     </div>
                 )}
                 <div
-                    className={`transform scale-73 -mt-8  
+                    className={`transform scale-73 -mt-8
                     ${cols > 3 ? "-translate-x-8" : ""}
                     ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} `}
                     data-testid="grid-element"
@@ -180,7 +180,7 @@ const Grid = ({
                     {grids.length > 0 &&
                         grids[currentPageNumber].map((row, rowKey) => (
                             <div
-                                className={`flex transform scale-120 z-auto 
+                                className={`flex transform scale-120 z-auto
                                     ${
                                         reverseGrid
                                             ? Number.isInteger(rowKey / 2) && "translate-x-23"
@@ -197,9 +197,9 @@ const Grid = ({
                                                     currentTicket,
                                                     fCallBackClick: currentTicketCallBack,
                                                     fCallBackHover: hoverCallBack,
-                                                    ticket: item as ITicket,
+                                                    ticket: item as Ticket,
                                                 }}
-                                                // dndId={`grid-${droppableId}-ticket-${(item as ITicket).id}`}
+                                                // dndId={`grid-${droppableId}-ticket-${(item as Ticket).id}`}
                                                 dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
                                             />
                                         ) : (

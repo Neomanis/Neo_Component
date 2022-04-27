@@ -1,7 +1,7 @@
 import { Button } from "../../../components/atoms";
 import { CloseLogo } from "../../../img/svg";
 import { createRef, Dispatch, ReactElement, SetStateAction, useEffect, useState } from "react";
-import { IAvatar, IUser, TFileErrorTraductionKey } from "../../../interface";
+import { User, FileErrorTraductionKey, Avatar } from "@neomanis/neo-types";
 import { imgAvatar } from "../../../stories/fakeAvatar";
 import { mount } from "@cypress/react";
 import { useTranslation } from "react-i18next";
@@ -13,9 +13,9 @@ interface Props {
     divEditorClassName?: string;
     dropZoneClassName?: string;
     editorWidth: number;
-    fCallBackUploadAvatar: (avatar: IAvatar) => void;
+    fCallBackUploadAvatar: (avatar: Avatar) => void;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: IUser;
+    user: User;
 }
 
 const AvatarEditorTest = ({
@@ -55,7 +55,7 @@ const AvatarEditorTest = ({
     function handleError(errors: FileRejection[]) {
         const errorMessages: string[] = [];
         errors[0].errors.forEach((error) => {
-            errorMessages.push(t(`error.file.${error.code as TFileErrorTraductionKey}`));
+            errorMessages.push(t(`error.file.${error.code as FileErrorTraductionKey}`));
         });
         setError({ show: true, messages: errorMessages });
     }
@@ -201,7 +201,7 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as IUser;
+} as User;
 
 describe("AvatarEditor", () => {
     it("should launch function on dropzone button click", () => {

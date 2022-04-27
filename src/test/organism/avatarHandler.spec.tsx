@@ -1,5 +1,5 @@
 import { imgAvatar } from "../../stories/fakeAvatar";
-import { IUser } from "../../interface";
+import { User } from "@neomanis/neo-types";
 import { mount } from "@cypress/react";
 import AvatarHandler from "../../components/organism/avatarHandler";
 
@@ -13,7 +13,7 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as IUser;
+} as User;
 
 describe("AvatarHandler", () => {
     it("should userInfo be visible and avatarEditor not", () => {

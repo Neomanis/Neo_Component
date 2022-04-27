@@ -1,6 +1,6 @@
-import { IGlpiRequest, IGlpiUsers, IInputSelect, INotification, ITicket } from "../interface";
+import { GlpiUsers, GlpiRequest, InputSelect, Notification, Ticket } from "@neomanis/neo-types";
 
-export const fakeTicket: ITicket = {
+export const fakeTicket: Ticket = {
     id: 32,
     entities_id: 0,
     name: "Test JM a peu pres avec un titre genre fyys  fyezy fyezy y yreyz yreyz y y yreyz",
@@ -254,29 +254,29 @@ export const fakeDiag = {
     __v: 1,
 };
 
-export const fakeGroups: IInputSelect[] = [
+export const fakeGroups: InputSelect[] = [
     { id: 1, value: "Vagos" },
     { id: 2, value: "Families" },
     { id: 3, value: "LSPD" },
 ];
 
-export const fakeGlpiUsers: IGlpiUsers[] = [
+export const fakeGlpiUsers: GlpiUsers[] = [
     { id: 1, firstname: "Unicorn", realname: "Pichon", name: "uPichon" },
     { id: 1, firstname: "Platypus", realname: "Collins", name: "uCollins" },
     { id: 1, firstname: "Beluga", realname: "Rotarez", name: "uRotarez" },
 ];
 
-export const fakeGlpiGroups: IGlpiRequest[] = [
+export const fakeGlpiGroups: GlpiRequest[] = [
     { id: 1, completename: "Gojira", name: "gojira" },
     { id: 2, completename: "Ne Obliviscaris", name: "ne_obliviscaris" },
     { id: 3, completename: "Parkway Drive", name: "parkway_drive" },
 ];
 
-export const fakeTicketResources: Partial<ITicket> = {
+export const fakeTicketResources: Partial<Ticket> = {
     resources: [{ type: "Mana", item: { id: 2 }, tickets: [] }],
 };
 
-export const fakeNotification: INotification = {
+export const fakeNotification: Notification = {
     notification: {
         id: 0,
         content:

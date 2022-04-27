@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import inputReducer from "../../utils/reducers/inputReducer";
-import { IReactHookFormCustomValidation } from "../../../interface";
+import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
         labelText?: string;
         textArea?: string;
     };
-    customValidation?: IReactHookFormCustomValidation<string>;
+    customValidation?: ReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
     isError?: boolean;

@@ -1,18 +1,18 @@
 import React, { ReactElement, useState } from "react";
-import { IAvatar, IUser } from "../../interface";
 import AvatarEditor from "../molecules/user/avatarEditor";
 import UserInfo from "../molecules/user/userInfo";
+import { User, Avatar } from "@neomanis/neo-types";
 
 interface Props {
     divEditorClassName?: string;
     divInfoClassName?: string;
     dropZoneClassName?: string;
     editorWidth: number;
-    fCallBackUploadAvatar: (avatar: IAvatar) => void;
+    fCallBackUploadAvatar: (avatar: Avatar) => void;
     imageSize?: number;
     nameClassName?: string;
     roleClassName?: string;
-    user: IUser;
+    user: User;
 }
 
 const AvatarHandler = ({

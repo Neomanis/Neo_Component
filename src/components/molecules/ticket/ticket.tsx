@@ -1,12 +1,11 @@
 import React, { ReactElement } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
-import { ITicket } from "../../../interface";
+import { Ticket as ITicket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import { Status } from "../../../enumeration";
 import { useTranslation } from "../../../i18n";
 
 export interface TicketProps {
@@ -73,7 +72,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {isTTOorTTRStale() && (
                             <div
-                                className={`h-5 absolute top-4 right-14 
+                                className={`h-5 absolute top-4 right-14
                                     ${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
@@ -98,7 +97,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                         />
                     </div>
                     <div
-                        className={`flex flex-col items-center relative w-full 
+                        className={`flex flex-col items-center relative w-full
                         opacity-${getOpacity()}`}
                         style={{ zIndex: 2 }}
                         data-testid="ticket-opacity"
@@ -119,7 +118,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                             style={{ width: 125, height: 45 }}
                         >
                             <p
-                                className={`mx-2 text-xxs text-line-2 font-bold 
+                                className={`mx-2 text-xxs text-line-2 font-bold
                                 ${ticket.status === 1 || ticket.status === 2 ? "text-white" : "text-neo-bg-A"}`}
                             >
                                 {ticket.name}

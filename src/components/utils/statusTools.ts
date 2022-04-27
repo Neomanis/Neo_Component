@@ -1,5 +1,4 @@
-import { Status } from "../../enumeration";
-import { Colors, ITailwindColorApplication, TStatusTraductionKey } from "../../interface";
+import { Colors, TailwindColorApplication, StatusTraductionKey, Status } from "@neomanis/neo-types";
 
 const statusColors: Colors = {
     new: {
@@ -38,12 +37,12 @@ const statusColors: Colors = {
 export function getStatusColor(
     statusId: number,
     isHex: boolean,
-    tailwindType?: keyof ITailwindColorApplication
+    tailwindType?: keyof TailwindColorApplication
 ): string {
     const key: keyof Colors = Status[statusId].toLowerCase();
     return isHex ? statusColors[key].hex : statusColors[key].tailwind[tailwindType];
 }
 
-export function getStatusText(statusId: number): TStatusTraductionKey {
-    return Status[statusId].toLowerCase() as TStatusTraductionKey;
+export function getStatusText(statusId: number): StatusTraductionKey {
+    return Status[statusId].toLowerCase() as StatusTraductionKey;
 }

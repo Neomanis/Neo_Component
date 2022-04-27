@@ -1,6 +1,6 @@
-import { IOutage } from "../../interface";
+import { Outage } from "@neomanis/neo-types";
 
-function isHidden(outage: IOutage): boolean {
+function isHidden(outage: Outage): boolean {
     return Boolean(
         new Date(outage.startAt) > new Date() ||
             (outage.endAt &&
@@ -10,28 +10,28 @@ function isHidden(outage: IOutage): boolean {
     );
 }
 
-export function getOutageTextColor(outage: IOutage): string {
+export function getOutageTextColor(outage: Outage): string {
     if (isHidden(outage)) {
         return "text-neo-link";
     }
     return outage.severity === "major" ? "text-neo-urgency-major" : "text-neo-urgency";
 }
 
-export function getOutageDivideColor(outage: IOutage): string {
+export function getOutageDivideColor(outage: Outage): string {
     if (isHidden(outage)) {
         return "divide-neo-link";
     }
     return outage.severity === "major" ? "divide-neo-urgency-major" : "divide-neo-urgency";
 }
 
-export function getOutageBorderColor(outage: IOutage): string {
+export function getOutageBorderColor(outage: Outage): string {
     if (isHidden(outage)) {
         return "border-neo-link";
     }
     return outage.severity === "major" ? "border-neo-urgency-major" : "border-neo-urgency";
 }
 
-export function getOutageSVGColor(outage: IOutage): string {
+export function getOutageSVGColor(outage: Outage): string {
     if (isHidden(outage)) {
         return "#7DAAB7";
     }

@@ -1,9 +1,8 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
-import { Role } from "@neomanis/neo-types";
+import { Role, User } from "@neomanis/neo-types";
 import { useTranslation } from "react-i18next";
 import { DefaultUserPicture } from "../../../img/png";
 import { IconAdd } from "../../../img/svg";
-import { IUser } from "../../../interface";
 import { Icon, Img } from "../../atoms";
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
     nameClassName?: string;
     roleClassName?: string;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: IUser;
+    user: User;
 }
 
 const UserInfo = ({

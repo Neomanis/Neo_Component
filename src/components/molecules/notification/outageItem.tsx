@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
-import { IOutage } from "../../../interface";
 import { Title, IconOutageCategorie } from "../../atoms";
+import { Outage } from "@neomanis/neo-types";
 import { formatDate } from "../../utils/dateTools";
 
 interface Props {
-    data: IOutage;
+    data: Outage;
     isNotSelected?: boolean;
-    hoverInCallBack?: (outage: IOutage, postion: DOMRect) => void;
-    hoverOutCallBack?: (outage: IOutage, postion: DOMRect) => void;
+    hoverInCallBack?: (outage: Outage, postion: DOMRect) => void;
+    hoverOutCallBack?: (outage: Outage, postion: DOMRect) => void;
 }
 
 const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: Props): React.ReactElement => {

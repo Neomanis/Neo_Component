@@ -1,4 +1,4 @@
-import { Status, Scale } from "../../enumeration";
+import { Status, Scale } from "@neomanis/neo-types";
 import {
     mapEnumToInputSelectSearchableData,
     capitalizeFirstLetter,

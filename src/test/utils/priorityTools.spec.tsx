@@ -1,4 +1,4 @@
-import { Scale } from "../../enumeration";
+import { Scale } from "@neomanis/neo-types";
 import { getPriorityColor } from "../../components/utils/priorityTools";
 
 describe("getPriorityColor", () => {

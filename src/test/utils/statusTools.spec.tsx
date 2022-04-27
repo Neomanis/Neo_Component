@@ -1,4 +1,4 @@
-import { Status } from "../../enumeration";
+import { Status } from "@neomanis/neo-types";
 import { getStatusColor, getStatusText } from "../../components/utils/statusTools";
 
 describe("getPriorityColor", () => {
