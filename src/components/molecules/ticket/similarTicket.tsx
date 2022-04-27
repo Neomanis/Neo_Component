@@ -1,12 +1,12 @@
 import React, { ReactElement } from "react";
 
-import { SimilarTicket, Status } from "@neomanis/neo-types";
+import { SimilarTicket as ISimilarTicket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
-    fOpenSimilarTicket?: (ticket: SimilarTicket) => void;
-    ticket: SimilarTicket;
+    fOpenSimilarTicket?: (ticket: ISimilarTicket) => void;
+    ticket: ISimilarTicket;
 }
 
 const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {

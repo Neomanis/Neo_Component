@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
-import { Ticket, Status } from "@neomanis/neo-types";
+import { Ticket as ITicket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
@@ -9,10 +9,10 @@ import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "../../../i18n";
 
 export interface TicketProps {
-    currentTicket?: Ticket;
-    fCallBackClick?: (ticket: Ticket) => void;
-    fCallBackHover?: (ticket?: Ticket) => void;
-    ticket?: Ticket;
+    currentTicket?: ITicket;
+    fCallBackClick?: (ticket: ITicket) => void;
+    fCallBackHover?: (ticket?: ITicket) => void;
+    ticket?: ITicket;
     ticketBG?: boolean;
 }
 
