@@ -2670,14 +2670,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@neomanis/neo-types@^1.1.5":
-  version "1.1.8"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-1.1.8.tgz#8b4e252a18bdaf43ee1a585ea9b72e2bc301fefe"
-  integrity sha1-i04lKhi9r0PuGlheqbcuK8MB/v4=
-
-"@neomanis/neo-types@file:../Neo_Types/neomanis-neo-types-v1.2.0.tgz":
-  version "1.2.0"
-  resolved "file:../Neo_Types/neomanis-neo-types-v1.2.0.tgz#e923c312fce5431751eb411883956575b5564b23"
+"@neomanis/neo-types@^1.2.1":
+  version "1.2.1"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-1.2.1.tgz#0463cbf982b64109082313ab54c69c772f615958"
+  integrity sha1-BGPL+YK2QQkIIxOrVMacdy9hWVg=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
