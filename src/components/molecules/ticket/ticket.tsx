@@ -69,8 +69,18 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                     data-testid="ticket-body"
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
-                        {isTTOorTTRStale() && (
-                            <div className={`h-7 w-7 absolute top-4 right-9`} data-testid="ticket-tto-ttr-warning">
+                        {!isTTOorTTRStale() && (
+                            <div
+                                className={`h-7 w-7 absolute top-4 right-9 ${
+                                    getDateCompletionPercentage(
+                                        ticket.date_creation,
+                                        ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                    ) <= 99
+                                        ? "text-neo-urgency"
+                                        : "text-neo-urgency-major"
+                                }`}
+                                data-testid="ticket-tto-ttr-warning"
+                            >
                                 <CautionLogoFull
                                     fill={`${
                                         getDateCompletionPercentage(
