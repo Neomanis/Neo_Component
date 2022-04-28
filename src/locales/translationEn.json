@@ -163,7 +163,7 @@
     "global": {
         "acceptAll": "Accept all",
         "addParam": "Add param",
-        "addPrerequisites": "Add prerequisites",
+        "addPrerequisite": "Add prerequisite",
         "address": "Address",
         "admin": "Administration",
         "all": "All",
