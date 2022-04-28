@@ -143,6 +143,7 @@
         "partial": "Veuillez remplir les deux champs",
         "required": "Champ requis",
         "servicesUnavailable": "Les services ne sont pas disponibles, merci de patienter",
+        "setFirstAction": "Définir en tant que première action",
         "somethingWentWrong": "Une erreur s'est produite",
         "submit": {
             "language": "Erreur : la modification de la langue a échouée",

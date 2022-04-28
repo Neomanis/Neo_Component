@@ -80,7 +80,7 @@ const SwitchToggle = ({
             {value && (
                 <label
                     data-testid="switchToggle-label"
-                    className={` ml-2 text-xs text-neo-blue-secondary cursor-pointer ${labelClassName}`}
+                    className={`${labelClassName} ml-2 text-xs text-neo-blue-secondary cursor-pointer`}
                     htmlFor={id}
                 >
                     {value}

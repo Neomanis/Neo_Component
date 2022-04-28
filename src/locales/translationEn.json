@@ -143,6 +143,7 @@
         "partial": "Both field are required",
         "required": "Required field",
         "servicesUnavailable": "Services are unavailable, please wait",
+        "setFirstAction": "Define as first action",
         "somethingWentWrong": "Something went wrong",
         "submit": {
             "language": "Error : language modification failed",
