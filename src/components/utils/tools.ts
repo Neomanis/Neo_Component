@@ -1,14 +1,7 @@
 import { TFunction } from "i18next";
 import { getPriorityColor } from "./priorityTools";
 import { getStatusColor } from "./statusTools";
-import {
-    InputSelectSearchableData,
-    TailwindColorApplication,
-    Status,
-    Ticket,
-    Problem,
-    Type,
-} from "@neomanis/neo-types";
+import { InputSelectSearchableData, TailwindColorApplication, Status, Ticket, Type } from "@neomanis/neo-types";
 
 type EnumType = {
     [key: number]: string;
@@ -120,17 +113,6 @@ export async function sleep(delay: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export function getTicketType(ticket: Ticket | Problem) {
-    return "time_to_own" in ticket ? "ticket" : "problem";
-}
-
-export function getTicketTitle(ticket: Ticket | Problem, t: TFunction) {
-    let title: string;
-    if (getTicketType(ticket) === "ticket") {
-        title = t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type]) as "incident" | "request"}`);
-    } else {
-        title = t("ticket.type.problem");
-    }
-
-    return title + " " + ticket.id.toString();
+export function getTicketTitle(ticket: Ticket, t: TFunction) {
+    return `${t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type])}`)} ${ticket.id}`;
 }

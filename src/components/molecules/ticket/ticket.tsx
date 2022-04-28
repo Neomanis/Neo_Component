@@ -1,18 +1,18 @@
 import React, { ReactElement } from "react";
 import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
-import { Ticket as ITicket, Status } from "@neomanis/neo-types";
+import { Ticket as ITicket, Status, Type } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { useTranslation } from "../../../i18n";
-import { getTicketTitle, getTicketType } from "../../utils/tools";
+import { getTicketTitle } from "../../utils/tools";
 
 export interface TicketProps {
-    currentTicket?: ITicket | Problem;
-    fCallBackClick?: (ticket: ITicket | Problem) => void;
-    fCallBackHover?: (ticket?: ITicket | Problem) => void;
-    ticket?: ITicket | Problem;
+    currentTicket?: ITicket;
+    fCallBackClick?: (ticket: ITicket) => void;
+    fCallBackHover?: (ticket?: ITicket) => void;
+    ticket?: ITicket;
     ticketBG?: boolean;
 }
 
@@ -70,15 +70,13 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                     data-testid="ticket-body"
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
-                        {isTTOorTTRStale() && (
+                        {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (
                             <div className="h-7 w-7 absolute top-4 right-9" data-testid="ticket-tto-ttr-warning">
                                 <CautionLogoFull
                                     fill={`${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
-                                            ticket.status === Status.New
-                                                ? (ticket as ITicket).time_to_own
-                                                : ticket.time_to_resolve
+                                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
                                         ) <= 99
                                             ? "#ED943B"
                                             : "#F7284F"

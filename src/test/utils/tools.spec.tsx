@@ -7,7 +7,6 @@ import {
     getHexColorFromTailwindColor,
     getStatusOrPriorityColor,
     sleep,
-    getTicketType,
     getTicketTitle,
 } from "../../components/utils/tools";
 import { i18n } from "../../i18n";
@@ -83,25 +82,11 @@ describe("sleep", () => {
     });
 });
 
-describe("getTicketType", () => {
-    it("should return ticket if ticket is type of incident or request", () => {
-        expect(getTicketType(fakeTicket)).eql("ticket");
-    });
-    it("should return problem if ticket is type of problem", () => {
-        const ticket = { ...fakeTicket };
-        delete ticket["time_to_own"];
-        expect(getTicketType(ticket)).eql("problem");
-    });
-});
-
 describe("getTicketTitle", () => {
     const t = i18n.getFixedT("en-GB");
-    it("should return ticket title containing incident or request", () => {
+    it("should ticket title by ticket type", () => {
         expect(getTicketTitle(fakeTicket, t)).eql("Incident 32");
-    });
-    it("should return ticket title containing problem", () => {
-        const ticket = { ...fakeTicket };
-        delete ticket["time_to_own"];
-        expect(getTicketTitle(ticket, t)).eql("Problem 32");
+        expect(getTicketTitle({ ...fakeTicket, type: 2 }, t)).eql("Request 32");
+        expect(getTicketTitle({ ...fakeTicket, type: 3 }, t)).eql("Problem 32");
     });
 });

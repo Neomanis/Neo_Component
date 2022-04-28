@@ -105,18 +105,12 @@ describe("ticket", () => {
         cy.get("@click-callback").should("have.been.called");
     });
 
-    it("should render a ticket with a problem title", () => {
-        const ticket = { ...fakeTicket };
-        delete ticket["time_to_own"];
-
-        mount(<Ticket ticket={ticket} />);
-
-        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Problem 32");
-    });
-
-    it("should render a ticket with a incident or request title", () => {
+    it("should render a ticket with the right title", () => {
         mount(<Ticket ticket={fakeTicket} />);
-
         cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Incident 32");
+        mount(<Ticket ticket={{ ...fakeTicket, type: 2 }} />);
+        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Request 32");
+        mount(<Ticket ticket={{ ...fakeTicket, type: 3 }} />);
+        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Problem 32");
     });
 });

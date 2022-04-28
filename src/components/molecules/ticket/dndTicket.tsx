@@ -3,8 +3,6 @@ import { useDraggable, useDroppable } from "@dnd-kit/core";
 import Ticket, { TicketProps } from "./ticket";
 import { useCombinedRefs } from "../../utils/hooks/useCombinedRef";
 import { Loader } from "../../atoms";
-import { getTicketType } from "../../utils/tools";
-import { Ticket as ITicket } from "@neomanis/neo-types";
 
 interface DraggableTicketProps {
     dndId: string;
@@ -13,11 +11,7 @@ interface DraggableTicketProps {
 
 const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactElement => {
     const isTicketPositionLoading = useMemo(() => {
-        if (!ticketProps.ticket || getTicketType(ticketProps.ticket) === "problem") {
-            return false;
-        }
-
-        return (ticketProps.ticket as ITicket)?.isPositionLoading;
+        return ticketProps.ticket?.isPositionLoading;
     }, [ticketProps]);
 
     const {
