@@ -6,12 +6,13 @@ import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { useTranslation } from "../../../i18n";
+import { getTicketTitle, getTicketType } from "../../utils/tools";
 
 export interface TicketProps {
-    currentTicket?: ITicket;
-    fCallBackClick?: (ticket: ITicket) => void;
-    fCallBackHover?: (ticket?: ITicket) => void;
-    ticket?: ITicket;
+    currentTicket?: ITicket | Problem;
+    fCallBackClick?: (ticket: ITicket | Problem) => void;
+    fCallBackHover?: (ticket?: ITicket | Problem) => void;
+    ticket?: ITicket | Problem;
     ticketBG?: boolean;
 }
 
@@ -50,7 +51,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
         return (
             getDateCompletionPercentage(
                 ticket.date_creation,
-                ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                ticket.status === Status.New ? (ticket as ITicket).time_to_own : ticket.time_to_resolve
             ) >= 75 &&
             ticket.status !== Status.Pending &&
             ticket.status !== Status.Solved &&
@@ -75,7 +76,9 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                                     fill={`${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
-                                            ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                            ticket.status === Status.New
+                                                ? (ticket as ITicket).time_to_own
+                                                : ticket.time_to_resolve
                                         ) <= 99
                                             ? "#ED943B"
                                             : "#F7284F"
@@ -98,7 +101,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} />
                             <div className="font-extrabold text-xs">
-                                <Title type="h3" data={t("ticket.title", { count: 1 }) + " " + ticket.id.toString()} />
+                                <Title type="h3" data={getTicketTitle(ticket, t)} />
                             </div>
                         </div>
                         <div
