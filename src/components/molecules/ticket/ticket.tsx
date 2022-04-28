@@ -1,11 +1,10 @@
 import React, { ReactElement } from "react";
-import { Hexagon, Icon, IconTicketCategorie, Title } from "../../atoms";
+import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
 import { Ticket as ITicket, Status } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
-import { ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { useTranslation } from "../../../i18n";
 
 export interface TicketProps {
@@ -71,26 +70,20 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {isTTOorTTRStale() && (
-                            <div
-                                className={`h-5 absolute top-4 right-14
-                                    ${
+                            <div className="h-7 w-7 absolute top-4 right-9" data-testid="ticket-tto-ttr-warning">
+                                <CautionLogoFull
+                                    fill={`${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
                                             ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
                                         ) <= 99
-                                            ? "text-neo-urgency"
-                                            : "text-neo-urgency-major"
+                                            ? "#ED943B"
+                                            : "#F7284F"
                                     }`}
-                                data-testid="ticket-tto-ttr-warning"
-                            >
-                                <div
-                                    className="w-2 h-4 bg-white absolute"
-                                    style={{ width: 5, height: 14, top: 5, left: 9 }}
-                                ></div>
-                                <Icon className="text-xl absolute left-0" fontIcon={faExclamationTriangle} />
+                                    className="absolute left-0 transform scale-110"
+                                />
                             </div>
                         )}
-
                         <Hexagon
                             isSelected={currentTicket === ticket}
                             strokeColor={ticket.status && getStatusColor(ticket.status, true)}
