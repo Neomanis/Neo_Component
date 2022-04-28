@@ -1,8 +1,10 @@
 {
     "book": {
+        "chapter_one": "Chapitre",
+        "chapter_other": "Chapitres",
+        "chaptersEdit": "Modifier les chapitres",
         "chaptersNumber": "Nombre de chapitres",
         "closureOrWorkflow": "Confirmation / Demande de Workflow",
-        "details": "Détails du livre",
         "dragAndDrop": "Glisser et déposer sur le Canvas",
         "exit": {
             "escalate": "Sortie escaladée",
@@ -11,6 +13,8 @@
         "launch": "Lancer un livre",
         "launchFailed": "L'exécution du livre a échoué",
         "otherPending": "Autre livre en attente",
+        "params": "Paramètres du livre",
+        "setFirstAction": "Définir en tant que première action",
         "title_one": "Livre",
         "title_other": "Livres",
         "toaster": {
@@ -159,6 +163,7 @@
     "global": {
         "acceptAll": "Tout accepter",
         "addParam": "Ajouter un paramètre",
+        "addPrerequisite": "Ajouter un prérequis",
         "address": "Adresse",
         "admin": "Administration",
         "all": "Tout",

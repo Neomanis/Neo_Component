@@ -1,8 +1,10 @@
 {
     "book": {
+        "chapter_one": "Chapter",
+        "chapter_other": "Chapters",
+        "chaptersEdit": "Edit chapters",
         "chaptersNumber": "Number of chapters",
         "closureOrWorkflow": "Closure / Workflow Request",
-        "details": "Book details",
         "dragAndDrop": "Drag and drop on Canvas",
         "exit": {
             "escalate": "Exit escalated",
@@ -11,6 +13,8 @@
         "launch": "Launch a book",
         "launchFailed": "Book launch failed",
         "otherPending": "Other book pending",
+        "params": "Book parameters",
+        "setFirstAction": "Define as first action",
         "title_one": "Book",
         "title_other": "Books",
         "toaster": {
@@ -159,6 +163,7 @@
     "global": {
         "acceptAll": "Accept all",
         "addParam": "Add param",
+        "addPrerequisite": "Add prerequisite",
         "address": "Address",
         "admin": "Administration",
         "all": "All",
