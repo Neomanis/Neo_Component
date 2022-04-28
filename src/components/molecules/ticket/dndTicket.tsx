@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import Ticket, { TicketProps } from "./ticket";
 import { useCombinedRefs } from "../../utils/hooks/useCombinedRef";
@@ -10,6 +10,10 @@ interface DraggableTicketProps {
 }
 
 const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactElement => {
+    const isTicketPositionLoading = useMemo(() => {
+        return ticketProps.ticket?.isPositionLoading;
+    }, [ticketProps]);
+
     const {
         attributes,
         listeners,
@@ -31,12 +35,12 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
             {...attributes}
             className={`relative ${ticketProps.ticket ? "cursor-pointer" : "cursor-default"}`}
         >
-            {ticketProps.ticket?.isPositionLoading && (
+            {isTicketPositionLoading && (
                 <div className="absolute transform top-1/2 z-50" style={{ left: "72px" }}>
                     <Loader type="circleOnly" className="text-neo-red" />
                 </div>
             )}
-            <div className={`${(dndId === active?.id || ticketProps.ticket?.isPositionLoading) && "opacity-50"}`}>
+            <div className={`${(dndId === active?.id || isTicketPositionLoading) && "opacity-50"}`}>
                 <Ticket {...ticketProps} />
             </div>
         </div>

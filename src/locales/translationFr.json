@@ -466,6 +466,7 @@
         "ttr": "Résolution",
         "type": {
             "incident": "Incident",
+            "problem": "Problème",
             "request": "Demande",
             "title": "Type"
         },

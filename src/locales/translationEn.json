@@ -466,6 +466,7 @@
         "ttr": "TTR",
         "type": {
             "incident": "Incident",
+            "problem": "Problem",
             "request": "Request",
             "title": "Type"
         },

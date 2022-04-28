@@ -7,8 +7,10 @@ import {
     getHexColorFromTailwindColor,
     getStatusOrPriorityColor,
     sleep,
+    getTicketTitle,
 } from "../../components/utils/tools";
 import { i18n } from "../../i18n";
+import { fakeTicket } from "../../stories/fakeObject";
 
 describe("mapEnumToInputSelectSearchableData", () => {
     it("should return a proper input select searchable data from a enum", () => {
@@ -77,5 +79,14 @@ describe("sleep", () => {
         await sleep(500);
         const dateAfter = Date.now();
         expect(dateAfter - dateNow).to.above(499);
+    });
+});
+
+describe("getTicketTitle", () => {
+    const t = i18n.getFixedT("en-GB");
+    it("should ticket title by ticket type", () => {
+        expect(getTicketTitle(fakeTicket, t)).eql("Incident 32");
+        expect(getTicketTitle({ ...fakeTicket, type: 2 }, t)).eql("Request 32");
+        expect(getTicketTitle({ ...fakeTicket, type: 3 }, t)).eql("Problem 32");
     });
 });
