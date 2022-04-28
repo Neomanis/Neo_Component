@@ -63,7 +63,7 @@ describe("ticket", () => {
                 currentTicket={{ ...fakeTicket, id: 101 }}
             />
         );
-        cy.get('[data-testid="ticket-tto-ttr-warning"]').should("exist").should("have.class", "text-neo-urgency-major");
+        cy.get('[data-testid="ticket-tto-ttr-warning"]').should("exist");
     });
 
     it("should display stale ttr", () => {
