@@ -471,7 +471,8 @@
         "ttr": "Résolution",
         "type": {
             "incident": "Incident",
-            "problem": "Problème",
+            "problem_one": "Problème",
+            "problem_other": "Problèmes",
             "request": "Demande",
             "title": "Type"
         },
