@@ -471,7 +471,8 @@
         "ttr": "TTR",
         "type": {
             "incident": "Incident",
-            "problem": "Problem",
+            "problem_one": "Problem",
+            "problem_other": "Problems",
             "request": "Request",
             "title": "Type"
         },

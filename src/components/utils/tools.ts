@@ -114,5 +114,5 @@ export async function sleep(delay: number): Promise<void> {
 }
 
 export function getTicketTitle(ticket: Ticket, t: TFunction) {
-    return `${t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type])}`)} ${ticket.id}`;
+    return `${t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type])}`, { count: 1 })} ${ticket.id}`;
 }
