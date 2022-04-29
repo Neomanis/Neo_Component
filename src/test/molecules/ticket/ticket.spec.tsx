@@ -13,8 +13,14 @@ describe("ticket", () => {
         cy.get('[data-testid="ticket-empty-body"]').should("be.visible");
     });
 
-    it("should have opacity if ticket and current ticket are not the same and in inbox", () => {
-        mount(<Ticket ticket={fakeTicket} currentTicket={{ ...fakeTicket, id: 101 }} />);
+    it("should have opacity if ticket and current ticket are not the same and both tickets are on same grid", () => {
+        mount(
+            <Ticket
+                ticket={fakeTicket}
+                gridId="inventory"
+                currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
+            />
+        );
         cy.get('[data-testid="ticket-opacity"]').should("have.class", "opacity-30");
         cy.get('[data-testid="ticket-fill-svg"]').should("exist");
     });
@@ -31,18 +37,25 @@ describe("ticket", () => {
         cy.get('[data-testid="ticket-fill-svg"]').should("not.exist");
     });
 
-    it("should have opacity if ticket and current ticket are not the same and in inventory", () => {
-        mount(<Ticket ticket={{ ...fakeTicket, status: 3 }} currentTicket={{ ...fakeTicket, id: 101, status: 3 }} />);
-        cy.get('[data-testid="ticket-opacity"]').should("have.class", "opacity-30");
-    });
-
     it("should not have opacity if ticket and current ticket are not in the same place", () => {
-        mount(<Ticket ticket={{ ...fakeTicket, status: 1 }} currentTicket={{ ...fakeTicket, id: 101, status: 2 }} />);
+        mount(
+            <Ticket
+                ticket={{ ...fakeTicket, status: 1 }}
+                gridId="inbox"
+                currentTicket={{ ...fakeTicket, id: 101, status: 2, gridId: "inventory" }}
+            />
+        );
         cy.get('[data-testid="ticket-opacity"]').should("not.have.class", "opacity-30");
     });
 
     it("should not have opacity if ticket and current ticket are the same", () => {
-        mount(<Ticket ticket={{ ...fakeTicket, id: 101 }} currentTicket={{ ...fakeTicket, id: 101 }} />);
+        mount(
+            <Ticket
+                ticket={{ ...fakeTicket, id: 101 }}
+                gridId="inventory"
+                currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
+            />
+        );
         cy.get('[data-testid="ticket-opacity"]').should("not.have.class", "opacity-30");
     });
 
@@ -60,7 +73,7 @@ describe("ticket", () => {
                     date_creation: creationDate.toISOString(),
                     time_to_own: ttoDate.toISOString(),
                 }}
-                currentTicket={{ ...fakeTicket, id: 101 }}
+                currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
             />
         );
         cy.get('[data-testid="ticket-tto-ttr-warning"]').should("exist");

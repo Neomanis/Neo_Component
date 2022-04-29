@@ -1,5 +1,5 @@
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
-import { Ticket } from "@neomanis/neo-types";
+import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+import { CompactTicket, GridIds, Ticket } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "../../../img/svg";
 import { Button } from "../../atoms";
 import DndTicket from "./dndTicket";
@@ -8,16 +8,16 @@ import { useDroppable } from "@dnd-kit/core";
 interface Props {
     className?: string;
     cols: number;
-    currentTicket?: Ticket;
+    currentTicket?: CompactTicket;
     fCurrentTicket?: (ticket: Ticket) => void;
-    fCallBackHover?: (ticket?: Ticket) => void;
+    fCallBackHover?: (ticket?: CompactTicket) => void;
     fNewPositionedTicket?: (tickets: Ticket[]) => void;
     reverseGrid?: boolean;
     rows: number;
     showPagination?: boolean;
     ticketList?: Ticket[];
     ticketBG?: boolean;
-    droppableId?: "inventory" | "inbox";
+    gridId?: GridIds;
 }
 
 interface BlankHexagon {
@@ -30,7 +30,7 @@ const Grid = ({
     cols,
     currentTicket,
     ticketBG,
-    droppableId = "inbox",
+    gridId = "inbox",
     fCallBackHover,
     fCurrentTicket,
     fNewPositionedTicket,
@@ -46,28 +46,41 @@ const Grid = ({
     const [currentPageNumber, setCurrentPageNumber] = useState(0);
 
     const { setNodeRef } = useDroppable({
-        id: droppableId,
+        id: gridId,
     });
 
-    const getGridsPaginationNumber = useCallback(() => {
-        return ticketList?.length > 0 ? Math.ceil(ticketList.length / (rows * cols)) : 1;
+    const gridsPaginationNumber = useMemo(() => {
+        if (ticketList?.length > 0) {
+            const ticketWithPosition = ticketList.filter((ticket) => Boolean(ticket.position));
+            const maxTicketGridNumber =
+                ticketWithPosition.length > 0
+                    ? Math.max(...ticketWithPosition.map((ticket) => ticket.position.grid)) + 1
+                    : 0;
+
+            return Math.max(...[maxTicketGridNumber, Math.ceil(ticketList.length / (rows * cols))]);
+        }
+
+        return 1;
     }, [ticketList, rows, cols]);
 
     const currentTicketCallBack = useCallback(
         (ticket: Ticket) => fCurrentTicket && fCurrentTicket(ticket),
         [fCurrentTicket]
     );
-    const hoverCallBack = useCallback((ticket: Ticket) => fCallBackHover && fCallBackHover(ticket), [fCallBackHover]);
+    const hoverCallBack = useCallback(
+        (ticket: CompactTicket) => fCallBackHover && fCallBackHover(ticket),
+        [fCallBackHover]
+    );
 
     function isTypeOfTicket(item: Ticket | BlankHexagon) {
-        return Boolean((item as Ticket).similarTickets);
+        return "type" in item;
     }
 
     function createGrids(tickets: Ticket[]) {
         const gridsInitialization: (Ticket | BlankHexagon)[][][] = [];
 
         // grids creation
-        for (let gridIndex = 0; gridIndex < getGridsPaginationNumber(); gridIndex++) {
+        for (let gridIndex = 0; gridIndex < gridsPaginationNumber; gridIndex++) {
             const grid: (Ticket | BlankHexagon)[][] = [];
             // rows creation
             for (let index = 0; index < rows; index++) {
@@ -75,7 +88,7 @@ const Grid = ({
                     // cols creation
                     Array.from({ length: cols }, (_, i) => {
                         let item: Ticket | BlankHexagon = { id: i, name: "blank" };
-                        if (tickets[0] && droppableId === "inbox") {
+                        if (tickets[0] && gridId !== "inventory") {
                             item = tickets[0];
                             tickets.shift();
                         }
@@ -88,7 +101,7 @@ const Grid = ({
         const ticketWithNoPosition: Ticket[] = [];
         let ticketWithNoPositionIndex = 0;
 
-        if (droppableId === "inventory") {
+        if (gridId === "inventory") {
             tickets.forEach((ticket) => {
                 if (ticket.position) {
                     const { col, grid, row } = ticket.position;
@@ -135,9 +148,9 @@ const Grid = ({
 
     function changePage(direction: "prev" | "next"): void {
         if (direction === "prev") {
-            setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? getGridsPaginationNumber() - 1 : pageNumber - 1));
+            setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? gridsPaginationNumber - 1 : pageNumber - 1));
         } else {
-            setCurrentPageNumber((pageNumber) => (pageNumber === getGridsPaginationNumber() - 1 ? 0 : pageNumber + 1));
+            setCurrentPageNumber((pageNumber) => (pageNumber === gridsPaginationNumber - 1 ? 0 : pageNumber + 1));
         }
     }
 
@@ -150,12 +163,12 @@ const Grid = ({
             <div
                 className={`${cols === 1 ? "w-52" : ""} ${className}`}
                 data-testid="grid-body"
-                ref={droppableId ? setNodeRef : null}
+                ref={gridId ? setNodeRef : null}
             >
-                {showPagination && getGridsPaginationNumber() > 1 && (
+                {showPagination && gridsPaginationNumber > 1 && (
                     <div className={`flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">
-                            {currentPageNumber + 1}/{getGridsPaginationNumber()}
+                            {currentPageNumber + 1}/{gridsPaginationNumber}
                         </p>
                         <Button
                             className="cursor-pointer w-5 pr-1 transform hover:scale-105"
@@ -174,7 +187,7 @@ const Grid = ({
                 <div
                     className={`transform scale-73 -mt-8
                     ${cols > 3 ? "-translate-x-8" : ""}
-                    ${showPagination && getGridsPaginationNumber() > 1 ? " -mt-16" : ""} `}
+                    ${showPagination && gridsPaginationNumber > 1 ? " -mt-16" : ""} `}
                     data-testid="grid-element"
                 >
                     {grids.length > 0 &&
@@ -198,14 +211,14 @@ const Grid = ({
                                                     fCallBackClick: currentTicketCallBack,
                                                     fCallBackHover: hoverCallBack,
                                                     ticket: item as Ticket,
+                                                    gridId,
                                                 }}
-                                                // dndId={`grid-${droppableId}-ticket-${(item as Ticket).id}`}
-                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-ticket-${item.id}`}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.id}`}
                                             />
                                         ) : (
                                             <DndTicket
-                                                ticketProps={{ ticketBG: ticketBG }}
-                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${droppableId}-emptyTicket`}
+                                                ticketProps={{ ticketBG: ticketBG, gridId }}
+                                                dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-emptyTicket`}
                                             />
                                         )}
                                     </div>

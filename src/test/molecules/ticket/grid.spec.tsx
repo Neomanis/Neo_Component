@@ -60,7 +60,7 @@ describe("Grid", () => {
                     { ...fakeTicket, position: { col: 0, grid: 0, row: 0 } },
                     ...Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) })),
                 ]}
-                droppableId="inventory"
+                gridId="inventory"
                 fNewPositionedTicket={fNewPositionedTicket}
             />
         );

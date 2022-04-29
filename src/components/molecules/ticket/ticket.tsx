@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
-import { Ticket as ITicket, Status, Type } from "@neomanis/neo-types";
+import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
 import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
@@ -9,41 +9,29 @@ import { useTranslation } from "../../../i18n";
 import { getTicketTitle } from "../../utils/tools";
 
 export interface TicketProps {
-    currentTicket?: ITicket;
+    currentTicket?: CompactTicket;
     fCallBackClick?: (ticket: ITicket) => void;
-    fCallBackHover?: (ticket?: ITicket) => void;
+    fCallBackHover?: (ticket?: CompactTicket) => void;
     ticket?: ITicket;
     ticketBG?: boolean;
+    gridId?: GridIds;
 }
 
-const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketBG }: TicketProps): ReactElement => {
+const Ticket = ({
+    currentTicket,
+    fCallBackClick,
+    fCallBackHover,
+    ticket,
+    ticketBG,
+    gridId,
+}: TicketProps): ReactElement => {
     const { t, i18n } = useTranslation();
 
-    function isSameStatus(): boolean {
-        // currentTicket.status && ticket.status are only here for typescript in the first place
-        // currentTicket.id !== ticket.id is checking if current context ticket is different than ticket element
-        // we are also checking if showCurrentTicket is true in order to validate that we have selected an item
-        if (currentTicket && currentTicket.status && ticket.status && currentTicket.id !== ticket.id) {
-            if (currentTicket.status === 1 && ticket.status === 1) {
-                // here we check if we are in the inbox grid wich only has status equal 1
-                // here we want to check if current ticket status is superior to one to refer only
-                // to Inventory tickets
-                return true;
-            } else if (currentTicket.status > 1 && ticket.status > 1) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
-
     function getOpacity(): string {
-        // if selected ticket id is different than ticket id we return a string value equal to a number
-        // reflecting opacity tailwind value, that will be reused in hexagon as well
-        if (currentTicket) {
-            return isSameStatus() ? "30" : "";
+        if (currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) {
+            return "30";
         }
+
         return "";
     }
 
@@ -65,7 +53,7 @@ const Ticket = ({ currentTicket, fCallBackClick, fCallBackHover, ticket, ticketB
                 <div
                     className="useOnClickOutsideException w-40 h-40 cursor-pointer transform hover:scale-105 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto"
                     onClick={(): void => fCallBackClick && fCallBackClick(ticket)}
-                    onMouseEnter={(): void => fCallBackHover && fCallBackHover(ticket)}
+                    onMouseEnter={(): void => fCallBackHover && fCallBackHover({ ...ticket, gridId })}
                     onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                     data-testid="ticket-body"
                 >

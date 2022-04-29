@@ -32,6 +32,7 @@ export const fakeTicket: Ticket = {
     similarTickets: [],
     computerName: null,
     linkedTickets: [],
+    is_deleted: 0,
 };
 
 export const fakeDiag = {
