@@ -105,7 +105,15 @@ const Grid = ({
             tickets.forEach((ticket) => {
                 if (ticket.position) {
                     const { col, grid, row } = ticket.position;
-                    gridsInitialization[grid][row][col] = ticket;
+                    if (
+                        gridsInitialization[grid] &&
+                        gridsInitialization[grid][row] &&
+                        gridsInitialization[grid][row][col]
+                    ) {
+                        gridsInitialization[grid][row][col] = ticket;
+                    } else {
+                        ticketWithNoPosition.push(ticket);
+                    }
                 } else {
                     ticketWithNoPosition.push(ticket);
                 }
