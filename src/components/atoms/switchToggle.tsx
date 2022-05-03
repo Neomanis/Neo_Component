@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 
 interface Props {
     defaultStatus: boolean;
-    fCallBack?: () => void;
+    fCallBack?: (checked: boolean) => void;
     value?: string;
     id?: string;
     labelClassName?: string;
@@ -27,7 +27,7 @@ const SwitchToggle = ({
 
     function toggleSwitch(): void {
         if (fCallBack) {
-            fCallBack();
+            fCallBack(!checked);
         }
         setChecked(!checked);
     }
