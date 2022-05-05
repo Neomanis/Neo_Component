@@ -5,6 +5,7 @@
         "chaptersEdit": "Modifier les chapitres",
         "chaptersNumber": "Nombre de chapitres",
         "closureOrWorkflow": "Confirmation / Demande de Workflow",
+        "create": "Créer un livre",
         "dragAndDrop": "Glisser et déposer sur le Canvas",
         "exit": {
             "escalate": "Sortie escaladée",
@@ -133,7 +134,8 @@
             "action": {
                 "connection": "Les actions doivent avoir une connexion oui et/ou une connexion non"
             },
-            "invalid": "Livre invalide"
+            "invalid": "Le livre est actuellement invalide",
+            "invalidEnhanced": "Le livre est actuellement invalide. Vous pouvez l'enregistrer en brouillon, mais un livre en brouillon ne peut être utilisé. Voici la liste des erreurs détectées :"
         },
         "dateTime": "Date dans le futur interdite",
         "delete": "Erreur lors de la suppression",
@@ -226,6 +228,7 @@
         "refuseAll": "Tout refuser",
         "request": "Demande",
         "save": "Enregistrer",
+        "saveAsDraft": "Enregistrer en brouillon",
         "search": "Rechercher",
         "seeAll": "Voir plus",
         "seeLess": "Voir moins",
@@ -241,6 +244,7 @@
         "title": "Titre",
         "tools": "Outils",
         "total": "Total",
+        "tryAgain": "Réessayer",
         "uiLanguage": "Langue de l'interface",
         "uncheckAll": "Tout déselectionner",
         "unfollow": "Ne plus suivre",
