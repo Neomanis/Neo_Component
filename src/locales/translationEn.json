@@ -136,7 +136,7 @@
             },
             "invalid": "This book is currently invalid",
             "invalidEnhanced": "This book is currently invalid. You can save it as draft, but a draft book can't be launched. Please find below detected errors:",
-            "nameAlreadyExist": "A book with this name already exist"
+            "nameAlreadyExist": "This book name already exists"
         },
         "dateTime": "Future date not allowed",
         "delete": "Deletion failed",

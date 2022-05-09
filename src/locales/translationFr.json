@@ -136,7 +136,7 @@
             },
             "invalid": "Le livre est actuellement invalide",
             "invalidEnhanced": "Le livre est actuellement invalide. Vous pouvez l'enregistrer en brouillon, mais un livre en brouillon ne peut être utilisé. Voici la liste des erreurs détectées :",
-            "nameAlreadyExist": "Un livre avec ce nom existe déjà"
+            "nameAlreadyExist": "Un livre de ce nom existe déjà"
         },
         "dateTime": "Date dans le futur interdite",
         "delete": "Erreur lors de la suppression",
