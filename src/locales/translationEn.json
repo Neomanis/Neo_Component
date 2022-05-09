@@ -135,7 +135,8 @@
                 "connection": "Actions should have one yes connection and/or one no connection"
             },
             "invalid": "This book is currently invalid",
-            "invalidEnhanced": "This book is currently invalid. You can save it as draft, but a draft book can't be launched. Please find below detected errors:"
+            "invalidEnhanced": "This book is currently invalid. You can save it as draft, but a draft book can't be launched. Please find below detected errors:",
+            "nameAlreadyExist": "This book name already exists"
         },
         "dateTime": "Future date not allowed",
         "delete": "Deletion failed",
