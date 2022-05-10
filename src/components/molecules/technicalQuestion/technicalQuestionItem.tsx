@@ -43,7 +43,8 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className="list-none m-4 text-white cursor-pointer useOnClickOutsideException z-10 flex justify-between items-stretch"
+            className={`list-none m-4 text-white cursor-pointer useOnClickOutsideException z-10 flex justify-between items-stretch
+            ${!isSelected && "transform hover:scale-105 transition-transform duration-[90ms]"}`}
             onClick={() => {
                 openTechnicalQuestion();
             }}
