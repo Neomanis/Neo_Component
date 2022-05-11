@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
-export const LOCAL_STORAGE_VERSION = 1;
+export const LOCAL_STORAGE_VERSION = 2;
 
 function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     key = `${LOCAL_STORAGE_VERSION}-${key}`;
