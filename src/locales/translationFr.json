@@ -234,6 +234,8 @@
         "search": "Rechercher",
         "seeAll": "Voir plus",
         "seeLess": "Voir moins",
+        "selectFile": "Sélectionnez un fichier",
+        "selectFolder": "Sélectionnez un dossier",
         "send": "Envoyer",
         "setting_one": "Paramètre",
         "setting_other": "Paramètres",

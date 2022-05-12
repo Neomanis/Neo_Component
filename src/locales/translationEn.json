@@ -234,6 +234,8 @@
         "search": "Search",
         "seeAll": "See more",
         "seeLess": "See less",
+        "selectFile": "Select file",
+        "selectFolder": "Select folder",
         "send": "Send",
         "setting_one": "Setting",
         "setting_other": "Settings",
