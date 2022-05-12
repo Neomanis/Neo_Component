@@ -163,6 +163,12 @@ const InputSelectSearchable = ({
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
+        dispatch({
+            type: "TRACK_STATE",
+            payload: isMulti
+                ? data.filter((el) => (defaultValue as number[]).includes(el.value))
+                : data.find((el) => el.value === defaultValue),
+        });
         setValue && setValue(refForm, defaultValue, { shouldValidate: true });
         return () => {
             isLastMount.current = true;
