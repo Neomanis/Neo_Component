@@ -171,7 +171,7 @@ const Grid = ({
         <div className={className} data-testid="grid-body" ref={gridId ? setNodeRef : null}>
             <div className="h-7">
                 {showPagination && gridsPaginationNumber > 1 && (
-                    <div className={` ${cols === 1 && "-mr-4"} flex text-xl justify-end items-center text-neo-link`}>
+                    <div className={`${cols === 1 && "-mr-4"} flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">
                             {currentPageNumber + 1}/{gridsPaginationNumber}
                         </p>
