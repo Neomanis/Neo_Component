@@ -464,6 +464,7 @@
         "problemSolved": "Problem solved?",
         "problemSolvedDesc": "This action will mark your ticket as solved.",
         "reopen": "Reopen ticket",
+        "requestedBy": "Requested by",
         "requester": "Requester",
         "requesterGroup": "Requester group",
         "similar": "Similar Tickets",

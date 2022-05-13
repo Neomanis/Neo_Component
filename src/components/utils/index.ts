@@ -1,4 +1,4 @@
-import { displayRequesterName, getUserName, getRequesterUid } from "./displayRequesterName";
+import { getActorName, getRequesterUid, getUserEntityName, getUserName } from "./userTools";
 import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction";
 import {
     formatDate,
@@ -30,11 +30,11 @@ import { getTicketLogoByStatus } from "./ticketLogoByStatus";
 
 export {
     capitalizeFirstLetter,
-    displayRequesterName,
     formatDate,
     formatDateToNow,
     formatMessage,
     frontEncrypt,
+    getActorName,
     getContrastBasedOnHexColor,
     getDateCompletionPercentage,
     getFormatedTimeToNow,
@@ -55,6 +55,7 @@ export {
     getTicketLogoByStatus,
     getTicketTitle,
     getTimeToNowWithTranslation,
+    getUserEntityName,
     getUserName,
     inputReducer,
     LOCAL_STORAGE_VERSION,
