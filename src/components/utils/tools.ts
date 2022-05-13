@@ -85,7 +85,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                     high: "#F7284F",
                 },
                 low: "#366688",
-                medium: "#15304C",
+                medium: "#2242B5",
                 high: "#ED943B",
                 major: "#D41F1F",
             },
