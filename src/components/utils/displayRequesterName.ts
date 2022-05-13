@@ -5,14 +5,13 @@ export function displayRequesterName(
     glpiUsers: GlpiUsers[],
     glpiGroups: GlpiRequest[] | undefined = undefined
 ): string {
-    const userId = ticket.userRequester && ticket.userRequester[0];
-    const groupId = ticket.groupRequester && ticket.groupRequester[0];
-
-    if (!userId && glpiGroups) {
-        return glpiGroups.find((group) => group.id === groupId)?.completename || "";
+    const username = ticket.userRequester && ticket.userRequester[0];
+    const groupName = ticket.groupRequester && ticket.groupRequester[0];
+    if (!username && glpiGroups) {
+        return glpiGroups.find((group) => group.name === groupName)?.completename || "";
     }
 
-    const user = glpiUsers.find((user) => user.id === userId);
+    const user = glpiUsers.find((user) => user.name === username);
     return user ? getUserName(user) : "";
 }
 
@@ -27,14 +26,14 @@ export function getRequesterUid(
     glpiUsers: GlpiUsers[],
     glpiGroups: GlpiRequest[] | undefined = undefined
 ): string {
-    const userId = ticket.userRequester && ticket.userRequester[0];
-    const groupId = ticket.groupRequester && ticket.groupRequester[0];
+    const username = ticket.userRequester && ticket.userRequester[0];
+    const groupName = ticket.groupRequester && ticket.groupRequester[0];
 
-    if (!userId && glpiGroups) {
-        return glpiGroups.find((group) => group.id === groupId)?.completename || "";
+    if (!username && glpiGroups) {
+        return glpiGroups.find((group) => group.name === groupName)?.completename || "";
     }
 
-    const user = glpiUsers.find((user) => user.id === userId);
+    const user = glpiUsers.find((user) => user.name === username);
     return user ? getUserUid(user) : "";
 }
 
