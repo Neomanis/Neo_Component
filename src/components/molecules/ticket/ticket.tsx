@@ -2,11 +2,10 @@ import React, { ReactElement } from "react";
 import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
 import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
-import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { useTranslation } from "../../../i18n";
-import { getTicketTitle } from "../../utils/tools";
+import { getTicketTitle, getPriorityColor } from "../../utils/tools";
 
 export interface TicketProps {
     currentTicket?: CompactTicket;

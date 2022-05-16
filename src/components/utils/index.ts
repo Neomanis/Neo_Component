@@ -8,7 +8,6 @@ import {
     getFormatedTimeToNowExtended,
     getTimeToNowWithTranslation,
 } from "./dateTools";
-import { getPriorityValue, getPriorityColor } from "./priorityTools";
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
@@ -24,6 +23,8 @@ import {
     lowerCaseFirstLetter,
     mapEnumToInputSelectSearchableData,
     sleep,
+    getPriorityValue,
+    getPriorityColor,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";

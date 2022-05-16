@@ -8,6 +8,7 @@ import {
     getStatusOrPriorityColor,
     sleep,
     getTicketTitle,
+    getPriorityColor,
 } from "../../components/utils/tools";
 import { i18n } from "../../i18n";
 import { fakeTicket } from "../../stories/fakeObject";
@@ -88,5 +89,16 @@ describe("getTicketTitle", () => {
         expect(getTicketTitle(fakeTicket, t)).eql("Incident 32");
         expect(getTicketTitle({ ...fakeTicket, type: 2 }, t)).eql("Request 32");
         expect(getTicketTitle({ ...fakeTicket, type: 3 }, t)).eql("Problem 32");
+    });
+});
+
+describe("getPriorityColor", () => {
+    it("should return a tailwind or hex color based on priority", () => {
+        expect(getPriorityColor(Scale.VeryLow, false, "bg")).to.eql("bg-neo-ticketUrgency-very-low");
+        expect(getPriorityColor(Scale.VeryLow, true)).to.eql("#89D2FF");
+    });
+    it("should return a tailwind or hex neutral color if priority doesn't exist", () => {
+        expect(getPriorityColor(7, false, "bg")).to.eql("bg-neo-light-grey");
+        expect(getPriorityColor(7, true)).to.eql("#DAE5E5");
     });
 });
