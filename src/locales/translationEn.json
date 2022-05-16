@@ -117,7 +117,7 @@
         "year_other": "Years"
     },
     "diagnostics": {
-        "empty": "No diagnostic",
+        "empty": "The results of your diagnostics will be displayed here",
         "launched": "Launched diagnostics",
         "negativeAnswer": "Negative answer",
         "positiveAnswer": "Positive answer",
