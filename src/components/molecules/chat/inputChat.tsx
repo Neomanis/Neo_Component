@@ -41,7 +41,7 @@ const InputChat = ({
             }`}
         >
             <div className="p-2 opacity-50 w-10 flex justify-center" style={{ minWidth: 40 }}>
-                <IconAdd fill="#7daab7" />
+                <IconAdd width={40} fill="#7daab7" />
             </div>
             <Input
                 disabled={cardOpen}

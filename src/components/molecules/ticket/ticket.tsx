@@ -2,11 +2,10 @@ import React, { ReactElement } from "react";
 import { Hexagon, IconTicketCategorie, Title } from "../../atoms";
 import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neomanis/neo-types";
 import { getStatusColor } from "../../utils/statusTools";
-import { getPriorityColor } from "../../utils/priorityTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
 import { useTranslation } from "../../../i18n";
-import { getTicketTitle } from "../../utils/tools";
+import { getTicketTitle, getPriorityColor } from "../../utils/tools";
 
 export interface TicketProps {
     currentTicket?: CompactTicket;
@@ -61,6 +60,7 @@ const Ticket = ({
                         {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (
                             <div className="h-7 w-7 absolute top-4 right-9" data-testid="ticket-tto-ttr-warning">
                                 <CautionLogoFull
+                                    width={28}
                                     fill={`${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
@@ -120,8 +120,9 @@ const Ticket = ({
                             )}
                             {ticket && ticket.status === 5 && (
                                 <IconTicketSolved
+                                    width={28}
                                     fill="#152535"
-                                    className="w-7 h-7 -mt-3"
+                                    className="-mt-3"
                                     data-testid="ticket-icon-solved"
                                 />
                             )}
@@ -163,7 +164,7 @@ const Ticket = ({
                 <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
                     <div className="absolute w-full flex items-center justify-center">
                         <div className="absolute">
-                            <TicketLogo fill={ticketBG ? "#152535" : "#15304C"} />
+                            <TicketLogo width={32} fill={ticketBG ? "#152535" : "#15304C"} />
                         </div>
                         <Hexagon bgColor={ticketBG && "#172f4b"} />
                     </div>
