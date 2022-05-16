@@ -117,7 +117,7 @@
         "year_other": "Ans"
     },
     "diagnostics": {
-        "empty": "Pas de diagnostic",
+        "empty": "Les résultats de vos diagnostics seront affichés ici",
         "launched": "Diagnostics lancés",
         "negativeAnswer": "Retour négatif",
         "positiveAnswer": "Retour positif",
