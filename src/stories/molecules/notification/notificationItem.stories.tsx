@@ -49,7 +49,7 @@ DefaultOutage.args = {
     outageDate: { startAt: "20/03/5555 20:60", endAt: "22/03/4444 60:40" },
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
-    svg: <CautionLogo fill="#ED943B" className="w-12 h-12" />,
+    svg: <CautionLogo fill="#ED943B" width={48} />,
     notificationId: 1,
     userUid: "ttest",
     textColor: "text-neo-urgency",
