@@ -66,16 +66,6 @@ describe("Grid", () => {
         );
         cy.get("@newPositionedTicket-callback").should("have.been.called");
     });
-    it("should have a fixed width if there is only one collumn", () => {
-        mount(
-            <Grid
-                cols={1}
-                rows={2}
-                ticketList={Array.from({ length: 28 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
-            />
-        );
-        cy.get('[data-testid="grid-body"]').should("have.class", "w-52");
-    });
     it("should have a translate if there is more than 3 collumn", () => {
         mount(
             <Grid
