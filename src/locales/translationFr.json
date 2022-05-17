@@ -5,6 +5,7 @@
         "chaptersEdit": "Modifier les chapitres",
         "chaptersNumber": "Nombre de chapitres",
         "closureOrWorkflow": "Confirmation / Demande de Workflow",
+        "computerNameMissing": "Nom de l'ordinateur manquant",
         "create": "Créer un livre",
         "dragAndDrop": "Glisser et déposer sur le Canvas",
         "exit": {
@@ -117,7 +118,7 @@
         "year_other": "Ans"
     },
     "diagnostics": {
-        "empty": "Pas de diagnostic",
+        "empty": "Les résultats de vos diagnostics seront affichés ici",
         "launched": "Diagnostics lancés",
         "negativeAnswer": "Retour négatif",
         "positiveAnswer": "Retour positif",

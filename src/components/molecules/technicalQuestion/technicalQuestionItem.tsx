@@ -54,7 +54,7 @@ const TechnicalQuestionItem = ({
                 data-testid="tq-head"
                 className={`${isSelected ? "bg-neo-blue" : "bg-neo-link"} p-4 rounded-l-lg relative`}
             >
-                <IconTechnicalQuestions fill={`${isSelected ? "#FFFFFF" : "#15304C"}`} />
+                <IconTechnicalQuestions width={35} fill={`${isSelected ? "#FFFFFF" : "#15304C"}`} />
                 <div
                     data-testid="tq-pill"
                     className={`absolute w-1.5 h-11 rounded-lg my-auto top-0 bottom-0 right-0 transform translate-x-1/2 ${
