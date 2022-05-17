@@ -6,6 +6,7 @@ describe("Pill", () => {
         mount(<Pill data="Helloworld" />);
 
         cy.get('[data-testid="pill-body"]').should("exist").should("be.visible");
+        cy.get('[data-testid="pill-body"]').should("have.text", "Helloworld");
     });
 
     it("should display CSS correclty if prop className exist ", () => {

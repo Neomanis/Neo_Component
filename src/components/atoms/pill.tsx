@@ -4,10 +4,12 @@ interface Props {
     className?: string;
     data: string | number;
 }
-const Pill = ({ className = "", data }: Props): ReactElement => {
+const Pill = ({ className, data }: Props): ReactElement => {
     return (
         <div
-            className={`${className} h-6 w-auto px-3 whitespace-nowrap flex items-center justify-center bg-neo-bg-B text-white`}
+            className={`${
+                className ?? "h-6 w-auto px-3 whitespace-nowrap  bg-neo-bg-B text-white"
+            } flex items-center justify-center`}
             data-testid="pill-body"
         >
             {data}
