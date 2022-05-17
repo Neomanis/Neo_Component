@@ -25,13 +25,15 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
         );
     }
 
+    if (formatedDate[1].slice(-1) === "s") {
+        formatedDate[1] = formatedDate[1].slice(0, -1);
+    }
+
     // if formatDistanceToNowStrict is usign 'minute' or 'second' unit, we will use abbreviated translation
     if (formatedDate[1].startsWith("second") || formatedDate[1].startsWith("minute")) {
         return ("0" + formatedDate[0]).slice(-2) + " " + myLanguage(`date.${"abbreviated." + formatedDate[1]}`);
     }
-    if (formatedDate[1].slice(-1) === "s") {
-        formatedDate[1] = formatedDate[1].slice(0, -1);
-    }
+
     // in other cases, we just use classic translation
     return formatedDate[0] + " " + myLanguage(`date.${formatedDate[1]}`, { count: Number(formatedDate[0]) });
 }
