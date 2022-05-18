@@ -2,12 +2,12 @@ import React, { ReactElement } from "react";
 import { Status } from "@neomanis/neo-types";
 import { IconTicketClosed, IconTicketSolved, TicketLogo } from "../../img/svg";
 
-export function getTicketLogoByStatus(ticketStatus: number, fill: string): ReactElement {
+export function getTicketLogoByStatus(ticketStatus: number, fill: string, logoWith = 32): ReactElement {
     if (ticketStatus === Status.Solved) {
-        return <IconTicketSolved fill={fill} />;
+        return <IconTicketSolved width={logoWith} fill={fill} />;
     }
     if (ticketStatus === Status.Closed) {
-        return <IconTicketClosed fill={fill} />;
+        return <IconTicketClosed width={logoWith} fill={fill} />;
     }
-    return <TicketLogo fill={fill} />;
+    return <TicketLogo width={logoWith} fill={fill} />;
 }
