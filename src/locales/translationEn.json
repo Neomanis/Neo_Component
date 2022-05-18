@@ -122,6 +122,7 @@
         "launched": "Launched diagnostics",
         "negativeAnswer": "Negative answer",
         "positiveAnswer": "Positive answer",
+        "processing": "Diagnostics in progress",
         "title_one": "Diagnostic",
         "title_other": "Diagnostics"
     },
