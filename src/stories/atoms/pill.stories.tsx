@@ -16,8 +16,13 @@ const Template: ComponentStory<typeof Pill> = (args) => {
     );
 };
 
-export const pillDefault = Template.bind({});
-pillDefault.args = {
-    className: "",
+export const Default = Template.bind({});
+Default.args = {
+    data: "17",
+};
+
+export const WithStyle = Template.bind({});
+WithStyle.args = {
+    className: "text-xs ml-2 rounded-full text-neo-bg-A bg-neo-link font-bold p-2",
     data: "17",
 };
