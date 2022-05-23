@@ -1,7 +1,7 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Outage } from "@neomanis/neo-types";
+import { Outage, Role } from "@neomanis/neo-types";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
@@ -12,6 +12,7 @@ interface Props {
     hoverOutCallBack: () => void;
     modifCallBack: (data: Outage) => void;
     deleteCallBack: (id: number) => void;
+    role: Role | undefined;
 }
 
 const OutageCard = ({
@@ -20,6 +21,7 @@ const OutageCard = ({
     hoverOutCallBack,
     modifCallBack,
     deleteCallBack,
+    role,
 }: Props): React.ReactElement => {
     const { t } = useTranslation();
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
@@ -42,34 +44,38 @@ const OutageCard = ({
         >
             <div className="col-span-2 flex flex-col justify-between ">
                 <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
-                {!openValidationCard ? (
-                    <div className="flex justify-around mr-2">
-                        <Button
-                            fontIcon={faPen}
-                            className={"text-neo-link hover:text-neo-blue hover:scale-110"}
-                            fCallback={(): void => modifCallBack(data)}
-                        />
+                {role && (role === Role.SUPERVISOR || role === Role.ADMINISTRATOR) && (
+                    <>
+                        {!openValidationCard ? (
+                            <div className="flex justify-around mr-2">
+                                <Button
+                                    fontIcon={faPen}
+                                    className={"text-neo-link hover:text-neo-blue hover:scale-110"}
+                                    fCallback={(): void => modifCallBack(data)}
+                                />
 
-                        <Button
-                            fontIcon={faTrashAlt}
-                            className={"text-neo-link hover:text-neo-red hover:scale-110"}
-                            fCallback={(): void => setOpenValidationCard(true)}
-                        />
-                    </div>
-                ) : (
-                    <ValidationCard
-                        classNames={{
-                            container: "",
-                            buttonContainer: "flex justify-around mr-2",
-                            text: "text-xxs text-white",
-                        }}
-                        fCallBackCancel={(): void => setOpenValidationCard(false)}
-                        fCallBackValidate={(): void => {
-                            setOpenValidationCard(false);
-                            deleteCallBack(data.id);
-                        }}
-                        text={t("global.deleteThis") + " " + data.type + " ?"}
-                    />
+                                <Button
+                                    fontIcon={faTrashAlt}
+                                    className={"text-neo-link hover:text-neo-red hover:scale-110"}
+                                    fCallback={(): void => setOpenValidationCard(true)}
+                                />
+                            </div>
+                        ) : (
+                            <ValidationCard
+                                classNames={{
+                                    container: "",
+                                    buttonContainer: "flex justify-around mr-2",
+                                    text: "text-xxs text-white",
+                                }}
+                                fCallBackCancel={(): void => setOpenValidationCard(false)}
+                                fCallBackValidate={(): void => {
+                                    setOpenValidationCard(false);
+                                    deleteCallBack(data.id);
+                                }}
+                                text={t("global.deleteThis") + " " + data.type + " ?"}
+                            />
+                        )}
+                    </>
                 )}
             </div>
             <div className="col-span-8 flex flex-col justify-around">
