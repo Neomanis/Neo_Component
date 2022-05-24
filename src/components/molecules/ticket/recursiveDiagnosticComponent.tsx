@@ -102,7 +102,7 @@ const RecursiveDiagnosticComponent = ({
             <div
                 className={`rounded-md p-2 ${
                     !hasChildren && (Action || Exit || Error)
-                        ? `border-l-8 border-${lateralColorBand(Action ? Action : Exit ? Exit : Error)}`
+                        ? `border-l-8 border-${lateralColorBand(Action ?? Exit ?? Error)}`
                         : ""
                 } ${getFinalExit(results) ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}` : ""}
             }`}
