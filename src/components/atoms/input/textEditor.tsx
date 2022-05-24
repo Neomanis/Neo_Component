@@ -80,6 +80,7 @@ const TextEditor = ({
     ];
 
     const isLastMount = useRef(false);
+
     useEffect(() => {
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
     }, []);
@@ -124,13 +125,9 @@ const TextEditor = ({
                         isError={isError}
                         isSuccess={state.isSuccess}
                         fCallBackCancel={(): void => {
-                            if (setValue && clearErrors) {
-                                setValue(refForm, state.previous);
-                                clearErrors();
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
-                            }
+                            setValue && setValue(refForm, state.previous);
+                            clearErrors && clearErrors();
+                            state.timeoutId && clearTimeout(state.timeoutId);
                             dispatch({ type: "CANCEL_UPDATE" });
                         }}
                         trigger={state.trigger}
@@ -141,6 +138,7 @@ const TextEditor = ({
             </div>
             <div className="flex w-full h-full">
                 <ReactQuill
+                    value={state.updated as string}
                     defaultValue={getHTMLValue(defaultValue)}
                     onBlur={(previousSelection, source, editor) => {
                         if (source !== "silent") {
@@ -157,6 +155,7 @@ const TextEditor = ({
                         if (isUpdateField) {
                             if (state.previous !== e.target.innerHTML) {
                                 dispatch({ type: "SHOW_DOT" });
+                                dispatch({ type: "ON_CHANGE", payload: e.target.innerHTML });
                             } else {
                                 dispatch({ type: "CANCEL_UPDATE" });
                             }

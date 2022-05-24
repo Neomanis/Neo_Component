@@ -11,10 +11,11 @@ export default {
 
 const Template: ComponentStory<typeof TextEditor> = (args) => {
     const { register, setValue } = useForm({ mode: "onSubmit" });
+
     return (
-        <div className="w-full h-96 bg-neo-bg-A text-black p-5">
+        <form className="w-full h-96 bg-neo-bg-A text-black p-5">
             <TextEditor {...args} register={register} setValue={setValue} />
-        </div>
+        </form>
     );
 };
 
