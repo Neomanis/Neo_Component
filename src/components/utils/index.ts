@@ -25,6 +25,7 @@ import {
     sleep,
     getPriorityValue,
     getPriorityColor,
+    getHTMLValue,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";
@@ -33,6 +34,7 @@ export {
     capitalizeFirstLetter,
     formatDate,
     formatDateToNow,
+    getHTMLValue,
     formatMessage,
     frontEncrypt,
     getActorName,
