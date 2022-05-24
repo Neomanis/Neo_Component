@@ -1,5 +1,6 @@
 import { ReactComponent as CautionLogo } from "./nm_ico_caution.svg";
 import { ReactComponent as CautionLogoFull } from "./nm_ico_caution_full.svg";
+import { ReactComponent as CautionLogoFullInvert } from "./nm_ico_caution_full_invert.svg";
 import { ReactComponent as ChatLogo } from "./nm_ico_chat.svg";
 import { ReactComponent as ClockLogo } from "./nm_ico_time.svg";
 import { ReactComponent as CloseLogo } from "./nm_ico_close.svg";
@@ -81,6 +82,7 @@ import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg"
 export {
     CautionLogo,
     CautionLogoFull,
+    CautionLogoFullInvert,
     ChatLogo,
     ClockLogo,
     CloseLogo,

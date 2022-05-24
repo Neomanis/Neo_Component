@@ -81,7 +81,21 @@ export const fakeDiag = {
                         executionTime: 12,
                     },
                 },
-
+                {
+                    Error: {
+                        name: "OrchestratorError",
+                        message: "connect ECONNREFUSED 127.0.0.1:80",
+                        code: null,
+                        runId: "1636541270105",
+                        data: {
+                            failedAction: {
+                                actionId: 4,
+                                scriptName: "check_in_range",
+                                parameters: [],
+                            },
+                        },
+                    },
+                },
                 {
                     Action: {
                         description: "Ping gateway",
