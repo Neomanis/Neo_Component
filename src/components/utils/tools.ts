@@ -238,3 +238,7 @@ export function getPriorityColor(
     }
     return isHex ? priorityColors.neutral.hex : priorityColors.neutral.tailwind[tailwindType];
 }
+
+export function getHTMLValue(e: string): string {
+    return e.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+}

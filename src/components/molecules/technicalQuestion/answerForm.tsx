@@ -11,7 +11,7 @@ interface Props {
 }
 
 const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Props): ReactElement => {
-    const { register, setValue, handleSubmit, formState } = useForm({ mode: "onSubmit" });
+    const { register, setValue, handleSubmit, formState, watch } = useForm({ mode: "onSubmit" });
 
     const { t } = useTranslation();
 
@@ -33,6 +33,7 @@ const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Pro
                     updateFunction={updateFunction}
                     defaultValue={text}
                     className={"w-full h-48 mb-14"}
+                    watch={watch}
                 />
                 {!isUpdateField && (
                     <div className="flex justify-end">
