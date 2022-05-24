@@ -139,6 +139,8 @@ const TextEditor = ({
                 <ReactQuill
                     value={watch && watch(refForm)}
                     onBlur={(previousSelection, source, editor) => {
+                        // Paste action trigger onBlur event with parameter "source" return a string "silent",
+                        // so we skip onBlur if this is the case
                         if (source !== "silent") {
                             if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
                                 dispatch({ type: "UPDATING", payload: editor.getHTML() });
