@@ -25,7 +25,7 @@ interface Props {
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
     className: string;
-    watch: UseFormWatch<FieldValues>;
+    watch?: UseFormWatch<FieldValues>;
 }
 
 const TextEditor = ({
@@ -137,7 +137,7 @@ const TextEditor = ({
             </div>
             <div className="flex w-full h-full">
                 <ReactQuill
-                    value={watch(refForm)}
+                    value={watch && watch(refForm)}
                     onBlur={(previousSelection, source, editor) => {
                         if (source !== "silent") {
                             if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
