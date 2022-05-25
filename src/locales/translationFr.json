@@ -4,10 +4,10 @@
         "chapter_other": "Chapitres",
         "chaptersEdit": "Modifier les chapitres",
         "chaptersNumber": "Nombre de chapitres",
-        "closureOrWorkflow": "Confirmation / Demande de Workflow",
+        "closureOrWorkflow": "Confirmation / Demande de workflow",
         "computerNameMissing": "Nom de l'ordinateur manquant",
         "create": "Créer un livre",
-        "dragAndDrop": "Glisser et déposer sur le Canvas",
+        "dragAndDrop": "Glisser et déposer sur le canvas",
         "exit": {
             "escalate": "Sortie escaladée",
             "solved": "Sortie résolue"
@@ -56,7 +56,7 @@
         "title_other": "Categories"
     },
     "chat": {
-        "chatHistory": "Historique de Chat",
+        "chatHistory": "Historique de chat",
         "empty": "Pas de messages dans le chat",
         "lastMessage": "Dernier message",
         "neoHelper": {
@@ -303,7 +303,7 @@
             "ticket-update": "Mise à jour de ticket"
         },
         "workflow": {
-            "title": "Demandes de Workflow"
+            "title": "Demandes de workflow"
         },
         "xmpp": {
             "deleteServer": "Supprimer ce serveur ?",
@@ -314,7 +314,7 @@
         }
     },
     "remote": {
-        "control": "Controle Distant",
+        "control": "Controle distant",
         "ip": "IP distante",
         "missingVnc": "Aucun contrôle distant disponible",
         "notification": {
@@ -329,7 +329,7 @@
         },
         "persistantShell": "Shell persistant",
         "port": "Port distant",
-        "shell": "Terminal Distant"
+        "shell": "Terminal distant"
     },
     "resource": {
         "title_one": "Ressource",
@@ -420,8 +420,8 @@
         "showSolved": "Résolues",
         "showUnanswered": "Non répondues",
         "similar": "Question similaire",
-        "title_one": "Question Technique",
-        "title_other": "Questions Techniques",
+        "title_one": "Question technique",
+        "title_other": "Questions techniques",
         "unanswered": "Questions sans réponse"
     },
     "ticket": {
@@ -458,8 +458,8 @@
         "keywords": "Mots-clés",
         "markResolved": "Marque comme résolu",
         "my": "Mes tickets",
-        "new_one": "Nouveau Ticket",
-        "new_other": "Nouveaux Tickets",
+        "new_one": "Nouveau ticket",
+        "new_other": "Nouveaux tickets",
         "noKeywords": "Pas de mots-clés",
         "pending": "Votre demande est en attente, nous collectons de plus amples informations.",
         "priority": "Priorité",

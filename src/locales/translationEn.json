@@ -4,10 +4,10 @@
         "chapter_other": "Chapters",
         "chaptersEdit": "Edit chapters",
         "chaptersNumber": "Number of chapters",
-        "closureOrWorkflow": "Closure / Workflow Request",
+        "closureOrWorkflow": "Closure / Workflow request",
         "computerNameMissing": "Computer name is missing",
         "create": "Create book",
-        "dragAndDrop": "Drag and drop on Canvas",
+        "dragAndDrop": "Drag and drop on canvas",
         "exit": {
             "escalate": "Exit escalated",
             "solved": "Exit solved"
@@ -56,7 +56,7 @@
         "title_other": "Categories"
     },
     "chat": {
-        "chatHistory": "Chat History",
+        "chatHistory": "Chat history",
         "empty": "No messages in the chat",
         "lastMessage": "Last message",
         "neoHelper": {
@@ -203,7 +203,7 @@
         "follow": "Follow",
         "group_one": "Group",
         "group_other": "Groups",
-        "iNeedHelp": "I Need Help",
+        "iNeedHelp": "I need help",
         "information": "Information",
         "lastSeen": "Last connection",
         "launch": "Launch",
@@ -229,7 +229,7 @@
         "recenter": "Re-center",
         "recipient": "Recipient",
         "refuse": "refuse",
-        "refuseAll": "Refuse All",
+        "refuseAll": "Refuse all",
         "request": "Requests",
         "save": "Save",
         "saveAsDraft": "Save as draft",
@@ -274,7 +274,7 @@
         "itsmTitle": "Itsm configuration"
     },
     "neoBot": {
-        "report": "Neobot Report"
+        "report": "Neobot report"
     },
     "neoHelper": {
         "agents": "NeoHelper agents",
@@ -314,7 +314,7 @@
         }
     },
     "remote": {
-        "control": "Remote Control",
+        "control": "Remote control",
         "ip": "IP remote",
         "missingVnc": "No remote control available",
         "notification": {
@@ -329,7 +329,7 @@
         },
         "persistantShell": "Persistent shell",
         "port": "Port remote",
-        "shell": "Remote Shell"
+        "shell": "Remote shell"
     },
     "resource": {
         "title_one": "Resource",
@@ -420,8 +420,8 @@
         "showSolved": "Solved",
         "showUnanswered": "Unanswered",
         "similar": "Similar question",
-        "title_one": "Technical Question",
-        "title_other": "Technical Questions",
+        "title_one": "Technical question",
+        "title_other": "Technical questions",
         "unanswered": "Unanswered questions"
     },
     "ticket": {
@@ -458,8 +458,8 @@
         "keywords": "Keywords",
         "markResolved": "Marks it as resolved",
         "my": "My tickets",
-        "new_one": "New Ticket",
-        "new_other": "New Tickets",
+        "new_one": "New ticket",
+        "new_other": "New tickets",
         "noKeywords": "No keywords",
         "pending": "Your request is pending, we are collecting more informations.",
         "priority": "Priority",
@@ -471,7 +471,7 @@
         "requestedBy": "Requested by",
         "requester": "Requester",
         "requesterGroup": "Requester group",
-        "similar": "Similar Tickets",
+        "similar": "Similar tickets",
         "solve": "Solve ticket",
         "solveQuestion": "Marks it as solved?",
         "source": "Request source",
