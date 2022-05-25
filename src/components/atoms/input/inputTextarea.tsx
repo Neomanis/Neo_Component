@@ -24,7 +24,7 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
-    targetId?: number | undefined;
+    targetId?: string | number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
 }
@@ -90,6 +90,7 @@ const InputTextarea = ({
             };
         }
     }, [state.updated, state.previous]);
+
     return (
         <div className={classNames.container ?? ""} data-testid="inputTextarea-body">
             <label className={classNames.labelBody ?? ""}>
