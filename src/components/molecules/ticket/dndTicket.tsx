@@ -21,6 +21,7 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
     } = useDraggable({
         id: dndId,
         data: ticketProps.ticket,
+        disabled: ticketProps.gridId === "problems",
     });
 
     const { active, setNodeRef: droppableRef } = useDroppable({
