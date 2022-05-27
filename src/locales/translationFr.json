@@ -385,6 +385,8 @@
             "solvedByTech": "Résolus par un tech",
             "used": "Neobot utilisé"
         },
+        "onlineAgent_one": "NeoHelper en ligne",
+        "onlineAgent_other": "NeoHelpers en ligne",
         "openByNeoBot": "Tickets ouverts par NeoBot",
         "ticketHandled": "Tickets pris en charge",
         "ticketSolved": "Tickets résolus",

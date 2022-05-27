@@ -54,6 +54,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
             bg: {
                 A: "#152535",
                 B: "#15304C",
+                stat: "#1E1F25",
             },
             link: "#7DAAB7",
             blue: {
