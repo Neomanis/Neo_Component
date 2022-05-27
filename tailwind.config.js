@@ -9,7 +9,7 @@ module.exports = {
                     bg: {
                         A: "#152535",
                         B: "#15304C",
-                        stat: "#1E1F25"
+                        stat: "#1E1F25",
                     },
                     link: "#7DAAB7",
                     blue: {
