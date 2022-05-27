@@ -3,12 +3,13 @@ module.exports = {
     theme: {
         extend: {
             //color perso neomanis
-            // if you add or update color, update GetHexColorFromTailwindColor too (./src/components/utils).
+            // if you add or update color, update GetHexColorFromTailwindColor too (./src/components/utils/tools.ts).
             colors: {
                 neo: {
                     bg: {
                         A: "#152535",
                         B: "#15304C",
+                        stat: "#1E1F25"
                     },
                     link: "#7DAAB7",
                     blue: {
