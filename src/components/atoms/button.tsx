@@ -14,6 +14,7 @@ interface Props {
     style?: React.CSSProperties;
     testId?: string;
     type?: "button" | "submit" | "reset";
+    form?: string;
 }
 
 const Button = ({
@@ -28,6 +29,7 @@ const Button = ({
     style,
     testId,
     type = "button",
+    form,
 }: Props): ReactElement => {
     return (
         <button
@@ -37,6 +39,7 @@ const Button = ({
             data-testid={testId}
             disabled={disabled}
             style={style}
+            form={form}
         >
             {svg && (
                 <div className={svgClassName} data-testid="button-svg">
