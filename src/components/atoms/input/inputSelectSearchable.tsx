@@ -163,7 +163,7 @@ const InputSelectSearchable = ({
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
-        setValue && setValue(refForm, defaultValue, { shouldValidate: true });
+        setValue && setValue(refForm, defaultValue);
         return () => {
             isLastMount.current = true;
         };
