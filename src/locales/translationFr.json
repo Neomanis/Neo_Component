@@ -12,6 +12,7 @@
             "escalate": "Sortie escaladée",
             "solved": "Sortie résolue"
         },
+        "importChapters": "Importer les chapitres",
         "launch": "Lancer un livre",
         "launchFailed": "L'exécution du livre a échoué",
         "otherPending": "Autre livre en attente",

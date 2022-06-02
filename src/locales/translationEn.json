@@ -12,6 +12,7 @@
             "escalate": "Exit escalated",
             "solved": "Exit solved"
         },
+        "importChapters": "Import chapters",
         "launch": "Launch a book",
         "launchFailed": "Book launch failed",
         "otherPending": "Other book pending",
