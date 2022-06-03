@@ -3,7 +3,7 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { IconAdd } from "../../../img/svg";
 import { ButtonSwitch, Input, Tooltip } from "../../atoms";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "../../../i18n";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     buttonSub?: boolean;

@@ -1,6 +1,6 @@
+import { i18n } from "@neomanis/neo-translation";
 import { formatDistanceToNowStrict, Locale, format, intervalToDuration } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
-import { i18n } from "../../i18n";
 
 export function getFormatedTimeToNow(date: string): string {
     const dateTicket = new Date(date);

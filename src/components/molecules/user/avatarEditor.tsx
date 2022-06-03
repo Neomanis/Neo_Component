@@ -2,9 +2,9 @@ import React, { createRef, Dispatch, ReactElement, SetStateAction, useEffect, us
 import { Button } from "../../atoms";
 import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
 import ReactAvatarEditor from "react-avatar-editor";
-import { useTranslation } from "react-i18next";
 import { User, FileErrorTraductionKey, Avatar } from "@neomanis/neo-types";
 import { CloseLogo } from "../../../img/svg";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     divEditorClassName?: string;

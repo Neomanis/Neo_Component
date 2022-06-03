@@ -2,7 +2,7 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Button, Icon, Title } from "../../atoms";
 import { CloseLogo } from "../../../img/svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "../../../i18n";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     content: string;

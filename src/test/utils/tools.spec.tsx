@@ -10,7 +10,7 @@ import {
     getTicketTitle,
     getPriorityColor,
 } from "../../components/utils/tools";
-import { i18n } from "../../i18n";
+import { i18n } from "@neomanis/neo-translation";
 import { fakeTicket } from "../../stories/fakeObject";
 
 describe("mapEnumToInputSelectSearchableData", () => {

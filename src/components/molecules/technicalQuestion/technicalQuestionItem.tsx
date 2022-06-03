@@ -7,9 +7,9 @@ import {
     getStatusOrPriorityColor,
 } from "../../utils";
 import { Title, Tooltip } from "../../atoms";
-import { useTranslation } from "../../../i18n";
 import { IconTechnicalQuestions } from "../../../img/svg";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     createDate: string;

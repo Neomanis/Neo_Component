@@ -1,10 +1,10 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { Role, User } from "@neomanis/neo-types";
-import { useTranslation } from "react-i18next";
 import { DefaultUserPicture } from "../../../img/png";
 import { IconAdd } from "../../../img/svg";
 import { Icon, Img } from "../../atoms";
 import { getHexColorFromTailwindColor } from "../../utils";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     divInfoClassName?: string;

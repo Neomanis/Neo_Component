@@ -4,8 +4,8 @@ import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neoman
 import { getStatusColor } from "../../utils/statusTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
-import { useTranslation } from "../../../i18n";
 import { getTicketTitle, getPriorityColor } from "../../utils/tools";
+import { useTranslation } from "@neomanis/neo-translation";
 
 export interface TicketProps {
     currentTicket?: CompactTicket;
