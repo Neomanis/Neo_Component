@@ -5,7 +5,7 @@ module.exports = {
     // Add any Storybook addons you want here: https://storybook.js.org/addons/
     addons: [
         "@storybook/addon-essentials",
-        "storybook-react-i18next",
+        // "storybook-react-i18next",
         {
             name: "@storybook/addon-postcss",
             options: {

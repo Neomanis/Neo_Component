@@ -1,10 +1,10 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Outage, Role } from "@neomanis/neo-types";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     data: Outage;

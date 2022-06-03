@@ -1,5 +1,5 @@
+import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement, useEffect, useState } from "react";
-import { useTranslation } from "../../i18n";
 
 interface Props {
     className?: string;

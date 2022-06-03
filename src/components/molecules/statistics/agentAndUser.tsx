@@ -1,5 +1,5 @@
+import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement } from "react";
-import { useTranslation } from "../../../i18n";
 import { IconHeadphones } from "../../../img/svg";
 import { Pill } from "../../atoms";
 

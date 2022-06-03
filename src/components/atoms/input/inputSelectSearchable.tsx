@@ -6,7 +6,7 @@ import { customStyles } from "../../utils/inputSelectSearchableCss";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
-import { useTranslation } from "../../../i18n";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     containerClassName?: string;

@@ -1,4 +1,3 @@
-import { TFunction } from "i18next";
 import { getStatusColor } from "./statusTools";
 import {
     InputSelectSearchableData,
@@ -9,6 +8,7 @@ import {
     Colors,
     Priority,
 } from "@neomanis/neo-types";
+import { TFunction } from "@neomanis/neo-translation";
 
 type EnumType = {
     [key: number]: string;

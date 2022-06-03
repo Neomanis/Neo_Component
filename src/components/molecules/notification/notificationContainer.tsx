@@ -1,5 +1,5 @@
+import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement, ReactNode, useState, useRef, useEffect } from "react";
-import { useTranslation } from "../../../i18n";
 import { Button, Title } from "../../atoms";
 
 type Props = {

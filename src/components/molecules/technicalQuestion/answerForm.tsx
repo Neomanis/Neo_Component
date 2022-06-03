@@ -1,7 +1,7 @@
+import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button, TextEditor } from "../../atoms";
-import { useTranslation } from "../../../i18n";
 
 interface Props {
     isUpdateField?: boolean;
