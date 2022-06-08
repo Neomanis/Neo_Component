@@ -13,7 +13,7 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as User;
+} as unknown as User;
 
 describe("AvatarHandler", () => {
     it("should userInfo be visible and avatarEditor not", () => {
