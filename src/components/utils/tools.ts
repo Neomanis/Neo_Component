@@ -98,7 +98,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 major: "#D41F1F",
             },
             stats: {
-                stat: "#1E1F25",
+                black: "#1E1F25",
                 TTO: "#AFA47B",
                 TTR: "#464A41",
                 grey: "#626574",
