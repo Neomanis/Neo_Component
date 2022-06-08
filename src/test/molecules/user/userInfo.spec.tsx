@@ -6,14 +6,14 @@ import UserInfo from "../../../components/molecules/user/userInfo";
 const defaultUser = {
     uid: "ttest",
     name: { firstName: "Tech", lastName: "Test" },
-    role: "Technician",
+    role: "technician",
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as unknown as User;
+} as User;
 
 const defaultEmptyUser = {
     uid: "ttest",

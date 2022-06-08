@@ -6,14 +6,14 @@ import AvatarHandler from "../../components/organism/avatarHandler";
 const defaultUser = {
     uid: "ttest",
     name: { firstName: "Tech", lastName: "Test" },
-    role: "technicien",
+    role: "technician",
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as unknown as User;
+} as User;
 
 describe("AvatarHandler", () => {
     it("should userInfo be visible and avatarEditor not", () => {
