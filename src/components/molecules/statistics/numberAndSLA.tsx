@@ -32,7 +32,7 @@ const NumberAndSLA = ({
         >
             <div data-testid="number-and-SLA-titles">
                 <p className="font-bold text-xl text-white">{title}</p>
-                <p className="text-neo-grey-stats">{subtitle}</p>
+                <p className="text-neo-stats-grey">{subtitle}</p>
             </div>
             <div className="flex items-center">
                 {(ticketNumber || diagnosticNumber) && (
@@ -52,14 +52,14 @@ const NumberAndSLA = ({
                         <div className="flex items-center mb-2">
                             <Pill
                                 data={TTO}
-                                className="bg-neo-TTO text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
+                                className="bg-neo-stats-TTO text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
                             />
                             <p>{t("ticket.tto")}</p>
                         </div>
                         <div className="flex items-center">
                             <Pill
                                 data={TTR}
-                                className="bg-neo-TTR text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
+                                className="bg-neo-stats-TTR text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
                             />
                             <p>{t("ticket.ttr")}</p>
                         </div>

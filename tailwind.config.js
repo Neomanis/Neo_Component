@@ -42,10 +42,7 @@ module.exports = {
                         sand: "#e2dc8f",
                     },
                     violet: "#6845ba",
-                    grey: {
-                        DEFAULT: "#473c61",
-                        stats: "#626574",
-                    },
+                    grey : "#473c61",
                     ticketUrgency: {
                         very: {
                             low: "#89D2FF",
@@ -56,8 +53,11 @@ module.exports = {
                         high: "#ED943B",
                         major: "#D41F1F",
                     },
-                    TTO: "#AFA47B",
-                    TTR: "#464A41",
+                    stats: {
+                        TTO: "#AFA47B",
+                        TTR: "#464A41",
+                        grey: "#626574",
+                    },
                 },
             },
             fontSize: {
