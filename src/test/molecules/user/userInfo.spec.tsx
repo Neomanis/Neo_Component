@@ -13,7 +13,7 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as User;
+} as unknown as User;
 
 const defaultEmptyUser = {
     uid: "ttest",
