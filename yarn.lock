@@ -2675,9 +2675,6 @@
   resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-1.6.4.tgz#d4731c2c8b25c7df5483e09583b6d9b18cb30c7c"
   integrity sha1-1HMcLIslx99Ug+CVg7bZsYyzDHw=
 
-"@neomanis/neo-types@file:../package-moi":
-  version "1.180848.3"
-
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
