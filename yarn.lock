@@ -2662,10 +2662,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@neomanis/neo-translation@^1.0.1":
-  version "1.0.1"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-translation/-/neo-translation-1.0.1.tgz#73a612076fd78a1537d4047f1e0ccd646b28ea5b"
-  integrity sha1-c6YSB2/XihU31AR/HgzNZGso6ls=
+"@neomanis/neo-translation@^1.0.4":
+  version "1.0.4"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-translation/-/neo-translation-1.0.4.tgz#7ea4165afbb691ddcfe3ed18b75111adee343f94"
+  integrity sha1-fqQWWvu2kd3P4+0Yt1ERre40P5Q=
   dependencies:
     i18next "^21.8.7"
     react-i18next "^11.16.11"

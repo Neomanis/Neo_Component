@@ -87,7 +87,10 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 sand: "#e2dc8f",
             },
             violet: "#6845ba",
-            grey: "#473c61",
+            grey: {
+                DEFAULT: "#473c61",
+                stats: "#626574",
+            },
             ticketUrgency: {
                 very: {
                     low: "#89D2FF",
@@ -98,6 +101,8 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 high: "#ED943B",
                 major: "#D41F1F",
             },
+            TTO: "#AFA47B",
+            TTR: "#464A41",
         },
     };
     tailwindColor.split("-").forEach((color) => {
