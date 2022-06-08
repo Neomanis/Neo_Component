@@ -9,7 +9,6 @@ module.exports = {
                     bg: {
                         A: "#152535",
                         B: "#15304C",
-                        stat: "#1E1F25",
                     },
                     link: "#7DAAB7",
                     blue: {
@@ -42,7 +41,7 @@ module.exports = {
                         sand: "#e2dc8f",
                     },
                     violet: "#6845ba",
-                    grey : "#473c61",
+                    grey: "#473c61",
                     ticketUrgency: {
                         very: {
                             low: "#89D2FF",
@@ -54,6 +53,7 @@ module.exports = {
                         major: "#D41F1F",
                     },
                     stats: {
+                        black: "#1E1F25",
                         TTO: "#AFA47B",
                         TTR: "#464A41",
                         grey: "#626574",

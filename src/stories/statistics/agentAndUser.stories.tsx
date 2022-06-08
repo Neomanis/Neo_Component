@@ -20,7 +20,7 @@ export const AgentAndUserDefault = Template.bind({});
 AgentAndUserDefault.args = {
     agentNumber: 10,
     userNumber: 96,
-    className: "bg-neo-bg-stat text-white",
+    className: "bg-neo-stats-black text-white",
 };
 
 export const AgentAndUserWithBorder = Template.bind({});

@@ -21,7 +21,7 @@ export const NumberAndSLATTOTTR = Template.bind({});
 NumberAndSLATTOTTR.args = {
     title: "Tickets Outside SLA",
     subtitle: "service level agreement",
-    className: "bg-neo-bg-stat",
+    className: "bg-neo-stats-black",
     TTO: 10,
     TTR: 1,
 };
@@ -30,7 +30,7 @@ export const NumberAndSLATicket = Template.bind({});
 NumberAndSLATicket.args = {
     title: "Tickets Outside SLA",
     subtitle: "service level agreement",
-    className: "bg-neo-bg-stat",
+    className: "bg-neo-stats-black",
     ticketNumber: 4,
     svg: <TicketLogo fill={"#FFF"} width={40} />,
 };
@@ -39,7 +39,7 @@ export const NumberAndSLADiagnostic = Template.bind({});
 NumberAndSLADiagnostic.args = {
     title: "Tickets Outside SLA",
     subtitle: "service level agreement",
-    className: "bg-neo-bg-stat",
+    className: "bg-neo-stats-black",
     diagnosticNumber: 10,
     svg: <IconBook fill={"#FFF"} width={40} />,
 };
