@@ -303,6 +303,7 @@ export const fakeNotification: Notification = {
         type: "test",
     },
     read: false,
+    lastUpdatedAt: "",
 };
 
 export const fakeAnswer = {
