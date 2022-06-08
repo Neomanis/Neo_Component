@@ -2,7 +2,7 @@ import { mount } from "@cypress/react";
 import NumberAndSLA from "../../../components/molecules/statistics/numberAndSLA";
 import { TicketLogo } from "../../../img/svg";
 
-describe("AgentAndUser", () => {
+describe("NumberAndSLA", () => {
     it("should exist and be visible", () => {
         mount(<NumberAndSLA title={"Tickets Outside SLA"} subtitle={"service level agreement"} />);
         cy.get('[data-testid="number-and-SLA-body"]').should("exist").and("be.visible");
