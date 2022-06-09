@@ -194,7 +194,7 @@ const AvatarEditorTest = ({
 const defaultUser = {
     uid: "ttest",
     name: { firstName: "Tech", lastName: "Test" },
-    role: "technicien",
+    role: "technician",
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,

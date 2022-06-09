@@ -6,7 +6,7 @@ import UserInfo from "../../../components/molecules/user/userInfo";
 const defaultUser = {
     uid: "ttest",
     name: { firstName: "Tech", lastName: "Test" },
-    role: "Technician",
+    role: "technician",
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,
