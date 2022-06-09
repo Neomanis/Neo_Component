@@ -65,6 +65,9 @@ describe("getHexColorFromTailwindColor", () => {
     it("should return undefined if color doesn't exist", () => {
         expect(getHexColorFromTailwindColor("neo-red-blue")).to.eql(undefined);
     });
+    it("should returndefault value if DEFAULT exist", () => {
+        expect(getHexColorFromTailwindColor("neo-blue")).to.eql("#22AAFF");
+    });
 });
 
 describe("getStatusOrPriorityColor", () => {
