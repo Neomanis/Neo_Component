@@ -102,12 +102,16 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 TTO: "#AFA47B",
                 TTR: "#464A41",
                 grey: "#626574",
+                purple: "#5715C6",
             },
         },
     };
     tailwindColor.split("-").forEach((color) => {
         neoColors = neoColors[color];
     });
+    if (neoColors && neoColors["DEFAULT"]) {
+        neoColors = neoColors["DEFAULT"];
+    }
     return typeof neoColors === "string" ? neoColors : undefined;
 }
 

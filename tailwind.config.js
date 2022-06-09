@@ -57,6 +57,7 @@ module.exports = {
                         TTO: "#AFA47B",
                         TTR: "#464A41",
                         grey: "#626574",
+                        purple: "#5715C6",
                     },
                 },
             },
