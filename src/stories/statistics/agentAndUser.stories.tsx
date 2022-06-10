@@ -28,5 +28,4 @@ AgentAndUserWithBorder.args = {
     agentNumber: 10,
     userNumber: 96,
     className: "border-2 border-neo-bg-B text-neo-link",
-    svgHexaColor: "#000",
 };

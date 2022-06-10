@@ -31,15 +31,15 @@ const NumberAndSLA = ({
             data-testid="number-and-SLA-body"
         >
             <div data-testid="number-and-SLA-titles">
-                <p className="font-bold text-xl text-white">{title}</p>
-                <p className="text-neo-stats-grey">{subtitle}</p>
+                <p className="font-bold text-white">{title}</p>
+                <p className="text-neo-stats-grey text-xs">{subtitle}</p>
             </div>
             <div className="flex items-center">
                 {(ticketNumber || diagnosticNumber) && (
-                    <div className="flex" data-testid="number-and-SLA-ticket-diag-body">
+                    <div className="flex items-center" data-testid="number-and-SLA-ticket-diag-body">
                         <Pill
                             data={ticketNumber ? ticketNumber : diagnosticNumber}
-                            className="bg-neo-bg-B text-xl rounded-full py-1 w-20 mr-4 font-extrabold text-white"
+                            className="bg-neo-bg-B rounded-full w-14 h-8 mr-4 font-extrabold text-white"
                         />
                         <div data-testid="number-and-SLA-svg">{svg}</div>
                     </div>
@@ -52,16 +52,16 @@ const NumberAndSLA = ({
                         <div className="flex items-center mb-2">
                             <Pill
                                 data={TTO}
-                                className="bg-neo-stats-TTO text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
+                                className="bg-neo-stats-TTO rounded-full py-1 w-14 mr-4 font-extrabold text-white"
                             />
-                            <p>{t("ticket.tto")}</p>
+                            <p className="text-xs">{t("ticket.tto")}</p>
                         </div>
                         <div className="flex items-center">
                             <Pill
                                 data={TTR}
-                                className="bg-neo-stats-TTR text-xl rounded-full py-1 w-16 mr-4 font-extrabold text-white"
+                                className="bg-neo-stats-TTR rounded-full py-1 w-14 mr-4 font-extrabold text-white"
                             />
-                            <p>{t("ticket.ttr")}</p>
+                            <p className="text-xs">{t("ticket.ttr")}</p>
                         </div>
                     </div>
                 )}
