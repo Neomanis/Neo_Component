@@ -18,6 +18,7 @@ interface Props {
     ticketList?: Ticket[];
     ticketBG?: boolean;
     gridId?: GridIds;
+    selectedTicketsIds?: number[];
 }
 
 interface BlankHexagon {
@@ -38,6 +39,7 @@ const Grid = ({
     rows,
     showPagination,
     ticketList,
+    selectedTicketsIds = [],
 }: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -211,6 +213,9 @@ const Grid = ({
                                                 currentTicket,
                                                 fCallBackClick: currentTicketCallBack,
                                                 fCallBackHover: hoverCallBack,
+                                                isOpacity:
+                                                    selectedTicketsIds.length > 0 &&
+                                                    !selectedTicketsIds.includes(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
                                             }}
