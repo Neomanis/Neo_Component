@@ -32,7 +32,7 @@ NumberAndSLATicket.args = {
     subtitle: "service level agreement",
     className: "bg-neo-stats-black",
     ticketNumber: 4,
-    svg: <TicketLogo fill={"#FFF"} width={40} />,
+    svg: <TicketLogo fill={"#FFF"} width={37} />,
 };
 
 export const NumberAndSLADiagnostic = Template.bind({});
@@ -41,5 +41,5 @@ NumberAndSLADiagnostic.args = {
     subtitle: "service level agreement",
     className: "bg-neo-stats-black",
     diagnosticNumber: 10,
-    svg: <IconBook fill={"#FFF"} width={40} />,
+    svg: <IconBook fill={"#FFF"} width={37} />,
 };
