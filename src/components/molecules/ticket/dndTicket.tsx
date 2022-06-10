@@ -21,7 +21,7 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
     } = useDraggable({
         id: dndId,
         data: ticketProps.ticket,
-        disabled: ticketProps.gridId === "problems",
+        disabled: ticketProps.gridId === "problems" || ticketProps.isOpacity,
     });
 
     const { active, setNodeRef: droppableRef } = useDroppable({
@@ -29,12 +29,13 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
     });
 
     const combinedRef = useCombinedRefs(draggableRef, droppableRef);
+
     return (
         <div
             ref={ticketProps.ticket ? combinedRef : droppableRef}
             {...listeners}
             {...attributes}
-            className={`relative ${ticketProps.ticket ? "cursor-pointer" : "cursor-default"}`}
+            className={`relative ${ticketProps.ticket && !ticketProps.isOpacity ? "cursor-pointer" : "cursor-default"}`}
         >
             {isTicketPositionLoading && (
                 <div className="absolute transform top-1/2 z-50" style={{ left: "72px" }}>

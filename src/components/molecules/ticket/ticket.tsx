@@ -14,6 +14,7 @@ export interface TicketProps {
     ticket?: ITicket;
     ticketBG?: boolean;
     gridId?: GridIds;
+    isOpacity?: boolean;
 }
 
 const Ticket = ({
@@ -23,11 +24,12 @@ const Ticket = ({
     ticket,
     ticketBG,
     gridId,
+    isOpacity,
 }: TicketProps): ReactElement => {
     const { t, i18n } = useTranslation();
 
     function getOpacity(): string {
-        if (currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) {
+        if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
             return "30";
         }
 
@@ -50,10 +52,11 @@ const Ticket = ({
         <>
             {ticket ? (
                 <div
-                    className="useOnClickOutsideException w-40 h-40 cursor-pointer transform hover:scale-105 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto"
-                    onClick={(): void => fCallBackClick && fCallBackClick(ticket)}
-                    onMouseEnter={(): void => fCallBackHover && fCallBackHover({ ...ticket, gridId })}
-                    onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
+                    className={`useOnClickOutsideException w-40 h-40 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto
+                        ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
+                    onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
+                    onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
+                    onMouseLeave={(): void => fCallBackHover && !isOpacity && fCallBackHover()}
                     data-testid="ticket-body"
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
