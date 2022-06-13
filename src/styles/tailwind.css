@@ -74,3 +74,41 @@
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
 }
+
+/*ClassName DatePicker*/
+
+.bg-custom-date-picker {
+    @apply bg-neo-stats-black p-2 rounded-xl border-0 text-white !important;
+}
+
+.react-datepicker__header {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+}
+.react-datepicker__day {
+    @apply text-neo-link hover:bg-neo-blue hover:text-white !important;
+}
+.react-datepicker__day-name {
+    color: #626574 !important;
+    text-transform: uppercase !important;
+    font-weight: 700;
+    font-size: 11px;
+}
+.react-datepicker__day--selected {
+    @apply bg-neo-blue text-white !important;
+}
+.react-datepicker__month-text {
+    @apply hover:bg-neo-blue px-4 py-3 mx-1 text-neo-link hover:text-white !important;
+}
+.react-datepicker__month-text--keyboard-selected {
+    @apply bg-neo-blue px-4 py-3 mx-1 text-white !important;
+}
+.react-datepicker-popper {
+    @apply translate-x-2 translate-y-24 !important;
+}
+
+.react-datepicker__triangle {
+    @apply translate-x-32 !important;
+}
+
