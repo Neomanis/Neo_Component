@@ -3,6 +3,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
+import { addMonths } from "date-fns";
 
 export default {
     component: InputDateTime,
@@ -26,7 +27,8 @@ InputDateTimeUpdate.args = {
     isError: true,
     isUpdateField: true,
     refForm: "date_creation",
-    showTimeInput: true,
     label: "label",
     lang: "fr-FR",
+    minDate: new Date(),
+    maxDate: addMonths(new Date(), 5),
 };

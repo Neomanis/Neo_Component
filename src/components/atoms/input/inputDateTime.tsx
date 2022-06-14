@@ -6,6 +6,8 @@ import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
+import { ClockLogo, IconChevron } from "../../../img/svg";
+import { getHexColorFromTailwindColor } from "../../utils";
 
 interface Props {
     className?: string;
@@ -27,10 +29,11 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
-    showTimeInput?: boolean;
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
+    defaultValueShowMonthYearPicker?: boolean;
+    defaultShowTimePicker?: boolean;
 }
 
 registerLocale("en-GB", enGB);
@@ -55,13 +58,16 @@ const InputDateTime = ({
     register,
     required,
     setValue,
-    showTimeInput,
     targetId,
     timerSetting = 5000,
     updateFunction,
     errorMessage,
+    defaultValueShowMonthYearPicker,
+    defaultShowTimePicker,
 }: Props): ReactElement => {
     const [startDate, setStartDate] = useState<Date | null>(defaultValue);
+    const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
+    const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
@@ -116,6 +122,52 @@ const InputDateTime = ({
         }
     }, [state.updated, state.previous]);
 
+    const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
+        <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
+            <IconChevron
+                onClick={() => (!showMonthYearPicker ? decreaseMonth() : decreaseYear())}
+                width={12}
+                className="transform rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
+                fill="#FFF"
+            />
+            <div
+                onClick={() => {
+                    setShowMonthYearPicker(!showMonthYearPicker);
+                    setShowTimePicker(false);
+                }}
+                className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
+            >
+                {!showMonthYearPicker && (
+                    <span className="mr-2">
+                        {monthDate.toLocaleString(lang, {
+                            month: "short",
+                        })}
+                    </span>
+                )}
+                <span>
+                    {monthDate.toLocaleString(lang, {
+                        year: "numeric",
+                    })}
+                </span>
+            </div>
+            {!showMonthYearPicker && startDate && (
+                <ClockLogo
+                    onClick={() => setShowTimePicker(!showTimePicker)}
+                    fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
+                    width={12}
+                    className="absolute transform right-12 hover:scale-110 transition-all hover:cursor-pointer"
+                />
+            )}
+            <IconChevron
+                onClick={() => (!showMonthYearPicker ? increaseMonth() : increaseYear())}
+                width={12}
+                className="transform -rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
+                fill="#FFF"
+            />
+        </div>
+    );
+    const customDay = (day) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
+
     return (
         <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
@@ -152,12 +204,21 @@ const InputDateTime = ({
                             ? inputClassName
                             : "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full"
                     }`}
+                calendarClassName="bg-custom-date-picker"
+                renderCustomHeader={customHeader}
+                renderDayContents={customDay}
                 placeholderText={placeholder}
                 required={required}
                 selected={startDate}
-                showTimeSelect
-                showTimeInput={showTimeInput ? showTimeInput : false}
-                onChange={(date: Date | null): void => {
+                maxDate={maxDate}
+                minDate={minDate}
+                dateFormat="yyyy/MM/dd HH:mm"
+                timeFormat="HH:mm"
+                locale={lang}
+                showMonthYearPicker={showMonthYearPicker}
+                showTimeInput={showTimePicker}
+                timeInputLabel=""
+                onChange={(date: Date): void => {
                     fCallBack && fCallBack(date);
                     setStartDate(date);
                     setValue && setValue(refForm, date, { shouldValidate: true });
@@ -176,12 +237,6 @@ const InputDateTime = ({
                         }
                     }
                 }}
-                maxDate={maxDate}
-                minDate={minDate}
-                dateFormat="yyyy/MM/dd HH:mm"
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                locale={lang}
             />
         </label>
     );
