@@ -27,7 +27,6 @@ InputDateTimeUpdate.args = {
     isError: true,
     isUpdateField: true,
     refForm: "date_creation",
-    showTimeInput: true,
     label: "label",
     lang: "fr-FR",
     minDate: new Date(),

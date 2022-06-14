@@ -29,7 +29,6 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
-    showTimeSelect?: boolean;
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
@@ -59,7 +58,6 @@ const InputDateTime = ({
     register,
     required,
     setValue,
-    showTimeSelect,
     targetId,
     timerSetting = 5000,
     updateFunction,
@@ -69,7 +67,7 @@ const InputDateTime = ({
 }: Props): ReactElement => {
     const [startDate, setStartDate] = useState<Date | null>(defaultValue);
     const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
-    const [showTimePicker, setShowshowTimePickerPicker] = useState<boolean>(defaultShowTimePicker);
+    const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
@@ -124,7 +122,7 @@ const InputDateTime = ({
         }
     }, [state.updated, state.previous]);
 
-    const MyHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
+    const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
             <IconChevron
                 onClick={() => (!showMonthYearPicker ? decreaseMonth() : decreaseYear())}
@@ -135,7 +133,7 @@ const InputDateTime = ({
             <div
                 onClick={() => {
                     setShowMonthYearPicker(!showMonthYearPicker);
-                    setShowshowTimePickerPicker(false);
+                    setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
             >
@@ -154,7 +152,7 @@ const InputDateTime = ({
             </div>
             {!showMonthYearPicker && startDate && (
                 <ClockLogo
-                    onClick={() => setShowshowTimePickerPicker(!showTimePicker)}
+                    onClick={() => setShowTimePicker(!showTimePicker)}
                     fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
                     width={12}
                     className="absolute transform right-12 hover:scale-110 transition-all hover:cursor-pointer"
@@ -163,12 +161,12 @@ const InputDateTime = ({
             <IconChevron
                 onClick={() => (!showMonthYearPicker ? increaseMonth() : increaseYear())}
                 width={12}
-                className="transform -rotate-90 hover:scale-110 transition-all hover:cursor-pointer "
+                className="transform -rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
                 fill="#FFF"
             />
         </div>
     );
-    const DayContents = (day) => <p onClick={() => setShowshowTimePickerPicker(false)}>{day}</p>;
+    const customDay = (day) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
 
     return (
         <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
@@ -207,12 +205,11 @@ const InputDateTime = ({
                             : "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full"
                     }`}
                 calendarClassName="bg-custom-date-picker"
-                renderCustomHeader={MyHeader}
-                renderDayContents={DayContents}
+                renderCustomHeader={customHeader}
+                renderDayContents={customDay}
                 placeholderText={placeholder}
                 required={required}
                 selected={startDate}
-                showTimeSelect={showTimeSelect}
                 maxDate={maxDate}
                 minDate={minDate}
                 dateFormat="yyyy/MM/dd HH:mm"
