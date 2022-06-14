@@ -104,9 +104,6 @@
 .react-datepicker__month-text--keyboard-selected {
     @apply bg-neo-blue px-4 py-3 mx-1 text-white !important;
 }
-.react-datepicker-popper {
-    @apply translate-x-2 translate-y-24 !important;
-}
 
 .react-datepicker__triangle {
     @apply translate-x-32 !important;
