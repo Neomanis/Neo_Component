@@ -17,6 +17,7 @@ import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconBook } from "./nm_ico_books.svg";
+import { ReactComponent as IconCalendar } from "./nm_ico_calendar.svg";
 import { ReactComponent as IconBookSave } from "./nm_ico_book_save.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
@@ -101,6 +102,7 @@ export {
     IconArrowLogin,
     IconArrowRight,
     IconBook,
+    IconCalendar,
     IconBookSave,
     IconChartPie,
     IconCheck,
