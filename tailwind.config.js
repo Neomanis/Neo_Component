@@ -16,6 +16,7 @@ module.exports = {
                         secondary: "#366688",
                         modal: "#0f283f",
                         planned: "#89D2FF",
+                        dark: "#092847",
                         extraDark: "#111F2E",
                     },
                     expanded: "#17212B",
@@ -24,7 +25,10 @@ module.exports = {
                     },
                     red: "#F7284F",
                     pink: "#FF1166",
-                    green: "#7FEF7F",
+                    green: {
+                        DEFAULT: "#7FEF7F",
+                        close: "#1DB17F",
+                    },
                     orange: "#ED943B",
                     urgency: {
                         very: {
