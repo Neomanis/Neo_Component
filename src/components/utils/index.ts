@@ -5,7 +5,6 @@ import {
     formatDateToNow,
     getDateCompletionPercentage,
     getDateFnsLocaleFromUserLang,
-    getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
     getTimeToNowWithTranslation,
 } from "./dateTools";
@@ -43,7 +42,6 @@ export {
     getContrastBasedOnHexColor,
     getDateCompletionPercentage,
     getDateFnsLocaleFromUserLang,
-    getFormatedTimeToNow,
     getFormatedTimeToNowExtended,
     getHexColorFromTailwindColor,
     getOutageBorderColor,

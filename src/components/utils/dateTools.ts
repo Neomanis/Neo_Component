@@ -1,12 +1,6 @@
 import { i18n } from "@neomanis/neo-translation";
-import { formatDistanceToNowStrict, Locale, format, intervalToDuration } from "date-fns";
+import { formatDistanceToNowStrict, Locale, format, intervalToDuration, isFuture } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
-
-export function getFormatedTimeToNow(date: string): string {
-    const dateTicket = new Date(date);
-    const formatedDate = formatDistanceToNowStrict(dateTicket).split(" ");
-    return formatedDate[0] + formatedDate[1].charAt(0).toUpperCase();
-}
 
 export function getTimeToNowWithTranslation(date: string, lang?: string): string {
     const dateTicket = new Date(date);
@@ -39,8 +33,12 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string | undefined): string {
-    const locale = getDateFnsLocaleFromUserLang(lang);
     const formatToDate = new Date(date);
+    if (isFuture(formatToDate)) {
+        const myLanguage = i18n.getFixedT(lang ? lang : "en-US");
+        return myLanguage("global.now").toLowerCase();
+    }
+    const locale = getDateFnsLocaleFromUserLang(lang);
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }
