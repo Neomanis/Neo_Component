@@ -61,6 +61,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 secondary: "#366688",
                 modal: "#0f283f",
                 planned: "#89D2FF",
+                dark: "#092847",
                 extraDark: "#111F2E",
             },
             expanded: "#17212B",
@@ -69,7 +70,9 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
             },
             red: "#F7284F",
             pink: "#FF1166",
-            green: "#7FEF7F",
+            green: {
+                DEFAULT: "#7FEF7F",
+            },
             orange: "#ED943B",
             urgency: {
                 very: {
@@ -101,6 +104,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 black: "#1E1F25",
                 TTO: "#AFA47B",
                 TTR: "#464A41",
+                green: "#1DB17F",
                 grey: "#626574",
                 purple: "#5715C6",
             },
@@ -251,4 +255,8 @@ export function getPriorityColor(
 
 export function getHTMLValue(e: string): string {
     return e.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+}
+
+export function isNotNullOrUndefined(value: number | null | undefined) {
+    return value !== null && value !== undefined;
 }

@@ -27,7 +27,6 @@ module.exports = {
                     pink: "#FF1166",
                     green: {
                         DEFAULT: "#7FEF7F",
-                        close: "#1DB17F",
                     },
                     orange: "#ED943B",
                     urgency: {
@@ -60,6 +59,7 @@ module.exports = {
                         black: "#1E1F25",
                         TTO: "#AFA47B",
                         TTR: "#464A41",
+                        green: "#1DB17F",
                         grey: "#626574",
                         purple: "#5715C6",
                     },

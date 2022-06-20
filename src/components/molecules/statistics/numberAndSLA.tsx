@@ -1,6 +1,7 @@
 import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement } from "react";
 import { Pill } from "../../atoms";
+import { isNotNullOrUndefined } from "../../utils/tools";
 
 interface Props {
     title: string;
@@ -35,16 +36,25 @@ const NumberAndSLA = ({
                 <p className="text-neo-stats-grey text-xs">{subtitle}</p>
             </div>
             <div className="flex items-center">
-                {(ticketNumber || diagnosticNumber) && (
+                {isNotNullOrUndefined(ticketNumber) && (
                     <div className="flex items-center" data-testid="number-and-SLA-ticket-diag-body">
                         <Pill
-                            data={ticketNumber ? ticketNumber : diagnosticNumber}
+                            data={ticketNumber}
                             className="bg-neo-bg-B rounded-full w-14 h-8 mr-4 font-extrabold text-white"
                         />
                         <div data-testid="number-and-SLA-svg">{svg}</div>
                     </div>
                 )}
-                {TTO && TTR && (
+                {isNotNullOrUndefined(diagnosticNumber) && (
+                    <div className="flex items-center" data-testid="number-and-SLA-ticket-diag-body">
+                        <Pill
+                            data={diagnosticNumber}
+                            className="bg-neo-bg-B rounded-full w-14 h-8 mr-4 font-extrabold text-white"
+                        />
+                        <div data-testid="number-and-SLA-svg">{svg}</div>
+                    </div>
+                )}
+                {isNotNullOrUndefined(TTO) && isNotNullOrUndefined(TTR) && (
                     <div
                         className="flex flex-col text-white font-semibold text-sm"
                         data-testid="number-and-SLA-TTO-TTR-body"
