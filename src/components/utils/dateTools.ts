@@ -33,12 +33,12 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
 }
 
 export function getFormatedTimeToNowExtended(date: string, lang: string | undefined): string {
-    const locale = getDateFnsLocaleFromUserLang(lang);
     const formatToDate = new Date(date);
     if (isFuture(formatToDate)) {
         const myLanguage = i18n.getFixedT(lang ? lang : "en-US");
         return myLanguage("global.now").toLowerCase();
     }
+    const locale = getDateFnsLocaleFromUserLang(lang);
     const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
     return timeToNow;
 }

@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { addDays, format } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
 
 import { getFormatedTimeToNowExtended, formatDateToNow, formatDate } from "../../components/utils";
@@ -17,6 +17,7 @@ describe("Date to now format functions", () => {
         expect(getFormatedTimeToNowExtended(format(date, "yyyy-MM-dd HH:mm:ss"), "en-GB")).to.equal("1 minute ago");
         expect(getFormatedTimeToNowExtended(date.toISOString(), "en-GB")).to.equal("1 minute ago");
         expect(getFormatedTimeToNowExtended(format(date, "yyyy-MM-dd HH:mm:ss"), "yolo")).to.equal("1 minute ago");
+        expect(getFormatedTimeToNowExtended(format(addDays(date, 1), "yyyy-MM-dd HH:mm:ss"), "en-GB")).to.equal("now");
     });
 
     it("Should format date in english", () => {
