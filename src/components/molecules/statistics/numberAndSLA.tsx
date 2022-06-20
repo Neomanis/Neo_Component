@@ -1,6 +1,7 @@
 import { useTranslation } from "@neomanis/neo-translation";
 import React, { ReactElement } from "react";
 import { Pill } from "../../atoms";
+import { isNotNullOrUndefined } from "../../utils/tools";
 
 interface Props {
     title: string;
@@ -24,10 +25,6 @@ const NumberAndSLA = ({
     diagnosticNumber,
 }: Props): ReactElement => {
     const { t } = useTranslation();
-
-    function isNotNullOrUndefined(value: number | null | undefined) {
-        return value !== null && value !== undefined;
-    }
 
     return (
         <div
