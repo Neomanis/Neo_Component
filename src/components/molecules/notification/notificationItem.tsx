@@ -8,7 +8,7 @@ interface Props {
     content: string;
     date?: string;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
-    fManageWorkflow?: (
+    fManageApproval?: (
         id: number,
         value: boolean,
         ticketId: number,
@@ -24,14 +24,14 @@ interface Props {
     ticketId?: number;
     title?: string;
     userUid?: string;
-    workflowId?: number;
+    approvalId?: number;
 }
 
 const NotificationItem = ({
     content,
     date,
     fDeleteNotification,
-    fManageWorkflow,
+    fManageApproval,
     fReadNotification,
     notificationId,
     outageDate,
@@ -42,15 +42,15 @@ const NotificationItem = ({
     ticketId,
     title,
     userUid,
-    workflowId,
+    approvalId,
 }: Props): ReactElement => {
     const { t } = useTranslation();
 
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const [isError, setIsError] = useState(false);
 
-    async function sendWorkFlow(value: boolean): Promise<void> {
-        fManageWorkflow && (await fManageWorkflow(workflowId, value, ticketId, setIsError));
+    async function sendApproval(value: boolean): Promise<void> {
+        fManageApproval && (await fManageApproval(approvalId, value, ticketId, setIsError));
     }
     return (
         <div
@@ -102,7 +102,7 @@ const NotificationItem = ({
                     </div>
                 )}
             </div>
-            {fManageWorkflow &&
+            {fManageApproval &&
                 (!isError ? (
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
@@ -110,7 +110,7 @@ const NotificationItem = ({
                             data={t("global.validate")}
                             fCallback={(e) => {
                                 e.stopPropagation();
-                                sendWorkFlow(true);
+                                sendApproval(true);
                             }}
                         />
                         <Button
@@ -118,12 +118,12 @@ const NotificationItem = ({
                             data={t("global.refuse")}
                             fCallback={(e) => {
                                 e.stopPropagation();
-                                sendWorkFlow(false);
+                                sendApproval(false);
                             }}
                         />
                     </div>
                 ) : (
-                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("error.workflow")}</p>
+                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("error.approval")}</p>
                 ))}
         </div>
     );

@@ -2662,18 +2662,18 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@neomanis/neo-translation@^1.0.4":
-  version "1.0.4"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-translation/-/neo-translation-1.0.4.tgz#7ea4165afbb691ddcfe3ed18b75111adee343f94"
-  integrity sha1-fqQWWvu2kd3P4+0Yt1ERre40P5Q=
+"@neomanis/neo-translation@^2.0.0":
+  version "2.0.0"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-translation/-/neo-translation-2.0.0.tgz#d9a738282aa029e6507bd313037061ea2f04f760"
+  integrity sha1-2ac4KCqgKeZQe9MTA3Bh6i8E92A=
   dependencies:
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@^1.9.0":
-  version "1.9.0"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-1.9.0.tgz#c0bd9d92f46bc16fcc6d463067f50903848a2905"
-  integrity sha1-wL2dkvRrwW/MbUYwZ/UJA4SKKQU=
+"@neomanis/neo-types@^2.0.0":
+  version "2.0.0"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-2.0.0.tgz#00a5414715ac1f149dcf1d33eda5ff53f647d8b1"
+  integrity sha1-AKVBRxWsHxSdzx0z7aX/U/ZH2LE=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

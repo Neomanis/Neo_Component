@@ -29,16 +29,16 @@ DefaultNotif.args = {
     read: false,
     userUid: "ttest",
 };
-export const DefaultWorkflow = Template.bind({});
-DefaultWorkflow.args = {
+export const DefaultApproval = Template.bind({});
+DefaultApproval.args = {
     title: "Demandes",
     sender: "Toto",
     date: "3 hours ago",
     content:
         "outage content Lorem ipsum dolor sit amet consectetu labore, maxime odio sequi pariatur fugiat suscipit dicta alias corrupti? Accusantium hic laboriosam praesentium est!",
     svg: <IconInfo fill="#E2DC8F" className="w-12 h-12" />,
-    fManageWorkflow: (id, value, ticketId, errorSetter) => console.log(id, value, ticketId, errorSetter),
-    workflowId: 20,
+    fManageApproval: (id, value, ticketId, errorSetter) => console.log(id, value, ticketId, errorSetter),
+    approvalId: 20,
     ticketId: 2,
     textColor: "text-neo-yellow-sand",
 };

@@ -44,6 +44,6 @@ Default.args = {
     fCallBackClear: () => console.log("clear"),
     fCallBackSeeAll: () => console.log("SeeAll"),
     languageUser: "fr-FR",
-    title: "DEMANDES DE WORKFLOW",
+    title: "DEMANDES D'APPROBATION",
     viewItem: 3,
 };
