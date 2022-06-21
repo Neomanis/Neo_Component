@@ -24,7 +24,7 @@ import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQues
 import Toaster from "./toaster";
 import UserInfo from "./user/userInfo";
 import ValidationCard from "./validationCard";
-import WorkflowCard from "./notification/workflowCard";
+import ApprovalCard from "./notification/approvalCard";
 import WritingDots from "../atoms/chat/writingDots";
 
 export {
@@ -54,6 +54,6 @@ export {
     Toaster,
     UserInfo,
     ValidationCard,
-    WorkflowCard,
+    ApprovalCard,
     WritingDots,
 };

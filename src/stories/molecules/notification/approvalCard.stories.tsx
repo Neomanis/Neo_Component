@@ -2,17 +2,17 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import { WorkflowCard } from "../../../components/molecules";
+import { ApprovalCard } from "../../../components/molecules";
 
 export default {
-    component: WorkflowCard,
-    title: "Molecules/Notification/WorkflowCard",
+    component: ApprovalCard,
+    title: "Molecules/Notification/ApprovalCard",
 } as Meta;
 
-const Template: ComponentStory<typeof WorkflowCard> = (args) => {
+const Template: ComponentStory<typeof ApprovalCard> = (args) => {
     return (
         <div className=" bg-neo-bg-A p-2 w-2/4 flex items-center">
-            <WorkflowCard {...args} />
+            <ApprovalCard {...args} />
         </div>
     );
 };
@@ -21,10 +21,10 @@ export const Default = Template.bind({});
 Default.args = {
     content: "access to Printer.",
     date: "2021-09-05 10:58:24",
-    fManageWorkflow: () => console.log("hello"),
+    fManageApproval: () => console.log("hello"),
     sender: "Toto",
-    workflowId: 1,
+    approvalId: 1,
     ticketId: 15,
-    workflowErrorText: "sorry you can't",
-    workflowRequestText: "request",
+    approvalErrorText: "sorry you can't",
+    approvalRequestText: "request",
 };
