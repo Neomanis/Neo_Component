@@ -79,7 +79,7 @@ import { ReactComponent as TicketBottom } from "./nm_design_ticket_bottom.svg";
 import { ReactComponent as TicketCenter } from "./nm_design_ticket_center.svg";
 import { ReactComponent as TicketLogo } from "./nm_ico_ticket_normal.svg";
 import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
-import { ReactComponent as TicketSave } from "./nm_design_ticket_save.svg";
+import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
 import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
 import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg";
 
