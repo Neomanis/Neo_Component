@@ -17,8 +17,16 @@ import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
 import { ReactComponent as IconBook } from "./nm_ico_books.svg";
-import { ReactComponent as IconCalendar } from "./nm_ico_calendar.svg";
 import { ReactComponent as IconBookSave } from "./nm_ico_book_save.svg";
+import { ReactComponent as IconCalendar } from "./nm_ico_calendar.svg";
+import { ReactComponent as IconChapterApproval } from "./nm_ico_chapter_approval.svg";
+import { ReactComponent as IconChapterBooks } from "./nm_ico_chapter_books.svg";
+import { ReactComponent as IconChapterCheck } from "./nm_ico_chapter_check.svg";
+import { ReactComponent as IconChapterCheckNot } from "./nm_ico_chapter_check_not.svg";
+import { ReactComponent as IconChapterExit } from "./nm_ico_chapter_exit.svg";
+import { ReactComponent as IconChapterNotification } from "./nm_ico_chapter_notifications.svg";
+import { ReactComponent as IconChapterQuestion } from "./nm_ico_chapter_question.svg";
+import { ReactComponent as IconChapterScript } from "./nm_ico_chapter_script.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
@@ -35,13 +43,14 @@ import { ReactComponent as IconHeadphones } from "./nm_ico_headphones.svg";
 import { ReactComponent as IconInbox } from "./nm_ico_inbox.svg";
 import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
 import { ReactComponent as IconInventory } from "./nm_ico_inventory.svg";
+import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg";
 import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
 import { ReactComponent as IconKbOn } from "./nm_ico_kb_on.svg";
-import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
-import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
+import { ReactComponent as IconLicenses } from "./nm_ico_licenses.svg";
 import { ReactComponent as IconLock } from "./nm_ico_lock.svg";
 import { ReactComponent as IconLockOpen } from "./nm_ico_lock_open.svg";
-import { ReactComponent as IconLicenses } from "./nm_ico_licenses.svg";
+import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
+import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
 import { ReactComponent as IconOther } from "./nm_ico_other.svg";
@@ -82,7 +91,6 @@ import { ReactComponent as TicketLogo } from "./nm_ico_ticket_normal.svg";
 import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
 import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
 import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
-import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg";
 
 export {
     CautionLogo,
@@ -91,7 +99,6 @@ export {
     ChatLogo,
     ClockLogo,
     CloseLogo,
-    IconInvoice,
     DiagLogo,
     ExpandLogo,
     HexagonLine,
@@ -105,8 +112,16 @@ export {
     IconArrowLogin,
     IconArrowRight,
     IconBook,
-    IconCalendar,
     IconBookSave,
+    IconCalendar,
+    IconChapterApproval,
+    IconChapterBooks,
+    IconChapterCheck,
+    IconChapterCheckNot,
+    IconChapterExit,
+    IconChapterNotification,
+    IconChapterQuestion,
+    IconChapterScript,
     IconChartPie,
     IconCheck,
     IconChevron,
@@ -123,13 +138,14 @@ export {
     IconInbox,
     IconInfo,
     IconInventory,
+    IconInvoice,
     IconKbOff,
     IconKbOn,
-    IconLogin,
-    IconLogout,
+    IconLicenses,
     IconLock,
     IconLockOpen,
-    IconLicenses,
+    IconLogin,
+    IconLogout,
     IconMaintenance,
     IconNotification,
     IconOther,
