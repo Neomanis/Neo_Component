@@ -1,4 +1,3 @@
-import AgentAndUser from "./statistics/agentAndUser";
 import AnswerForm from "./technicalQuestion/answerForm";
 import AnswerItem from "./technicalQuestion/answerItem";
 import AvatarEditor from "./user/avatarEditor";
@@ -11,7 +10,6 @@ import NeoBotProcess from "./chat/neoBotProcess";
 import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
 import NotificationItem from "./notification/notificationItem";
-import NumberAndSLA from "./statistics/numberAndSLA";
 import OutageCard from "./notification/outageCard";
 import OutageItem from "./notification/outageItem";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
@@ -28,7 +26,6 @@ import ApprovalCard from "./notification/approvalCard";
 import WritingDots from "../atoms/chat/writingDots";
 
 export {
-    AgentAndUser,
     AnswerForm,
     AnswerItem,
     AvatarEditor,
@@ -41,7 +38,6 @@ export {
     NotificationCard,
     NotificationContainer,
     NotificationItem,
-    NumberAndSLA,
     OutageCard,
     OutageItem,
     RecursiveDiagnosticComponent,
