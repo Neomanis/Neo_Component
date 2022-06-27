@@ -290,6 +290,7 @@ const InputDateTime = ({
                 }}
                 startDate={startDate}
                 endDate={endDate}
+                timeInputLabel=" "
             />
         </label>
     );

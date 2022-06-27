@@ -71,7 +71,7 @@ const InputDateShift = ({
                     labelClassName="text-xs font-bold text-white"
                     defaultValue={dateShift}
                     fCallBack={(data) => {
-                        setDateAdd(data);
+                        setDateAdd(data as Date);
                         setValue && setValue("select-" + refForm, -1);
                     }}
                     isUpdateField={isUpdateField}
