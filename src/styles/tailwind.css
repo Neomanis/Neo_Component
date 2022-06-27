@@ -129,3 +129,7 @@
     @apply bg-neo-bg-B px-3 py-1 rounded !important;
 }
 
+.react-datepicker__day--range-end {
+    @apply bg-neo-blue text-white !important;
+}
+

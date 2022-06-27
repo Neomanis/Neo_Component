@@ -5,10 +5,10 @@ type State = {
     isCancelable: boolean;
     isCooldown: boolean;
     isSuccess: boolean;
-    previous: string | number | number[] | Date | undefined;
+    previous: string | number | number[] | Date | [Date, Date | null] | undefined;
     timeoutId: NodeJS.Timeout | undefined;
     trigger: boolean;
-    updated: string | number | number[] | Date | undefined;
+    updated: string | number | number[] | Date | [Date, Date | null] | undefined;
 };
 
 type Action =

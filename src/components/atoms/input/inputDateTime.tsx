@@ -14,7 +14,7 @@ interface Props {
     defaultValue: Date;
     dotClassName?: string;
     errorMessage?: string;
-    fCallBack?: (date: Date | null) => void;
+    fCallBack?: (date: Date | [Date, Date | null] | null) => void;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -34,6 +34,7 @@ interface Props {
     updateFunction?: (refForm: string, value: string) => void;
     defaultValueShowMonthYearPicker?: boolean;
     defaultShowTimePicker?: boolean;
+    selectsRange?: boolean;
 }
 
 registerLocale("en-GB", enGB);
@@ -64,10 +65,14 @@ const InputDateTime = ({
     errorMessage,
     defaultValueShowMonthYearPicker,
     defaultShowTimePicker,
+    selectsRange,
 }: Props): ReactElement => {
-    const [startDate, setStartDate] = useState<Date | null>(defaultValue);
     const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
+
+    const [startDate, setStartDate] = useState<Date | null>(defaultValue);
+    const [endDate, setEndDate] = useState(null);
+
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
@@ -103,7 +108,15 @@ const InputDateTime = ({
         ) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction) {
-                    updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    if (selectsRange) {
+                        updateFunction(
+                            refForm,
+                            `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
+                                `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
+                        );
+                    } else {
+                        updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    }
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -111,11 +124,21 @@ const InputDateTime = ({
                 }
             }, timerSetting);
             dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
+
             return () => {
                 if (isLastMount.current) {
                     clearTimeout(newTimeout);
-                    updateFunction &&
-                        updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    if (updateFunction) {
+                        if (selectsRange) {
+                            updateFunction(
+                                refForm,
+                                `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
+                                    `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
+                            );
+                        } else {
+                            updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                        }
+                    }
                     isLastMount.current = false;
                 }
             };
@@ -168,6 +191,42 @@ const InputDateTime = ({
     );
     const customDay = (day) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
 
+    const onChange = (dates) => {
+        fCallBack && fCallBack(dates);
+        setValue && setValue(refForm, dates, { shouldValidate: true });
+        if (selectsRange) {
+            setStartDate(dates[0]);
+            setEndDate(dates[1]);
+            if (isUpdateField) {
+                if (dates && !isError) {
+                    if (dates[1]) {
+                        if (!isEqual(state.previous as Date, dates[0]) && !isEqual(state.previous as Date, dates[1])) {
+                            dispatch({ type: "UPDATING", payload: [dates[0], dates[1]] });
+                        } else {
+                            dispatch({ type: "CANCEL_UPDATE" });
+                        }
+                    } else {
+                        dispatch({ type: "CANCEL_UPDATE" });
+                    }
+                } else {
+                    dispatch({ type: "SHOW_DOT" });
+                }
+            }
+        } else {
+            setStartDate(dates);
+            if (isUpdateField) {
+                if (!isEqual(state.previous as Date, dates)) {
+                    dispatch({ type: "UPDATING", payload: dates });
+                } else {
+                    dispatch({ type: "CANCEL_UPDATE" });
+                }
+            }
+        }
+        if (state.timeoutId) {
+            clearTimeout(state.timeoutId);
+        }
+    };
+
     return (
         <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
@@ -185,7 +244,12 @@ const InputDateTime = ({
                                 fCallBackCancel={(): void => {
                                     if (setValue && state.previous) {
                                         setValue(refForm, state.previous);
-                                        setStartDate(state.previous as Date);
+                                        if (selectsRange) {
+                                            setStartDate(state.previous[0] as Date);
+                                            setEndDate(state.previous[1] as Date);
+                                        } else {
+                                            setStartDate(state.previous as Date);
+                                        }
                                     }
                                     if (state.timeoutId) {
                                         clearTimeout(state.timeoutId);
@@ -217,26 +281,15 @@ const InputDateTime = ({
                 locale={lang}
                 showMonthYearPicker={showMonthYearPicker}
                 showTimeInput={showTimePicker}
-                timeInputLabel=""
-                onChange={(date: Date): void => {
-                    fCallBack && fCallBack(date);
-                    setStartDate(date);
-                    setValue && setValue(refForm, date, { shouldValidate: true });
-                    if (isUpdateField) {
-                        if (date && !isError) {
-                            if (!isEqual(state.previous as Date, date)) {
-                                dispatch({ type: "UPDATING", payload: date });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }
-                        } else {
-                            dispatch({ type: "SHOW_DOT" });
-                        }
-                        if (state.timeoutId) {
-                            clearTimeout(state.timeoutId);
-                        }
+                selectsRange={selectsRange}
+                onChange={onChange}
+                onCalendarClose={() => {
+                    if (selectsRange && endDate === null) {
+                        setStartDate(null);
                     }
                 }}
+                startDate={startDate}
+                endDate={endDate}
             />
         </label>
     );
