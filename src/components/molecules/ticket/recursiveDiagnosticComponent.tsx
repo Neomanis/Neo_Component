@@ -7,7 +7,7 @@ import {
     faWaveSquare,
     faDoorOpen,
 } from "@fortawesome/free-solid-svg-icons";
-import { Icon } from "../../atoms";
+import { Icon, Button } from "../../atoms";
 import { CautionLogoFullInvert } from "../../../img/svg";
 
 interface IError {
@@ -29,6 +29,7 @@ interface Props {
     executionTime: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     diagDataKeys: any[];
+    getBookName: (bookName: string) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,6 +88,7 @@ const RecursiveDiagnosticComponent = ({
     awaiting,
     executionTime,
     diagDataKeys,
+    getBookName,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const hasChildren = results && results.length;
@@ -110,9 +112,23 @@ const RecursiveDiagnosticComponent = ({
                 <div className="flex flex-col w-full">
                     <div className="flex justify-between">
                         {name && (
-                            <div className="flex font-bold text-lg">
-                                <Icon className="mx-2" fontIcon={faBook} />
-                                {name}
+                            <div>
+                                <div className="flex font-bold text-lg">
+                                    <Icon className="mx-2" fontIcon={faBook} />
+                                    {name}
+                                </div>
+                                <Button
+                                    className="h-8 w-36 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
+                                    data={"Ouvrir le livre"}
+                                    fCallback={(e) => {
+                                        e.stopPropagation();
+                                        getBookName(name);
+                                    }}
+                                    style={{
+                                        background:
+                                            "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
+                                    }}
+                                />
                             </div>
                         )}
                         {executionTime && (
@@ -173,7 +189,12 @@ const RecursiveDiagnosticComponent = ({
                 {hasChildren &&
                     !isFolded &&
                     results.map((item, key) => (
-                        <RecursiveDiagnosticComponent key={key} {...item} awaiting={awaiting} />
+                        <RecursiveDiagnosticComponent
+                            key={key}
+                            {...item}
+                            awaiting={awaiting}
+                            getBookName={getBookName}
+                        />
                     ))}
                 {hasChildren && !isFolded && <Icon fontIcon={faChevronUp} />}
             </div>

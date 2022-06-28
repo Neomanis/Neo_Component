@@ -41,85 +41,87 @@ export const fakeDiag = {
     username: "ttest",
     diagnostics: [
         {
-            runId: "1636541270105",
-            name: "network",
-            diagExecutionTime: 274,
-            remoteHost: "8.8.8.8",
-            remotePort: 443,
-            incidentType: "someIncidentType",
-            remoteIp: "8.8.8.8",
-            localIp: "192.168.1.78",
-            interfaceName: "wlp0s20f3",
-            cidr: "24",
-            mtu: "1500",
-            arpFilled: "True",
+            runId: "1653482213966",
+            name: "printer",
+            diagExecutionTime: 3567,
+            printerID: "Imprimante1",
             results: [
                 {
                     Action: {
-                        description: "Retrieving Network information (Local IP;Mask;GW;DHCP enabled or not;M...",
+                        description: "Is printer installed locally?",
                         id: 1,
-                        result: "OK",
-                        date: "2021-11-10T10:47:50.210+00:00",
-                        executionTime: 43,
+                        result: "Failed",
+                        date: {
+                            $date: "2022-05-25T12:36:56.900Z",
+                        },
+                        executionTime: 83,
                     },
                 },
                 {
                     Action: {
-                        description: "Ping 127.0.0.1",
+                        description: "Install the printer on the user session",
                         id: 2,
                         result: "OK",
-                        date: "2021-11-10T10:47:50.242+00:00",
-                        executionTime: 15,
+                        date: {
+                            $date: "2022-05-25T12:36:57.059Z",
+                        },
+                        executionTime: 9,
                     },
                 },
                 {
                     Action: {
-                        description: "check if IP address is in the right range, not APIPA, etc",
-                        id: 4,
+                        description: "Can we join the local spooler?",
+                        id: 3,
                         result: "OK",
-                        date: "2021-11-10T10:47:50.270+00:00",
+                        date: {
+                            $date: "2022-05-25T12:36:57.219Z",
+                        },
                         executionTime: 12,
                     },
                 },
                 {
-                    Error: {
-                        name: "OrchestratorError",
-                        message: "connect ECONNREFUSED 127.0.0.1:80",
-                        code: null,
-                        runId: "1636541270105",
-                        data: {
-                            failedAction: {
-                                actionId: 4,
-                                scriptName: "check_in_range",
-                                parameters: [],
-                            },
-                        },
-                    },
-                },
-                {
                     Action: {
-                        description: "Ping gateway",
-                        id: 7,
+                        description: "Is the printer status normal on local user computer?",
+                        id: 6,
                         result: "OK",
-                        date: "2021-11-10T10:47:50.304+00:00",
-                        executionTime: 17,
+                        date: {
+                            $date: "2022-05-25T12:36:57.362Z",
+                        },
+                        executionTime: 12,
                     },
                 },
                 {
                     Action: {
-                        description: "If remote host is defined by a FQDN, try to resolve it. If it's an IP,...",
-                        id: 10,
-                        result: "Failed",
-                        date: "2021-11-10T10:47:50.376+00:00",
-                        executionTime: 58,
+                        description: "Does local spooler have no waiting job in queue?",
+                        id: 8,
+                        result: "OK",
+                        date: {
+                            $date: "2022-05-25T12:36:57.526Z",
+                        },
+                        executionTime: 13,
+                    },
+                },
+                {
+                    Action: {
+                        description: "Check if issue is solved after local check",
+                        id: 11,
+                        result: "Validated",
+                        date: {
+                            $date: "2022-05-25T12:37:04.011Z",
+                        },
+                        executionTime: 0,
                     },
                 },
                 {
                     Exit: {
-                        id: 6,
-                        name: "escalate_dns",
-                        type: "escalate",
-                        action: "DNS not working",
+                        id: 5,
+                        name: "solved",
+                        type: "solved",
+                        action: "issue solved",
+                        position: {
+                            x: 2430,
+                            y: -70,
+                        },
                     },
                 },
             ],
