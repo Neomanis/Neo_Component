@@ -115,7 +115,7 @@ Labeled.args = {
     ],
 };
 LabeledWithIcon.args = {
-    formatOptionLabel: ({ value, label, icon }) => (
+    formatOptionLabel: ({ label, icon }) => (
         <div style={{ display: "flex" }}>
             <div>{label === "Banane" && icon}</div>
             <div className="text-neo-red">{label}</div>

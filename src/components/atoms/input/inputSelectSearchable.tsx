@@ -7,7 +7,6 @@ import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
 import { useTranslation } from "@neomanis/neo-translation";
-import { FormatOptionLabelMeta } from "react-select/dist/declarations/src/Select";
 
 interface Props {
     containerClassName?: string;
@@ -35,18 +34,7 @@ interface Props {
     doValueLogic?: boolean;
     dotClassName?: string;
     errorMessage?: string;
-    formatOptionLabel?: (
-        data: {
-            label: string;
-            value: number;
-            icon?: ReactElement;
-        },
-        formatOptionLabelMeta: FormatOptionLabelMeta<{
-            label: string;
-            value: number;
-            icon?: ReactElement;
-        }>
-    ) => React.ReactNode;
+    formatOptionLabel?: (data: { label: string; value: number; icon?: ReactElement }) => React.ReactNode;
     id?: string;
     isClearable?: boolean;
     isError?: boolean;
