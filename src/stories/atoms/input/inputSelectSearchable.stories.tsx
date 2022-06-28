@@ -4,6 +4,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import { InputSelectSearchable } from "../../../components/atoms";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { TicketLogo } from "../../../img/svg";
 
 export default {
     component: InputSelectSearchable,
@@ -35,6 +36,7 @@ const Template: ComponentStory<typeof InputSelectSearchable> = (args) => {
 
 export const Default = Template.bind({});
 export const Labeled = Template.bind({});
+export const LabeledWithIcon = Template.bind({});
 export const Updatable = Template.bind({});
 export const NotSearchable = Template.bind({});
 export const Multiple = Template.bind({});
@@ -109,6 +111,34 @@ Labeled.args = {
         {
             label: "Banane",
             value: 2,
+        },
+    ],
+};
+LabeledWithIcon.args = {
+    formatOptionLabel: ({ label, icon }) => (
+        <div style={{ display: "flex" }}>
+            <div>{label === "Banane" && icon}</div>
+            <div className="text-neo-red">{label}</div>
+        </div>
+    ),
+    label: "Label Time!",
+    containerClassName: "",
+    labelClassName: "text-neo-light-grey whitespace-nowrap mx-2",
+    isClearable: true,
+    placeholder: "story Searchable",
+    isSearchable: true,
+    isUpdateField: true,
+    refForm: "example 1",
+    data: [
+        {
+            label: "Abricot",
+            value: 1,
+            icon: <TicketLogo width={10} fill="#FFF" />,
+        },
+        {
+            label: "Banane",
+            value: 2,
+            icon: <TicketLogo width={10} fill="#FFF" />,
         },
     ],
 };
