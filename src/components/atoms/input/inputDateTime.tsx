@@ -11,7 +11,7 @@ import { getHexColorFromTailwindColor } from "../../utils";
 
 interface Props {
     className?: string;
-    defaultValue: Date;
+    defaultValue: Date | [Date, Date];
     dotClassName?: string;
     errorMessage?: string;
     fCallBack?: (date: Date | [Date, Date | null] | null) => void;
@@ -25,7 +25,7 @@ interface Props {
     minDate?: Date;
     pattern?: string;
     placeholder?: string;
-    refForm: string;
+    refForm?: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
@@ -70,8 +70,8 @@ const InputDateTime = ({
     const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
 
-    const [startDate, setStartDate] = useState<Date | null>(defaultValue);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState<Date>(selectsRange ? defaultValue[0] : defaultValue);
+    const [endDate, setEndDate] = useState<Date | null>(selectsRange ? defaultValue[1] : null);
 
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
@@ -89,11 +89,13 @@ const InputDateTime = ({
         register &&
             register(refForm, {
                 required,
-                validate: (value: Date) => (maxDate ? (isAfter(value, maxDate) ? false : true) : true),
+                validate: (value) =>
+                    selectsRange ? (value[1] !== null ? true : false) : value !== null ? true : false,
             });
-        dispatch({ type: "RESET", payload: defaultValue as Date });
+        dispatch({ type: "RESET", payload: defaultValue as Date | [Date, Date] });
         setValue && setValue(refForm, defaultValue);
-        setStartDate(defaultValue);
+        setStartDate(selectsRange ? defaultValue[0] : defaultValue);
+        selectsRange && setEndDate(defaultValue[1]);
         return () => {
             isLastMount.current = true;
         };

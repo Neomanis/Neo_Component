@@ -3,7 +3,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
-import { addMonths } from "date-fns";
+import { addDays, addMonths } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
@@ -43,6 +43,7 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
 
 export const InputDateTimeUpdate = Template.bind({});
 InputDateTimeUpdate.args = {
+    defaultValue: new Date(),
     errorMessage: "ERROR",
     isError: true,
     isUpdateField: true,
@@ -51,10 +52,12 @@ InputDateTimeUpdate.args = {
     lang: "fr-FR",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
+    // eslint-disable-next-line no-console
     updateFunction: (reform, data) => console.log(reform, data),
 };
 export const InputDateTimeUpdateRange = Template.bind({});
 InputDateTimeUpdateRange.args = {
+    defaultValue: [new Date(), addDays(new Date(), 2)],
     errorMessage: "ERROR",
     isUpdateField: true,
     refForm: "date_creation_range",
@@ -63,5 +66,6 @@ InputDateTimeUpdateRange.args = {
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
     selectsRange: true,
+    // eslint-disable-next-line no-console
     updateFunction: (reform, data) => console.log(reform, data),
 };
