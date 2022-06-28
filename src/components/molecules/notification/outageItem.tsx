@@ -27,13 +27,13 @@ const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: 
             ref={ref}
             onMouseEnter={() => hoverInCallBack(data, ref?.current && ref?.current.getBoundingClientRect())}
             onMouseLeave={() => hoverOutCallBack(data, ref?.current && ref?.current.getBoundingClientRect())}
-            className={`cursor-pointer w-full text-${colorOutage} grid grid-cols-10 ${isNotSelected && "opacity-50"}`}
+            className={`cursor-pointer w-full text-${colorOutage} grid grid-cols-12 ${isNotSelected && "opacity-50"}`}
         >
-            <div className="col-span-3 pt-1">
+            <div className="col-span-2 pt-1">
                 <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
             </div>
-            <div className={`divide-y-2 divide-${colorOutage} col-span-7`}>
-                <div className="h-10 flex items-center">
+            <div className={`divide-y-2 divide-${colorOutage} col-span-10`}>
+                <div className="h-8 flex items-center">
                     <Title
                         data={data.title}
                         type={"h2"}
@@ -41,7 +41,9 @@ const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: 
                         style={{ lineHeight: "110%" }}
                     />
                 </div>
-                <p className="text-xxs font-bold mt-1">{`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}</p>
+                <p className="text-xxs font-bold mt-1 py-2">{`${formatDate(data.startAt)} - ${formatDate(
+                    data.endAt
+                )}`}</p>
             </div>
         </div>
     );
