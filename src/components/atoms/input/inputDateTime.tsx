@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { format, isEqual, isAfter } from "date-fns";
+import { format, isEqual, isAfter, isBefore } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,7 +14,7 @@ interface Props {
     defaultValue: Date | [Date, Date];
     dotClassName?: string;
     errorMessage?: string;
-    fCallBack?: (date: Date | [Date, Date | null] | null) => void;
+    fCallBack?: (date: Date | [Date, Date]) => void;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -32,9 +32,9 @@ interface Props {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    defaultValueShowMonthYearPicker?: boolean;
+    defaultValueshowMonthPicker?: boolean;
     defaultShowTimePicker?: boolean;
-    selectsRange?: boolean;
+    isRange?: boolean;
 }
 
 registerLocale("en-GB", enGB);
@@ -63,15 +63,15 @@ const InputDateTime = ({
     timerSetting = 5000,
     updateFunction,
     errorMessage,
-    defaultValueShowMonthYearPicker,
+    defaultValueshowMonthPicker,
     defaultShowTimePicker,
-    selectsRange,
+    isRange,
 }: Props): ReactElement => {
-    const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
+    const [showMonthPicker, setshowMonthPicker] = useState<boolean>(defaultValueshowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
 
-    const [startDate, setStartDate] = useState<Date>(selectsRange ? defaultValue[0] : defaultValue);
-    const [endDate, setEndDate] = useState<Date | null>(selectsRange ? defaultValue[1] : null);
+    const [startDate, setStartDate] = useState<Date>(isRange ? defaultValue[0] : defaultValue);
+    const [endDate, setEndDate] = useState<Date | null>(isRange ? defaultValue[1] : null);
 
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
@@ -89,13 +89,33 @@ const InputDateTime = ({
         register &&
             register(refForm, {
                 required,
-                validate: (value) =>
-                    selectsRange ? (value[1] !== null ? true : false) : value !== null ? true : false,
+                validate: {
+                    maxDate: (value) => {
+                        if (!maxDate) {
+                            return true;
+                        }
+                        if (isRange) {
+                            return isBefore(value[0], maxDate) && isBefore(value[1], maxDate);
+                        } else {
+                            return isBefore(value, maxDate);
+                        }
+                    },
+                    minDate: (value) => {
+                        if (!minDate) {
+                            return true;
+                        }
+                        if (isRange) {
+                            return isAfter(value[0], minDate);
+                        } else {
+                            return isAfter(value, minDate);
+                        }
+                    },
+                },
             });
-        dispatch({ type: "RESET", payload: defaultValue as Date | [Date, Date] });
+        dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
-        setStartDate(selectsRange ? defaultValue[0] : defaultValue);
-        selectsRange && setEndDate(defaultValue[1]);
+        setStartDate(isRange ? defaultValue[0] : defaultValue);
+        isRange && setEndDate(defaultValue[1]);
         return () => {
             isLastMount.current = true;
         };
@@ -110,7 +130,7 @@ const InputDateTime = ({
         ) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction) {
-                    if (selectsRange) {
+                    if (isRange) {
                         updateFunction(
                             refForm,
                             `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
@@ -131,7 +151,7 @@ const InputDateTime = ({
                 if (isLastMount.current) {
                     clearTimeout(newTimeout);
                     if (updateFunction) {
-                        if (selectsRange) {
+                        if (isRange) {
                             updateFunction(
                                 refForm,
                                 `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
@@ -150,19 +170,19 @@ const InputDateTime = ({
     const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
             <IconChevron
-                onClick={() => (!showMonthYearPicker ? decreaseMonth() : decreaseYear())}
+                onClick={() => (!showMonthPicker ? decreaseMonth() : decreaseYear())}
                 width={12}
                 className="transform rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
                 fill="#FFF"
             />
             <div
                 onClick={() => {
-                    setShowMonthYearPicker(!showMonthYearPicker);
+                    setshowMonthPicker(!showMonthPicker);
                     setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
             >
-                {!showMonthYearPicker && (
+                {!showMonthPicker && (
                     <span className="mr-2">
                         {monthDate.toLocaleString(lang, {
                             month: "short",
@@ -175,7 +195,7 @@ const InputDateTime = ({
                     })}
                 </span>
             </div>
-            {!showMonthYearPicker && startDate && (
+            {!showMonthPicker && startDate && (
                 <ClockLogo
                     onClick={() => setShowTimePicker(!showTimePicker)}
                     fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
@@ -184,25 +204,25 @@ const InputDateTime = ({
                 />
             )}
             <IconChevron
-                onClick={() => (!showMonthYearPicker ? increaseMonth() : increaseYear())}
+                onClick={() => (!showMonthPicker ? increaseMonth() : increaseYear())}
                 width={12}
                 className="transform -rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
                 fill="#FFF"
             />
         </div>
     );
-    const customDay = (day) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
+    const customDay = (day: number) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
 
-    const onChange = (dates) => {
+    const onChange = (dates: Date | [Date, Date]) => {
         fCallBack && fCallBack(dates);
         setValue && setValue(refForm, dates, { shouldValidate: true });
-        if (selectsRange) {
+        if (Array.isArray(dates)) {
             setStartDate(dates[0]);
             setEndDate(dates[1]);
             if (isUpdateField) {
-                if (dates && !isError) {
+                if (!isError) {
                     if (dates[1]) {
-                        if (!isEqual(state.previous as Date, dates[0]) && !isEqual(state.previous as Date, dates[1])) {
+                        if (!isEqual(state.previous[0], dates[0]) && !isEqual(state.previous[1], dates[1])) {
                             dispatch({ type: "UPDATING", payload: [dates[0], dates[1]] });
                         } else {
                             dispatch({ type: "CANCEL_UPDATE" });
@@ -246,7 +266,7 @@ const InputDateTime = ({
                                 fCallBackCancel={(): void => {
                                     if (setValue && state.previous) {
                                         setValue(refForm, state.previous);
-                                        if (selectsRange) {
+                                        if (isRange) {
                                             setStartDate(state.previous[0] as Date);
                                             setEndDate(state.previous[1] as Date);
                                         } else {
@@ -281,18 +301,18 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 locale={lang}
-                showMonthYearPicker={showMonthYearPicker}
+                showMonthYearPicker={showMonthPicker}
                 showTimeInput={showTimePicker}
-                selectsRange={selectsRange}
+                selectsRange={isRange}
                 onChange={onChange}
                 onCalendarClose={() => {
-                    if (selectsRange && endDate === null) {
+                    if (isRange && endDate === null) {
                         setStartDate(null);
                     }
                 }}
                 startDate={startDate}
                 endDate={endDate}
-                timeInputLabel=" "
+                timeInputLabel=""
             />
         </label>
     );

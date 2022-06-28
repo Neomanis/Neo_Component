@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
@@ -25,7 +26,6 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
     } = useForm({ mode: "onChange" });
 
     const onSubmit: SubmitHandler<unknown> = async (data) => {
-        // eslint-disable-next-line no-console
         console.log(data);
     };
 
@@ -52,7 +52,6 @@ InputDateTimeUpdate.args = {
     lang: "fr-FR",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
-    // eslint-disable-next-line no-console
     updateFunction: (reform, data) => console.log(reform, data),
 };
 export const InputDateTimeUpdateRange = Template.bind({});
@@ -65,7 +64,6 @@ InputDateTimeUpdateRange.args = {
     lang: "fr-FR",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
-    selectsRange: true,
-    // eslint-disable-next-line no-console
+    isRange: true,
     updateFunction: (reform, data) => console.log(reform, data),
 };
