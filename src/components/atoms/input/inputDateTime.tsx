@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { format, isEqual, isAfter } from "date-fns";
+import { format, isEqual, isAfter, isBefore } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,10 +11,10 @@ import { getHexColorFromTailwindColor } from "../../utils";
 
 interface Props {
     className?: string;
-    defaultValue: Date;
+    defaultValue: Date | [Date, Date];
     dotClassName?: string;
     errorMessage?: string;
-    fCallBack?: (date: Date | null) => void;
+    fCallBack?: (date: Date | [Date, Date]) => void;
     inputClassName?: string;
     isError?: boolean;
     isUpdateField?: boolean;
@@ -25,15 +25,16 @@ interface Props {
     minDate?: Date;
     pattern?: string;
     placeholder?: string;
-    refForm: string;
+    refForm?: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    defaultValueShowMonthYearPicker?: boolean;
+    defaultValueShowMonthPicker?: boolean;
     defaultShowTimePicker?: boolean;
+    isRange?: boolean;
 }
 
 registerLocale("en-GB", enGB);
@@ -62,12 +63,16 @@ const InputDateTime = ({
     timerSetting = 5000,
     updateFunction,
     errorMessage,
-    defaultValueShowMonthYearPicker,
+    defaultValueShowMonthPicker,
     defaultShowTimePicker,
+    isRange,
 }: Props): ReactElement => {
-    const [startDate, setStartDate] = useState<Date | null>(defaultValue);
-    const [showMonthYearPicker, setShowMonthYearPicker] = useState<boolean>(defaultValueShowMonthYearPicker);
+    const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
+
+    const [startDate, setStartDate] = useState<Date>(isRange ? defaultValue[0] : defaultValue);
+    const [endDate, setEndDate] = useState<Date | null>(isRange ? defaultValue[1] : null);
+
     const [state, dispatch] = useReducer(inputReducer, {
         isCancelable: false,
         isCooldown: false,
@@ -84,11 +89,33 @@ const InputDateTime = ({
         register &&
             register(refForm, {
                 required,
-                validate: (value: Date) => (maxDate ? (isAfter(value, maxDate) ? false : true) : true),
+                validate: {
+                    maxDate: (value) => {
+                        if (!maxDate) {
+                            return true;
+                        }
+                        if (isRange) {
+                            return isBefore(value[0], maxDate) && isBefore(value[1], maxDate);
+                        } else {
+                            return isBefore(value, maxDate);
+                        }
+                    },
+                    minDate: (value) => {
+                        if (!minDate) {
+                            return true;
+                        }
+                        if (isRange) {
+                            return isAfter(value[0], minDate);
+                        } else {
+                            return isAfter(value, minDate);
+                        }
+                    },
+                },
             });
-        dispatch({ type: "RESET", payload: defaultValue as Date });
+        dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
-        setStartDate(defaultValue);
+        setStartDate(isRange ? defaultValue[0] : defaultValue);
+        isRange && setEndDate(defaultValue[1]);
         return () => {
             isLastMount.current = true;
         };
@@ -103,7 +130,15 @@ const InputDateTime = ({
         ) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction) {
-                    updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    if (isRange) {
+                        updateFunction(
+                            refForm,
+                            `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
+                                `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
+                        );
+                    } else {
+                        updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    }
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -111,11 +146,21 @@ const InputDateTime = ({
                 }
             }, timerSetting);
             dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
+
             return () => {
                 if (isLastMount.current) {
                     clearTimeout(newTimeout);
-                    updateFunction &&
-                        updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                    if (updateFunction) {
+                        if (isRange) {
+                            updateFunction(
+                                refForm,
+                                `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
+                                    `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
+                            );
+                        } else {
+                            updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
+                        }
+                    }
                     isLastMount.current = false;
                 }
             };
@@ -125,19 +170,19 @@ const InputDateTime = ({
     const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
             <IconChevron
-                onClick={() => (!showMonthYearPicker ? decreaseMonth() : decreaseYear())}
+                onClick={() => (!showMonthPicker ? decreaseMonth() : decreaseYear())}
                 width={12}
                 className="transform rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
                 fill="#FFF"
             />
             <div
                 onClick={() => {
-                    setShowMonthYearPicker(!showMonthYearPicker);
+                    setShowMonthPicker(!showMonthPicker);
                     setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
             >
-                {!showMonthYearPicker && (
+                {!showMonthPicker && (
                     <span className="mr-2">
                         {monthDate.toLocaleString(lang, {
                             month: "short",
@@ -150,7 +195,7 @@ const InputDateTime = ({
                     })}
                 </span>
             </div>
-            {!showMonthYearPicker && startDate && (
+            {!showMonthPicker && startDate && (
                 <ClockLogo
                     onClick={() => setShowTimePicker(!showTimePicker)}
                     fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
@@ -159,14 +204,50 @@ const InputDateTime = ({
                 />
             )}
             <IconChevron
-                onClick={() => (!showMonthYearPicker ? increaseMonth() : increaseYear())}
+                onClick={() => (!showMonthPicker ? increaseMonth() : increaseYear())}
                 width={12}
                 className="transform -rotate-90 hover:scale-110 transition-all hover:cursor-pointer"
                 fill="#FFF"
             />
         </div>
     );
-    const customDay = (day) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
+    const customDay = (day: number) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
+
+    const onChange = (dates: Date | [Date, Date]) => {
+        fCallBack && fCallBack(dates);
+        setValue && setValue(refForm, dates, { shouldValidate: true });
+        if (Array.isArray(dates)) {
+            setStartDate(dates[0]);
+            setEndDate(dates[1]);
+            if (isUpdateField) {
+                if (!isError) {
+                    if (dates[1]) {
+                        if (!isEqual(state.previous[0], dates[0]) && !isEqual(state.previous[1], dates[1])) {
+                            dispatch({ type: "UPDATING", payload: [dates[0], dates[1]] });
+                        } else {
+                            dispatch({ type: "CANCEL_UPDATE" });
+                        }
+                    } else {
+                        dispatch({ type: "CANCEL_UPDATE" });
+                    }
+                } else {
+                    dispatch({ type: "SHOW_DOT" });
+                }
+            }
+        } else {
+            setStartDate(dates);
+            if (isUpdateField) {
+                if (!isEqual(state.previous as Date, dates)) {
+                    dispatch({ type: "UPDATING", payload: dates });
+                } else {
+                    dispatch({ type: "CANCEL_UPDATE" });
+                }
+            }
+        }
+        if (state.timeoutId) {
+            clearTimeout(state.timeoutId);
+        }
+    };
 
     return (
         <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
@@ -185,7 +266,12 @@ const InputDateTime = ({
                                 fCallBackCancel={(): void => {
                                     if (setValue && state.previous) {
                                         setValue(refForm, state.previous);
-                                        setStartDate(state.previous as Date);
+                                        if (isRange) {
+                                            setStartDate(state.previous[0] as Date);
+                                            setEndDate(state.previous[1] as Date);
+                                        } else {
+                                            setStartDate(state.previous as Date);
+                                        }
                                     }
                                     if (state.timeoutId) {
                                         clearTimeout(state.timeoutId);
@@ -215,28 +301,19 @@ const InputDateTime = ({
                 dateFormat="yyyy/MM/dd HH:mm"
                 timeFormat="HH:mm"
                 locale={lang}
-                showMonthYearPicker={showMonthYearPicker}
+                showMonthYearPicker={showMonthPicker}
                 showTimeInput={showTimePicker}
-                timeInputLabel=""
-                onChange={(date: Date): void => {
-                    fCallBack && fCallBack(date);
-                    setStartDate(date);
-                    setValue && setValue(refForm, date, { shouldValidate: true });
-                    if (isUpdateField) {
-                        if (date && !isError) {
-                            if (!isEqual(state.previous as Date, date)) {
-                                dispatch({ type: "UPDATING", payload: date });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }
-                        } else {
-                            dispatch({ type: "SHOW_DOT" });
-                        }
-                        if (state.timeoutId) {
-                            clearTimeout(state.timeoutId);
-                        }
+                selectsRange={isRange}
+                onChange={onChange}
+                onCalendarClose={() => {
+                    if (isRange && endDate === null) {
+                        setStartDate(defaultValue[0]);
+                        setEndDate(defaultValue[1]);
                     }
                 }}
+                startDate={startDate}
+                endDate={endDate}
+                timeInputLabel=""
             />
         </label>
     );
