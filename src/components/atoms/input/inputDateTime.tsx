@@ -67,7 +67,7 @@ const InputDateTime = ({
     defaultShowTimePicker,
     isRange,
 }: Props): ReactElement => {
-    const [showMonthPicker, setshowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
+    const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
 
     const [startDate, setStartDate] = useState<Date>(isRange ? defaultValue[0] : defaultValue);
@@ -177,7 +177,7 @@ const InputDateTime = ({
             />
             <div
                 onClick={() => {
-                    setshowMonthPicker(!showMonthPicker);
+                    setShowMonthPicker(!showMonthPicker);
                     setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
