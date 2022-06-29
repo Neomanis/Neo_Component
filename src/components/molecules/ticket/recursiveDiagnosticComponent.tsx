@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Icon, Button } from "../../atoms";
 import { CautionLogoFullInvert } from "../../../img/svg";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface IError {
     name: string;
@@ -29,7 +30,7 @@ interface Props {
     executionTime: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     diagDataKeys: any[];
-    getBookName: (bookName: string) => void;
+    getBookName: (bookName: string) => string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,6 +93,7 @@ const RecursiveDiagnosticComponent = ({
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const hasChildren = results && results.length;
+    const { t } = useTranslation();
 
     return (
         <div
@@ -117,18 +119,20 @@ const RecursiveDiagnosticComponent = ({
                                     <Icon className="mx-2" fontIcon={faBook} />
                                     {name}
                                 </div>
-                                <Button
-                                    className="h-8 w-36 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
-                                    data={"Ouvrir le livre"}
-                                    fCallback={(e) => {
-                                        e.stopPropagation();
-                                        getBookName(name);
-                                    }}
-                                    style={{
-                                        background:
-                                            "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
-                                    }}
-                                />
+                                {!isFolded && (
+                                    <Button
+                                        className="h-8 w-36 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
+                                        data={t("book.openBook")}
+                                        fCallback={(e) => {
+                                            e.stopPropagation();
+                                            getBookName(name);
+                                        }}
+                                        style={{
+                                            background:
+                                                "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
+                                        }}
+                                    />
+                                )}
                             </div>
                         )}
                         {executionTime && (
