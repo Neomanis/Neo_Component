@@ -35,6 +35,7 @@ const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
                         results={it.results}
                         awaiting={awaiting}
                         diagDataKeys={dataObj}
+                        getBookName={(bookname) => console.log(bookname)}
                     />
                 );
             })}
