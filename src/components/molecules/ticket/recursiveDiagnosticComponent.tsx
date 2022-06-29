@@ -30,7 +30,7 @@ interface Props {
     executionTime: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     diagDataKeys: any[];
-    getBookName: (bookName: string) => string;
+    redirectTo: (bookName: string) => void;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -89,7 +89,7 @@ const RecursiveDiagnosticComponent = ({
     awaiting,
     executionTime,
     diagDataKeys,
-    getBookName,
+    redirectTo,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const hasChildren = results && results.length;
@@ -125,7 +125,7 @@ const RecursiveDiagnosticComponent = ({
                                         data={t("book.openBook")}
                                         fCallback={(e) => {
                                             e.stopPropagation();
-                                            getBookName(name);
+                                            redirectTo(name);
                                         }}
                                         style={{
                                             background:
@@ -193,12 +193,7 @@ const RecursiveDiagnosticComponent = ({
                 {hasChildren &&
                     !isFolded &&
                     results.map((item, key) => (
-                        <RecursiveDiagnosticComponent
-                            key={key}
-                            {...item}
-                            awaiting={awaiting}
-                            getBookName={getBookName}
-                        />
+                        <RecursiveDiagnosticComponent key={key} {...item} awaiting={awaiting} redirectTo={redirectTo} />
                     ))}
                 {hasChildren && !isFolded && <Icon fontIcon={faChevronUp} />}
             </div>
