@@ -32,7 +32,7 @@ interface Props {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    defaultValueshowMonthPicker?: boolean;
+    defaultValueShowMonthPicker?: boolean;
     defaultShowTimePicker?: boolean;
     isRange?: boolean;
 }
@@ -63,11 +63,11 @@ const InputDateTime = ({
     timerSetting = 5000,
     updateFunction,
     errorMessage,
-    defaultValueshowMonthPicker,
+    defaultValueShowMonthPicker,
     defaultShowTimePicker,
     isRange,
 }: Props): ReactElement => {
-    const [showMonthPicker, setshowMonthPicker] = useState<boolean>(defaultValueshowMonthPicker);
+    const [showMonthPicker, setshowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
 
     const [startDate, setStartDate] = useState<Date>(isRange ? defaultValue[0] : defaultValue);
