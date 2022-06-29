@@ -307,7 +307,8 @@ const InputDateTime = ({
                 onChange={onChange}
                 onCalendarClose={() => {
                     if (isRange && endDate === null) {
-                        setStartDate(null);
+                        setStartDate(defaultValue[0]);
+                        setEndDate(defaultValue[1]);
                     }
                 }}
                 startDate={startDate}

@@ -4,7 +4,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
-import { addDays, addMonths } from "date-fns";
+import { addDays, addMonths, setDay } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
@@ -66,4 +66,12 @@ InputDateTimeUpdateRange.args = {
     maxDate: addMonths(new Date(), 5),
     isRange: true,
     updateFunction: (reform, data) => console.log(reform, data),
+};
+export const InputDateTimeFCallRange = Template.bind({});
+InputDateTimeFCallRange.args = {
+    lang: "fr-FR",
+    defaultValue: [setDay(new Date(), 2), new Date()],
+    maxDate: new Date(),
+    isRange: true,
+    fCallBack: (date) => console.log(date),
 };
