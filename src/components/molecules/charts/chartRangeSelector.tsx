@@ -1,11 +1,5 @@
-import { ReactElement, useContext, useState, useEffect, useMemo } from "react";
-import {
-    getHexColorFromTailwindColor,
-    IconChevron,
-    getDateFnsLocaleFromUserLang,
-    InputDateTime,
-} from "@neomanis/neo-component";
-import { GlobalContext } from "../../../context/globalContext";
+import React, { ReactElement, useState, useEffect, useMemo } from "react";
+
 import {
     setISOWeek,
     format,
@@ -17,12 +11,18 @@ import {
     monthsToQuarters,
     addQuarters,
     getYear,
+    endOfDay,
+    startOfDay,
 } from "date-fns";
 import { useTranslation } from "@neomanis/neo-translation";
-import { dayZeroToEnd } from "../../utils/statisticsTool";
+import { getDateFnsLocaleFromUserLang } from "../../utils/dateTools";
+import InputDateTime from "../../atoms/input/inputDateTime";
+import { IconChevron } from "../../../img/svg";
+import { getHexColorFromTailwindColor } from "../../utils/tools";
 
 interface Props {
     fCallBackData: (dates: [number, number]) => void;
+    language?: string;
 }
 
 enum rangeDateValue {
@@ -34,16 +34,12 @@ enum rangeDateValue {
     custom = "custom",
 }
 
-const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
-    const { user } = useContext(GlobalContext);
+const ChartRangeSelector = ({ fCallBackData, language = "en-GB" }: Props): ReactElement => {
     const { t } = useTranslation();
     const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue>(rangeDateValue.daily);
     const [offset, setOffset] = useState<number>(0);
 
-    const [customRange, setCustomRange] = useState<[Date, Date]>([
-        dayZeroToEnd(new Date()).begining,
-        dayZeroToEnd(new Date()).end,
-    ]);
+    const [customRange, setCustomRange] = useState<[Date, Date]>([startOfDay(new Date()), endOfDay(new Date())]);
 
     const refDate: Date = useMemo(() => new Date(), []);
 
@@ -57,19 +53,19 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
     ];
 
     function dayRangePicker(date: Date, offsetDay: number): { start: Date; end: Date } {
-        const startDate = setDay(dayZeroToEnd(date).begining, offsetDay, {
-            locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+        const startDate = setDay(startOfDay(date), offsetDay, {
+            locale: getDateFnsLocaleFromUserLang(language),
         });
-        const endDate = setDay(dayZeroToEnd(date).end, offsetDay, {
-            locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+        const endDate = setDay(endOfDay(date), offsetDay, {
+            locale: getDateFnsLocaleFromUserLang(language),
         });
         return { start: startDate, end: endDate };
     }
 
     function weekRangePicker(date: Date, offsetWeek: number): { start: Date; end: Date } {
         // 1 is monday value on setDay, 7 is sunday
-        const startDate = setISOWeek(setDay(dayZeroToEnd(date).begining, 1), offsetWeek);
-        const endDate = setISOWeek(setDay(dayZeroToEnd(date).end, 7), offsetWeek);
+        const startDate = setISOWeek(setDay(startOfDay(date), 1), offsetWeek);
+        const endDate = setISOWeek(setDay(endOfDay(date), 7), offsetWeek);
         return { start: setISOWeek(startDate, offsetWeek), end: setISOWeek(endDate, offsetWeek) };
     }
 
@@ -81,12 +77,12 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
         const month = getMonthFormat > 9 ? getMonthFormat : `0${getMonthFormat}`;
         const startDate = new Date(
             format(new Date(`${year}/${month}/1`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         const endDate = new Date(
             format(new Date(`${year}/${month}/${daysInMonth}`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         return { start: startDate, end: endDate };
@@ -105,13 +101,13 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
         const actualQuarterMonthDates = quarterRange[actualQuarterMonth];
         const startDate = new Date(
             format(new Date(`${year}/${actualQuarterMonthDates.startMonth}/1`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         const daysInMonth = getDaysInMonth(new Date(`${year}/${actualQuarterMonthDates.endMonth}/1`));
         const endDate = new Date(
             format(new Date(`${year}/${actualQuarterMonthDates.endMonth}/${daysInMonth}`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         return { start: startDate, end: endDate };
@@ -121,12 +117,12 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
         const year = getYear(date) + offsetYear;
         const startDate = new Date(
             format(new Date(`${year}/01/01`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         const endDate = new Date(
             format(new Date(`${year}/12/31 23:59:59`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(user.language ?? "en-GB"),
+                locale: getDateFnsLocaleFromUserLang(language),
             })
         );
         return { start: startDate, end: endDate };
@@ -152,25 +148,23 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
     }, [typeRangeSelect, offset, customRange]);
 
     const textShow = useMemo(() => {
-        if (user.language) {
-            switch (typeRangeSelect) {
-                case rangeDateValue.daily:
-                    return format(dateRange.start, "EEEE P", {
-                        locale: getDateFnsLocaleFromUserLang(user.language),
-                    });
-                case rangeDateValue.weekly:
-                    return `${t("date.shortDateSelector.week")} ${format(dateRange.start, "I yyyy")}`;
-                case rangeDateValue.monthly:
-                    return format(dateRange.start, "MMMM yyyy", {
-                        locale: getDateFnsLocaleFromUserLang(user.language),
-                    });
-                case rangeDateValue.quarterly:
-                    return t("date.shortDateSelector.quarter").charAt(0) + format(dateRange.start, "Q yyyy");
-                case rangeDateValue.yearly:
-                    return dateRange.start.getFullYear().toString();
-                default:
-                    return undefined;
-            }
+        switch (typeRangeSelect) {
+            case rangeDateValue.daily:
+                return format(dateRange.start, "EEEE P", {
+                    locale: getDateFnsLocaleFromUserLang(language),
+                });
+            case rangeDateValue.weekly:
+                return `${t("date.shortDateSelector.week")} ${format(dateRange.start, "I yyyy")}`;
+            case rangeDateValue.monthly:
+                return format(dateRange.start, "MMMM yyyy", {
+                    locale: getDateFnsLocaleFromUserLang(language),
+                });
+            case rangeDateValue.quarterly:
+                return t("date.shortDateSelector.quarter").charAt(0) + format(dateRange.start, "Q yyyy");
+            case rangeDateValue.yearly:
+                return dateRange.start.getFullYear().toString();
+            default:
+                return undefined;
         }
     }, [typeRangeSelect, dateRange]);
 
@@ -200,7 +194,7 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
     }
 
     return (
-        <ul className="relative flex text-neo-blue-secondary font-bold text-sm">
+        <ul data-testid="chartRangeSelector-body" className="relative flex text-neo-blue-secondary font-bold text-sm">
             {data.map((item, key) => (
                 <li className="mx-2 flex items-center" key={key}>
                     <p
@@ -208,7 +202,7 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
                         ${
                             item.value === typeRangeSelect
                                 ? "bg-neo-blue text-white"
-                                : "cursor-pointer hover:bg-neo-blue-secondary hover:text-white "
+                                : "cursor-pointer hover:bg-neo-blue-secondary hover:text-white"
                         }`}
                         onClick={() => {
                             setTypeRangeSelect(item.value);
@@ -248,15 +242,15 @@ const ChartRangeSelector = ({ fCallBackData }: Props): ReactElement => {
                     {item.value === typeRangeSelect && item.value === rangeDateValue.custom && (
                         <InputDateTime
                             className="w-72 px-4 z-50"
-                            defaultValue={[dayZeroToEnd(new Date()).begining, dayZeroToEnd(new Date()).end]}
+                            defaultValue={[startOfDay(new Date()), endOfDay(new Date())]}
                             maxDate={new Date()}
                             refForm="date_creation_range"
-                            lang={user.language}
+                            lang={language}
                             fCallBack={(dates) => {
-                                const formatDate = dates as [Date, Date];
-                                setCustomRange([formatDate[0], formatDate[1]]);
+                                const formatDate = dates as [Date, Date | null];
+                                formatDate[1] !== null && setCustomRange([formatDate[0], formatDate[1]]);
                             }}
-                            isRange={true}
+                            isRange
                         />
                     )}
                 </li>
