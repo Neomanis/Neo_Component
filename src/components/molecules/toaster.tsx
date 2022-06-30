@@ -11,8 +11,6 @@ interface Props {
     emotion?: string;
     fCallBackCancel?: () => void;
     fCallBackRefresh?: () => void;
-    progressColor1?: string;
-    progressColor2?: string;
     refreshing?: boolean;
     refreshDuration?: number;
     title?: string;
