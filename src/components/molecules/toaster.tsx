@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../atoms";
 import { NeoLogo, NeoLogoSad } from "../../img/svg";
@@ -27,22 +27,15 @@ const Toaster = ({
     emotion,
     fCallBackCancel,
     fCallBackRefresh,
-    progressColor1 = "#ff5155",
-    progressColor2 = "#ff1664",
     refreshing = false,
     refreshDuration = 5,
     title,
     titleClassName,
 }: Props): ReactElement => {
-    const [progress, setProgress] = useState(0);
     const timerCall = useRef<NodeJS.Timeout>();
 
     useEffect(() => {
         if (refreshing) {
-            setTimeout(() => {
-                setProgress(100);
-            }, 50);
-
             timerCall.current = setTimeout(() => {
                 fCallBackRefresh();
             }, (refreshDuration + 1) * 1000);
@@ -50,7 +43,7 @@ const Toaster = ({
         return () => clearTimeout(timerCall.current);
     }, [refreshing]);
 
-    function renderSwitchNeoLogo(emotion) {
+    function renderSwitchNeoLogo(emotion: string) {
         switch (emotion) {
             case "happy":
                 return <NeoLogo className="animate-bounceSlow" viewBox="225 0 550 325" />;
@@ -76,21 +69,6 @@ const Toaster = ({
                     </p>
                 </div>
             </div>
-            {refreshing && (
-                <div className="absolute bottom-0 w-full">
-                    <div
-                        className="py-1 border-b-4"
-                        style={{
-                            width: progress + "%",
-                            transition: refreshDuration + "s linear",
-                            transitionDelay: "0.5s",
-                            borderImageSlice: "1",
-                            borderImageSource:
-                                "linear-gradient(to left, " + progressColor1 + ", " + progressColor2 + ")",
-                        }}
-                    ></div>
-                </div>
-            )}
             {closable && (
                 <div className="pr-2 -mt-3">
                     <Button
@@ -98,7 +76,6 @@ const Toaster = ({
                         className={"text-neo-link opacity-50 transform hover:scale-105"}
                         fCallback={(): void => {
                             fCallBackCancel();
-                            setProgress(0);
                             clearTimeout(timerCall.current);
                         }}
                         testId="toasterClose"
