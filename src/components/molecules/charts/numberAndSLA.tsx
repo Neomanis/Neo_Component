@@ -39,6 +39,7 @@ const NumberAndSLA = ({
                 {isNotNullOrUndefined(ticketNumber) && (
                     <div className="flex items-center" data-testid="number-and-SLA-ticket-diag-body">
                         <Pill
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                             data={ticketNumber!}
                             className="bg-neo-bg-B rounded-full w-20 h-10 mr-4 font-extrabold text-white text-2xl"
                         />
@@ -48,6 +49,7 @@ const NumberAndSLA = ({
                 {isNotNullOrUndefined(diagnosticNumber) && (
                     <div className="flex items-center">
                         <Pill
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                             data={diagnosticNumber!}
                             className="bg-neo-bg-B rounded-full w-20 h-10 mr-4 font-extrabold text-white text-2xl"
                         />
@@ -61,6 +63,7 @@ const NumberAndSLA = ({
                     >
                         <div className="flex items-center mb-2">
                             <Pill
+                                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                                 data={TTO!}
                                 className="bg-neo-stats-TTO rounded-full w-16 h-8 mr-4 font-extrabold text-white"
                             />
@@ -68,6 +71,7 @@ const NumberAndSLA = ({
                         </div>
                         <div className="flex items-center">
                             <Pill
+                                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                                 data={TTR!}
                                 className="bg-neo-stats-TTR rounded-full w-16 h-8 mr-4 font-extrabold text-white"
                             />
