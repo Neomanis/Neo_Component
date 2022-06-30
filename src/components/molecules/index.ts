@@ -1,6 +1,8 @@
+import AgentAndUser from "./charts/agentAndUser";
 import AnswerForm from "./technicalQuestion/answerForm";
 import AnswerItem from "./technicalQuestion/answerItem";
 import AvatarEditor from "./user/avatarEditor";
+import ChartRangeSelector from "./charts/chartRangeSelector";
 import ChatCard from "./chat/chatCard";
 import Grid from "./ticket/grid";
 import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
@@ -10,6 +12,7 @@ import NeoBotProcess from "./chat/neoBotProcess";
 import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
 import NotificationItem from "./notification/notificationItem";
+import NumberAndSLA from "./charts/numberAndSLA";
 import OutageCard from "./notification/outageCard";
 import OutageItem from "./notification/outageItem";
 import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
@@ -26,9 +29,11 @@ import ApprovalCard from "./notification/approvalCard";
 import WritingDots from "../atoms/chat/writingDots";
 
 export {
+    AgentAndUser,
     AnswerForm,
     AnswerItem,
     AvatarEditor,
+    ChartRangeSelector,
     ChatCard,
     Grid,
     InlineShadowBoxWrapper,
@@ -38,6 +43,7 @@ export {
     NotificationCard,
     NotificationContainer,
     NotificationItem,
+    NumberAndSLA,
     OutageCard,
     OutageItem,
     RecursiveDiagnosticComponent,
