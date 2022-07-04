@@ -82,19 +82,19 @@ const Ticket = ({
                         />
                     </div>
                     <div
-                        className={`flex flex-col items-center relative w-full
+                        className={`flex flex-col items-center relative w-full mb-2
                         opacity-${getOpacity()}`}
                         style={{ zIndex: 2 }}
                         data-testid="ticket-opacity"
                     >
-                        <div className="text-neo-bg-A">
+                        <div className="text-neo-bg-A" style={{ marginBottom: 2 }}>
                             <IconTicketCategorie id={ticket.itilcategories_id} />
-                            <div className="font-extrabold text-xs">
+                            <div className="font-extrabold text-[13px]">
                                 <Title type="h3" data={getTicketTitle(ticket, t)} />
                             </div>
                         </div>
                         <div
-                            className={`text-center text-xs flex items-center justify-center mt-1 mb-3
+                            className={`text-center text-xs flex items-center justify-center mb-1
                             ${
                                 (ticket.status === 1 || ticket.status === 2) &&
                                 ticket.priority &&
@@ -111,7 +111,7 @@ const Ticket = ({
                         </div>
                         <div>
                             {ticket && ticket.status !== 5 && ticket.status !== 6 && (
-                                <div className="text-white text-xxs flex justify-center item-center transform -translate-y-1">
+                                <div className="text-white text-xxs flex justify-center item-center">
                                     <div className="w-3 h-3 mr-1" style={{ marginTop: 2 }}>
                                         <ClockLogo fill="#fff" />
                                     </div>
