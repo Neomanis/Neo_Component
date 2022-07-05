@@ -1,5 +1,5 @@
 import { i18n } from "@neomanis/neo-translation";
-import { formatDistanceToNowStrict, Locale, format, intervalToDuration, isFuture } from "date-fns";
+import { formatDistanceToNowStrict, Locale, format, intervalToDuration, isFuture, getTime } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
 
 export function getTimeToNowWithTranslation(date: string, lang?: string): string {
@@ -34,13 +34,17 @@ export function getTimeToNowWithTranslation(date: string, lang?: string): string
 
 export function getFormatedTimeToNowExtended(date: string, lang: string | undefined): string {
     const formatToDate = new Date(date);
-    if (isFuture(formatToDate)) {
-        const myLanguage = i18n.getFixedT(lang ? lang : "en-US");
+    const delay = getTime(formatToDate) - getTime(new Date());
+    const myLanguage = i18n.getFixedT(lang ? lang : "en-US");
+    // We define 500 ms to fit formatDistanceToNowStrict rounding method (round)
+    if (isFuture(formatToDate) || delay >= -500) {
         return myLanguage("global.now").toLowerCase();
     }
     const locale = getDateFnsLocaleFromUserLang(lang);
-    const timeToNow = formatDistanceToNowStrict(formatToDate, { addSuffix: true, locale: locale });
-    return timeToNow;
+    return formatDistanceToNowStrict(formatToDate, {
+        addSuffix: true,
+        locale: locale,
+    });
 }
 
 export function getDateFnsLocaleFromUserLang(lang: string): Locale {
