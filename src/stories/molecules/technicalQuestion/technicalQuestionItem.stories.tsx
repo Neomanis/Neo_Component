@@ -13,6 +13,8 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
     return (
         <div style={{ width: 600 }}>
             <TechnicalQuestionItem {...args} />
+            <TechnicalQuestionItem {...args} />
+            <TechnicalQuestionItem {...args} />
         </div>
     );
 };

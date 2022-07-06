@@ -43,12 +43,13 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className={`list-none m-4 text-white cursor-pointer useOnClickOutsideException z-10 flex justify-between items-stretch
+            className={`m-4 list-none text-white cursor-pointer useOnClickOutsideException flex justify-between items-stretch z-10
             ${!isSelected && "transform hover:scale-105 transition-transform duration-[90ms]"}`}
             onClick={() => {
                 openTechnicalQuestion();
             }}
             data-testid="tq-body"
+            style={{ zIndex: "initial", position: "relative" }}
         >
             <div
                 data-testid="tq-head"
@@ -75,15 +76,17 @@ const TechnicalQuestionItem = ({
                         className="font-bold text-lg mr-2 truncate text-white"
                         style={{ maxWidth: "265px" }}
                     />
-                    <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
-                        <Icon
-                            fontIcon={followed ? faEye : faEyeSlash}
-                            fCallBack={(e) => {
-                                e.stopPropagation();
-                                followTechnicalQuestion(id);
-                            }}
-                        />
-                    </Tooltip>
+                    <div className="z-20">
+                        <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
+                            <Icon
+                                fontIcon={followed ? faEye : faEyeSlash}
+                                fCallBack={(e) => {
+                                    e.stopPropagation();
+                                    followTechnicalQuestion(id);
+                                }}
+                            />
+                        </Tooltip>
+                    </div>
                 </div>
                 <div
                     data-testid="tq-middle-bottom"
