@@ -1,17 +1,16 @@
-import React, { ReactElement, useEffect, useReducer, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { format, isEqual, isAfter, isBefore } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
 import { ClockLogo, IconChevron } from "../../../img/svg";
 import { getHexColorFromTailwindColor } from "../../utils";
+import { useInputs } from "../../utils/hooks/useInputs";
 
 interface Props {
     className?: string;
-    defaultValue: Date | [Date, Date];
     dotClassName?: string;
     errorMessage?: string;
     fCallBack?: (date: Date | [Date, Date]) => void;
@@ -34,8 +33,9 @@ interface Props {
     updateFunction?: (refForm: string, value: string) => void;
     defaultValueShowMonthPicker?: boolean;
     defaultShowTimePicker?: boolean;
-    isRange?: boolean;
 }
+
+type ConditionalProps = { isRange?: true; defaultValue: [Date, Date] } | { isRange?: false; defaultValue: Date };
 
 registerLocale("en-GB", enGB);
 registerLocale("en-US", enUS);
@@ -66,22 +66,22 @@ const InputDateTime = ({
     defaultValueShowMonthPicker,
     defaultShowTimePicker,
     isRange,
-}: Props): ReactElement => {
+}: Props & ConditionalProps): ReactElement => {
+    const typedDefaultValue = useMemo(() => {
+        if (isRange === true) {
+            return defaultValue[0];
+        }
+        if (isRange === false) {
+            return defaultValue;
+        }
+    }, [defaultValue]);
+
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
-
-    const [startDate, setStartDate] = useState<Date>(isRange ? defaultValue[0] : defaultValue);
+    const [startDate, setStartDate] = useState<Date>(typedDefaultValue);
     const [endDate, setEndDate] = useState<Date | null>(isRange ? defaultValue[1] : null);
 
-    const [state, dispatch] = useReducer(inputReducer, {
-        isCancelable: false,
-        isCooldown: false,
-        isSuccess: false,
-        previous: defaultValue,
-        timeoutId: undefined,
-        trigger: false,
-        updated: defaultValue,
-    });
+    const [state, dispatch] = useInputs(defaultValue);
 
     const isLastMount = useRef(false);
 
@@ -114,7 +114,7 @@ const InputDateTime = ({
             });
         dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
-        setStartDate(isRange ? defaultValue[0] : defaultValue);
+        setStartDate(typedDefaultValue);
         isRange && setEndDate(defaultValue[1]);
         return () => {
             isLastMount.current = true;

@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
-import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
+import { useInputs } from "../../utils/hooks/useInputs";
 
 interface Props {
     className?: string;
@@ -69,20 +69,12 @@ const Input = ({
     typeInput,
     updateFunction,
 }: Props): ReactElement => {
-    const [state, dispatch] = useReducer(inputReducer, {
-        isCancelable: false,
-        isCooldown: false,
-        isSuccess: false,
-        previous: defaultValue,
-        timeoutId: undefined,
-        trigger: false,
-        updated: defaultValue,
-    });
+    const [state, dispatch] = useInputs(defaultValue);
 
     const isLastMount = useRef(false);
 
     useEffect(() => {
-        dispatch({ type: "RESET", payload: defaultValue as string });
+        dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
             isLastMount.current = true;
@@ -93,7 +85,7 @@ const Input = ({
         if (isUpdateField && state.updated && state.updated !== state.previous) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction && state.updated) {
-                    updateFunction(refForm, state.updated as string);
+                    updateFunction(refForm, state.updated);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -104,7 +96,7 @@ const Input = ({
             return () => {
                 if (isLastMount.current) {
                     clearTimeout(newTimeout);
-                    updateFunction && updateFunction(refForm, state.updated as string);
+                    updateFunction && updateFunction(refForm, state.updated);
                     isLastMount.current = false;
                 }
             };
@@ -128,7 +120,7 @@ const Input = ({
                                 isSuccess={state.isSuccess}
                                 fCallBackCancel={(): void => {
                                     if (onDotCancelCallBack) {
-                                        onDotCancelCallBack(state.previous as string);
+                                        onDotCancelCallBack(state.previous);
                                     }
                                     if (setValue && clearErrors) {
                                         setValue(refForm, state.previous);
