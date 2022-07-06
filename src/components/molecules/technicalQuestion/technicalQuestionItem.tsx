@@ -76,17 +76,15 @@ const TechnicalQuestionItem = ({
                         className="font-bold text-lg mr-2 truncate text-white"
                         style={{ maxWidth: "265px" }}
                     />
-                    <div className="z-20">
-                        <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
-                            <Icon
-                                fontIcon={followed ? faEye : faEyeSlash}
-                                fCallBack={(e) => {
-                                    e.stopPropagation();
-                                    followTechnicalQuestion(id);
-                                }}
-                            />
-                        </Tooltip>
-                    </div>
+                    <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
+                        <Icon
+                            fontIcon={followed ? faEye : faEyeSlash}
+                            fCallBack={(e) => {
+                                e.stopPropagation();
+                                followTechnicalQuestion(id);
+                            }}
+                        />
+                    </Tooltip>
                 </div>
                 <div
                     data-testid="tq-middle-bottom"
