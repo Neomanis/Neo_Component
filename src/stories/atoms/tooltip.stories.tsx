@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import { IconTicketCategorie, Tooltip } from "../..";
+import { Icon, IconTicketCategorie, Tooltip } from "../..";
 
 export default {
     component: Tooltip,
@@ -11,38 +11,22 @@ export default {
 
 const Template: ComponentStory<typeof Tooltip> = (args) => {
     return (
-        <div className="p-4 bg-neo-bg-B flex items-center w-1/4">
-            <Tooltip {...args} />
+        <div className="p-4 bg-neo-bg-B flex justify-center items-center w-96 h-96">
+            <Tooltip {...args} children={<Icon fontIcon={faExclamationCircle} className="text-white" />} />
         </div>
     );
 };
 
-export const tooltipIconDefault = Template.bind({});
-tooltipIconDefault.args = {
-    className: "border",
-    data: "data test",
-    fontIcon: faExclamationCircle,
-};
-
 export const tooltipIconTop = Template.bind({});
 tooltipIconTop.args = {
-    className: "",
-    data: "data test",
+    text: "test text jjdsjfjdsjfd fdjsjfdjs",
     fontIcon: faExclamationCircle,
-    position: "top",
+    position: "bottom",
 };
 
-export const tooltipComponentDefault = Template.bind({});
-tooltipComponentDefault.args = {
-    className: "",
-    component: <p>test</p>,
-    data: "data test",
-};
-
-export const tooltipComponentTop = Template.bind({});
-tooltipComponentTop.args = {
-    className: "",
+export const tooltipComponentBottom = Template.bind({});
+tooltipComponentBottom.args = {
     svg: <IconTicketCategorie />,
-    data: "data test",
+    text: "test textj cdjsj cjdsjcdj jdcjs gkfrk gfkd kfkdkfkdkfk k kdkfgkj",
     position: "top",
 };

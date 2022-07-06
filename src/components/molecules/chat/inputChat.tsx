@@ -60,19 +60,15 @@ const InputChat = ({
             />
             {privateMessage && (
                 <div className="py-3 px-2 w-10">
-                    <Tooltip
-                        data={t("chat.private")}
-                        className="pt-3 text-xs"
-                        component={
-                            <ButtonSwitch
-                                activeFontIcon={faLock}
-                                inactiveFontIcon={faLockOpen}
-                                activeClassName="flex text-neo-red"
-                                inactiveClassName="flex text-neo-link opacity-50"
-                                fCallback={fCallbackPrivateMessage}
-                            />
-                        }
-                    />
+                    <Tooltip position="bottom" text={t("chat.private")}>
+                        <ButtonSwitch
+                            activeFontIcon={faLock}
+                            inactiveFontIcon={faLockOpen}
+                            activeClassName="flex text-neo-red"
+                            inactiveClassName="flex text-neo-link opacity-50"
+                            fCallback={fCallbackPrivateMessage}
+                        />
+                    </Tooltip>
                 </div>
             )}
         </div>

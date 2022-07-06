@@ -6,7 +6,7 @@ import {
     getHexColorFromTailwindColor,
     getStatusOrPriorityColor,
 } from "../../utils";
-import { Title, Tooltip } from "../../atoms";
+import { Icon, Title, Tooltip } from "../../atoms";
 import { IconTechnicalQuestions } from "../../../img/svg";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -75,17 +75,15 @@ const TechnicalQuestionItem = ({
                         className="font-bold text-lg mr-2 truncate text-white"
                         style={{ maxWidth: "265px" }}
                     />
-                    <Tooltip
-                        position="top"
-                        className="z-20 px-4 py-1 text-white bg-neo-bg-A rounded text-xs"
-                        data={followed ? t("global.follow") : t("global.unfollow")}
-                        fCallback={(e) => {
-                            e.stopPropagation();
-                            followTechnicalQuestion(id);
-                        }}
-                        fontIcon={followed ? faEye : faEyeSlash}
-                        fontIconClassName={isSelected ? "text-white" : "text-neo-link"}
-                    />
+                    <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
+                        <Icon
+                            fontIcon={followed ? faEye : faEyeSlash}
+                            fCallBack={(e) => {
+                                e.stopPropagation();
+                                followTechnicalQuestion(id);
+                            }}
+                        />
+                    </Tooltip>
                 </div>
                 <div
                     data-testid="tq-middle-bottom"
