@@ -9,21 +9,18 @@ describe("Tooltip", () => {
                 <p>Hey oh</p>
             </Tooltip>
         );
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
         cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
-        cy.get('[data-testid="tooltip-bubble"]').should("not.have.class", "hidden");
-        cy.get('[data-testid="tooltip-body"]').trigger("mouseout");
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "hidden");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "group-hover:flex");
     });
 
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip text="El data" position="top" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-6");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-5");
     });
 
     it("should show tooltip bubble at the bottom", () => {
         mount(<Tooltip text="El data" position="bottom" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-6");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-5");
     });
 
     it("should show a icon", () => {
