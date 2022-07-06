@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import inputReducer from "../../utils/reducers/inputReducer";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
+import { useInputs } from "../../utils/hooks/useInputs";
 
 interface Props {
     classNames?: {
@@ -47,22 +47,14 @@ const InputTextarea = ({
     timerSetting = 5000,
     updateFunction,
 }: Props): ReactElement => {
-    const [state, dispatch] = useReducer(inputReducer, {
-        isCancelable: false,
-        isCooldown: false,
-        isSuccess: false,
-        previous: defaultValue,
-        timeoutId: undefined,
-        trigger: false,
-        updated: defaultValue,
-    });
+    const [state, dispatch] = useInputs(defaultValue);
     const isLastMount = useRef(false);
 
     const inputRegister =
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     useEffect(() => {
-        dispatch({ type: "RESET", payload: defaultValue as string });
+        dispatch({ type: "RESET", payload: defaultValue });
         setValue && setValue(refForm, defaultValue);
         return () => {
             isLastMount.current = true;
@@ -73,7 +65,7 @@ const InputTextarea = ({
         if (isUpdateField && state.updated && state.updated !== state.previous) {
             const newTimeout = setTimeout((): void => {
                 if (updateFunction && state.updated) {
-                    updateFunction(refForm, state.updated as string);
+                    updateFunction(refForm, state.updated);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -84,7 +76,7 @@ const InputTextarea = ({
             return () => {
                 if (isLastMount.current) {
                     clearTimeout(newTimeout);
-                    updateFunction && updateFunction(refForm, state.updated as string);
+                    updateFunction && updateFunction(refForm, state.updated);
                     isLastMount.current = false;
                 }
             };

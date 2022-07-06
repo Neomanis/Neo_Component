@@ -1,13 +1,13 @@
-import React, { ReactElement, useEffect, useReducer, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { UseFormSetValue, UseFormRegister, FieldValues, UseFormClearErrors, UseFormWatch } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import "../../../styles/textEditor.css";
 
-import inputReducer from "../../utils/reducers/inputReducer";
 import Updater from "../updater";
 import { getHTMLValue } from "../../utils/tools";
+import { useInputs } from "../../utils/hooks/useInputs";
 
 interface Props {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -46,15 +46,7 @@ const TextEditor = ({
     className,
     watch,
 }: Props): ReactElement => {
-    const [state, dispatch] = useReducer(inputReducer, {
-        isCancelable: false,
-        isCooldown: false,
-        isSuccess: false,
-        previous: getHTMLValue(defaultValue),
-        timeoutId: undefined,
-        trigger: false,
-        updated: getHTMLValue(defaultValue),
-    });
+    const [state, dispatch] = useInputs(getHTMLValue(defaultValue));
 
     const modules = {
         toolbar: [

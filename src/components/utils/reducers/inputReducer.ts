@@ -1,34 +1,29 @@
-import { MultiValue } from "react-select";
-
-type State = {
-    stateFormated?: { value: number; label: string } | null | MultiValue<{ value: number; label: string }>;
+export type State<T> = {
+    stateFormated?: T;
     isCancelable: boolean;
     isCooldown: boolean;
     isSuccess: boolean;
-    previous: string | number | number[] | Date | [Date, Date | null] | undefined;
+    previous: T;
     timeoutId: NodeJS.Timeout | undefined;
     trigger: boolean;
-    updated: string | number | number[] | Date | [Date, Date | null] | undefined;
+    updated: T;
 };
 
-type Action =
+export type Action<T> =
     | {
           type: "TRACK_STATE";
-          payload: { value: number; label: string } | MultiValue<{ value: number; label: string }> | null;
+          payload: T;
       }
     | { type: "CANCEL_UPDATE" }
     | { type: "CLEAR_SUCCESS" }
-    | { type: "DEBUG"; payload: number | number[] | string | Date | [Date, Date] }
-    | { type: "HANDLE_DUPLICATE"; payload: { value: number; isUpdateField: boolean } }
-    | { type: "REMOVE_ITEM"; payload: { value: number[]; isUpdateField: boolean } }
-    | { type: "RESET"; payload: number | number[] | string | Date | [Date, Date] }
+    | { type: "DEBUG"; payload: T }
+    | { type: "RESET"; payload: T }
     | { type: "SET_TIMEOUT"; payload: NodeJS.Timeout }
     | { type: "SHOW_DOT" }
     | { type: "UPDATE_SUCCESS" }
-    | { type: "ON_CHANGE"; payload: string }
-    | { type: "UPDATING"; payload: string | number | Date | [Date, Date] | number[] };
+    | { type: "UPDATING"; payload: T };
 
-export default function inputReducer(state: State, action: Action): State {
+export default function inputReducer<T>(state: State<T>, action: Action<T>): State<T> {
     switch (action.type) {
         case "TRACK_STATE":
             return { ...state, stateFormated: action.payload };
@@ -40,23 +35,6 @@ export default function inputReducer(state: State, action: Action): State {
             // eslint-disable-next-line no-console
             console.log(action.payload);
             return { ...state };
-        case "HANDLE_DUPLICATE":
-            return {
-                ...state,
-                isCancelable: action.payload.isUpdateField,
-                isCooldown: action.payload.isUpdateField,
-                isSuccess: false,
-                trigger: !state.trigger,
-                updated: [...(state.updated as number[]), action.payload.value],
-            };
-        case "REMOVE_ITEM":
-            return {
-                ...state,
-                isCancelable: action.payload.isUpdateField,
-                isCooldown: action.payload.isUpdateField,
-                trigger: !state.trigger,
-                updated: action.payload.value,
-            };
         case "RESET":
             return {
                 ...state,
@@ -81,11 +59,6 @@ export default function inputReducer(state: State, action: Action): State {
                 isCooldown: true,
                 isSuccess: false,
                 trigger: !state.trigger,
-                updated: action.payload,
-            };
-        case "ON_CHANGE":
-            return {
-                ...state,
                 updated: action.payload,
             };
         default:
