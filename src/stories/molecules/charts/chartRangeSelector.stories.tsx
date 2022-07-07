@@ -24,5 +24,5 @@ export const Partial = Template.bind({});
 Partial.args = {
     fCallBackData: (dates) => console.log(dates),
     fullSelector: false,
-    classContainer: "border border-2 rounded p-2",
+    containerClassName: "border border-2 rounded p-2",
 };

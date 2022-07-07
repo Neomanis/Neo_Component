@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof ChatCard> = (args) => (
 
 export const Dropdown = Template.bind({});
 Dropdown.args = {
-    datas: [
+    data: [
         {
             label: "Network",
             value: "network",
@@ -39,7 +39,7 @@ Dropdown.args = {
 
 export const SingleChoice = Template.bind({});
 SingleChoice.args = {
-    datas: [
+    data: [
         {
             label: "Some network information",
             value: "network",

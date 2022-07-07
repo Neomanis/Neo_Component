@@ -24,7 +24,7 @@ interface Props {
     fCallBackData: (dates: [number, number]) => void;
     language?: string;
     fullSelector?: boolean;
-    classContainer?: string;
+    containerClassName?: string;
 }
 
 enum rangeDateValue {
@@ -40,7 +40,7 @@ const ChartRangeSelector = ({
     fCallBackData,
     language = "en-GB",
     fullSelector = true,
-    classContainer = "",
+    containerClassName = "",
 }: Props): ReactElement => {
     const { t } = useTranslation();
     const data = [
@@ -204,7 +204,7 @@ const ChartRangeSelector = ({
     }
 
     return (
-        <div className={classContainer}>
+        <div className={containerClassName}>
             <ul
                 data-testid="chartRangeSelector-body"
                 className="relative flex text-neo-blue-secondary font-bold text-sm"
