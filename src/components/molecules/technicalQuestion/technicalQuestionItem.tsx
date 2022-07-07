@@ -43,13 +43,12 @@ const TechnicalQuestionItem = ({
     return (
         <li
             key={id}
-            className={`m-4 list-none text-white cursor-pointer useOnClickOutsideException flex justify-between items-stretch z-10
+            className={`m-4 list-none text-white cursor-pointer flex justify-between items-stretch z-10
             ${!isSelected && "transform hover:scale-105 transition-transform duration-[90ms]"}`}
             onClick={() => {
                 openTechnicalQuestion();
             }}
             data-testid="tq-body"
-            style={{ zIndex: "initial", position: "relative" }}
         >
             <div
                 data-testid="tq-head"

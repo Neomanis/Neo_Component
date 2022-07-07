@@ -30,7 +30,7 @@ const Tooltip = ({ children, text, fontIcon, position, svg }: Props): ReactEleme
                     <div className="text-[10px] max-w-[250px]">{text}</div>
                 </div>
                 <IconArrowLeft
-                    width="20px"
+                    width={20}
                     className={`fill-neo-blue-extraDark transform z-0
                         ${position === "bottom" ? "rotate-90 -mb-[14px]" : "-rotate-90 -mt-[14px]"}`}
                 />
