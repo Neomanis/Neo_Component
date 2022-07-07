@@ -19,3 +19,10 @@ export const Default = Template.bind({});
 Default.args = {
     fCallBackData: (dates) => console.log(dates),
 };
+
+export const Partial = Template.bind({});
+Partial.args = {
+    fCallBackData: (dates) => console.log(dates),
+    fullSelector: false,
+    containerClassName: "border border-2 rounded p-2",
+};
