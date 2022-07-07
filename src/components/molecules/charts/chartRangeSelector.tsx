@@ -108,7 +108,7 @@ const ChartRangeSelector = ({
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
         const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate) + 1);
-        const actualQuarterMonthDates = quarterRange[actualQuarterMonth];
+        const actualQuarterMonthDates = quarterRange[actualQuarterMonth + 1];
         const startDate = new Date(
             format(new Date(`${year}/${actualQuarterMonthDates.startMonth}/1`), "yyyy/MM/dd HH:mm:ss", {
                 locale: getDateFnsLocaleFromUserLang(language),
