@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Tooltip> = (args) => {
 
 export const tooltipIconTop = Template.bind({});
 tooltipIconTop.args = {
-    text: "test text ",
+    text: "test text",
     fontIcon: faExclamationCircle,
     position: "bottom",
 };

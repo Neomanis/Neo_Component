@@ -15,12 +15,12 @@ describe("Tooltip", () => {
 
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip text="El data" position="top" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-5");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-3");
     });
 
     it("should show tooltip bubble at the bottom", () => {
         mount(<Tooltip text="El data" position="bottom" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-5");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-3");
     });
 
     it("should show a icon", () => {
