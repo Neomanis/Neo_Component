@@ -108,7 +108,6 @@ describe("TechnicalQuestionItem", () => {
         );
         cy.get('[data-testid="tq-head"]').should("have.class", "bg-neo-link");
         cy.get('[data-testid="tq-middle"]').should("have.class", "bg-neo-bg-B");
-        cy.get('[data-testid="tq-middle-top"]').find(">div>div>div").should("have.class", "text-neo-link");
         cy.get('[data-testid="tq-middle-bottom"]').should("have.class", "text-neo-blue-secondary");
     });
 

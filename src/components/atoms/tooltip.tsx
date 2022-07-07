@@ -1,74 +1,41 @@
-import React, { ReactElement, useState, MouseEvent } from "react";
+import React, { ReactElement } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
+import { IconArrowLeft } from "../../img/svg";
 
 interface Props {
-    className?: string;
-    component?: ReactElement;
-    data: string;
-    fCallback?: (e: MouseEvent) => void;
+    children?: ReactElement;
+    text: string;
     fontIcon?: IconProp;
-    fontIconClassName?: string;
-    position?: string;
     svg?: ReactElement;
-    svgClassName?: string;
+    position: "top" | "bottom";
 }
 
-const Tooltip = ({
-    className,
-    component,
-    data,
-    fCallback,
-    fontIcon,
-    fontIconClassName,
-    position,
-    svg,
-    svgClassName,
-}: Props): ReactElement => {
-    const [showTooltip, setShowTooltip] = useState(false);
-
-    switch (position) {
-        case "top":
-            position = "left-1/2 transform -translate-x-1/2 bottom-6";
-            break;
-        case "bottom":
-            position = "left-1/2 transform -translate-x-1/2 top-6";
-            break;
-        default:
-            position = "left-1/2 transform -translate-x-1/2 top-6";
-            break;
-    }
-
+const Tooltip = ({ children, text, fontIcon, position, svg }: Props): ReactElement => {
     return (
-        <div
-            className="text-neo-link cursor-pointer relative"
-            onMouseEnter={(): void => setShowTooltip(true)}
-            onMouseLeave={(): void => setShowTooltip(false)}
-            data-testid="tooltip-body"
-        >
-            {component && component}
-            {fontIcon && (
-                <div onClick={(e) => fCallback && fCallback(e)} data-testid="tooltip-icon-body">
-                    <Icon fontIcon={fontIcon} className={fontIconClassName} />
-                </div>
-            )}
-            {svg && (
-                <div onClick={(e) => fCallback && fCallback(e)} className={svgClassName} data-testid="tooltip-svg-body">
-                    {svg}
-                </div>
-            )}
+        <div className="relative group">
             <div
+                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 group-hover:flex hidden z-50
+                ${position === "bottom" ? "flex-col-reverse top-3" : "bottom-3"}`}
                 data-testid="tooltip-bubble"
-                className={`
-                    ${!showTooltip && "hidden"} 
-                    ${position} 
-                    ${className}
-                    w-max max-w-xxs absolute z-50
-                `}
             >
-                {data}
+                <div className="bg-neo-blue-extraDark text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
+                    {fontIcon && <Icon fontIcon={fontIcon} className="my-1" data-testid="tooltip-icon-body" />}
+                    {svg && (
+                        <div data-testid="tooltip-svg-body" className="my-1">
+                            {svg}
+                        </div>
+                    )}
+                    <div className="text-[10px] max-w-[250px]">{text}</div>
+                </div>
+                <IconArrowLeft
+                    width={20}
+                    className={`fill-neo-blue-extraDark transform z-0
+                        ${position === "bottom" ? "rotate-90 -mb-[14px]" : "-rotate-90 -mt-[14px]"}`}
+                />
             </div>
+            <div data-testid="tooltip-body">{children}</div>
         </div>
     );
 };
