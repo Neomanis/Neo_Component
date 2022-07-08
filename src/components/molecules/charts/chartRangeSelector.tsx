@@ -76,7 +76,7 @@ const ChartRangeSelector = ({
         // 1 is monday value on setDay, 7 is sunday
         const startDate = setISOWeek(setDay(startOfDay(date), 1), offsetWeek);
         const endDate = setISOWeek(setDay(endOfDay(date), 7), offsetWeek);
-        return { start: setISOWeek(startDate, offsetWeek), end: setISOWeek(endDate, offsetWeek) };
+        return { start: startDate, end: endDate };
     }
 
     function monthRangePicker(date: Date, offsetMonth: number): { start: Date; end: Date } {
