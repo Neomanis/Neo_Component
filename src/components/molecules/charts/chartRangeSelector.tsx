@@ -76,7 +76,7 @@ const ChartRangeSelector = ({
         // 1 is monday value on setDay, 7 is sunday
         const startDate = setISOWeek(setDay(startOfDay(date), 1), offsetWeek);
         const endDate = setISOWeek(setDay(endOfDay(date), 7), offsetWeek);
-        return { start: setISOWeek(startDate, offsetWeek), end: setISOWeek(endDate, offsetWeek) };
+        return { start: startDate, end: endDate };
     }
 
     function monthRangePicker(date: Date, offsetMonth: number): { start: Date; end: Date } {
@@ -108,7 +108,7 @@ const ChartRangeSelector = ({
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
         const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate) + 1);
-        const actualQuarterMonthDates = quarterRange[actualQuarterMonth];
+        const actualQuarterMonthDates = quarterRange[actualQuarterMonth + 1];
         const startDate = new Date(
             format(new Date(`${year}/${actualQuarterMonthDates.startMonth}/1`), "yyyy/MM/dd HH:mm:ss", {
                 locale: getDateFnsLocaleFromUserLang(language),

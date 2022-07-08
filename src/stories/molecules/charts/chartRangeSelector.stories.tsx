@@ -22,7 +22,7 @@ Default.args = {
 
 export const Partial = Template.bind({});
 Partial.args = {
-    fCallBackData: (dates) => console.log(dates),
+    fCallBackData: ([start, end]) => console.log(new Date(start), new Date(end)),
     fullSelector: false,
     containerClassName: "border border-2 rounded p-2",
 };
