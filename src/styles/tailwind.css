@@ -31,21 +31,6 @@
             url("../font/Inter/inter-variablefont_slntwght-webfont.svg") format("svg"); /* iOS 4.1- */
 }
 
-/* controle yx grid for ticket */
-.translate-x-23 {
-    --tw-translate-x: 90px !important;
-}
-
-.scale-120 {
-    --tw-scale-x: 1.25 !important;
-    --tw-scale-y: 1.25 !important;
-}
-
-.scale-73 {
-    --tw-scale-x: 0.73 !important;
-    --tw-scale-y: 0.73 !important;
-}
-
 /* Custom Scrollbar */
 
 .custom-scroll::-webkit-scrollbar {
@@ -65,14 +50,6 @@
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
-
-.text-line-2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-    -webkit-box-orient: vertical;
 }
 
 /*ClassName DatePicker*/

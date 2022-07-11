@@ -10,18 +10,31 @@ export default {
     title: "Molecules/Ticket/Ticket",
 } as Meta;
 
-const Template: ComponentStory<typeof Ticket> = (args) => {
-    return (
-        <div className="bg-neo-bg-A">
-            <Ticket {...args} />
-        </div>
-    );
-};
+const Template: ComponentStory<typeof Ticket> = (args) => <Ticket {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
     ticket: fakeTicket,
-    shadow: true,
+};
+
+export const TicketStatusPending = Template.bind({});
+TicketStatusPending.args = {
+    ticket: { ...fakeTicket, status: 4 },
+};
+
+export const TicketStatusNew = Template.bind({});
+TicketStatusNew.args = {
+    ticket: { ...fakeTicket, status: 1 },
+};
+
+export const TicketSolved = Template.bind({});
+TicketSolved.args = {
+    ticket: { ...fakeTicket, status: 5 },
+};
+
+export const TicketClose = Template.bind({});
+TicketClose.args = {
+    ticket: { ...fakeTicket, status: 6 },
 };
 
 export const DefaultVoidIcon = Template.bind({});

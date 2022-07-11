@@ -35,8 +35,8 @@ describe("Grid", () => {
                 ticketList={Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
-        cy.get('[data-testid="grid-row"]').eq(0).should("not.have.class", "translate-x-23");
-        cy.get('[data-testid="grid-row"]').eq(1).should("have.class", "translate-x-23");
+        cy.get('[data-testid="grid-row"]').eq(0).should("not.have.class", "translate-x-[80px]");
+        cy.get('[data-testid="grid-row"]').eq(1).should("have.class", "translate-x-[80px]");
     });
     it("should show display rows correctly in reverse", () => {
         mount(
@@ -47,8 +47,8 @@ describe("Grid", () => {
                 reverseGrid
             />
         );
-        cy.get('[data-testid="grid-row"]').eq(0).should("have.class", "translate-x-23");
-        cy.get('[data-testid="grid-row"]').eq(1).should("not.have.class", "translate-x-23");
+        cy.get('[data-testid="grid-row"]').eq(0).should("have.class", "translate-x-[80px]");
+        cy.get('[data-testid="grid-row"]').eq(1).should("not.have.class", "translate-x-[80px]");
     });
     it("should add position to unpositioned tickets", () => {
         const fNewPositionedTicket = cy.stub().as("newPositionedTicket-callback");
@@ -65,19 +65,6 @@ describe("Grid", () => {
             />
         );
         cy.get("@newPositionedTicket-callback").should("have.been.called");
-    });
-    it("should have a translate if there is more than 3 collumn", () => {
-        mount(
-            <Grid
-                cols={4}
-                rows={2}
-                ticketList={Array.from({ length: 28 }, () => ({
-                    ...fakeTicket,
-                    id: Math.floor(Math.random() * 20),
-                }))}
-            />
-        );
-        cy.get('[data-testid="grid-element"]').should("have.class", "-translate-x-8");
     });
     it("should change pages when clicking on button", () => {
         mount(

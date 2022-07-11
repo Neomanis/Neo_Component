@@ -28,27 +28,3 @@ Ticket.args = {
     isSelected: true,
     type: "ticket",
 };
-export const Filter = Template.bind({});
-Filter.args = {
-    isNotif: true,
-    isSelected: true,
-    type: "filter",
-};
-export const Rotate = Template.bind({});
-Rotate.args = {
-    isNotif: true,
-    isSelected: true,
-    type: "rotate",
-};
-export const LeftHalf = Template.bind({});
-LeftHalf.args = {
-    isNotif: true,
-    isSelected: true,
-    type: "leftHalf",
-};
-export const RightHalf = Template.bind({});
-RightHalf.args = {
-    isNotif: true,
-    isSelected: true,
-    type: "rightHalf",
-};
