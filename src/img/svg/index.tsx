@@ -42,6 +42,7 @@ import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.
 import { ReactComponent as IconHeadphones } from "./nm_ico_headphones.svg";
 import { ReactComponent as IconInbox } from "./nm_ico_inbox.svg";
 import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
+import { ReactComponent as IconInfoTooltip } from "./nm_ico_info_tooltip.svg";
 import { ReactComponent as IconInventory } from "./nm_ico_inventory.svg";
 import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg";
 import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
@@ -138,6 +139,7 @@ export {
     IconHeadphones,
     IconInbox,
     IconInfo,
+    IconInfoTooltip,
     IconInventory,
     IconInvoice,
     IconKbOff,
