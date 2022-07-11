@@ -12,7 +12,7 @@ export const customStyles = {
     }),
     container: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
         padding: 0,
         margin: 0,
         color: "#DAE5E5",
@@ -21,7 +21,7 @@ export const customStyles = {
         ...provided,
         width: "100%",
         color: "#DAE5E5",
-        background: "#15304C",
+        background: "#0E3864",
         border: "none",
     }),
     dropdownIndicator: (provided, state) => ({
@@ -44,7 +44,7 @@ export const customStyles = {
     }),
     menu: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
     }),
     multiValue: (provided, state) => ({
         ...provided,
@@ -59,7 +59,7 @@ export const customStyles = {
     }),
     noOptionsMessage: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
         borderRadius: 10,
         margin: 0,
     }),
@@ -69,7 +69,7 @@ export const customStyles = {
             background: "#366688",
             cursor: "pointer",
         },
-        background: "#15304C",
+        background: "#0E3864",
         color: state.isSelected ? "#FF1166" : "#DAE5E5",
         padding: 10,
     }),

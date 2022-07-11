@@ -53,7 +53,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
         neo: {
             bg: {
                 A: "#152535",
-                B: "#15304C",
+                B: "#0E3864",
             },
             link: "#7DAAB7",
             blue: {

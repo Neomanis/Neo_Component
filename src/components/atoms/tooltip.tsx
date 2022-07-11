@@ -20,14 +20,14 @@ const Tooltip = ({ children, text, fontIcon, position, svg }: Props): ReactEleme
                 ${position === "bottom" ? "flex-col-reverse top-3" : "bottom-3"}`}
                 data-testid="tooltip-bubble"
             >
-                <div className="bg-neo-blue-extraDark text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
+                <div className="bg-neo-stats-black text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
                     {fontIcon && <Icon fontIcon={fontIcon} className="my-1" data-testid="tooltip-icon-body" />}
                     {svg && (
                         <div data-testid="tooltip-svg-body" className="my-1">
                             {svg}
                         </div>
                     )}
-                    <div className="text-[10px] max-w-[250px]">{text}</div>
+                    <div className="text-[10px] max-w-[200px]">{text}</div>
                 </div>
                 <IconArrowLeft
                     width={20}

@@ -170,7 +170,7 @@ const Ticket = ({
                     data-testid="ticket-empty-body"
                 >
                     <div className="absolute">
-                        <TicketLogo width={32} fill={ticketBG ? "#152535" : "#15304C"} />
+                        <TicketLogo width={32} fill={ticketBG ? "#152535" : "#0E3864"} />
                     </div>
                     <Hexagon bgColor={ticketBG && "#172f4b"} />
                 </div>

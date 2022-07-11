@@ -33,9 +33,11 @@ if [ -t 1 ]; then
   exec < /dev/tty
 fi
 ```
+
 ## Local storage
 
 If you are making breaking change to local storage don't forget to update the LOCAL_STORAGE_VERSION in useLocalStorage file
+
 ## How to add a new translation
 
 -   First look in the translation files in `src/locales` if your translation already exist
@@ -218,7 +220,7 @@ clearIndicator: (provided, state) => ({
     }),
     container: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
         padding: 0,
         margin: 0,
         color: "#DAE5E5",
@@ -227,7 +229,7 @@ clearIndicator: (provided, state) => ({
         ...provided,
         width: "100%",
         color: "#DAE5E5",
-        background: "#15304C",
+        background: "#0E3864",
         border: "none",
     }),
     dropdownIndicator: (provided, state) => ({
@@ -250,7 +252,7 @@ clearIndicator: (provided, state) => ({
     }),
     menu: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
     }),
     multiValue: (provided, state) => ({
         ...provided,
@@ -265,7 +267,7 @@ clearIndicator: (provided, state) => ({
     }),
     noOptionsMessage: (provided, state) => ({
         ...provided,
-        background: "#15304C",
+        background: "#0E3864",
         borderRadius: 10,
         margin: 0,
     }),
@@ -275,7 +277,7 @@ clearIndicator: (provided, state) => ({
             background: "#366688",
             cursor: "pointer",
         },
-        background: "#15304C",
+        background: "#0E3864",
         color: state.isSelected ? "#FF1166" : "#DAE5E5",
         padding: 10,
     }),
@@ -284,3 +286,4 @@ clearIndicator: (provided, state) => ({
         color: "#DAE5E5",
     }),
 ```
+
