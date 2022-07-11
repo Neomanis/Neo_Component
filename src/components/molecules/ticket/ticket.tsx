@@ -102,8 +102,9 @@ const Ticket = ({
                             style={{ width: "95%", height: 45 }}
                         >
                             <p
-                                className={`mx-2 line-clamp-3 font-bold text-[11px] leading-[13px]
+                                className={`mx-2 line-clamp-3 font-bold text-[11px]
                                 ${ticket.status === 1 || ticket.status === 2 ? "text-white" : "text-neo-bg-A"}`}
+                                style={{ lineHeight: "13px" }}
                             >
                                 {ticket.name}
                             </p>

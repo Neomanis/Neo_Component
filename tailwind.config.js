@@ -7,8 +7,8 @@ module.exports = {
             colors: {
                 neo: {
                     bg: {
-                        A: "#152535",
-                        B: "#15304C",
+                        A: "#092847",
+                        B: "#0E3864",
                     },
                     link: "#7DAAB7",
                     blue: {
@@ -17,7 +17,7 @@ module.exports = {
                         modal: "#0f283f",
                         planned: "#89D2FF",
                         dark: "#092847",
-                        extraDark: "#111F2E",
+                        extraDark: "#0A1E32",
                     },
                     expanded: "#17212B",
                     light: {
@@ -56,7 +56,7 @@ module.exports = {
                         major: "#D41F1F",
                     },
                     stats: {
-                        black: "#1E1F25",
+                        black: "#171820",
                         TTO: "#AFA47B",
                         TTR: "#464A41",
                         green: "#1DB17F",
