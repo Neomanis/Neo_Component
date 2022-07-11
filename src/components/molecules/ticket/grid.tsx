@@ -196,17 +196,17 @@ const Grid = ({
                 {grids.length > 0 &&
                     grids[currentPageNumber].map((row, rowKey) => (
                         <div
-                            className={`flex justify-center transform scale-110
+                            className={`flex justify-center transform scale-110 my-1
                                     ${
                                         reverseGrid
-                                            ? Number.isInteger(rowKey / 2) && "translate-x-[80px]"
-                                            : !Number.isInteger(rowKey / 2) && "translate-x-[80px]"
+                                            ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
+                                            : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
                                     }`}
                             key={"row-" + rowKey}
                             data-testid="grid-row"
                         >
                             {row.map((item, itemKey) => (
-                                <div key={"ticket-" + itemKey} className="mx-[5px]" data-testid="grid-ticket">
+                                <div key={"ticket-" + itemKey} className="mx-[6px]" data-testid="grid-ticket">
                                     {isTypeOfTicket(item) ? (
                                         <DndTicket
                                             ticketProps={{

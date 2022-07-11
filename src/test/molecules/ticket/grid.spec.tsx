@@ -35,8 +35,8 @@ describe("Grid", () => {
                 ticketList={Array.from({ length: 3 }, () => ({ ...fakeTicket, id: Math.floor(Math.random() * 20) }))}
             />
         );
-        cy.get('[data-testid="grid-row"]').eq(0).should("not.have.class", "translate-x-[80px]");
-        cy.get('[data-testid="grid-row"]').eq(1).should("have.class", "translate-x-[80px]");
+        cy.get('[data-testid="grid-row"]').eq(0).should("not.have.class", "translate-x-[81px]");
+        cy.get('[data-testid="grid-row"]').eq(1).should("have.class", "translate-x-[81px]");
     });
     it("should show display rows correctly in reverse", () => {
         mount(
@@ -47,8 +47,8 @@ describe("Grid", () => {
                 reverseGrid
             />
         );
-        cy.get('[data-testid="grid-row"]').eq(0).should("have.class", "translate-x-[80px]");
-        cy.get('[data-testid="grid-row"]').eq(1).should("not.have.class", "translate-x-[80px]");
+        cy.get('[data-testid="grid-row"]').eq(0).should("have.class", "translate-x-[81px]");
+        cy.get('[data-testid="grid-row"]').eq(1).should("not.have.class", "translate-x-[81px]");
     });
     it("should add position to unpositioned tickets", () => {
         const fNewPositionedTicket = cy.stub().as("newPositionedTicket-callback");
