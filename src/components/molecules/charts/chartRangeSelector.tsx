@@ -6,13 +6,14 @@ import {
     setDay,
     getISOWeek,
     getMonth,
-    getDaysInMonth,
     addMonths,
     monthsToQuarters,
     addQuarters,
     getYear,
     endOfDay,
     startOfDay,
+    startOfMonth,
+    endOfMonth,
 } from "date-fns";
 import { useTranslation } from "@neomanis/neo-translation";
 import { getDateFnsLocaleFromUserLang } from "../../utils/dateTools";
@@ -81,46 +82,24 @@ const ChartRangeSelector = ({
 
     function monthRangePicker(date: Date, offsetMonth: number): { start: Date; end: Date } {
         const selectedDate = addMonths(date, offsetMonth);
-        const daysInMonth = getDaysInMonth(date);
-        const year = selectedDate.getFullYear();
-        const getMonthFormat = getMonth(selectedDate) + 1;
-        const month = getMonthFormat > 9 ? getMonthFormat : `0${getMonthFormat}`;
-        const startDate = new Date(
-            format(new Date(`${year}/${month}/1`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(language),
-            })
-        );
-        const endDate = new Date(
-            format(new Date(`${year}/${month}/${daysInMonth}`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(language),
-            })
-        );
-        return { start: startDate, end: endDate };
+        return { start: startOfMonth(selectedDate), end: endOfMonth(selectedDate) };
     }
 
     function quarterRangePicker(date: Date, offsetQuarter: number): { start: Date; end: Date } {
         const quarterRange: Record<number, { startMonth: number; endMonth: number }> = {
-            1: { startMonth: 1, endMonth: 3 },
-            2: { startMonth: 4, endMonth: 6 },
-            3: { startMonth: 7, endMonth: 9 },
-            4: { startMonth: 10, endMonth: 12 },
+            1: { startMonth: 0, endMonth: 2 },
+            2: { startMonth: 3, endMonth: 5 },
+            3: { startMonth: 6, endMonth: 8 },
+            4: { startMonth: 9, endMonth: 11 },
         };
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
         const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate) + 1);
         const actualQuarterMonthDates = quarterRange[actualQuarterMonth + 1];
-        const startDate = new Date(
-            format(new Date(`${year}/${actualQuarterMonthDates.startMonth}/1`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(language),
-            })
-        );
-        const daysInMonth = getDaysInMonth(new Date(`${year}/${actualQuarterMonthDates.endMonth}/1`));
-        const endDate = new Date(
-            format(new Date(`${year}/${actualQuarterMonthDates.endMonth}/${daysInMonth}`), "yyyy/MM/dd HH:mm:ss", {
-                locale: getDateFnsLocaleFromUserLang(language),
-            })
-        );
-        return { start: startDate, end: endDate };
+        return {
+            start: startOfMonth(new Date(year, actualQuarterMonthDates.startMonth)),
+            end: endOfMonth(new Date(year, actualQuarterMonthDates.endMonth)),
+        };
     }
 
     function yearRangePicker(date: Date, offsetYear: number): { start: Date; end: Date } {
