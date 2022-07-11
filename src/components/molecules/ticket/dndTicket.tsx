@@ -35,14 +35,15 @@ const DraggableTicket = ({ dndId, ticketProps }: DraggableTicketProps): ReactEle
             ref={ticketProps.ticket ? combinedRef : droppableRef}
             {...listeners}
             {...attributes}
-            className={`relative ${ticketProps.ticket && !ticketProps.isOpacity ? "cursor-pointer" : "cursor-default"}`}
+            className={`relative w-[135px] h-[135px] 
+            ${ticketProps.ticket && !ticketProps.isOpacity ? "cursor-pointer" : "cursor-default"}`}
         >
             {isTicketPositionLoading && (
-                <div className="absolute transform top-1/2 z-50" style={{ left: "72px" }}>
+                <div className="absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
                     <Loader type="circleOnly" className="text-neo-red" />
                 </div>
             )}
-            <div className={`${(dndId === active?.id || isTicketPositionLoading) && "opacity-50"}`}>
+            <div className={`${dndId === active?.id || isTicketPositionLoading ? "opacity-50" : ""}`}>
                 <Ticket {...ticketProps} />
             </div>
         </div>

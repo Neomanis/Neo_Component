@@ -11,7 +11,7 @@ export default {
 
 const Template: ComponentStory<typeof Grid> = (args) => {
     return (
-        <div className="py-4 px-8 bg-neo-bg-A flex justify-between w-2/3">
+        <div className="py-4 px-8 bg-neo-bg-A flex justify-between">
             <Grid {...args} />
         </div>
     );

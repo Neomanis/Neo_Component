@@ -171,7 +171,7 @@ const Grid = ({
 
     return (
         <div className={className} data-testid="grid-body" ref={gridId ? setNodeRef : null}>
-            <div className="h-7">
+            <div className="h-7 transform translate-x-[75px]">
                 {showPagination && gridsPaginationNumber > 1 && (
                     <div className={`${cols === 1 && "-mr-4"} flex text-xl justify-end items-center text-neo-link`}>
                         <p className="mr-4" data-testid="grid-page-number">
@@ -192,21 +192,21 @@ const Grid = ({
                     </div>
                 )}
             </div>
-            <div className="transform scale-73 -translate-x-8" style={{ marginTop: -70 }} data-testid="grid-element">
+            <div className="transform scale-[0.95]" data-testid="grid-element">
                 {grids.length > 0 &&
                     grids[currentPageNumber].map((row, rowKey) => (
                         <div
-                            className={`flex justify-center transform scale-120
+                            className={`flex justify-center transform scale-110
                                     ${
                                         reverseGrid
-                                            ? Number.isInteger(rowKey / 2) && "translate-x-23"
-                                            : !Number.isInteger(rowKey / 2) && "translate-x-23"
+                                            ? Number.isInteger(rowKey / 2) && "translate-x-[80px]"
+                                            : !Number.isInteger(rowKey / 2) && "translate-x-[80px]"
                                     }`}
                             key={"row-" + rowKey}
                             data-testid="grid-row"
                         >
                             {row.map((item, itemKey) => (
-                                <div key={"ticket-" + itemKey} className="-mx-2" data-testid="grid-ticket">
+                                <div key={"ticket-" + itemKey} className="mx-[5px]" data-testid="grid-ticket">
                                     {isTypeOfTicket(item) ? (
                                         <DndTicket
                                             ticketProps={{

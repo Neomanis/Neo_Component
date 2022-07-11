@@ -2,7 +2,6 @@ import { GlpiUsers, GlpiRequest, InputSelect, Notification, Ticket } from "@neom
 
 export const fakeTicket: Ticket = {
     id: 32,
-    uid: "uid",
     entities_id: 0,
     name: "Test JM a peu pres avec un titre genre fyys  fyezy fyezy y yreyz yreyz y y yreyz",
     date: "2021-07-12 15:52:44",

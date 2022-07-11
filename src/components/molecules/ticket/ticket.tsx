@@ -32,7 +32,6 @@ const Ticket = ({
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
             return "30";
         }
-
         return "";
     }
 
@@ -52,7 +51,7 @@ const Ticket = ({
         <>
             {ticket ? (
                 <div
-                    className={`useOnClickOutsideException w-40 h-40 transition-all duration-75 flex flex-col justify-around text-center items-center isolation-auto
+                    className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px]
                         ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
                     onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
                     onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
@@ -61,9 +60,9 @@ const Ticket = ({
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
                         {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (
-                            <div className="h-7 w-7 absolute top-4 right-9" data-testid="ticket-tto-ttr-warning">
+                            <div className="h-8 w-8 absolute right-4 top-1" data-testid="ticket-tto-ttr-warning">
                                 <CautionLogoFull
-                                    width={28}
+                                    width={30}
                                     fill={`${
                                         getDateCompletionPercentage(
                                             ticket.date_creation,
@@ -82,40 +81,41 @@ const Ticket = ({
                         />
                     </div>
                     <div
-                        className={`flex flex-col items-center relative w-full mb-2
+                        className={`flex flex-col items-center justify-center w-full h-full absolute transform -translate-y-1
                         opacity-${getOpacity()}`}
                         style={{ zIndex: 2 }}
                         data-testid="ticket-opacity"
                     >
-                        <div className="text-neo-bg-A" style={{ marginBottom: 2 }}>
-                            <IconTicketCategorie id={ticket.itilcategories_id} />
-                            <div className="font-extrabold text-[13px]">
+                        <div className="text-neo-bg-A">
+                            <IconTicketCategorie id={ticket.itilcategories_id} className="text-xl" />
+                            <div className="font-extrabold text-xs">
                                 <Title type="h3" data={getTicketTitle(ticket, t)} />
                             </div>
                         </div>
                         <div
-                            className={`text-center text-xs flex items-center justify-center mb-1
+                            className={`text-center flex items-center justify-center mb-2 mt-[0.4rem]
                             ${
                                 (ticket.status === 1 || ticket.status === 2) &&
                                 ticket.priority &&
                                 getPriorityColor(ticket.priority, false, "bg")
                             }`}
-                            style={{ width: 125, height: 45 }}
+                            style={{ width: "95%", height: 45 }}
                         >
                             <p
-                                className={`mx-2 text-xxs text-line-2 font-bold
+                                className={`mx-2 line-clamp-3 font-bold text-[11px]
                                 ${ticket.status === 1 || ticket.status === 2 ? "text-white" : "text-neo-bg-A"}`}
+                                style={{ lineHeight: "13px" }}
                             >
                                 {ticket.name}
                             </p>
                         </div>
                         <div>
                             {ticket && ticket.status !== 5 && ticket.status !== 6 && (
-                                <div className="text-white text-xxs flex justify-center item-center">
-                                    <div className="w-3 h-3 mr-1" style={{ marginTop: 2 }}>
+                                <div className="flex justify-center item-center">
+                                    <div className="w-3 h-3 mr-1 mt-[2px]">
                                         <ClockLogo fill="#fff" />
                                     </div>
-                                    <p>
+                                    <p className="text-xxs text-white font-extrabold">
                                         {ticket.date_creation &&
                                             getTimeToNowWithTranslation(ticket.date_creation, i18n.language)}
                                     </p>
@@ -123,16 +123,17 @@ const Ticket = ({
                             )}
                             {ticket && ticket.status === 5 && (
                                 <IconTicketSolved
-                                    width={28}
+                                    width={25}
                                     fill="#152535"
-                                    className="-mt-3"
+                                    className="-mt-[10px]"
                                     data-testid="ticket-icon-solved"
                                 />
                             )}
                             {ticket && ticket.status === 6 && (
                                 <IconTicketClosed
+                                    width={25}
                                     fill="#152535"
-                                    className="w-7 h-7 -mt-3"
+                                    className="-mt-[10px]"
                                     data-testid="ticket-icon-closed"
                                 />
                             )}
@@ -141,8 +142,8 @@ const Ticket = ({
                     {ticket && ticket.status !== 5 && ticket.status !== 6 && (
                         <svg
                             version="1.1"
-                            viewBox="-23 140 220 80"
-                            className="absolute -bottom-2 opacity-20"
+                            viewBox="-3 140 180 80"
+                            className="absolute -bottom-[22px] opacity-20"
                             style={{ zIndex: 1 }}
                             data-testid="ticket-fill-svg"
                         >
@@ -164,13 +165,14 @@ const Ticket = ({
                     </div>
                 </div>
             ) : (
-                <div className="w-40 h-40 transform" data-testid="ticket-empty-body">
-                    <div className="absolute w-full flex items-center justify-center">
-                        <div className="absolute">
-                            <TicketLogo width={32} fill={ticketBG ? "#152535" : "#15304C"} />
-                        </div>
-                        <Hexagon bgColor={ticketBG && "#172f4b"} />
+                <div
+                    className="absolute w-[135px] h-[135px] flex items-center justify-center"
+                    data-testid="ticket-empty-body"
+                >
+                    <div className="absolute">
+                        <TicketLogo width={32} fill={ticketBG ? "#152535" : "#15304C"} />
                     </div>
+                    <Hexagon bgColor={ticketBG && "#172f4b"} />
                 </div>
             )}
         </>

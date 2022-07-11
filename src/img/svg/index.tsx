@@ -55,6 +55,7 @@ import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
 import { ReactComponent as IconOther } from "./nm_ico_other.svg";
 import { ReactComponent as IconPrinter } from "./nm_ico_printer.svg";
+import { ReactComponent as IconProblemes } from "./nm_ico_problemes.svg";
 import { ReactComponent as IconRemoteControl } from "./nm_ico_remotecontrol.svg";
 import { ReactComponent as IconRemoteShell } from "./nm_ico_remoteshell.svg";
 import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
@@ -150,6 +151,7 @@ export {
     IconNotification,
     IconOther,
     IconPrinter,
+    IconProblemes,
     IconRemoteControl,
     IconRemoteShell,
     IconRessources,
