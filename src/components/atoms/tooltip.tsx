@@ -16,8 +16,8 @@ const Tooltip = ({ children, text, fontIcon, position, svg }: Props): ReactEleme
     return (
         <div className="relative group">
             <div
-                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 group-hover:flex hidden z-50
-                ${position === "bottom" ? "flex-col-reverse top-3" : "bottom-3"}`}
+                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 group-hover:opacity-100 opacity-0 flex transition-opacity z-50
+                ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}`}
                 data-testid="tooltip-bubble"
             >
                 <div className="bg-neo-stats-black text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
@@ -31,8 +31,8 @@ const Tooltip = ({ children, text, fontIcon, position, svg }: Props): ReactEleme
                 </div>
                 <IconArrowLeft
                     width={20}
-                    className={`fill-neo-blue-extraDark transform z-0
-                        ${position === "bottom" ? "rotate-90 -mb-[14px]" : "-rotate-90 -mt-[14px]"}`}
+                    className={`fill-neo-stats-black transform z-0
+                        ${position === "top" ? "-rotate-90 -mt-[14px]" : "rotate-90 -mb-[14px]"}`}
                 />
             </div>
             <div data-testid="tooltip-body">{children}</div>
