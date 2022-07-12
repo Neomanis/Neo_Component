@@ -257,6 +257,6 @@ export function getHTMLValue(e: string): string {
     return e.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 }
 
-export function isNotNullOrUndefined(value: number | null | undefined) {
+export function isNotNullOrUndefined(value: unknown) {
     return value !== null && value !== undefined;
 }
