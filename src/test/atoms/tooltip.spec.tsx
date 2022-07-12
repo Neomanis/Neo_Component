@@ -10,17 +10,17 @@ describe("Tooltip", () => {
             </Tooltip>
         );
         cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "group-hover:flex");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "group-hover:opacity-100");
     });
 
     it("should show tooltip bubble at the top", () => {
         mount(<Tooltip text="El data" position="top" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "bottom-3");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "-translate-y-full top-0");
     });
 
     it("should show tooltip bubble at the bottom", () => {
         mount(<Tooltip text="El data" position="bottom" />);
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "top-3");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "flex-col-reverse translate-y-full bottom-0");
     });
 
     it("should show a icon", () => {
