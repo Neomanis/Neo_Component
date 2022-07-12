@@ -1,6 +1,7 @@
 import { GlpiUsers, GlpiRequest, InputSelect, Notification, Ticket } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
+    uid: "",
     id: 32,
     entities_id: 0,
     name: "Test JM a peu pres avec un titre genre fyys  fyezy fyezy y yreyz yreyz y y yreyz",
