@@ -51,7 +51,7 @@ const Ticket = ({
         <>
             {ticket ? (
                 <div
-                    className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px]
+                    className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px] opacity-${getOpacity()}
                         ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
                     onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
                     onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
@@ -81,8 +81,7 @@ const Ticket = ({
                         />
                     </div>
                     <div
-                        className={`flex flex-col items-center justify-center w-full h-full absolute transform -translate-y-1
-                        opacity-${getOpacity()}`}
+                        className="flex flex-col items-center justify-center w-full h-full absolute transform -translate-y-1"
                         style={{ zIndex: 2 }}
                         data-testid="ticket-opacity"
                     >
