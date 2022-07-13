@@ -21,7 +21,7 @@ describe("ticket", () => {
                 currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
             />
         );
-        cy.get('[data-testid="ticket-opacity"]').should("have.class", "opacity-30");
+        cy.get('[data-testid="ticket-body"]').should("have.class", "opacity-30");
         cy.get('[data-testid="ticket-fill-svg"]').should("exist");
     });
 
@@ -45,7 +45,7 @@ describe("ticket", () => {
                 currentTicket={{ ...fakeTicket, id: 101, status: 2, gridId: "inventory" }}
             />
         );
-        cy.get('[data-testid="ticket-opacity"]').should("not.have.class", "opacity-30");
+        cy.get('[data-testid="ticket-body"]').should("not.have.class", "opacity-30");
     });
 
     it("should not have opacity if ticket and current ticket are the same", () => {
@@ -56,7 +56,7 @@ describe("ticket", () => {
                 currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
             />
         );
-        cy.get('[data-testid="ticket-opacity"]').should("not.have.class", "opacity-30");
+        cy.get('[data-testid="ticket-body"]').should("not.have.class", "opacity-30");
     });
 
     it("should display stale tto", () => {
@@ -120,10 +120,10 @@ describe("ticket", () => {
 
     it("should render a ticket with the right title", () => {
         mount(<Ticket ticket={fakeTicket} />);
-        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Incident 32");
+        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Incident 32");
         mount(<Ticket ticket={{ ...fakeTicket, type: 2 }} />);
-        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Request 32");
+        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Request 32");
         mount(<Ticket ticket={{ ...fakeTicket, type: 3 }} />);
-        cy.get('[data-testid="ticket-opacity"]').find("div:first-child").find("h3").should("have.text", "Problem 32");
+        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Problem 32");
     });
 });
