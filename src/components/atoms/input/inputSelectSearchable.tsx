@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useReducer, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import Select, { GroupBase, MultiValue, StylesConfig } from "react-select";
 import inputReducer from "../../utils/reducers/inputReducer";
-import { customStyles } from "../../utils/inputSelectSearchableCss";
+import { baseStyles } from "../../utils/inputSelectSearchableCss";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import Updater from "../updater";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
@@ -23,11 +23,7 @@ interface Props {
             }>
         >
     >;
-    customStyleOverride?: StylesConfig<
-        { label: string; value: number },
-        boolean,
-        GroupBase<{ label: string; value: number }>
-    >;
+    customStyleOverride?: StylesConfig;
     customValidation?: ReactHookFormCustomValidation<number | number[]>;
     data: Array<{ label: string; value: number }>;
     defaultValue?: number | number[];
@@ -152,14 +148,7 @@ const InputSelectSearchable = ({
         }
     }
 
-    function overrideBaseCustomStyle(
-        baseStyle: StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>>,
-        customStyleOverride: StylesConfig<
-            { label: string; value: number },
-            boolean,
-            GroupBase<{ label: string; value: number }>
-        >
-    ): StylesConfig<{ label: string; value: number }, boolean, GroupBase<{ label: string; value: number }>> {
+    function overrideBaseCustomStyle(baseStyle: StylesConfig, customStyleOverride: StylesConfig): StylesConfig {
         return { ...baseStyle, ...customStyleOverride };
     }
 
@@ -234,7 +223,7 @@ const InputSelectSearchable = ({
                 formatOptionLabel={formatOptionLabel}
                 className="flex items-center w-full rounded-md text-xs font-bold"
                 isSearchable={isSearchable}
-                styles={overrideBaseCustomStyle(customStyles, customStyleOverride)}
+                styles={overrideBaseCustomStyle(baseStyles, customStyleOverride)}
                 options={data}
                 // if isUpdateField, the dot will provide the cancelable option
                 isClearable={!isUpdateField && isClearable}

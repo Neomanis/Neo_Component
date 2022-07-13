@@ -1,6 +1,7 @@
 import { GroupBase, StylesConfig } from "react-select";
 import { SelectComponents } from "react-select/dist/declarations/src/components";
-export { components } from "react-select";
+
+export { components, StylesConfig } from "react-select";
 
 export type TInputSelectSearchableCss = StylesConfig<
     { label: string; value: number },
