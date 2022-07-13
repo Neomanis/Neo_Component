@@ -83,6 +83,7 @@ const Ticket = ({
                     <div
                         className="flex flex-col items-center justify-center w-full h-full absolute transform -translate-y-1"
                         style={{ zIndex: 2 }}
+                        data-testid="ticket-title"
                     >
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} className="text-xl" />
