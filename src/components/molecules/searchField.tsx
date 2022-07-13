@@ -17,8 +17,8 @@ interface Props {
     showClearButton?: boolean;
     iconSearchColor?: string;
     iconResetColor?: string;
-    register?: UseFormRegister<FieldValues>;
-    setValue?: UseFormSetValue<FieldValues>;
+    register: UseFormRegister<FieldValues>;
+    setValue: UseFormSetValue<FieldValues>;
     reset?: UseFormReset<FieldValues>;
 }
 
