@@ -21,7 +21,7 @@ describe("ticket", () => {
                 currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
             />
         );
-        cy.get('[data-testid="ticket-opacity"]').should("have.class", "opacity-30");
+        cy.get('[data-testid="ticket-body"]').should("have.class", "opacity-30");
         cy.get('[data-testid="ticket-fill-svg"]').should("exist");
     });
 
