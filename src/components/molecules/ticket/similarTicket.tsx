@@ -19,7 +19,7 @@ const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
             >
                 {getTicketLogoByStatus(
                     ticket.status,
-                    ticket.status === (Status.Solved | Status.Closed) ? "#152535" : "#15304C"
+                    ticket.status === (Status.Solved | Status.Closed) ? "#152535" : "#0E3864"
                 )}
             </div>
             <div className="flex flex-col px-4 py-1 w-11/12">
