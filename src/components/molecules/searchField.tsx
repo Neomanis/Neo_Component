@@ -28,7 +28,7 @@ const SearchField = ({
     register,
     setValue,
     reset,
-    showClearButton = false,
+    showClearButton = true,
     iconSearchColor = "#FFFFFF",
     iconResetColor = "#FFFFFF",
     inputClassName = "w-full bg-transparent text-white placeholder-white border-none focus:outline-none",
