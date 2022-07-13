@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-export const customStyles = {
+export const baseStyles = {
     clearIndicator: (provided, state) => ({
         ...provided,
         display: "bloc",

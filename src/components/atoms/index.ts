@@ -12,6 +12,7 @@ import Input from "./input/input";
 import InputChoice from "./input/inputChoice";
 import InputDateShift from "./input/inputDateShift";
 import InputDateTime from "./input/inputDateTime";
+import InputSelect from "./input/inputSelect";
 import InputSelectSearchable from "./input/inputSelectSearchable";
 import InputTextarea from "./input/inputTextarea";
 import Loader from "./loader";
@@ -39,6 +40,7 @@ export {
     InputChoice,
     InputDateShift,
     InputDateTime,
+    InputSelect,
     InputSelectSearchable,
     InputTextarea,
     Loader,
