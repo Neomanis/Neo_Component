@@ -40,7 +40,11 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, style, type, testId
                 <div className={className} style={style} data-testid="icon-reddot-body">
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {redDot && (
-                        <FontAwesomeIcon icon={faCircle} className="text-neo-red absolute top-0 right-0 text-xxs" />
+                        <FontAwesomeIcon
+                            icon={faCircle}
+                            data-testid="icon-reddot"
+                            className="text-neo-red absolute top-0 right-0 text-xxs"
+                        />
                     )}
                     {!fontIcon && svg && svg}
                 </div>
