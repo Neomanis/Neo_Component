@@ -10,7 +10,7 @@ describe("Tooltip", () => {
             </Tooltip>
         );
         cy.get('[data-testid="tooltip-body"]').trigger("mouseover");
-        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "group-hover:opacity-100");
+        cy.get('[data-testid="tooltip-bubble"]').should("have.class", "opacity-100");
     });
 
     it("should show tooltip bubble at the top", () => {
