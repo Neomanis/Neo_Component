@@ -92,13 +92,13 @@ const Ticket = ({
                             </div>
                         </div>
                         <div
-                            className={`text-center flex items-center justify-center mb-2 mt-[0.4rem]
+                            className={`text-center flex items-center justify-center mb-2
                             ${
                                 (ticket.status === 1 || ticket.status === 2) &&
                                 ticket.priority &&
                                 getPriorityColor(ticket.priority, false, "bg")
                             }`}
-                            style={{ width: "95%", height: 45 }}
+                            style={{ width: "95%", height: 45, marginTop: 7 }}
                         >
                             <p
                                 className={`mx-2 line-clamp-3 font-bold text-[11px]
