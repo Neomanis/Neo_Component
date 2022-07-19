@@ -92,7 +92,7 @@ const Ticket = ({
                             </div>
                         </div>
                         <div
-                            className={`text-center flex items-center justify-center mb-2 mt-[0.4rem]
+                            className={`text-center flex items-center justify-center mb-2 mt-[6px]
                             ${
                                 (ticket.status === 1 || ticket.status === 2) &&
                                 ticket.priority &&
