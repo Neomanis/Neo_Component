@@ -63,6 +63,10 @@ module.exports = {
                         grey: "#626574",
                         purple: "#5715C6",
                     },
+                    settings: {
+                        grey: "#313235",
+                        lightGrey: "#4A4B4E",
+                    },
                 },
             },
             fontSize: {
