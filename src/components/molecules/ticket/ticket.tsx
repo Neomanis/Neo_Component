@@ -4,7 +4,7 @@ import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neoman
 import { getStatusColor } from "../../utils/statusTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
-import { getTicketTitle, getPriorityColor } from "../../utils/tools";
+import { getTicketTitle, getPriorityColor, getHexColorFromTailwindColor } from "../../utils/tools";
 import { useTranslation } from "@neomanis/neo-translation";
 
 export interface TicketProps {
@@ -169,9 +169,12 @@ const Ticket = ({
                     data-testid="ticket-empty-body"
                 >
                     <div className="absolute">
-                        <TicketLogo width={32} fill={ticketBG ? "#152535" : "#0E3864"} />
+                        <TicketLogo width={32} fill={getHexColorFromTailwindColor("neo-bg-B")} />
                     </div>
-                    <Hexagon bgColor={ticketBG && "#172f4b"} />
+                    <Hexagon
+                        bgColor={ticketBG && getHexColorFromTailwindColor("neo-bg-A")}
+                        strokeColor={getHexColorFromTailwindColor("neo-bg-B")}
+                    />
                 </div>
             )}
         </>
