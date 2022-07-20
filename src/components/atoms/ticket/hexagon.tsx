@@ -23,7 +23,7 @@ const Hexagon = ({ bgColor, isSelected, opacity, type, strokeColor }: Props): Re
                     <path
                         //This line draw the hexagon in the container SVG it includes the shape itself, and the rounding which is applied to the hexagon.
                         d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
-                        fill={bgColor ? bgColor : "transparentq"}
+                        fill={bgColor ? bgColor : "transparent"}
                         fillOpacity={transformOpacity()}
                         stroke={"#0e3864"}
                         strokeLinejoin="round"
