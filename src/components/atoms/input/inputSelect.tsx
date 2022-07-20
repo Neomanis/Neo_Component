@@ -4,7 +4,7 @@ import Select, { GroupBase, OptionsOrGroups, SelectComponentsConfig, StylesConfi
 import isEqual from "lodash.isequal";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
-import { baseStyles } from "../../utils/inputSelectSearchableCss";
+import { baseStyles } from "../../utils/inputSelectCss";
 import { useInputs } from "../../utils/hooks/useInputs";
 import Updater from "../updater";
 
@@ -92,7 +92,7 @@ function InputSelect<
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
-        onChange(defaultValue);
+        onChange(defaultValue === undefined ? null : defaultValue);
     }, [defaultValue]);
 
     return (
@@ -102,7 +102,7 @@ function InputSelect<
                     <label className={labelClassName ? labelClassName : "text-white"}>{label}</label>
                     <div
                         className={`${updaterClassName ? updaterClassName : ""}`}
-                        data-testid="inputSelectSearchableDot-body"
+                        data-testid="inputSelectUpdater-body"
                     >
                         {(isUpdateField || isError) && (
                             <Updater

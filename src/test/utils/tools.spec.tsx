@@ -1,6 +1,6 @@
 import { Status, Scale } from "@neomanis/neo-types";
 import {
-    mapEnumToInputSelectSearchableData,
+    mapEnumToInputSelectData,
     capitalizeFirstLetter,
     lowerCaseFirstLetter,
     getContrastBasedOnHexColor,
@@ -13,9 +13,9 @@ import {
 import { i18n } from "@neomanis/neo-translation";
 import { fakeTicket } from "../../stories/fakeObject";
 
-describe("mapEnumToInputSelectSearchableData", () => {
-    it("should return a proper input select searchable data from a enum", () => {
-        const inputSelectData = mapEnumToInputSelectSearchableData(Status);
+describe("mapEnumToInputSelectData", () => {
+    it("should return a proper input select data from a enum", () => {
+        const inputSelectData = mapEnumToInputSelectData(Status);
         expect(inputSelectData).to.eql([
             { label: "New", value: 1 },
             { label: "Assigned", value: 2 },
@@ -25,9 +25,9 @@ describe("mapEnumToInputSelectSearchableData", () => {
             { label: "Closed", value: 6 },
         ]);
     });
-    it("should return a translated input select searchable data from a enum", () => {
+    it("should return a translated input select data from a enum", () => {
         const t = i18n.getFixedT("en-GB");
-        const inputSelectData = mapEnumToInputSelectSearchableData(Status, t, "status");
+        const inputSelectData = mapEnumToInputSelectData(Status, t, "status");
         expect(inputSelectData).to.eql([
             { label: "New", value: 1 },
             { label: "In progress (assigned)", value: 2 },

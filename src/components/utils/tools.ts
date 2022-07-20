@@ -1,25 +1,17 @@
 import { getStatusColor } from "./statusTools";
-import {
-    InputSelectSearchableData,
-    TailwindColorApplication,
-    Status,
-    Ticket,
-    Type,
-    Colors,
-    Priority,
-} from "@neomanis/neo-types";
+import { InputSelectData, TailwindColorApplication, Status, Ticket, Type, Colors, Priority } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
 
 type EnumType = {
     [key: number]: string;
 };
 
-export function mapEnumToInputSelectSearchableData(
+export function mapEnumToInputSelectData(
     enumarable: EnumType,
     tFunction?: TFunction,
     traductionKey?: string,
     traductionOption?: { context?: string; count?: number }
-): InputSelectSearchableData[] {
+): InputSelectData[] {
     const enumarableValues = Object.keys(enumarable).filter((key) => isNaN(Number(key)));
     const enumarableKeys = Object.keys(enumarable).filter((key) => !isNaN(Number(key)));
     return enumarableValues.map((key, index) => ({
