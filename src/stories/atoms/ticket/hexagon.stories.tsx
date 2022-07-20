@@ -10,7 +10,7 @@ export default {
 
 const Template: ComponentStory<typeof Hexagon> = (args) => {
     return (
-        <div className="w-64 h-64">
+        <div className="w-full h-full bg-neo-bg-A">
             <Hexagon {...args} />
         </div>
     );
