@@ -1,17 +1,17 @@
 import React, { ReactElement, useState, useEffect } from "react";
-import { FieldValues, UseFormGetValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { fr, enGB, enUS } from "date-fns/locale";
 
 import InputDateTime from "./inputDateTime";
-import InputSelectSearchable from "./inputSelectSearchable";
 import { registerLocale } from "react-datepicker";
+import InputSelect from "./inputSelect";
 
 interface Props {
     className?: string;
     classNameInputDate?: string;
     classNameInputSelect?: string;
     date: Date;
-    getValues?: UseFormGetValues<FieldValues>;
+    formMethods: UseFormReturn;
     inputSelectPlaceholder?: string;
     isUpdateField?: boolean;
     label: string;
@@ -19,8 +19,6 @@ interface Props {
     maxDate?: Date;
     minDate?: Date;
     refForm: string;
-    register?: UseFormRegister<FieldValues>;
-    setValue?: UseFormSetValue<FieldValues>;
     tabProps: Array<{ value: number; label: string }>;
     updateFunction?: (refForm: string, value: string) => void;
 }
@@ -34,7 +32,7 @@ const InputDateShift = ({
     classNameInputDate,
     classNameInputSelect,
     date,
-    getValues,
+    formMethods,
     inputSelectPlaceholder,
     isUpdateField = false,
     label,
@@ -42,19 +40,27 @@ const InputDateShift = ({
     maxDate,
     minDate,
     refForm,
-    register,
-    setValue,
     tabProps,
     updateFunction,
 }: Props): ReactElement => {
     const [dateShift, setDateShift] = useState(date);
     const [dateAdd, setDateAdd] = useState<Date | null>();
+    const { setValue, register, getValues, watch } = formMethods;
 
     function updateDate(event: number): void {
         const newDate = Math.round(dateAdd ? dateAdd.getTime() / 1000 : date.getTime() / 1000) + event;
         setValue && setValue(refForm, new Date(newDate * 1000));
         setDateShift(new Date(newDate * 1000));
     }
+
+    useEffect(() => {
+        const subscription = watch((data, { name, type }) => {
+            if (name === `select-${refForm}` && type === "change") {
+                updateDate(data[`select-${refForm}`].value);
+            }
+        });
+        return () => subscription.unsubscribe();
+    }, [watch]);
 
     useEffect(() => {
         setDateShift(date);
@@ -87,21 +93,13 @@ const InputDateShift = ({
                 />
             </div>
             <div className={classNameInputSelect ? classNameInputSelect : "w-32"}>
-                <InputSelectSearchable
-                    isSearchable={false}
-                    data={tabProps}
-                    label={" "}
+                <InputSelect
                     placeholder={inputSelectPlaceholder}
                     isUpdateField={isUpdateField}
                     refForm={"select-" + refForm}
-                    register={register}
-                    setStateValue={(value) => updateDate(value)}
-                    setValue={setValue}
-                    targetId={
-                        Math.round(dateAdd ? dateAdd.getTime() / 1000 : 0) ||
-                        Math.round(date ? date.getTime() / 1000 : 0)
-                    }
-                    updateFunction={() => updateFunction && updateFunction(refForm, getValues(refForm))}
+                    formMethods={formMethods}
+                    updateFunction={() => updateFunction(refForm, getValues(refForm))}
+                    options={tabProps}
                 />
             </div>
         </div>

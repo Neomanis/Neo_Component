@@ -65,7 +65,7 @@ const InputDateTime = ({
     errorMessage,
     defaultValueShowMonthPicker,
     defaultShowTimePicker,
-    isRange,
+    isRange = false,
 }: Props & ConditionalProps): ReactElement => {
     const typedDefaultValue = useMemo(() => {
         if (isRange === true) {
