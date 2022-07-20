@@ -9,16 +9,6 @@ export type TInputSelectSearchableCss = StylesConfig<
     GroupBase<{ label: string; value: number }>
 >;
 
-export type TInputSelectSearchableCustomComponent = Partial<
-    SelectComponents<
-        {
-            label: string;
-            value: number;
-        },
-        boolean,
-        GroupBase<{
-            label: string;
-            value: number;
-        }>
-    >
+export type TInputSelectSearchableCustomComponent<IsMulti extends boolean> = Partial<
+    SelectComponents<unknown, IsMulti, GroupBase<unknown>>
 >;
