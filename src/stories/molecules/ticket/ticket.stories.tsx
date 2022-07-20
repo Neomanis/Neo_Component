@@ -10,13 +10,7 @@ export default {
     title: "Molecules/Ticket/Ticket",
 } as Meta;
 
-const Template: ComponentStory<typeof Ticket> = (args) => {
-    return (
-        <div className="w-full h-full bg-neo-bg-A">
-            <Ticket {...args} />
-        </div>
-    );
-};
+const Template: ComponentStory<typeof Ticket> = (args) => <Ticket {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

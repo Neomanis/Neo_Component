@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { getHexColorFromTailwindColor } from "../../utils";
 
 interface Props {
     bgColor?: string;
@@ -25,7 +26,7 @@ const Hexagon = ({ bgColor, isSelected, opacity, type, strokeColor }: Props): Re
                         d="M78.80 4.50Q86.60 0 94 4.50L165.41 45.5Q173.21 50 173.21 59L173.21 141Q173.21 150 165.42 154.5L94.40 195.5Q86.61 200 78.81 195.5L7.80 154.5Q0 150 0 141L0 59Q0 50 7.80 45.5Z"
                         fill={bgColor ? bgColor : "transparent"}
                         fillOpacity={transformOpacity()}
-                        stroke={"#0e3864"}
+                        stroke={getHexColorFromTailwindColor("neo-bg-B")}
                         strokeLinejoin="round"
                         strokeWidth="5"
                     ></path>
@@ -39,7 +40,7 @@ const Hexagon = ({ bgColor, isSelected, opacity, type, strokeColor }: Props): Re
                         fill={bgColor ? bgColor : "transparent"}
                         fillOpacity={bgColor ? "1" : "0"}
                         strokeLinejoin="round"
-                        stroke={strokeColor ? (isSelected ? strokeColor : "#0e3864") : "#0e3864"}
+                        stroke={strokeColor && isSelected ? strokeColor : getHexColorFromTailwindColor("neo-bg-B")}
                         strokeWidth="5"
                     ></path>
                 </svg>
