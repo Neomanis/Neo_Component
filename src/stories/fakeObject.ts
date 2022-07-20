@@ -1,4 +1,4 @@
-import { GlpiUsers, GlpiRequest, InputSelect, Notification, Ticket } from "@neomanis/neo-types";
+import { GlpiUsers, GlpiRequest, Notification, Ticket } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
     uid: "",
@@ -272,12 +272,6 @@ export const fakeDiag = {
     awaiting: [],
     __v: 1,
 };
-
-export const fakeGroups: InputSelect[] = [
-    { id: 1, value: "Vagos" },
-    { id: 2, value: "Families" },
-    { id: 3, value: "LSPD" },
-];
 
 export const fakeGlpiUsers: GlpiUsers[] = [
     { id: 1, firstname: "Unicorn", realname: "Pichon", name: "uPichon" },
