@@ -40,7 +40,12 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
                 />
             </div>
             <div
-                onMouseEnter={() => !disabled && setIsHover(true)}
+                onMouseEnter={() =>
+                    !disabled &&
+                    setTimeout(() => {
+                        setIsHover(true);
+                    }, 200)
+                }
                 onMouseLeave={() => setIsHover(false)}
                 data-testid="tooltip-body"
             >
