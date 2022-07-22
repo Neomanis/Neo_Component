@@ -16,6 +16,7 @@ interface Props {
 const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): ReactElement => {
     const [isHover, setIsHover] = useState(false);
     const timer = useRef(null);
+
     return (
         <div className="relative">
             <div
@@ -40,11 +41,9 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
                 />
             </div>
             <div
-                onMouseEnter={() =>
-                    (timer.current = setTimeout(() => {
-                        !disabled && setIsHover(true);
-                    }, 200))
-                }
+                onMouseEnter={() => {
+                    timer.current = setTimeout(() => !disabled && setIsHover(true), 200);
+                }}
                 onMouseLeave={() => {
                     clearTimeout(timer.current);
                     setIsHover(false);
