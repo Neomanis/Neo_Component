@@ -10,6 +10,8 @@ import { getHexColorFromTailwindColor } from "../../utils";
 import { useInputs } from "../../utils/hooks/useInputs";
 
 interface Props {
+    formMethods: UseFormReturn;
+    refForm: string;
     className?: string;
     inputClassName?: string;
     labelClassName?: string;
@@ -17,9 +19,7 @@ interface Props {
     label?: string;
     maxDate?: Date;
     minDate?: Date;
-    refForm?: string;
     required?: boolean;
-    formMethods: UseFormReturn;
     isUpdateField?: boolean;
     dotClassName?: string;
     errorMessage?: string;
@@ -43,7 +43,7 @@ const InputDateTime = ({
     labelClassName = "text-white",
     inputClassName = "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full",
     timeInputLabel = "",
-    defaultValue,
+    defaultValue = new Date(),
     dotClassName = "",
     updateFunction,
     formMethods,
@@ -78,6 +78,9 @@ const InputDateTime = ({
     });
 
     const datesValue = useMemo(() => {
+        if (!value) {
+            return { startDate: new Date(), endDate: null };
+        }
         if (!Array.isArray(value)) {
             return { startDate: value, endDate: null };
         } else {

@@ -1,5 +1,4 @@
 import React, { ReactElement, useState, useEffect, useMemo } from "react";
-
 import {
     setISOWeek,
     format,
@@ -20,6 +19,7 @@ import { getDateFnsLocaleFromUserLang } from "../../utils/dateTools";
 import InputDateTime from "../../atoms/input/inputDateTime";
 import { IconChevron } from "../../../img/svg";
 import { getHexColorFromTailwindColor } from "../../utils/tools";
+import { useForm } from "react-hook-form";
 
 interface Props {
     fCallBackData: (dates: [number, number]) => void;
@@ -63,6 +63,7 @@ const ChartRangeSelector = ({
 
     const refDate: Date = useMemo(() => new Date(), []);
 
+    const formMethods = useForm({ mode: "onChange" });
     function dayRangePicker(date: Date, offsetDay: number): { start: Date; end: Date } {
         const startDate = setDay(startOfDay(date), offsetDay, {
             locale: getDateFnsLocaleFromUserLang(language),
@@ -245,8 +246,9 @@ const ChartRangeSelector = ({
                                 maxDate={new Date()}
                                 refForm="date_creation_range"
                                 lang={language}
-                                fCallBack={(dates) => {
-                                    const formatDate = dates as [Date, Date | null];
+                                formMethods={formMethods}
+                                updateFunction={(_refForm, dates) => {
+                                    const formatDate = dates;
                                     formatDate[1] !== null && setCustomRange([formatDate[0], formatDate[1]]);
                                 }}
                                 isRange

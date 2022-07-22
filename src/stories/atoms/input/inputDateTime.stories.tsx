@@ -83,3 +83,10 @@ InputDateIsError.args = {
     isError: true,
     errorMessage: "Coucou",
 };
+export const InputTest = Template.bind({});
+InputTest.args = {
+    defaultValue: new Date(),
+    refForm: "date_creation_range_update",
+};
+
+// defaultValue={new Date()} refForm="date"

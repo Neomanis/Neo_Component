@@ -20,7 +20,8 @@ interface Props {
     minDate?: Date;
     refForm: string;
     tabProps: Array<{ value: number; label: string }>;
-    updateFunction?: (refForm: string, value: string) => void;
+    updateFunctionDateTime?: (refForm: string, value: Date | [Date, Date]) => void;
+    updateFunctionDateShift?: (refForm: string, value: string) => void;
 }
 
 registerLocale("en-GB", enGB);
@@ -41,7 +42,8 @@ const InputDateShift = ({
     minDate,
     refForm,
     tabProps,
-    updateFunction,
+    updateFunctionDateTime,
+    updateFunctionDateShift,
 }: Props): ReactElement => {
     const [dateShift, setDateShift] = useState(date);
     const [dateAdd, setDateAdd] = useState<Date | null>();
@@ -73,24 +75,17 @@ const InputDateShift = ({
     return (
         <div className={`${className ? className : "flex w-full"}`} data-testid="inputDateShift-body">
             <div className={classNameInputDate ? classNameInputDate : "w-52 mr-14"}>
-                <InputDateTime
-                    labelClassName="text-xs font-bold text-white"
-                    defaultValue={dateShift}
-                    fCallBack={(data) => {
-                        setDateAdd(data as Date);
-                        setValue && setValue("select-" + refForm, -1);
-                    }}
-                    isUpdateField={isUpdateField}
-                    label={label}
-                    maxDate={maxDate}
-                    minDate={minDate}
+                {/* <InputDateTime
+                    // labelClassName="text-xs font-bold text-white"
+                    formMethods={formMethods}
+                    // isUpdateField={isUpdateField}
+                    // label={label}
+                    // maxDate={maxDate}
+                    // minDate={minDate}
                     refForm={refForm}
-                    register={register}
-                    setValue={setValue}
-                    targetId={Math.round(dateShift.getTime() / 1000)}
-                    updateFunction={updateFunction}
-                    lang={lang}
-                />
+                    // updateFunction={updateFunctionDateTime}
+                    // lang={lang}
+                /> */}
             </div>
             <div className={classNameInputSelect ? classNameInputSelect : "w-32"}>
                 <InputSelect
@@ -98,7 +93,7 @@ const InputDateShift = ({
                     isUpdateField={isUpdateField}
                     refForm={"select-" + refForm}
                     formMethods={formMethods}
-                    updateFunction={() => updateFunction(refForm, getValues(refForm))}
+                    updateFunction={() => updateFunctionDateShift(refForm, getValues(refForm))}
                     options={tabProps}
                 />
             </div>
