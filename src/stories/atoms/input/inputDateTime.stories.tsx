@@ -4,7 +4,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
-import { addDays, addMonths, setDay } from "date-fns";
+import { addMonths } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
@@ -18,60 +18,68 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputDateTime> = (args) => {
-    const {
-        setValue,
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({ mode: "onChange" });
+    const formMethods = useForm({ mode: "onChange" });
 
     const onSubmit: SubmitHandler<unknown> = async (data) => {
         console.log(data);
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-neo-bg-A p-3">
-            <InputDateTime
-                {...args}
-                register={register}
-                setValue={setValue}
-                isError={errors?.date_creation_range && true}
-            />
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="bg-neo-bg-A p-3">
+            <InputDateTime {...args} formMethods={formMethods} />
         </form>
     );
 };
 
-export const InputDateTimeUpdate = Template.bind({});
-InputDateTimeUpdate.args = {
-    defaultValue: new Date(),
-    errorMessage: "ERROR",
-    isError: true,
-    isUpdateField: true,
-    refForm: "date_creation",
+export const InputDateTimeSimple = Template.bind({});
+InputDateTimeSimple.args = {
+    defaultValue: new Date(2022, 7, 1),
+    refForm: "date_creation_simple",
     label: "label",
-    lang: "fr-FR",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
 };
-export const InputDateTimeUpdateRange = Template.bind({});
-InputDateTimeUpdateRange.args = {
-    defaultValue: [new Date(), addDays(new Date(), 2)],
-    errorMessage: "ERROR",
-    isUpdateField: true,
+export const InputDateTimeRange = Template.bind({});
+InputDateTimeRange.args = {
+    defaultValue: new Date(),
     refForm: "date_creation_range",
     label: "label",
-    lang: "fr-FR",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
-    isRange: true,
     updateFunction: (reform, data) => console.log(reform, data),
-};
-export const InputDateTimeFCallRange = Template.bind({});
-InputDateTimeFCallRange.args = {
-    lang: "fr-FR",
-    defaultValue: [setDay(new Date(), 2), new Date()],
-    maxDate: new Date(),
     isRange: true,
-    fCallBack: (date) => console.log(date),
+};
+export const InputDateTimeSimpleUpdate = Template.bind({});
+InputDateTimeSimpleUpdate.args = {
+    defaultValue: new Date(),
+    refForm: "date_creation_simple_update",
+    label: "label",
+    minDate: new Date(),
+    maxDate: addMonths(new Date(), 5),
+    updateFunction: (reform, data) => console.log(reform, data),
+    isUpdateField: true,
+};
+export const InputDateTimeRangeUpdate = Template.bind({});
+InputDateTimeRangeUpdate.args = {
+    defaultValue: new Date(),
+    refForm: "date_creation_range_update",
+    label: "label",
+    minDate: new Date(),
+    maxDate: addMonths(new Date(), 5),
+    updateFunction: (reform, data) => console.log(reform, data),
+    isRange: true,
+    isUpdateField: true,
+    errorMessage: "Coucou",
+};
+export const InputDateIsError = Template.bind({});
+InputDateIsError.args = {
+    defaultValue: new Date(),
+    refForm: "date_creation_range_update",
+    label: "label",
+    minDate: new Date(),
+    maxDate: addMonths(new Date(), 5),
+    updateFunction: (reform, data) => console.log(reform, data),
+    isError: true,
+    errorMessage: "Coucou",
 };
