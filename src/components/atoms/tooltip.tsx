@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
@@ -15,11 +15,12 @@ interface Props {
 
 const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): ReactElement => {
     const [isHover, setIsHover] = useState(false);
+    const timer = useRef(null);
 
     return (
         <div className="relative">
             <div
-                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2   z-50
+                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 z-50
                 ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}
                 ${isHover ? "flex" : "hidden"}`}
                 data-testid="tooltip-bubble"
@@ -40,8 +41,13 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
                 />
             </div>
             <div
-                onMouseEnter={() => !disabled && setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}
+                onMouseEnter={() => {
+                    timer.current = setTimeout(() => !disabled && setIsHover(true), 200);
+                }}
+                onMouseLeave={() => {
+                    clearTimeout(timer.current);
+                    setIsHover(false);
+                }}
                 data-testid="tooltip-body"
             >
                 {children}
