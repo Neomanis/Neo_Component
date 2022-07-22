@@ -214,8 +214,8 @@ const ChartRangeSelector = ({
                                         onClick={() => {
                                             showUpDate() && setOffset(offset + 1);
                                         }}
-                                        className={`transform rotate-180 hover:scale-110 transition-all hover:cursor-pointer mb-2 p-1
-                                    ${!showUpDate() && "opacity-0"}`}
+                                        className={`transform rotate-180 mb-2 p-1
+                                    ${showUpDate() ? "cursor-pointer hover:scale-110 transition-all " : "opacity-30"}`}
                                     >
                                         {/* caret up */}
                                         <IconChevron
