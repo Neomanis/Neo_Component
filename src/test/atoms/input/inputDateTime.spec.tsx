@@ -5,7 +5,14 @@ import { ReactElement } from "react";
 
 function InputDateTimeTest(): ReactElement {
     const formMethods = useForm();
-    return <InputDateTime defaultValue={new Date()} refForm="date" formMethods={formMethods} />;
+    return (
+        <InputDateTime
+            defaultValue={new Date()}
+            refForm="date"
+            formMethods={formMethods}
+            updateFunction={(refField, data) => console.log(refField, data)}
+        />
+    );
 }
 
 describe("InputDateTime", () => {

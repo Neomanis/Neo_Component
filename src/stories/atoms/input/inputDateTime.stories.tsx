@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+import { fr, enGB, enUS } from "date-fns/locale";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
 import { addMonths } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { IconCalendar } from "../../../img/svg/index";
 
 export default {
     component: InputDateTime,
@@ -33,9 +35,9 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
 
 export const InputDateTimeSimple = Template.bind({});
 InputDateTimeSimple.args = {
-    defaultValue: new Date(2022, 7, 1),
     refForm: "date_creation_simple",
     label: "label",
+    placeholder: "I'm a placeholder",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
@@ -81,12 +83,15 @@ InputDateIsError.args = {
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
     isError: true,
+    lang: "fr-FR",
     errorMessage: "Coucou",
 };
 export const InputTest = Template.bind({});
 InputTest.args = {
     defaultValue: new Date(),
-    refForm: "date_creation_range_update",
+    refForm: "inputTest",
+    label: "COUCOU",
+    lang: "pt-BR",
+    updateFunction: (reform, data) => console.log(reform, data),
+    svg: <IconCalendar className={"fill-neo-link h-8 absolute right-10 z-50"} style={{ top: 58 }} />,
 };
-
-// defaultValue={new Date()} refForm="date"

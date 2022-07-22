@@ -12,6 +12,7 @@ import { useInputs } from "../../utils/hooks/useInputs";
 interface Props {
     formMethods: UseFormReturn;
     refForm: string;
+    updateFunction: (refForm: string, value: Date | [Date, Date]) => void;
     className?: string;
     inputClassName?: string;
     labelClassName?: string;
@@ -27,9 +28,10 @@ interface Props {
     lang?: string;
     pattern?: string;
     placeholder?: string;
-    updateFunction?: (refForm: string, value: Date | [Date, Date]) => void;
     defaultValueShowMonthPicker?: boolean;
     defaultShowTimePicker?: boolean;
+    svg?: ReactElement;
+    datePickerElementWrapper?: string;
 }
 
 type ConditionalProps = { isRange?: true; defaultValue: [Date, Date] } | { isRange?: false; defaultValue: Date };
@@ -40,10 +42,10 @@ registerLocale("fr-FR", fr);
 
 const InputDateTime = ({
     className = "w-full",
-    labelClassName = "text-white",
-    inputClassName = "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full",
+    labelClassName = "text-neo-link uppercase ml-2 font-bold",
+    inputClassName = "bg-neo-bg-B font-bold rounded py-3 pl-4 text-white text-sm w-full text-bold",
     timeInputLabel = "",
-    defaultValue = new Date(),
+    defaultValue,
     dotClassName = "",
     updateFunction,
     formMethods,
@@ -60,6 +62,8 @@ const InputDateTime = ({
     defaultValueShowMonthPicker,
     defaultShowTimePicker,
     isRange = false,
+    svg,
+    datePickerElementWrapper = "",
 }: Props & ConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
@@ -78,15 +82,16 @@ const InputDateTime = ({
     });
 
     const datesValue = useMemo(() => {
-        if (!value) {
-            return { startDate: new Date(), endDate: null };
-        }
+        // if (!value) {
+        //     return { startDate: new Date(), endDate: null };
+        // }
         if (!Array.isArray(value)) {
             return { startDate: value, endDate: null };
         } else {
             return { startDate: value[0], endDate: value[1] };
         }
     }, [value]);
+    console.log(defaultValue);
 
     const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
@@ -203,28 +208,31 @@ const InputDateTime = ({
                     </div>
                 </div>
             )}
-            <DatePicker
-                className={inputClassName}
-                calendarClassName="bg-custom-date-picker"
-                renderCustomHeader={customHeader}
-                renderDayContents={customDay}
-                placeholderText={placeholder}
-                required={required}
-                selected={datesValue.startDate}
-                maxDate={maxDate}
-                minDate={minDate}
-                dateFormat="yyyy/MM/dd HH:mm"
-                timeFormat="HH:mm"
-                locale={lang}
-                showMonthYearPicker={showMonthPicker}
-                showTimeInput={showTimePicker}
-                selectsRange={isRange}
-                onChange={handleChange}
-                startDate={datesValue.startDate}
-                endDate={datesValue.endDate}
-                timeInputLabel={timeInputLabel}
-                ref={ref}
-            />
+            <div className={datePickerElementWrapper}>
+                {svg && svg}
+                <DatePicker
+                    className={inputClassName}
+                    calendarClassName="bg-custom-date-picker"
+                    renderCustomHeader={customHeader}
+                    renderDayContents={customDay}
+                    placeholderText={placeholder}
+                    required={required}
+                    selected={datesValue.startDate}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    dateFormat="Pp"
+                    timeFormat="p"
+                    locale={lang}
+                    showMonthYearPicker={showMonthPicker}
+                    showTimeInput={showTimePicker}
+                    selectsRange={isRange}
+                    onChange={handleChange}
+                    startDate={datesValue.startDate}
+                    endDate={datesValue.endDate}
+                    timeInputLabel={timeInputLabel}
+                    ref={ref}
+                />
+            </div>
         </label>
     );
 };
