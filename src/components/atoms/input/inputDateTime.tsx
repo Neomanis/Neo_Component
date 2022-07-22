@@ -5,7 +5,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import Updater from "../updater";
-import { ClockLogo, IconChevron } from "../../../img/svg";
+import { IconChevron } from "../../../img/svg";
 import { getHexColorFromTailwindColor } from "../../utils";
 import { useInputs } from "../../utils/hooks/useInputs";
 
@@ -29,7 +29,6 @@ interface Props {
     pattern?: string;
     placeholder?: string;
     defaultValueShowMonthPicker?: boolean;
-    defaultShowTimePicker?: boolean;
     svg?: ReactElement;
     datePickerElementWrapper?: string;
 }
@@ -44,7 +43,6 @@ const InputDateTime = ({
     className = "w-full",
     labelClassName = "text-neo-link uppercase ml-2 font-bold",
     inputClassName = "bg-neo-bg-B font-bold rounded py-3 pl-4 text-white text-sm w-full text-bold",
-    timeInputLabel = "",
     defaultValue,
     dotClassName = "",
     updateFunction,
@@ -60,14 +58,11 @@ const InputDateTime = ({
     required,
     errorMessage,
     defaultValueShowMonthPicker,
-    defaultShowTimePicker,
     isRange = false,
     svg,
     datePickerElementWrapper = "",
 }: Props & ConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
-    const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
-
     const [state, dispatch] = useInputs(defaultValue);
     const isLastMount = useRef(null);
 
@@ -82,16 +77,12 @@ const InputDateTime = ({
     });
 
     const datesValue = useMemo(() => {
-        // if (!value) {
-        //     return { startDate: new Date(), endDate: null };
-        // }
         if (!Array.isArray(value)) {
             return { startDate: value, endDate: null };
         } else {
             return { startDate: value[0], endDate: value[1] };
         }
     }, [value]);
-    console.log(defaultValue);
 
     const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
@@ -104,7 +95,6 @@ const InputDateTime = ({
             <div
                 onClick={() => {
                     setShowMonthPicker(!showMonthPicker);
-                    setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
             >
@@ -121,14 +111,6 @@ const InputDateTime = ({
                     })}
                 </span>
             </div>
-            {!showMonthPicker && value && (
-                <ClockLogo
-                    onClick={() => setShowTimePicker(!showTimePicker)}
-                    fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
-                    width={12}
-                    className="absolute transform right-12 hover:scale-110 transition-all hover:cursor-pointer"
-                />
-            )}
             <IconChevron
                 onClick={() => (!showMonthPicker ? increaseMonth() : increaseYear())}
                 width={12}
@@ -137,7 +119,6 @@ const InputDateTime = ({
             />
         </div>
     );
-    const customDay = (day: number) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
 
     function handleChange(value: Date | [Date, Date]) {
         onChange(value);
@@ -178,9 +159,6 @@ const InputDateTime = ({
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
         onChange(defaultValue === undefined ? null : defaultValue);
-    }, [defaultValue]);
-
-    useEffect(() => {
         formMethods.setValue(refForm, defaultValue);
     }, []);
 
@@ -214,7 +192,12 @@ const InputDateTime = ({
                     className={inputClassName}
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
-                    renderDayContents={customDay}
+                    timeClassName={() =>
+                        "bg-neo-stats-black text-neo-link hover:text-neo-stats-black hover:bg-neo-blue active:bg-violet-700 focus:outline-none"
+                    }
+                    // timeCaption={"Time"}
+                    timeInputLabel={"neo-link"}
+                    showTimeSelect
                     placeholderText={placeholder}
                     required={required}
                     selected={datesValue.startDate}
@@ -224,12 +207,10 @@ const InputDateTime = ({
                     timeFormat="p"
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
-                    showTimeInput={showTimePicker}
                     selectsRange={isRange}
                     onChange={handleChange}
                     startDate={datesValue.startDate}
                     endDate={datesValue.endDate}
-                    timeInputLabel={timeInputLabel}
                     ref={ref}
                 />
             </div>
