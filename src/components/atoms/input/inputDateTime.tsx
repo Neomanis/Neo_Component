@@ -4,11 +4,11 @@ import { isEqual } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
+import "./inputDateTime.css";
 import Updater from "../updater";
 import { IconChevron } from "../../../img/svg";
-import { getHexColorFromTailwindColor } from "../../utils";
 import { useInputs } from "../../utils/hooks/useInputs";
-
+import { useTranslation } from "@neomanis/neo-translation";
 interface Props {
     formMethods: UseFormReturn;
     refForm: string;
@@ -65,6 +65,8 @@ const InputDateTime = ({
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
     const isLastMount = useRef(null);
+
+    const { t } = useTranslation();
 
     const {
         field: { ref, value, onChange },
@@ -192,10 +194,9 @@ const InputDateTime = ({
                     className={inputClassName}
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
-                    timeClassName={() =>
-                        "bg-neo-stats-black text-neo-link hover:text-neo-stats-black hover:bg-neo-blue active:bg-violet-700 focus:outline-none"
-                    }
-                    // timeCaption={"Time"}
+                    timeClassName={() => "bg-neo-stats-black text-neo-link hover:text-neo-stats-black"}
+                    // open={false}
+                    timeCaption={t("date.hour_one")}
                     timeInputLabel={"neo-link"}
                     showTimeSelect
                     placeholderText={placeholder}
