@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { fr, enGB, enUS } from "date-fns/locale";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
