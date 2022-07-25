@@ -4,7 +4,6 @@ import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
-import "./inputDateTime.css";
 import Updater from "../updater";
 import { IconChevron } from "../../../img/svg";
 import { useInputs } from "../../utils/hooks/useInputs";
@@ -12,7 +11,6 @@ import { useTranslation } from "@neomanis/neo-translation";
 interface Props {
     formMethods: UseFormReturn;
     refForm: string;
-    updateFunction: (refForm: string, value: Date | [Date, Date]) => void;
     className?: string;
     inputClassName?: string;
     labelClassName?: string;
@@ -21,8 +19,7 @@ interface Props {
     maxDate?: Date;
     minDate?: Date;
     required?: boolean;
-    isUpdateField?: boolean;
-    dotClassName?: string;
+    updaterClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     lang?: string;
@@ -30,10 +27,13 @@ interface Props {
     placeholder?: string;
     defaultValueShowMonthPicker?: boolean;
     svg?: ReactElement;
-    datePickerElementWrapper?: string;
+    datePickerElementWrapperClassName?: string;
 }
 
-type ConditionalProps = { isRange?: true; defaultValue: [Date, Date] } | { isRange?: false; defaultValue: Date };
+type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
+type UpdateConditionalProps =
+    | { isUpdateField?: true; updateFunction: (refForm: string, value: Date | [Date, Date]) => void }
+    | { isUpdateField?: false; updateFunction?: never };
 
 registerLocale("en-GB", enGB);
 registerLocale("en-US", enUS);
@@ -44,7 +44,7 @@ const InputDateTime = ({
     labelClassName = "text-neo-link uppercase ml-2 font-bold",
     inputClassName = "bg-neo-bg-B font-bold rounded py-3 pl-4 text-white text-sm w-full text-bold",
     defaultValue,
-    dotClassName = "",
+    updaterClassName = "",
     updateFunction,
     formMethods,
     isError,
@@ -60,11 +60,11 @@ const InputDateTime = ({
     defaultValueShowMonthPicker,
     isRange = false,
     svg,
-    datePickerElementWrapper = "",
-}: Props & ConditionalProps): ReactElement => {
+    datePickerElementWrapperClassName = "",
+}: Props & RangeConditionalProps & UpdateConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
-    const isLastMount = useRef(null);
+    const timer = useRef(null);
 
     const { t } = useTranslation();
 
@@ -125,21 +125,19 @@ const InputDateTime = ({
     function handleChangeSingle(value: Date) {
         onChange(value);
         if (isUpdateField) {
-            clearTimeout(isLastMount.current);
+            clearTimeout(timer.current);
             if (!isEqual(value, state.previous as Date)) {
                 dispatch({ type: "UPDATING", payload: value });
-                isLastMount.current = setTimeout(() => {
+                timer.current = setTimeout(() => {
                     updateFunction(refForm, value);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    isLastMount.current = setTimeout(() => {
+                    timer.current = setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
                 }, 5000);
             } else {
                 dispatch({ type: "CANCEL_UPDATE" });
             }
-        } else {
-            updateFunction(refForm, value);
         }
     }
 
@@ -148,36 +146,33 @@ const InputDateTime = ({
         const end = value[1] === null ? value[1] : endOfDay(value[1]);
         onChange([start, end]);
         if (isUpdateField) {
-            clearTimeout(isLastMount.current);
+            clearTimeout(timer.current);
             if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
                 dispatch({ type: "UPDATING", payload: value });
-                isLastMount.current = setTimeout(() => {
+                timer.current = setTimeout(() => {
                     updateFunction(refForm, [start, end]);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    isLastMount.current = setTimeout(() => {
+                    timer.current = setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
                 }, 5000);
             } else {
                 dispatch({ type: "CANCEL_UPDATE" });
             }
-        } else {
-            updateFunction(refForm, [start, end]);
         }
     }
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
         onChange(defaultValue === undefined ? null : defaultValue);
-        formMethods.setValue(refForm, defaultValue);
-    }, []);
+    }, [defaultValue]);
 
     return (
         <label className={className} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
                 <div className={`h-6 flex justify-between`}>
                     <p className={labelClassName}>{label}</p>
-                    <div className={dotClassName}>
+                    <div className={updaterClassName}>
                         {(isUpdateField || isError) && (
                             <Updater
                                 errorMessage={errorMessage}
@@ -196,7 +191,7 @@ const InputDateTime = ({
                     </div>
                 </div>
             )}
-            <div className={datePickerElementWrapper}>
+            <div className={datePickerElementWrapperClassName}>
                 {svg && svg}
                 <DatePicker
                     className={inputClassName}
@@ -204,7 +199,6 @@ const InputDateTime = ({
                     renderCustomHeader={customHeader}
                     timeClassName={() => "bg-neo-stats-black text-neo-link"}
                     timeCaption={t("date.hour_one")}
-                    timeInputLabel={"neo-link"}
                     showTimeSelect={!isRange}
                     placeholderText={placeholder}
                     required={required}

@@ -94,19 +94,19 @@
     @apply opacity-50 !important;
 }
 
-.react-datepicker__input-time-container {
-    @apply m-0 absolute top-9 left-[60px] !important;
-}
-
-.react-datepicker-time__input {
-    @apply m-0 !important;
-}
-
-.react-datepicker-time__input {
-    @apply bg-neo-bg-B px-3 py-1 rounded !important;
-}
-
 .react-datepicker__day--range-end {
     @apply bg-neo-blue text-white !important;
+}
+
+.react-datepicker-time__header {
+    color: #f3f3f3 !important;
+}
+
+.react-datepicker__time-list-item:hover {
+    background-color: #2a87d0 !important;
+}
+
+.react-datepicker__time-list-item--selected {
+    background-color: #22aaff !important;
 }
 
