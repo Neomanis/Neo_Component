@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
-import { isEqual } from "date-fns";
+import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
@@ -122,39 +122,47 @@ const InputDateTime = ({
         </div>
     );
 
-    function handleChange(value: Date | [Date, Date]) {
+    function handleChangeSingle(value: Date) {
         onChange(value);
         if (isUpdateField) {
             clearTimeout(isLastMount.current);
-            if (Array.isArray(value)) {
-                if (!isEqual(value[0], state.previous[0]) || !isEqual(value[1], state.previous[1])) {
-                    dispatch({ type: "UPDATING", payload: value });
+            if (!isEqual(value, state.previous as Date)) {
+                dispatch({ type: "UPDATING", payload: value });
+                isLastMount.current = setTimeout(() => {
+                    updateFunction(refForm, value);
+                    dispatch({ type: "UPDATE_SUCCESS" });
                     isLastMount.current = setTimeout(() => {
-                        updateFunction(refForm, value);
-                        dispatch({ type: "UPDATE_SUCCESS" });
-                        isLastMount.current = setTimeout(() => {
-                            dispatch({ type: "CLEAR_SUCCESS" });
-                        }, 3000);
-                    }, 5000);
-                } else {
-                    dispatch({ type: "CANCEL_UPDATE" });
-                }
+                        dispatch({ type: "CLEAR_SUCCESS" });
+                    }, 3000);
+                }, 5000);
             } else {
-                if (!isEqual(value, state.previous as Date)) {
-                    dispatch({ type: "UPDATING", payload: value });
-                    isLastMount.current = setTimeout(() => {
-                        updateFunction(refForm, value);
-                        dispatch({ type: "UPDATE_SUCCESS" });
-                        isLastMount.current = setTimeout(() => {
-                            dispatch({ type: "CLEAR_SUCCESS" });
-                        }, 3000);
-                    }, 5000);
-                } else {
-                    dispatch({ type: "CANCEL_UPDATE" });
-                }
+                dispatch({ type: "CANCEL_UPDATE" });
             }
         } else {
             updateFunction(refForm, value);
+        }
+    }
+
+    function handleChangeArray(value: [Date, Date]) {
+        const start = startOfDay(value[0]);
+        const end = value[1] === null ? value[1] : endOfDay(value[1]);
+        onChange([start, end]);
+        if (isUpdateField) {
+            clearTimeout(isLastMount.current);
+            if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
+                dispatch({ type: "UPDATING", payload: value });
+                isLastMount.current = setTimeout(() => {
+                    updateFunction(refForm, [start, end]);
+                    dispatch({ type: "UPDATE_SUCCESS" });
+                    isLastMount.current = setTimeout(() => {
+                        dispatch({ type: "CLEAR_SUCCESS" });
+                    }, 3000);
+                }, 5000);
+            } else {
+                dispatch({ type: "CANCEL_UPDATE" });
+            }
+        } else {
+            updateFunction(refForm, [start, end]);
         }
     }
 
@@ -195,7 +203,6 @@ const InputDateTime = ({
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
                     timeClassName={() => "bg-neo-stats-black text-neo-link"}
-                    // open={false}
                     timeCaption={t("date.hour_one")}
                     timeInputLabel={"neo-link"}
                     showTimeSelect={!isRange}
@@ -204,12 +211,14 @@ const InputDateTime = ({
                     selected={datesValue.startDate}
                     maxDate={maxDate}
                     minDate={minDate}
-                    dateFormat="Pp"
+                    dateFormat={isRange ? "P" : "Pp"}
                     timeFormat="p"
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
-                    onChange={handleChange}
+                    onChange={(dates: Date | [Date, Date]) =>
+                        Array.isArray(dates) ? handleChangeArray(dates) : handleChangeSingle(dates)
+                    }
                     startDate={datesValue.startDate}
                     endDate={datesValue.endDate}
                     ref={ref}

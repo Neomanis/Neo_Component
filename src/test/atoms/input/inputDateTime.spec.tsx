@@ -10,6 +10,7 @@ function InputDateTimeTest(): ReactElement {
             defaultValue={new Date()}
             refForm="date"
             formMethods={formMethods}
+            // eslint-disable-next-line no-console
             updateFunction={(refField, data) => console.log(refField, data)}
         />
     );
