@@ -30,7 +30,7 @@ registerLocale("fr-FR", fr);
 
 const InputDateShift = ({
     className,
-    classNameInputDate,
+    classNameInputDate = "w-full",
     classNameInputSelect,
     date,
     formMethods,
@@ -74,24 +74,27 @@ const InputDateShift = ({
 
     return (
         <div className={`${className ? className : "flex w-full"}`} data-testid="inputDateShift-body">
-            <div className={classNameInputDate ? classNameInputDate : "w-52 mr-14"}>
-                {/* <InputDateTime
-                    // labelClassName="text-xs font-bold text-white"
+            <div className={classNameInputDate}>
+                <InputDateTime
                     formMethods={formMethods}
+                    refForm={refForm}
+                    updateFunction={updateFunctionDateTime}
+                    defaultValue={date}
+                    isRange={false}
+                    // labelClassName="text-xs font-bold text-white"
+
                     // isUpdateField={isUpdateField}
                     // label={label}
                     // maxDate={maxDate}
                     // minDate={minDate}
-                    refForm={refForm}
-                    // updateFunction={updateFunctionDateTime}
                     // lang={lang}
-                /> */}
+                />
             </div>
             <div className={classNameInputSelect ? classNameInputSelect : "w-32"}>
                 <InputSelect
                     placeholder={inputSelectPlaceholder}
                     isUpdateField={isUpdateField}
-                    refForm={"select-" + refForm}
+                    refForm={`select-${refForm}`}
                     formMethods={formMethods}
                     updateFunction={() => updateFunctionDateShift(refForm, getValues(refForm))}
                     options={tabProps}

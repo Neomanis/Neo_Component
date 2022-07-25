@@ -194,11 +194,11 @@ const InputDateTime = ({
                     className={inputClassName}
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
-                    timeClassName={() => "bg-neo-stats-black text-neo-link hover:text-neo-stats-black"}
+                    timeClassName={() => "bg-neo-stats-black text-neo-link"}
                     // open={false}
                     timeCaption={t("date.hour_one")}
                     timeInputLabel={"neo-link"}
-                    showTimeSelect
+                    showTimeSelect={!isRange}
                     placeholderText={placeholder}
                     required={required}
                     selected={datesValue.startDate}
