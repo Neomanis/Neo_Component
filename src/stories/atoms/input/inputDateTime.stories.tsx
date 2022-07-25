@@ -44,7 +44,7 @@ InputDateTimeSimple.args = {
 };
 export const InputDateTimeRange = Template.bind({});
 InputDateTimeRange.args = {
-    defaultValue: new Date(),
+    defaultValue: [new Date(), new Date()],
     refForm: "date_creation_range",
     label: "label",
     minDate: new Date(),
