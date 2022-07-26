@@ -4,7 +4,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
 import { InputDateTime } from "../../../components/atoms";
-import { addMonths } from "date-fns";
+import { addMonths, addHours } from "date-fns";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IconCalendar } from "../../../img/svg/index";
 
@@ -96,4 +96,44 @@ InputTest.args = {
     updateFunction: (reform, data) => console.log(reform, data),
     className: "w-full mx-4 relative",
     svg: <IconCalendar className={"fill-neo-link h-8 absolute right-10 z-50"} style={{ top: 32, right: 10 }} />,
+};
+
+export const InputMinTime = Template.bind({});
+InputMinTime.args = {
+    defaultValue: new Date(),
+    refForm: "inputTest",
+    label: "COUCOU",
+    lang: "pt-BR",
+    labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
+    inputClassName: "bg-neo-bg-B font-bold rounded h-[40px] pl-4 text-white text-sm w-full text-bold",
+    updateFunction: (reform, data) => console.log(reform, data),
+    className: "w-full mx-4 relative",
+    minTime: new Date(),
+};
+
+export const InputMaxTime = Template.bind({});
+InputMaxTime.args = {
+    defaultValue: new Date(),
+    refForm: "inputTest",
+    label: "COUCOU",
+    lang: "pt-BR",
+    labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
+    inputClassName: "bg-neo-bg-B font-bold rounded h-[40px] pl-4 text-white text-sm w-full text-bold",
+    updateFunction: (reform, data) => console.log(reform, data),
+    className: "w-full mx-4 relative",
+    maxTime: new Date(),
+};
+
+export const InputMinPlusMaxTime = Template.bind({});
+InputMinPlusMaxTime.args = {
+    defaultValue: new Date(),
+    refForm: "inputTest",
+    label: "COUCOU",
+    lang: "pt-BR",
+    labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
+    inputClassName: "bg-neo-bg-B font-bold rounded h-[40px] pl-4 text-white text-sm w-full text-bold",
+    updateFunction: (reform, data) => console.log(reform, data),
+    className: "w-full mx-4 relative",
+    maxTime: addHours(new Date(), 1),
+    minTime: addHours(new Date(), -1),
 };

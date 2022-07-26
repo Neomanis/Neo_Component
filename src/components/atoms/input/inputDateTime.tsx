@@ -19,6 +19,8 @@ interface Props {
     label?: string;
     maxDate?: Date;
     minDate?: Date;
+    maxTime?: Date;
+    minTime?: Date;
     required?: boolean;
     updaterClassName?: string;
     errorMessage?: string;
@@ -54,6 +56,8 @@ const InputDateTime = ({
     lang,
     maxDate,
     minDate,
+    minTime,
+    maxTime,
     placeholder,
     refForm,
     required,
@@ -122,6 +126,18 @@ const InputDateTime = ({
             />
         </div>
     );
+
+    function filteredTime(date: Date) {
+        if (!minTime && !maxTime) {
+            return true;
+        } else if (!minTime && maxTime) {
+            return date.getTime() < maxTime.getTime();
+        } else if (minTime && !maxTime) {
+            return date.getTime() > minTime.getTime();
+        } else {
+            return date.getTime() > minTime.getTime() && date.getTime() < maxTime.getTime();
+        }
+    }
 
     function handleChangeSingle(value: Date) {
         onChange(value);
@@ -198,7 +214,7 @@ const InputDateTime = ({
                     className={inputClassName}
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
-                    timeClassName={() => "bg-neo-stats-black text-neo-link"}
+                    timeClassName={() => "bg-neo-stats-black"}
                     timeCaption={t("date.hour_one")}
                     showTimeSelect={!isRange}
                     placeholderText={placeholder}
@@ -206,6 +222,7 @@ const InputDateTime = ({
                     selected={datesValue.startDate}
                     maxDate={maxDate}
                     minDate={minDate}
+                    filterTime={filteredTime}
                     dateFormat={isRange ? "P" : "Pp"}
                     timeFormat="p"
                     locale={lang}
