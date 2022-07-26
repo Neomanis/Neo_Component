@@ -4,6 +4,7 @@ import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../../styles/reactDatePicker.css";
 import Updater from "../updater";
 import { IconChevron } from "../../../img/svg";
 import { useInputs } from "../../utils/hooks/useInputs";

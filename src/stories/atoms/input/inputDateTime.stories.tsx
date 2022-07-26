@@ -91,6 +91,9 @@ InputTest.args = {
     refForm: "inputTest",
     label: "COUCOU",
     lang: "pt-BR",
+    labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
+    inputClassName: "bg-neo-bg-B font-bold rounded h-[40px] pl-4 text-white text-sm w-full text-bold",
     updateFunction: (reform, data) => console.log(reform, data),
-    svg: <IconCalendar className={"fill-neo-link h-8 absolute right-10 z-50"} style={{ top: 58 }} />,
+    className: "w-full mx-4 relative",
+    svg: <IconCalendar className={"fill-neo-link h-8 absolute right-10 z-50"} style={{ top: 32, right: 10 }} />,
 };
