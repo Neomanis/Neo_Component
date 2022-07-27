@@ -31,6 +31,7 @@ interface Props {
     defaultValueShowMonthPicker?: boolean;
     svg?: ReactElement;
     datePickerElementWrapperClassName?: string;
+    disabled?: boolean;
 }
 
 type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
@@ -66,6 +67,7 @@ const InputDateTime = ({
     isRange = false,
     svg,
     datePickerElementWrapperClassName = "",
+    disabled = false,
 }: Props & RangeConditionalProps & UpdateConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
@@ -234,6 +236,7 @@ const InputDateTime = ({
                     startDate={datesValue.startDate}
                     endDate={datesValue.endDate}
                     ref={ref}
+                    disabled={disabled}
                 />
             </div>
         </label>

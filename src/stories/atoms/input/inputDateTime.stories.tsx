@@ -137,3 +137,18 @@ InputMinPlusMaxTime.args = {
     maxTime: addHours(new Date(), 1),
     minTime: addHours(new Date(), -1),
 };
+
+export const InputDisabled = Template.bind({});
+InputDisabled.args = {
+    defaultValue: new Date(),
+    refForm: "inputTest",
+    label: "COUCOU",
+    lang: "pt-BR",
+    labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4 opacity-50",
+    inputClassName: "bg-neo-bg-B font-bold rounded h-[40px] pl-4 text-white text-sm w-full text-bold opacity-50",
+    updateFunction: (reform, data) => console.log(reform, data),
+    className: "w-full mx-4 relative",
+    maxTime: addHours(new Date(), 1),
+    minTime: addHours(new Date(), -1),
+    disabled: true,
+};
