@@ -17,17 +17,12 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
     const [isHover, setIsHover] = useState(false);
     const timer = useRef(null);
 
-    const isDisabled = useCallback(() => {
-        setIsHover(false);
-        return disabled;
-    }, [disabled]);
-
     return (
         <div className="relative">
             <div
                 className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 z-50
                 ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}
-                ${isHover ? "flex" : "hidden"}`}
+                ${!disabled && isHover ? "flex" : "hidden"}`}
                 data-testid="tooltip-bubble"
             >
                 <div className="bg-neo-stats-black text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
@@ -47,7 +42,7 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
             </div>
             <div
                 onMouseEnter={() => {
-                    timer.current = setTimeout(() => !isDisabled() && setIsHover(true), 200);
+                    timer.current = setTimeout(() => !disabled && setIsHover(true), 200);
                 }}
                 onMouseLeave={() => {
                     clearTimeout(timer.current);
