@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
@@ -16,6 +16,11 @@ interface Props {
 const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): ReactElement => {
     const [isHover, setIsHover] = useState(false);
     const timer = useRef(null);
+
+    const isDisabled = useCallback(() => {
+        setIsHover(false);
+        return disabled;
+    }, [disabled]);
 
     return (
         <div className="relative">
@@ -42,7 +47,7 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
             </div>
             <div
                 onMouseEnter={() => {
-                    timer.current = setTimeout(() => !disabled && setIsHover(true), 200);
+                    timer.current = setTimeout(() => !isDisabled() && setIsHover(true), 200);
                 }}
                 onMouseLeave={() => {
                     clearTimeout(timer.current);
