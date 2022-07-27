@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
+import React, { ReactElement, useMemo, useRef, useState } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
 import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -145,7 +145,7 @@ const InputDateTime = ({
 
     function handleChangeSingle(value: Date) {
         onChange(value);
-        callBackValue([value, null]);
+        callBackValue && callBackValue([value, null]);
         if (isUpdateField) {
             clearTimeout(timer.current);
             if (!isEqual(value, state.previous as Date)) {
@@ -167,7 +167,7 @@ const InputDateTime = ({
         const start = startOfDay(value[0]);
         const end = value[1] === null ? value[1] : endOfDay(value[1]);
         onChange([start, end]);
-        callBackValue([start, end]);
+        callBackValue && callBackValue([start, end]);
         if (isUpdateField) {
             clearTimeout(timer.current);
             if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
@@ -184,11 +184,6 @@ const InputDateTime = ({
             }
         }
     }
-
-    useEffect(() => {
-        dispatch({ type: "RESET", payload: defaultValue });
-        onChange(defaultValue === undefined ? null : defaultValue);
-    }, [defaultValue]);
 
     return (
         <label className={className} data-testid="inputDateTime-body">
