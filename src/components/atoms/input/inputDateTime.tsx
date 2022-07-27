@@ -32,7 +32,6 @@ interface Props {
     svg?: ReactElement;
     datePickerElementWrapperClassName?: string;
     disabled?: boolean;
-    callBackValue?: (dates: [Date, Date | null]) => void;
 }
 
 type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
@@ -69,7 +68,6 @@ const InputDateTime = ({
     svg,
     datePickerElementWrapperClassName = "",
     disabled = false,
-    callBackValue,
 }: Props & RangeConditionalProps & UpdateConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
@@ -145,7 +143,6 @@ const InputDateTime = ({
 
     function handleChangeSingle(value: Date) {
         onChange(value);
-        callBackValue && callBackValue([value, null]);
         if (isUpdateField) {
             clearTimeout(timer.current);
             if (!isEqual(value, state.previous as Date)) {
@@ -167,7 +164,6 @@ const InputDateTime = ({
         const start = startOfDay(value[0]);
         const end = value[1] === null ? value[1] : endOfDay(value[1]);
         onChange([start, end]);
-        callBackValue && callBackValue([start, end]);
         if (isUpdateField) {
             clearTimeout(timer.current);
             if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {

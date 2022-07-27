@@ -183,6 +183,15 @@ const ChartRangeSelector = ({
         return dateRange.start.getTime() <= refDate.getTime() && dateRange.end.getTime() <= refDate.getTime();
     }
 
+    useEffect(() => {
+        const subscription = formMethods.watch(({ date_creation_range }, { name, type }) => {
+            if (name === "date_creation_range" && type === "change" && date_creation_range[1] !== null) {
+                setCustomRange([date_creation_range[0], date_creation_range[1]]);
+            }
+        });
+        return () => subscription.unsubscribe();
+    }, [formMethods.watch]);
+
     return (
         <div className={containerClassName}>
             <ul
@@ -247,10 +256,6 @@ const ChartRangeSelector = ({
                                 refForm="date_creation_range"
                                 lang={language}
                                 formMethods={formMethods}
-                                callBackValue={(dates) => {
-                                    const formatDate = dates;
-                                    formatDate[1] !== null && setCustomRange([formatDate[0], formatDate[1]]);
-                                }}
                                 isRange
                             />
                         )}
