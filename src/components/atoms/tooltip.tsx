@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useRef, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
