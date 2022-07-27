@@ -247,7 +247,7 @@ const ChartRangeSelector = ({
                                 refForm="date_creation_range"
                                 lang={language}
                                 formMethods={formMethods}
-                                updateFunction={(_refForm, dates) => {
+                                callBackValue={(dates) => {
                                     const formatDate = dates;
                                     formatDate[1] !== null && setCustomRange([formatDate[0], formatDate[1]]);
                                 }}

@@ -2675,6 +2675,10 @@
   resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-2.7.0.tgz#b90edbed69f7137ded8dd715efa585a1d5cf24db"
   integrity sha1-uQ7b7Wn3E33tjdcV76WFodXPJNs=
 
+"@neomanis/neo-types@file:/home/neo-ryo/work/Neo_Types/neomanis-neo-types-v2.9.0.tgz":
+  version "2.9.0"
+  resolved "file:/home/neo-ryo/work/Neo_Types/neomanis-neo-types-v2.9.0.tgz#84965d6e9eb7869b351093298e19c266edc1cc03"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"

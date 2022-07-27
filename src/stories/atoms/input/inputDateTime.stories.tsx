@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from "react";
+import React, { useMemo } from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
@@ -25,6 +25,9 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
         console.log(data);
     };
 
+    useMemo(() => {
+        console.log("WATCH: ", formMethods.watch("date_creation"));
+    }, [formMethods.watch("date_creation")]);
     return (
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="bg-neo-bg-A p-3">
             <InputDateTime {...args} formMethods={formMethods} />
@@ -34,7 +37,7 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
 
 export const InputDateTimeSimple = Template.bind({});
 InputDateTimeSimple.args = {
-    refForm: "date_creation_simple",
+    refForm: "date_creation",
     label: "label",
     placeholder: "I'm a placeholder",
     minDate: new Date(),
@@ -44,7 +47,7 @@ InputDateTimeSimple.args = {
 export const InputDateTimeRange = Template.bind({});
 InputDateTimeRange.args = {
     defaultValue: [new Date(), new Date()],
-    refForm: "date_creation_range",
+    refForm: "date_creation",
     label: "label",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
@@ -54,7 +57,7 @@ InputDateTimeRange.args = {
 export const InputDateTimeSimpleUpdate = Template.bind({});
 InputDateTimeSimpleUpdate.args = {
     defaultValue: new Date(),
-    refForm: "date_creation_simple_update",
+    refForm: "date_creation",
     label: "label",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
@@ -64,7 +67,7 @@ InputDateTimeSimpleUpdate.args = {
 export const InputDateTimeRangeUpdate = Template.bind({});
 InputDateTimeRangeUpdate.args = {
     defaultValue: new Date(),
-    refForm: "date_creation_range_update",
+    refForm: "date_creation",
     label: "label",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
@@ -76,7 +79,7 @@ InputDateTimeRangeUpdate.args = {
 export const InputDateIsError = Template.bind({});
 InputDateIsError.args = {
     defaultValue: new Date(),
-    refForm: "date_creation_range_update",
+    refForm: "date_creation",
     label: "label",
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
@@ -88,7 +91,7 @@ InputDateIsError.args = {
 export const InputTest = Template.bind({});
 InputTest.args = {
     defaultValue: new Date(),
-    refForm: "inputTest",
+    refForm: "date_creation",
     label: "COUCOU",
     lang: "pt-BR",
     labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
@@ -101,7 +104,7 @@ InputTest.args = {
 export const InputMinTime = Template.bind({});
 InputMinTime.args = {
     defaultValue: new Date(),
-    refForm: "inputTest",
+    refForm: "date_creation",
     label: "COUCOU",
     lang: "pt-BR",
     labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
@@ -114,7 +117,7 @@ InputMinTime.args = {
 export const InputMaxTime = Template.bind({});
 InputMaxTime.args = {
     defaultValue: new Date(),
-    refForm: "inputTest",
+    refForm: "date_creation",
     label: "COUCOU",
     lang: "pt-BR",
     labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
@@ -127,7 +130,7 @@ InputMaxTime.args = {
 export const InputMinPlusMaxTime = Template.bind({});
 InputMinPlusMaxTime.args = {
     defaultValue: new Date(),
-    refForm: "inputTest",
+    refForm: "date_creation",
     label: "COUCOU",
     lang: "pt-BR",
     labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4",
@@ -141,7 +144,7 @@ InputMinPlusMaxTime.args = {
 export const InputDisabled = Template.bind({});
 InputDisabled.args = {
     defaultValue: new Date(),
-    refForm: "inputTest",
+    refForm: "date_creation",
     label: "COUCOU",
     lang: "pt-BR",
     labelClassName: "text-neo-blue-secondary font-bold uppercase ml-4 opacity-50",
