@@ -44,7 +44,7 @@ const OutageCard = ({
         >
             <div className="col-span-2 flex flex-col justify-between ">
                 <IconOutageCategorie id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
-                {role && role === Role.ADMINISTRATOR && (
+                {role && (role === Role.SUPERVISOR || role === Role.ADMINISTRATOR) && (
                     <>
                         {!openValidationCard ? (
                             <div className="flex justify-around mr-2">
