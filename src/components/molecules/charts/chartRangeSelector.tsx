@@ -158,6 +158,8 @@ const ChartRangeSelector = ({
         }
     }, [typeRangeSelect, dateRange]);
 
+    const periodDefaultValue = useMemo((): [Date, Date] => [startOfDay(new Date()), endOfDay(new Date())], []);
+
     useEffect(() => {
         fCallBackData([dateRange.start.getTime(), dateRange.end.getTime()]);
     }, [dateRange]);
@@ -251,7 +253,7 @@ const ChartRangeSelector = ({
                         {item.value === typeRangeSelect && item.value === rangeDateValue.custom && (
                             <InputDateTime
                                 className="w-72 px-4 z-50"
-                                defaultValue={[startOfDay(new Date()), endOfDay(new Date())]}
+                                defaultValue={periodDefaultValue}
                                 maxDate={new Date()}
                                 refForm="date_creation_range"
                                 lang={language}

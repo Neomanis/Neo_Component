@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import InputDateTimeDoc from "./inputDateTime.mdx";
@@ -20,6 +20,7 @@ export default {
 
 const Template: ComponentStory<typeof InputDateTime> = (args) => {
     const formMethods = useForm({ mode: "onChange" });
+    const [defaultValue, setDefaultValue] = useState(new Date());
 
     const onSubmit: SubmitHandler<unknown> = async (data) => {
         console.log(data);
@@ -30,7 +31,11 @@ const Template: ComponentStory<typeof InputDateTime> = (args) => {
     }, [formMethods.watch("date_creation")]);
     return (
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="bg-neo-bg-A p-3">
-            <InputDateTime {...args} formMethods={formMethods} />
+            <InputDateTime {...args} formMethods={formMethods} defaultValue={defaultValue} isRange={false} />
+
+            <button type="button" onClick={() => setDefaultValue(new Date(2022, 3, 1))}>
+                COUCOU C MOI
+            </button>
         </form>
     );
 };

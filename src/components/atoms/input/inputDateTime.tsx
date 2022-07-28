@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
 import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -180,6 +180,11 @@ const InputDateTime = ({
             }
         }
     }
+
+    useEffect(() => {
+        dispatch({ type: "RESET", payload: defaultValue });
+        onChange(defaultValue === undefined ? null : defaultValue);
+    }, [defaultValue]);
 
     return (
         <label className={className} data-testid="inputDateTime-body">
