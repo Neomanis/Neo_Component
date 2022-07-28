@@ -169,18 +169,6 @@ const Grid = ({
         createGrids(ticketList ? Array.from(ticketList) : []);
     }, [ticketList]);
 
-    // const opacity = useCallback(
-    //     (id) => {
-    //         if (selectedTicketsIds) {
-    //             if (selectedTicketsIds.length > 0) {
-    //                 return !selectedTicketsIds.includes(id);
-    //             }
-    //             return true;
-    //         }
-    //     },
-    //     [selectedTicketsIds]
-    // );
-
     return (
         <div className={className} data-testid="grid-body" ref={gridId ? setNodeRef : null}>
             <div className="h-7 transform translate-x-[75px]">
