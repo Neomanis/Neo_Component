@@ -32,12 +32,11 @@ interface Props {
     svg?: ReactElement;
     datePickerElementWrapperClassName?: string;
     disabled?: boolean;
+    isUpdateField?: boolean;
+    updateFunction?: (refForm: string, value: Date | [Date, Date]) => void;
 }
 
 type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
-type UpdateConditionalProps =
-    | { isUpdateField?: true; updateFunction: (refForm: string, value: Date | [Date, Date]) => void }
-    | { isUpdateField?: false; updateFunction?: never };
 
 registerLocale("en-GB", enGB);
 registerLocale("en-US", enUS);
@@ -68,7 +67,7 @@ const InputDateTime = ({
     svg,
     datePickerElementWrapperClassName = "",
     disabled = false,
-}: Props & RangeConditionalProps & UpdateConditionalProps): ReactElement => {
+}: Props & RangeConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
     const timer = useRef(null);
