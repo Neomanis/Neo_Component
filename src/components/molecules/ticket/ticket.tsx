@@ -55,7 +55,7 @@ const Ticket = ({
                         ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
                     onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
                     onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
-                    onMouseLeave={(): void => fCallBackHover && !isOpacity && fCallBackHover()}
+                    onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
                     data-testid="ticket-body"
                 >
                     <div className="absolute w-full" style={{ zIndex: 3 }}>
