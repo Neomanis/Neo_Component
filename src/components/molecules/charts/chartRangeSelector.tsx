@@ -1,5 +1,4 @@
 import React, { ReactElement, useState, useEffect, useMemo } from "react";
-
 import {
     setISOWeek,
     format,
@@ -20,6 +19,7 @@ import { getDateFnsLocaleFromUserLang } from "../../utils/dateTools";
 import InputDateTime from "../../atoms/input/inputDateTime";
 import { IconChevron } from "../../../img/svg";
 import { getHexColorFromTailwindColor } from "../../utils/tools";
+import { useForm } from "react-hook-form";
 
 interface Props {
     fCallBackData: (dates: [number, number]) => void;
@@ -63,6 +63,7 @@ const ChartRangeSelector = ({
 
     const refDate: Date = useMemo(() => new Date(), []);
 
+    const formMethods = useForm({ mode: "onChange" });
     function dayRangePicker(date: Date, offsetDay: number): { start: Date; end: Date } {
         const startDate = setDay(startOfDay(date), offsetDay, {
             locale: getDateFnsLocaleFromUserLang(language),
@@ -157,6 +158,8 @@ const ChartRangeSelector = ({
         }
     }, [typeRangeSelect, dateRange]);
 
+    const periodDefaultValue = useMemo((): [Date, Date] => [startOfDay(new Date()), endOfDay(new Date())], []);
+
     useEffect(() => {
         fCallBackData([dateRange.start.getTime(), dateRange.end.getTime()]);
     }, [dateRange]);
@@ -181,6 +184,15 @@ const ChartRangeSelector = ({
     function showUpDate(): boolean {
         return dateRange.start.getTime() <= refDate.getTime() && dateRange.end.getTime() <= refDate.getTime();
     }
+
+    useEffect(() => {
+        const subscription = formMethods.watch(({ date_creation_range }, { name, type }) => {
+            if (name === "date_creation_range" && type === "change" && date_creation_range[1] !== null) {
+                setCustomRange([date_creation_range[0], date_creation_range[1]]);
+            }
+        });
+        return () => subscription.unsubscribe();
+    }, [formMethods.watch]);
 
     return (
         <div className={containerClassName}>
@@ -241,14 +253,11 @@ const ChartRangeSelector = ({
                         {item.value === typeRangeSelect && item.value === rangeDateValue.custom && (
                             <InputDateTime
                                 className="w-72 px-4 z-50"
-                                defaultValue={[startOfDay(new Date()), endOfDay(new Date())]}
+                                defaultValue={periodDefaultValue}
                                 maxDate={new Date()}
                                 refForm="date_creation_range"
                                 lang={language}
-                                fCallBack={(dates) => {
-                                    const formatDate = dates as [Date, Date | null];
-                                    formatDate[1] !== null && setCustomRange([formatDate[0], formatDate[1]]);
-                                }}
+                                formMethods={formMethods}
                                 isRange
                             />
                         )}

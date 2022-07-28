@@ -1,171 +1,97 @@
 import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
-import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { format, isEqual, isAfter, isBefore } from "date-fns";
+import { UseFormReturn, useController } from "react-hook-form";
+import { isEqual, startOfDay, endOfDay } from "date-fns";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { fr, enGB, enUS } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../../styles/reactDatePicker.css";
 import Updater from "../updater";
-import { ClockLogo, IconChevron } from "../../../img/svg";
-import { getHexColorFromTailwindColor } from "../../utils";
+import { IconChevron } from "../../../img/svg";
 import { useInputs } from "../../utils/hooks/useInputs";
-
+import { useTranslation } from "@neomanis/neo-translation";
 interface Props {
+    formMethods: UseFormReturn;
+    refForm: string;
     className?: string;
-    dotClassName?: string;
-    errorMessage?: string;
-    fCallBack?: (date: Date | [Date, Date]) => void;
     inputClassName?: string;
-    isError?: boolean;
-    isUpdateField?: boolean;
-    label?: string;
     labelClassName?: string;
-    lang?: string;
+    timeInputLabel?: string;
+    label?: string;
     maxDate?: Date;
     minDate?: Date;
+    maxTime?: Date;
+    minTime?: Date;
+    required?: boolean;
+    updaterClassName?: string;
+    errorMessage?: string;
+    isError?: boolean;
+    lang?: string;
     pattern?: string;
     placeholder?: string;
-    refForm?: string;
-    register?: UseFormRegister<FieldValues>;
-    required?: boolean;
-    setValue?: UseFormSetValue<FieldValues>;
-    targetId?: number | undefined;
-    timerSetting?: number;
-    updateFunction?: (refForm: string, value: string) => void;
     defaultValueShowMonthPicker?: boolean;
-    defaultShowTimePicker?: boolean;
+    svg?: ReactElement;
+    datePickerElementWrapperClassName?: string;
+    disabled?: boolean;
 }
 
-type ConditionalProps = { isRange?: true; defaultValue: [Date, Date] } | { isRange?: false; defaultValue: Date };
+type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
+type UpdateConditionalProps =
+    | { isUpdateField?: true; updateFunction: (refForm: string, value: Date | [Date, Date]) => void }
+    | { isUpdateField?: false; updateFunction?: never };
 
 registerLocale("en-GB", enGB);
 registerLocale("en-US", enUS);
 registerLocale("fr-FR", fr);
 
 const InputDateTime = ({
-    className,
+    className = "w-full",
+    labelClassName = "text-neo-link uppercase ml-2 font-bold",
+    inputClassName = "bg-neo-bg-B font-bold rounded py-3 pl-4 text-white text-sm w-full text-bold",
     defaultValue,
-    dotClassName,
-    fCallBack,
-    inputClassName,
+    updaterClassName = "",
+    updateFunction,
+    formMethods,
     isError,
     isUpdateField = false,
     label,
-    labelClassName,
     lang,
     maxDate,
     minDate,
+    minTime,
+    maxTime,
     placeholder,
     refForm,
-    register,
     required,
-    setValue,
-    targetId,
-    timerSetting = 5000,
-    updateFunction,
     errorMessage,
     defaultValueShowMonthPicker,
-    defaultShowTimePicker,
     isRange = false,
-}: Props & ConditionalProps): ReactElement => {
-    const typedDefaultValue = useMemo(() => {
-        if (isRange === true) {
-            return defaultValue[0];
-        }
-        if (isRange === false) {
-            return defaultValue;
-        }
-    }, [defaultValue]);
-
+    svg,
+    datePickerElementWrapperClassName = "",
+    disabled = false,
+}: Props & RangeConditionalProps & UpdateConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
-    const [showTimePicker, setShowTimePicker] = useState<boolean>(defaultShowTimePicker);
-    const [startDate, setStartDate] = useState<Date>(typedDefaultValue);
-    const [endDate, setEndDate] = useState<Date | null>(isRange ? defaultValue[1] : null);
-
     const [state, dispatch] = useInputs(defaultValue);
+    const timer = useRef(null);
 
-    const isLastMount = useRef(false);
+    const { t } = useTranslation();
 
-    useEffect(() => {
-        register &&
-            register(refForm, {
-                required,
-                validate: {
-                    maxDate: (value) => {
-                        if (!maxDate) {
-                            return true;
-                        }
-                        if (isRange) {
-                            return isBefore(value[0], maxDate) && isBefore(value[1], maxDate);
-                        } else {
-                            return isBefore(value, maxDate);
-                        }
-                    },
-                    minDate: (value) => {
-                        if (!minDate) {
-                            return true;
-                        }
-                        if (isRange) {
-                            return isAfter(value[0], minDate);
-                        } else {
-                            return isAfter(value, minDate);
-                        }
-                    },
-                },
-            });
-        dispatch({ type: "RESET", payload: defaultValue });
-        setValue && setValue(refForm, defaultValue);
-        setStartDate(typedDefaultValue);
-        isRange && setEndDate(defaultValue[1]);
-        return () => {
-            isLastMount.current = true;
-        };
-    }, [targetId]);
+    const {
+        field: { ref, value, onChange },
+    } = useController({
+        control: formMethods.control,
+        name: refForm,
+        rules: { required },
+        shouldUnregister: true,
+        defaultValue,
+    });
 
-    useEffect(() => {
-        if (
-            state.updated &&
-            isUpdateField &&
-            state.updated !== state.previous &&
-            (maxDate ? !isAfter(state.updated as Date, maxDate) : true)
-        ) {
-            const newTimeout = setTimeout((): void => {
-                if (updateFunction) {
-                    if (isRange) {
-                        updateFunction(
-                            refForm,
-                            `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
-                                `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
-                        );
-                    } else {
-                        updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
-                    }
-                    dispatch({ type: "UPDATE_SUCCESS" });
-                    setTimeout(() => {
-                        dispatch({ type: "CLEAR_SUCCESS" });
-                    }, 3000);
-                }
-            }, timerSetting);
-            dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
-
-            return () => {
-                if (isLastMount.current) {
-                    clearTimeout(newTimeout);
-                    if (updateFunction) {
-                        if (isRange) {
-                            updateFunction(
-                                refForm,
-                                `${format(state.updated[0] as Date, "yyyy-MM-dd HH:mm")}:00` +
-                                    `${format(state.updated[1] as Date, "yyyy-MM-dd HH:mm")}:00`
-                            );
-                        } else {
-                            updateFunction(refForm, `${format(state.updated as Date, "yyyy-MM-dd HH:mm")}:00`);
-                        }
-                    }
-                    isLastMount.current = false;
-                }
-            };
+    const datesValue = useMemo(() => {
+        if (!Array.isArray(value)) {
+            return { startDate: value, endDate: null };
+        } else {
+            return { startDate: value[0], endDate: value[1] };
         }
-    }, [state.updated, state.previous]);
+    }, [value]);
 
     const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
@@ -178,7 +104,6 @@ const InputDateTime = ({
             <div
                 onClick={() => {
                     setShowMonthPicker(!showMonthPicker);
-                    setShowTimePicker(false);
                 }}
                 className="relative text-base mx-4 hover:cursor-pointer hover:text-neo-red transform hover:scale-110 transition-all"
             >
@@ -195,14 +120,6 @@ const InputDateTime = ({
                     })}
                 </span>
             </div>
-            {!showMonthPicker && startDate && (
-                <ClockLogo
-                    onClick={() => setShowTimePicker(!showTimePicker)}
-                    fill={showTimePicker ? getHexColorFromTailwindColor("neo-red") : "#FFF"}
-                    width={12}
-                    className="absolute transform right-12 hover:scale-110 transition-all hover:cursor-pointer"
-                />
-            )}
             <IconChevron
                 onClick={() => (!showMonthPicker ? increaseMonth() : increaseYear())}
                 width={12}
@@ -211,50 +128,70 @@ const InputDateTime = ({
             />
         </div>
     );
-    const customDay = (day: number) => <p onClick={() => setShowTimePicker(false)}>{day}</p>;
 
-    const onChange = (dates: Date | [Date, Date]) => {
-        fCallBack && fCallBack(dates);
-        setValue && setValue(refForm, dates, { shouldValidate: true });
-        if (Array.isArray(dates)) {
-            setStartDate(dates[0]);
-            setEndDate(dates[1]);
-            if (isUpdateField) {
-                if (!isError) {
-                    if (dates[1]) {
-                        if (!isEqual(state.previous[0], dates[0]) && !isEqual(state.previous[1], dates[1])) {
-                            dispatch({ type: "UPDATING", payload: [dates[0], dates[1]] });
-                        } else {
-                            dispatch({ type: "CANCEL_UPDATE" });
-                        }
-                    } else {
-                        dispatch({ type: "CANCEL_UPDATE" });
-                    }
-                } else {
-                    dispatch({ type: "SHOW_DOT" });
-                }
-            }
+    function filteredTime(date: Date) {
+        if (!minTime && !maxTime) {
+            return true;
+        } else if (!minTime && maxTime) {
+            return date.getTime() < maxTime.getTime();
+        } else if (minTime && !maxTime) {
+            return date.getTime() > minTime.getTime();
         } else {
-            setStartDate(dates);
-            if (isUpdateField) {
-                if (!isEqual(state.previous as Date, dates)) {
-                    dispatch({ type: "UPDATING", payload: dates });
-                } else {
-                    dispatch({ type: "CANCEL_UPDATE" });
-                }
+            return date.getTime() > minTime.getTime() && date.getTime() < maxTime.getTime();
+        }
+    }
+
+    function handleChangeSingle(value: Date) {
+        onChange(value);
+        if (isUpdateField) {
+            clearTimeout(timer.current);
+            if (!isEqual(value, state.previous as Date)) {
+                dispatch({ type: "UPDATING", payload: value });
+                timer.current = setTimeout(() => {
+                    updateFunction(refForm, value);
+                    dispatch({ type: "UPDATE_SUCCESS" });
+                    timer.current = setTimeout(() => {
+                        dispatch({ type: "CLEAR_SUCCESS" });
+                    }, 3000);
+                }, 5000);
+            } else {
+                dispatch({ type: "CANCEL_UPDATE" });
             }
         }
-        if (state.timeoutId) {
-            clearTimeout(state.timeoutId);
+    }
+
+    function handleChangeArray(value: [Date, Date]) {
+        const start = startOfDay(value[0]);
+        const end = value[1] === null ? value[1] : endOfDay(value[1]);
+        onChange([start, end]);
+        if (isUpdateField) {
+            clearTimeout(timer.current);
+            if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
+                dispatch({ type: "UPDATING", payload: value });
+                timer.current = setTimeout(() => {
+                    updateFunction(refForm, [start, end]);
+                    dispatch({ type: "UPDATE_SUCCESS" });
+                    timer.current = setTimeout(() => {
+                        dispatch({ type: "CLEAR_SUCCESS" });
+                    }, 3000);
+                }, 5000);
+            } else {
+                dispatch({ type: "CANCEL_UPDATE" });
+            }
         }
-    };
+    }
+
+    useEffect(() => {
+        dispatch({ type: "RESET", payload: defaultValue });
+        onChange(defaultValue === undefined ? null : defaultValue);
+    }, [defaultValue]);
 
     return (
-        <label className={`${className ? className : "w-full"}`} data-testid="inputDateTime-body">
+        <label className={className} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
                 <div className={`h-6 flex justify-between`}>
-                    <p className={`${labelClassName ? labelClassName : "text-white"}`}>{label}</p>
-                    <div className={`${dotClassName ? dotClassName : ""}`}>
+                    <p className={labelClassName}>{label}</p>
+                    <div className={updaterClassName}>
                         {(isUpdateField || isError) && (
                             <Updater
                                 errorMessage={errorMessage}
@@ -264,18 +201,8 @@ const InputDateTime = ({
                                 isError={isError}
                                 trigger={state.trigger}
                                 fCallBackCancel={(): void => {
-                                    if (setValue && state.previous) {
-                                        setValue(refForm, state.previous);
-                                        if (isRange) {
-                                            setStartDate(state.previous[0] as Date);
-                                            setEndDate(state.previous[1] as Date);
-                                        } else {
-                                            setStartDate(state.previous as Date);
-                                        }
-                                    }
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
-                                    }
+                                    formMethods.setValue(refForm, state.previous);
+                                    clearTimeout(state.timeoutId);
                                     dispatch({ type: "CANCEL_UPDATE" });
                                 }}
                             />
@@ -283,38 +210,35 @@ const InputDateTime = ({
                     </div>
                 </div>
             )}
-            <DatePicker
-                className={`
-                    ${
-                        inputClassName
-                            ? inputClassName
-                            : "bg-neo-bg-B rounded py-3 px-1 text-center text-white text-xs w-full"
-                    }`}
-                calendarClassName="bg-custom-date-picker"
-                renderCustomHeader={customHeader}
-                renderDayContents={customDay}
-                placeholderText={placeholder}
-                required={required}
-                selected={startDate}
-                maxDate={maxDate}
-                minDate={minDate}
-                dateFormat="yyyy/MM/dd HH:mm"
-                timeFormat="HH:mm"
-                locale={lang}
-                showMonthYearPicker={showMonthPicker}
-                showTimeInput={showTimePicker}
-                selectsRange={isRange}
-                onChange={onChange}
-                onCalendarClose={() => {
-                    if (isRange && endDate === null) {
-                        setStartDate(defaultValue[0]);
-                        setEndDate(defaultValue[1]);
+            <div className={datePickerElementWrapperClassName}>
+                {svg && svg}
+                <DatePicker
+                    className={inputClassName}
+                    calendarClassName="bg-custom-date-picker"
+                    renderCustomHeader={customHeader}
+                    timeClassName={() => "bg-neo-stats-black"}
+                    timeCaption={t("date.hour_one")}
+                    showTimeSelect={!isRange}
+                    placeholderText={placeholder}
+                    required={required}
+                    selected={datesValue.startDate}
+                    maxDate={maxDate}
+                    minDate={minDate}
+                    filterTime={filteredTime}
+                    dateFormat={isRange ? "P" : "Pp"}
+                    timeFormat="p"
+                    locale={lang}
+                    showMonthYearPicker={showMonthPicker}
+                    selectsRange={isRange}
+                    onChange={(dates: Date | [Date, Date]) =>
+                        Array.isArray(dates) ? handleChangeArray(dates) : handleChangeSingle(dates)
                     }
-                }}
-                startDate={startDate}
-                endDate={endDate}
-                timeInputLabel=""
-            />
+                    startDate={datesValue.startDate}
+                    endDate={datesValue.endDate}
+                    ref={ref}
+                    disabled={disabled}
+                />
+            </div>
         </label>
     );
 };

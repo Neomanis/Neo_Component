@@ -10,7 +10,6 @@ import IconTicketCategorie from "./ticket/iconTicketCategorie";
 import Img from "./img";
 import Input from "./input/input";
 import InputChoice from "./input/inputChoice";
-import InputDateShift from "./input/inputDateShift";
 import InputDateTime from "./input/inputDateTime";
 import InputSelect from "./input/inputSelect";
 import InputTextarea from "./input/inputTextarea";
@@ -37,7 +36,6 @@ export {
     Img,
     Input,
     InputChoice,
-    InputDateShift,
     InputDateTime,
     InputSelect,
     InputTextarea,
