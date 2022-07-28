@@ -33,6 +33,7 @@ Default.args = {
     rows: 4,
     cols: 4,
     showPagination: true,
+    selectedTicketsIds: [15, 50, 56, 25, 1, 4, 5, 8],
 };
 
 export const DefaultHelper = Template.bind({});

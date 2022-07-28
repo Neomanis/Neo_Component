@@ -169,12 +169,11 @@ const Grid = ({
         createGrids(ticketList ? Array.from(ticketList) : []);
     }, [ticketList]);
 
-    const opacity = useCallback(
+    const isOpacified = useCallback(
         (id) => {
-            if (selectedTicketsIds) {
-                if (selectedTicketsIds.length > 0) {
-                    return !selectedTicketsIds.includes(id);
-                }
+            if (!selectedTicketsIds || selectedTicketsIds.includes(id)) {
+                return false;
+            } else {
                 return true;
             }
         },
@@ -225,7 +224,7 @@ const Grid = ({
                                                 currentTicket,
                                                 fCallBackClick: currentTicketCallBack,
                                                 fCallBackHover: hoverCallBack,
-                                                isOpacity: opacity(item.id),
+                                                isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
                                             }}
