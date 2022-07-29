@@ -53,16 +53,15 @@ const SearchField = ({
                     typeInput="text"
                 />
             </div>
-            {showClearButton && (
-                <Button
-                    className="mr-4"
-                    svg={<CloseLogo className=" w-2 h-2 " fill={iconResetColor} />}
-                    fCallback={() => reset && reset()}
-                />
-            )}
-            <div className="w-4 mr-4">
-                <IconSearch fill={iconSearchColor} />
+            <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">
+                {showClearButton && (
+                    <Button
+                        svg={<CloseLogo className="w-3 h-3" fill={iconResetColor} />}
+                        fCallback={() => reset && reset()}
+                    />
+                )}
             </div>
+            <IconSearch fill={iconSearchColor} className="w-5 mr-3" />
         </div>
     );
 };

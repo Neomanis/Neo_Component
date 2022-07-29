@@ -26,6 +26,12 @@ Default.args = {
     refForm: "input",
     placeholder: "Search ...",
 };
+export const DefaultNoReset = Template.bind({});
+DefaultNoReset.args = {
+    refForm: "input",
+    placeholder: "Search ...",
+    showClearButton: false,
+};
 
 export const FullArgs = Template.bind({});
 FullArgs.args = {

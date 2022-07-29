@@ -39,7 +39,7 @@ const Grid = ({
     rows,
     showPagination,
     ticketList,
-    selectedTicketsIds = [],
+    selectedTicketsIds,
 }: Props): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -169,6 +169,13 @@ const Grid = ({
         createGrids(ticketList ? Array.from(ticketList) : []);
     }, [ticketList]);
 
+    const isOpacified = useCallback(
+        (id) => {
+            return selectedTicketsIds && !selectedTicketsIds.includes(id);
+        },
+        [selectedTicketsIds]
+    );
+
     return (
         <div className={className} data-testid="grid-body" ref={gridId ? setNodeRef : null}>
             <div className="h-7 transform translate-x-[75px]">
@@ -213,9 +220,7 @@ const Grid = ({
                                                 currentTicket,
                                                 fCallBackClick: currentTicketCallBack,
                                                 fCallBackHover: hoverCallBack,
-                                                isOpacity:
-                                                    selectedTicketsIds.length > 0 &&
-                                                    !selectedTicketsIds.includes(item.id),
+                                                isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
                                             }}
