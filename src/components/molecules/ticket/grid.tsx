@@ -171,11 +171,7 @@ const Grid = ({
 
     const isOpacified = useCallback(
         (id) => {
-            if (!selectedTicketsIds || selectedTicketsIds.includes(id)) {
-                return false;
-            } else {
-                return true;
-            }
+            return selectedTicketsIds && !selectedTicketsIds.includes(id);
         },
         [selectedTicketsIds]
     );
