@@ -48,7 +48,7 @@ describe("ButtonSwitch", () => {
         cy.get('[data-testid="buttonSwitch-body"]').should("have.css", "color").and("eq", "rgb(226, 220, 143)");
         cy.get('[data-testid="buttonSwitch-svg"]').should("not.exist");
         cy.get('[data-testid="buttonSwitch-icon"]').should("be.visible");
-        cy.get('[data-testid="buttonSwitch-icon"]').should("have.css", "color").and("eq", "rgb(21, 37, 53)");
+        cy.get('[data-testid="buttonSwitch-icon"]').should("have.css", "color").and("eq", "rgb(9, 40, 71)");
         cy.get('[data-testid="buttonSwitch-body"]').click();
         cy.get('[data-testid="buttonSwitch-icon"]').should("have.css", "color").and("eq", "rgb(255, 255, 255)");
     });
