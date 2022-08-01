@@ -42,6 +42,7 @@ InputDateTimeSimple.args = {
     minDate: new Date(),
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
+    showTimePicker: true,
 };
 export const InputDateTimeRange = Template.bind({});
 InputDateTimeRange.args = {

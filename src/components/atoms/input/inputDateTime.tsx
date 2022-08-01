@@ -30,6 +30,7 @@ interface Props {
     placeholder?: string;
     defaultValueShowMonthPicker?: boolean;
     svg?: ReactElement;
+    showTimePicker?: boolean;
     datePickerElementWrapperClassName?: string;
     disabled?: boolean;
     isUpdateField?: boolean;
@@ -62,9 +63,10 @@ const InputDateTime = ({
     refForm,
     required,
     errorMessage,
-    defaultValueShowMonthPicker,
+    defaultValueShowMonthPicker = false,
     isRange = false,
     svg,
+    showTimePicker = true,
     datePickerElementWrapperClassName = "",
     disabled = false,
 }: Props & RangeConditionalProps): ReactElement => {
@@ -119,6 +121,7 @@ const InputDateTime = ({
                     })}
                 </span>
             </div>
+
             <IconChevron
                 onClick={() => (!showMonthPicker ? increaseMonth() : increaseYear())}
                 width={12}
@@ -217,7 +220,7 @@ const InputDateTime = ({
                     renderCustomHeader={customHeader}
                     timeClassName={() => "bg-neo-stats-black"}
                     timeCaption={t("date.hour_one")}
-                    showTimeSelect={!isRange}
+                    showTimeSelect={!isRange && showTimePicker}
                     placeholderText={placeholder}
                     required={required}
                     selected={datesValue.startDate}

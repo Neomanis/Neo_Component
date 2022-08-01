@@ -4,25 +4,19 @@
     @apply bg-neo-stats-black p-2 rounded-xl border-0 text-white !important;
 }
 .react-datepicker-popper {
-    z-index: 11 !important;
+    @apply z-[11] !important;
 }
-
 .react-datepicker__header {
-    border: none !important;
-    background: none !important;
-    padding: 0 !important;
+    @apply border-0 bg-transparent p-0 !important;
 }
 .react-datepicker__day {
     @apply text-neo-link hover:bg-neo-blue hover:text-white !important;
 }
 .react-datepicker__day-name {
-    color: #626574 !important;
-    text-transform: uppercase !important;
-    font-weight: 700;
-    font-size: 11px;
+    @apply text-neo-stats-grey uppercase font-bold text-xs !important;
 }
 .react-datepicker__day--selected {
-    @apply bg-neo-blue text-white !important;
+    @apply bg-neo-blue text-white font-bold !important;
 }
 .react-datepicker__month-text {
     @apply hover:bg-neo-blue px-4 py-3 mx-1 text-neo-link hover:text-white !important;
@@ -30,42 +24,39 @@
 .react-datepicker__month-text--keyboard-selected {
     @apply bg-neo-blue px-4 py-3 mx-1 text-white !important;
 }
-
 .react-datepicker__triangle {
     @apply translate-x-32 !important;
 }
-
 .react-datepicker__day--disabled {
     @apply opacity-50 !important;
 }
-
 .react-datepicker__month--disabled {
     @apply opacity-50 !important;
 }
-
 .react-datepicker__day--range-end {
     @apply bg-neo-blue text-white !important;
 }
-
+.react-datepicker__time-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    height: 165px !important;
+    @apply mt-2 !important;
+}
 .react-datepicker-time__header {
-    color: #f3f3f3 !important;
+    @apply text-white !important;
 }
-
-.react-datepicker__time-list-item:hover {
-    background-color: #2a87d0 !important;
-    color: #f3f3f3 !important;
-    font-weight: 700;
+.react-datepicker__time-list-item {
+    @apply text-xs flex items-center justify-center hover:bg-neo-blue hover:text-white hover:font-bold rounded !important;
 }
-
 .react-datepicker__time-list-item--selected {
-    background-color: #22aaff !important;
+    @apply bg-neo-blue rounded !important;
 }
-
 .react-datepicker__time-list-item--disabled {
-    color: #626574 !important;
+    @apply text-neo-stats-grey hover:text-black hover:bg-neo-settings-lightGrey !important;
 }
-
-.react-datepicker__time-list-item--disabled:hover {
-    background-color: #62657471 !important;
-    color: balck !important;
+.react-datepicker__time-container {
+    @apply border-none !important;
+}
+.react-datepicker__time {
+    @apply bg-transparent text-neo-link !important;
 }
