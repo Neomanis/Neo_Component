@@ -4,7 +4,6 @@ import {
     capitalizeFirstLetter,
     lowerCaseFirstLetter,
     getContrastBasedOnHexColor,
-    getHexColorFromTailwindColor,
     getStatusOrPriorityColor,
     sleep,
     getTicketTitle,
@@ -55,18 +54,6 @@ describe("getContrastBasedOnHexColor", () => {
     it("should return white or black based on the contrast of the color", () => {
         expect(getContrastBasedOnHexColor("#152535")).to.eql("white");
         expect(getContrastBasedOnHexColor("#89D2FF")).to.eql("black");
-    });
-});
-
-describe("getHexColorFromTailwindColor", () => {
-    it("should return a hexadecimal color from a tailwind class color", () => {
-        expect(getHexColorFromTailwindColor("neo-red")).to.eql("#F7284F");
-    });
-    it("should return undefined if color doesn't exist", () => {
-        expect(getHexColorFromTailwindColor("neo-red-blue")).to.eql(undefined);
-    });
-    it("should returndefault value if DEFAULT exist", () => {
-        expect(getHexColorFromTailwindColor("neo-blue")).to.eql("#22AAFF");
     });
 });
 

@@ -2,8 +2,7 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
         extend: {
-            //color perso neomanis
-            // if you add or update color, update GetHexColorFromTailwindColor too (./src/components/utils/tools.ts).
+            // if you add or update color, please update ./src/components/utils/NeoColors.ts
             colors: {
                 neo: {
                     bg: {

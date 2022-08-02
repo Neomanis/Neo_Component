@@ -3,7 +3,7 @@ import { Role, User } from "@neomanis/neo-types";
 import { DefaultUserPicture } from "../../../img/png";
 import { IconAdd } from "../../../img/svg";
 import { Icon, Img } from "../../atoms";
-import { getHexColorFromTailwindColor } from "../../utils";
+import { NeoColors } from "../../utils";
 import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
@@ -46,7 +46,7 @@ const UserInfo = ({
                     className={imageSizeStyle + "rounded-full"}
                 />
                 <div className="absolute top-0 right-0 z-50 bg-neo-bg-A rounded-full">
-                    <Icon svg={<IconAdd width={20} fill={getHexColorFromTailwindColor("neo-link")} />} />
+                    <Icon svg={<IconAdd width={20} fill={NeoColors.link} />} />
                 </div>
                 {isHovered && (
                     <div

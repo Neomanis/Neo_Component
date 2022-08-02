@@ -1,5 +1,5 @@
 import { getActorName, getRequesterUid, getUserEntityName, getUserName } from "./userTools";
-import { formatMessage, getRecipientsNameByIds, stripHtml } from "./chatFunction";
+import { formatMessage, stripHtml } from "./chatFunction";
 import {
     formatDate,
     formatDateToNow,
@@ -18,24 +18,24 @@ import {
     capitalizeFirstLetter,
     getContrastBasedOnHexColor,
     getHexColorFromTailwindColor,
+    getHTMLValue,
+    getPriorityColor,
+    getPriorityValue,
     getStatusOrPriorityColor,
     getTicketTitle,
+    isNotNullOrUndefined,
     lowerCaseFirstLetter,
     mapEnumToInputSelectData,
     sleep,
-    getPriorityValue,
-    getPriorityColor,
-    getHTMLValue,
-    isNotNullOrUndefined,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";
+import NeoColors from "./neoColors";
 
 export {
     capitalizeFirstLetter,
     formatDate,
     formatDateToNow,
-    getHTMLValue,
     formatMessage,
     frontEncrypt,
     getActorName,
@@ -43,14 +43,13 @@ export {
     getDateCompletionPercentage,
     getDateFnsLocaleFromUserLang,
     getFormatedTimeToNowExtended,
-    getHexColorFromTailwindColor,
+    getHTMLValue,
     getOutageBorderColor,
     getOutageDivideColor,
     getOutageSVGColor,
     getOutageTextColor,
     getPriorityColor,
     getPriorityValue,
-    getRecipientsNameByIds,
     getRequesterUid,
     getServiceStatusColor,
     getStatusColor,
@@ -62,12 +61,14 @@ export {
     getUserEntityName,
     getUserName,
     inputReducer,
+    isNotNullOrUndefined,
+    getHexColorFromTailwindColor,
     LOCAL_STORAGE_VERSION,
     lowerCaseFirstLetter,
     mapEnumToInputSelectData,
+    NeoColors,
     sleep,
     stripHtml,
     useIsFirstRender,
     useLocalStorage,
-    isNotNullOrUndefined,
 };

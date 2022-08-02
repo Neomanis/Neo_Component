@@ -1,6 +1,7 @@
 import { getStatusColor } from "./statusTools";
 import { InputSelectData, TailwindColorApplication, Status, Ticket, Type, Colors, Priority } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
+import NeoColors from "./neoColors";
 
 type EnumType = {
     [key: number]: string;
@@ -180,7 +181,7 @@ export function getPriorityValue(impact: number, urgency: number): number | unde
 
 const priorityColors: Colors = {
     verylow: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-very-low"),
+        hex: NeoColors.ticketUrgency.very.low,
         tailwind: {
             bg: "bg-neo-ticketUrgency-very-low",
             border: "border-neo-ticketUrgency-very-low",
@@ -188,7 +189,7 @@ const priorityColors: Colors = {
         },
     },
     low: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-low"),
+        hex: NeoColors.ticketUrgency.low,
         tailwind: {
             bg: "bg-neo-ticketUrgency-low",
             border: "border-neo-ticketUrgency-low",
@@ -196,7 +197,7 @@ const priorityColors: Colors = {
         },
     },
     medium: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-medium"),
+        hex: NeoColors.ticketUrgency.medium,
         tailwind: {
             bg: "bg-neo-ticketUrgency-medium",
             border: "border-neo-ticketUrgency-medium",
@@ -204,7 +205,7 @@ const priorityColors: Colors = {
         },
     },
     high: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-high"),
+        hex: NeoColors.ticketUrgency.high,
         tailwind: {
             bg: "bg-neo-ticketUrgency-high",
             border: "border-neo-ticketUrgency-high",
@@ -212,7 +213,7 @@ const priorityColors: Colors = {
         },
     },
     veryhigh: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-very-high"),
+        hex: NeoColors.ticketUrgency.very.high,
         tailwind: {
             bg: "bg-neo-ticketUrgency-very-high",
             border: "border-neo-ticketUrgency-very-high",
@@ -220,7 +221,7 @@ const priorityColors: Colors = {
         },
     },
     major: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-major"),
+        hex: NeoColors.ticketUrgency.major,
         tailwind: {
             bg: "bg-neo-ticketUrgency-major",
             border: "border-neo-ticketUrgency-major",
@@ -228,7 +229,7 @@ const priorityColors: Colors = {
         },
     },
     neutral: {
-        hex: getHexColorFromTailwindColor("neo-light-grey"),
+        hex: NeoColors.light.grey,
         tailwind: {
             bg: "bg-neo-light-grey",
             border: "border-neo-light-grey",

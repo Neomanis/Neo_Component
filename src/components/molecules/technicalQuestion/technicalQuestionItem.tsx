@@ -1,11 +1,6 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import {
-    formatDate,
-    getContrastBasedOnHexColor,
-    getHexColorFromTailwindColor,
-    getStatusOrPriorityColor,
-} from "../../utils";
+import { formatDate, getContrastBasedOnHexColor, getStatusOrPriorityColor, NeoColors } from "../../utils";
 import { Icon, Title, Tooltip } from "../../atoms";
 import { IconTechnicalQuestions } from "../../../img/svg";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
@@ -120,7 +115,7 @@ const TechnicalQuestionItem = ({
                             getContrastBasedOnHexColor(
                                 getStatusOrPriorityColor(ticket.status, ticket.priority, true)
                             ) === "black"
-                                ? getHexColorFromTailwindColor("neo-blue-extraDark")
+                                ? NeoColors.blue.extraDark
                                 : "#FFFFFF"
                         )}
 

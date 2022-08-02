@@ -1,6 +1,6 @@
-import { Colors, TailwindColorApplication, StatusTraductionKey, Status } from "@neomanis/neo-types";
+import { TailwindColorApplication, StatusTraductionKey, Status } from "@neomanis/neo-types";
 
-const statusColors: Colors = {
+const statusColors = {
     new: {
         tailwind: {
             bg: "bg-neo-light-grey",
@@ -35,14 +35,28 @@ const statusColors: Colors = {
 };
 
 export function getStatusColor(
-    statusId: number,
+    statusId: Status,
     isHex: boolean,
     tailwindType?: keyof TailwindColorApplication
 ): string {
-    const key: keyof Colors = Status[statusId].toLowerCase();
-    return isHex ? statusColors[key].hex : statusColors[key].tailwind[tailwindType];
+    switch (statusId) {
+        case Status.New:
+            return isHex ? statusColors["new"]?.hex : statusColors["new"].tailwind[tailwindType];
+        case Status.Assigned:
+            return isHex ? statusColors["assigned"]?.hex : statusColors["assigned"].tailwind[tailwindType];
+        case Status.Pending:
+            return isHex ? statusColors["pending"]?.hex : statusColors["pending"].tailwind[tailwindType];
+        case Status.Planned:
+            return isHex ? statusColors["planned"]?.hex : statusColors["planned"].tailwind[tailwindType];
+        case Status.Solved:
+            return isHex ? statusColors["solved"]?.hex : statusColors["solved"].tailwind[tailwindType];
+        case Status.Closed:
+            return isHex ? statusColors["closed"]?.hex : statusColors["closed"].tailwind[tailwindType];
+        default:
+            break;
+    }
 }
 
-export function getStatusText(statusId: number): StatusTraductionKey {
+export function getStatusText(statusId: Status): StatusTraductionKey {
     return Status[statusId].toLowerCase() as StatusTraductionKey;
 }
