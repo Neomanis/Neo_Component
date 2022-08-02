@@ -62,12 +62,16 @@ const ButtonSwitch = ({
         >
             {isActive ? <div>{activeData}</div> : <div>{inactiveData}</div>}
             {activeSvg && inactiveSvg && (
-                <div className={`${isActive ? activeSvgClassName : inactiveSvgClassName} p-1`}>
+                <div
+                    data-testid="buttonSwitch-svg"
+                    className={`${isActive ? activeSvgClassName : inactiveSvgClassName} p-1`}
+                >
                     {isActive ? activeSvg : inactiveSvg}
                 </div>
             )}
             {activeFontIcon && inactiveFontIcon && (
                 <div
+                    data-testid="buttonSwitch-icon"
                     className={`flex items-center justify-center m-1
                             ${isActive ? activeIconClassName : inactiveIconClassName}
                             rounded-lg`}

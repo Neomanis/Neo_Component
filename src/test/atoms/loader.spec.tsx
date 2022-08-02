@@ -12,4 +12,9 @@ describe("Loader", () => {
 
         cy.get('[data-testid="loader-default-body"]').should("be.visible");
     });
+    it("should display text if data props exist", () => {
+        mount(<Loader data={"textee"} />);
+
+        cy.get('[data-testid="loader-default-body"]').should("have.text", "textee");
+    });
 });
