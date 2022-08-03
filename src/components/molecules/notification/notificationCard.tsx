@@ -8,13 +8,13 @@ interface Props {
     color?: string;
     content: string;
     date: string;
-    fDeleteNotification: (notificationId: number, userUid: string) => void;
-    fReadNotification: (notificationId: number, userUid: string) => void;
+    fDeleteNotification: (notificationId: number, neoId: number) => void;
+    fReadNotification: (notificationId: number, neoId: number) => void;
     notificationId: number;
     read: boolean;
     svgColor?: string;
     title?: string;
-    userUid: string;
+    neoId: number;
 }
 
 const NotificationCard = ({
@@ -28,7 +28,7 @@ const NotificationCard = ({
     read,
     svgColor = "#DAE5E5",
     title,
-    userUid,
+    neoId,
 }: Props): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
 
@@ -37,7 +37,7 @@ const NotificationCard = ({
             onClick={(e) => {
                 e.stopPropagation();
                 setIsFolded(!isFolded);
-                fReadNotification(notificationId, userUid);
+                fReadNotification(notificationId, neoId);
             }}
             className={`cursor-pointer flex items-center justify-between rounded-md relative ${className}`}
             data-testid="notifCard-read"
@@ -73,7 +73,7 @@ const NotificationCard = ({
                 fCallBack={(e) => {
                     e.stopPropagation();
                     setIsFolded(true);
-                    fDeleteNotification(notificationId, userUid);
+                    fDeleteNotification(notificationId, neoId);
                 }}
                 testId="notifCard-close"
             />

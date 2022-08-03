@@ -26,5 +26,5 @@ Default.args = {
     notificationId: 1,
     read: false,
     title: "Ticket updated",
-    userUid: "21",
+    neoId: 2,
 };
