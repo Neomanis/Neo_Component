@@ -1,6 +1,7 @@
 import { getStatusColor } from "./statusTools";
-import { InputSelectData, TailwindColorApplication, Status, Ticket, Type, Colors, Priority } from "@neomanis/neo-types";
+import { InputSelectData, TailwindColorApplication, Status, Colors, Priority } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
+import NeoColors from "./neoColors";
 
 type EnumType = {
     [key: number]: string;
@@ -131,10 +132,6 @@ export async function sleep(delay: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export function getTicketTitle(ticket: Ticket, t: TFunction) {
-    return `${t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type])}`, { count: 1 })} ${ticket.id}`;
-}
-
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },
     { impact: 2, urgency: 1, priority: 1 },
@@ -180,7 +177,7 @@ export function getPriorityValue(impact: number, urgency: number): number | unde
 
 const priorityColors: Colors = {
     verylow: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-very-low"),
+        hex: NeoColors.ticketUrgency.very.low,
         tailwind: {
             bg: "bg-neo-ticketUrgency-very-low",
             border: "border-neo-ticketUrgency-very-low",
@@ -188,7 +185,7 @@ const priorityColors: Colors = {
         },
     },
     low: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-low"),
+        hex: NeoColors.ticketUrgency.low,
         tailwind: {
             bg: "bg-neo-ticketUrgency-low",
             border: "border-neo-ticketUrgency-low",
@@ -196,7 +193,7 @@ const priorityColors: Colors = {
         },
     },
     medium: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-medium"),
+        hex: NeoColors.ticketUrgency.medium,
         tailwind: {
             bg: "bg-neo-ticketUrgency-medium",
             border: "border-neo-ticketUrgency-medium",
@@ -204,7 +201,7 @@ const priorityColors: Colors = {
         },
     },
     high: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-high"),
+        hex: NeoColors.ticketUrgency.high,
         tailwind: {
             bg: "bg-neo-ticketUrgency-high",
             border: "border-neo-ticketUrgency-high",
@@ -212,7 +209,7 @@ const priorityColors: Colors = {
         },
     },
     veryhigh: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-very-high"),
+        hex: NeoColors.ticketUrgency.very.high,
         tailwind: {
             bg: "bg-neo-ticketUrgency-very-high",
             border: "border-neo-ticketUrgency-very-high",
@@ -220,7 +217,7 @@ const priorityColors: Colors = {
         },
     },
     major: {
-        hex: getHexColorFromTailwindColor("neo-ticketUrgency-major"),
+        hex: NeoColors.ticketUrgency.major,
         tailwind: {
             bg: "bg-neo-ticketUrgency-major",
             border: "border-neo-ticketUrgency-major",
@@ -228,7 +225,7 @@ const priorityColors: Colors = {
         },
     },
     neutral: {
-        hex: getHexColorFromTailwindColor("neo-light-grey"),
+        hex: NeoColors.light.grey,
         tailwind: {
             bg: "bg-neo-light-grey",
             border: "border-neo-light-grey",
@@ -255,4 +252,10 @@ export function getHTMLValue(e: string): string {
 
 export function isNotNullOrUndefined(value: unknown) {
     return value !== null && value !== undefined;
+}
+
+export function getDisplayedTicketUid(ticketUid: string): string {
+    const [itsmCode, ticketId, ticketType] = ticketUid.split("-");
+
+    return `[${itsmCode}] ${ticketType} ${ticketId}`.toUpperCase();
 }

@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { Grid } from "../../../components/molecules";
-import { fakeGlpiGroups, fakeGlpiUsers, fakeTicket } from "../../fakeObject";
+import { fakeTicket } from "../../fakeObject";
 
 export default {
     component: Grid,
@@ -17,14 +17,9 @@ const Template: ComponentStory<typeof Grid> = (args) => {
     );
 };
 
-export const Default = Template.bind({});
+export const Default: ComponentStory<typeof Grid> = Template.bind({});
 Default.args = {
-    glpiGroups: fakeGlpiGroups,
-    glpiUsers: fakeGlpiUsers,
     fCurrentTicket: () => console.log("fCurrentTicket"),
-    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
-    fOpenTicketModal: () => console.log("fOpenTicketModal"),
-    fShowChatModal: () => console.log("fShowChatModal"),
     reverseGrid: false,
     ticketList: Array.from({ length: 24 }, () => ({
         ...fakeTicket,
@@ -35,12 +30,10 @@ Default.args = {
     showPagination: true,
 };
 
-export const DefaultHelper = Template.bind({});
+export const DefaultHelper: ComponentStory<typeof Grid> = Template.bind({});
 DefaultHelper.args = {
     fCurrentTicket: () => console.log("fCurrentTicket"),
-    fOpenModalCurrentTicket: () => console.log("fOpenModalCurrentTicket"),
     reverseGrid: true,
-    showBackgroundIcon: true,
     ticketBG: true,
     ticketList: Array.from({ length: 50 }, () => ({
         ...fakeTicket,

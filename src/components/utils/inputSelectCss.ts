@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-export const baseStyles = {
+import { StylesConfig } from "react-select";
+
+export const baseStyles: StylesConfig = {
     clearIndicator: (provided, state) => ({
         ...provided,
         display: "bloc",
@@ -63,7 +65,7 @@ export const baseStyles = {
         borderRadius: 10,
         margin: 0,
     }),
-    option: (provided, state: { isSelected }) => ({
+    option: (provided, state: { isSelected: boolean }) => ({
         ...provided,
         "&:hover": {
             background: "#366688",

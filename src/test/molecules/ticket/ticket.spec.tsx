@@ -120,10 +120,6 @@ describe("ticket", () => {
 
     it("should render a ticket with the right title", () => {
         mount(<Ticket ticket={fakeTicket} />);
-        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Incident 32");
-        mount(<Ticket ticket={{ ...fakeTicket, type: 2 }} />);
-        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Request 32");
-        mount(<Ticket ticket={{ ...fakeTicket, type: 3 }} />);
-        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "Problem 32");
+        cy.get('[data-testid="ticket-title"]').find("div:first-child").find("h3").should("have.text", "[1GL] INC 1523");
     });
 });

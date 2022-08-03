@@ -4,8 +4,9 @@ import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neoman
 import { getStatusColor } from "../../utils/statusTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
-import { getTicketTitle, getPriorityColor, getHexColorFromTailwindColor } from "../../utils/tools";
+import { getPriorityColor, getDisplayedTicketUid } from "../../utils/tools";
 import { useTranslation } from "@neomanis/neo-translation";
+import { NeoColors } from "../../utils";
 
 export interface TicketProps {
     currentTicket?: CompactTicket;
@@ -26,7 +27,7 @@ const Ticket = ({
     gridId,
     isOpacity,
 }: TicketProps): ReactElement => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     function getOpacity(): string {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
@@ -88,7 +89,7 @@ const Ticket = ({
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} className="text-xl" />
                             <div className="font-extrabold text-xs">
-                                <Title type="h3" data={getTicketTitle(ticket, t)} />
+                                <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} />
                             </div>
                         </div>
                         <div
@@ -169,12 +170,9 @@ const Ticket = ({
                     data-testid="ticket-empty-body"
                 >
                     <div className="absolute">
-                        <TicketLogo width={32} fill={getHexColorFromTailwindColor("neo-bg-B")} />
+                        <TicketLogo width={32} fill={NeoColors.bg.B} />
                     </div>
-                    <Hexagon
-                        bgColor={ticketBG && getHexColorFromTailwindColor("neo-bg-A")}
-                        strokeColor={getHexColorFromTailwindColor("neo-bg-B")}
-                    />
+                    <Hexagon bgColor={ticketBG && NeoColors.bg.A} strokeColor={NeoColors.bg.B} />
                 </div>
             )}
         </>

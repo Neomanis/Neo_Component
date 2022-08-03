@@ -1,31 +1,17 @@
-import { formatMessage, getRecipientsNameByIds, stripHtml } from "../../components/utils";
+import { formatMessage, stripHtml } from "../../components/utils";
 
 describe("Chat functions", () => {
     before(() => {
         expect(formatMessage, "formatMessage").to.be.a("function");
-        expect(getRecipientsNameByIds, "getRecipientsNameByIds").to.be.a("function");
         expect(stripHtml, "stripHtml").to.be.a("function");
     });
 
     it("should format a message to IChatMessage", () => {
-        const formatedMessage = formatMessage("This is my message", "toto", 0);
+        const formatedMessage = formatMessage("This is my message", 1, 0);
         expect(formatedMessage.content).to.eql("This is my message");
-        expect(formatedMessage.sender).to.eql("toto");
+        expect(formatedMessage.sender).to.eql(1);
         expect(formatedMessage.is_private).to.eql(0);
         expect(formatedMessage.date_creation).to.contain(new Date().toISOString().slice(0, -5));
-    });
-
-    it("should return a array of recipient's name", () => {
-        expect(
-            getRecipientsNameByIds(
-                [
-                    { id: 1, name: "hubert" },
-                    { id: 2, name: "heats" },
-                    { id: 3, name: "deliv" },
-                ],
-                [1, 2, 4]
-            )
-        ).to.eql(["hubert", "heats"]);
     });
 
     it("should remove html tags", () => {

@@ -1,52 +1,53 @@
-import { GlpiUsers, GlpiRequest, Ticket, User } from "@neomanis/neo-types";
+import { Ticket, User, NeoUser, GroupObject } from "@neomanis/neo-types";
 
 interface GetActorNameParams {
     ticket: Ticket;
-    users: GlpiUsers[];
-    groups: GlpiRequest[];
+    itsmUsers: NeoUser[];
+    itsmGroups: GroupObject[];
     type: "Requester" | "Watcher" | "AssignedTo";
 }
 
-export function getActorName({ ticket, users, groups, type }: GetActorNameParams): string | undefined {
-    const username = ticket[`user${type}`][0];
-    const groupName = ticket[`group${type}`][0];
+export function getActorName({ ticket, itsmUsers, itsmGroups, type }: GetActorNameParams): string | undefined {
+    const userNeoId = ticket[`user${type}`][0];
+    const group = ticket[`group${type}`][0];
 
-    if (username) {
-        const user = users.find((user) => user.name === username);
+    if (userNeoId) {
+        const user = itsmUsers.find((user) => user.neoId === userNeoId);
         return user ? getUserName(user) : undefined;
     }
 
-    if (groupName) {
-        return groups.find((group) => group.name === groupName)?.completename;
+    if (group) {
+        return itsmGroups.find(
+            (itsmGroup) => `${itsmGroup.id}-${itsmGroup.itsmCode}` === `${group.id}-${group.itsmCode}`
+        )?.name;
     }
 
     return undefined;
 }
 
-export function getUserName(user: GlpiUsers): string {
+export function getUserName(user: NeoUser): string {
     return user.firstname && user.realname
         ? `${user.firstname} ${user.realname}`
-        : user.realname || user.firstname || user.name || "";
+        : user.realname || user.firstname || user.name;
 }
 
 export function getRequesterUid(
     ticket: Ticket,
-    glpiUsers: GlpiUsers[],
-    glpiGroups: GlpiRequest[] | undefined = undefined
-): string {
-    const username = ticket.userRequester && ticket.userRequester[0];
-    const groupName = ticket.groupRequester && ticket.groupRequester[0];
+    itsmUsers: NeoUser[],
+    itsmGroups: GroupObject[] | undefined = undefined
+): string | undefined {
+    const userNeoId = ticket.userRequester[0];
+    const group = ticket.groupRequester[0];
 
-    if (!username && glpiGroups) {
-        return glpiGroups.find((group) => group.name === groupName)?.completename || "";
+    if (!userNeoId && itsmGroups && group) {
+        return (
+            itsmGroups.find((itsmGroup) => `${itsmGroup.id}-${itsmGroup.itsmCode}` === `${group.id}-${group.itsmCode}`)
+                ?.name || ""
+        );
     }
 
-    const user = glpiUsers.find((user) => user.name === username);
-    return user ? getUserUid(user) : "";
-}
-
-function getUserUid(user: GlpiUsers): string {
-    return user.name ? user.name : "";
+    const user = itsmUsers.find((user) => user.neoId === userNeoId);
+    return user?.name;
 }
 
 export function getUserEntityName(user: User, entityId: number): string | undefined {

@@ -18,8 +18,8 @@ import { useTranslation } from "@neomanis/neo-translation";
 import { getDateFnsLocaleFromUserLang } from "../../utils/dateTools";
 import InputDateTime from "../../atoms/input/inputDateTime";
 import { IconChevron } from "../../../img/svg";
-import { getHexColorFromTailwindColor } from "../../utils/tools";
 import { useForm } from "react-hook-form";
+import { NeoColors } from "../../utils";
 
 interface Props {
     fCallBackData: (dates: [number, number]) => void;
@@ -230,10 +230,7 @@ const ChartRangeSelector = ({
                                     ${showUpDate() ? "cursor-pointer hover:scale-110 transition-all " : "opacity-30"}`}
                                     >
                                         {/* caret up */}
-                                        <IconChevron
-                                            width={15}
-                                            fill={getHexColorFromTailwindColor("neo-blue-secondary")}
-                                        />
+                                        <IconChevron width={15} fill={NeoColors.blue.secondary} />
                                     </div>
                                     <div
                                         onClick={() => {
@@ -242,10 +239,7 @@ const ChartRangeSelector = ({
                                         className="transform hover:scale-110 transition-all hover:cursor-pointer mt-2 p-1"
                                     >
                                         {/* caret down  */}
-                                        <IconChevron
-                                            width={15}
-                                            fill={getHexColorFromTailwindColor("neo-blue-secondary")}
-                                        />
+                                        <IconChevron width={15} fill={NeoColors.blue.secondary} />
                                     </div>
                                 </div>
                             </div>

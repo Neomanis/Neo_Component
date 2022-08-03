@@ -1,7 +1,7 @@
-import { GlpiUsers, GlpiRequest, Notification, Ticket } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, GroupObject } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
-    uid: "",
+    uid: "1gl-1523-INC",
     id: 32,
     entities_id: 0,
     name: "Test JM a peu pres avec un titre genre fyys  fyezy fyezy y yreyz yreyz y y yreyz",
@@ -9,7 +9,7 @@ export const fakeTicket: Ticket = {
     closedate: undefined,
     solvedate: undefined,
     date_mod: " 2021-07-12 15:52:44",
-    username_lastupdater: "stest",
+    neoIdLastupdater: 2,
     status: 1,
     requesttypes_id: 1,
     content: "&lt;p&gt;Test JM&lt;/p&gt",
@@ -22,7 +22,7 @@ export const fakeTicket: Ticket = {
     date_creation: "2022-02-02 14:50:44",
     time_to_own: "2021-07-12 15:52:44",
     time_to_resolve: "2021-07-12 15:52:44",
-    userRequester: ["ttest"],
+    userRequester: [1],
     userWatcher: [],
     userAssignedTo: [],
     groupRequester: [],
@@ -273,16 +273,51 @@ export const fakeDiag = {
     __v: 1,
 };
 
-export const fakeGlpiUsers: GlpiUsers[] = [
-    { id: 1, firstname: "Unicorn", realname: "Pichon", name: "uPichon" },
-    { id: 1, firstname: "Platypus", realname: "Collins", name: "uCollins" },
-    { id: 1, firstname: "Beluga", realname: "Rotarez", name: "uRotarez" },
+export const fakeUsers: NeoUser[] = [
+    {
+        id: 1,
+        firstname: "Unicorn",
+        realname: "Pichon",
+        name: "uPichon",
+        dn: "dn1",
+        isActive: true,
+        language: "fr_FR",
+        neoId: 1,
+        membership: { entities: [], groups: [] },
+        timezone: null,
+    },
+    {
+        id: 1,
+        firstname: "Platypus",
+        realname: null,
+        name: "uCollins",
+        isActive: true,
+        dn: "dn2",
+        language: "fr_FR",
+        neoId: 1,
+        membership: { entities: [], groups: [] },
+        timezone: null,
+    },
+    {
+        id: 1,
+        firstname: "Beluga",
+        realname: "Rotarez",
+        name: "uRotarez",
+        isActive: true,
+        dn: "dn2",
+        language: "fr_FR",
+        neoId: 1,
+        membership: { entities: [], groups: [] },
+        timezone: null,
+    },
 ];
 
-export const fakeGlpiGroups: GlpiRequest[] = [
-    { id: 1, completename: "Gojira", name: "gojira" },
-    { id: 2, completename: "Ne Obliviscaris", name: "ne_obliviscaris" },
-    { id: 3, completename: "Parkway Drive", name: "parkway_drive" },
+fakeUsers[1].realname;
+
+export const fakeGroups: GroupObject[] = [
+    { id: 1, name: "gojira", itsmCode: "go1" },
+    { id: 2, name: "ne_obliviscaris", itsmCode: "ne1" },
+    { id: 3, name: "parkway_drive", itsmCode: "pa1" },
 ];
 
 export const fakeTicketResources: Partial<Ticket> = {
