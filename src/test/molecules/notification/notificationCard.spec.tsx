@@ -12,7 +12,7 @@ describe("NotificationCard", () => {
                 date=""
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -30,7 +30,7 @@ describe("NotificationCard", () => {
                 date=""
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -48,7 +48,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -67,7 +67,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -87,7 +87,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -108,7 +108,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -128,7 +128,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
@@ -147,7 +147,7 @@ describe("NotificationCard", () => {
                 date="2 days ago"
                 notificationId={0}
                 read={false}
-                userUid="ttest"
+                neoId={1}
                 fDeleteNotification={fDeleteNotification}
                 fReadNotification={fReadNotification}
             />
