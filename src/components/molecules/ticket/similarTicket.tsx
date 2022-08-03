@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 
 import { Status, TicketPreview } from "@neomanis/neo-types";
-import { getStatusColor } from "../../utils";
+import { getDisplayedTicketUid, getStatusColor } from "../../utils";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
 
 interface Props {
@@ -23,7 +23,9 @@ const SimilarTicket = ({ fOpenSimilarTicket, ticket }: Props): ReactElement => {
                 )}
             </div>
             <div className="flex flex-col px-4 py-1 w-11/12">
-                <div className={`font-bold text-sm ${getStatusColor(ticket.status, false, "text")}`}>{ticket.id}</div>
+                <div className={`font-bold text-sm ${getStatusColor(ticket.status, false, "text")}`}>
+                    {getDisplayedTicketUid(ticket.uid)}
+                </div>
                 <div className={`text-neo-light-grey font-bold text-xs truncate`}>{ticket.name}</div>
             </div>
         </div>

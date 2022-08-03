@@ -4,7 +4,7 @@ import { Ticket as ITicket, Status, Type, CompactTicket, GridIds } from "@neoman
 import { getStatusColor } from "../../utils/statusTools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "../../utils/dateTools";
 import { CautionLogoFull, ClockLogo, IconTicketClosed, IconTicketSolved, TicketLogo } from "../../../img/svg";
-import { getTicketTitle, getPriorityColor } from "../../utils/tools";
+import { getPriorityColor, getDisplayedTicketUid } from "../../utils/tools";
 import { useTranslation } from "@neomanis/neo-translation";
 import { NeoColors } from "../../utils";
 
@@ -27,7 +27,7 @@ const Ticket = ({
     gridId,
     isOpacity,
 }: TicketProps): ReactElement => {
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
 
     function getOpacity(): string {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
@@ -89,7 +89,7 @@ const Ticket = ({
                         <div className="text-neo-bg-A">
                             <IconTicketCategorie id={ticket.itilcategories_id} className="text-xl" />
                             <div className="font-extrabold text-xs">
-                                <Title type="h3" data={getTicketTitle(ticket, t)} />
+                                <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} />
                             </div>
                         </div>
                         <div

@@ -1,7 +1,7 @@
 import { NeoUser, Notification, Ticket, GroupObject } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
-    uid: "",
+    uid: "1gl-1523-INC",
     id: 32,
     entities_id: 0,
     name: "Test JM a peu pres avec un titre genre fyys  fyezy fyezy y yreyz yreyz y y yreyz",

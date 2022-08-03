@@ -1,5 +1,5 @@
 import { getStatusColor } from "./statusTools";
-import { InputSelectData, TailwindColorApplication, Status, Ticket, Type, Colors, Priority } from "@neomanis/neo-types";
+import { InputSelectData, TailwindColorApplication, Status, Colors, Priority } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
 import NeoColors from "./neoColors";
 
@@ -132,10 +132,6 @@ export async function sleep(delay: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-export function getTicketTitle(ticket: Ticket, t: TFunction) {
-    return `${t(`ticket.type.${lowerCaseFirstLetter(Type[(ticket as Ticket).type])}`, { count: 1 })} ${ticket.id}`;
-}
-
 const priorityValues = [
     { impact: 1, urgency: 1, priority: 1 },
     { impact: 2, urgency: 1, priority: 1 },
@@ -256,4 +252,10 @@ export function getHTMLValue(e: string): string {
 
 export function isNotNullOrUndefined(value: unknown) {
     return value !== null && value !== undefined;
+}
+
+export function getDisplayedTicketUid(ticketUid: string): string {
+    const [itsmCode, ticketId, ticketType] = ticketUid.split("-");
+
+    return `[${itsmCode}] ${ticketType} ${ticketId}`.toUpperCase();
 }
