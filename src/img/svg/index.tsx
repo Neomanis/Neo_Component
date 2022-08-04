@@ -8,6 +8,7 @@ import { ReactComponent as DiagLogo } from "./nm_ico_systemdiag.svg";
 import { ReactComponent as ExpandLogo } from "./nm_ico_expand.svg";
 import { ReactComponent as HexagonLine } from "./nm_design_hexagon_line.svg";
 import { ReactComponent as HexagonLineAdd } from "./nm_design_hexagon_line_add.svg";
+import { ReactComponent as HexagonResources } from "./nm_ico_hexagon_resources.svg";
 import { ReactComponent as HexagonRotate } from "./nm_design_kb_bg.svg";
 import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
@@ -105,6 +106,7 @@ export {
     ExpandLogo,
     HexagonLine,
     HexagonLineAdd,
+    HexagonResources,
     HexagonRotate,
     HexagonShape,
     IconAdd,
@@ -186,8 +188,8 @@ export {
     TabLogo,
     TicketBottom,
     TicketCenter,
+    TicketLogo,
     TicketNew,
     TicketSave,
-    TicketLogo,
     TicketTop,
 };

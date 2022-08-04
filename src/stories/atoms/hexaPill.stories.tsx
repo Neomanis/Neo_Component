@@ -18,7 +18,7 @@ export default {
 
 const Template: ComponentStory<typeof HexaPill> = (args) => {
     return (
-        <div className=" bg-neo-bg-A p-2 flex items-center w-16">
+        <div className=" bg-neo-bg-A p-2 flex items-center justify-center w-full h-screen">
             <HexaPill {...args} />
         </div>
     );
@@ -27,5 +27,5 @@ const Template: ComponentStory<typeof HexaPill> = (args) => {
 export const HexaPillDefault = Template.bind({});
 HexaPillDefault.args = {
     color: "#7FEF7F",
-    ticketNumber: 7,
+    ticketUid: "1gl-5462-INC",
 };
