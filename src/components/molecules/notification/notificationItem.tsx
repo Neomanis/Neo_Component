@@ -3,46 +3,42 @@ import { Button, Icon, Title } from "../../atoms";
 import { CloseLogo } from "../../../img/svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
+import { Approval } from "@neomanis/neo-types";
+import { getFormatedTimeToNowExtended } from "../../utils";
 
 interface Props {
-    content: string;
-    date?: string;
     fDeleteNotification?: (notificationId: number, userUid: string) => void;
     fManageApproval?: (
-        id: number,
+        approvalId: number,
         value: boolean,
-        ticketId: number,
+        ticketUid: string,
         errorSetter: Dispatch<SetStateAction<boolean>>
     ) => Promise<void>;
     fReadNotification?: (notificationId: number, userUid: string) => void;
     notificationId?: number;
     outageDate?: { startAt: string; endAt?: string };
     read?: boolean;
-    sender?: string;
     svg: ReactElement;
     textColor?: string;
-    ticketId?: number;
     title?: string;
     userUid?: string;
-    approvalId?: number;
+    userLanguage: string;
+    approval: Approval;
 }
 
 const NotificationItem = ({
-    content,
-    date,
     fDeleteNotification,
     fManageApproval,
     fReadNotification,
     notificationId,
     outageDate,
     read,
-    sender,
     svg,
     textColor = "text-neo-light-grey",
-    ticketId,
     title,
     userUid,
-    approvalId,
+    userLanguage,
+    approval,
 }: Props): ReactElement => {
     const { t } = useTranslation();
 
@@ -50,7 +46,7 @@ const NotificationItem = ({
     const [isError, setIsError] = useState(false);
 
     async function sendApproval(value: boolean): Promise<void> {
-        fManageApproval && (await fManageApproval(approvalId, value, ticketId, setIsError));
+        fManageApproval && (await fManageApproval(approval.id, value, approval.ticketUid, setIsError));
     }
     return (
         <div
@@ -73,19 +69,18 @@ const NotificationItem = ({
                         {svg}
                     </div>
                     <div className={`${textColor} pl-4`}>
-                        {(sender || date) && (
-                            <div className="text-xs flex">
-                                {sender && <p className="mr-2 font-bold">{sender}</p>}
-                                {date && <p>{date}</p>}
-                            </div>
-                        )}
+                        <div className="text-xs flex">
+                            <p className="mr-2 font-bold">{approval.sender}</p>
+                            <p>{getFormatedTimeToNowExtended(approval.createdAt, userLanguage)}</p>
+                        </div>
+
                         {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
                         {outageDate && outageDate.startAt && (
                             <p className="text-xxs font-bold">
                                 {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
                             </p>
                         )}
-                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
+                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{approval.content}</p>
                     </div>
                 </div>
                 {fDeleteNotification && (
