@@ -3,42 +3,46 @@ import { Button, Icon, Title } from "../../atoms";
 import { CloseLogo } from "../../../img/svg";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { Approval } from "@neomanis/neo-types";
-import { getFormatedTimeToNowExtended } from "../../utils";
 
 interface Props {
-    fDeleteNotification?: (notificationId: number, userUid: string) => void;
+    content: string;
+    date?: string;
+    fDeleteNotification?: (notificationId: number, userNeoId: number) => void;
     fManageApproval?: (
-        approvalId: number,
+        id: number,
         value: boolean,
         ticketUid: string,
         errorSetter: Dispatch<SetStateAction<boolean>>
     ) => Promise<void>;
-    fReadNotification?: (notificationId: number, userUid: string) => void;
+    fReadNotification?: (notificationId: number, userNeoId: number) => void;
     notificationId?: number;
     outageDate?: { startAt: string; endAt?: string };
     read?: boolean;
+    sender?: string;
     svg: ReactElement;
     textColor?: string;
+    ticketUid?: string;
     title?: string;
-    userUid?: string;
-    userLanguage: string;
-    approval: Approval;
+    userNeoId?: number;
+    approvalId?: number;
 }
 
 const NotificationItem = ({
+    content,
+    date,
     fDeleteNotification,
     fManageApproval,
     fReadNotification,
     notificationId,
     outageDate,
     read,
+    sender,
     svg,
     textColor = "text-neo-light-grey",
+    ticketUid,
     title,
-    userUid,
-    userLanguage,
-    approval,
+    userNeoId,
+    approvalId,
 }: Props): ReactElement => {
     const { t } = useTranslation();
 
@@ -46,13 +50,13 @@ const NotificationItem = ({
     const [isError, setIsError] = useState(false);
 
     async function sendApproval(value: boolean): Promise<void> {
-        fManageApproval && (await fManageApproval(approval.id, value, approval.ticketUid, setIsError));
+        fManageApproval && (await fManageApproval(approvalId, value, ticketUid, setIsError));
     }
     return (
         <div
             onClick={(e) => {
                 fReadNotification && e.stopPropagation();
-                fReadNotification && fReadNotification(notificationId, userUid);
+                fReadNotification && fReadNotification(notificationId, userNeoId);
                 setIsFolded(!isFolded);
             }}
         >
@@ -69,18 +73,19 @@ const NotificationItem = ({
                         {svg}
                     </div>
                     <div className={`${textColor} pl-4`}>
-                        <div className="text-xs flex">
-                            <p className="mr-2 font-bold">{approval.sender}</p>
-                            <p>{getFormatedTimeToNowExtended(approval.createdAt, userLanguage)}</p>
-                        </div>
-
+                        {(sender || date) && (
+                            <div className="text-xs flex">
+                                {sender && <p className="mr-2 font-bold">{sender}</p>}
+                                {date && <p>{date}</p>}
+                            </div>
+                        )}
                         {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
                         {outageDate && outageDate.startAt && (
                             <p className="text-xxs font-bold">
                                 {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
                             </p>
                         )}
-                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{approval.content}</p>
+                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
                     </div>
                 </div>
                 {fDeleteNotification && (
@@ -91,7 +96,7 @@ const NotificationItem = ({
                             fCallBack={(e) => {
                                 e.stopPropagation();
                                 setIsFolded(true);
-                                userUid && fDeleteNotification(notificationId, userUid);
+                                userNeoId && fDeleteNotification(notificationId, userNeoId);
                             }}
                         />
                     </div>
