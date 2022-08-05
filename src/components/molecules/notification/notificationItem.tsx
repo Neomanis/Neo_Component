@@ -7,23 +7,23 @@ import { useTranslation } from "@neomanis/neo-translation";
 interface Props {
     content: string;
     date?: string;
-    fDeleteNotification?: (notificationId: number, userUid: string) => void;
+    fDeleteNotification?: (notificationId: number, userNeoId: number) => void;
     fManageApproval?: (
         id: number,
         value: boolean,
-        ticketId: number,
+        ticketUid: string,
         errorSetter: Dispatch<SetStateAction<boolean>>
     ) => Promise<void>;
-    fReadNotification?: (notificationId: number, userUid: string) => void;
+    fReadNotification?: (notificationId: number, userNeoId: number) => void;
     notificationId?: number;
     outageDate?: { startAt: string; endAt?: string };
     read?: boolean;
     sender?: string;
     svg: ReactElement;
     textColor?: string;
-    ticketId?: number;
+    ticketUid?: string;
     title?: string;
-    userUid?: string;
+    userNeoId?: number;
     approvalId?: number;
 }
 
@@ -39,9 +39,9 @@ const NotificationItem = ({
     sender,
     svg,
     textColor = "text-neo-light-grey",
-    ticketId,
+    ticketUid,
     title,
-    userUid,
+    userNeoId,
     approvalId,
 }: Props): ReactElement => {
     const { t } = useTranslation();
@@ -50,13 +50,13 @@ const NotificationItem = ({
     const [isError, setIsError] = useState(false);
 
     async function sendApproval(value: boolean): Promise<void> {
-        fManageApproval && (await fManageApproval(approvalId, value, ticketId, setIsError));
+        fManageApproval && (await fManageApproval(approvalId, value, ticketUid, setIsError));
     }
     return (
         <div
             onClick={(e) => {
                 fReadNotification && e.stopPropagation();
-                fReadNotification && fReadNotification(notificationId, userUid);
+                fReadNotification && fReadNotification(notificationId, userNeoId);
                 setIsFolded(!isFolded);
             }}
         >
@@ -96,7 +96,7 @@ const NotificationItem = ({
                             fCallBack={(e) => {
                                 e.stopPropagation();
                                 setIsFolded(true);
-                                userUid && fDeleteNotification(notificationId, userUid);
+                                userNeoId && fDeleteNotification(notificationId, userNeoId);
                             }}
                         />
                     </div>
