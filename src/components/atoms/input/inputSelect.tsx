@@ -24,6 +24,7 @@ interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>
     label?: string;
     labelClassName?: string;
     options: OptionsOrGroups<Option, Group>;
+    onInputChange?: (newValue: string) => void;
     placeholder?: ReactNode;
     refForm: string;
     required?: boolean;
@@ -49,6 +50,7 @@ function InputSelect<
     label,
     labelClassName,
     options,
+    onInputChange,
     placeholder = "",
     refForm,
     required,
@@ -136,6 +138,7 @@ function InputSelect<
                 ref={ref}
                 styles={{ ...baseStyles, ...customStyles }}
                 value={value}
+                onInputChange={(newValue) => onInputChange && onInputChange(newValue)}
             />
         </div>
     );

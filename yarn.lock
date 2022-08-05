@@ -2670,10 +2670,10 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@^2.12.0":
-  version "2.12.0"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-2.12.0.tgz#a95063cfd8d1c29807601691297f31d499ed8511"
-  integrity sha1-qVBjz9jRwpgHYBaRKX8x1JnthRE=
+"@neomanis/neo-types@^2.13.0":
+  version "2.13.0"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-2.13.0.tgz#ba81f9100efeb37a0baa493859d5b52a5d61259f"
+  integrity sha1-uoH5EA7+s3oLqkk4WdW1Kl1hJZ8=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

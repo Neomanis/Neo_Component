@@ -16,7 +16,7 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticket?: { ticketId: number; priority: number; status: number };
+    ticket?: { id: number; priority: number; status: number; uId: string };
     title: string;
 }
 
@@ -142,7 +142,7 @@ const TechnicalQuestionItem = ({
                                                 : "text-neo-blue-extraDark"
                                         }  font-extrabold text-lg`}
                                     >
-                                        {ticket.ticketId}
+                                        {ticket.uId}
                                     </p>
                                 </div>
                             )}
