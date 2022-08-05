@@ -17,9 +17,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -43,9 +44,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -71,9 +73,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -99,9 +102,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -126,9 +130,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -154,9 +159,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -179,9 +185,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -204,9 +211,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -232,9 +240,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -258,9 +267,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uId: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -285,9 +295,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
+                    id: 0,
+                    uId: "666",
                     priority: 0,
-                    status: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -312,9 +323,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
+                    id: 0,
+                    uId: "666",
                     priority: 0,
-                    status: 5,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -338,7 +350,8 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
+                    id: 0,
+                    uId: "666",
                     priority: 0,
                     status: 6,
                 }}
