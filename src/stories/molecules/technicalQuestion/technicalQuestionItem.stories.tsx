@@ -13,8 +13,6 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
     return (
         <div style={{ width: 600 }}>
             <TechnicalQuestionItem {...args} />
-            <TechnicalQuestionItem {...args} />
-            <TechnicalQuestionItem {...args} />
         </div>
     );
 };
@@ -31,7 +29,7 @@ TechnicalQuestionItemDefault.args = {
     openTechnicalQuestion: () => console.log("yo"),
     solved: true,
     ticket: {
-        ticketId: 666,
+        uid: "[GL1]-INC-666",
         priority: 4,
         status: 1,
     },
