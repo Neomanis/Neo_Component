@@ -5,6 +5,7 @@ import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
 import { useTranslation } from "@neomanis/neo-translation";
+import { stripHtml } from "../../utils";
 
 interface Props {
     data: Outage;
@@ -89,7 +90,7 @@ const OutageCard = ({
                     {`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}
                 </p>
                 <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
-                    {data.content}
+                    {stripHtml(data.content)}
                 </p>
             </div>
         </div>
