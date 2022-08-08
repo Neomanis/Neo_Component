@@ -22,7 +22,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@neomanis/neo-translation": "file:../Neo_Translation/neomanis-neo-translation-v2.2.12.tgz",
+    "@neomanis/neo-translation": "^2.2.12",
     "@neomanis/neo-types": "^2.12.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-image": "^2.1.1",
