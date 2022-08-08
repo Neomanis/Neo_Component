@@ -89,7 +89,7 @@ const OutageCard = ({
                     {`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}
                 </p>
                 <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
-                    {data.content}
+                    {data.content.replace(/<[^>]*>?/gm, "")}
                 </p>
             </div>
         </div>
