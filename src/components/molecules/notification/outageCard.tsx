@@ -1,11 +1,11 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Outage, Role } from "@neomanis/neo-types";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
 import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
 import { useTranslation } from "@neomanis/neo-translation";
-import { stripHtml } from "../../utils";
+import { lowerCaseFirstLetter, stripHtml } from "../../utils";
 
 interface Props {
     data: Outage;
@@ -36,6 +36,16 @@ const OutageCard = ({
         colorOutage = "neo-light-grey";
         colorSVGOutage = "#DAE5E5";
     }
+
+    const dateInformation = useMemo(() => {
+        const startAt = formatDate(data.startAt, "EEEE d");
+        if (!data.endAt) {
+            return `${t("date.since")} ${startAt}`;
+        } else {
+            const endAt = formatDate(data.endAt, "EEEE d");
+            return `${t("date.from")} ${startAt} ${lowerCaseFirstLetter(t("date.to"))} ${endAt}`;
+        }
+    }, [data.startAt, data.endAt]);
 
     return (
         <div
@@ -86,9 +96,7 @@ const OutageCard = ({
                     className={`font-extrabold uppercase text-lg line-clamp-2 border-b-2 border-${colorOutage}`}
                     style={{ lineHeight: "110%" }}
                 />
-                <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">
-                    {`${formatDate(data.startAt)} - ${formatDate(data.endAt)}`}
-                </p>
+                <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">{dateInformation}</p>
                 <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
                     {stripHtml(data.content)}
                 </p>

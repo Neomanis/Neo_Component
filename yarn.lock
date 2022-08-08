@@ -2664,7 +2664,7 @@
 
 "@neomanis/neo-translation@file:../Neo_Translation/neomanis-neo-translation-v2.2.12.tgz":
   version "2.2.12"
-  resolved "file:../Neo_Translation/neomanis-neo-translation-v2.2.12.tgz#1908aa760ebd0f0dd50d94be279411d895aefb19"
+  resolved "file:../Neo_Translation/neomanis-neo-translation-v2.2.12.tgz#025cf7cadd4a6844d88939bb35a58ee31fa21b23"
   dependencies:
     i18next "^21.8.7"
     react-i18next "^11.16.11"
