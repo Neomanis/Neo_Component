@@ -2,6 +2,7 @@ import { addDays, format } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
 
 import { getFormatedTimeToNowExtended, formatDateToNow, formatDate } from "../../components/utils";
+import { getOutageDateInformation } from "../../components/utils/dateTools";
 
 describe("Date to now format functions", () => {
     before(() => {
@@ -60,5 +61,41 @@ describe("Date to now format functions", () => {
         expect(formatDateToNow(format(date, "yyyy-MM-dd HH:mm:ss"), "fr-FR")).to.equal(
             format(date, "'le' P 'à' p", { locale: fr })
         );
+    });
+});
+
+describe("getOutageDateInformation method", () => {
+    before(() => {
+        expect(getOutageDateInformation, "formatDate").to.be.a("function");
+    });
+
+    it("Should format start date and time to display date and hours like a sentence", () => {
+        expect(getOutageDateInformation({ startAt: "2021-07-12T17:52:44.000Z" }, "fr-FR")).to.equal(
+            "Depuis le 12 juillet à 19:52"
+        );
+    });
+
+    it("Should format date in english", () => {
+        expect(getOutageDateInformation({ startAt: "2021-07-12T17:52:44.000Z" }, "en-GB")).to.equal(
+            "Since July 12th at 19:52"
+        );
+    });
+
+    it("Should format date with endAt value if defined", () => {
+        expect(
+            getOutageDateInformation(
+                { startAt: "2021-07-12T17:52:44.000Z", endAt: "2021-07-13T12:52:44.000Z" },
+                "fr-FR"
+            )
+        ).to.equal("Du 12 juillet à 19:52 au 13 juillet à 14:52");
+    });
+
+    it("Should format date in english with endAt value if defined", () => {
+        expect(
+            getOutageDateInformation(
+                { startAt: "2021-07-12T17:52:44.000Z", endAt: "2021-07-13T12:52:44.000Z" },
+                "en-GB"
+            )
+        ).to.equal("From July 12th at 19:52 to July 13th at 14:52");
     });
 });

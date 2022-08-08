@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { Title, IconOutageCategorie } from "../../atoms";
 import { Outage } from "@neomanis/neo-types";
-import { formatDate } from "../../utils/dateTools";
+import { getOutageDateInformation } from "../../utils/dateTools";
+import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
     data: Outage;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: Props): React.ReactElement => {
+    const { i18n } = useTranslation();
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
     let colorSVGOutage = data.severity === "major" ? "#F42A3E" : "#ED943B";
     const ref = useRef<HTMLHeadingElement>(null);
@@ -41,9 +43,9 @@ const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: 
                         style={{ lineHeight: "110%" }}
                     />
                 </div>
-                <p className="text-xxs font-bold mt-1 py-2">{`${formatDate(data.startAt)} - ${formatDate(
-                    data.endAt
-                )}`}</p>
+                <p className="text-xxs font-bold mt-1 py-2">
+                    {getOutageDateInformation({ startAt: data.startAt, endAt: data.endAt }, i18n.language)}
+                </p>
             </div>
         </div>
     );

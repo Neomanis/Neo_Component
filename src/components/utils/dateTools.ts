@@ -1,6 +1,7 @@
 import { i18n } from "@neomanis/neo-translation";
 import { formatDistanceToNowStrict, Locale, format, isFuture, getTime, intervalToDuration } from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
+import { lowerCaseFirstLetter } from "./tools";
 
 export function getTimeToNowWithTranslation(date: string, lang?: string): string {
     const dateTicket = new Date(date);
@@ -96,4 +97,23 @@ export function getDateCompletionPercentage(startDate: string, endDate: string):
     const end = new Date(endDate).getTime();
     const now = new Date().getTime();
     return Math.round(((now - start) / (end - start)) * 100);
+}
+
+export function getOutageDateInformation(period: { startAt: string; endAt?: string }, lang: string) {
+    const t = i18n.getFixedT(lang);
+    const dateFormat =
+        lang === "fr-FR"
+            ? `d MMMM ${t("date.formatDateToNow.at")} H:mm`
+            : `MMMM do ${t("date.formatDateToNow.at")} H:mm`;
+    const startAt = format(new Date(period.startAt), dateFormat, {
+        locale: getDateFnsLocaleFromUserLang(lang),
+    });
+    if (!period.endAt) {
+        return `${t("date.since")} ${startAt}`;
+    } else {
+        const endAt = format(new Date(period.endAt), dateFormat, {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
+        return `${t("date.from")} ${startAt} ${lowerCaseFirstLetter(t("date.to"))} ${endAt}`;
+    }
 }
