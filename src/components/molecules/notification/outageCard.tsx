@@ -1,11 +1,11 @@
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Outage, Role } from "@neomanis/neo-types";
 import { Title, IconOutageCategorie, Button } from "../../atoms";
-import { formatDate } from "../../utils/dateTools";
 import ValidationCard from "../validationCard";
 import { useTranslation } from "@neomanis/neo-translation";
-import { lowerCaseFirstLetter, stripHtml } from "../../utils";
+import { stripHtml } from "../../utils";
+import { getOutageDateInformation } from "../../utils/dateTools";
 
 interface Props {
     data: Outage;
@@ -24,7 +24,7 @@ const OutageCard = ({
     deleteCallBack,
     role,
 }: Props): React.ReactElement => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     let colorOutage = data.severity === "major" ? "neo-urgency-major" : "neo-urgency";
     let colorSVGOutage = data.severity === "major" ? "#F42A3E" : "#ED943B";
     const [openValidationCard, setOpenValidationCard] = useState(false);
@@ -36,16 +36,6 @@ const OutageCard = ({
         colorOutage = "neo-light-grey";
         colorSVGOutage = "#DAE5E5";
     }
-
-    const dateInformation = useMemo(() => {
-        const startAt = formatDate(data.startAt, "EEEE d");
-        if (!data.endAt) {
-            return `${t("date.since")} ${startAt}`;
-        } else {
-            const endAt = formatDate(data.endAt, "EEEE d");
-            return `${t("date.from")} ${startAt} ${lowerCaseFirstLetter(t("date.to"))} ${endAt}`;
-        }
-    }, [data.startAt, data.endAt]);
 
     return (
         <div
@@ -96,7 +86,9 @@ const OutageCard = ({
                     className={`font-extrabold uppercase text-lg line-clamp-2 border-b-2 border-${colorOutage}`}
                     style={{ lineHeight: "110%" }}
                 />
-                <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">{dateInformation}</p>
+                <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">
+                    {getOutageDateInformation({ startAt: data.startAt, endAt: data.endAt }, i18n.language)}
+                </p>
                 <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
                     {stripHtml(data.content)}
                 </p>
