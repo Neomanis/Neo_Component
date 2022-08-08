@@ -102,17 +102,17 @@ export function getDateCompletionPercentage(startDate: string, endDate: string):
 export function getOutageDateInformation(period: { startAt: string; endAt?: string }, lang: string) {
     const t = i18n.getFixedT(lang);
     const dateFormat =
-        i18n.language === "fr-FR"
+        lang === "fr-FR"
             ? `d MMMM ${t("date.formatDateToNow.at")} H:mm`
             : `MMMM do ${t("date.formatDateToNow.at")} H:mm`;
     const startAt = format(new Date(period.startAt), dateFormat, {
-        locale: getDateFnsLocaleFromUserLang(i18n.language),
+        locale: getDateFnsLocaleFromUserLang(lang),
     });
     if (!period.endAt) {
         return `${t("date.since")} ${startAt}`;
     } else {
         const endAt = format(new Date(period.endAt), dateFormat, {
-            locale: getDateFnsLocaleFromUserLang(i18n.language),
+            locale: getDateFnsLocaleFromUserLang(lang),
         });
         return `${t("date.from")} ${startAt} ${lowerCaseFirstLetter(t("date.to"))} ${endAt}`;
     }
