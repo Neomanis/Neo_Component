@@ -17,9 +17,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -27,7 +28,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-body"]').click();
         cy.get("@open-callback").should("have.been.called");
     });
-
     it("should call follow callback and display properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -43,9 +43,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -55,7 +56,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-middle-top"]').find(">div>div").should("have.text", "Unfollow");
         cy.get('[data-testid="tq-middle-top"]').find(">div>div>div>svg").should("have.attr", "data-icon", "eye-slash");
     });
-
     it("should call unfollow callback and display properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -71,9 +71,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -83,7 +84,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-middle-top"]').find(">div>div").should("have.text", "Follow");
         cy.get('[data-testid="tq-middle-top"]').find(">div>div>div>svg").should("have.attr", "data-icon", "eye");
     });
-
     it("should render unselected props colors properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -99,9 +99,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -110,7 +111,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-middle"]').should("have.class", "bg-neo-bg-B");
         cy.get('[data-testid="tq-middle-bottom"]').should("have.class", "text-neo-blue-secondary");
     });
-
     it("should render selected props colors properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -126,9 +126,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -138,7 +139,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-middle-top"]').find(">div>div>div").should("have.class", "text-white");
         cy.get('[data-testid="tq-middle-bottom"]').should("have.class", "text-white");
     });
-
     it("should render unsolved props colors properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -154,16 +154,16 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={false}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
         );
         cy.get('[data-testid="tq-pill"]').should("have.class", "bg-neo-red");
     });
-
     it("should render solved props colors properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -179,16 +179,16 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
         );
         cy.get('[data-testid="tq-pill"]').should("have.class", "bg-neo-green");
     });
-
     it("should render title, createDate, createUser and createLevel props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -204,9 +204,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -216,7 +217,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-user"]').should("have.text", "John Doe");
         cy.get('[data-testid="tq-level"]').should("have.text", "Tech");
     });
-
     it("should render ticketId props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -232,9 +232,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 6,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 0,
+                    status: 6,
                 }}
                 title={"Title"}
             />
@@ -242,7 +243,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-ticket-infos"]').find(">div").should("exist");
         cy.get('[data-testid="tq-ticketId"]').should("have.text", "666");
     });
-
     it("should render ticketPriority props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -258,9 +258,10 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
+                    id: 0,
+                    uid: "666",
                     priority: 6,
-                    status: 0,
+                    status: 1,
                 }}
                 title={"Title"}
             />
@@ -269,7 +270,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-ticket-related"]').should("have.class", "text-white");
         cy.get('[data-testid="tq-ticketId"]').should("have.class", "text-white");
     });
-
     it("should render ticketPriority props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -285,18 +285,18 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 0,
-                    status: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 1,
+                    status: 1,
                 }}
                 title={"Title"}
             />
         );
-        cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-light-grey");
+        cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-ticketUrgency-very-low");
         cy.get('[data-testid="tq-ticket-related"]').should("have.class", "text-neo-blue-secondary");
         cy.get('[data-testid="tq-ticketId"]').should("have.class", "text-neo-blue-extraDark");
     });
-
     it("should render ticketStatus props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -312,8 +312,9 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
-                    priority: 0,
+                    id: 0,
+                    uid: "666",
+                    priority: 1,
                     status: 5,
                 }}
                 title={"Title"}
@@ -322,7 +323,6 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="ico-ticket-solved"]').should("exist");
         cy.get('[data-testid="tq-end"]').should("have.class", "bg-neo-green");
     });
-
     it("should render ticketStatus props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
@@ -338,7 +338,8 @@ describe("TechnicalQuestionItem", () => {
                 openTechnicalQuestion={openTechnicalQuestionCallback}
                 solved={true}
                 ticket={{
-                    ticketId: 666,
+                    id: 0,
+                    uid: "666",
                     priority: 0,
                     status: 6,
                 }}

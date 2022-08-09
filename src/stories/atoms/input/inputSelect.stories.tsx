@@ -20,13 +20,7 @@ const Template: ComponentStory<typeof InputSelect> = (args) => {
 
     return (
         <form className="bg-neo-bg-A p-2 space-y-2" onSubmit={formMethods.handleSubmit(onSubmit)}>
-            <InputSelect
-                {...args}
-                formMethods={formMethods}
-                refForm="inputSelect"
-                defaultValue={[defaultValue]}
-                isMulti
-            />
+            <InputSelect {...args} formMethods={formMethods} refForm="inputSelect" defaultValue={[defaultValue]} />
             <div className="flex flex-col items-start space-y-2">
                 <button
                     type="button"
@@ -54,4 +48,17 @@ Default.args = {
     ],
     required: true,
     isUpdateField: true,
+    isMulti: true,
+};
+
+export const Updatable: ComponentStory<typeof InputSelect> = Template.bind({});
+Updatable.args = {
+    options: [
+        { label: "Shikamaru", value: "Shikamaru" },
+        { label: "Naruto", value: "Naruto" },
+    ],
+    required: true,
+    isUpdateField: true,
+    isMulti: false,
+    updateFunction: (field, value) => console.log(field, value),
 };

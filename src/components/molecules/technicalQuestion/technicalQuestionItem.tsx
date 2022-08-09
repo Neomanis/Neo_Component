@@ -16,7 +16,7 @@ interface Props {
     isSelected: boolean;
     openTechnicalQuestion: () => void;
     solved: boolean;
-    ticket?: { ticketId: number; priority: number; status: number };
+    ticket?: { id: number; priority: number; status: number; uid: string };
     title: string;
 }
 
@@ -120,32 +120,30 @@ const TechnicalQuestionItem = ({
                         )}
 
                         <div data-testid="tq-ticket-infos">
-                            {ticket && (
-                                <div
-                                    data-testid="tq-ticket-related"
-                                    className={` ${
+                            <div
+                                data-testid="tq-ticket-related"
+                                className={` ${
+                                    getContrastBasedOnHexColor(
+                                        getStatusOrPriorityColor(ticket.status, ticket.priority, true)
+                                    ) === "white"
+                                        ? "text-white"
+                                        : "text-neo-blue-secondary"
+                                }  font-bold pl-4 text-xs`}
+                            >
+                                {t("technicalQuestion.relatedTicket")}
+                                <p
+                                    data-testid="tq-ticketId"
+                                    className={`${
                                         getContrastBasedOnHexColor(
                                             getStatusOrPriorityColor(ticket.status, ticket.priority, true)
                                         ) === "white"
                                             ? "text-white"
-                                            : "text-neo-blue-secondary"
-                                    }  font-bold pl-4 text-xs`}
+                                            : "text-neo-blue-extraDark"
+                                    }  font-extrabold text-lg`}
                                 >
-                                    {t("technicalQuestion.relatedTicket")}
-                                    <p
-                                        data-testid="tq-ticketId"
-                                        className={`${
-                                            getContrastBasedOnHexColor(
-                                                getStatusOrPriorityColor(ticket.status, ticket.priority, true)
-                                            ) === "white"
-                                                ? "text-white"
-                                                : "text-neo-blue-extraDark"
-                                        }  font-extrabold text-lg`}
-                                    >
-                                        {ticket.ticketId}
-                                    </p>
-                                </div>
-                            )}
+                                    {ticket.uid}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -4,31 +4,32 @@ import { faArrowUp, faCheck, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { formatDate } from "../../utils";
 import AnswerForm from "./answerForm";
 import { Button } from "../../atoms";
+import { NeoUser } from "@neomanis/neo-types";
 
 interface Props {
     acceptAnswer: (answerId: number) => void;
-    author: string;
+    author?: NeoUser;
     authorLevel: string | null;
-    connectedUserUid?: string;
+    connectedUserNeoId?: number;
     creationDate: string;
     id: number;
     isAccepted: boolean;
-    questionAuthor: string;
+    questionAuthorNeoId: number;
     text: string;
     updateAnswer: (id: number, text: string) => void;
     upvote: (id: number) => void;
-    upvoters: string[];
+    upvoters: number[];
 }
 
 const AnswerItem = ({
     acceptAnswer,
     author,
     authorLevel,
-    connectedUserUid,
+    connectedUserNeoId,
     creationDate,
     id,
     isAccepted,
-    questionAuthor,
+    questionAuthorNeoId,
     text,
     updateAnswer,
     upvote,
@@ -46,10 +47,12 @@ const AnswerItem = ({
                         fontIcon={faArrowUp}
                         fCallback={() => upvote(id)}
                         className={`cursor-pointer text-xl -mt-0.5 hover:text-neo-blue ${
-                            connectedUserUid && upvoters.includes(connectedUserUid) ? "text-neo-blue" : "text-neo-link"
+                            connectedUserNeoId && upvoters.includes(connectedUserNeoId)
+                                ? "text-neo-blue"
+                                : "text-neo-link"
                         } `}
                     />
-                    {!isAccepted && connectedUserUid === questionAuthor && (
+                    {!isAccepted && connectedUserNeoId === questionAuthorNeoId && (
                         <Button
                             testId="tq-answer-accept"
                             fontIcon={faCheck}
@@ -57,7 +60,7 @@ const AnswerItem = ({
                             fCallback={() => acceptAnswer(id)}
                         />
                     )}
-                    {author === connectedUserUid && (
+                    {author && author.neoId === questionAuthorNeoId && (
                         <Button
                             testId="tq-answer-update"
                             fontIcon={faEdit}
@@ -66,8 +69,8 @@ const AnswerItem = ({
                         />
                     )}
                     <div className="flex text-neo-blue-secondary font-bold ml-11">
-                        <p className="mr-2">{author}</p>
-                        {authorLevel ?? <p className="text-white text-opacity-80 mr-2">{authorLevel}</p>}
+                        <p className="mr-2">{author?.name}</p>
+                        <p className="text-white text-opacity-80 mr-2">{authorLevel}</p>
                     </div>
                 </div>
                 <div className="text-neo-blue-secondary font-bold">{formatDate(creationDate)}</div>

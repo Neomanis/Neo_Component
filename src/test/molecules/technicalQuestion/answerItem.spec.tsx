@@ -15,13 +15,13 @@ describe("AnswerItem", () => {
                 creationDate={fakeAnswer.creationDate}
                 authorLevel={fakeAnswer.authorLevel}
                 author={fakeAnswer.author}
-                questionAuthor="Fulgrim"
+                questionAuthorNeoId={1}
                 id={fakeAnswer.id}
                 text={fakeAnswer.text}
                 updateAnswer={updateAnswerCallback}
                 upvote={upvoteAnswerCallback}
                 upvoters={fakeAnswer.upvoters}
-                connectedUserUid="Fulgrim"
+                connectedUserNeoId={1}
             />
         );
         cy.get('[data-testid="tq-answer-upvote"]').click();
@@ -29,7 +29,6 @@ describe("AnswerItem", () => {
         cy.get('[data-testid="tq-answer-accept"]').click();
         cy.get("@acceptAnswer-callback").should("have.been.called");
     });
-
     it("should allow connected user to update answer if he is the author of the answer", () => {
         const acceptAnswerCallback = cy.stub().as("acceptAnswer-callback");
         const updateAnswerCallback = cy.stub().as("updateAnswer-callback");
@@ -41,14 +40,14 @@ describe("AnswerItem", () => {
                 isAccepted={fakeAnswer.isAccepted}
                 creationDate={fakeAnswer.creationDate}
                 authorLevel={fakeAnswer.authorLevel}
-                author="Horus"
-                questionAuthor="Fulgrim"
+                author={fakeAnswer.author}
+                questionAuthorNeoId={1}
                 id={fakeAnswer.id}
                 text={fakeAnswer.text}
                 updateAnswer={updateAnswerCallback}
                 upvote={upvoteAnswerCallback}
                 upvoters={fakeAnswer.upvoters}
-                connectedUserUid="Horus"
+                connectedUserNeoId={1}
             />
         );
         cy.get('[data-testid="tq-answer-update"]').click();
