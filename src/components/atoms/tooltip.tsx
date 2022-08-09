@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Icon from "./icon";
@@ -14,15 +14,17 @@ interface Props {
 }
 
 const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): ReactElement => {
-    const [isHover, setIsHover] = useState(false);
-    const timer = useRef(null);
-
     return (
-        <div className="relative">
+        <div className="relative group">
             <div
-                className={`flex-col items-center absolute transform -translate-x-1/2 left-1/2 z-50
-                ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}
-                ${!disabled && isHover ? "flex" : "hidden"}`}
+                className={`flex flex-col items-center absolute transform -translate-x-1/2 left-1/2 z-50 opacity-0 pointer-events-none
+                    ${
+                        disabled
+                            ? ""
+                            : "group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 duration-200 ease-linear delay-200 group-hover:pointer-events-auto"
+                    }
+                    ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}
+                `}
                 data-testid="tooltip-bubble"
             >
                 <div className="bg-neo-stats-black text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
@@ -40,18 +42,7 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: Props): 
                         ${position === "top" ? "-rotate-90 -mt-[14px]" : "rotate-90 -mb-[14px]"}`}
                 />
             </div>
-            <div
-                onMouseEnter={() => {
-                    timer.current = setTimeout(() => !disabled && setIsHover(true), 200);
-                }}
-                onMouseLeave={() => {
-                    clearTimeout(timer.current);
-                    setIsHover(false);
-                }}
-                data-testid="tooltip-body"
-            >
-                {children}
-            </div>
+            <div data-testid="tooltip-body">{children}</div>
         </div>
     );
 };
