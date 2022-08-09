@@ -30,8 +30,8 @@ TechnicalQuestionItemDefault.args = {
     solved: true,
     ticket: {
         uid: "[GL1]-INC-666",
-        priority: 4,
-        status: 1,
+        priority: 1,
+        status: 5,
     },
     title: "You strive for victory",
 };
