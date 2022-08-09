@@ -66,7 +66,7 @@ describe("Date to now format functions", () => {
 
 describe("getOutageDateInformation method", () => {
     before(() => {
-        expect(getOutageDateInformation, "formatDate").to.be.a("function");
+        expect(getOutageDateInformation).to.be.a("function");
     });
 
     it("Should format start date and time to display date and hours like a sentence", () => {
