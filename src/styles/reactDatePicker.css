@@ -42,6 +42,11 @@
     height: 165px !important;
     @apply mt-2 !important;
 }
+
+.react-datepicker__time-list::-webkit-scrollbar {
+    display: none;
+}
+
 .react-datepicker-time__header {
     @apply text-white !important;
 }
