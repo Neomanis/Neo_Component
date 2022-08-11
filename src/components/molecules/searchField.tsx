@@ -51,6 +51,7 @@ const SearchField = ({
                     required={false}
                     setValue={setValue}
                     typeInput="text"
+                    showLabelAndUpdater={false}
                 />
             </div>
             <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">

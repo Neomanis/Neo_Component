@@ -30,6 +30,7 @@ interface Props {
     register?: UseFormRegister<FieldValues>;
     required: boolean;
     setValue?: UseFormSetValue<FieldValues>;
+    showLabelAndUpdater?: boolean;
     style?: React.CSSProperties;
     targetId?: number | undefined;
     timerSetting?: number;
@@ -63,6 +64,7 @@ const Input = ({
     register,
     required,
     setValue,
+    showLabelAndUpdater = true,
     style,
     targetId,
     timerSetting = 5000,
@@ -108,7 +110,7 @@ const Input = ({
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
             <label className="w-full">
-                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
+                <div className={`${showLabelAndUpdater && "h-6"} flex justify-between items-center`}>
                     <p className={labelClassName}>{label}</p>
                     <div className={dotClassName}>
                         {(isUpdateField || isError) && (

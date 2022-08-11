@@ -1,6 +1,12 @@
 import React, { ReactElement } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { formatDate, getContrastBasedOnHexColor, getStatusOrPriorityColor, NeoColors } from "../../utils";
+import {
+    formatDate,
+    getContrastBasedOnHexColor,
+    getDisplayedTicketUid,
+    getStatusOrPriorityColor,
+    NeoColors,
+} from "../../utils";
 import { Icon, Title, Tooltip } from "../../atoms";
 import { IconTechnicalQuestions } from "../../../img/svg";
 import { getTicketLogoByStatus } from "../../utils/ticketLogoByStatus";
@@ -67,8 +73,7 @@ const TechnicalQuestionItem = ({
                     <Title
                         type={"h2"}
                         data={title}
-                        className="font-bold text-lg mr-2 truncate text-white"
-                        style={{ maxWidth: "265px" }}
+                        className="font-bold text-lg mr-2 truncate text-white max-w-[220px]"
                     />
                     <Tooltip position="top" text={followed ? t("global.follow") : t("global.unfollow")}>
                         <Icon
@@ -122,7 +127,7 @@ const TechnicalQuestionItem = ({
                         <div data-testid="tq-ticket-infos">
                             <div
                                 data-testid="tq-ticket-related"
-                                className={` ${
+                                className={`w-36 ${
                                     getContrastBasedOnHexColor(
                                         getStatusOrPriorityColor(ticket.status, ticket.priority, true)
                                     ) === "white"
@@ -139,9 +144,9 @@ const TechnicalQuestionItem = ({
                                         ) === "white"
                                             ? "text-white"
                                             : "text-neo-blue-extraDark"
-                                    }  font-extrabold text-lg`}
+                                    }  font-extrabold text-base`}
                                 >
-                                    {ticket.uid}
+                                    {getDisplayedTicketUid(ticket.uid)}
                                 </p>
                             </div>
                         </div>
