@@ -57,6 +57,7 @@ const InputChat = ({
                 required
                 setValue={setValue}
                 typeInput="text"
+                showLabelAndUpdater={false}
             />
             {privateMessage && (
                 <div className="py-3 px-2 w-10">
