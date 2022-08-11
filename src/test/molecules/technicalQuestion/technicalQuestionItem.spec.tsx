@@ -18,7 +18,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -44,7 +44,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -72,7 +72,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -100,7 +100,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -127,7 +127,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -155,7 +155,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={false}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -180,7 +180,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -205,7 +205,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -217,7 +217,7 @@ describe("TechnicalQuestionItem", () => {
         cy.get('[data-testid="tq-user"]').should("have.text", "John Doe");
         cy.get('[data-testid="tq-level"]').should("have.text", "Tech");
     });
-    it("should render ticketId props properly", () => {
+    it("should render ticketUid props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
         const openTechnicalQuestionCallback = cy.stub().as("open-callback");
         mount(
@@ -233,7 +233,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}
@@ -241,7 +241,7 @@ describe("TechnicalQuestionItem", () => {
             />
         );
         cy.get('[data-testid="tq-ticket-infos"]').find(">div").should("exist");
-        cy.get('[data-testid="tq-ticketId"]').should("have.text", "666");
+        cy.get('[data-testid="tq-ticketId"]').should("have.text", "[1GL] INC 666");
     });
     it("should render ticketPriority props properly", () => {
         const followTechnicalQuestionCallback = cy.stub().as("follow-callback");
@@ -259,7 +259,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 6,
                     status: 1,
                 }}
@@ -286,7 +286,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 1,
                     status: 1,
                 }}
@@ -313,7 +313,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 1,
                     status: 5,
                 }}
@@ -339,7 +339,7 @@ describe("TechnicalQuestionItem", () => {
                 solved={true}
                 ticket={{
                     id: 0,
-                    uid: "666",
+                    uid: "1gl-666-INC",
                     priority: 0,
                     status: 6,
                 }}

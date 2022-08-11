@@ -28,6 +28,7 @@ interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>
     placeholder?: ReactNode;
     refForm: string;
     required?: boolean;
+    showLabelAndUpdater?: boolean;
     updateFunction?: (field: string, value: Value<Option, IsMulti>) => void;
     updaterClassName?: string;
 }
@@ -54,6 +55,7 @@ function InputSelect<
     placeholder = "",
     refForm,
     required,
+    showLabelAndUpdater = true,
     updateFunction,
     updaterClassName,
 }: Props<Option, IsMulti, Group>): ReactElement {
@@ -99,7 +101,7 @@ function InputSelect<
 
     return (
         <div className={containerClassName ? containerClassName : "w-full"}>
-            {(isUpdateField || isError || label) && (
+            {showLabelAndUpdater && (
                 <div className="h-6 flex justify-between items-center">
                     <label className={labelClassName ? labelClassName : "text-white"}>{label}</label>
                     <div
