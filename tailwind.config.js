@@ -121,8 +121,50 @@ module.exports = {
                 widthCardClose: "widthCardClose 0.3s ease-in-out",
                 onSpin: "onSpin 0.8s ease-in-out",
                 onSpinReverse: "onSpinReverse 0.8s ease-in-out",
+                fadeJump: "fadeJump 2s linear infinite",
+                swing: "swing 2s linear infinite"
             },
             keyframes: {
+                swing: {
+                    "55%": {
+                        transform: "rotate3d(0, 0, 1, 10deg)",
+                    },
+
+                    "60%": {
+                        transform: "rotate3d(0, 0, 1, -5deg)",
+                    },
+
+                    "65%": {
+                        transform: "rotate3d(0, 0, 1, 2deg)",
+                    },
+
+                    "70%": {
+                        transform: "rotate3d(0, 0, 1, -2deg)",
+                    },
+
+                    "72%, 100%, 0%, 50%": {
+                        transform: "rotate3d(0, 0, 1, 0deg)",
+                    },
+                },
+                fadeJump: {
+                    "0%": {
+                        transform: "scale(0.7)"
+                    },
+                    "1%, 45%": {
+                        opacity: 1,
+                    },
+                    "5%, 20%": {
+                        transform: "scale(1)"
+                    },
+                    "47%": {
+                        opacity: 0,
+                        zIndex: -999,
+                        transform: "scale(0.7)"
+                    },
+                    "100%": {
+                        opacity: 0
+                    }
+                },
                 // animation hover ticket
                 widthAnim: {
                     from: { width: 0 },

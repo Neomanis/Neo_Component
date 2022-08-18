@@ -8,6 +8,7 @@ import Grid from "./ticket/grid";
 import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
 import InputChat from "./chat/inputChat";
 import MessageChat from "./chat/messageChat";
+import NeoBotOpenTicket from "./neoBotOpenTicket";
 import NeoBotProcess from "./chat/neoBotProcess";
 import NotificationCard from "./notification/notificationCard";
 import NotificationContainer from "./notification/notificationContainer";
@@ -39,6 +40,7 @@ export {
     InlineShadowBoxWrapper,
     InputChat,
     MessageChat,
+    NeoBotOpenTicket,
     NeoBotProcess,
     NotificationCard,
     NotificationContainer,
