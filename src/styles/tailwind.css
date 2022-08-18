@@ -52,8 +52,10 @@
     scrollbar-width: none;
 }
 
+/* NeoBot Open Ticket Animation */
+
 .jumpIn {
-    animation: x 2.5s linear infinite, y 2.5s infinite cubic-bezier(0, -1, 1, -3);
+    animation: x 2s linear infinite, y 2s infinite cubic-bezier(0, -1, 1, -3);
 }
 
 @keyframes x {

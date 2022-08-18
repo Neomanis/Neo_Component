@@ -121,31 +121,31 @@ module.exports = {
                 widthCardClose: "widthCardClose 0.3s ease-in-out",
                 onSpin: "onSpin 0.8s ease-in-out",
                 onSpinReverse: "onSpinReverse 0.8s ease-in-out",
-                fadeJump: "fadeJump 2.5s linear infinite",
-                swing: "swing 2.5s linear infinite"
+                fadeJump: "fadeJump 2s linear infinite",
+                swing: "swing 2s linear infinite"
             },
             keyframes: {
                 swing: {
                     "55%": {
-                      transform: "rotate3d(0, 0, 1, 10deg)",
+                        transform: "rotate3d(0, 0, 1, 10deg)",
                     },
-                  
+
                     "60%": {
-                      transform: "rotate3d(0, 0, 1, -5deg)",
+                        transform: "rotate3d(0, 0, 1, -5deg)",
                     },
-                  
+
                     "65%": {
-                      transform: "rotate3d(0, 0, 1, 2deg)",
+                        transform: "rotate3d(0, 0, 1, 2deg)",
                     },
-                  
+
                     "70%": {
-                      transform: "rotate3d(0, 0, 1, -2deg)",
+                        transform: "rotate3d(0, 0, 1, -2deg)",
                     },
-                  
+
                     "72%, 100%, 0%, 50%": {
-                      transform: "rotate3d(0, 0, 1, 0deg)",
+                        transform: "rotate3d(0, 0, 1, 0deg)",
                     },
-                  },
+                },
                 fadeJump: {
                     "0%": {
                         transform: "scale(0.7)"
