@@ -122,7 +122,7 @@ module.exports = {
                 onSpin: "onSpin 0.8s ease-in-out",
                 onSpinReverse: "onSpinReverse 0.8s ease-in-out",
                 fadeJump: "fadeJump 2s linear infinite",
-                swing: "swing 2s linear infinite"
+                swing: "swing 2s linear infinite",
             },
             keyframes: {
                 swing: {
@@ -148,22 +148,22 @@ module.exports = {
                 },
                 fadeJump: {
                     "0%": {
-                        transform: "scale(0.7)"
+                        transform: "scale(0.7)",
                     },
                     "1%, 45%": {
                         opacity: 1,
                     },
                     "5%, 20%": {
-                        transform: "scale(1)"
+                        transform: "scale(1)",
                     },
                     "47%": {
                         opacity: 0,
                         zIndex: -999,
-                        transform: "scale(0.7)"
+                        transform: "scale(0.7)",
                     },
                     "100%": {
-                        opacity: 0
-                    }
+                        opacity: 0,
+                    },
                 },
                 // animation hover ticket
                 widthAnim: {

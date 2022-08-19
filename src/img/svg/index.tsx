@@ -26,7 +26,7 @@ import { ReactComponent as IconChapterCheck } from "./nm_ico_chapter_check.svg";
 import { ReactComponent as IconChapterCheckNot } from "./nm_ico_chapter_check_not.svg";
 import { ReactComponent as IconChapterExit } from "./nm_ico_chapter_exit.svg";
 import { ReactComponent as IconChapterNotification } from "./nm_ico_chapter_notifications.svg";
-import { ReactComponent as IconChapterQuestion } from "./nm_ico_chapter_question.svg";
+import { ReactComponent as IconChapterConfirmation } from "./nm_ico_chapter_confirmation.svg";
 import { ReactComponent as IconChapterScript } from "./nm_ico_chapter_script.svg";
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
@@ -124,7 +124,7 @@ export {
     IconChapterCheckNot,
     IconChapterExit,
     IconChapterNotification,
-    IconChapterQuestion,
+    IconChapterConfirmation,
     IconChapterScript,
     IconChartPie,
     IconCheck,
