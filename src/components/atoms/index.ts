@@ -1,51 +1,28 @@
-import BubbleChat from "./chat/bubbleChat";
-import Button from "./button";
-import ButtonSwitch from "./buttonSwitch";
-import Checkbox from "./checkBox";
-import Hexagon from "./ticket/hexagon";
-import HexaPill from "./hexaPill";
-import Icon from "./icon";
-import IconOutageCategorie from "./outage/iconOutageCategorie";
-import IconTicketCategorie from "./ticket/iconTicketCategorie";
-import Img from "./img";
-import Input from "./input/input";
-import InputChoice from "./input/inputChoice";
-import InputDateTime from "./input/inputDateTime";
-import InputSelect from "./input/inputSelect";
-import InputTextarea from "./input/inputTextarea";
-import Loader from "./loader";
-import Pill from "./pill";
-import SwitchToggle from "./switchToggle";
-import Tab from "./tabs/tab";
-import Tabs from "./tabs/tabs";
-import TabTitle from "./tabs/tabTitle";
-import Title from "./title";
-import Tooltip from "./tooltip";
-import TextEditor from "./input/textEditor";
-
-export {
-    BubbleChat,
-    Button,
-    ButtonSwitch,
-    Checkbox,
-    Hexagon,
-    HexaPill,
-    Icon,
-    IconOutageCategorie,
-    IconTicketCategorie,
-    Img,
-    Input,
-    InputChoice,
-    InputDateTime,
-    InputSelect,
-    InputTextarea,
-    Loader,
-    Pill,
-    SwitchToggle,
-    Tab,
-    Tabs,
-    TabTitle,
-    Title,
-    Tooltip,
-    TextEditor,
-};
+export { default as ButtonV2 } from "./ButtonV2";
+export { default as BubbleChat } from "./BubbleChat";
+export { default as ButtonSwitch } from "./ButtonSwitch";
+export { default as Hexagon } from "./Hexagon";
+export { default as Icon } from "./Icon";
+export { default as IconOutageCategory } from "./IconOutageCategory";
+export { default as IconTicketCategory } from "./IconTicketCategory";
+export { default as Img } from "./Img";
+export { default as Input } from "./Input";
+export { default as InputChoice } from "./InputChoice";
+export { default as InputDateTime } from "./InputDateTime";
+export { default as InputSelect } from "./InputSelect";
+export { default as Loader } from "./Loader";
+export { default as Pill } from "./Pill";
+export { default as SwitchToggle } from "./SwitchToggle";
+export { default as Tab } from "./Tab";
+export { default as Tabs } from "./Tabs";
+export { default as TabTitle } from "./TabTitle";
+export { default as Tooltip } from "./Tooltip";
+export { default as WritingDots } from "./WritingDots";
+export { default as Updater } from "./Updater";
+export { default as Title } from "./Title";
+export { default as TextEditor } from "./TextEditor";
+export { default as Button } from "./Button";
+export { default as Jeremy } from "./Jeremy";
+export { default as HexaPill } from "./HexaPill";
+export { default as Checkbox } from "./Checkbox";
+export { default as InputTextarea } from "./InputTextarea";

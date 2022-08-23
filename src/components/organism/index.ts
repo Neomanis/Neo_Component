@@ -1,3 +1,1 @@
-import AvatarHandler from "./avatarHandler";
-
-export { AvatarHandler };
+export { default as AvatarHandler } from "./AvatarHandler";

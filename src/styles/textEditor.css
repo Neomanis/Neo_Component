@@ -61,6 +61,9 @@
 .ql-snow .ql-stroke.ql-fill {
     fill: #ffffffdc;
 }
+.ql-snow .ql-picker {
+    color: "#ffffffdc" !important;
+}
 
 .hiddenLineNumberOne > * {
     display: none;

@@ -1,63 +1,30 @@
-import AgentAndUser from "./charts/agentAndUser";
-import AnswerForm from "./technicalQuestion/answerForm";
-import AnswerItem from "./technicalQuestion/answerItem";
-import AvatarEditor from "./user/avatarEditor";
-import ChartRangeSelector from "./charts/chartRangeSelector";
-import ChatCard from "./chat/chatCard";
-import Grid from "./ticket/grid";
-import InlineShadowBoxWrapper from "./inlineShadowBoxWrapper";
-import InputChat from "./chat/inputChat";
-import MessageChat from "./chat/messageChat";
-import NeoBotOpenTicket from "./neoBotOpenTicket";
-import NeoBotProcess from "./chat/neoBotProcess";
-import NotificationCard from "./notification/notificationCard";
-import NotificationContainer from "./notification/notificationContainer";
-import NotificationItem from "./notification/notificationItem";
-import NumberAndSLA from "./charts/numberAndSLA";
-import OutageCard from "./notification/outageCard";
-import OutageItem from "./notification/outageItem";
-import RecursiveDiagnosticComponent from "./ticket/recursiveDiagnosticComponent";
-import SearchField from "./searchField";
-import ShadowBoxWrapper from "./shadowBoxWrapper";
-import SimilarTicket from "./ticket/similarTicket";
-import TechnicalQuestionItem from "./technicalQuestion/technicalQuestionItem";
-import Ticket from "./ticket/ticket";
-import TicketTechnicalQuestionLine from "./technicalQuestion/ticketTechnicalQuestionLine";
-import Toaster from "./toaster";
-import UserInfo from "./user/userInfo";
-import ValidationCard from "./validationCard";
-import ApprovalCard from "./notification/approvalCard";
-import WritingDots from "../atoms/chat/writingDots";
-
-export {
-    AgentAndUser,
-    AnswerForm,
-    AnswerItem,
-    AvatarEditor,
-    ChartRangeSelector,
-    ChatCard,
-    Grid,
-    InlineShadowBoxWrapper,
-    InputChat,
-    MessageChat,
-    NeoBotOpenTicket,
-    NeoBotProcess,
-    NotificationCard,
-    NotificationContainer,
-    NotificationItem,
-    NumberAndSLA,
-    OutageCard,
-    OutageItem,
-    RecursiveDiagnosticComponent,
-    SearchField,
-    ShadowBoxWrapper,
-    SimilarTicket,
-    TechnicalQuestionItem,
-    Ticket,
-    TicketTechnicalQuestionLine,
-    Toaster,
-    UserInfo,
-    ValidationCard,
-    ApprovalCard,
-    WritingDots,
-};
+export { default as AgentAndUser } from "./AgentAndUser";
+export { default as AnswerForm } from "./AnswerForm";
+export { default as AnswerItem } from "./AnswerItem";
+export { default as AvatarEditor } from "./AvatarEditor";
+export { default as ChartRangeSelector } from "./ChartRangeSelector";
+export { default as ChatCard } from "./ChatCard";
+export { default as Grid } from "./Grid";
+export { default as InlineShadowBoxWrapper } from "./InlineShadowBoxWrapper";
+export { default as InputChat } from "./InputChat";
+export { default as MessageChat } from "./MessageChat";
+export { default as NeoBotProcess } from "./NeoBotProcess";
+export { default as NotificationCard } from "./NotificationCard";
+export { default as NotificationContainer } from "./NotificationContainer";
+export { default as NotificationItem } from "./NotificationItem";
+export { default as NumberAndSLA } from "./NumberAndSLA";
+export { default as OutageCard } from "./OutageCard";
+export { default as OutageItem } from "./OutageItem";
+export { default as RecursiveDiagnosticComponent } from "./RecursiveDiagnosticComponent";
+export { default as SearchField } from "./SearchField";
+export { default as ShadowBoxWrapper } from "./ShadowBoxWrapper";
+export { default as SimilarTicket } from "./SimilarTicket";
+export { default as TechnicalQuestionItem } from "./TechnicalQuestionItem";
+export { default as Ticket } from "./Ticket";
+export { default as TicketTechnicalQuestionLine } from "./TicketTechnicalQuestionLine";
+export { default as Toaster } from "./Toaster";
+export { default as UserInfo } from "./UserInfo";
+export { default as ValidationCard } from "./ValidationCard";
+export { default as ApprovalCard } from "./ApprovalCard";
+export { default as DndTicket } from "./DndTicket";
+export { default as NeoBotOpenTicket } from "./NeoBotOpenTicket";

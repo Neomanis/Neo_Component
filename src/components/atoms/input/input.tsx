@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useRef } from "react";
-import { FieldValues, UseFormClearErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
-import Updater from "../updater";
-import { useInputs } from "../../utils/hooks/useInputs";
+import { useInputs } from "@/utils/hooks/useInputs";
+import Updater from "../Updater";
 
-interface Props {
+export interface InputProps {
     className?: string;
     clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: ReactHookFormCustomValidation<string>;
@@ -70,7 +70,7 @@ const Input = ({
     timerSetting = 5000,
     typeInput,
     updateFunction,
-}: Props): ReactElement => {
+}: InputProps): ReactElement => {
     const [state, dispatch] = useInputs(defaultValue);
 
     const isLastMount = useRef(false);
