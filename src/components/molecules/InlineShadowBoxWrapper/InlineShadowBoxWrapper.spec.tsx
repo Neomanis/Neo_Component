@@ -29,30 +29,30 @@ test.use({ viewport: { width: 500, height: 500 } });
 //     );
 // });
 
-test("should display the correct shadowbox", async ({ mount }) => {
-    const component = await mount(<TestWrapper width="w-60" />);
+// test("should display the correct shadowbox", async ({ mount }) => {
+//     const component = await mount(<TestWrapper width="w-60" />);
 
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).not.toBeVisible();
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).not.toBeVisible();
 
-    await component
-        .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
-        .evaluate((el) => el.scrollTo({ left: el.clientWidth / 2 }));
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).toBeVisible();
+//     await component
+//         .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
+//         .evaluate((el) => el.scrollTo({ left: el.clientWidth / 2 }));
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).toBeVisible();
 
-    await component
-        .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
-        .evaluate((el) => el.scrollTo({ left: el.clientWidth }));
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).not.toBeVisible();
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).toBeVisible();
+//     await component
+//         .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
+//         .evaluate((el) => el.scrollTo({ left: el.clientWidth }));
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).not.toBeVisible();
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).toBeVisible();
 
-    await component
-        .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
-        .evaluate((el) => el.scrollTo({ left: 0 }));
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
-    await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).not.toBeVisible();
-});
+//     await component
+//         .locator('[data-testid="inlineShadowBoxWrapperContainer"]')
+//         .evaluate((el) => el.scrollTo({ left: 0 }));
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperRightShadowBox"]')).toBeVisible();
+//     await expect(component.locator('[data-testid="inlineShadowBoxWrapperLeftShadowBox"]')).not.toBeVisible();
+// });
 
 test("should not display shadowboxes if content is not overflowing", async ({ mount }) => {
     const component = await mount(<TestWrapper width="w-full" />);
