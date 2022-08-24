@@ -1,0 +1,19 @@
+{
+    "Neo React Component": {
+        "prefix": "neorc",
+        "body": [
+            "import { ReactElement } from \"react\";",
+            "",
+            "interface Props {",
+            "\t${2}",
+            "}",
+            "",
+            "const ${1:Component} = ({${3}}: Props): ReactElement => {",
+            "\treturn <div></div>;",
+            "};",
+            "",
+            "export default ${1:Component};",
+            ""
+        ]
+    }
+}

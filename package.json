@@ -93,7 +93,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "checkHusky": "node checkIfHuskyExists.ts",
-    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"rm -rf ./playwright/.cache\" && npx husky add .husky/pre-push \"yarn test\" && npx husky add .husky/pre-push \"yarn build\"",
+    "husky:setup": "husky install && npx husky add .husky/pre-commit \"yarn prettier:fix\" && npx husky add .husky/pre-commit \"yarn lint\" && npx husky add .husky/pre-push \"rm -rf ./playwright/.cache 2>/dev/null\" && npx husky add .husky/pre-push \"yarn test\" && npx husky add .husky/pre-push \"yarn build\"",
     "lint": "eslint . --ext .tsx",
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",

@@ -19,7 +19,7 @@ Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
 
 ### `yarn build`
 
-Builds the app with rollup to be usable as a node_module in other service
+Builds the app with vite to be usable as a node_module in other service
 
 ### `yarn husky:setup`
 
@@ -173,32 +173,35 @@ You'll have to build your local package and restart your react server on every m
 note: If you need to unlink you can run `yarn unlink` in the folder that you desire to remove from aliases
 There is no prerequisites before push your work into your branch, since the simlinks are made locally
 
-## Cypress
+## Playwright
 
-[Here some documentations](https://docs.cypress.io/guides/overview/why-cypress)
+[Here some documentations](https://playwright.dev/docs/intro)
 
-#### Before all
+You should install the playwight vscode extension:
+Name: Playwright Test for VSCode
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
 
-You should delete your .husky and regenerate it with `yarn husky:setup`
-Note also that you should have installed locally a version of chrome and firefox.
-For GNU/linux user you can, instead of chrome, use chromium. You should also modify you husky push hook to target this script `ci:storybook:chromium` instead of `ci:storybook:chrome`.
+With it you can run your tests directly from vscode.
 
-You can use cypress to create e2e testing. To do so simply add a `.spec.js` file in `./cypress/integration/storybook/` and start hacking some e2e tests.
+`yarn test` -> it will run all the tests in the project on different browsers (Chromium, Firefox, WebKit). If any test fails it will open a report in the browser with the results.
 
-#### Here are several script that you can use during development:
+## Component generation
 
--   `cypress:run` -> it will simply launch a test runner like jest, but know that you should have storybook server running in parallel on port 6006
--   `cypress:open` -> it will open an electron app to monitor your tests suites
+You can generate a new component with the following command:
+`yarn generate:atoms <name>`
+`yarn generate:molecules <name>`
+`yarn generate:organism <name>`
 
--   `ci:<nextcommand>` -> this is only used by husky, so you shouldn't have to use it
+You can chain multiple component name like : `yarn generate:atoms Toto Titi Tata`
 
-#### You can also do some unit testing
+It will a create a new folder in the corresponding component type with 4 new files:
 
--   `cypress:run:ct` -> it will simply laucnh a test runner like jest based on the test in `src/test/**/*.spec.tsx`
+-   `<name>.tsx` (component)
+-   `<name>.spec.tsx` (test)
+-   `<name>.stories.tsx` (storybook)
+-   `index.ts` (index file to export the component)
 
--   `cypress:run:ct --spec ./src/test/path/to/file.spec.tsx` -> it will launch test only on the specified file
-
--   `cypress:open:ct` -> it will open an electron app to monitor your tests suites, usefull when you create your test because it has hot reload included
+It will also add it's export in the corresponding component type index file
 
 ## React-Select
 

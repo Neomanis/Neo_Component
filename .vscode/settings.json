@@ -1,0 +1,8 @@
+{
+    "tailwindCSS.experimental.classRegex": [
+        "[a-zA-Z0-9]*ClassName=\"(.*)\"",
+        "[a-zA-Z0-9]*ClassName={`([^`]*)`}",
+        ["@tw([^;]*);", "\"(.*)\""]
+    ],
+    "tailwindCSS.lint.cssConflict": "ignore"
+}

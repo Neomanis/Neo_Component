@@ -1,0 +1,6 @@
+{
+    "Neo useTranslation": {
+        "prefix": "neout",
+        "body": ["const { t } = useTranslation();"]
+    }
+}

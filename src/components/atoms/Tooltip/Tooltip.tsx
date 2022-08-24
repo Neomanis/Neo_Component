@@ -16,13 +16,17 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: TooltipP
     return (
         <div className="relative group">
             <div
-                className={`flex flex-col items-center absolute transform -translate-x-1/2 left-1/2 z-50 opacity-0 pointer-events-none
+                className={`flex items-center absolute transform -translate-x-1/2 left-1/2 z-50 opacity-0 pointer-events-none
                     ${
                         disabled
                             ? ""
                             : "group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 duration-200 ease-linear delay-200 group-hover:pointer-events-auto"
                     }
-                    ${position === "top" ? "-translate-y-full top-0" : "flex-col-reverse translate-y-full bottom-0"}
+                    ${
+                        position === "top"
+                            ? "flex-col -translate-y-full top-0"
+                            : "flex-col-reverse translate-y-full bottom-0"
+                    }
                 `}
                 data-testid="tooltip-bubble"
             >

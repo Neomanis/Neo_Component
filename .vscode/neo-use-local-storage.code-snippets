@@ -1,0 +1,6 @@
+{
+    "Neo useLocalStorage": {
+        "prefix": "neouls",
+        "body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useLocalStorage<${2}>(\"${3}\", ${4});"]
+    }
+}
