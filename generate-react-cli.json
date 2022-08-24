@@ -1,0 +1,62 @@
+{
+    "usesTypeScript": true,
+    "usesCssModule": false,
+    "testLibrary": "Testing Library",
+    "component": {
+        "default": {
+            "customTemplates": {
+                "component": "templates/TemplateName.tsx",
+                "test": "templates/TemplateName.spec.tsx",
+                "story": "templates/TemplateName.stories.tsx"
+            },
+            "path": "src/components/atoms",
+            "withStyle": false,
+            "withTest": true,
+            "withStory": true,
+            "withLazy": false
+        },
+        "atoms": {
+            "customTemplates": {
+                "component": "templates/TemplateName.tsx",
+                "test": "templates/TemplateName.spec.tsx",
+                "story": "templates/TemplateName.stories.tsx",
+                "index": "templates/index.ts"
+            },
+            "path": "src/components/atoms",
+            "withStyle": false,
+            "withTest": true,
+            "withStory": true,
+            "withIndex": true,
+            "withLazy": false
+        },
+        "molecules": {
+            "customTemplates": {
+                "component": "templates/TemplateName.tsx",
+                "test": "templates/TemplateName.spec.tsx",
+                "story": "templates/TemplateName.stories.tsx",
+                "index": "templates/index.ts"
+            },
+            "path": "src/components/molecules",
+            "withStyle": false,
+            "withTest": true,
+            "withStory": true,
+            "withIndex": true,
+            "withLazy": false
+        },
+        "organism": {
+            "customTemplates": {
+                "component": "templates/TemplateName.tsx",
+                "test": "templates/TemplateName.spec.tsx",
+                "story": "templates/TemplateName.stories.tsx",
+                "index": "templates/index.ts"
+            },
+            "path": "src/components/organism",
+            "withStyle": false,
+            "withTest": true,
+            "withStory": true,
+            "withIndex": true,
+            "withLazy": false
+        }
+    },
+    "cssPreprocessor": "css"
+}

@@ -1,0 +1,7 @@
+{
+    "Neo useEffect": {
+        "prefix": "neoue",
+        "body": ["useEffect(() => {", "\t${2}", "}, [${1}]);"]
+    }
+}
+

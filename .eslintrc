@@ -12,7 +12,10 @@
     },
     "overrides": [
         {
-            "files": ["*.ts", "*.tsx", "*.js"]
+            "files": ["src/**/*.spec.{ts,tsx}"],
+            "rules": {
+                "@typescript-eslint/no-empty-function": "off"
+            }
         }
     ],
     "extends": [

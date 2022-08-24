@@ -1,12 +1,11 @@
 import React, { ReactElement, useState } from "react";
+import TabTitle from "../TabTitle";
 
-import TabTitle from "./tabTitle";
-
-type Props = {
+export interface TabsProps {
     children: ReactElement[];
-};
+}
 
-const Tabs = ({ children }: Props): ReactElement => {
+const Tabs = ({ children }: TabsProps): ReactElement => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     function handleSelectedTab(index: number): void {

@@ -188,8 +188,8 @@ export {
     TabLogo,
     TicketBottom,
     TicketCenter,
-    TicketLogo,
     TicketNew,
     TicketSave,
+    TicketLogo,
     TicketTop,
 };

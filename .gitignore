@@ -28,4 +28,6 @@ yarn-error.log*
 .husky/
 
 **.tgz
-.vscode
+/test-results/
+/playwright-report/
+/playwright/.cache/
