@@ -25,17 +25,20 @@ const UserInfo = ({
 }: UserInfoProps): ReactElement => {
     const { t } = useTranslation();
     const [isHovered, setIsHovered] = useState(false);
-    const imageSizeStyle = "w-" + imageSize + " h-" + imageSize + " ";
 
     return (
         <div className={divInfoClassName} data-testid="global-div-info-user">
             <div
-                className={imageSizeStyle + "mr-6 relative cursor-pointer"}
+                className={`${"w-" + imageSize + " h-" + imageSize} mr-6 relative cursor-pointer rounded-full`}
                 data-testid="user-image-zone"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => setShowAvatarEditor(true)}
             >
+                <Icon
+                    className="absolute top-0 right-0 z-50 bg-neo-bg-A rounded-full"
+                    svg={<IconAdd width={20} fill={NeoColors.link} />}
+                />
                 <Img
                     type="imgProfile"
                     data={{
@@ -43,17 +46,14 @@ const UserInfo = ({
                         alt: user.avatar ? user.avatar.originalname : "default img",
                     }}
                     data-testid="profileImg-with-data-body"
-                    className={imageSizeStyle + "rounded-full"}
+                    className={`${"w-" + imageSize + " h-" + imageSize} rounded-full`}
                 />
-                <div className="absolute top-0 right-0 z-50 bg-neo-bg-A rounded-full">
-                    <Icon svg={<IconAdd width={20} fill={NeoColors.link} />} />
-                </div>
                 {isHovered && (
                     <div
-                        className={imageSizeStyle + "rounded-full absolute top-0 flex items-center"}
+                        className={`absolute top-0 rounded-full flex items-center w-full h-full opacity-80 bg-black 
+                                    ${"w-" + imageSize + " h-" + imageSize}`}
                         data-testid="hover-bubble"
                     >
-                        <div className="opacity-80 border-2 bg-black w-full h-full rounded-full absolute"></div>
                         <div className="text-xxs text-white font-bold z-30 w-full text-center">
                             {t("image.changeAvatar").toUpperCase()}
                         </div>

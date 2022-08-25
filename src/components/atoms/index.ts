@@ -22,7 +22,6 @@ export { default as Updater } from "./Updater";
 export { default as Title } from "./Title";
 export { default as TextEditor } from "./TextEditor";
 export { default as Button } from "./Button";
-export { default as Jeremy } from "./Jeremy";
 export { default as HexaPill } from "./HexaPill";
 export { default as Checkbox } from "./Checkbox";
 export { default as InputTextarea } from "./InputTextarea";
