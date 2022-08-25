@@ -69,7 +69,7 @@ function InputSelect<
         control: formMethods.control,
         name: refForm,
         rules: { required, validate: { ...customValidation } },
-        shouldUnregister: true,
+        shouldUnregister: false,
         defaultValue,
     });
 
