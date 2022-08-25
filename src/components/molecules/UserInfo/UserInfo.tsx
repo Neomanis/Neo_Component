@@ -29,7 +29,7 @@ const UserInfo = ({
     return (
         <div className={divInfoClassName} data-testid="global-div-info-user">
             <div
-                className=" mr-6 relative cursor-pointer"
+                className="mr-6 relative cursor-pointer "
                 style={{ width: imageSize, height: imageSize }}
                 data-testid="user-image-zone"
                 onMouseEnter={() => setIsHovered(true)}
