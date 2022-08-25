@@ -17,43 +17,45 @@ export interface UserInfoProps {
 
 const UserInfo = ({
     divInfoClassName = "flex w-full justify-between items-center",
-    imageSize = 16,
     nameClassName = "text-neo-light-grey text-xl font-extrabold",
     roleClassName = "text-neo-blue font-light",
+    imageSize = 64,
     setShowAvatarEditor,
     user,
 }: UserInfoProps): ReactElement => {
     const { t } = useTranslation();
     const [isHovered, setIsHovered] = useState(false);
-    const imageSizeStyle = "w-" + imageSize + " h-" + imageSize + " ";
 
     return (
         <div className={divInfoClassName} data-testid="global-div-info-user">
             <div
-                className={imageSizeStyle + "mr-6 relative cursor-pointer"}
+                className="mr-6 relative cursor-pointer "
+                style={{ width: imageSize, height: imageSize }}
                 data-testid="user-image-zone"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={() => setShowAvatarEditor(true)}
             >
+                <Icon
+                    className="absolute top-0 right-0 z-50 bg-neo-bg-A rounded-full"
+                    svg={<IconAdd width={20} fill={NeoColors.link} />}
+                />
                 <Img
+                    className="rounded-full"
                     type="imgProfile"
                     data={{
                         src: user.avatar && user.avatar.encodedAvatar ? user.avatar.encodedAvatar : DefaultUserPicture,
                         alt: user.avatar ? user.avatar.originalname : "default img",
+                        height: imageSize,
                     }}
                     data-testid="profileImg-with-data-body"
-                    className={imageSizeStyle + "rounded-full"}
                 />
-                <div className="absolute top-0 right-0 z-50 bg-neo-bg-A rounded-full">
-                    <Icon svg={<IconAdd width={20} fill={NeoColors.link} />} />
-                </div>
                 {isHovered && (
                     <div
-                        className={imageSizeStyle + "rounded-full absolute top-0 flex items-center"}
+                        className="absolute top-0 rounded-full flex items-center w-full h-full opacity-80 bg-black"
+                        style={{ width: imageSize, height: imageSize }}
                         data-testid="hover-bubble"
                     >
-                        <div className="opacity-80 border-2 bg-black w-full h-full rounded-full absolute"></div>
                         <div className="text-xxs text-white font-bold z-30 w-full text-center">
                             {t("image.changeAvatar").toUpperCase()}
                         </div>

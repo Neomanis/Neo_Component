@@ -53,7 +53,6 @@ WithStyle.args = {
     fCallBackUploadAvatar: () => {
         console.log("upload de l'avatar");
     },
-    imageSize: 36,
     divInfoClassName: "flex flex-col-reverse text-center",
     nameClassName: "text-neo-yellow-sand text-xl font-bold",
     roleClassName: "text-neo-light-grey mb-5",

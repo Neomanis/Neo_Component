@@ -33,7 +33,7 @@ test("should change style when asked", async ({ mount }) => {
         <UserInfo
             user={defaultUser}
             setShowAvatarEditor={() => {}}
-            imageSize={36}
+            imageSize={144}
             divInfoClassName={"bg-neo-blue"}
             nameClassName={"text-neo-yellow-sand"}
             roleClassName={"text-neo-light-grey"}
