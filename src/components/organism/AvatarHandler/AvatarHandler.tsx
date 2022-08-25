@@ -8,7 +8,6 @@ export interface AvatarHandlerProps {
     dropZoneClassName?: string;
     editorWidth: number;
     fCallBackUploadAvatar: (avatar: Avatar) => void;
-    imageSize?: number;
     nameClassName?: string;
     roleClassName?: string;
     user: User;
@@ -20,7 +19,6 @@ const AvatarHandler = ({
     dropZoneClassName,
     editorWidth,
     fCallBackUploadAvatar,
-    imageSize,
     nameClassName,
     roleClassName,
     user,
@@ -31,7 +29,6 @@ const AvatarHandler = ({
         <div className="justify-around">
             <UserInfo
                 divInfoClassName={divInfoClassName}
-                imageSize={imageSize}
                 nameClassName={nameClassName}
                 roleClassName={roleClassName}
                 setShowAvatarEditor={setShowAvatarEditor}

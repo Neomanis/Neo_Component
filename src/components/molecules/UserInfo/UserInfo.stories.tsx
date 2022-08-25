@@ -53,8 +53,4 @@ WithStyle.args = {
             originalname: "blob-l-eponge.png",
         },
     },
-    imageSize: 36,
-    divInfoClassName: "flex flex-col-reverse text-center",
-    nameClassName: "text-neo-yellow-sand text-xl font-bold",
-    roleClassName: "text-neo-light-grey mb-5",
 };

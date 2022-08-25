@@ -17,9 +17,9 @@ export interface UserInfoProps {
 
 const UserInfo = ({
     divInfoClassName = "flex w-full justify-between items-center",
-    imageSize = 16,
     nameClassName = "text-neo-light-grey text-xl font-extrabold",
     roleClassName = "text-neo-blue font-light",
+    imageSize = 64,
     setShowAvatarEditor,
     user,
 }: UserInfoProps): ReactElement => {
@@ -29,7 +29,8 @@ const UserInfo = ({
     return (
         <div className={divInfoClassName} data-testid="global-div-info-user">
             <div
-                className={`${"w-" + imageSize + " h-" + imageSize} mr-6 relative cursor-pointer rounded-full`}
+                className=" mr-6 relative cursor-pointer"
+                style={{ width: imageSize, height: imageSize }}
                 data-testid="user-image-zone"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -40,18 +41,19 @@ const UserInfo = ({
                     svg={<IconAdd width={20} fill={NeoColors.link} />}
                 />
                 <Img
+                    className="rounded-full"
                     type="imgProfile"
                     data={{
                         src: user.avatar && user.avatar.encodedAvatar ? user.avatar.encodedAvatar : DefaultUserPicture,
                         alt: user.avatar ? user.avatar.originalname : "default img",
+                        height: imageSize,
                     }}
                     data-testid="profileImg-with-data-body"
-                    className={`${"w-" + imageSize + " h-" + imageSize} rounded-full`}
                 />
                 {isHovered && (
                     <div
-                        className={`absolute top-0 rounded-full flex items-center w-full h-full opacity-80 bg-black 
-                                    ${"w-" + imageSize + " h-" + imageSize}`}
+                        className="absolute top-0 rounded-full flex items-center w-full h-full opacity-80 bg-black"
+                        style={{ width: imageSize, height: imageSize }}
                         data-testid="hover-bubble"
                     >
                         <div className="text-xxs text-white font-bold z-30 w-full text-center">
