@@ -6,8 +6,8 @@ const StoryLayout = ({ children, title, description, name, storySource: { source
     const [selectedTab, setSelectedTab] = useState("preview");
     const { lineStart, lineEnd } = useMemo(() => {
         return {
-            lineStart: locationsMap[name.toLowerCase().replace(" ", "-")].startLoc.line - 1,
-            lineEnd: locationsMap[name.toLowerCase().replace(" ", "-")].endLoc.line - 1,
+            lineStart: locationsMap[name.toLowerCase().replaceAll(" ", "-")].startLoc.line - 1,
+            lineEnd: locationsMap[name.toLowerCase().replaceAll(" ", "-")].endLoc.line - 1,
         };
     });
 
