@@ -25,7 +25,5 @@ export function getServiceStatusColor(tailwindProperty: "bg" | "text", status: n
             default:
                 return "text-yellow-600";
         }
-    } else {
-        return "undefined";
     }
 }
