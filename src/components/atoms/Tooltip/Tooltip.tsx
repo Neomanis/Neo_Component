@@ -49,8 +49,8 @@ const Tooltip = ({
                         </div>
                     )}
                     <div style={{ maxWidth: tooltipWidth }} className="text-[10px]">
-                        {text && text}
-                        {textComponent && textComponent}
+                        {text}
+                        {textComponent}
                     </div>
                 </div>
                 <IconArrowLeft
