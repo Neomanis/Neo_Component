@@ -15,11 +15,8 @@ const Template: ComponentStory<typeof TechnicalQuestionItem> = (args) => {
 
 export const Default: ComponentStory<typeof TechnicalQuestionItem> = Template.bind({});
 Default.args = {
+    answerAmount: 7,
     createDate: "2021-11-15T13:34:48.551Z",
-    createLevel: "Level 1",
-    createUser: "Leman Russ",
-    followed: false,
-    followTechnicalQuestion: () => console.log("hey"),
     id: 2,
     isSelected: false,
     openTechnicalQuestion: () => console.log("yo"),
@@ -35,11 +32,8 @@ Default.args = {
 
 export const TechnicalQuestionItemTicketNull = Template.bind({});
 TechnicalQuestionItemTicketNull.args = {
+    answerAmount: 1,
     createDate: "2021-11-15T13:34:48.551Z",
-    createLevel: "Level 1",
-    createUser: "Leman Russ",
-    followed: false,
-    followTechnicalQuestion: () => console.log("hey"),
     id: 2,
     isSelected: false,
     openTechnicalQuestion: () => console.log("yo"),
