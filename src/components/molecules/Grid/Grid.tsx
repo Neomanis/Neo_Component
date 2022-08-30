@@ -163,9 +163,13 @@ const Grid = ({
             setCurrentPageNumber((pageNumber) => (pageNumber === gridsPaginationNumber - 1 ? 0 : pageNumber + 1));
         }
     }
+    useEffect(() => {
+        if (currentPageNumber + 1 > gridsPaginationNumber) {
+            setCurrentPageNumber(0);
+        }
+    }, [ticketList, gridsPaginationNumber, currentPageNumber]);
 
     useEffect(() => {
-        setCurrentPageNumber(0);
         createGrids(ticketList ? Array.from(ticketList) : []);
     }, [ticketList]);
 
