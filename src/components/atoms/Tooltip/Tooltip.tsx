@@ -5,14 +5,25 @@ import Icon from "../Icon";
 
 export interface TooltipProps {
     children?: ReactElement;
-    text: string;
+    text?: string;
+    textComponent?: ReactElement;
+    tooltipWidth?: number;
     fontIcon?: IconProp;
     svg?: ReactElement;
     position: "top" | "bottom";
     disabled?: boolean;
 }
 
-const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: TooltipProps): ReactElement => {
+const Tooltip = ({
+    children,
+    text,
+    textComponent,
+    tooltipWidth = 200,
+    fontIcon,
+    position,
+    svg,
+    disabled,
+}: TooltipProps): ReactElement => {
     return (
         <div className="relative group">
             <div
@@ -37,7 +48,10 @@ const Tooltip = ({ children, text, fontIcon, position, svg, disabled }: TooltipP
                             {svg}
                         </div>
                     )}
-                    <div className="text-[10px] max-w-[200px]">{text}</div>
+                    <div style={{ maxWidth: tooltipWidth }} className="text-[10px]">
+                        {text && text}
+                        {textComponent && textComponent}
+                    </div>
                 </div>
                 <IconArrowLeft
                     width={20}

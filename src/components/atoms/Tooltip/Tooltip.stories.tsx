@@ -26,6 +26,16 @@ Default.args = {
     fontIcon: faExclamationCircle,
     position: "bottom",
 };
+export const DefaultTextComponent: ComponentStory<typeof Tooltip> = Template.bind({});
+DefaultTextComponent.args = {
+    textComponent: (
+        <div className="flex">
+            <p>test 1 </p> <p>test 2</p>
+        </div>
+    ),
+    fontIcon: faExclamationCircle,
+    position: "bottom",
+};
 
 export const tooltipComponentBottom = Template.bind({});
 tooltipComponentBottom.args = {
