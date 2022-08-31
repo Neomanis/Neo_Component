@@ -4,16 +4,12 @@ import TechnicalQuestionItem from "./TechnicalQuestionItem";
 
 test.use({ viewport: { width: 500, height: 500 } });
 
-test("actions should works ", async ({ mount }) => {
+test("action should works", async ({ mount }) => {
     let open = false;
-    let followed = false;
     const component = await mount(
         <TechnicalQuestionItem
+            answerAmount={1}
             createDate={"2021-11-15T13:34:48.551Z"}
-            createLevel={"Tech"}
-            createUser={"John Doe"}
-            followed={followed}
-            followTechnicalQuestion={() => (followed = true)}
             id={2}
             isSelected={false}
             openTechnicalQuestion={() => (open = true)}
@@ -30,18 +26,13 @@ test("actions should works ", async ({ mount }) => {
 
     await component.click();
     expect(open).toBe(true);
-    await component.locator('[data-testid="icon-default-body"]').click();
-    expect(followed).toBe(true);
 });
 
 test("should display content correctly if not selected", async ({ mount }) => {
     const component = await mount(
         <TechnicalQuestionItem
+            answerAmount={1}
             createDate={"2021-11-15T13:34:48.551Z"}
-            createLevel={"Tech"}
-            createUser={"John Doe"}
-            followed={false}
-            followTechnicalQuestion={() => {}}
             id={2}
             isSelected={false}
             openTechnicalQuestion={() => {}}
@@ -56,7 +47,6 @@ test("should display content correctly if not selected", async ({ mount }) => {
         />
     );
 
-    await expect(component.locator('[data-testid="tq-head"]')).toHaveClass(/bg-neo-link/);
     await expect(component.locator('[data-testid="tq-middle"]')).toHaveClass(/bg-neo-bg-B/);
     await expect(component.locator('[data-testid="tq-middle-bottom"]')).toHaveClass(/text-neo-blue-secondary/);
 });
@@ -64,11 +54,8 @@ test("should display content correctly if not selected", async ({ mount }) => {
 test("should display content correctly if selected", async ({ mount }) => {
     const component = await mount(
         <TechnicalQuestionItem
+            answerAmount={1}
             createDate={"2021-11-15T13:34:48.551Z"}
-            createLevel={"Tech"}
-            createUser={"John Doe"}
-            followed={false}
-            followTechnicalQuestion={() => {}}
             id={2}
             isSelected
             openTechnicalQuestion={() => {}}
@@ -83,10 +70,6 @@ test("should display content correctly if selected", async ({ mount }) => {
         />
     );
 
-    await expect(component.locator('[data-testid="tq-head"]')).toHaveClass(/bg-neo-blue/);
     await expect(component.locator('[data-testid="tq-middle"]')).toHaveClass(/bg-neo-blue/);
-    await expect(component.locator('[data-testid="tooltip-bubble"] div:has-text("Unfollow") >> nth=0')).toHaveClass(
-        /text-white/
-    );
     await expect(component.locator('[data-testid="tq-middle-bottom"]')).toHaveClass(/text-white/);
 });
