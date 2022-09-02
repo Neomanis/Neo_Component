@@ -51,8 +51,10 @@ const SearchField = ({
             <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">
                 {showClearButton && (
                     <Button
-                        svg={<CloseLogo className="w-3 h-3" fill={iconResetColor} />}
-                        fCallback={() => reset && reset()}
+                        startIcon={<CloseLogo className="w-3 h-3" fill={iconResetColor} />}
+                        onClick={() => reset && reset()}
+                        variant="none"
+                        size="none"
                     />
                 )}
             </div>

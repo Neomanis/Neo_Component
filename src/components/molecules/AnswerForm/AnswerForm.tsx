@@ -37,14 +37,7 @@ const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Ans
                 />
                 {!isUpdateField && (
                     <div className="flex justify-end">
-                        <Button
-                            type="submit"
-                            className="h-11 w-40 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
-                            style={{
-                                background: "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
-                            }}
-                            data={t("technicalQuestion.answer.create")}
-                        />
+                        <Button type="submit">{t("technicalQuestion.answer.create")}</Button>
                     </div>
                 )}
             </div>

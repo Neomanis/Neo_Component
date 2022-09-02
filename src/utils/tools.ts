@@ -260,6 +260,6 @@ export function getDisplayedTicketUid(ticketUid: string): string {
     return `[${itsmCode}] ${ticketType} ${ticketId}`.toUpperCase();
 }
 
-export function classNames(...classes: string[]): string {
+export function classNames(...classes: (false | null | undefined | string)[]): string {
     return classes.filter(Boolean).join(" ");
 }

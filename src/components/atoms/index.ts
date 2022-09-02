@@ -1,4 +1,4 @@
-export { default as ButtonV2 } from "./ButtonV2";
+export { default as Button } from "./Button";
 export { default as BubbleChat } from "./BubbleChat";
 export { default as ButtonSwitch } from "./ButtonSwitch";
 export { default as Hexagon } from "./Hexagon";
@@ -21,7 +21,6 @@ export { default as WritingDots } from "./WritingDots";
 export { default as Updater } from "./Updater";
 export { default as Title } from "./Title";
 export { default as TextEditor } from "./TextEditor";
-export { default as Button } from "./Button";
 export { default as HexaPill } from "./HexaPill";
 export { default as Checkbox } from "./Checkbox";
 export { default as InputTextarea } from "./InputTextarea";

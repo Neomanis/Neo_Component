@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/atoms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ValidationCardProps {
     classNames?: {
@@ -30,18 +31,22 @@ const ValidationCard = ({
             <div className={classNames.buttonContainer}>
                 <div className="transform hover:scale-110">
                     <Button
-                        fontIcon={faCheck}
+                        startIcon={<FontAwesomeIcon icon={faCheck} />}
                         className={"text-neo-green flex items-center justify-center rounded-lg"}
-                        fCallback={(): void => {
+                        onClick={(): void => {
                             fCallBackValidate();
                         }}
+                        variant="none"
+                        size="none"
                     />
                 </div>
                 <div className="transform hover:scale-110">
                     <Button
-                        fontIcon={faTimes}
+                        startIcon={<FontAwesomeIcon icon={faTimes} />}
                         className={"text-neo-red flex items-center justify-center rounded-lg"}
-                        fCallback={(): void => fCallBackCancel()}
+                        onClick={(): void => fCallBackCancel()}
+                        variant="none"
+                        size="none"
                     />
                 </div>
             </div>

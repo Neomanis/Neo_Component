@@ -4,6 +4,7 @@ import { NeoUser } from "@neomanis/neo-types";
 import { formatDate } from "@/utils/dateTools";
 import { Button } from "@/components/atoms";
 import AnswerForm from "../AnswerForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface AnswerItemProps {
     acceptAnswer: (answerId: number) => void;
@@ -42,9 +43,12 @@ const AnswerItem = ({
                 <div className="flex">
                     <div className="text-white font-bold text-lg mr-2">{upvoters.length}</div>
                     <Button
-                        testId="tq-answer-upvote"
-                        fontIcon={faArrowUp}
-                        fCallback={() => upvote(id)}
+                        data-testId="tq-answer-upvote"
+                        startIcon={<FontAwesomeIcon icon={faArrowUp} />}
+                        onClick={() => upvote(id)}
+                        variant="none"
+                        size="none"
+                        rounded="none"
                         className={`cursor-pointer text-xl -mt-0.5 hover:text-neo-blue ${
                             connectedUserNeoId && upvoters.includes(connectedUserNeoId)
                                 ? "text-neo-blue"
@@ -53,18 +57,24 @@ const AnswerItem = ({
                     />
                     {!isAccepted && connectedUserNeoId === questionAuthorNeoId && (
                         <Button
-                            testId="tq-answer-accept"
-                            fontIcon={faCheck}
+                            data-testId="tq-answer-accept"
+                            startIcon={<FontAwesomeIcon icon={faCheck} />}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-green"
-                            fCallback={() => acceptAnswer(id)}
+                            onClick={() => acceptAnswer(id)}
+                            variant="none"
+                            size="none"
+                            rounded="none"
                         />
                     )}
                     {author && author.neoId === questionAuthorNeoId && (
                         <Button
-                            testId="tq-answer-update"
-                            fontIcon={faEdit}
+                            data-testId="tq-answer-update"
+                            startIcon={<FontAwesomeIcon icon={faEdit} />}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-blue"
-                            fCallback={() => setUpdate((oldUpdate) => !oldUpdate)}
+                            onClick={() => setUpdate((oldUpdate) => !oldUpdate)}
+                            variant="none"
+                            size="none"
+                            rounded="none"
                         />
                     )}
                     <div className="flex text-neo-blue-secondary font-bold ml-11">

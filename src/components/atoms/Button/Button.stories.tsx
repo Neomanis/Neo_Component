@@ -1,50 +1,76 @@
 /* eslint-disable no-console */
 import React from "react";
-import { ComponentStory, Meta } from "@storybook/react";
-import { faWind } from "@fortawesome/free-solid-svg-icons";
+import { Meta, Story } from "@storybook/react";
 
-import Button from "./Button";
+import Button, { ButtonV2Props } from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { IconRemoteControl, IconRemoteShell, IconTechnicalQuestions } from "@/img/svg";
 
 export default {
     component: Button,
     title: "Atoms/Button",
 } as Meta;
 
-const Template: ComponentStory<typeof Button> = (args) => {
-    return <Button {...args} />;
+export const Default: Story<ButtonV2Props> = () => {
+    return <Button>Default</Button>;
 };
 
-export const Default: ComponentStory<typeof Button> = Template.bind({});
-Default.args = {
-    className: "flex text-white rounded px-1",
-    data: "Default",
-    disabled: true,
-    fCallback: () => console.log("click ! "),
-    fontIcon: faWind,
-    iconClassName: "ml-2",
-    testId: "testId",
-    type: "button",
-    style: { background: "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)" },
+export const Secondary: Story<ButtonV2Props> = () => {
+    return (
+        <div className="flex flex-col space-y-2">
+            <Button
+                size="md"
+                variant="secondary"
+                rounded="md"
+                startIcon={<IconRemoteShell className="w-5 fill-neo-link" />}
+            >
+                Terminal distant
+            </Button>
+            <Button
+                size="md"
+                variant="secondary"
+                rounded="md"
+                startIcon={<IconRemoteControl className="w-5 fill-neo-link" />}
+            >
+                Controle distant
+            </Button>
+            <Button
+                size="md"
+                variant="secondary"
+                rounded="md"
+                startIcon={<IconTechnicalQuestions className="w-5 fill-neo-link" />}
+            >
+                Poser une question
+            </Button>
+        </div>
+    );
 };
-export const Submit = Template.bind({});
-Submit.args = {
-    className: "flex bg-purple-600 text-white rounded px-1",
-    data: "submit",
-    disabled: true,
-    fCallback: () => console.log("click ! "),
-    fontIcon: faWind,
-    iconClassName: "ml-2",
-    testId: "testId",
-    type: "submit",
+
+export const Tertiary: Story<ButtonV2Props> = () => {
+    return (
+        <Button variant="tertiary" size="md" startIcon={<FontAwesomeIcon icon={faTrash} />}>
+            Tertiary with icon
+        </Button>
+    );
 };
-export const Reset = Template.bind({});
-Reset.args = {
-    className: "flex bg-purple-600 text-white rounded px-1",
-    data: "Reset",
-    disabled: true,
-    fCallback: () => console.log("click ! "),
-    fontIcon: faWind,
-    iconClassName: "ml-2",
-    testId: "testId",
-    type: "reset",
+
+export const DefaultIcon: Story<ButtonV2Props> = () => {
+    return (
+        <Button size="md" startIcon={<FontAwesomeIcon icon={faTrash} />}>
+            Primary with icon
+        </Button>
+    );
+};
+
+export const WithLoader: Story<ButtonV2Props> = () => {
+    return (
+        <Button size="md" isLoading>
+            Zzzzzzz
+        </Button>
+    );
+};
+
+export const OnlyIcon: Story<ButtonV2Props> = () => {
+    return <Button startIcon={<IconTechnicalQuestions className="w-5 fill-neo-link" />} variant="none" />;
 };

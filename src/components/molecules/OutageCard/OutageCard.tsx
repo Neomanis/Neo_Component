@@ -6,6 +6,7 @@ import { getOutageDateInformation } from "@/utils/dateTools";
 import { stripHtml } from "@/utils/chatFunction";
 import { Button, IconOutageCategory, Title } from "@/components/atoms";
 import ValidationCard from "../ValidationCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface OutageCardProps {
     data: Outage;
@@ -50,15 +51,19 @@ const OutageCard = ({
                         {!openValidationCard ? (
                             <div className="flex justify-around mr-2">
                                 <Button
-                                    fontIcon={faPen}
+                                    startIcon={<FontAwesomeIcon icon={faPen} />}
                                     className={"text-neo-link hover:text-neo-blue hover:scale-110"}
-                                    fCallback={(): void => modifCallBack(data)}
+                                    onClick={(): void => modifCallBack(data)}
+                                    variant="none"
+                                    size="none"
                                 />
 
                                 <Button
-                                    fontIcon={faTrashAlt}
+                                    startIcon={<FontAwesomeIcon icon={faTrashAlt} />}
                                     className={"text-neo-link hover:text-neo-red hover:scale-110"}
-                                    fCallback={(): void => setOpenValidationCard(true)}
+                                    onClick={(): void => setOpenValidationCard(true)}
+                                    variant="none"
+                                    size="none"
                                 />
                             </div>
                         ) : (

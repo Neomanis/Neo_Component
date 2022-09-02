@@ -107,20 +107,28 @@ const NotificationItem = ({
                     <div className="flex w-full justify-around mt-4 text-white text-xs">
                         <Button
                             className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
-                            data={t("global.validate")}
-                            fCallback={(e) => {
+                            onClick={(e) => {
                                 e.stopPropagation();
                                 sendApproval(true);
                             }}
-                        />
+                            variant="none"
+                            size="none"
+                            rounded="none"
+                        >
+                            {t("global.validate")}
+                        </Button>
                         <Button
                             className="bg-neo-link hover:bg-neo-red rounded uppercase font-bold py-2 w-24"
-                            data={t("global.refuse")}
-                            fCallback={(e) => {
+                            onClick={(e) => {
                                 e.stopPropagation();
                                 sendApproval(false);
                             }}
-                        />
+                            variant="none"
+                            size="none"
+                            rounded="none"
+                        >
+                            {t("global.refuse")}
+                        </Button>
                     </div>
                 ) : (
                     <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("error.approval")}</p>
