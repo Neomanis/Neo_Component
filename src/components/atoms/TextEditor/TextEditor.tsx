@@ -12,10 +12,13 @@ export interface TextEditorProps {
     clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: ReactHookFormCustomValidation<number | number[]>;
     defaultValue?: string;
+    label?: string;
+    labelClassName?: string;
     dotClassName?: string;
     errorMessage?: string;
     isError?: boolean;
     isUpdateField?: boolean;
+    readOnly?: boolean;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
@@ -31,10 +34,13 @@ const TextEditor = ({
     clearErrors,
     customValidation,
     defaultValue = "",
+    label,
+    labelClassName,
     dotClassName,
     errorMessage,
     isError,
     isUpdateField = false,
+    readOnly = false,
     refForm,
     register,
     required,
@@ -55,6 +61,7 @@ const TextEditor = ({
             ["link", "image"],
         ],
     };
+
     const formats = [
         "header",
         "bold",
@@ -105,9 +112,24 @@ const TextEditor = ({
         }
     }, [state.updated, state.previous]);
 
+    if (readOnly) {
+        return (
+            <div className={className}>
+                <div className={dotClassName}>
+                    <p className={labelClassName}>{label}</p>
+                </div>
+                <div
+                    className="bg-neo-bg-B w-full h-full py-2 px-3 rounded text-white overflow-auto custom-scroll scroll-B"
+                    dangerouslySetInnerHTML={{ __html: `${defaultValue}</br></br>` }}
+                ></div>
+            </div>
+        );
+    }
+
     return (
         <div className={className} data-testid="textEditor-body">
             <div className={dotClassName}>
+                <label className={labelClassName}>{label}</label>
                 {(isUpdateField || isError) && (
                     <Updater
                         isCancelable={state.isCancelable}
@@ -128,29 +150,34 @@ const TextEditor = ({
             </div>
             <div className="flex w-full h-full">
                 <ReactQuill
+                    readOnly={readOnly}
                     value={watch && watch(refForm)}
                     onBlur={(previousSelection, source, editor) => {
-                        // Paste action trigger onBlur event with parameter "source" return a string "silent",
-                        // so we skip onBlur if this is the case
-                        if (source !== "silent") {
-                            if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
-                                dispatch({ type: "UPDATING", payload: editor.getHTML() });
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
+                        if (!readOnly) {
+                            // Paste action trigger onBlur event with parameter "source" return a string "silent",
+                            // so we skip onBlur if this is the case
+                            if (source !== "silent") {
+                                if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
+                                    dispatch({ type: "UPDATING", payload: editor.getHTML() });
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
                                 }
                             }
                         }
                     }}
                     onChange={(data) => {
-                        setValue && setValue(refForm, data, { shouldValidate: true });
-                        if (isUpdateField) {
-                            if (state.previous !== data) {
-                                dispatch({ type: "SHOW_DOT" });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+                        if (!readOnly) {
+                            setValue && setValue(refForm, data, { shouldValidate: true });
+                            if (isUpdateField) {
+                                if (state.previous !== data) {
+                                    dispatch({ type: "SHOW_DOT" });
+                                } else {
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
                         }
                     }}

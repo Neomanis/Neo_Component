@@ -9,7 +9,7 @@ export interface InputProps {
     clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: ReactHookFormCustomValidation<string>;
     defaultValue?: string;
-    disabled?: boolean;
+    readOnly?: boolean;
     dotClassName?: string;
     errorMessage?: string;
     inputBoxClassName?: string;
@@ -43,7 +43,7 @@ const Input = ({
     clearErrors,
     customValidation,
     defaultValue,
-    disabled,
+    readOnly,
     dotClassName,
     inputBoxClassName,
     prefix,
@@ -145,28 +145,32 @@ const Input = ({
                         {...inputRegister}
                         className={`${inputClassName} w-full`}
                         defaultValue={defaultValue}
-                        disabled={disabled}
+                        disabled={readOnly}
                         onBlur={(e): void => {
-                            onBlurCallBack && onBlurCallBack();
-                            if (isUpdateField && state.previous !== e.target.value && !isError) {
-                                dispatch({ type: "UPDATING", payload: e.target.value });
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
+                            if (!readOnly) {
+                                onBlurCallBack && onBlurCallBack();
+                                if (isUpdateField && state.previous !== e.target.value && !isError) {
+                                    dispatch({ type: "UPDATING", payload: e.target.value });
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
                                 }
                             }
                         }}
-                        onFocus={() => onFocusCallBack && onFocusCallBack()}
+                        onFocus={() => !readOnly && onFocusCallBack && onFocusCallBack()}
                         onChange={(e): void => {
-                            onChangeCallBack && onChangeCallBack(e.target.value);
-                            inputRegister && inputRegister.onChange(e);
-                            if (isUpdateField) {
-                                if (state.previous !== e.target.value) {
-                                    dispatch({ type: "SHOW_DOT" });
-                                } else {
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
+                            if (!readOnly) {
+                                onChangeCallBack && onChangeCallBack(e.target.value);
+                                inputRegister && inputRegister.onChange(e);
+                                if (isUpdateField) {
+                                    if (state.previous !== e.target.value) {
+                                        dispatch({ type: "SHOW_DOT" });
+                                    } else {
+                                        dispatch({ type: "CANCEL_UPDATE" });
+                                    }
+                                    if (state.timeoutId) {
+                                        clearTimeout(state.timeoutId);
+                                    }
                                 }
                             }
                         }}

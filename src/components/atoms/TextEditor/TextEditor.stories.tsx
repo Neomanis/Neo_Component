@@ -26,14 +26,17 @@ export const Default: ComponentStory<typeof TextEditor> = Template.bind({});
 Default.args = {
     required: false,
     className: "",
+    readOnly: false,
 };
 
 export const AreaUpdate = Template.bind({});
 AreaUpdate.args = {
+    label: "test",
     isUpdateField: true,
     updateFunction: (refForm: unknown, value: unknown) => console.log(refForm, value),
     timerSetting: 3000,
     className: "h-full w-full",
-    dotClassName: "flex justify-end mb-1 h-6",
+    dotClassName: "flex mb-1 h-6 justify-between text-white font-bold",
     defaultValue: "<p>test</p>",
+    readOnly: false,
 };
