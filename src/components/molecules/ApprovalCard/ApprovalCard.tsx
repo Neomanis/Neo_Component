@@ -1,5 +1,6 @@
 import { Button } from "@/components/atoms";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 
 export interface ApprovalCardProps {
@@ -52,21 +53,27 @@ const ApprovalCard = ({
                     <div className="flex ml-auto mr-2">
                         <Button
                             className={
-                                "flex border rounded-full p-1 w-8 h-8 border-neo-green hover:bg-neo-green  text-neo-green hover:text-neo-bg-B transition duration-200 items-center justify-center"
+                                "flex items-center justify-center border p-1 w-8 h-8 border-neo-green hover:bg-neo-green text-neo-green hover:text-neo-bg-B transition duration-200"
                             }
-                            fCallback={async (): Promise<void> =>
+                            variant="none"
+                            size="none"
+                            rounded="full"
+                            onClick={async (): Promise<void> =>
                                 await fManageApproval(approvalId, true, ticketId, setIsError)
                             }
-                            fontIcon={faCheck}
+                            startIcon={<FontAwesomeIcon icon={faCheck} />}
                         />
                         <Button
                             className={
-                                "flex border rounded-full p-1 ml-2 w-8 h-8 border-neo-orange hover:bg-neo-orange text-neo-orange hover:text-neo-bg-B transition duration-200 items-center justify-center"
+                                "flex items-center justify-center border p-1 ml-2 w-8 h-8 border-neo-orange hover:bg-neo-orange text-neo-orange hover:text-neo-bg-B transition duration-200"
                             }
-                            fCallback={async (): Promise<void> =>
+                            onClick={async (): Promise<void> =>
                                 await fManageApproval(approvalId, false, ticketId, setIsError)
                             }
-                            fontIcon={faTimes}
+                            variant="none"
+                            size="none"
+                            rounded="full"
+                            startIcon={<FontAwesomeIcon icon={faTimes} />}
                         />
                     </div>
                 </div>

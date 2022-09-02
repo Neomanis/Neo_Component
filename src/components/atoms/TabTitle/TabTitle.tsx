@@ -11,14 +11,22 @@ export interface TabTitleProps {
 const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: TabTitleProps): ReactElement => {
     return (
         <li
-            className={`mr-4 cursor-pointer border-b-2 font-bold
+            className={`mr-4 cursor-pointer border-b-2 font-bold list-none
                         ${selectedTab !== index && "hover:text-white"}
                         ${
                             selectedTab === index ? "text-neo-blue border-neo-blue" : " border-opacity-0 text-neo-link"
                         } `}
             data-testid={`tabTitle-body-${index}`}
         >
-            <Button data={title} fCallback={() => handleSelectedTab(index)} testId="tabTitle-button" />
+            <Button
+                variant="none"
+                rounded="none"
+                size="none"
+                onClick={() => handleSelectedTab(index)}
+                data-testId="tabTitle-button"
+            >
+                {title}
+            </Button>
         </li>
     );
 };

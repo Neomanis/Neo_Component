@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useRef } from "react";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { NeoLogo, NeoLogoSad } from "@/img/svg";
 import { Button } from "@/components/atoms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export interface ToasterProps {
     className?: string;
@@ -70,13 +71,15 @@ const Toaster = ({
             {closable && (
                 <div className="pr-2 -mt-3">
                     <Button
-                        fontIcon={faTimes}
+                        startIcon={<FontAwesomeIcon icon={faTimes} />}
                         className={"text-neo-link opacity-50 transform hover:scale-105"}
-                        fCallback={(): void => {
+                        onClick={(): void => {
                             fCallBackCancel();
                             clearTimeout(timerCall.current);
                         }}
-                        testId="toasterClose"
+                        data-testId="toasterClose"
+                        variant="none"
+                        size="none"
                     />
                 </div>
             )}

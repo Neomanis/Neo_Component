@@ -5,6 +5,6 @@ import Button from "./Button";
 test.use({ viewport: { width: 500, height: 500 } });
 
 test("should work", async ({ mount }) => {
-    const component = await mount(<Button data="Hello !" />);
-    await expect(component).toContainText("Hello !");
+    const component = await mount(<Button>Button</Button>);
+    await expect(component).toContainText("Button");
 });

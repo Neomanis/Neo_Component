@@ -190,15 +190,21 @@ const Grid = ({
                         </p>
                         <Button
                             className="cursor-pointer w-5 pr-1 transform hover:scale-105"
-                            fCallback={(): void => changePage("prev")}
-                            svg={<IconArrowLeft fill="#7DAAB7" />}
-                            testId="grid-page-left-button"
+                            onClick={(): void => changePage("prev")}
+                            startIcon={<IconArrowLeft fill="#7DAAB7" className="w-4" />}
+                            data-testId="grid-page-left-button"
+                            variant="none"
+                            size="none"
+                            rounded="none"
                         />
                         <Button
                             className="cursor-pointer w-5 pl-1 transform hover:scale-105"
-                            fCallback={(): void => changePage("next")}
-                            svg={<IconArrowRight fill="#7DAAB7" />}
-                            testId="grid-page-right-button"
+                            onClick={(): void => changePage("next")}
+                            startIcon={<IconArrowRight fill="#7DAAB7" className="w-4" />}
+                            data-testId="grid-page-right-button"
+                            variant="none"
+                            size="none"
+                            rounded="none"
                         />
                     </div>
                 )}

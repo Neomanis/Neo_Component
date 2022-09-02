@@ -121,17 +121,14 @@ const RecursiveDiagnosticComponent = ({
                                 </div>
                                 {!isFolded && (
                                     <Button
-                                        className="h-8 w-36 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
-                                        data={t("book.openBook")}
-                                        fCallback={(e) => {
+                                        onClick={(e) => {
                                             e.stopPropagation();
                                             redirectTo(name);
                                         }}
-                                        style={{
-                                            background:
-                                                "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
-                                        }}
-                                    />
+                                        size="sm"
+                                    >
+                                        {t("book.openBook")}
+                                    </Button>
                                 )}
                             </div>
                         )}

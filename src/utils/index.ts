@@ -27,6 +27,7 @@ import {
     lowerCaseFirstLetter,
     mapEnumToInputSelectData,
     sleep,
+    classNames,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";
@@ -34,6 +35,7 @@ import NeoColors from "./neoColors";
 
 export {
     capitalizeFirstLetter,
+    classNames,
     formatDate,
     formatDateToNow,
     formatMessage,

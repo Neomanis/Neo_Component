@@ -74,12 +74,14 @@ const AvatarEditor = ({
 
     return (
         <div className={divEditorClassName} data-testid="global-div-avatar-editor">
-            <div className="absolute -top-0.5 right-0.5 ">
+            <div className="absolute top-1 right-1">
                 <Button
-                    testId={"close-avatar-editor-button"}
-                    svg={<CloseLogo fill="#ffffff" />}
-                    svgClassName="w-3"
-                    fCallback={() => setShowAvatarEditor(false)}
+                    data-testId={"close-avatar-editor-button"}
+                    startIcon={<CloseLogo fill="#ffffff" width={12} />}
+                    onClick={() => setShowAvatarEditor(false)}
+                    variant="none"
+                    size="none"
+                    rounded="none"
                 />
             </div>
             {image ? (
@@ -115,20 +117,16 @@ const AvatarEditor = ({
                     />
                     <div className="flex justify-end space-x-4 mt-2">
                         <Button
-                            data={t("global.cancel")}
-                            testId={"reset-image-button"}
-                            className="text-neo-link font-bold hover:underline"
-                            fCallback={() => reset()}
-                        />
-                        <Button
-                            data={t("global.apply")}
-                            testId={"upload-avatar-button"}
-                            className="h-8 w-20 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
-                            style={{
-                                background: "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
-                            }}
-                            fCallback={() => uploadAvatar()}
-                        />
+                            data-testId={"reset-image-button"}
+                            onClick={() => reset()}
+                            variant="secondary"
+                            size="sm"
+                        >
+                            {t("global.cancel")}
+                        </Button>
+                        <Button data-testId={"upload-avatar-button"} onClick={() => uploadAvatar()} size="sm">
+                            {t("global.apply")}
+                        </Button>
                     </div>
                 </div>
             ) : (
@@ -152,20 +150,17 @@ const AvatarEditor = ({
                             <section className="flex justify-center">
                                 <span className={dropZoneClassName} {...getRootProps()}>
                                     <input {...getInputProps()} />
-                                    <div>
+                                    <div className="mb-2">
                                         <p>{t("image.dragAndDrop")}</p>
                                         <p>({t("image.types")})</p>
                                     </div>
                                     <Button
-                                        data={t("global.browseFiles")}
-                                        testId={"open-browse-file-button"}
-                                        fCallback={() => openBrowseFiles()}
-                                        className="h-8 w-36 mt-2 rounded-3xl text-white flex items-center text-sm justify-center font-extrabold"
-                                        style={{
-                                            background:
-                                                "linear-gradient(49.89deg, #FF1166 12.35%, #FF3355 50.76%, #FF5555 87.67%)",
-                                        }}
-                                    />
+                                        data-testId={"open-browse-file-button"}
+                                        onClick={() => openBrowseFiles()}
+                                        size="sm"
+                                    >
+                                        {t("global.browseFiles")}
+                                    </Button>
                                 </span>
                             </section>
                         )}
