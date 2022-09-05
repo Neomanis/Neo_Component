@@ -2,8 +2,8 @@ import React, { ReactElement, useEffect, useMemo, useState } from "react";
 import {
     startOfDay,
     endOfDay,
-    setDay,
-    setISOWeek,
+    startOfISOWeek,
+    endOfISOWeek,
     addMonths,
     startOfMonth,
     endOfMonth,
@@ -12,7 +12,8 @@ import {
     getMonth,
     getYear,
     format,
-    getISOWeek,
+    addDays,
+    addWeeks,
 } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -63,19 +64,14 @@ const ChartRangeSelector = ({
 
     const formMethods = useForm({ mode: "onChange" });
     function dayRangePicker(date: Date, offsetDay: number): { start: Date; end: Date } {
-        const startDate = setDay(startOfDay(date), offsetDay, {
-            locale: getDateFnsLocaleFromUserLang(i18n.language),
-        });
-        const endDate = setDay(endOfDay(date), offsetDay, {
-            locale: getDateFnsLocaleFromUserLang(i18n.language),
-        });
+        const startDate = addDays(startOfDay(date), offsetDay);
+        const endDate = addDays(endOfDay(date), offsetDay);
         return { start: startDate, end: endDate };
     }
 
     function weekRangePicker(date: Date, offsetWeek: number): { start: Date; end: Date } {
-        // 1 is monday value on setDay, 7 is sunday
-        const startDate = setISOWeek(setDay(startOfDay(date), 1), offsetWeek);
-        const endDate = setISOWeek(setDay(endOfDay(date), 7), offsetWeek);
+        const startDate = addWeeks(startOfISOWeek(date), offsetWeek);
+        const endDate = addWeeks(endOfISOWeek(date), offsetWeek);
         return { start: startDate, end: endDate };
     }
 
@@ -119,9 +115,9 @@ const ChartRangeSelector = ({
     const dateRange = useMemo(() => {
         switch (typeRangeSelect) {
             case rangeDateValue.daily:
-                return dayRangePicker(refDate, refDate.getDay() + offset);
+                return dayRangePicker(refDate, offset);
             case rangeDateValue.weekly:
-                return weekRangePicker(refDate, getISOWeek(refDate) + offset);
+                return weekRangePicker(refDate, offset);
             case rangeDateValue.monthly:
                 return monthRangePicker(refDate, offset);
             case rangeDateValue.quarterly:
