@@ -219,11 +219,15 @@ const Grid = ({
                                             ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
                                             : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
                                     }`}
-                            key={"row-" + rowKey}
+                            key={`row-${rowKey}-${currentPageNumber}`}
                             data-testid="grid-row"
                         >
                             {row.map((item, itemKey) => (
-                                <div key={"ticket-" + itemKey} className="mx-[6px]" data-testid="grid-ticket">
+                                <div
+                                    key={`ticket-${itemKey}-${currentPageNumber}`}
+                                    className="mx-[6px]"
+                                    data-testid="grid-ticket"
+                                >
                                     {isTypeOfTicket(item) ? (
                                         <DndTicket
                                             ticketProps={{
