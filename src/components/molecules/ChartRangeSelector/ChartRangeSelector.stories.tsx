@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof ChartRangeSelector> = (args) => {
 
 export const Default: ComponentStory<typeof ChartRangeSelector> = Template.bind({});
 Default.args = {
-    fCallBackData: (dates) => console.log(new Date(dates[0]), new Date(dates[1])),
+    fCallBackData: ([start, end]) => console.log(new Date(start), new Date(end)),
 };
 
 export const Partial: ComponentStory<typeof ChartRangeSelector> = Template.bind({});

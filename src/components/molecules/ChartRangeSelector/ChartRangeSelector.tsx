@@ -12,6 +12,8 @@ import {
     getMonth,
     getYear,
     format,
+    addDays,
+    addWeeks,
 } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -19,7 +21,6 @@ import { IconChevron } from "@/img/svg";
 import { getDateFnsLocaleFromUserLang } from "@/utils/dateTools";
 import NeoColors from "@/utils/neoColors";
 import { InputDateTime } from "@/components/atoms";
-import { addDays, addWeeks } from "date-fns/esm";
 
 export interface ChartRangeSelectorProps {
     fCallBackData: (dates: [number, number]) => void;
@@ -69,7 +70,6 @@ const ChartRangeSelector = ({
     }
 
     function weekRangePicker(date: Date, offsetWeek: number): { start: Date; end: Date } {
-        // 1 is monday value on setDay, 7 is sunday
         const startDate = addWeeks(startOfISOWeek(date), offsetWeek);
         const endDate = addWeeks(endOfISOWeek(date), offsetWeek);
         return { start: startDate, end: endDate };
