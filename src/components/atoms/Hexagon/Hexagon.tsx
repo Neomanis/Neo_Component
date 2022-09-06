@@ -47,7 +47,7 @@ const Hexagon = ({ bgColor, isSelected, opacity, type, strokeColor }: HexagonPro
                     </svg>
                 );
         }
-    }, [type]);
+    }, [type, bgColor, isSelected, strokeColor]);
 
     return <>{svg}</>;
 };
