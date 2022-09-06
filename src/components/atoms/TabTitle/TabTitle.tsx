@@ -23,7 +23,7 @@ const TabTitle = ({ index, handleSelectedTab, selectedTab, title }: TabTitleProp
                 rounded="none"
                 size="none"
                 onClick={() => handleSelectedTab(index)}
-                data-testId="tabTitle-button"
+                data-testid="tabTitle-button"
             >
                 {title}
             </Button>
