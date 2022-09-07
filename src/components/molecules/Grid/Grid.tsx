@@ -192,7 +192,7 @@ const Grid = ({
                             className="cursor-pointer w-5 pr-1 transform hover:scale-105"
                             onClick={(): void => changePage("prev")}
                             startIcon={<IconArrowLeft fill="#7DAAB7" className="w-4" />}
-                            data-testId="grid-page-left-button"
+                            data-testid="grid-page-left-button"
                             variant="none"
                             size="none"
                             rounded="none"
@@ -201,7 +201,7 @@ const Grid = ({
                             className="cursor-pointer w-5 pl-1 transform hover:scale-105"
                             onClick={(): void => changePage("next")}
                             startIcon={<IconArrowRight fill="#7DAAB7" className="w-4" />}
-                            data-testId="grid-page-right-button"
+                            data-testid="grid-page-right-button"
                             variant="none"
                             size="none"
                             rounded="none"

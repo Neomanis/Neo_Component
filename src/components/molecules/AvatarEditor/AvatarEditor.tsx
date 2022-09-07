@@ -76,7 +76,7 @@ const AvatarEditor = ({
         <div className={divEditorClassName} data-testid="global-div-avatar-editor">
             <div className="absolute top-1 right-1">
                 <Button
-                    data-testId={"close-avatar-editor-button"}
+                    data-testid={"close-avatar-editor-button"}
                     startIcon={<CloseLogo fill="#ffffff" width={12} />}
                     onClick={() => setShowAvatarEditor(false)}
                     variant="none"
@@ -117,14 +117,14 @@ const AvatarEditor = ({
                     />
                     <div className="flex justify-end space-x-4 mt-2">
                         <Button
-                            data-testId={"reset-image-button"}
+                            data-testid={"reset-image-button"}
                             onClick={() => reset()}
                             variant="secondary"
                             size="sm"
                         >
                             {t("global.cancel")}
                         </Button>
-                        <Button data-testId={"upload-avatar-button"} onClick={() => uploadAvatar()} size="sm">
+                        <Button data-testid={"upload-avatar-button"} onClick={() => uploadAvatar()} size="sm">
                             {t("global.apply")}
                         </Button>
                     </div>
@@ -155,7 +155,7 @@ const AvatarEditor = ({
                                         <p>({t("image.types")})</p>
                                     </div>
                                     <Button
-                                        data-testId={"open-browse-file-button"}
+                                        data-testid={"open-browse-file-button"}
                                         onClick={() => openBrowseFiles()}
                                         size="sm"
                                     >

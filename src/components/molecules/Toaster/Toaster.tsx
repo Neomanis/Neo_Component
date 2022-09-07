@@ -77,7 +77,7 @@ const Toaster = ({
                             fCallBackCancel();
                             clearTimeout(timerCall.current);
                         }}
-                        data-testId="toasterClose"
+                        data-testid="toasterClose"
                         variant="none"
                         size="none"
                     />

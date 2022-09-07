@@ -43,7 +43,7 @@ const AnswerItem = ({
                 <div className="flex">
                     <div className="text-white font-bold text-lg mr-2">{upvoters.length}</div>
                     <Button
-                        data-testId="tq-answer-upvote"
+                        data-testid="tq-answer-upvote"
                         startIcon={<FontAwesomeIcon icon={faArrowUp} />}
                         onClick={() => upvote(id)}
                         variant="none"
@@ -57,7 +57,7 @@ const AnswerItem = ({
                     />
                     {!isAccepted && connectedUserNeoId === questionAuthorNeoId && (
                         <Button
-                            data-testId="tq-answer-accept"
+                            data-testid="tq-answer-accept"
                             startIcon={<FontAwesomeIcon icon={faCheck} />}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-green"
                             onClick={() => acceptAnswer(id)}
@@ -68,7 +68,7 @@ const AnswerItem = ({
                     )}
                     {author && author.neoId === questionAuthorNeoId && (
                         <Button
-                            data-testId="tq-answer-update"
+                            data-testid="tq-answer-update"
                             startIcon={<FontAwesomeIcon icon={faEdit} />}
                             className="ml-2 text-xl -mt-0.5 cursor-pointer text-neo-link hover:text-neo-blue"
                             onClick={() => setUpdate((oldUpdate) => !oldUpdate)}
