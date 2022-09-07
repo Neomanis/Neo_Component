@@ -44,7 +44,7 @@ const InputChat = ({
                 <IconAdd width={40} fill="#7daab7" />
             </div>
             <Input
-                disabled={cardOpen}
+                readOnly={cardOpen}
                 inputClassName={`${
                     inputClassName
                         ? inputClassName

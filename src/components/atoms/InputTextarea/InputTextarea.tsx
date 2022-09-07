@@ -20,6 +20,7 @@ export interface InputTextareaProps {
     label?: string;
     onChangeCallBack?: () => void;
     placeholder?: string;
+    readOnly?: boolean;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
@@ -39,6 +40,7 @@ const InputTextarea = ({
     label,
     onChangeCallBack,
     placeholder,
+    readOnly = false,
     refForm,
     register,
     required,
@@ -112,28 +114,33 @@ const InputTextarea = ({
                     </div>
                 </div>
                 <textarea
+                    disabled={readOnly}
                     {...inputRegister}
                     className={classNames?.textArea ?? ""}
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
-                        if (isUpdateField && state.previous !== e.target.value && !isError) {
-                            dispatch({ type: "UPDATING", payload: e.target.value });
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+                        if (!readOnly) {
+                            if (isUpdateField && state.previous !== e.target.value && !isError) {
+                                dispatch({ type: "UPDATING", payload: e.target.value });
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
                         }
                     }}
                     onChange={(e): void => {
-                        onChangeCallBack && onChangeCallBack();
-                        inputRegister && inputRegister.onChange(e);
-                        if (isUpdateField) {
-                            if (state.previous !== e.target.value) {
-                                dispatch({ type: "SHOW_DOT" });
-                            } else {
-                                dispatch({ type: "CANCEL_UPDATE" });
-                            }
-                            if (state.timeoutId) {
-                                clearTimeout(state.timeoutId);
+                        if (!readOnly) {
+                            onChangeCallBack && onChangeCallBack();
+                            inputRegister && inputRegister.onChange(e);
+                            if (isUpdateField) {
+                                if (state.previous !== e.target.value) {
+                                    dispatch({ type: "SHOW_DOT" });
+                                } else {
+                                    dispatch({ type: "CANCEL_UPDATE" });
+                                }
+                                if (state.timeoutId) {
+                                    clearTimeout(state.timeoutId);
+                                }
                             }
                         }
                     }}

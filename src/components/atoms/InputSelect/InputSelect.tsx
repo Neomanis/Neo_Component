@@ -1,4 +1,4 @@
-import React, { ComponentProps, ComponentType, ReactElement, ReactNode, useEffect, useRef } from "react";
+import React, { ComponentProps, ComponentType, ReactElement, ReactNode, useEffect, useMemo, useRef } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
 import Select, { GroupBase, SelectComponentsConfig, StylesConfig, OptionsOrGroups } from "react-select";
 import isEqual from "lodash.isequal";
@@ -26,6 +26,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     options: OptionsOrGroups<Option, Group>;
     onInputChange?: (newValue: string) => void;
     placeholder?: ReactNode;
+    readOnly?: boolean;
     refForm: string;
     required?: boolean;
     showLabelAndUpdater?: boolean;
@@ -53,6 +54,7 @@ function InputSelect<
     options,
     onInputChange,
     placeholder = "",
+    readOnly,
     refForm,
     required,
     showLabelAndUpdater = true,
@@ -74,6 +76,23 @@ function InputSelect<
     });
 
     const isError = Boolean(errors?.[refForm]);
+
+    const styles = useMemo((): StylesConfig => {
+        const style = {
+            ...baseStyles,
+            ...customStyles,
+        };
+
+        if (readOnly) {
+            style.multiValueRemove = (provided) => ({
+                ...provided,
+                display: "none",
+            });
+            style.dropdownIndicator = (provided) => ({ ...provided, display: "none" });
+        }
+
+        return style;
+    }, [readOnly, customStyles]);
 
     function handleChange(value: Value<Option, IsMulti>) {
         onChange(value);
@@ -127,6 +146,7 @@ function InputSelect<
                 </div>
             )}
             <Select
+                isDisabled={readOnly}
                 className="flex items-center w-full rounded-md text-xs font-bold"
                 closeMenuOnSelect={!isMulti}
                 components={customComponents}
@@ -138,7 +158,7 @@ function InputSelect<
                 options={options}
                 placeholder={placeholder}
                 ref={ref}
-                styles={{ ...baseStyles, ...customStyles }}
+                styles={styles}
                 value={value}
                 onInputChange={(newValue) => onInputChange && onInputChange(newValue)}
             />

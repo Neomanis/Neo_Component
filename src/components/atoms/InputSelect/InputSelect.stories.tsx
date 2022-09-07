@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React, { useState } from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import InputSelect from "./InputSelect";
 
@@ -13,10 +13,10 @@ export default {
 const Template: ComponentStory<typeof InputSelect> = (args) => {
     const formMethods = useForm({ mode: "onChange" });
     const [defaultValue, setDefaultValue] = useState({ label: "Shikamaru", value: "Shikamaru" });
-
     const onSubmit: SubmitHandler<{ inputSelect: string }> = (data) => {
         console.log(data);
     };
+
     return (
         <form className="bg-neo-bg-A p-2 space-y-2" onSubmit={formMethods.handleSubmit(onSubmit)}>
             <InputSelect {...args} formMethods={formMethods} refForm="inputSelect" defaultValue={[defaultValue]} />
@@ -49,6 +49,7 @@ Default.args = {
     required: true,
     isUpdateField: true,
     isMulti: true,
+    readOnly: true,
 };
 
 export const Updatable: ComponentStory<typeof InputSelect> = Template.bind({});

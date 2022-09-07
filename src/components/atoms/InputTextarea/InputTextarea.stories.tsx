@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { useForm, SubmitHandler } from "react-hook-form";
 
 import InputTextarea from "./InputTextarea";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 export default {
     component: InputTextarea,
@@ -48,5 +48,6 @@ Default.args = {
         container: "flex items-center w-full relative",
         labelBody: "flex-1",
     },
+    readOnly: false,
     updateFunction: (refForm, value) => console.log(refForm, value),
 };
