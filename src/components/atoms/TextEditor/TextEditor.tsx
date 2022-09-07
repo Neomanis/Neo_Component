@@ -115,11 +115,11 @@ const TextEditor = ({
     if (readOnly) {
         return (
             <div className={className}>
-                <div className={dotClassName}>
-                    <p className={labelClassName}>{label}</p>
-                </div>
+                <label htmlFor={refForm} className={labelClassName}>
+                    {label}
+                </label>
                 <div
-                    className="bg-neo-bg-B w-full h-full py-2 px-3 rounded text-white overflow-auto custom-scroll scroll-B"
+                    className="mt-1 bg-neo-bg-B w-full h-full py-2 px-3 rounded text-white overflow-auto custom-scroll scroll-B"
                     dangerouslySetInnerHTML={{ __html: `${defaultValue}</br></br>` }}
                 ></div>
             </div>
@@ -128,8 +128,10 @@ const TextEditor = ({
 
     return (
         <div className={className} data-testid="textEditor-body">
+            <label htmlFor={refForm} className={labelClassName}>
+                {label}
+            </label>
             <div className={dotClassName}>
-                <label className={labelClassName}>{label}</label>
                 {(isUpdateField || isError) && (
                     <Updater
                         isCancelable={state.isCancelable}
@@ -148,7 +150,7 @@ const TextEditor = ({
                     />
                 )}
             </div>
-            <div className="flex w-full h-full">
+            <div className="flex w-full h-full mt-1">
                 <ReactQuill
                     readOnly={readOnly}
                     value={watch && watch(refForm)}
