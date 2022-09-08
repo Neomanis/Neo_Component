@@ -1,6 +1,6 @@
 {
   "name": "@neomanis/neo-component",
-  "version": "5.3.7",
+  "version": "5.3.8",
   "main": "build/index.js",
   "files": [
     "build"
@@ -96,7 +96,7 @@
     "lint:fix": "eslint --fix",
     "prettier": "prettier --check **/*.{tsx,ts,js}",
     "prettier:fix": "prettier --write **/*.{tsx,ts,js}",
-    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public",
+    "storybook": "yarn checkHusky && start-storybook -p 6006 -s public --no-manager-cache",
     "test": "playwright test -c playwright-ct.config.ts",
     "generate:atoms": "node generateComponent.ts atoms",
     "generate:molecules": "node generateComponent.ts molecules",
