@@ -2,7 +2,6 @@ import React, { ReactElement } from "react";
 import { UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { IconAdd } from "@/img/svg";
 import { Tooltip, ButtonSwitch, Input } from "@/components/atoms";
 
 export interface InputChatProps {
@@ -40,9 +39,6 @@ const InputChat = ({
                     : "flex items-center bg-neo-bg-B text-white rounded-md divide-x-2 divide-neo-bg-A h-11 "
             }`}
         >
-            <div className="p-2 opacity-50 w-10 flex justify-center" style={{ minWidth: 40 }}>
-                <IconAdd width={40} fill="#7daab7" />
-            </div>
             <Input
                 readOnly={cardOpen}
                 inputClassName={`${
