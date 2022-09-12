@@ -115,7 +115,7 @@ function InputSelect<
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
-        onChange(defaultValue === undefined ? null : defaultValue);
+        formMethods.setValue(refForm, defaultValue === undefined ? null : defaultValue, { shouldValidate: false });
     }, [defaultValue]);
 
     return (
