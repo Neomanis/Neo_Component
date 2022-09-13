@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { fakeTicket } from "@/utils/storiesData/fakeObject";
+import { fakeTicket, fakeUser } from "@/utils/storiesData/fakeObject";
 
 import Grid from "./Grid";
 
@@ -25,6 +25,7 @@ Default.args = {
     rows: 4,
     cols: 4,
     showPagination: true,
+    user: fakeUser,
 };
 
 export const DefaultHelper: ComponentStory<typeof Grid> = Template.bind({});

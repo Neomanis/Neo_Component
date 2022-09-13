@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { CompactTicket, Ticket, GridIds } from "@neomanis/neo-types";
+import { CompactTicket, Ticket, GridIds, User } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
@@ -19,6 +19,7 @@ export interface GridProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     selectedTicketsIds?: number[];
+    user?: User;
 }
 
 interface BlankHexagon {
@@ -40,6 +41,7 @@ const Grid = ({
     showPagination,
     ticketList,
     selectedTicketsIds,
+    user,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -237,6 +239,7 @@ const Grid = ({
                                                 isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
+                                                user: { neoId: user.neoId, groupWatcher: user.groups },
                                             }}
                                             dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.id}`}
                                         />
