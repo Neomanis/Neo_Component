@@ -75,12 +75,12 @@ const Ticket = ({
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (
-                    <div className="h-8 w-8 absolute left-4 top-1">
-                        <IconWatcherBg className="absolute left-0 transform scale-110 w-7 fill-white" />
+                    <div className="h-8 w-8 absolute left-6 top-3">
+                        <IconWatcherBg className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>
                 )}
                 {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (
-                    <div className="h-8 w-8 absolute right-4 top-1" data-testid="ticket-tto-ttr-warning">
+                    <div className="h-8 w-8 absolute right-4 top-[10px]" data-testid="ticket-tto-ttr-warning">
                         <CautionLogoFull
                             width={30}
                             fill={`${
