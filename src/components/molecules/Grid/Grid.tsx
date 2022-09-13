@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { CompactTicket, Ticket, GridIds, User } from "@neomanis/neo-types";
+import { CompactTicket, Ticket, GridIds } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
