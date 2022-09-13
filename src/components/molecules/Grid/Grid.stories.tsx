@@ -25,7 +25,7 @@ Default.args = {
     rows: 4,
     cols: 4,
     showPagination: true,
-    user: fakeUser,
+    userNeoId: fakeUser.neoId,
 };
 
 export const DefaultHelper: ComponentStory<typeof Grid> = Template.bind({});

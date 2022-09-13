@@ -16,7 +16,7 @@ export interface TicketProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
-    user?: { neoId: number; groupWatcher: string[] };
+    userNeoId?: number;
 }
 
 const Ticket = ({
@@ -27,7 +27,7 @@ const Ticket = ({
     ticketBG,
     gridId,
     isOpacity,
-    user,
+    userNeoId,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
 
@@ -74,7 +74,7 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {Boolean(user && ticket.userWatcher.indexOf(user.neoId) !== -1) && (
+                {Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (
                     <div className="h-8 w-8 absolute left-4 top-1">
                         <IconWatcherBg className="absolute left-0 transform scale-110 w-7 fill-white" />
                     </div>

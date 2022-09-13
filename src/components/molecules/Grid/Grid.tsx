@@ -19,7 +19,7 @@ export interface GridProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     selectedTicketsIds?: number[];
-    user?: User;
+    userNeoId?: number;
 }
 
 interface BlankHexagon {
@@ -41,7 +41,7 @@ const Grid = ({
     showPagination,
     ticketList,
     selectedTicketsIds,
-    user,
+    userNeoId,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -239,7 +239,7 @@ const Grid = ({
                                                 isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
-                                                user: { neoId: user.neoId, groupWatcher: user.groups },
+                                                userNeoId: userNeoId,
                                             }}
                                             dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.id}`}
                                         />
