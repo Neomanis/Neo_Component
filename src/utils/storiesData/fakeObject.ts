@@ -43,6 +43,57 @@ export const fakeDiag = {
     username: "ttest",
     diagnostics: [
         {
+            runId: "1662452199924",
+            name: "computer_check_and_repair_account",
+            diagExecutionTime: 469,
+            userFullLogin: "pre01\\admin01",
+            userLogin: "admin01",
+            userDomain: "pre01.neo",
+            userNetbiosDomain: "pre01",
+            computerDomain: "pre01.neo",
+            computerNetbiosDomain: "pre01",
+            errorMessage: "",
+            isComputerInDomain: "True",
+            isComputerInWorgroup: "False",
+            results: [
+                {
+                    Action: {
+                        description: "Session variables retrieval (computerName, ...)",
+                        id: 11,
+                        result: "OK",
+                        date: "2022-09-06T08:16:40.370Z",
+                        executionTime: 353,
+                    },
+                },
+                { name: "computer_retrieve_account_informations", results: [] },
+                {
+                    Error: {
+                        name: "OrchestratorError",
+                        message: "Reference missing: dcPdcRole",
+                        code: "1",
+                        runId: "1662452199924",
+                        data: {
+                            "0": {
+                                Action: {
+                                    description: "Session variables retrieval (computerName, ...)",
+                                    id: 11,
+                                    result: "OK",
+                                    date: "2022-09-06T08:16:40.370Z",
+                                    executionTime: 353,
+                                },
+                            },
+                            "1": { name: "computer_retrieve_account_informations", results: [] },
+                            Action: {
+                                description: "Retrieve LDAP computer account information",
+                                id: 1,
+                                result: "Not Launched",
+                            },
+                        },
+                    },
+                },
+            ],
+        },
+        {
             runId: "1653482213966",
             name: "printer",
             diagExecutionTime: 3567,

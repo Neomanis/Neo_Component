@@ -92,23 +92,27 @@ const RecursiveDiagnosticComponent = ({
     redirectTo,
 }: RecursiveDiagnosticComponentProps): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
-    const hasChildren = results && results.length;
+    const hasChildren = Boolean(results && results.length);
     const { t } = useTranslation();
 
     return (
         <div
-            className=" text-white rounded-md m-2 border cursor-pointer"
+            className="text-white rounded-md m-2 border cursor-pointer"
             onClick={(e): void => {
                 e.stopPropagation();
                 setIsFolded(!isFolded);
             }}
         >
             <div
-                className={`rounded-md p-2 ${
+                className={`rounded-md p-2 
+                ${
                     !hasChildren && (Action || Exit || Error)
                         ? `border-l-8 border-${lateralColorBand(Action ?? Exit ?? Error)}`
-                        : ""
-                } ${getFinalExit(results) ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}` : ""}
+                        : getFinalExit(results)
+                        ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}`
+                        : "border-l-8 border-neo-red"
+                } 
+             
             }`}
             >
                 <div className="flex flex-col w-full">
