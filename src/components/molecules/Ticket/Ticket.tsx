@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { CompactTicket, GridIds, Status, Type, Ticket as ITicket } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
-import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcher } from "@/img/svg";
+import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBg } from "@/img/svg";
 import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
@@ -16,7 +16,7 @@ export interface TicketProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
-    isUserWatcher?: boolean;
+    userNeoId?: number;
 }
 
 const Ticket = ({
@@ -27,7 +27,7 @@ const Ticket = ({
     ticketBG,
     gridId,
     isOpacity,
-    isUserWatcher,
+    userNeoId,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
 
@@ -74,14 +74,13 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {isUserWatcher && (
-                    <div className="h-8 w-8 absolute left-4 top-1">
-                        <IconWatcher width={30} fill="#FFF" className="absolute left-0 transform scale-110" />
+                {Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (
+                    <div className="h-8 w-8 absolute left-6 top-3">
+                        <IconWatcherBg className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>
                 )}
-
                 {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (
-                    <div className="h-8 w-8 absolute right-4 top-1" data-testid="ticket-tto-ttr-warning">
+                    <div className="h-8 w-8 absolute right-4 top-[10px]" data-testid="ticket-tto-ttr-warning">
                         <CautionLogoFull
                             width={30}
                             fill={`${

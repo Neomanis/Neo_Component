@@ -1,4 +1,4 @@
-import { NeoUser, Notification, Ticket, GroupObject } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, GroupObject, User, Role } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
     uid: "1gl-1523-INC",
@@ -23,7 +23,7 @@ export const fakeTicket: Ticket = {
     time_to_own: "2021-07-12 15:52:44",
     time_to_resolve: "2021-07-12 15:52:44",
     userRequester: [1],
-    userWatcher: [],
+    userWatcher: [5, 7, 1],
     userAssignedTo: [],
     groupRequester: [],
     groupWatcher: [],
@@ -363,6 +363,20 @@ export const fakeUsers: NeoUser[] = [
         timezone: null,
     },
 ];
+
+export const fakeUser: User = {
+    entities: [{ id: 0, name: "Entité racine", itsmCode: "1gl" }],
+    glpiId: 23,
+    groups: ["Admin Test Group"],
+    language: "fr-FR",
+    level: 0,
+    name: { firstName: "Admin", lastName: "Test" },
+    neoId: 1,
+    role: Role[0],
+    selected_entity_id: -1,
+    title: "Administrateur",
+    uid: "atest",
+};
 
 fakeUsers[1].realname;
 
