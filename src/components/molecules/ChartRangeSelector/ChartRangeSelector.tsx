@@ -23,10 +23,10 @@ import NeoColors from "@/utils/neoColors";
 import { InputDateTime } from "@/components/atoms";
 
 export interface Props {
-    fCallBackData: (dates: { period: string; date: [Date, Date] }) => void;
+    fCallBackData: (dates: { period: string; dates: { start: Date; end: Date } }) => void;
     fullSelector?: boolean;
     containerClassName?: string;
-    defaultValue?: { period: string; date: [Date, Date] };
+    defaultValue?: { period: string; dates: { start: Date; end: Date } };
 }
 
 enum rangeDateValue {
@@ -42,7 +42,7 @@ const ChartRangeSelector = ({
     fCallBackData,
     fullSelector = true,
     containerClassName = "",
-    defaultValue = { period: "daily", date: [new Date(), new Date()] },
+    defaultValue = { period: "daily", dates: { start: new Date(), end: new Date() } },
 }: Props): ReactElement => {
     const { t, i18n } = useTranslation();
     const data = [
@@ -60,10 +60,10 @@ const ChartRangeSelector = ({
     const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue>(rangeDateValue[defaultValue.period]);
     const [offset, setOffset] = useState<number>(0);
 
-    const [customRange, setCustomRange] = useState<[Date, Date]>([
-        startOfDay(defaultValue.date[0]),
-        endOfDay(defaultValue.date[1]),
-    ]);
+    const [customRange, setCustomRange] = useState<{ start: Date; end: Date }>({
+        start: startOfDay(defaultValue.dates.start),
+        end: endOfDay(defaultValue.dates.end),
+    });
 
     const refDate: Date = useMemo(() => new Date(), []);
 
@@ -122,32 +122,32 @@ const ChartRangeSelector = ({
         switch (typeRangeSelect) {
             case rangeDateValue.daily:
                 return dayRangePicker(
-                    defaultValue.period === rangeDateValue.daily ? defaultValue.date[0] : refDate,
+                    defaultValue.period === rangeDateValue.daily ? defaultValue.dates.start : refDate,
                     offset
                 );
             case rangeDateValue.weekly:
                 return weekRangePicker(
-                    defaultValue.period === rangeDateValue.weekly ? defaultValue.date[0] : refDate,
+                    defaultValue.period === rangeDateValue.weekly ? defaultValue.dates.start : refDate,
                     offset
                 );
             case rangeDateValue.monthly:
                 return monthRangePicker(
-                    defaultValue.period === rangeDateValue.monthly ? defaultValue.date[0] : refDate,
+                    defaultValue.period === rangeDateValue.monthly ? defaultValue.dates.start : refDate,
                     offset
                 );
             case rangeDateValue.quarterly:
                 return quarterRangePicker(
-                    defaultValue.period === rangeDateValue.quarterly ? defaultValue.date[0] : refDate,
+                    defaultValue.period === rangeDateValue.quarterly ? defaultValue.dates.start : refDate,
                     offset
                 );
             case rangeDateValue.yearly:
                 return yearRangePicker(
-                    defaultValue.period === rangeDateValue.yearly ? defaultValue.date[0] : refDate,
+                    defaultValue.period === rangeDateValue.yearly ? defaultValue.dates.start : refDate,
                     offset
                 );
             case rangeDateValue.custom:
                 return defaultValue.period === rangeDateValue.custom
-                    ? { start: customRange[0], end: customRange[1] }
+                    ? { start: customRange.start, end: customRange.end }
                     : { start: refDate, end: refDate };
 
             default:
@@ -177,12 +177,12 @@ const ChartRangeSelector = ({
     }, [typeRangeSelect, dateRange]);
 
     const periodDefaultValue = useMemo(
-        (): [Date, Date] => [startOfDay(defaultValue.date[0]), endOfDay(defaultValue.date[1])],
+        (): [Date, Date] => [startOfDay(defaultValue.dates.start), endOfDay(defaultValue.dates.end)],
         []
     );
 
     useEffect(() => {
-        fCallBackData({ period: typeRangeSelect, date: [dateRange.start, dateRange.end] });
+        fCallBackData({ period: typeRangeSelect, dates: { start: dateRange.start, end: dateRange.end } });
     }, [dateRange]);
 
     function getWidth(): number {
@@ -209,7 +209,7 @@ const ChartRangeSelector = ({
     useEffect(() => {
         const subscription = formMethods.watch(({ date_creation_range }, { name, type }) => {
             if (name === "date_creation_range" && type === "change" && date_creation_range[1] !== null) {
-                setCustomRange([date_creation_range[0], date_creation_range[1]]);
+                setCustomRange({ start: date_creation_range[0], end: date_creation_range[1] });
             }
         });
         return () => subscription.unsubscribe();
