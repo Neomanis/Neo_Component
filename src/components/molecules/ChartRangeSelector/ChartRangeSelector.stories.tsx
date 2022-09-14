@@ -18,7 +18,10 @@ Default.args = {
     fCallBackData: (date) => console.log(date),
     defaultValue: {
         period: "weekly",
-        date: [new Date("Wed Sep 1 2012 00:00:00 GMT+0200"), new Date("Wed Sep 1 2012 23:59:59 GMT+0200")],
+        dates: {
+            start: new Date("Wed Sep 1 2012 00:00:00 GMT+0200"),
+            end: new Date("Wed Sep 1 2012 23:59:59 GMT+0200"),
+        },
     },
 };
 
