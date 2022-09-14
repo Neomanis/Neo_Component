@@ -17,8 +17,8 @@ export const Default: ComponentStory<typeof ChartRangeSelector> = Template.bind(
 Default.args = {
     fCallBackData: (date) => console.log(date),
     defaultValue: {
-        period: "daily",
-        date: [new Date("Wed Sep 1 2022 00:00:00 GMT+0200"), new Date("Wed Sep 1 2022 23:59:59 GMT+0200")],
+        period: "weekly",
+        date: [new Date("Wed Sep 1 2012 00:00:00 GMT+0200"), new Date("Wed Sep 1 2012 23:59:59 GMT+0200")],
     },
 };
 

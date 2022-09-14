@@ -60,9 +60,13 @@ const ChartRangeSelector = ({
     const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue>(rangeDateValue[defaultValue.period]);
     const [offset, setOffset] = useState<number>(0);
 
-    const [customRange, setCustomRange] = useState<[Date, Date]>([startOfDay(new Date()), endOfDay(new Date())]);
+    const [customRange, setCustomRange] = useState<[Date, Date]>([
+        startOfDay(defaultValue.date[0]),
+        endOfDay(defaultValue.date[1]),
+    ]);
 
-    const refDate: Date = useMemo(() => defaultValue.date[0], []);
+    const refDate: Date = useMemo(() => new Date(), []);
+
     const formMethods = useForm({ mode: "onChange" });
 
     function dayRangePicker(date: Date, offsetDay: number): { start: Date; end: Date } {
@@ -117,17 +121,35 @@ const ChartRangeSelector = ({
     const dateRange = useMemo(() => {
         switch (typeRangeSelect) {
             case rangeDateValue.daily:
-                return dayRangePicker(defaultValue.date[0], offset);
+                return dayRangePicker(
+                    defaultValue.period === rangeDateValue.daily ? defaultValue.date[0] : refDate,
+                    offset
+                );
             case rangeDateValue.weekly:
-                return weekRangePicker(defaultValue.date[0], offset);
+                return weekRangePicker(
+                    defaultValue.period === rangeDateValue.weekly ? defaultValue.date[0] : refDate,
+                    offset
+                );
             case rangeDateValue.monthly:
-                return monthRangePicker(defaultValue.date[0], offset);
+                return monthRangePicker(
+                    defaultValue.period === rangeDateValue.monthly ? defaultValue.date[0] : refDate,
+                    offset
+                );
             case rangeDateValue.quarterly:
-                return quarterRangePicker(defaultValue.date[0], offset);
+                return quarterRangePicker(
+                    defaultValue.period === rangeDateValue.quarterly ? defaultValue.date[0] : refDate,
+                    offset
+                );
             case rangeDateValue.yearly:
-                return yearRangePicker(defaultValue.date[0], offset);
+                return yearRangePicker(
+                    defaultValue.period === rangeDateValue.yearly ? defaultValue.date[0] : refDate,
+                    offset
+                );
             case rangeDateValue.custom:
-                return { start: defaultValue.date[0], end: defaultValue.date[1] };
+                return defaultValue.period === rangeDateValue.custom
+                    ? { start: customRange[0], end: customRange[1] }
+                    : { start: refDate, end: refDate };
+
             default:
                 return dayRangePicker(refDate, refDate.getDay());
         }
