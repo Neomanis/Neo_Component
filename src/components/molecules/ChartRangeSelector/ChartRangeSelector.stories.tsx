@@ -15,12 +15,16 @@ const Template: ComponentStory<typeof ChartRangeSelector> = (args) => {
 
 export const Default: ComponentStory<typeof ChartRangeSelector> = Template.bind({});
 Default.args = {
-    fCallBackData: ([start, end]) => console.log(new Date(start), new Date(end)),
+    fCallBackData: (date) => console.log(date),
+    defaultValue: {
+        period: "daily",
+        date: [new Date("Wed Sep 1 2022 00:00:00 GMT+0200"), new Date("Wed Sep 1 2022 23:59:59 GMT+0200")],
+    },
 };
 
 export const Partial: ComponentStory<typeof ChartRangeSelector> = Template.bind({});
 Partial.args = {
-    fCallBackData: ([start, end]) => console.log(new Date(start), new Date(end)),
+    fCallBackData: (date) => console.log(date),
     fullSelector: false,
     containerClassName: "border border-2 rounded p-2",
 };
