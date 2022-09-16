@@ -12,13 +12,13 @@ export default {
 
 const Template: ComponentStory<typeof InputSelect> = (args) => {
     const formMethods = useForm({ mode: "onChange" });
-    const [defaultValue, setDefaultValue] = useState({ label: "Shikamaru", value: "Shikamaru" });
+    const [defaultValue, setDefaultValue] = useState({ label: "Konoha", value: "Konoha" });
     const onSubmit: SubmitHandler<{ inputSelect: string }> = (data) => {
         console.log(data);
     };
 
     return (
-        <form className="bg-neo-bg-A p-2 space-y-2" onSubmit={formMethods.handleSubmit(onSubmit)}>
+        <form className="bg-neo-bg-A p-2 space-y-2 w-[320px]" onSubmit={formMethods.handleSubmit(onSubmit)}>
             <InputSelect {...args} formMethods={formMethods} refForm="inputSelect" defaultValue={[defaultValue]} />
             <div className="flex flex-col items-start space-y-2">
                 <button
@@ -43,13 +43,40 @@ const Template: ComponentStory<typeof InputSelect> = (args) => {
 export const Default: ComponentStory<typeof InputSelect> = Template.bind({});
 Default.args = {
     options: [
-        { label: "Shikamaru", value: "Shikamaru" },
-        { label: "Naruto", value: "Naruto" },
+        {
+            label: "Characters From Naruto",
+            options: [
+                { label: "Shikamaru", value: "Shikamaru" },
+                { label: "Naruto", value: "Naruto" },
+                { label: "Sasuke", value: "Sasuke" },
+                { label: "Itachi", value: "Itachi" },
+                { label: "Madara", value: "Madara" },
+            ],
+        },
+        {
+            label: "Villages From Naruto",
+            options: [
+                { label: "Konoha", value: "Konoha" },
+                { label: "Suna", value: "Suna" },
+                { label: "Kumo", value: "Kumo" },
+                { label: "Iwa", value: "Iwa" },
+                { label: "Kiri", value: "Kiri" },
+            ],
+        },
+        {
+            label: "Ninjutsu From Naruto",
+            options: [
+                { label: "Katon", value: "Katon" },
+                { label: "Suiton", value: "Suiton" },
+                { label: "Doton", value: "Doton" },
+                { label: "Futon", value: "Futon" },
+                { label: "Raiton", value: "Raiton" },
+                { label: "Mokuton", value: "Mokuton" },
+            ],
+        },
     ],
-    required: true,
     isUpdateField: true,
     isMulti: true,
-    readOnly: true,
 };
 
 export const Updatable: ComponentStory<typeof InputSelect> = Template.bind({});
