@@ -1,12 +1,32 @@
 import React, { ComponentProps, ComponentType, ReactElement, ReactNode, useEffect, useMemo, useRef } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
-import Select, { GroupBase, SelectComponentsConfig, StylesConfig, OptionsOrGroups } from "react-select";
+import Select, {
+    GroupBase,
+    SelectComponentsConfig,
+    StylesConfig,
+    OptionsOrGroups,
+    GroupHeadingProps,
+    components,
+    FormatOptionLabelMeta,
+} from "react-select";
 import isEqual from "lodash.isequal";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { useInputs } from "@/utils/hooks/useInputs";
 import { baseStyles } from "@/utils/inputSelectCss";
 import Updater from "../Updater";
+
+const CustomGroupHeading = ({ children, style, ...props }: GroupHeadingProps) => {
+    return (
+        <components.GroupHeading style={{ ...style, padding: "0.25rem" }} {...props}>
+            <div className="flex justify-center text-xs">
+                <hr className="self-center w-full mx-2 border-neo-link" />
+                <div className="whitespace-nowrap">{children}</div>
+                <hr className="self-center w-full mx-2 border-neo-link" />
+            </div>
+        </components.GroupHeading>
+    );
+};
 
 type Value<Option, IsMulti extends boolean> = IsMulti extends true ? Option[] : Option;
 
@@ -16,7 +36,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     customStyles?: StylesConfig;
     customValidation?: ReactHookFormCustomValidation<Value<Option, IsMulti>>;
     defaultValue?: Value<Option, IsMulti>;
-    formatOptionLabel?: (data: Option) => ReactNode;
+    formatOptionLabel?: (data: Option, formatOptionLabelMeta: FormatOptionLabelMeta<Option>) => ReactNode;
     formMethods: UseFormReturn;
     isMulti?: IsMulti;
     isSearchable?: boolean;
@@ -149,7 +169,7 @@ function InputSelect<
                 isDisabled={readOnly}
                 className="flex items-center w-full rounded-md text-xs font-bold"
                 closeMenuOnSelect={!isMulti}
-                components={customComponents}
+                components={{ GroupHeading: CustomGroupHeading, ...customComponents }}
                 formatOptionLabel={formatOptionLabel}
                 isMulti={isMulti}
                 isSearchable={isSearchable}

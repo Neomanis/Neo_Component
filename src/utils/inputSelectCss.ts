@@ -79,4 +79,8 @@ export const baseStyles: StylesConfig = {
         ...provided,
         color: "#DAE5E5",
     }),
+    group: (provided, state) => ({
+        ...provided,
+        padding: 0,
+    }),
 };
