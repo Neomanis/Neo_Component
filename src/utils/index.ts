@@ -1,4 +1,4 @@
-import { getActorName, getRequesterUid, getUserEntityName, getUserName } from "./userTools";
+import { getActorName, getRequesterUid, getUserName } from "./userTools";
 import { formatMessage, stripHtml } from "./chatFunction";
 import {
     formatDate,
@@ -60,7 +60,6 @@ export {
     getTicketLogoByStatus,
     getDisplayedTicketUid,
     getTimeToNowWithTranslation,
-    getUserEntityName,
     getUserName,
     inputReducer,
     isNotNullOrUndefined,

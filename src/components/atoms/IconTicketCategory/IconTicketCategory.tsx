@@ -7,32 +7,36 @@ import {
     faUser,
     faServer,
     faPrint,
+    faBrain,
     faNetworkWired,
     faTools,
 } from "@fortawesome/free-solid-svg-icons";
+import { ResourceCategories } from "@neomanis/neo-types";
 
 export interface IconTicketCategoryProps {
     className?: string;
-    id?: number;
+    name?: string;
 }
 
-const IconTicketCategory = ({ className, id }: IconTicketCategoryProps): ReactElement => {
-    switch (id) {
-        case 1: //Utilisateur > Réseau
+const IconTicketCategory = ({ className, name }: IconTicketCategoryProps): ReactElement => {
+    switch (name) {
+        case ResourceCategories.RACK:
             return <FontAwesomeIcon icon={faUserCog} className={className} data-testid="iconTicketCategorie-1-body" />;
-        case 2: //Utilisateur > Système
+        case ResourceCategories.COMPUTER:
             return <FontAwesomeIcon icon={faDesktop} className={className} data-testid="iconTicketCategorie-2-body" />;
-        case 3: //Utilisateur > Téléphonie
+        case ResourceCategories.PHONE:
             return (
                 <FontAwesomeIcon icon={faPhoneSlash} className={className} data-testid="iconTicketCategorie-3-body" />
             );
-        case 4: //Utilisateur
+        case ResourceCategories.MONITOR:
             return <FontAwesomeIcon icon={faUser} className={className} data-testid="iconTicketCategorie-4-body" />;
-        case 5: //Serveur
+        case ResourceCategories.NETWORKEQUIPMENT:
             return <FontAwesomeIcon icon={faServer} className={className} data-testid="iconTicketCategorie-5-body" />;
-        case 6: //Utilisateur > Impression
+        case ResourceCategories.PRINTER:
             return <FontAwesomeIcon icon={faPrint} className={className} data-testid="iconTicketCategorie-6-body" />;
-        case 7: //Serveur > Réseau
+        case ResourceCategories.SOFTWARE:
+            return <FontAwesomeIcon icon={faBrain} className={className} data-testid="iconTicketCategorie-6-body" />;
+        case ResourceCategories.PERIPHERAL:
             return (
                 <FontAwesomeIcon icon={faNetworkWired} className={className} data-testid="iconTicketCategorie-7-body" />
             );

@@ -17,29 +17,33 @@ export const Default: ComponentStory<typeof IconTicketCategory> = Template.bind(
 
 export const UtilisateurRéseau: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 UtilisateurRéseau.args = {
-    id: 1,
+    name: "Computer",
 };
 export const UtilisateurSystème: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 UtilisateurSystème.args = {
-    id: 2,
+    name: "Monitor",
 };
 export const UtilisateurTéléphonie: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 UtilisateurTéléphonie.args = {
-    id: 3,
+    name: "Software",
 };
 export const Utilisateur: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 Utilisateur.args = {
-    id: 4,
+    name: "Peripheral",
 };
 export const Serveur: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 Serveur.args = {
-    id: 5,
+    name: "Networkequipment",
 };
 export const UtilisateurImpression: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 UtilisateurImpression.args = {
-    id: 6,
+    name: "Printer",
 };
 export const ServeurRéseau: ComponentStory<typeof IconTicketCategory> = Template.bind({});
 ServeurRéseau.args = {
-    id: 7,
+    name: "Phone",
+};
+export const Software: ComponentStory<typeof IconTicketCategory> = Template.bind({});
+ServeurRéseau.args = {
+    name: "Software",
 };

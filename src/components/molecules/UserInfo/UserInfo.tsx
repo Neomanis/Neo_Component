@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
-import { User, Role } from "@neomanis/neo-types";
+import { Role, CompleteUser } from "@neomanis/neo-types";
 import { DefaultUserPicture } from "@/img/png";
 import { IconAdd } from "@/img/svg";
 import NeoColors from "@/utils/neoColors";
@@ -12,7 +12,7 @@ export interface UserInfoProps {
     nameClassName?: string;
     roleClassName?: string;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: User;
+    user: CompleteUser;
 }
 
 const UserInfo = ({
@@ -64,7 +64,7 @@ const UserInfo = ({
             </div>
             <div className="flex flex-col justify-center  items-start ">
                 <p className={nameClassName} data-testid="name-info-user">
-                    {`${user.name?.lastName ?? ""} ${user.name?.firstName ?? ""}`}
+                    {`${user?.lastname ?? ""} ${user?.firstname ?? ""}`}
                 </p>
                 <p className={roleClassName} data-testid="role-info-user">
                     {user.role ? t(`role.${user.role.toLowerCase() as Role}`).toUpperCase() : ""}
