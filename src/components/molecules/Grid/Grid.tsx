@@ -24,6 +24,7 @@ export interface GridProps {
 
 interface BlankHexagon {
     id: number;
+    uid: string;
     name: "blank";
 }
 
@@ -91,7 +92,7 @@ const Grid = ({
                 grid.push(
                     // cols creation
                     Array.from({ length: cols }, (_, i) => {
-                        let item: Ticket | BlankHexagon = { id: i, name: "blank" };
+                        let item: Ticket | BlankHexagon = { id: i, uid: "blank", name: "blank" };
                         if (tickets[0] && gridId !== "inventory") {
                             item = tickets[0];
                             tickets.shift();
@@ -241,7 +242,7 @@ const Grid = ({
                                                 gridId,
                                                 userNeoId: userNeoId,
                                             }}
-                                            dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.id}`}
+                                            dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
                                         />
                                     ) : (
                                         <DndTicket
