@@ -11,7 +11,7 @@ test.use({ viewport: { width: 500, height: 500 } });
 
 test("should find first class", async ({ mount }) => {
     const component = await mount(
-        <RecursiveWrapper diagnostics={fakeDiag2} bookName="book" url="/url" navigate={testNavigate} />
+        <RecursiveWrapper diagnostics={fakeDiag2} redirectUrl="/url" navigate={testNavigate} />
     );
     await expect(component).toHaveAttribute("class", "bg-neo-bg-B p-4");
 });

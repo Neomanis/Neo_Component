@@ -45,17 +45,21 @@ export interface RecursiveDiagnosticComponentProps {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getFinalExit(resultsArray: Record<string, unknown>[]): any {
-    if (resultsArray) {
-        const awaiting = resultsArray.find((item) => item.Awaiting);
-        if (awaiting) {
-            return awaiting;
+    if (resultsArray && resultsArray[resultsArray.length - 1]?.name) {
+        return getFinalExit(resultsArray[resultsArray.length - 1].results as Record<string, unknown>[]);
+    } else {
+        if (resultsArray) {
+            const awaiting = resultsArray.find((item) => item.Awaiting);
+            if (awaiting) {
+                return awaiting;
+            }
+            const exit = resultsArray.find((item) => item.Exit);
+            if (exit) {
+                return exit;
+            }
         }
-        const exit = resultsArray.find((item) => item.Exit);
-        if (exit) {
-            return exit;
-        }
+        return undefined;
     }
-    return undefined;
 }
 
 function borderClass(type: Record<string, unknown> | Error): string {

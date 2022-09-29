@@ -17,7 +17,6 @@ const Template: ComponentStory<typeof RecursiveWrapper> = (args) => {
 export const Default: ComponentStory<typeof RecursiveWrapper> = Template.bind({});
 Default.args = {
     diagnostics: fakeDiag2,
-    bookName: "Book test",
-    url: "/url",
+    redirectUrl: "/url",
     navigate: (url, state) => console.log(url, state.state),
 };
