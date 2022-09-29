@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import RecursiveDiagnosticComponent from "./RecursiveDiagnosticComponent";
-import { fakeDiag2 } from "@/utils/storiesData/fakeObject";
+import { fakeDiag } from "@/utils/storiesData/fakeObject";
 
 export default {
     component: RecursiveDiagnosticComponent,
@@ -10,7 +10,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
-    const oneDiag = fakeDiag2.diagnostics[0];
+    const oneDiag = fakeDiag.diagnostics[0];
     const arrayKeys = Object.keys(oneDiag);
     const exclusions = ["results", "diagExecutionTime", "name", "runId"];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

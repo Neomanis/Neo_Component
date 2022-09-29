@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import RecursiveWrapper from "./RecursiveWrapper";
-import { fakeDiag2 } from "@/utils/storiesData/fakeObject";
+import { fakeDiag } from "@/utils/storiesData/fakeObject";
 
 export default {
     component: RecursiveWrapper,
@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof RecursiveWrapper> = (args) => {
 
 export const Default: ComponentStory<typeof RecursiveWrapper> = Template.bind({});
 Default.args = {
-    diagnostics: fakeDiag2,
+    diagnostics: fakeDiag,
     redirectUrl: "/url",
     navigate: (url, state) => console.log(url, state.state),
 };
