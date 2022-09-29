@@ -6,6 +6,7 @@ import {
     faChevronDown,
     faWaveSquare,
     faChevronUp,
+    faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFullInvert } from "@/img/svg";
@@ -21,12 +22,21 @@ interface IError {
 
 export interface RecursiveDiagnosticComponentProps {
     name: string;
-    Action?: { description: string; id: number; date: Date; executionTime: number; result: string };
+    Action?: {
+        description: string;
+        id: number;
+        runId: string;
+        date: Date;
+        executionTime: number;
+        result: string;
+    };
     Error?: IError;
     Exit?: { name: string; id: number; type: string; action: string };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     results: any[];
-    awaiting: string;
+    Awaiting?: {
+        description: string;
+    };
     executionTime: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     diagDataKeys: any[];
@@ -35,30 +45,42 @@ export interface RecursiveDiagnosticComponentProps {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getFinalExit(resultsArray: Record<string, unknown>[]): any {
-    if (resultsArray) {
-        const exit = resultsArray.find((item) => item.Exit);
-        return exit;
+    if (resultsArray && resultsArray[resultsArray.length - 1]?.name) {
+        return getFinalExit(resultsArray[resultsArray.length - 1].results as Record<string, unknown>[]);
+    } else {
+        if (resultsArray) {
+            const awaiting = resultsArray.find((item) => item.Awaiting);
+            if (awaiting) {
+                return awaiting;
+            }
+            const exit = resultsArray.find((item) => item.Exit);
+            if (exit) {
+                return exit;
+            }
+        }
+        return undefined;
     }
-    return undefined;
 }
 
-function lateralColorBand(type: Record<string, unknown> | Error): string {
+function borderClass(type: Record<string, unknown> | Error): string {
+    // console.log(type);
+
     if (
         Reflect.get(type, "result") === "Validated" ||
         Reflect.get(type, "result") === "OK" ||
         Reflect.get(type, "type") === "solved"
     ) {
-        return "neo-green";
+        return "border-neo-green";
     } else if (
         Reflect.get(type, "result") === "Rejected" ||
         Reflect.get(type, "result") === "Failed" ||
         Reflect.get(type, "type") === "escalate"
     ) {
-        return "neo-orange";
+        return "border-neo-orange";
     } else if (type.name === "OrchestratorError") {
-        return "neo-red";
+        return "border-neo-red";
     } else {
-        return "neo-light-grey";
+        return "border-neo-light-grey";
     }
 }
 
@@ -83,10 +105,10 @@ function errorMessageBuilder(errorObject: IError): string | null {
 const RecursiveDiagnosticComponent = ({
     name,
     Action,
+    Awaiting,
     Error,
     Exit,
     results,
-    awaiting,
     executionTime,
     diagDataKeys,
     redirectTo,
@@ -94,6 +116,18 @@ const RecursiveDiagnosticComponent = ({
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const hasChildren = Boolean(results && results.length);
     const { t } = useTranslation();
+
+    function lateralBandColor(): string {
+        if (!hasChildren && (Action || Exit || Error || Awaiting)) {
+            return `border-l-8 ${borderClass(Action ?? Exit ?? Awaiting ?? Error)}`;
+        } else if (getFinalExit(results) && getFinalExit(results).Exit) {
+            return `border-l-8 ${borderClass(getFinalExit(results).Exit)}`;
+        } else if (getFinalExit(results) && getFinalExit(results).Awaiting) {
+            return `border-l-8 ${borderClass(getFinalExit(results).Awaiting)}`;
+        } else {
+            return "border-l-8 border-neo-red";
+        }
+    }
 
     return (
         <div
@@ -105,13 +139,7 @@ const RecursiveDiagnosticComponent = ({
         >
             <div
                 className={`rounded-md p-2 
-                ${
-                    !hasChildren && (Action || Exit || Error)
-                        ? `border-l-8 border-${lateralColorBand(Action ?? Exit ?? Error)}`
-                        : getFinalExit(results)
-                        ? `border-l-8 border-${lateralColorBand(getFinalExit(results).Exit)}`
-                        : "border-l-8 border-neo-red"
-                } 
+                ${lateralBandColor()} 
              
             }`}
             >
@@ -157,7 +185,7 @@ const RecursiveDiagnosticComponent = ({
                                 );
                             }
                         })}
-                    {isFolded && getFinalExit(results) && getFinalExit(results).Exit.action ? (
+                    {isFolded && getFinalExit(results) && getFinalExit(results)?.Exit?.action ? (
                         <div className="flex">
                             <Icon className="mx-2" fontIcon={faDoorOpen} />
                             {getFinalExit(results).Exit.action}
@@ -191,11 +219,17 @@ const RecursiveDiagnosticComponent = ({
                         {Exit.action}
                     </div>
                 )}
+                {Awaiting && (
+                    <div className="flex">
+                        <Icon className="mx-2" fontIcon={faQuestion} />
+                        {Awaiting.description}
+                    </div>
+                )}
                 {hasChildren &&
                     !isFolded &&
-                    results.map((item, key) => (
-                        <RecursiveDiagnosticComponent key={key} {...item} awaiting={awaiting} redirectTo={redirectTo} />
-                    ))}
+                    results.map((item, key) => {
+                        return <RecursiveDiagnosticComponent key={key} {...item} redirectTo={redirectTo} />;
+                    })}
                 {hasChildren && !isFolded && <Icon fontIcon={faChevronUp} />}
             </div>
         </div>

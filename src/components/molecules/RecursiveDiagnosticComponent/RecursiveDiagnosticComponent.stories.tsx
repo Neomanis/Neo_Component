@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-
 import RecursiveDiagnosticComponent from "./RecursiveDiagnosticComponent";
 import { fakeDiag } from "@/utils/storiesData/fakeObject";
 
@@ -11,36 +10,24 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof RecursiveDiagnosticComponent> = () => {
-    const awaiting =
-        fakeDiag.awaiting.length > 0
-            ? fakeDiag.awaiting[fakeDiag.awaiting.length - 1].bookNames[
-                  fakeDiag.awaiting[fakeDiag.awaiting.length - 1].bookNames.length - 1
-              ]
-            : "";
+    const oneDiag = fakeDiag.diagnostics[0];
+    const arrayKeys = Object.keys(oneDiag);
+    const exclusions = ["results", "diagExecutionTime", "name", "runId"];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const dataObj = arrayKeys.reduce<any[]>((acc, curVal): any[] => {
+        if (!exclusions.includes(curVal)) {
+            acc.push({ [curVal]: Reflect.get(oneDiag, curVal) });
+        }
+        return acc;
+    }, []);
     return (
-        <div className="bg-neo-bg-B p-4">
-            {fakeDiag.diagnostics.map((it) => {
-                const arrayKeys: string[] = Object.keys(it);
-                const exclusions = ["results", "diagExecutionTime", "name", "runId"];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const dataObj = arrayKeys.reduce<any[]>((acc, curVal): any[] => {
-                    if (!exclusions.includes(curVal)) {
-                        acc.push({ [curVal]: Reflect.get(it, curVal) });
-                    }
-                    return acc;
-                }, []);
-                return (
-                    <RecursiveDiagnosticComponent
-                        name={it.name}
-                        executionTime={it.diagExecutionTime}
-                        results={it.results}
-                        awaiting={awaiting}
-                        diagDataKeys={dataObj}
-                        redirectTo={() => console.log("redirectTo")}
-                    />
-                );
-            })}
-        </div>
+        <RecursiveDiagnosticComponent
+            name={"DIAG Name"}
+            executionTime={42}
+            results={oneDiag.results}
+            diagDataKeys={dataObj}
+            redirectTo={() => console.log("redirectTo")}
+        />
     );
 };
 
