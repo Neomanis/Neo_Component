@@ -1,4 +1,4 @@
-import { NeoUser, Notification, Ticket, GroupObject, User, Role } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, GroupObject, User, Role, Diagnostic } from "@neomanis/neo-types";
 
 export const fakeTicket: Ticket = {
     uid: "1gl-1523-INC",
@@ -768,7 +768,7 @@ export const fakeDiag2 = {
         },
     ],
     __v: 8,
-};
+} as unknown as Diagnostic;
 
 export const fakeUsers: NeoUser[] = [
     {

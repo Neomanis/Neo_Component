@@ -28,3 +28,4 @@ export { default as ValidationCard } from "./ValidationCard";
 export { default as ApprovalCard } from "./ApprovalCard";
 export { default as DndTicket } from "./DndTicket";
 export { default as NeoBotOpenTicket } from "./NeoBotOpenTicket";
+export { default as RecursiveWrapper } from "./RecursiveWrapper";

@@ -124,7 +124,6 @@ const RecursiveDiagnosticComponent = ({
             return "border-l-8 border-neo-red";
         }
     }
-    // console.log(name, lateralBandColor());
 
     return (
         <div
