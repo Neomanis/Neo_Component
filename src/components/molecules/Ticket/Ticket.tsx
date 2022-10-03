@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
-import { CompactTicket, GridIds, Status, Type, Ticket as ITicket } from "@neomanis/neo-types";
+import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, GroupObject } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
-import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBg } from "@/img/svg";
+import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
 import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
@@ -16,6 +16,7 @@ export interface TicketProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
+    userGroups?: GroupObject[];
     userNeoId?: number;
     categoryIcon?: IconProp;
 }
@@ -28,10 +29,12 @@ const Ticket = ({
     ticketBG,
     gridId,
     isOpacity,
+    userGroups,
     userNeoId,
     categoryIcon,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
+    const isWatcher = checkIsWatcher();
 
     function getOpacity(): string {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
@@ -50,6 +53,23 @@ const Ticket = ({
             ticket.status !== Status.Solved &&
             ticket.status !== Status.Closed
         );
+    }
+
+    function checkIsWatcher(): boolean {
+        if (ticket) {
+            let isWatcher: boolean;
+            Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (isWatcher = true);
+            userGroups &&
+                ticket.groupWatcher.forEach((group) => {
+                    userGroups.forEach((userGroup) => {
+                        if (userGroup.id === group.id && userGroup.itsmCode === group.itsmCode) {
+                            isWatcher = true;
+                        }
+                    });
+                });
+            return isWatcher;
+        }
+        return false;
     }
 
     if (!ticket) {
@@ -76,9 +96,9 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (
-                    <div className="h-8 w-8 absolute left-6 top-3">
-                        <IconWatcherBg className="absolute left-0 transform scale-110 w-6 fill-white" />
+                {isWatcher && (
+                    <div className="h-8 w-8 absolute left-6 top-3" data-testid="ticket-icon-watcher">
+                        <IconWatcherBlue className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>
                 )}
                 {ticket.type !== Type["Problem"] && isTTOorTTRStale() && (

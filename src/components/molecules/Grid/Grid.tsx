@@ -1,7 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { CompactTicket, Ticket, GridIds } from "@neomanis/neo-types";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { CompactTicket, Ticket, GridIds, GroupObject } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
@@ -20,6 +19,7 @@ export interface GridProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     selectedTicketsIds?: number[];
+    userGroups?: GroupObject[];
     userNeoId?: number;
     categoriesIcons?: { name: string; icon: IconProp }[];
 }
@@ -44,6 +44,7 @@ const Grid = ({
     showPagination,
     ticketList,
     selectedTicketsIds,
+    userGroups,
     userNeoId,
     categoriesIcons,
 }: GridProps): ReactElement => {
@@ -243,6 +244,7 @@ const Grid = ({
                                                 isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
+                                                userGroups: userGroups,
                                                 userNeoId: userNeoId,
                                                 categoryIcon: categoriesIcons?.find(
                                                     (category) => "category" in item && category.name === item?.category
