@@ -6,8 +6,8 @@ import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
 import NeoColors from "@/utils/neoColors";
-import { Hexagon, IconTicketCategory, Title } from "@/components/atoms";
-
+import { Hexagon, Icon, Title } from "@/components/atoms";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 export interface TicketProps {
     currentTicket?: CompactTicket;
     fCallBackClick?: (ticket: Ticket) => void;
@@ -17,6 +17,7 @@ export interface TicketProps {
     gridId?: GridIds;
     isOpacity?: boolean;
     userNeoId?: number;
+    categoryIcon?: IconProp;
 }
 
 const Ticket = ({
@@ -28,6 +29,7 @@ const Ticket = ({
     gridId,
     isOpacity,
     userNeoId,
+    categoryIcon,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
 
@@ -106,7 +108,7 @@ const Ticket = ({
                 data-testid="ticket-title"
             >
                 <div className="text-neo-bg-A">
-                    <IconTicketCategory name={ticket.category} className="text-xl" />
+                    {categoryIcon && <Icon fontIcon={categoryIcon} className="text-xl" />}
                     <div className="font-extrabold text-xs">
                         <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} />
                     </div>

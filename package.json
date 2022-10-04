@@ -20,7 +20,7 @@
     "@babel/core": "^7.18.6",
     "@dnd-kit/core": "^6.0.5",
     "@neomanis/neo-translation": "^2.2.15",
-    "@neomanis/neo-types": "file:../../neomanis-neo-types-v2.20.0.tgz",
+    "@neomanis/neo-types": "^2.20.0",
     "@playwright/experimental-ct-react": "^1.25.0",
     "@storybook/addon-actions": "6.5.9",
     "@storybook/addon-essentials": "6.5.9",

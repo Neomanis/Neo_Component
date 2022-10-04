@@ -4,7 +4,6 @@ export { default as ButtonSwitch } from "./ButtonSwitch";
 export { default as Hexagon } from "./Hexagon";
 export { default as Icon } from "./Icon";
 export { default as IconOutageCategory } from "./IconOutageCategory";
-export { default as IconTicketCategory } from "./IconTicketCategory";
 export { default as Img } from "./Img";
 export { default as Input } from "./Input";
 export { default as InputChoice } from "./InputChoice";

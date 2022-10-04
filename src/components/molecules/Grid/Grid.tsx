@@ -1,6 +1,7 @@
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { CompactTicket, Ticket, GridIds } from "@neomanis/neo-types";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
@@ -20,6 +21,7 @@ export interface GridProps {
     gridId?: GridIds;
     selectedTicketsIds?: number[];
     userNeoId?: number;
+    categoriesIcons?: { name: string; icon: IconProp }[];
 }
 
 interface BlankHexagon {
@@ -43,6 +45,7 @@ const Grid = ({
     ticketList,
     selectedTicketsIds,
     userNeoId,
+    categoriesIcons,
 }: GridProps): ReactElement => {
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -241,6 +244,9 @@ const Grid = ({
                                                 ticket: item as Ticket,
                                                 gridId,
                                                 userNeoId: userNeoId,
+                                                categoryIcon: categoriesIcons.find(
+                                                    (category) => "category" in item && category.name === item?.category
+                                                ).icon,
                                             }}
                                             dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
                                         />
