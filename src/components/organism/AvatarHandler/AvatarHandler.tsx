@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Avatar, CompleteUser, User } from "@neomanis/neo-types";
+import { Avatar, CompleteUser } from "@neomanis/neo-types";
 import { UserInfo, AvatarEditor } from "@/components/molecules";
 
 export interface AvatarHandlerProps {
