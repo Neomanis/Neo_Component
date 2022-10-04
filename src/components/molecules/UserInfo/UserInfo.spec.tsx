@@ -1,14 +1,15 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
-import { User } from "@neomanis/neo-types";
+import { CompleteUser } from "@neomanis/neo-types";
 import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import UserInfo from "./UserInfo";
 
 test.use({ viewport: { width: 500, height: 500 } });
 
-const defaultUser = {
+const defaultUser: CompleteUser = {
     uid: "ttest",
-    name: { firstName: "Tech", lastName: "Test" },
+    firstname: "Tech",
+    lastname: "Test",
     role: "technician",
     language: "fr-FR",
     avatar: {
@@ -16,12 +17,22 @@ const defaultUser = {
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as User;
+    neoId: 1,
+    dn: "dn",
+    level: 1,
+    xmpp: {},
+    timezone: null,
+    membership: {
+        entities: [],
+        groups: [],
+    },
+    isActive: true,
+};
 
 const defaultEmptyUser = {
     uid: "ttest",
     language: "fr-FR",
-} as User;
+} as CompleteUser;
 
 test("should be visible and display content props value", async ({ mount }) => {
     const component = await mount(<UserInfo user={defaultUser} setShowAvatarEditor={() => {}} />);

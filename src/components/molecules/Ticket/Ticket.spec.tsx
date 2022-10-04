@@ -120,5 +120,5 @@ test("should display stale ttr", async ({ mount }) => {
 
 test("should render a ticket with the right title", async ({ mount }) => {
     const component = await mount(<Ticket ticket={fakeTicket} />);
-    await expect(component.locator('[data-testid="ticket-title"]')).toContainText("[1GL] INC 1523");
+    await expect(component.locator('[data-testid="ticket-title"]')).toContainText("[1GL] INC 4212");
 });

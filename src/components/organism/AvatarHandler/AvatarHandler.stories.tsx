@@ -15,19 +15,33 @@ const Template: ComponentStory<typeof AvatarHandler> = (args) => {
     return <AvatarHandler {...args} />;
 };
 
+const userTest = {
+    uid: "ttest",
+    firstname: "Tech",
+    lastname: "Test",
+    role: Role.TECHNICIAN,
+    language: "fr-FR",
+    avatar: {
+        encodedAvatar: imgAvatar,
+        mimetype: "image/png",
+        originalname: "blob-l-eponge.png",
+    },
+    dn: "dn",
+    isActive: true,
+    level: 1,
+    membership: {
+        entities: [],
+        groups: [],
+    },
+    neoId: 1,
+    timezone: null,
+    xmpp: {},
+    title: "totle",
+};
+
 export const Default: ComponentStory<typeof AvatarHandler> = Template.bind({});
 Default.args = {
-    user: {
-        uid: "ttest",
-        name: { firstName: "Tech", lastName: "Test" },
-        role: Role.TECHNICIAN,
-        language: "fr-FR",
-        avatar: {
-            encodedAvatar: imgAvatar,
-            mimetype: "image/png",
-            originalname: "blob-l-eponge.png",
-        },
-    },
+    user: userTest,
     fCallBackUploadAvatar: () => {
         console.log("upload de l'avatar");
     },
@@ -36,17 +50,7 @@ Default.args = {
 
 export const WithStyle: ComponentStory<typeof AvatarHandler> = Template.bind({});
 WithStyle.args = {
-    user: {
-        uid: "ttest",
-        name: { firstName: "Tech", lastName: "Test" },
-        role: Role.TECHNICIAN,
-        language: "fr-FR",
-        avatar: {
-            encodedAvatar: imgAvatar,
-            mimetype: "image/png",
-            originalname: "blob-l-eponge.png",
-        },
-    },
+    user: userTest,
     divEditorClassName: "border-2 border-neo-blue text-white p-8 mt-4",
     dropZoneClassName: "flex flex-row text-center justify-between items-center",
     editorWidth: 100,

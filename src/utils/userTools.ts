@@ -1,4 +1,4 @@
-import { Ticket, User, NeoUser, GroupObject } from "@neomanis/neo-types";
+import { Ticket, NeoUser, GroupObject } from "@neomanis/neo-types";
 
 interface GetActorNameParams {
     ticket: Ticket;
@@ -48,8 +48,4 @@ export function getRequesterUid(
 
     const user = itsmUsers.find((user) => user.neoId === userNeoId);
     return user?.name;
-}
-
-export function getUserEntityName(user: User, entityId: number): string | undefined {
-    return user.entities?.find((entity) => entity.id === entityId)?.name;
 }

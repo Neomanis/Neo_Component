@@ -2,7 +2,7 @@ import React, { createRef, Dispatch, ReactElement, SetStateAction, useEffect, us
 import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
 import ReactAvatarEditor from "react-avatar-editor";
 import { useTranslation } from "@neomanis/neo-translation";
-import { Avatar, User, FileErrorTraductionKey } from "@neomanis/neo-types";
+import { Avatar, FileErrorTraductionKey } from "@neomanis/neo-types";
 import { Button } from "@/components/atoms";
 import { CloseLogo } from "@/img/svg";
 
@@ -12,7 +12,6 @@ export interface AvatarEditorProps {
     editorWidth: number;
     fCallBackUploadAvatar: (avatar: Avatar) => void;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: User;
 }
 
 const AvatarEditor = ({
@@ -21,7 +20,6 @@ const AvatarEditor = ({
     editorWidth,
     fCallBackUploadAvatar,
     setShowAvatarEditor,
-    user,
 }: AvatarEditorProps): ReactElement => {
     const { t } = useTranslation();
 
@@ -55,7 +53,7 @@ const AvatarEditor = ({
     }
 
     async function uploadAvatar(): Promise<void> {
-        if (imageInformation && user.uid && avatarEditorRef.current) {
+        if (imageInformation && avatarEditorRef.current) {
             const encodedAvatar = avatarEditorRef.current.getImageScaledToCanvas().toDataURL();
             const avatar = {
                 encodedAvatar: encodedAvatar,

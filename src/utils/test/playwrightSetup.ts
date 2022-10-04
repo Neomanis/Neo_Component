@@ -1,7 +1,7 @@
 import { NeoUser, TechnicalQuestionAnswer } from "@neomanis/neo-types";
 import { test as base } from "@playwright/experimental-ct-react";
 
-export const test = base.extend<{}, { answer: TechnicalQuestionAnswer; itsmUsers: NeoUser[] }>({
+export const test = base.extend<Record<string, unknown>, { answer: TechnicalQuestionAnswer; itsmUsers: NeoUser[] }>({
     answer: [
         ({}, use) => {
             use({
@@ -23,7 +23,6 @@ export const test = base.extend<{}, { answer: TechnicalQuestionAnswer; itsmUsers
         ({}, use) => {
             use([
                 {
-                    id: 1,
                     firstname: "Unicorn",
                     realname: "Pichon",
                     name: "uPichon",
@@ -35,7 +34,6 @@ export const test = base.extend<{}, { answer: TechnicalQuestionAnswer; itsmUsers
                     timezone: null,
                 },
                 {
-                    id: 1,
                     firstname: "Platypus",
                     realname: null,
                     name: "uCollins",
@@ -47,7 +45,6 @@ export const test = base.extend<{}, { answer: TechnicalQuestionAnswer; itsmUsers
                     timezone: null,
                 },
                 {
-                    id: 1,
                     firstname: "Beluga",
                     realname: "Rotarez",
                     name: "uRotarez",

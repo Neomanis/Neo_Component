@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Avatar, User } from "@neomanis/neo-types";
+import { Avatar, CompleteUser } from "@neomanis/neo-types";
 import { UserInfo, AvatarEditor } from "@/components/molecules";
 
 export interface AvatarHandlerProps {
@@ -10,7 +10,7 @@ export interface AvatarHandlerProps {
     fCallBackUploadAvatar: (avatar: Avatar) => void;
     nameClassName?: string;
     roleClassName?: string;
-    user: User;
+    user: CompleteUser;
 }
 
 const AvatarHandler = ({
@@ -41,7 +41,6 @@ const AvatarHandler = ({
                     editorWidth={editorWidth}
                     fCallBackUploadAvatar={fCallBackUploadAvatar}
                     setShowAvatarEditor={setShowAvatarEditor}
-                    user={user}
                 />
             )}
         </div>

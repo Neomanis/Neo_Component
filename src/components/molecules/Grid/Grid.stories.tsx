@@ -4,6 +4,8 @@ import { ComponentStory, Meta } from "@storybook/react";
 import { fakeTicket, fakeUser } from "@/utils/storiesData/fakeObject";
 
 import Grid from "./Grid";
+import { Ticket } from "@neomanis/neo-types";
+import { faUserCog } from "@fortawesome/free-solid-svg-icons";
 
 export default {
     component: Grid,
@@ -14,14 +16,17 @@ const Template: ComponentStory<typeof Grid> = (args) => {
     return <Grid {...args} />;
 };
 
+const ticketList = Array.from({ length: 24 }, () => ({
+    ...fakeTicket,
+    id: Math.floor(Math.random() * 20),
+})) as Ticket[];
+
 export const Default: ComponentStory<typeof Grid> = Template.bind({});
 Default.args = {
     fCurrentTicket: () => console.log("fCurrentTicket"),
     reverseGrid: false,
-    ticketList: Array.from({ length: 24 }, () => ({
-        ...fakeTicket,
-        id: Math.floor(Math.random() * 20),
-    })),
+    ticketList: ticketList,
+    categoriesIcons: [{ name: "server", icon: faUserCog }],
     rows: 4,
     cols: 4,
     showPagination: true,
@@ -33,10 +38,7 @@ DefaultHelper.args = {
     fCurrentTicket: () => console.log("fCurrentTicket"),
     reverseGrid: true,
     ticketBG: true,
-    ticketList: Array.from({ length: 50 }, () => ({
-        ...fakeTicket,
-        id: Math.floor(Math.random() * 20),
-    })),
+    ticketList: ticketList,
     rows: 4,
     cols: 1,
     showPagination: true,
