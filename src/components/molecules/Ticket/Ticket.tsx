@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { CompactTicket, GridIds, Status, Type, Ticket } from "@neomanis/neo-types";
+import { CompactTicket, GridIds, Status, Type, Ticket as ITicket } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBg } from "@/img/svg";
 import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
@@ -10,9 +10,9 @@ import { Hexagon, Icon, Title } from "@/components/atoms";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 export interface TicketProps {
     currentTicket?: CompactTicket;
-    fCallBackClick?: (ticket: Ticket) => void;
+    fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: CompactTicket) => void;
-    ticket?: Ticket;
+    ticket?: ITicket;
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
@@ -44,7 +44,7 @@ const Ticket = ({
         return (
             getDateCompletionPercentage(
                 ticket.date_creation,
-                ticket.status === Status.New ? (ticket as Ticket).time_to_own : ticket.time_to_resolve
+                ticket.status === Status.New ? (ticket as ITicket).time_to_own : ticket.time_to_resolve
             ) >= 75 &&
             ticket.status !== Status.Pending &&
             ticket.status !== Status.Solved &&
@@ -105,12 +105,11 @@ const Ticket = ({
             <div
                 className="flex flex-col items-center justify-center w-full h-full absolute transform -translate-y-1"
                 style={{ zIndex: 2 }}
-                data-testid="ticket-title"
             >
                 <div className="text-neo-bg-A">
-                    {categoryIcon && <Icon fontIcon={categoryIcon} className="text-xl" />}
-                    <div className="font-extrabold text-xs">
-                        <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} />
+                    <div className="h-6">{categoryIcon && <Icon fontIcon={categoryIcon} className="text-xl" />}</div>
+                    <div data-testid="ticket-title">
+                        <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} className="font-extrabold text-xs" />
                     </div>
                 </div>
                 <div

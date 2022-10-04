@@ -1,21 +1,33 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
-import { User } from "@neomanis/neo-types";
+import { CompleteUser, Role } from "@neomanis/neo-types";
 import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import AvatarHandler from "./AvatarHandler";
 
 test.use({ viewport: { width: 500, height: 500 } });
-const defaultUser = {
+const defaultUser: CompleteUser = {
     uid: "ttest",
-    name: { firstName: "Tech", lastName: "Test" },
-    role: "technician",
+    firstname: "Tech",
+    lastname: "Test",
+    role: Role.TECHNICIAN,
     language: "fr-FR",
     avatar: {
         encodedAvatar: imgAvatar,
         mimetype: "image/png",
         originalname: "blob-l-eponge.png",
     },
-} as User;
+    dn: "dn",
+    isActive: true,
+    level: 1,
+    membership: {
+        entities: [],
+        groups: [],
+    },
+    neoId: 1,
+    timezone: null,
+    xmpp: {},
+    title: "totle",
+};
 
 test("should userInfo be visible and avatarEditor not", async ({ mount }) => {
     const component = await mount(

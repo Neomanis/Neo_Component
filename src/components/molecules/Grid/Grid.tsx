@@ -244,9 +244,9 @@ const Grid = ({
                                                 ticket: item as Ticket,
                                                 gridId,
                                                 userNeoId: userNeoId,
-                                                categoryIcon: categoriesIcons.find(
+                                                categoryIcon: categoriesIcons?.find(
                                                     (category) => "category" in item && category.name === item?.category
-                                                ).icon,
+                                                )?.icon,
                                             }}
                                             dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
                                         />

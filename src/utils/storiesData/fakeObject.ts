@@ -1,4 +1,5 @@
-import { NeoUser, Notification, Ticket, GroupObject, Diagnostic, CompleteUser } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, GroupObject, CompleteUser, Diagnostic } from "@neomanis/neo-types";
+import { addHours, addMinutes } from "date-fns";
 
 export const fakeTicket: Ticket = {
     id: 4212,
@@ -14,10 +15,10 @@ export const fakeTicket: Ticket = {
     priority: 3,
     type: 1,
     global_validation: 1,
-    time_to_resolve: "2022-07-20T17:15:00.000+02:00",
-    time_to_own: "2022-07-20T14:15:00.000+02:00",
+    time_to_resolve: addMinutes(new Date(), 10).toISOString(),
+    time_to_own: addMinutes(new Date(), 10).toISOString(),
     is_deleted: 0,
-    date_creation: "2022-07-20T11:15:00.000+02:00",
+    date_creation: addHours(new Date(), -1).toISOString(),
     uid: "1gl-4212-INC",
     level: 1,
     entityId: 0,

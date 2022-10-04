@@ -3,7 +3,6 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
-import IconTicketCategory from "../IconTicketCategory";
 import Icon from "../Icon";
 import Tooltip from "./Tooltip";
 
@@ -39,7 +38,6 @@ DefaultTextComponent.args = {
 
 export const tooltipComponentBottom = Template.bind({});
 tooltipComponentBottom.args = {
-    svg: <IconTicketCategory />,
     text: "test textj cdjsj cjdsjcdj jdcjs gkfrk gfkd kfkdkfkdkfk k kdkfgkj",
     position: "bottom",
 };
