@@ -245,8 +245,8 @@ const Grid = ({
                                                 isOpacity: isOpacified(item.id),
                                                 ticket: item as Ticket,
                                                 gridId,
-                                                userGroups: userGroups,
-                                                userNeoId: userNeoId,
+                                                userGroups,
+                                                userNeoId,
                                                 categoryIcon: categoriesIcons?.find(
                                                     (category) => "category" in item && category.name === item?.category
                                                 )?.icon,

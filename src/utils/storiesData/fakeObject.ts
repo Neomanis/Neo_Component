@@ -29,7 +29,13 @@ export const fakeTicket: Ticket = {
     userWatcher: [],
     userAssignedTo: [],
     groupRequester: [],
-    groupWatcher: [],
+    groupWatcher: [
+        {
+            id: 1,
+            name: "All-Stars",
+            itsmCode: "1gl",
+        },
+    ],
     groupAssignedTo: [
         {
             id: 1,

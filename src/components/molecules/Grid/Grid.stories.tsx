@@ -31,6 +31,13 @@ Default.args = {
     cols: 4,
     showPagination: true,
     userNeoId: fakeUser.neoId,
+    userGroups: [
+        {
+            id: 1,
+            name: "All-Stars",
+            itsmCode: "1gl",
+        },
+    ],
 };
 
 export const DefaultHelper: ComponentStory<typeof Grid> = Template.bind({});
