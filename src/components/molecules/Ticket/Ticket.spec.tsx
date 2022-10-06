@@ -105,9 +105,10 @@ test("should display watcher icon if userWatcher", async ({ mount }) => {
         <Ticket
             ticket={{
                 ...fakeTicket,
-                userWatcher: [2],
+                userWatcher: [1, 2, 3],
             }}
-            userNeoId={2}
+            userGroups={[]}
+            userNeoId={1}
         />
     );
     await expect(component.locator('[data-testid="ticket-icon-watcher"]')).toBeVisible();
@@ -121,6 +122,7 @@ test("should display watcher icon if groupWatcher", async ({ mount }) => {
                 groupWatcher: [{ id: 2, itsmCode: "test", name: "groupTest" }],
             }}
             userGroups={[{ id: 2, itsmCode: "test", name: "groupTest" }]}
+            userNeoId={112}
         />
     );
     await expect(component.locator('[data-testid="ticket-icon-watcher"]')).toBeVisible();

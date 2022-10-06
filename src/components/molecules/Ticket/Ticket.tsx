@@ -54,22 +54,22 @@ const Ticket = ({
         );
     }
 
-    function checkIsGroupWatcher(): boolean {
-        if (ticket && userGroups) {
-            const groupFound = userGroups.filter(
+    function checkIsWatcher(): boolean {
+        if (ticket && userNeoId && ticket.userWatcher.find((watcherNeoId) => watcherNeoId === userNeoId)) {
+            return true;
+        }
+
+        if (
+            ticket &&
+            userGroups &&
+            userGroups.find(
                 (userGroup) =>
                     Boolean(ticket.groupWatcher.map((group) => group.id).includes(userGroup.id)) &&
                     Boolean(ticket.groupWatcher.map((group) => group.name).includes(userGroup.name)) &&
                     Boolean(ticket.groupWatcher.map((group) => group.itsmCode).includes(userGroup.itsmCode))
-            );
-            return Boolean(groupFound[0]);
-        }
-        return false;
-    }
-
-    function checkIsUserWatcher(): boolean {
-        if (ticket && userNeoId) {
-            return Boolean(ticket.userWatcher.find((watcherNeoId) => watcherNeoId === userNeoId));
+            )
+        ) {
+            return true;
         }
         return false;
     }
@@ -98,7 +98,7 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {(checkIsGroupWatcher() || checkIsUserWatcher()) && (
+                {checkIsWatcher() && (
                     <div className="h-8 w-8 absolute left-6 top-3" data-testid="ticket-icon-watcher">
                         <IconWatcherBlue className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>

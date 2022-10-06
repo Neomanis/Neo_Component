@@ -21,8 +21,8 @@ const ticketList = Array.from({ length: 24 }, () => ({
     id: Math.floor(Math.random() * 20),
 })) as Ticket[];
 
-export const Default: ComponentStory<typeof Grid> = Template.bind({});
-Default.args = {
+export const GridWithUserWatchers: ComponentStory<typeof Grid> = Template.bind({});
+GridWithUserWatchers.args = {
     fCurrentTicket: () => console.log("fCurrentTicket"),
     reverseGrid: false,
     ticketList: ticketList,
@@ -33,7 +33,45 @@ Default.args = {
     userNeoId: fakeUser.neoId,
     userGroups: [
         {
+            id: 2,
+            name: "All-Stars",
+            itsmCode: "1gl",
+        },
+    ],
+};
+
+export const GridWithGroupWatchers: ComponentStory<typeof Grid> = Template.bind({});
+GridWithGroupWatchers.args = {
+    fCurrentTicket: () => console.log("fCurrentTicket"),
+    reverseGrid: false,
+    ticketList: ticketList,
+    categoriesIcons: [{ name: "server", icon: faUserCog }],
+    rows: 4,
+    cols: 4,
+    showPagination: true,
+    userNeoId: 2,
+    userGroups: [
+        {
             id: 1,
+            name: "All-Stars",
+            itsmCode: "1gl",
+        },
+    ],
+};
+
+export const GridWithoutWatchers: ComponentStory<typeof Grid> = Template.bind({});
+GridWithoutWatchers.args = {
+    fCurrentTicket: () => console.log("fCurrentTicket"),
+    reverseGrid: false,
+    ticketList: ticketList,
+    categoriesIcons: [{ name: "server", icon: faUserCog }],
+    rows: 4,
+    cols: 4,
+    showPagination: true,
+    userNeoId: 2,
+    userGroups: [
+        {
+            id: 2,
             name: "All-Stars",
             itsmCode: "1gl",
         },

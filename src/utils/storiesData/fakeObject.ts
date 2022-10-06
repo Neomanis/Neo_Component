@@ -26,7 +26,7 @@ export const fakeTicket: Ticket = {
     requestType: "service assistance",
     neoIdLastUpdater: 27,
     userRequester: [],
-    userWatcher: [],
+    userWatcher: [1],
     userAssignedTo: [],
     groupRequester: [],
     groupWatcher: [
