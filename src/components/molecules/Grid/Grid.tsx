@@ -4,6 +4,7 @@ import { CompactTicket, Ticket, GridIds, GroupObject } from "@neomanis/neo-types
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export interface GridProps {
     className?: string;
