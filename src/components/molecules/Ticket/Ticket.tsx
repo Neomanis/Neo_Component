@@ -34,7 +34,6 @@ const Ticket = ({
     categoryIcon,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
-    const isWatcher = checkIsWatcher();
 
     function getOpacity(): string {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
@@ -56,18 +55,14 @@ const Ticket = ({
     }
 
     function checkIsWatcher(): boolean {
-        if (ticket) {
-            let isWatcher: boolean;
-            Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (isWatcher = true);
-            userGroups &&
-                ticket.groupWatcher.forEach((group) => {
-                    userGroups.forEach((userGroup) => {
-                        if (userGroup.id === group.id && userGroup.itsmCode === group.itsmCode) {
-                            isWatcher = true;
-                        }
-                    });
-                });
-            return isWatcher;
+        if (ticket && userGroups && userNeoId) {
+            const groupFound = userGroups.filter(
+                (userGroup) =>
+                    ticket.groupWatcher.map((group) => group.id).includes(userGroup.id) &&
+                    ticket.groupWatcher.map((group) => group.name).includes(userGroup.name) &&
+                    ticket.groupWatcher.map((group) => group.itsmCode).includes(userGroup.itsmCode)
+            );
+            return Boolean(groupFound[0]);
         }
         return false;
     }
@@ -96,7 +91,7 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {isWatcher && (
+                {checkIsWatcher() && (
                     <div className="h-8 w-8 absolute left-6 top-3" data-testid="ticket-icon-watcher">
                         <IconWatcherBlue className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>
