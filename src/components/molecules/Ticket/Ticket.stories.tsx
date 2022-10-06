@@ -21,11 +21,16 @@ Default.args = {
     userNeoId: 10,
 };
 
-export const TicketIsWatcher: ComponentStory<typeof Ticket> = Template.bind({});
-TicketIsWatcher.args = {
+export const TicketIsUserWatcher: ComponentStory<typeof Ticket> = Template.bind({});
+TicketIsUserWatcher.args = {
+    ticket: { ...fakeTicket, userWatcher: [10] },
+    userNeoId: 10,
+};
+
+export const TicketIsGroupWatcher: ComponentStory<typeof Ticket> = Template.bind({});
+TicketIsGroupWatcher.args = {
     ticket: { ...fakeTicket, groupWatcher: [{ id: 2, name: "level 3", itsmCode: "gl1" }] },
     userGroups: [{ id: 2, name: "level 3", itsmCode: "gl1" }],
-    userNeoId: 10,
 };
 
 export const TicketStatusPending: ComponentStory<typeof Ticket> = Template.bind({});
