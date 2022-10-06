@@ -17,8 +17,15 @@ const Template: ComponentStory<typeof Ticket> = (args) => {
 export const Default: ComponentStory<typeof Ticket> = Template.bind({});
 Default.args = {
     ticket: fakeTicket,
-    userNeoId: 1,
-    categoryIcon: faUserCog,
+    userGroups: [{ id: 2, name: "level 3", itsmCode: "gl1" }],
+    userNeoId: 10,
+};
+
+export const TicketIsWatcher: ComponentStory<typeof Ticket> = Template.bind({});
+TicketIsWatcher.args = {
+    ticket: { ...fakeTicket, groupWatcher: [{ id: 2, name: "level 3", itsmCode: "gl1" }] },
+    userGroups: [{ id: 2, name: "level 3", itsmCode: "gl1" }],
+    userNeoId: 10,
 };
 
 export const TicketStatusPending: ComponentStory<typeof Ticket> = Template.bind({});

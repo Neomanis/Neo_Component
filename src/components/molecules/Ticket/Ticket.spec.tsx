@@ -100,6 +100,32 @@ test("should display stale ttr", async ({ mount }) => {
     await expect(component.locator('[data-testid="ticket-tto-ttr-warning"]')).toBeVisible();
 });
 
+test("should display watcher icon if userWatcher", async ({ mount }) => {
+    const component = await mount(
+        <Ticket
+            ticket={{
+                ...fakeTicket,
+                userWatcher: [2],
+            }}
+            userNeoId={2}
+        />
+    );
+    await expect(component.locator('[data-testid="ticket-icon-watcher"]')).toBeVisible();
+});
+
+test("should display watcher icon if groupWatcher", async ({ mount }) => {
+    const component = await mount(
+        <Ticket
+            ticket={{
+                ...fakeTicket,
+                groupWatcher: [{ id: 2, itsmCode: "test", name: "groupTest" }],
+            }}
+            userGroups={[{ id: 2, itsmCode: "test", name: "groupTest" }]}
+        />
+    );
+    await expect(component.locator('[data-testid="ticket-icon-watcher"]')).toBeVisible();
+});
+
 // Test fails in firefox
 // test("should trigger callback function on hover and on click", async ({ mount }) => {
 //     let clicked = false;

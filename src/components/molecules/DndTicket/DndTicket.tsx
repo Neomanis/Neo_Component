@@ -3,13 +3,15 @@ import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Loader } from "@/components/atoms";
 import { useCombinedRefs } from "@/utils/hooks/useCombinedRef";
 import Ticket from "../Ticket";
+import { GroupObject } from "@neomanis/neo-types";
 
 export interface DndTicketProps {
     dndId: string;
+    userGroups?: GroupObject[];
     ticketProps: ComponentProps<typeof Ticket>;
 }
 
-const DndTicket = ({ dndId, ticketProps }: DndTicketProps): ReactElement => {
+const DndTicket = ({ dndId, userGroups, ticketProps }: DndTicketProps): ReactElement => {
     const isTicketPositionLoading = useMemo(() => {
         return ticketProps.ticket?.isPositionLoading;
     }, [ticketProps]);
@@ -44,7 +46,7 @@ const DndTicket = ({ dndId, ticketProps }: DndTicketProps): ReactElement => {
                 </div>
             )}
             <div className={`${dndId === active?.id || isTicketPositionLoading ? "opacity-50" : ""}`}>
-                <Ticket {...ticketProps} />
+                <Ticket {...ticketProps} userGroups={userGroups} />
             </div>
         </div>
     );
