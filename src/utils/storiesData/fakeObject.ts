@@ -26,10 +26,16 @@ export const fakeTicket: Ticket = {
     requestType: "service assistance",
     neoIdLastUpdater: 27,
     userRequester: [],
-    userWatcher: [],
+    userWatcher: [1],
     userAssignedTo: [],
     groupRequester: [],
-    groupWatcher: [],
+    groupWatcher: [
+        {
+            id: 1,
+            name: "All-Stars",
+            itsmCode: "1gl",
+        },
+    ],
     groupAssignedTo: [
         {
             id: 1,

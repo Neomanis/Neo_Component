@@ -34,7 +34,6 @@ const Ticket = ({
     categoryIcon,
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
-    const isWatcher = checkIsWatcher();
 
     function getOpacity(): string {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
@@ -56,18 +55,21 @@ const Ticket = ({
     }
 
     function checkIsWatcher(): boolean {
-        if (ticket) {
-            let isWatcher: boolean;
-            Boolean(userNeoId && ticket.userWatcher.indexOf(userNeoId) !== -1) && (isWatcher = true);
+        if (ticket && userNeoId && ticket.userWatcher.find((watcherNeoId) => watcherNeoId === userNeoId)) {
+            return true;
+        }
+
+        if (
+            ticket &&
             userGroups &&
-                ticket.groupWatcher.forEach((group) => {
-                    userGroups.forEach((userGroup) => {
-                        if (userGroup.id === group.id && userGroup.itsmCode === group.itsmCode) {
-                            isWatcher = true;
-                        }
-                    });
-                });
-            return isWatcher;
+            userGroups.find(
+                (userGroup) =>
+                    Boolean(ticket.groupWatcher.map((group) => group.id).includes(userGroup.id)) &&
+                    Boolean(ticket.groupWatcher.map((group) => group.name).includes(userGroup.name)) &&
+                    Boolean(ticket.groupWatcher.map((group) => group.itsmCode).includes(userGroup.itsmCode))
+            )
+        ) {
+            return true;
         }
         return false;
     }
@@ -96,7 +98,7 @@ const Ticket = ({
             data-testid="ticket-body"
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
-                {isWatcher && (
+                {checkIsWatcher() && (
                     <div className="h-8 w-8 absolute left-6 top-3" data-testid="ticket-icon-watcher">
                         <IconWatcherBlue className="absolute left-0 transform scale-110 w-6 fill-white" />
                     </div>
