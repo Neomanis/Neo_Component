@@ -36,7 +36,7 @@ const Ticket = ({
     const { i18n } = useTranslation();
 
     const opacity = useMemo(() => {
-        if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
+        if ((currentTicket && currentTicket.uid !== ticket?.uid && gridId === currentTicket?.gridId) || isOpacity) {
             return "30";
         }
         return "";
