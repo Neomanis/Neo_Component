@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, GroupObject } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
@@ -35,14 +35,14 @@ const Ticket = ({
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
 
-    function getOpacity(): string {
+    const opacity = useMemo(() => {
         if ((currentTicket && currentTicket.id !== ticket?.id && gridId === currentTicket?.gridId) || isOpacity) {
             return "30";
         }
         return "";
-    }
+    }, [currentTicket, isOpacity]);
 
-    function isTTOorTTRStale(): boolean {
+    function isTTOorTTRStale() {
         return (
             getDateCompletionPercentage(
                 ticket.date_creation,
@@ -54,11 +54,10 @@ const Ticket = ({
         );
     }
 
-    function checkIsWatcher(): boolean {
+    function checkIsWatcher() {
         if (ticket && userNeoId && ticket.userWatcher.find((watcherNeoId) => watcherNeoId === userNeoId)) {
             return true;
         }
-
         if (
             ticket &&
             userGroups &&
@@ -90,7 +89,7 @@ const Ticket = ({
 
     return (
         <div
-            className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px] opacity-${getOpacity()}
+            className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px] opacity-${opacity}
                         ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
             onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
             onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
@@ -202,7 +201,6 @@ const Ticket = ({
                     type="ticket"
                     bgColor={ticket.status && getStatusColor(ticket.status, true)}
                     isSelected={currentTicket === ticket}
-                    opacity={getOpacity()}
                 />
             </div>
         </div>
