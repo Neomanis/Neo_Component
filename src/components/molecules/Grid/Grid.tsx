@@ -19,7 +19,7 @@ export interface GridProps {
     ticketList?: Ticket[];
     ticketBG?: boolean;
     gridId?: GridIds;
-    selectedTicketsIds?: number[];
+    selectedTicketsUids?: string[];
     userGroups?: GroupObject[];
     userNeoId?: number;
     categoriesIcons?: { name: string; icon: IconProp }[];
@@ -44,7 +44,7 @@ const Grid = ({
     rows,
     showPagination,
     ticketList,
-    selectedTicketsIds,
+    selectedTicketsUids,
     userGroups,
     userNeoId,
     categoriesIcons,
@@ -182,10 +182,10 @@ const Grid = ({
     }, [ticketList]);
 
     const isOpacified = useCallback(
-        (id) => {
-            return selectedTicketsIds && !selectedTicketsIds.includes(id);
+        (uid) => {
+            return selectedTicketsUids && !selectedTicketsUids.includes(uid);
         },
-        [selectedTicketsIds]
+        [selectedTicketsUids]
     );
 
     return (
@@ -242,7 +242,7 @@ const Grid = ({
                                                 currentTicket,
                                                 fCallBackClick: currentTicketCallBack,
                                                 fCallBackHover: hoverCallBack,
-                                                isOpacity: isOpacified(item.id),
+                                                isOpacity: isOpacified(item.uid),
                                                 ticket: item as Ticket,
                                                 gridId,
                                                 userGroups,

@@ -20,7 +20,7 @@ test("should have opacity if ticket and current ticket are not the same and both
         <Ticket
             ticket={fakeTicket}
             gridId="inventory"
-            currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
+            currentTicket={{ ...fakeTicket, uid: "1gl-4000-INC", gridId: "inventory" }}
         />
     );
     await expect(component).toHaveClass(/opacity-30/);
@@ -53,9 +53,9 @@ test("should render correct closed icon", async ({ mount }) => {
 test("should not have opacity if ticket and current ticket are the same", async ({ mount }) => {
     const component = await mount(
         <Ticket
-            ticket={{ ...fakeTicket, id: 101 }}
+            ticket={{ ...fakeTicket }}
             gridId="inventory"
-            currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
+            currentTicket={{ ...fakeTicket, uid: "1gl-4212-INC", gridId: "inventory" }}
         />
     );
     await expect(component).not.toHaveClass(/opacity-30/);
