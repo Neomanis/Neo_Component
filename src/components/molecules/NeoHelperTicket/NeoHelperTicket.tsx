@@ -1,10 +1,10 @@
-import { Icon } from "@/components/atoms";
-import { ClockLogo } from "@/img/svg";
-import { getContrastBasedOnHexColor, getStatusColor, getTimeToNowWithTranslation } from "@/utils";
+import React, { ReactElement } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { i18n } from "@neomanis/neo-translation";
 import { Ticket } from "@neomanis/neo-types";
-import React, { ReactElement } from "react";
+import { ClockLogo } from "@/img/svg";
+import { getContrastBasedOnHexColor, getStatusColor, getTimeToNowWithTranslation } from "@/utils";
+import { Icon } from "@/components/atoms";
 
 export interface NeoHelperTicketProps {
     ticket: Ticket;
@@ -17,7 +17,6 @@ const NeoHelperTicket = ({ ticket, categoryIcon, fCallBack }: NeoHelperTicketPro
         <div
             className="rounded bg-neo-bg-B overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
             onClick={(): void => fCallBack(ticket)}
-            data-testid="NHticket-body"
         >
             <div
                 className={`${getStatusColor(ticket.status, false, "bg")} ${
