@@ -22,5 +22,6 @@ const Template: ComponentStory<typeof NeoHelperTicket> = (args) => {
 export const Default: ComponentStory<typeof NeoHelperTicket> = Template.bind({});
 Default.args = {
     ticket: fakeTicket,
+    onClick: () => console.log("clicked"),
     categoryIcon: faServer,
 };
