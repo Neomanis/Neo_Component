@@ -29,3 +29,4 @@ export { default as ApprovalCard } from "./ApprovalCard";
 export { default as DndTicket } from "./DndTicket";
 export { default as NeoBotOpenTicket } from "./NeoBotOpenTicket";
 export { default as RecursiveWrapper } from "./RecursiveWrapper";
+export { default as NeoHelperTicket } from "./NeoHelperTicket";

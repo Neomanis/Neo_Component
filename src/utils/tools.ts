@@ -182,6 +182,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-very-low",
             border: "border-neo-ticketUrgency-very-low",
             text: "text-neo-ticketUrgency-very-low",
+            fill: "fill-neo-ticketUrgency-very-low",
         },
     },
     low: {
@@ -190,6 +191,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-low",
             border: "border-neo-ticketUrgency-low",
             text: "text-neo-ticketUrgency-low",
+            fill: "fill-neo-ticketUrgency-low",
         },
     },
     medium: {
@@ -198,6 +200,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-medium",
             border: "border-neo-ticketUrgency-medium",
             text: "text-neo-ticketUrgency-medium",
+            fill: "fill-neo-ticketUrgency-medium",
         },
     },
     high: {
@@ -206,6 +209,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-high",
             border: "border-neo-ticketUrgency-high",
             text: "text-neo-ticketUrgency-high",
+            fill: "fill-neo-ticketUrgency-high",
         },
     },
     veryhigh: {
@@ -214,6 +218,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-very-high",
             border: "border-neo-ticketUrgency-very-high",
             text: "text-neo-ticketUrgency-very-high",
+            fill: "fill-neo-ticketUrgency-very-high",
         },
     },
     major: {
@@ -222,6 +227,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-ticketUrgency-major",
             border: "border-neo-ticketUrgency-major",
             text: "text-neo-ticketUrgency-major",
+            fill: "fill-neo-ticketUrgency-major",
         },
     },
     neutral: {
@@ -230,6 +236,7 @@ const priorityColors: Colors = {
             bg: "bg-neo-light-grey",
             border: "border-neo-light-grey",
             text: "text-neo-light-grey",
+            fill: "fill-neo-light-grey",
         },
     },
 };
