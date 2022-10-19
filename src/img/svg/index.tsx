@@ -75,6 +75,7 @@ import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_que
 import { ReactComponent as IconTechnicalQuestionsNew } from "./nm_ico_tq_new.svg";
 import { ReactComponent as IconTicketClosed } from "./nm_ico_ticket_closed.svg";
 import { ReactComponent as IconTicketSolved } from "./nm_ico_ticket_solved.svg";
+import { ReactComponent as IconUser } from "./nm_ico_user.svg";
 import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
 import { ReactComponent as IconWatcher } from "./nm_ico_watcher.svg";
 import { ReactComponent as IconWatcherBg } from "./nm_ico_watcher_bg.svg";
@@ -176,6 +177,7 @@ export {
     IconTechnicalQuestionsNew,
     IconTicketClosed,
     IconTicketSolved,
+    IconUser,
     IconTrash,
     IconWatcher,
     IconWatcherBg,
