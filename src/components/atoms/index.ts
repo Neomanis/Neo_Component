@@ -24,3 +24,4 @@ export { default as HexaPill } from "./HexaPill";
 export { default as Checkbox } from "./Checkbox";
 export { default as InputTextarea } from "./InputTextarea";
 export { default as TicketStatus } from "./TicketStatus";
+export { default as TicketDateInfos } from "./TicketDateInfos";
