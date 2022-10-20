@@ -1,84 +1,83 @@
-import React, { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import React, { Children, ReactElement, ReactNode, useState } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
 import { Title, Button } from "@/components/atoms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { classNames } from "@/utils";
 
 export interface NotificationContainerProps {
     children: ReactNode;
-    childrenLength?: number;
-    clearAllNotifications?: boolean;
-    fCallBackClear?: () => void;
-    fCallBackSeeAll?: () => void;
-    languageUser?: string;
+    clearNotifications?: () => void;
     title: string;
-    viewItem?: number;
+    itemsToShow?: number | "infinite";
+    notificationType?: "approval" | "notification" | "outage";
 }
 
 const NotificationContainer = ({
     children,
-    childrenLength,
-    clearAllNotifications,
-    fCallBackClear,
-    fCallBackSeeAll,
+    clearNotifications,
     title,
-    viewItem = 2,
+    itemsToShow = 2,
+    notificationType = "notification",
 }: NotificationContainerProps): ReactElement => {
     const { t } = useTranslation();
-
-    const [fullView, setFullView] = useState(false);
-    const [heightItem, setHeightItem] = useState(50);
-    const refHeight = useRef<HTMLHeadingElement>(null);
-
-    useEffect(() => {
-        setHeightItem(
-            refHeight.current.children[0].getBoundingClientRect().height *
-                (viewItem <= childrenLength ? viewItem : childrenLength)
-        );
-        if (fullView) {
-            viewItem + 1 > childrenLength && fCallBackSeeAll();
-            viewItem + 1 > childrenLength && setFullView(false);
-        }
-    }, [viewItem, childrenLength]);
+    const childrens = Children.toArray(children);
+    const [expanded, setExpanded] = useState(false);
 
     return (
-        <div>
-            <div className="flex items-center justify-between w-full text-xs uppercase border-b-2 py-1 border-neo-bg-B mb-3">
-                <div className="flex items-center text-neo-light-grey ">
-                    <Title data={title} type="h2" className="mr-2 font-bold" />
-                    {childrenLength && <p>({childrenLength})</p>}
+        <div className="flex flex-col">
+            <div className="flex items-center justify-between w-full py-1 px-6 mb-1">
+                <div className="flex items-center space-x-1 text-lg font-bold whitespace-nowrap">
+                    {childrens.length && <p className="text-white">{childrens.length}</p>}
+                    <Title data={title} type="h2" className="text-neo-blue-secondary" />
                 </div>
-                {viewItem < childrenLength && (
-                    <Button
-                        onClick={(): void => {
-                            setFullView(!fullView);
-                            fCallBackSeeAll && fCallBackSeeAll();
-                        }}
-                        className="flex hover:text-neo-light-grey transition-colors text-neo-link text-xxs"
-                        variant="none"
-                        size="none"
-                    >
-                        {!fullView ? t("global.seeAll") : t("global.seeLess")}
-                    </Button>
+                {clearNotifications && (
+                    <div className="">
+                        <Button
+                            onClick={(): void => clearNotifications()}
+                            className="uppercase whitespace-nowrap text-xxs py-1"
+                            variant="secondary"
+                            size="none"
+                            rounded="md"
+                        >
+                            {t("global.clearAll")}
+                        </Button>
+                    </div>
                 )}
             </div>
-            <div
-                className={`${!fullView && "overflow-scroll no-scrollbar"} transition-all overflow-hidden`}
-                style={
-                    !fullView ? { height: heightItem } : { height: refHeight.current.getBoundingClientRect().height }
-                }
-            >
-                <div ref={refHeight}>{children}</div>
-            </div>
-            {clearAllNotifications && (
-                <div className="w-full flex justify-center py-2">
-                    <Button
-                        onClick={(): void => fCallBackClear()}
-                        className="flex hover:text-neo-light-grey transition-colors text-neo-link mb-1 font-bold text-xs"
-                        variant="none"
-                        size="none"
-                    >
-                        {t("global.clearAll")}
-                    </Button>
-                </div>
+            <ul>
+                {childrens
+                    .slice(0, expanded || itemsToShow === "infinite" ? childrens.length : itemsToShow)
+                    .map((item, key, arr) => (
+                        <li key={key} className="relative">
+                            <div
+                                className={classNames(
+                                    "py-2.5 px-6 group relative peer",
+                                    notificationType === "notification" && "hover:bg-neo-blue-secondary",
+                                    notificationType === "approval" && "hover:bg-neo-yellow-sand",
+                                    notificationType === "outage" && "hover:bg-neo-bg-B"
+                                )}
+                            >
+                                {item}
+                            </div>
+                            {arr.length > 1 && key < arr.length - 1 && (
+                                <div
+                                    className={classNames(
+                                        "absolute left-1/2 transform -translate-x-1/2",
+                                        "border-b-[1px] border-neo-bg-B w-5/6 peer-hover:hidden"
+                                    )}
+                                />
+                            )}
+                        </li>
+                    ))}
+            </ul>
+            {!expanded && childrens.length > itemsToShow && (
+                <Button
+                    startIcon={<FontAwesomeIcon icon={faEllipsis} />}
+                    variant="none"
+                    className="text-neo-link text-3xl self-center"
+                    onClick={(): void => setExpanded(true)}
+                />
             )}
         </div>
     );

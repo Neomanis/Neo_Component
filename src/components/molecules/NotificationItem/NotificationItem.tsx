@@ -1,138 +1,139 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { CloseLogo } from "@/img/svg";
-import { Icon, Title, Button } from "@/components/atoms";
+import { CautionLogoFull, CloseLogo } from "@/img/svg";
+import { Button, Loader } from "@/components/atoms";
+import { classNames, getFormatedTimeToNowExtended } from "@/utils";
+import { Approval, Outage, Notification } from "@neomanis/neo-types";
+import { getOutageDateInformation } from "@/utils/dateTools";
 
-export interface NotificationItemProps {
-    content: string;
-    date?: string;
-    fDeleteNotification?: (notificationId: number, userNeoId: number) => void;
+export type NotificationItemProps = {
+    onDelete?: (notificationId: number, userNeoId: number) => void;
     fManageApproval?: (
         id: number,
         value: boolean,
         ticketUid: string,
         errorSetter: Dispatch<SetStateAction<boolean>>
     ) => Promise<void>;
-    fReadNotification?: (notificationId: number, userNeoId: number) => void;
-    notificationId?: number;
-    outageDate?: { startAt: string; endAt?: string };
-    read?: boolean;
-    sender?: string;
-    svg: ReactElement;
-    textColor?: string;
-    ticketUid?: string;
-    title?: string;
     userNeoId?: number;
-    approvalId?: number;
-}
+    notification: Notification | Approval | Outage;
+} & NotificationType;
+
+type NotificationType =
+    | {
+          notificationType: "approval";
+          notification: Approval;
+          approvalCallHandler: {
+              answerApproval: (accepted: boolean, approvalId: number) => void;
+              isLoading: boolean;
+              isError: boolean;
+          };
+      }
+    | { notificationType: "notification"; notification: Notification; approvalCallHandler?: never }
+    | { notificationType: "outage"; notification: Outage; approvalCallHandler?: never };
 
 const NotificationItem = ({
-    content,
-    date,
-    fDeleteNotification,
-    fManageApproval,
-    fReadNotification,
-    notificationId,
-    outageDate,
-    read,
-    sender,
-    svg,
-    textColor = "text-neo-light-grey",
-    ticketUid,
-    title,
+    onDelete,
+    notification,
+    notificationType,
+    approvalCallHandler,
     userNeoId,
-    approvalId,
 }: NotificationItemProps): ReactElement => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const [isFolded, setIsFolded] = useState<boolean>(true);
-    const [isError, setIsError] = useState(false);
 
-    async function sendApproval(value: boolean): Promise<void> {
-        fManageApproval && (await fManageApproval(approvalId, value, ticketUid, setIsError));
-    }
-    return (
-        <div
-            onClick={(e) => {
-                fReadNotification && e.stopPropagation();
-                fReadNotification && fReadNotification(notificationId, userNeoId);
-                setIsFolded(!isFolded);
-            }}
-        >
-            <div className="flex justify-between w-full cursor-pointer">
-                <div className="flex">
-                    <div className="mt-1 relative">
-                        {fReadNotification && (
-                            <Icon
-                                className={`text-xxs absolute top-0 right-0
-                    ${read ? " text-neo-light-grey opacity-30" : "text-neo-red"}`}
-                                fontIcon={faCircle}
-                            />
-                        )}
-                        {svg}
-                    </div>
-                    <div className={`${textColor} pl-4`}>
-                        {(sender || date) && (
-                            <div className="text-xs flex">
-                                {sender && <p className="mr-2 font-bold">{sender}</p>}
-                                {date && <p>{date}</p>}
-                            </div>
-                        )}
-                        {title && <Title type="h3" data={title} className=" text-base uppercase font-bold" />}
-                        {outageDate && outageDate.startAt && (
-                            <p className="text-xxs font-bold">
-                                {outageDate.startAt} {outageDate.endAt && "- " + outageDate.endAt}
-                            </p>
-                        )}
-                        <p className={`${isFolded && "line-clamp-2"} text-xxs mt-1`}>{content}</p>
-                    </div>
+    if (notificationType === "approval") {
+        return (
+            <div className="text-neo-yellow-sand group-hover:text-neo-bg-B relative">
+                <div className="text-xxs uppercase mb-2 font-semibold">
+                    {getFormatedTimeToNowExtended(notification.createdAt, i18n.language)}
                 </div>
-                {fDeleteNotification && (
-                    <div className="flex items-center mr-1 cursor-pointer">
-                        <Icon
-                            svg={<CloseLogo fill="#7DAAB7" />}
-                            className="w-3 h-3"
-                            fCallBack={(e) => {
-                                e.stopPropagation();
-                                setIsFolded(true);
-                                userNeoId && fDeleteNotification(notificationId, userNeoId);
-                            }}
-                        />
-                    </div>
+                <p className="text-xxs">{notification.content}</p>
+                {approvalCallHandler.isLoading && <Loader type="circleOnly" className="absolute top-0 right-0" />}
+                {approvalCallHandler.isError && (
+                    <CautionLogoFull className="absolute top-0 right-0 w-6 fill-neo-yellow-sand group-hover:fill-neo-bg-B" />
                 )}
-            </div>
-            {fManageApproval &&
-                (!isError ? (
-                    <div className="flex w-full justify-around mt-4 text-white text-xs">
+                <div className="w-full mt-3 text-white text-xs hidden group-hover:flex flex-col space-y-2">
+                    {approvalCallHandler.isError && (
+                        <div className="text-neo-orange text-sm font-bold">{t("error.approval")}</div>
+                    )}
+                    <div className="flex space-x-4">
                         <Button
-                            className="bg-neo-link hover:bg-neo-green rounded uppercase font-bold py-2 w-24"
+                            className="bg-neo-bg-B rounded uppercase font-bold p-1 text-xxs leading-[15px]"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                sendApproval(true);
+                                approvalCallHandler.answerApproval(true, notification.id);
                             }}
                             variant="none"
                             size="none"
                             rounded="none"
+                            disabled={approvalCallHandler.isLoading}
                         >
                             {t("global.validate")}
                         </Button>
                         <Button
-                            className="bg-neo-link hover:bg-neo-red rounded uppercase font-bold py-2 w-24"
+                            className="border-2 border-neo-bg-B text-neo-bg-B rounded uppercase font-bold p-1 text-xxs leading-[15px]"
                             onClick={(e) => {
                                 e.stopPropagation();
-                                sendApproval(false);
+                                approvalCallHandler.answerApproval(false, notification.id);
                             }}
                             variant="none"
                             size="none"
                             rounded="none"
+                            disabled={approvalCallHandler.isLoading}
                         >
                             {t("global.refuse")}
                         </Button>
                     </div>
-                ) : (
-                    <p className={"text-neo-orange pt-1 text-sm font-bold text-center"}>{t("error.approval")}</p>
-                ))}
+                </div>
+            </div>
+        );
+    }
+
+    if (notificationType === "outage") {
+        return (
+            <div
+                className={classNames(
+                    "cursor-pointer",
+                    notification.severity === "major" ? "text-neo-urgency-major" : "text-neo-orange"
+                )}
+                onClick={() => setIsFolded(!isFolded)}
+            >
+                <div className="font-bold text-xs uppercase">{notification.title}</div>
+                <div className="text-xxs uppercase mb-2 font-semibold">
+                    {getOutageDateInformation(
+                        { startAt: notification.startAt, endAt: notification.endAt },
+                        i18n.language
+                    )}
+                </div>
+                <div
+                    className={classNames("text-xxs", isFolded && "line-clamp-2")}
+                    dangerouslySetInnerHTML={{ __html: notification.content }}
+                ></div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="text-white cursor-pointer relative" onClick={() => setIsFolded(!isFolded)}>
+            <div className="font-bold text-xs uppercase">
+                {notification.notification.type === "message" ? t("global.message_one") : t("ticket.title_one")}
+            </div>
+            <div className="text-xxs uppercase mb-2 font-semibold">
+                {getFormatedTimeToNowExtended(notification.notification.createdAt, i18n.language)}
+            </div>
+            <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>{notification.notification.content}</p>
+            <Button
+                startIcon={<CloseLogo className="w-[10px] fill-neo-link hidden group-hover:block" />}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete(notification.notification.id, userNeoId);
+                }}
+                variant="none"
+                size="none"
+                rounded="none"
+                className="absolute -right-3 top-1/2 transform -translate-y-1/2"
+            />
         </div>
     );
 };

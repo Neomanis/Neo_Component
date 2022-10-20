@@ -610,7 +610,7 @@ export const fakeNotification: Notification = {
         id: 0,
         content:
             "Where is Ryan ? lfgf dg sogfdos ogfdso gofdso gofdsog fids i igfdos gifdso i gkfdk igfdoshh hhhhhhhh hhsdqgsqhdsqgds gsdqghsgqhd gsqhdg  sqhgdsqhgdshqgd hsqgdgs qdhgsq dsg qdgsq  igfods",
-        createdAt: "20/03/5655 50",
+        createdAt: "2021-11-10T15:21:13.856Z",
         objectId: "5958",
         objectType: "test",
         type: "test",

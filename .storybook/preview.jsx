@@ -1,4 +1,5 @@
 import "../src/styles/tailwind.css";
+import "../src/styles/index.css";
 import StoryLayout from "./storyLayout";
 
 export const parameters = {
@@ -27,3 +28,4 @@ export const decorators = [
         );
     },
 ];
+
