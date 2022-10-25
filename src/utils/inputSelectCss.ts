@@ -3,20 +3,9 @@
 import { StylesConfig } from "react-select";
 
 export const baseStyles: StylesConfig = {
-    clearIndicator: (provided, state) => ({
-        ...provided,
-        display: "bloc",
-        padding: 0,
-        position: "absolute",
-        right: 30,
-        top: 10,
-        border: "none",
-    }),
     container: (provided, state) => ({
         ...provided,
         background: "#0E3864",
-        padding: 0,
-        margin: 0,
         color: "#DAE5E5",
     }),
     control: (provided, state) => ({
@@ -25,14 +14,27 @@ export const baseStyles: StylesConfig = {
         color: "#DAE5E5",
         background: "#0E3864",
         border: "none",
+        height: "100%",
+    }),
+    valueContainer: (provided, state) => ({
+        ...provided,
+        height: "100%",
+        paddingTop: "5px",
+        paddingBottom: "5px",
+        overflow: "scroll",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
-        display: "bloc",
-        padding: 0,
-        position: "absolute",
-        right: 5,
-        top: 10,
+        paddingLeft: 0,
+        paddingRight: 5,
+        border: "none",
+    }),
+    clearIndicator: (provided, state) => ({
+        ...provided,
+        paddingLeft: 0,
+        paddingRight: 0,
         border: "none",
     }),
     indicatorSeparator: (provided, state) => ({
@@ -52,7 +54,7 @@ export const baseStyles: StylesConfig = {
         ...provided,
         color: "#DAE5E5",
         background: "#FF1166",
-        margin: 1,
+        margin: "3px 2px 3px 2px",
     }),
     multiValueLabel: (provided, state) => ({
         ...provided,

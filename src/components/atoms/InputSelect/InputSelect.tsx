@@ -102,7 +102,6 @@ function InputSelect<
             ...baseStyles,
             ...customStyles,
         };
-
         if (readOnly) {
             style.multiValueRemove = (provided) => ({
                 ...provided,
@@ -110,7 +109,6 @@ function InputSelect<
             });
             style.dropdownIndicator = (provided) => ({ ...provided, display: "none" });
         }
-
         return style;
     }, [readOnly, customStyles]);
 
