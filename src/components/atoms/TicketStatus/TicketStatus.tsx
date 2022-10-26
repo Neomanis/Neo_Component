@@ -37,7 +37,9 @@ const TicketStatus = ({ status }: TicketStatusProps): ReactElement => {
                     getStatusColor(status, false, "text")
                 )}
             >
-                {t(`status.${getStatusText(status) as StatusTraductionKey}` as const).toUpperCase()}
+                {getStatusText(status)
+                    ? t(`status.${getStatusText(status) as StatusTraductionKey}` as const).toUpperCase()
+                    : t("status.invalidStatus")}
             </h1>
             <p className="pl-4 pt-2 pb-4 text-neo-light-grey text-xs">{getStatusDesc(status)}</p>
         </div>

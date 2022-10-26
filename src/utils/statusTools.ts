@@ -83,6 +83,10 @@ export function getStatusColor(
     }
 }
 
-export function getStatusText(statusId: Status): StatusTraductionKey {
-    return Status[statusId].toLowerCase() as StatusTraductionKey;
+export function getStatusText(statusId: Status): string | boolean {
+    const title = Status[statusId] as StatusTraductionKey;
+    if (title) {
+        return title.toLowerCase();
+    }
+    return false;
 }
