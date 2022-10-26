@@ -13,7 +13,7 @@ export interface TicketDateInfosProps {
 const TicketDateInfos = ({ createdAt, updatedAt, userLanguage }: TicketDateInfosProps): ReactElement => {
     const { t } = useTranslation();
     return (
-        <div className={`w-full flex rounded-md border border-neo-blue-secondary border-2`}>
+        <div className="w-full flex rounded-md border border-neo-blue-secondary border-2">
             <div className="w-1/12 flex-col p-2">
                 <div className="h-1/2"></div>
                 <div className="h-1/2">
