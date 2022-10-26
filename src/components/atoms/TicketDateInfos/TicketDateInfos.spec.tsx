@@ -7,11 +7,7 @@ test.use({ viewport: { width: 500, height: 500 } });
 
 test("should work", async ({ mount }) => {
     const component = await mount(
-        <TicketDateInfos
-            createdAt={new Date().toISOString()}
-            updatedAt={new Date().toISOString()}
-            userLanguage="EN-gb"
-        />
+        <TicketDateInfos createdAt={new Date().toISOString()} updatedAt={new Date().toISOString()} userLanguage="" />
     );
     await expect(component).toContainText("Created at");
     await expect(component).toContainText("Updated at");
