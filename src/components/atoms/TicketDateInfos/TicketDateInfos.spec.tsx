@@ -10,7 +10,7 @@ test("should work", async ({ mount }) => {
         <TicketDateInfos
             createdAt={new Date().toISOString()}
             updatedAt={new Date().toISOString()}
-            userLanguage="EN_gb"
+            userLanguage="EN-gb"
         />
     );
     await expect(component).toContainText("Created at");

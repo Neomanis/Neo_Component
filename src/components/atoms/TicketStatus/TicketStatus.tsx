@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { getStatusText, getStatusColor, classNames } from "@/utils";
-import { StatusTraductionKey } from "@neomanis/neo-types";
+import { StatusTraductionKey, Status } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 
 export interface TicketStatusProps {
@@ -12,10 +12,18 @@ const TicketStatus = ({ status }: TicketStatusProps): ReactElement => {
 
     function getStatusDesc(status: number): string {
         switch (status) {
-            case 2 || 3:
-                return t("ticket.inProgress");
-            case 4:
-                return t("ticket.pending");
+            case Status.New:
+                return t("status.description.new");
+            case Status.Assigned:
+                return t("status.description.assigned");
+            case Status.Planned:
+                return t("status.description.planned");
+            case Status.Pending:
+                return t("status.description.pending");
+            case Status.Solved:
+                return t("status.description.solved");
+            case Status.Closed:
+                return t("status.description.closed");
             default:
                 return t("neoHelper.waitTechnician");
         }
