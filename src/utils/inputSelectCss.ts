@@ -23,6 +23,9 @@ export const baseStyles: StylesConfig = {
         paddingBottom: "5px",
         overflow: "scroll",
         msOverflowStyle: "none",
+        "&::-webkit-scrollbar": {
+            display: "none",
+        },
         scrollbarWidth: "none",
     }),
     dropdownIndicator: (provided, state) => ({
