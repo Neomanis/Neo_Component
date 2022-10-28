@@ -263,8 +263,10 @@ export function isNotNullOrUndefined(value: unknown) {
 
 export function getDisplayedTicketUid(ticketUid: string): string {
     const [itsmCode, ticketId, ticketType] = ticketUid.split("-");
-
-    return `[${itsmCode}] ${ticketType} ${ticketId}`.toUpperCase();
+    if (itsmCode && ticketId && ticketType) {
+        return `[${itsmCode}] ${ticketType} ${ticketId}`.toUpperCase();
+    }
+    return ticketUid;
 }
 
 export function classNames(...classes: (false | null | undefined | string)[]): string {

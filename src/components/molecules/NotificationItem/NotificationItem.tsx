@@ -2,7 +2,7 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, CloseLogo } from "@/img/svg";
 import { Button, Loader } from "@/components/atoms";
-import { classNames, getFormatedTimeToNowExtended } from "@/utils";
+import { classNames, getFormatedTimeToNowExtended, getDisplayedTicketUid } from "@/utils";
 import { Approval, Outage, Notification } from "@neomanis/neo-types";
 import { getOutageDateInformation } from "@/utils/dateTools";
 
@@ -16,6 +16,7 @@ export type NotificationItemProps = {
     ) => Promise<void>;
     userNeoId?: number;
     notification: Notification | Approval | Outage;
+    navigateTo?: () => void;
 } & NotificationType;
 
 type NotificationType =
@@ -37,6 +38,7 @@ const NotificationItem = ({
     notificationType,
     approvalCallHandler,
     userNeoId,
+    navigateTo,
 }: NotificationItemProps): ReactElement => {
     const { t, i18n } = useTranslation();
 
@@ -113,7 +115,16 @@ const NotificationItem = ({
             </div>
         );
     }
-
+    function findAndSplitContentWith(
+        content: string,
+        objectId: string
+    ): { startContent: string; ticketUid: string | null; endContent: string | null } {
+        if (!content.includes(getDisplayedTicketUid(objectId))) {
+            return { startContent: content, ticketUid: null, endContent: null };
+        }
+        const [startContent, endContent] = content.split(getDisplayedTicketUid(objectId));
+        return { startContent, ticketUid: objectId, endContent };
+    }
     return (
         <div className="text-white cursor-pointer relative" onClick={() => setIsFolded(!isFolded)}>
             <div className="font-bold text-xs uppercase">
@@ -122,7 +133,31 @@ const NotificationItem = ({
             <div className="text-xxs uppercase mb-2 font-semibold">
                 {getFormatedTimeToNowExtended(notification.notification.createdAt, i18n.language)}
             </div>
-            <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>{notification.notification.content}</p>
+            {findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
+                .ticketUid === null ? (
+                <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
+                    {notification.notification.content}
+                </p>
+            ) : (
+                <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
+                    {
+                        findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
+                            .startContent
+                    }
+                    <span className="hover:text-neo-blue" onClick={navigateTo}>
+                        {getDisplayedTicketUid(
+                            findAndSplitContentWith(
+                                notification.notification.content,
+                                notification.notification.objectId
+                            ).ticketUid
+                        )}
+                    </span>
+                    {
+                        findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
+                            .endContent
+                    }
+                </p>
+            )}
             <Button
                 startIcon={<CloseLogo className="w-[10px] fill-neo-link hidden group-hover:block" />}
                 onClick={(e) => {
