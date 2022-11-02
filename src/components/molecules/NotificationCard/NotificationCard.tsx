@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { IconInfo, CloseLogo } from "@/img/svg";
 import { Icon } from "@/components/atoms";
+import { getDisplayedTicketUid, findAndSplitContentWith, classNames } from "@/utils";
 
 export interface NotificationCardProps {
     className?: string;
@@ -15,6 +16,8 @@ export interface NotificationCardProps {
     svgColor?: string;
     title?: string;
     neoId: number;
+    objectId: string;
+    navigateTo?: () => void;
 }
 
 const NotificationCard = ({
@@ -29,6 +32,8 @@ const NotificationCard = ({
     svgColor = "#DAE5E5",
     title,
     neoId,
+    objectId,
+    navigateTo,
 }: NotificationCardProps): ReactElement => {
     const [isFolded, setIsFolded] = useState<boolean>(true);
 
@@ -61,9 +66,26 @@ const NotificationCard = ({
                     >
                         {title}
                     </p>
-                    <p className={`${isFolded && "line-clamp-1"} text-xxs`} data-testid="notifCard-content">
-                        {content}
-                    </p>
+                    {findAndSplitContentWith(content, objectId).ticketUid === null ? (
+                        <p
+                            className={classNames("text-xxs", isFolded && "line-clamp-2")}
+                            data-testid="notifCard-content-classic"
+                        >
+                            {content}
+                        </p>
+                    ) : (
+                        <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
+                            {findAndSplitContentWith(content, objectId).startContent}
+                            <span
+                                className="text-neo-blue hover:text-neo-pink"
+                                onClick={navigateTo}
+                                data-testid="notifCard-content-clickable"
+                            >
+                                {getDisplayedTicketUid(findAndSplitContentWith(content, objectId).ticketUid)}
+                            </span>
+                            {findAndSplitContentWith(content, objectId).endContent}
+                        </p>
+                    )}
                 </div>
             </div>
 

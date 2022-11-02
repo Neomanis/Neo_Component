@@ -19,6 +19,25 @@ Default.args = {
     notificationType: "notification",
     notification: fakeNotification,
 };
+
+export const WithTicketUid: ComponentStory<typeof NotificationItem> = Template.bind({});
+WithTicketUid.args = {
+    notificationType: "notification",
+    notification: {
+        notification: {
+            id: 0,
+            content: "Where is Ryan ? Looking for [1IT] INC 666.",
+            createdAt: "2021-11-10T15:21:13.856Z",
+            objectId: "1it-666-INC",
+            objectType: "test",
+            type: "test",
+        },
+        read: false,
+        lastUpdatedAt: "",
+    },
+    navigateTo: () => console.log("Let's navigate else where"),
+};
+
 export const DefaultApproval: ComponentStory<typeof NotificationItem> = Template.bind({});
 DefaultApproval.args = {
     notificationType: "approval",

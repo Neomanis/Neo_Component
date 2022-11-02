@@ -28,6 +28,7 @@ import {
     mapEnumToInputSelectData,
     sleep,
     classNames,
+    findAndSplitContentWith,
 } from "./tools";
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";
@@ -72,4 +73,5 @@ export {
     stripHtml,
     useIsFirstRender,
     useLocalStorage,
+    findAndSplitContentWith,
 };
