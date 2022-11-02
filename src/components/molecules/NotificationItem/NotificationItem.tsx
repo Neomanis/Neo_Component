@@ -2,7 +2,7 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, CloseLogo } from "@/img/svg";
 import { Button, Loader } from "@/components/atoms";
-import { classNames, getFormatedTimeToNowExtended, getDisplayedTicketUid } from "@/utils";
+import { classNames, getFormatedTimeToNowExtended, getDisplayedTicketUid, findAndSplitContentWith } from "@/utils";
 import { Approval, Outage, Notification } from "@neomanis/neo-types";
 import { getOutageDateInformation } from "@/utils/dateTools";
 
@@ -115,16 +115,6 @@ const NotificationItem = ({
             </div>
         );
     }
-    function findAndSplitContentWith(
-        content: string,
-        objectId: string
-    ): { startContent: string; ticketUid: string | null; endContent: string | null } {
-        if (!content.includes(getDisplayedTicketUid(objectId))) {
-            return { startContent: content, ticketUid: null, endContent: null };
-        }
-        const [startContent, endContent] = content.split(getDisplayedTicketUid(objectId));
-        return { startContent, ticketUid: objectId, endContent };
-    }
     return (
         <div className="text-white cursor-pointer relative" onClick={() => setIsFolded(!isFolded)}>
             <div className="font-bold text-xs uppercase">
@@ -144,7 +134,7 @@ const NotificationItem = ({
                         findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
                             .startContent
                     }
-                    <span className="hover:text-neo-blue" onClick={navigateTo}>
+                    <span className="text-neo-blue hover:text-neo-pink" onClick={navigateTo}>
                         {getDisplayedTicketUid(
                             findAndSplitContentWith(
                                 notification.notification.content,

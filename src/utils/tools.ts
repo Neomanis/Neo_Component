@@ -272,3 +272,14 @@ export function getDisplayedTicketUid(ticketUid: string): string {
 export function classNames(...classes: (false | null | undefined | string)[]): string {
     return classes.filter(Boolean).join(" ");
 }
+
+export function findAndSplitContentWith(
+    content: string,
+    objectId: string
+): { startContent: string; ticketUid: string | null; endContent: string | null } {
+    if (!content.includes(getDisplayedTicketUid(objectId))) {
+        return { startContent: content, ticketUid: null, endContent: null };
+    }
+    const [startContent, endContent] = content.split(getDisplayedTicketUid(objectId));
+    return { startContent, ticketUid: objectId, endContent };
+}
