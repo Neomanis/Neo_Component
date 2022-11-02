@@ -90,6 +90,7 @@ import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
 import { ReactComponent as NeoLogo } from "./nm_logo_couleur_blanc_toast.svg";
 import { ReactComponent as NeoLogoSad } from "./nm_logo_couleur_blanc_toast-sad.svg";
 import { ReactComponent as Planet } from "./nm_design_planet.svg";
+import { ReactComponent as SquareCross } from "./nm_ico_square_cross.svg";
 import { ReactComponent as StatusContainer } from "./nm_status_container.svg";
 import { ReactComponent as TabLogo } from "./nm_ico_popup.svg";
 import { ReactComponent as TicketBottom } from "./nm_design_ticket_bottom.svg";
@@ -192,6 +193,7 @@ export {
     NeoLogo,
     NeoLogoSad,
     Planet,
+    SquareCross,
     StatusContainer,
     TabLogo,
     TicketBottom,

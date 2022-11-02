@@ -1,3 +1,4 @@
+import { classNames } from "@/utils/tools";
 import React, { ReactElement } from "react";
 
 export interface BubbleChatProps {
@@ -10,11 +11,13 @@ export interface BubbleChatProps {
 const BubbleChat = ({ bgColor, border, content, isValidate = true }: BubbleChatProps): ReactElement => {
     return (
         <div
-            className={`text-xxs rounded-md p-2 text-neo-light-grey 
-            ${bgColor ? bgColor : ""} 
-            ${border ? border : ""} 
-            ${border ? "border-2" : ""} 
-            ${isValidate ? "" : "opacity-50"}`}
+            className={classNames(
+                "text-xxs rounded-md p-2 text-neo-light-grey",
+                bgColor,
+                border,
+                border && "border-2",
+                !isValidate && "opacity-50"
+            )}
             data-testid="bubbleChat-body"
         >
             {content}
