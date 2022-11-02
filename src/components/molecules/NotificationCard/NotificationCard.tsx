@@ -67,11 +67,20 @@ const NotificationCard = ({
                         {title}
                     </p>
                     {findAndSplitContentWith(content, objectId).ticketUid === null ? (
-                        <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>{content}</p>
+                        <p
+                            className={classNames("text-xxs", isFolded && "line-clamp-2")}
+                            data-testid="notifCard-content-classic"
+                        >
+                            {content}
+                        </p>
                     ) : (
                         <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
                             {findAndSplitContentWith(content, objectId).startContent}
-                            <span className="text-neo-blue hover:text-neo-pink" onClick={navigateTo}>
+                            <span
+                                className="text-neo-blue hover:text-neo-pink"
+                                onClick={navigateTo}
+                                data-testid="notifCard-content-clickable"
+                            >
                                 {getDisplayedTicketUid(findAndSplitContentWith(content, objectId).ticketUid)}
                             </span>
                             {findAndSplitContentWith(content, objectId).endContent}
