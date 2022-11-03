@@ -34,7 +34,7 @@ const InputChoice = ({
                         key={key}
                     >
                         <div
-                            className="cursor-pointer bg-neo-link  transform hover:scale-105 transition-transform rounded-sm text-center"
+                            className="cursor-pointer bg-neo-link transform hover:scale-105 transition-transform rounded-sm text-center"
                             id={`${item.value} ${key}`}
                             onClick={() => fCallBack && fCallBack({ label: item.label, value: item.value })}
                         >

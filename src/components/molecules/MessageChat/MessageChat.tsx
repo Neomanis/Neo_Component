@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from "react";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { Img, Icon, BubbleChat } from "@/components/atoms";
+import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
+import { Img, Icon, BubbleChat, Loader } from "@/components/atoms";
+import { classNames } from "@/utils/tools";
 
 export interface MessageChatProps {
     content: string | ReactElement;
@@ -8,6 +9,9 @@ export interface MessageChatProps {
     isMe: boolean;
     privateMessage?: boolean;
     name: string;
+    isFailed?: boolean;
+    isValidate?: boolean;
+    isLoading?: boolean;
     avatar?: {
         encodedAvatar: string;
         mimetype: string;
@@ -15,31 +19,41 @@ export interface MessageChatProps {
     };
 }
 
-const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: MessageChatProps): ReactElement => {
+const MessageChat = ({
+    content,
+    date,
+    isMe,
+    privateMessage,
+    isFailed,
+    isValidate = true,
+    isLoading,
+    name,
+    avatar,
+}: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
 
     return (
         <div>
             <div
-                className={`
-                ${isMe && " flex-row-reverse"} 
-                overflow-hidden h-4 text-xxs flex text-neo-blue-secondary font-bold`}
+                className={classNames(
+                    "overflow-hidden h-4 text-xxs flex text-neo-blue-secondary font-bold",
+                    isMe && "flex-row-reverse"
+                )}
                 style={{ marginBottom: 1 }}
             >
                 <div
-                    className={`flex transform duration-300 transition-transform 
-                    ${isMe && "flex-row-reverse"} 
-                    ${!hover && "translate-y-4"}
-                    `}
+                    className={classNames(
+                        "flex transform duration-300 transition-transform ",
+                        isMe && "flex-row-reverse",
+                        !hover && "translate-y-4"
+                    )}
                 >
                     <p>{name}</p>
                     <p className="px-2">{date}</p>
                 </div>
             </div>
             <div
-                className={`
-                ${isMe && "flex-row-reverse"} 
-                w-full flex items-center relative`}
+                className={classNames(isMe && "flex-row-reverse", "w-full flex items-center relative")}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >
@@ -51,23 +65,50 @@ const MessageChat = ({ content, date, isMe, privateMessage, name, avatar }: Mess
                                 src: avatar.encodedAvatar,
                                 alt: avatar.originalname,
                             }}
-                            className={"rounded-full w-11 h-11"}
+                            className="rounded-full w-11 h-11"
                         />
                     ) : (
-                        <Img type="imgProfile" className={"rounded-full w-11"} />
+                        <Img type="imgProfile" className="rounded-full w-11" />
                     )}
                 </div>
                 <div className="mx-3 relative">
-                    {privateMessage && (
+                    {!isFailed && privateMessage && (
                         <Icon
-                            className={`${!isMe ? "-left-2" : "-right-2"} text-neo-red absolute top-0 drop-shadow-md `}
+                            className={classNames(
+                                !isMe ? "-left-2" : "-right-2",
+                                "text-neo-red absolute -top-1 drop-shadow-md z-50"
+                            )}
                             fontIcon={faLock}
                         />
+                    )}
+                    {isFailed && (
+                        <>
+                            <Icon
+                                fontIcon={faCircleExclamation}
+                                className={classNames(
+                                    !isMe ? "-left-2" : "-right-2",
+                                    "text-neo-red text-base absolute -top-1 z-50"
+                                )}
+                            />
+                            <div
+                                className={classNames(
+                                    !isMe ? "-left-2" : "-right-1",
+                                    !isMe ? "-left-1" : "-right-1",
+                                    "bg-white h-[10px] w-2 absolute top-0 z-40 "
+                                )}
+                            ></div>
+                        </>
+                    )}
+                    {isLoading && !isValidate && (
+                        <div className="absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                            <Loader type="circleOnly" className="text-white" />
+                        </div>
                     )}
                     <BubbleChat
                         bgColor={isMe && "bg-neo-bg-B "}
                         border={!isMe && "border-neo-bg-B"}
                         content={content}
+                        isValidate={isValidate}
                     />
                 </div>
             </div>

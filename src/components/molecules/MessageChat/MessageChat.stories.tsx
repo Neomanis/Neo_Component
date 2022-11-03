@@ -14,9 +14,9 @@ export default {
 const Template: ComponentStory<typeof MessageChat> = (args) => {
     return (
         <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
-            <MessageChat {...args} isMe={true} />
-            <MessageChat {...args} isMe={false} />
-            <MessageChat {...args} isMe={true} />
+            <MessageChat {...args} isMe={true} isFailed={true} />
+            <MessageChat {...args} isMe={false} privateMessage={true} />
+            <MessageChat {...args} isMe={true} isLoading={true} />
             <MessageChat {...args} isMe={false} />
         </div>
     );
@@ -37,6 +37,8 @@ Default.args = {
     date: "12:12",
     name: "Ragnaros The Firelord",
     privateMessage: false,
+    isValidate: true,
+    isFailed: false,
 };
 
 export const EncodedAvatar: ComponentStory<typeof MessageChat> = Template.bind({});
