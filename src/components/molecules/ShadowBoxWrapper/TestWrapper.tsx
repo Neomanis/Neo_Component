@@ -6,7 +6,7 @@ interface Props {
 }
 
 const TestWrapper = ({ multipleChild }: Props): ReactElement => {
-    const refParent = useRef<HTMLUListElement>(null);
+    const refParent = useRef<HTMLDivElement>(null);
     return (
         <div className="h-32 flex items-center relative w-min">
             <ShadowBoxWrapper

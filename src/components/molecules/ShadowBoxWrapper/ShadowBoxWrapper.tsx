@@ -1,23 +1,26 @@
 import React, { CSSProperties, ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
-
+import { classNames as createClassNames } from "@/utils/tools";
 export interface ShadowBoxWrapperProps {
-    refParent?: RefObject<HTMLUListElement>;
+    refParent?: RefObject<HTMLDivElement>;
     children: ReactNode;
-    classNames: {
-        topShadowBox: string;
-        bottomShadowBox: string;
-        container: string;
+    classNames?: {
+        topShadowBox?: string;
+        bottomShadowBox?: string;
+        container?: string;
     };
-    linearGradient: {
-        first: string;
-        second: string;
-    };
+    linearGradient:
+        | {
+              first: string;
+              second: string;
+          }
+        | "bg-A"
+        | "bg-B";
     containerStyle?: CSSProperties;
 }
 
 const ShadowBoxWrapper = ({
     children,
-    classNames,
+    classNames = { container: "", topShadowBox: "", bottomShadowBox: "" },
     linearGradient,
     refParent,
     containerStyle,
@@ -25,9 +28,18 @@ const ShadowBoxWrapper = ({
     const [showTopShadowBox, setShowTopShadowBox] = useState(false);
     const [showBottomShadowBox, setShowBottomShadowBox] = useState(true);
 
-    const listContainerRef = useRef<HTMLUListElement>(null);
+    const listContainerRef = useRef<HTMLDivElement>(null);
 
-    function detectScroll(ref: HTMLUListElement): void {
+    switch (linearGradient) {
+        case "bg-A":
+            linearGradient = { first: "rgb(09, 40, 71)", second: "rgba(09, 40, 71,0.5)" };
+            break;
+        case "bg-B":
+            linearGradient = { first: "rgb(14, 56, 100)", second: "rgba(14, 56, 100,0.5)" };
+            break;
+    }
+
+    function detectScroll(ref: HTMLDivElement): void {
         const scrollPercentage = ref.scrollTop / (ref.scrollHeight - ref.clientHeight);
         if (scrollPercentage === 0) {
             setShowTopShadowBox(false);
@@ -43,7 +55,7 @@ const ShadowBoxWrapper = ({
         }
     }
 
-    function isOverflow(element: HTMLUListElement): boolean {
+    function isOverflow(element: HTMLDivElement): boolean {
         return element.scrollHeight > element.clientHeight;
     }
 
@@ -66,9 +78,14 @@ const ShadowBoxWrapper = ({
     }, [children]);
 
     return (
-        <ul
+        <div
             ref={refParent ? refParent : listContainerRef}
-            className={classNames.container}
+            className={createClassNames(
+                "list-none overflow-y-scroll no-scrollbar",
+                !classNames.container?.includes(" h-") && "h-full",
+                !classNames.container?.includes(" w-") && "w-full",
+                classNames.container
+            )}
             style={containerStyle}
             onScroll={() =>
                 refParent
@@ -79,7 +96,12 @@ const ShadowBoxWrapper = ({
         >
             {showTopShadowBox && (
                 <div
-                    className={classNames.topShadowBox}
+                    className={createClassNames(
+                        "w-full absolute z-20 left-0",
+                        !classNames.topShadowBox?.includes(" h-") && "h-10",
+                        !classNames.topShadowBox?.includes(" top-") && "top-0",
+                        classNames.topShadowBox
+                    )}
                     style={{
                         background: `linear-gradient(180deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
                     }}
@@ -89,14 +111,19 @@ const ShadowBoxWrapper = ({
             {children}
             {showBottomShadowBox && (
                 <div
-                    className={classNames.bottomShadowBox}
+                    className={createClassNames(
+                        "w-full absolute z-20 left-0",
+                        !classNames.bottomShadowBox?.includes(" h-") && "h-10",
+                        !classNames.bottomShadowBox?.includes(" bottom-") && "bottom-0",
+                        classNames.bottomShadowBox
+                    )}
                     style={{
                         background: `linear-gradient(0deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
                     }}
                     data-testid="shadowBoxWrapperBottomShadowBox"
                 ></div>
             )}
-        </ul>
+        </div>
     );
 };
 
