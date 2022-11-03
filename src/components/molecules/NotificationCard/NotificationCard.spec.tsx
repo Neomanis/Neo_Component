@@ -1,4 +1,3 @@
-import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import NotificationCard from "./NotificationCard";
 

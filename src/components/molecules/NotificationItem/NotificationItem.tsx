@@ -46,7 +46,10 @@ const NotificationItem = ({
 
     if (notificationType === "approval") {
         return (
-            <div className="text-neo-yellow-sand group-hover:text-neo-bg-B relative">
+            <div
+                className="text-neo-yellow-sand group-hover:text-neo-bg-B relative"
+                data-testid="notifItem-approvalType"
+            >
                 <div className="text-xxs uppercase mb-2 font-semibold">
                     {getFormatedTimeToNowExtended(notification.createdAt, i18n.language)}
                 </div>
@@ -70,6 +73,7 @@ const NotificationItem = ({
                             size="none"
                             rounded="none"
                             disabled={approvalCallHandler.isLoading}
+                            data-testid="notifItem-approvalType-accept"
                         >
                             {t("global.validate")}
                         </Button>
@@ -83,6 +87,7 @@ const NotificationItem = ({
                             size="none"
                             rounded="none"
                             disabled={approvalCallHandler.isLoading}
+                            data-testid="notifItem-approvalType-decline"
                         >
                             {t("global.refuse")}
                         </Button>
@@ -99,9 +104,12 @@ const NotificationItem = ({
                     "cursor-pointer",
                     notification.severity === "major" ? "text-neo-urgency-major" : "text-neo-orange"
                 )}
+                data-testid="notifItem-outageType"
                 onClick={() => setIsFolded(!isFolded)}
             >
-                <div className="font-bold text-xs uppercase">{notification.title}</div>
+                <div className="font-bold text-xs uppercase" data-testid="notifItem-outageType-title">
+                    {notification.title}
+                </div>
                 <div className="text-xxs uppercase mb-2 font-semibold">
                     {getOutageDateInformation(
                         { startAt: notification.startAt, endAt: notification.endAt },
@@ -116,7 +124,11 @@ const NotificationItem = ({
         );
     }
     return (
-        <div className="text-white cursor-pointer relative" onClick={() => setIsFolded(!isFolded)}>
+        <div
+            className="text-white cursor-pointer relative"
+            onClick={() => setIsFolded(!isFolded)}
+            data-testid="notifItem-notifType"
+        >
             <div className="font-bold text-xs uppercase">
                 {notification.notification.type === "message" ? t("global.message_one") : t("ticket.title_one")}
             </div>
@@ -125,16 +137,23 @@ const NotificationItem = ({
             </div>
             {findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
                 .ticketUid === null ? (
-                <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
+                <p
+                    className={classNames("text-xxs", isFolded && "line-clamp-2")}
+                    data-testid="notifItem-content-no-ticketUid"
+                >
                     {notification.notification.content}
                 </p>
             ) : (
-                <p className={classNames("text-xxs", isFolded && "line-clamp-2")}>
+                <p className={classNames("text-xxs", isFolded && "line-clamp-2")} data-testid="notifItem-content">
                     {
                         findAndSplitContentWith(notification.notification.content, notification.notification.objectId)
                             .startContent
                     }
-                    <span className="text-neo-blue hover:text-neo-pink" onClick={navigateTo}>
+                    <span
+                        className="text-neo-blue hover:text-neo-pink"
+                        onClick={navigateTo}
+                        data-testid="notifItem-span"
+                    >
                         {getDisplayedTicketUid(
                             findAndSplitContentWith(
                                 notification.notification.content,
@@ -158,6 +177,7 @@ const NotificationItem = ({
                 size="none"
                 rounded="none"
                 className="absolute -right-3 top-1/2 transform -translate-y-1/2"
+                data-testid="notifItem-notif-button"
             />
         </div>
     );
