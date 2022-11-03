@@ -16,9 +16,9 @@ const Template: ComponentStory<typeof ShadowBoxWrapper> = (args) => {
             <ShadowBoxWrapper refParent={refParent} {...args}>
                 <li className="bg-neo-link h-8 flex justify-center items-center p-2 mb-2">Item 1</li>
                 <li className="bg-neo-link h-8 flex justify-center items-center p-2 mb-2">Item 4</li>
-                <li className="bg-neo-link  h-8 flex justify-center items-center p-2 mb-2">Item 8</li>
-                <li className="bg-neo-link  h-8 flex justify-center items-center p-2 mb-2">Item 10</li>
-                <li className="bg-neo-link  h-8 flex justify-center items-center p-2 mb-2">Item 112</li>
+                <li className="bg-neo-link h-8 flex justify-center items-center p-2 mb-2">Item 8</li>
+                <li className="bg-neo-link h-8 flex justify-center items-center p-2 mb-2">Item 10</li>
+                <li className="bg-neo-link h-8 flex justify-center items-center p-2 mb-2">Item 112</li>
             </ShadowBoxWrapper>
         </ul>
     );
