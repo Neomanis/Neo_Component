@@ -1,4 +1,4 @@
-// import React from "react";
+/* eslint-disable no-console */
 import { test, expect } from "@playwright/experimental-ct-react";
 import NotificationItem from "./NotificationItem";
 
@@ -17,7 +17,6 @@ const notifWithUid = {
         read: false,
         lastUpdatedAt: "",
     },
-    // eslint-disable-next-line no-console
     navigateTo: () => console.log("Let's navigate else where"),
 };
 
@@ -95,7 +94,6 @@ test("should display an approval", async ({ mount }) => {
                 sender: 2,
             }}
             approvalCallHandler={{
-                // eslint-disable-next-line no-console
                 answerApproval: () => console.log("coucou"),
                 isLoading: false,
                 isError: false,

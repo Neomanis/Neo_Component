@@ -19,7 +19,7 @@ export type NotificationItemProps = {
     navigateTo?: () => void;
 } & NotificationType;
 
-export type NotificationType =
+type NotificationType =
     | {
           notificationType: "approval";
           notification: Approval;
