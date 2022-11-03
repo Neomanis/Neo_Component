@@ -30,9 +30,6 @@ const ShadowBoxWrapper = ({
 
     const listContainerRef = useRef<HTMLDivElement>(null);
 
-    const defaultContainerClassNames = "h-full w-full";
-    const defaultTopClassNames = "top-0 h-10";
-    const defaultBottomClassNames = "bottom-0 h-10";
     switch (linearGradient) {
         case "bg-A":
             linearGradient = { first: "rgb(09, 40, 71)", second: "rgba(09, 40, 71,0.5)" };
@@ -85,7 +82,7 @@ const ShadowBoxWrapper = ({
             ref={refParent ? refParent : listContainerRef}
             className={createClassNames(
                 "list-none overflow-y-scroll no-scrollbar",
-                classNames.container ?? defaultContainerClassNames
+                classNames.container ?? "h-full w-full"
             )}
             style={containerStyle}
             onScroll={() =>
@@ -97,10 +94,7 @@ const ShadowBoxWrapper = ({
         >
             {showTopShadowBox && (
                 <div
-                    className={createClassNames(
-                        "w-full absolute z-20 left-0",
-                        classNames.topShadowBox ?? defaultTopClassNames
-                    )}
+                    className={createClassNames("w-full absolute z-20 left-0", classNames.topShadowBox ?? "top-0 h-10")}
                     style={{
                         background: `linear-gradient(180deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
                     }}
@@ -112,7 +106,7 @@ const ShadowBoxWrapper = ({
                 <div
                     className={createClassNames(
                         "w-full absolute z-20 left-0",
-                        classNames.bottomShadowBox ?? defaultBottomClassNames
+                        classNames.bottomShadowBox ?? "bottom-0 h-10"
                     )}
                     style={{
                         background: `linear-gradient(0deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
