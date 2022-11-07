@@ -81,7 +81,10 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
                 DEFAULT: "#FFCC66",
                 sand: "#e2dc8f",
             },
-            violet: "#6845ba",
+            purple: {
+                DEFAULT: "#6845ba",
+                light: "#B072FF",
+            },
             grey: "#473c61",
             ticketUrgency: {
                 very: {
