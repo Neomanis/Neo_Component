@@ -121,12 +121,12 @@ const Input = ({
                                 errorMessage={errorMessage}
                                 isSuccess={state.isSuccess}
                                 fCallBackCancel={(): void => {
-                                    if (onDotCancelCallBack) {
-                                        onDotCancelCallBack(state.previous);
-                                    }
                                     if (setValue && clearErrors) {
                                         setValue(refForm, state.previous);
                                         clearErrors();
+                                    }
+                                    if (onDotCancelCallBack) {
+                                        onDotCancelCallBack(state.previous);
                                     }
                                     if (state.timeoutId) {
                                         clearTimeout(state.timeoutId);
