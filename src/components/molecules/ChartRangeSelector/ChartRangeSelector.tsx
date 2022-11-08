@@ -14,6 +14,7 @@ import {
     format,
     addDays,
     addWeeks,
+    isDate,
 } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -27,6 +28,7 @@ export interface Props {
     fullSelector?: boolean;
     containerClassName?: string;
     defaultValue?: { period: string; dates: { start: Date; end: Date } };
+    resetDates?: { reset: boolean; setter: (val: boolean) => void };
 }
 
 enum rangeDateValue {
@@ -43,6 +45,7 @@ const ChartRangeSelector = ({
     fullSelector = true,
     containerClassName = "",
     defaultValue = { period: "daily", dates: { start: new Date(), end: new Date() } },
+    resetDates,
 }: Props): ReactElement => {
     const { t, i18n } = useTranslation();
     const data = [
@@ -52,6 +55,7 @@ const ChartRangeSelector = ({
         { label: t("date.shortDateSelector.year"), value: rangeDateValue.yearly },
     ];
 
+    const refDate: Date = useMemo(() => new Date(), []);
     if (fullSelector) {
         data.unshift({ label: t("date.day_one"), value: rangeDateValue.daily });
         data.push({ label: t("global.period"), value: rangeDateValue.custom });
@@ -61,11 +65,9 @@ const ChartRangeSelector = ({
     const [offset, setOffset] = useState<number>(0);
 
     const [customRange, setCustomRange] = useState<{ start: Date; end: Date }>({
-        start: startOfDay(defaultValue.dates.start),
-        end: endOfDay(defaultValue.dates.end),
+        start: isDate(defaultValue.dates.start) ? startOfDay(defaultValue.dates.start) : startOfDay(refDate),
+        end: isDate(defaultValue.dates.end) ? endOfDay(defaultValue.dates.end) : endOfDay(refDate),
     });
-
-    const refDate: Date = useMemo(() => new Date(), []);
 
     const formMethods = useForm({ mode: "onChange" });
 
@@ -146,9 +148,10 @@ const ChartRangeSelector = ({
                     offset
                 );
             case rangeDateValue.custom:
-                return defaultValue.period === rangeDateValue.custom
-                    ? { start: customRange.start, end: customRange.end }
-                    : { start: refDate, end: refDate };
+                return {
+                    start: isDate(customRange.start) ? customRange.start : startOfDay(refDate),
+                    end: isDate(customRange.end) ? customRange.end : endOfDay(refDate),
+                };
 
             default:
                 return dayRangePicker(refDate, refDate.getDay());
@@ -177,13 +180,24 @@ const ChartRangeSelector = ({
     }, [typeRangeSelect, dateRange]);
 
     const periodDefaultValue = useMemo(
-        (): [Date, Date] => [startOfDay(defaultValue.dates.start), endOfDay(defaultValue.dates.end)],
+        (): [Date, Date] => [
+            startOfDay(defaultValue.dates.start ?? new Date()),
+            endOfDay(defaultValue.dates.end ?? new Date()),
+        ],
         []
     );
 
     useEffect(() => {
         fCallBackData({ period: typeRangeSelect, dates: { start: dateRange.start, end: dateRange.end } });
     }, [dateRange]);
+
+    useEffect(() => {
+        if (resetDates && resetDates.reset) {
+            setCustomRange({ start: undefined, end: undefined });
+            setTypeRangeSelect(undefined);
+            resetDates.setter(false);
+        }
+    }, [resetDates]);
 
     function getWidth(): number {
         switch (typeRangeSelect) {
