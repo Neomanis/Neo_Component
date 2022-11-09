@@ -1,33 +1,47 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Ticket } from "@neomanis/neo-types";
-import { useTranslation } from "@neomanis/neo-translation";
 import { ClockLogo } from "@/img/svg";
 import {
     classNames,
     getContrastBasedOnHexColor,
+    getDateFnsLocaleFromUserLang,
     getDisplayedTicketUid,
     getStatusColor,
-    getTimeToNowWithTranslation,
 } from "@/utils";
 import { Icon } from "@/components/atoms";
+import { formatDistanceStrict } from "date-fns";
 
 export interface NeoHelperTicketProps {
     ticket: Ticket;
-    onClick: (ticket: Ticket) => void;
     categoryIcon?: IconProp;
+    userLanguage: string;
 }
 
-const NeoHelperTicket = ({ ticket, categoryIcon, onClick: fCallBack }: NeoHelperTicketProps): ReactElement => {
-    const { i18n } = useTranslation();
+type TypeConditionalProps = { type: "ticket"; onClick: (ticket: Ticket) => void } | { type: "banner"; onClick?: never };
+
+const NeoHelperTicketBanner = ({
+    ticket,
+    categoryIcon,
+    onClick,
+    type,
+    userLanguage,
+}: NeoHelperTicketProps & TypeConditionalProps): ReactElement => {
+    const now = useMemo(() => Date.now(), []);
+
     return (
         <div
-            className="rounded bg-neo-bg-B overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
-            onClick={(): void => fCallBack(ticket)}
+            className={classNames(
+                "bg-neo-bg-B",
+                type === "ticket" &&
+                    "rounded overflow-hidden cursor-pointer transform transition-transform hover:scale-105"
+            )}
+            onClick={(): void => onClick(ticket)}
         >
             <div
                 className={classNames(
-                    "font-bold flex items-center px-3 h-[50px]",
+                    "font-bold flex items-center px-3",
+                    type === "banner" ? "h-[40px]" : "h-[50px]",
                     getStatusColor(ticket.status, false, "bg"),
                     getContrastBasedOnHexColor(getStatusColor(ticket.status, true)) === "black"
                         ? "text-neo-bg-B"
@@ -35,7 +49,10 @@ const NeoHelperTicket = ({ ticket, categoryIcon, onClick: fCallBack }: NeoHelper
                 )}
                 data-testid="NHticket-blockTitle"
             >
-                <p className="py-1 line-clamp-2 leading-[13px]" data-testid="NHticket-title">
+                <p
+                    className={classNames("py-1 line-clamp-2", type === "banner" ? "leading-[18px]" : "leading-[20px]")}
+                    data-testid="NHticket-title"
+                >
                     {ticket.name}
                 </p>
             </div>
@@ -58,7 +75,9 @@ const NeoHelperTicket = ({ ticket, categoryIcon, onClick: fCallBack }: NeoHelper
                             )}
                         />
                         <p className="text-xs font-bold" data-testid="NHticket-ticketCreationDate">
-                            {getTimeToNowWithTranslation(ticket.date_creation, i18n.language)}
+                            {formatDistanceStrict(now, new Date(ticket.date_creation), {
+                                locale: getDateFnsLocaleFromUserLang(userLanguage),
+                            })}
                         </p>
                     </div>
                     <div className="h-6 flex items-center" data-testid="NHticket-categoryIcon">
@@ -70,4 +89,4 @@ const NeoHelperTicket = ({ ticket, categoryIcon, onClick: fCallBack }: NeoHelper
     );
 };
 
-export default NeoHelperTicket;
+export default NeoHelperTicketBanner;
