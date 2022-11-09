@@ -14,6 +14,7 @@ export interface SearchFieldProps {
     register: UseFormRegister<FieldValues>;
     setValue: UseFormSetValue<FieldValues>;
     reset?: UseFormReset<FieldValues>;
+    id?: string;
 }
 
 const SearchField = ({
@@ -27,6 +28,7 @@ const SearchField = ({
     iconResetColor = "#FFFFFF",
     inputClassName = "w-full bg-transparent text-white placeholder-white border-none focus:outline-none",
     containerClassName = "bg-neo-bg-B h-12 flex items-center rounded-md overflow-hidden w-full justify-between",
+    id,
 }: SearchFieldProps): ReactElement => {
     function onEscape(e: React.KeyboardEvent<HTMLDivElement>) {
         if (e.code === "Escape") {
@@ -46,6 +48,7 @@ const SearchField = ({
                     setValue={setValue}
                     typeInput="text"
                     showLabelAndUpdater={false}
+                    id={id}
                 />
             </div>
             <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">

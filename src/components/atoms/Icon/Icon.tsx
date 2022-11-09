@@ -1,4 +1,4 @@
-import React, { CSSProperties, MouseEvent, ReactElement } from "react";
+import React, { CSSProperties, HTMLAttributes, MouseEvent, ReactElement } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,18 +14,28 @@ export interface IconProps {
     testId?: string;
 }
 
-const Icon = ({ className, fCallBack, fontIcon, svg, redDot, style, type, testId }: IconProps): ReactElement => {
+const Icon = ({
+    className,
+    fCallBack,
+    fontIcon,
+    svg,
+    redDot,
+    style,
+    type,
+    testId,
+    ...props
+}: IconProps & HTMLAttributes<HTMLDivElement>): ReactElement => {
     switch (type) {
         case "iconLink":
             return (
-                <div className={className} style={style} onClick={fCallBack} data-testid="icon-link-body">
+                <div className={className} style={style} onClick={fCallBack} data-testid="icon-link-body" {...props}>
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}
                 </div>
             );
         case "placeholderInput":
             return (
-                <div className={className} style={style} data-testid="icon-placeholder-body">
+                <div className={className} style={style} data-testid="icon-placeholder-body" {...props}>
                     {!svg && fontIcon && (
                         <FontAwesomeIcon
                             icon={fontIcon}
@@ -37,7 +47,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, style, type, testId
             );
         case "iconWithRedDot":
             return (
-                <div className={className} style={style} data-testid="icon-reddot-body">
+                <div className={className} style={style} data-testid="icon-reddot-body" {...props}>
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {redDot && (
                         <FontAwesomeIcon
@@ -56,6 +66,7 @@ const Icon = ({ className, fCallBack, fontIcon, svg, redDot, style, type, testId
                     style={style}
                     onClick={fCallBack}
                     data-testid={testId || "icon-default-body"}
+                    {...props}
                 >
                     {!svg && fontIcon && <FontAwesomeIcon icon={fontIcon} />}
                     {!fontIcon && svg && svg}

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { InputHTMLAttributes, ReactElement, useEffect, useRef } from "react";
 import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
@@ -70,7 +70,8 @@ const Input = ({
     timerSetting = 5000,
     typeInput,
     updateFunction,
-}: InputProps): ReactElement => {
+    ...props
+}: InputProps & InputHTMLAttributes<HTMLInputElement>): ReactElement => {
     const [state, dispatch] = useInputs(defaultValue);
 
     const isLastMount = useRef(false);
@@ -178,6 +179,7 @@ const Input = ({
                         placeholder={placeholder}
                         type={typeInput}
                         style={style}
+                        {...props}
                     />
                 </div>
             </label>
