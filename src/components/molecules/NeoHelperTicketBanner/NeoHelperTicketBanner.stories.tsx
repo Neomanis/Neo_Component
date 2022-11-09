@@ -2,13 +2,13 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import NeoHelperTicket from "./NeoHelperTicket";
+import NeoHelperTicket from "./NeoHelperTicketBanner";
 import { fakeTicket } from "@/utils/storiesData/fakeObject";
 import { faServer } from "@fortawesome/free-solid-svg-icons";
 
 export default {
     component: NeoHelperTicket,
-    title: "NeoHelperTicket",
+    title: "Atoms/NeoHelperTicketBanner",
 } as Meta;
 
 const Template: ComponentStory<typeof NeoHelperTicket> = (args) => {
@@ -19,9 +19,19 @@ const Template: ComponentStory<typeof NeoHelperTicket> = (args) => {
     );
 };
 
-export const Default: ComponentStory<typeof NeoHelperTicket> = Template.bind({});
-Default.args = {
+export const Ticket: ComponentStory<typeof NeoHelperTicket> = Template.bind({});
+Ticket.args = {
     ticket: fakeTicket,
     onClick: () => console.log("clicked"),
     categoryIcon: faServer,
+    type: "ticket",
+    userLanguage: "fr-FR",
+};
+
+export const Banner: ComponentStory<typeof NeoHelperTicket> = Template.bind({});
+Banner.args = {
+    ticket: fakeTicket,
+    categoryIcon: faServer,
+    type: "banner",
+    userLanguage: "fr-FR",
 };
