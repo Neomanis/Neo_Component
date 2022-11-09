@@ -27,7 +27,7 @@ export interface Props {
     fCallBackData: (dates: { period: string; dates: { start: Date; end: Date } }) => void;
     fullSelector?: boolean;
     containerClassName?: string;
-    defaultValue?: { period: string; dates: { start: Date; end: Date } };
+    defaultValue?: { period: string | undefined; dates: { start: Date | undefined; end: Date | undefined } };
     resetDates?: { reset: boolean; setter: (val: boolean) => void };
 }
 
