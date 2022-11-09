@@ -53,7 +53,7 @@ const Icon = ({
                         <FontAwesomeIcon
                             icon={faCircle}
                             data-testid="icon-reddot"
-                            className="text-neo-red absolute top-0 right-0 text-xxs"
+                            className="text-neo-red absolute top-0 right-0 text-xxs animate-pulse"
                         />
                     )}
                     {!fontIcon && svg && svg}
