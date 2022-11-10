@@ -26,3 +26,4 @@ export { default as InputTextarea } from "./InputTextarea";
 export { default as TicketStatus } from "./TicketStatus";
 export { default as TicketDateInfos } from "./TicketDateInfos";
 export { default as Output } from "./Output";
+export { default as DiagnosticTab } from "./DiagnosticTab";
