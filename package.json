@@ -1,13 +1,16 @@
 {
-  "name": "@neomanis/neo-component",
-  "version": "5.12.0",
-  "main": "build/index.js",
-  "files": [
-    "build"
-  ],
-  "exports": {
-    ".": {
-      "import": "./build/index.js"
+    "name": "@neomanis/neo-component",
+    "version": "5.12.1",
+    "main": "build/index.js",
+    "files": [
+        "build"
+    ],
+    "exports": {
+        ".": {
+            "import": "./build/index.js"
+        },
+        "./build/style.css": "./build/style.css",
+        "./build/tailwind.config": "./build/tailwind.config.js"
     },
     "license": "MIT",
     "publishConfig": {
