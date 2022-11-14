@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { InputHTMLAttributes, ReactElement, useEffect, useRef } from "react";
 import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
@@ -48,7 +48,8 @@ const InputTextarea = ({
     targetId,
     timerSetting = 5000,
     updateFunction,
-}: InputTextareaProps): ReactElement => {
+    ...props
+}: InputTextareaProps & InputHTMLAttributes<HTMLTextAreaElement>): ReactElement => {
     const [state, dispatch] = useInputs(defaultValue);
     const isLastMount = useRef(false);
 
@@ -109,6 +110,7 @@ const InputTextarea = ({
                                 trigger={state.trigger}
                                 updateCooldown={timerSetting}
                                 errorMessage={errorMessage}
+                                id={props.id}
                             />
                         )}
                     </div>
@@ -145,6 +147,7 @@ const InputTextarea = ({
                         }
                     }}
                     placeholder={placeholder}
+                    {...props}
                 ></textarea>
             </label>
         </div>

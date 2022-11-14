@@ -135,6 +135,7 @@ const Input = ({
                                     dispatch({ type: "CANCEL_UPDATE" });
                                 }}
                                 trigger={state.trigger}
+                                id={props.id}
                             />
                         )}
                     </div>
