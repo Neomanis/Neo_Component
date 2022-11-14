@@ -602,7 +602,7 @@ export const fakeGroups: GroupObject[] = [
 ];
 
 export const fakeTicketResources: Partial<Ticket> = {
-    resources: [{ type: "Mana", item: { id: 2 }, tickets: [] }],
+    resources: [{ type: "Mana", item: { id: 2, name: "fakeRessources" }, tickets: [] }],
 };
 
 export const fakeNotification: Notification = {
