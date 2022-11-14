@@ -14,6 +14,7 @@ export interface ValidationCardProps {
     fCallBackCancel: () => void;
     fCallBackValidate: () => void;
     text?: string;
+    id?: string;
 }
 
 const ValidationCard = ({
@@ -24,6 +25,7 @@ const ValidationCard = ({
     fCallBackValidate,
     fCallBackCancel,
     text = "",
+    id,
 }: ValidationCardProps): ReactElement => {
     return (
         <div className={classNames.container}>
@@ -38,6 +40,7 @@ const ValidationCard = ({
                         }}
                         variant="none"
                         size="none"
+                        id={`${id}-validate`}
                     />
                 </div>
                 <div className="transform hover:scale-110">
@@ -47,6 +50,7 @@ const ValidationCard = ({
                         onClick={(): void => fCallBackCancel()}
                         variant="none"
                         size="none"
+                        id={`${id}-cancel`}
                     />
                 </div>
             </div>

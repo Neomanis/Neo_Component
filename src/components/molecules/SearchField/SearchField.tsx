@@ -58,6 +58,7 @@ const SearchField = ({
                         onClick={() => reset && reset()}
                         variant="none"
                         size="none"
+                        id={`${id}-clear`}
                     />
                 )}
             </div>

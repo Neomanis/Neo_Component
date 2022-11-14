@@ -2,7 +2,7 @@ import React, { ReactElement, useMemo } from "react";
 import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, GroupObject } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
-import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
+import { classNames, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
 import NeoColors from "@/utils/neoColors";
@@ -89,12 +89,18 @@ const Ticket = ({
 
     return (
         <div
-            className={`transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px] opacity-${opacity}
-                        ${!isOpacity ? "cursor-pointer transform hover:scale-105" : ""}`}
+            className={classNames(
+                "transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px]",
+                `opacity-${opacity}`,
+                !isOpacity && "cursor-pointer transform hover:scale-105"
+            )}
             onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
             onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
             onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
             data-testid="ticket-body"
+            id="ticket"
+            data-ticket-uid={ticket.uid}
+            data-grid-id={gridId}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {checkIsWatcher() && (

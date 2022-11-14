@@ -204,6 +204,7 @@ const Grid = ({
                             variant="none"
                             size="none"
                             rounded="none"
+                            id={`${gridId}-previous-button`}
                         />
                         <Button
                             className="cursor-pointer w-5 pl-1 transform hover:scale-105"
@@ -213,6 +214,7 @@ const Grid = ({
                             variant="none"
                             size="none"
                             rounded="none"
+                            id={`${gridId}-next-button`}
                         />
                     </div>
                 )}

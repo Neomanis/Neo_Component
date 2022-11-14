@@ -11,6 +11,7 @@ export interface UpdaterProps {
     fCallBackCancel?: () => void;
     updateCooldown?: number;
     trigger?: boolean;
+    id?: string;
 }
 
 const Updater = ({
@@ -23,6 +24,7 @@ const Updater = ({
     fCallBackCancel,
     updateCooldown = 4000,
     trigger,
+    id,
 }: UpdaterProps): ReactElement => {
     const { t } = useTranslation();
     const [progress, setProgress] = useState(0);
@@ -49,12 +51,20 @@ const Updater = ({
     return (
         <div data-testid="dotClassName" className={`flex ${className}`}>
             {isSuccess && (
-                <div data-testid="dotSuccess" className="text-neo-green text-xs font-bold">
+                <div
+                    data-testid="dotSuccess"
+                    className="text-neo-green text-xs font-bold"
+                    {...(id && { id: `${id}-success` })}
+                >
                     {t("global.success").toUpperCase()}
                 </div>
             )}
             {isUpdate && (
-                <div data-testid="dotUpdating" className="text-neo-blue  text-xs font-bold whitespace-nowrap relative">
+                <div
+                    data-testid="dotUpdating"
+                    className="text-neo-blue  text-xs font-bold whitespace-nowrap relative"
+                    {...(id && { id: `${id}-update` })}
+                >
                     {t("global.update").toUpperCase()}
                     {viewBorder && (
                         <div
@@ -70,7 +80,11 @@ const Updater = ({
                 </div>
             )}
             {isError && (
-                <div data-testid="dotError" className="text-neo-red text-xs font-bold">
+                <div
+                    data-testid="dotError"
+                    className="text-neo-red text-xs font-bold"
+                    {...(id && { id: `${id}-error` })}
+                >
                     {errorMessage ? errorMessage : t("error.title", { count: 1 }).toUpperCase()}
                 </div>
             )}
@@ -79,6 +93,7 @@ const Updater = ({
                     data-testid="dotClose"
                     className="pl-2 text-neo-red cursor-pointer text-xs font-bold"
                     onClick={(): void => fCallBackCancel()}
+                    {...(id && { id: `${id}-cancel` })}
                 >
                     {t("global.cancel").toUpperCase()}
                 </div>
