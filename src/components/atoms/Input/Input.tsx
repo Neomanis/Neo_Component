@@ -28,7 +28,7 @@ export interface InputProps {
     placeholder?: string;
     refForm: string;
     register?: UseFormRegister<FieldValues>;
-    required: boolean;
+    required?: boolean;
     setValue?: UseFormSetValue<FieldValues>;
     showLabelAndUpdater?: boolean;
     style?: React.CSSProperties;
