@@ -71,8 +71,8 @@ test("should display stale tto", async ({ mount }) => {
             ticket={{
                 ...fakeTicket,
                 id: 101,
-                date_creation: creationDate.toISOString(),
-                time_to_own: ttoDate.toISOString(),
+                createdAt: creationDate.toISOString(),
+                tto: ttoDate.toISOString(),
             }}
             currentTicket={{ ...fakeTicket, id: 101, gridId: "inventory" }}
         />
@@ -91,8 +91,8 @@ test("should display stale ttr", async ({ mount }) => {
             ticket={{
                 ...fakeTicket,
                 id: 101,
-                date_creation: creationDate.toISOString(),
-                time_to_resolve: ttrDate.toISOString(),
+                createdAt: creationDate.toISOString(),
+                ttr: ttrDate.toISOString(),
                 status: 2,
             }}
         />
