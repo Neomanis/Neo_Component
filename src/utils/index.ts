@@ -1,5 +1,5 @@
 import { getActorName, getRequesterUid, getUserName } from "./userTools";
-import { formatMessage, stripHtml } from "./chatFunction";
+import { stripHtml } from "./chatFunction";
 import {
     formatDate,
     formatDateToNow,
@@ -39,7 +39,6 @@ export {
     classNames,
     formatDate,
     formatDateToNow,
-    formatMessage,
     frontEncrypt,
     getActorName,
     getContrastBasedOnHexColor,

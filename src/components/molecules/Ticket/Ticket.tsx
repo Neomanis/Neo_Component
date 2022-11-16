@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo } from "react";
-import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, GroupObject } from "@neomanis/neo-types";
+import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, MembershipInfo } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
 import { classNames, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
@@ -16,7 +16,7 @@ export interface TicketProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
-    userGroups?: GroupObject[];
+    userGroups?: MembershipInfo[];
     userNeoId?: number;
     categoryIcon?: IconProp;
 }
