@@ -95,7 +95,7 @@ function InputSelect<
         defaultValue,
     });
 
-    const isError = Boolean(errors?.[refForm]);
+    const isError = Boolean(refForm.split(".").reduce((acc, value) => acc?.[value], errors));
 
     const styles = useMemo((): StylesConfig => {
         const style = {
