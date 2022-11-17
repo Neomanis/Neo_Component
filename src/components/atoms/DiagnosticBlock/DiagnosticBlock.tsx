@@ -51,7 +51,7 @@ export interface DiagnosticBlockProps {
         id: number;
         description: string;
         date: Date;
-        executionTime: number;
+        executionTime: number | undefined;
         result: string;
     };
     Error?: Error;

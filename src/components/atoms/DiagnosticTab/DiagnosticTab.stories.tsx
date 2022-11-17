@@ -19,6 +19,8 @@ Default.args = {
     name: "DiagnosticTab",
     diagResult: DiagnosticResult.Solved,
     isSelected: false,
+    onClick: (runId) => console.log(runId),
+    runId: "1234128673",
 };
 
 export const Selected: ComponentStory<typeof DiagnosticTab> = Template.bind({});
@@ -26,4 +28,6 @@ Selected.args = {
     name: "DiagnosticTab-Selected",
     diagResult: DiagnosticResult.Awaiting,
     isSelected: true,
+    onClick: (runId) => console.log(runId),
+    runId: "1234128673",
 };
