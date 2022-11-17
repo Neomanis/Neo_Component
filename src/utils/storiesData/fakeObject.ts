@@ -1,4 +1,4 @@
-import { NeoUser, Notification, Ticket, GroupObject, CompleteUser, Diagnostic } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, GroupObject, CompleteUser, Diagnostic, DiagResult } from "@neomanis/neo-types";
 import { addHours, addMinutes } from "date-fns";
 
 export const fakeTicket: Ticket = {
@@ -60,7 +60,7 @@ export const fakeTicket: Ticket = {
     linkedTickets: [],
 };
 
-export const fakeDiag = {
+export const fakeDiag: Diagnostic = {
     _id: "63330a6ed152a617b60cba5e",
     ticketUid: "1gl-450-INC",
     username: "User02",
@@ -71,355 +71,164 @@ export const fakeDiag = {
     target: "https://ajankloss.neomanis.bzh:8010/a477e5ce-99ea-4fe1-a8e1-401f39921e58",
     diagnostics: [
         {
-            runId: "1664289883786",
-            name: "file_access_check_and_repair",
-            diagExecutionTime: 3638,
-            errorMessage: "",
-            objectOriginalPath: "\\\\pre01-srv01\\ShareFolder",
-            objectUNCPath: "\\\\pre01-srv01\\ShareFolder",
-            serverName: "pre01-srv01",
-            sharedFolderName: "ShareFolder",
-            isLocalResource: "False",
-            isNetworkResource: "True",
+            runId: "1664376143263",
+            name: "test_approval_parent",
+            diagExecutionTime: 2139,
+            helloWorld: "Congratulations, it's working !",
             results: [
                 {
                     Action: {
-                        description: "Convert path to UNC format",
-                        id: 1,
-                        result: "OK",
-                        date: "2022-09-27T14:44:44.236Z",
-                        executionTime: 284,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if file server is up",
+                        description: "Action successful",
                         id: 2,
                         result: "OK",
-                        date: "2022-09-27T14:44:44.618Z",
-                        executionTime: 333,
+                        date: "2022-09-28T14:42:24.070Z",
+                        executionTime: 692,
                     },
                 },
                 {
-                    Action: {
-                        description: "Check if shared folder exist",
-                        id: 3,
-                        result: "OK",
-                        date: "2022-09-27T14:44:46.052Z",
-                        executionTime: 1391,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Retrieve user account informations",
-                        id: 4,
-                        result: "OK",
-                        date: "2022-09-27T14:44:46.602Z",
-                        executionTime: 473,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check user account healthy",
-                        id: 5,
-                        result: "OK",
-                        date: "2022-09-27T14:44:46.606Z",
-                        executionTime: 0,
-                    },
-                },
-            ],
-            isUserAccountOk: "True",
-            userAccountManagerLogin: "User03",
-            userAccountLockOutTime: "",
-            userAccountLockRemainingMinutes: "",
-            userAccountExpirationDate: "",
-            userAccountUserWorkstations: "",
-            isUserAccountExisting: "True",
-            isUserAccountEnabled: "True",
-            isUserAccountManagerLoginSet: "True",
-            isUserAccountLogonHoursOk: "True",
-            isUserAccountNotExpired: "True",
-            isUserAccountPwdDontNeedChange: "True",
-            isUserAccountPwdNotExpired: "True",
-            isUserAccountUnlocked: "True",
-            isUserAccountUserWorkstationsOk: "True",
-        },
-        {
-            runId: "1664292515596",
-            name: "file_access_check_and_repair",
-            diagExecutionTime: 4246,
-            errorMessage: "",
-            objectOriginalPath: "\\\\pre01-srv01\\ShareFolder",
-            objectUNCPath: "\\\\pre01-srv01\\ShareFolder",
-            serverName: "pre01-srv01",
-            sharedFolderName: "ShareFolder",
-            isLocalResource: "False",
-            isNetworkResource: "True",
-            results: [
-                {
-                    Action: {
-                        description: "Convert path to UNC format",
-                        id: 1,
-                        result: "OK",
-                        date: "2022-09-27T15:28:36.123Z",
-                        executionTime: 442,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if file server is up",
-                        id: 2,
-                        result: "OK",
-                        date: "2022-09-27T15:28:36.790Z",
-                        executionTime: 623,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if shared folder exist",
-                        id: 3,
-                        result: "OK",
-                        date: "2022-09-27T15:28:38.450Z",
-                        executionTime: 1622,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Retrieve user account informations",
-                        id: 4,
-                        result: "OK",
-                        date: "2022-09-27T15:28:39Z",
-                        executionTime: 461,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check user account healthy",
-                        id: 5,
-                        result: "OK",
-                        date: "2022-09-27T15:28:39.005Z",
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Action: {
-                        description: "approval test",
-                        id: 6,
-                        result: "Validated",
-                        date: "2022-09-27T15:39:45.168Z",
-                        executionTime: 0,
-                    },
+                    name: "test_approval_enfant",
+                    results: [
+                        {
+                            Action: {
+                                description: "Check user account healthy OK",
+                                id: 5,
+                                result: "OK",
+                                date: "2022-09-27T15:59:01.807Z",
+                                executionTime: 505,
+                            },
+                        },
+                        {
+                            Action: {
+                                description: "approval OK",
+                                id: 6,
+                                result: "OK",
+                                date: "2022-09-27T15:59:27.403Z",
+                                executionTime: 505,
+                            },
+                        },
+                        {
+                            name: "test_approval_enfant 2",
+                            results: [
+                                {
+                                    Action: {
+                                        description: "Action rejected",
+                                        id: 5,
+                                        result: "Rejected",
+                                        date: "2022-09-27T15:59:01.807Z",
+                                        executionTime: 505,
+                                    },
+                                },
+                                {
+                                    Action: {
+                                        description: "Action failed",
+                                        id: 6,
+                                        result: "Failed",
+                                        date: "2022-09-27T15:59:27.403Z",
+                                        executionTime: 505,
+                                    },
+                                },
+                                {
+                                    Exit: {
+                                        id: 7,
+                                        action: "Action escalate",
+                                        type: "escalate",
+                                        position: { x: 1980, y: 30 },
+                                        isLocked: false,
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            Exit: {
+                                id: 7,
+                                action: "Is stupide but is Solved",
+                                type: "solved",
+                                position: { x: 1980, y: 30 },
+                                isLocked: false,
+                            },
+                        },
+                    ],
                 },
                 {
                     Exit: {
                         id: 1,
-                        action: "Everythings looks ok",
-                        type: "solved",
-                        position: { x: 1980, y: 170 },
-                        isLocked: false,
-                    },
-                },
-            ],
-            isUserAccountOk: "True",
-            userAccountManagerLogin: "User03",
-            userAccountLockOutTime: "",
-            userAccountLockRemainingMinutes: "",
-            userAccountExpirationDate: "",
-            userAccountUserWorkstations: "",
-            isUserAccountExisting: "True",
-            isUserAccountEnabled: "True",
-            isUserAccountManagerLoginSet: "True",
-            isUserAccountLogonHoursOk: "True",
-            isUserAccountNotExpired: "True",
-            isUserAccountPwdDontNeedChange: "True",
-            isUserAccountPwdNotExpired: "True",
-            isUserAccountUnlocked: "True",
-            isUserAccountUserWorkstationsOk: "True",
-        },
-        {
-            runId: "1664293553539",
-            name: "file_access_check_and_repair",
-            diagExecutionTime: 3421,
-            errorMessage: "",
-            objectOriginalPath: "\\\\pre01-srv01\\ShareFolder",
-            objectUNCPath: "\\\\pre01-srv01\\ShareFolder",
-            serverName: "pre01-srv01",
-            sharedFolderName: "ShareFolder",
-            isLocalResource: "False",
-            isNetworkResource: "True",
-            results: [
-                {
-                    Action: {
-                        description: "Convert path to UNC format",
-                        id: 1,
-                        result: "OK",
-                        date: "2022-09-27T15:45:53.914Z",
-                        executionTime: 276,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if file server is up",
-                        id: 2,
-                        result: "OK",
-                        date: "2022-09-27T15:45:54.248Z",
-                        executionTime: 291,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if shared folder exist",
-                        id: 3,
-                        result: "OK",
-                        date: "2022-09-27T15:45:55.634Z",
-                        executionTime: 1347,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Retrieve user account informations",
-                        id: 4,
-                        result: "OK",
-                        date: "2022-09-27T15:45:56.165Z",
-                        executionTime: 432,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check user account healthy",
-                        id: 5,
-                        result: "OK",
-                        date: "2022-09-27T15:45:56.170Z",
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Action: {
-                        description: "approval test",
-                        id: 6,
-                        result: "Validated",
-                        date: "2022-09-27T15:46:11.639Z",
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Exit: {
-                        id: 1,
-                        action: "Everythings looks ok",
-                        type: "solved",
-                        position: { x: 1980, y: 170 },
-                        isLocked: false,
-                    },
-                },
-            ],
-            isUserAccountOk: "True",
-            userAccountManagerLogin: "User03",
-            userAccountLockOutTime: "",
-            userAccountLockRemainingMinutes: "",
-            userAccountExpirationDate: "",
-            userAccountUserWorkstations: "",
-            isUserAccountExisting: "True",
-            isUserAccountEnabled: "True",
-            isUserAccountManagerLoginSet: "True",
-            isUserAccountLogonHoursOk: "True",
-            isUserAccountNotExpired: "True",
-            isUserAccountPwdDontNeedChange: "True",
-            isUserAccountPwdNotExpired: "True",
-            isUserAccountUnlocked: "True",
-            isUserAccountUserWorkstationsOk: "True",
-        },
-        {
-            runId: "1664294338266",
-            name: "file_access_check_and_repair",
-            diagExecutionTime: 4369,
-            errorMessage: "",
-            objectOriginalPath: "\\\\pre01-srv01\\ShareFolder",
-            objectUNCPath: "\\\\pre01-srv01\\ShareFolder",
-            serverName: "pre01-srv01",
-            sharedFolderName: "ShareFolder",
-            isLocalResource: "False",
-            isNetworkResource: "True",
-            results: [
-                {
-                    Action: {
-                        description: "Convert path to UNC format",
-                        id: 1,
-                        result: "OK",
-                        date: "2022-09-27T15:58:58.652Z",
-                        executionTime: 275,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if file server is up",
-                        id: 2,
-                        result: "OK",
-                        date: "2022-09-27T15:58:59.039Z",
-                        executionTime: 338,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check if shared folder exist",
-                        id: 3,
-                        result: "OK",
-                        date: "2022-09-27T15:59:01.280Z",
-                        executionTime: 2196,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Retrieve user account informations",
-                        id: 4,
-                        result: "OK",
-                        date: "2022-09-27T15:59:01.803Z",
-                        executionTime: 431,
-                    },
-                },
-                {
-                    Action: {
-                        description: "Check user account healthy",
-                        id: 5,
-                        result: "OK",
-                        date: "2022-09-27T15:59:01.807Z",
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Action: {
-                        description: "approval test",
-                        id: 6,
-                        result: "Rejected",
-                        date: "2022-09-27T15:59:27.403Z",
-                        executionTime: 0,
-                    },
-                },
-                {
-                    Exit: {
-                        id: 7,
-                        action: "Approval failed",
+                        action: "Exite escalate",
                         type: "escalate",
-                        position: { x: 1980, y: 30 },
+                        position: { x: 1980, y: 170 },
                         isLocked: false,
                     },
                 },
             ],
-            isUserAccountOk: "True",
-            userAccountManagerLogin: "User03",
-            userAccountLockOutTime: "",
-            userAccountLockRemainingMinutes: "",
-            userAccountExpirationDate: "",
-            userAccountUserWorkstations: "",
-            isUserAccountExisting: "True",
-            isUserAccountEnabled: "True",
-            isUserAccountManagerLoginSet: "True",
-            isUserAccountLogonHoursOk: "True",
-            isUserAccountNotExpired: "True",
-            isUserAccountPwdDontNeedChange: "True",
-            isUserAccountPwdNotExpired: "True",
-            isUserAccountUnlocked: "True",
-            isUserAccountUserWorkstationsOk: "True",
         },
+    ],
+    awaiting: [],
+    __v: 8,
+} as unknown as Diagnostic;
+
+export const fakeDiagError: Diagnostic = {
+    _id: "63330a6ed152a617b60cba5e",
+    ticketUid: "1gl-450-INC",
+    username: "User02",
+    userNeoId: 7,
+    techName: "admin01",
+    techNeoId: 2,
+    computerName: "pre01-clt01",
+    target: "https://ajankloss.neomanis.bzh:8010/a477e5ce-99ea-4fe1-a8e1-401f39921e58",
+    diagnostics: [
+        {
+            runId: "16643761463263",
+            name: "test_approval_ERROR_EXIT",
+            diagExecutionTime: 2139,
+            helloWorld: "Congratulations, it's working !",
+            results: [
+                {
+                    Action: {
+                        description: "hello world, mais plus vieux",
+                        id: 2,
+                        result: "OK",
+                        date: "2022-09-28T14:42:24.070Z",
+                        executionTime: 692,
+                    },
+                },
+
+                {
+                    name: "test_approval_enfant",
+                    results: [
+                        {
+                            Action: {
+                                description: "Action Rejected",
+                                id: 6,
+                                result: "Rejected",
+                                date: "2022-09-27T15:59:27.403Z",
+                                executionTime: 505,
+                            },
+                        },
+                        {
+                            Error: {
+                                message: "Error Exit",
+                                code: 404,
+                                runId: "1664376143263",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    awaiting: [],
+    __v: 8,
+} as unknown as Diagnostic;
+
+export const fakeAwaitingDiag: Diagnostic = {
+    _id: "63330a6ed152a617b60cba5e",
+    ticketUid: "1gl-450-INC",
+    username: "User02",
+    userNeoId: 7,
+    techName: "admin01",
+    techNeoId: 2,
+    computerName: "pre01-clt01",
+    target: "https://ajankloss.neomanis.bzh:8010/a477e5ce-99ea-4fe1-a8e1-401f39921e58",
+    diagnostics: [
         {
             runId: "1664376143263",
             name: "test_approval_parent",
@@ -440,12 +249,35 @@ export const fakeDiag = {
                     results: [
                         {
                             Action: {
-                                description: "hello world",
-                                id: 2,
-                                result: "OK",
-                                date: "2022-09-28T14:42:24.599Z",
-                                executionTime: 442,
+                                description: "Action rejected",
+                                id: 6,
+                                result: "Rejected",
+                                date: "2022-09-27T15:59:27.403Z",
+                                executionTime: 505,
                             },
+                        },
+                        {
+                            name: "test_approval_enfant 2",
+                            results: [
+                                {
+                                    Action: {
+                                        description: "Check user account healthy",
+                                        id: 5,
+                                        result: "OK",
+                                        date: "2022-09-27T15:59:01.807Z",
+                                        executionTime: 505,
+                                    },
+                                },
+                                {
+                                    Exit: {
+                                        id: 7,
+                                        action: "Approval failed",
+                                        type: "escalate",
+                                        position: { x: 1980, y: 30 },
+                                        isLocked: false,
+                                    },
+                                },
+                            ],
                         },
                     ],
                 },
@@ -475,36 +307,74 @@ export const fakeDiag = {
             userNeoId: 7,
             startTime: 1308,
         },
-        {
-            bookNames: ["test_approval_parent", "test_approval_enfant"],
-            runId: "1664376143263",
-            currentChapter: {
-                id: 1,
-                desc: "approval du livre enfant",
-                actionParams: {
-                    type: "approval",
-                    params: [
-                        {
-                            type: "message",
-                            value: "bien ou bien ?",
-                            recipient: [{ type: "value", value: "User03" }],
-                        },
-                    ],
-                },
-                follow: {
-                    yes: { type: "exits", id: 1 },
-                    no: { type: "exits", id: 2 },
-                },
-                position: { x: 130, y: 110 },
-                isLocked: false,
-            },
-            username: "User02",
-            userNeoId: 7,
-        },
     ],
     __v: 8,
 } as unknown as Diagnostic;
 
+export const fakeDiagChild: DiagResult = {
+    name: "test_approval_enfant",
+    results: [
+        {
+            Action: {
+                description: "Check user account healthy OK",
+                id: 5,
+                result: "OK",
+                date: new Date("2022-09-27T15:59:27.403Z"),
+                executionTime: 505,
+            },
+        },
+        {
+            Action: {
+                description: "approval OK",
+                id: 6,
+                result: "OK",
+                date: new Date("2022-09-27T15:59:27.403Z"),
+                executionTime: 505,
+            },
+        },
+        {
+            name: "test_approval_enfant 2",
+            results: [
+                {
+                    Action: {
+                        description: "Action rejected",
+                        id: 5,
+                        result: "Rejected",
+                        date: new Date("2022-09-27T15:59:27.403Z"),
+                        executionTime: 505,
+                    },
+                },
+                {
+                    Action: {
+                        description: "Action failed",
+                        id: 6,
+                        result: "Failed",
+                        date: new Date("2022-09-27T15:59:27.403Z"),
+                        executionTime: 505,
+                    },
+                },
+                {
+                    Exit: {
+                        id: 7,
+                        action: "Action escalate",
+                        type: "escalate",
+                        position: { x: 1980, y: 30 },
+                        isLocked: false,
+                    },
+                },
+            ],
+        },
+        {
+            Exit: {
+                id: 7,
+                action: "Is stupide but is Solved",
+                type: "solved",
+                position: { x: 1980, y: 30 },
+                isLocked: false,
+            },
+        },
+    ],
+};
 export const fakeUsers: NeoUser[] = [
     {
         firstname: "Unicorn",
