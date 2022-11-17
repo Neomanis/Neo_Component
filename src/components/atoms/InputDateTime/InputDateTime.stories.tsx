@@ -38,6 +38,8 @@ Default.args = {
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
     showTimePicker: true,
+    showNowButton: true,
+    defaultValue: new Date(),
 };
 export const InputDateTimeRange: ComponentStory<typeof InputDateTime> = Template.bind({});
 InputDateTimeRange.args = {
@@ -48,6 +50,7 @@ InputDateTimeRange.args = {
     maxDate: addMonths(new Date(), 5),
     updateFunction: (reform, data) => console.log(reform, data),
     isRange: true,
+    showNowButton: true,
 };
 export const InputDateTimeSimpleUpdate: ComponentStory<typeof InputDateTime> = Template.bind({});
 InputDateTimeSimpleUpdate.args = {

@@ -39,7 +39,7 @@
 .react-datepicker__time-list {
     -ms-overflow-style: none;
     scrollbar-width: none;
-    height: 165px !important;
+    height: 231px !important;
     @apply mt-2 !important;
 }
 
@@ -51,7 +51,7 @@
     @apply text-white !important;
 }
 .react-datepicker__time-list-item {
-    @apply text-xs flex items-center justify-center hover:bg-neo-blue hover:text-white hover:font-bold rounded !important;
+    @apply text-xs flex items-center justify-center hover:bg-neo-blue hover:text-white hover:font-bold !important;
 }
 .react-datepicker__time-list-item--selected {
     @apply bg-neo-blue rounded !important;
@@ -60,8 +60,11 @@
     @apply text-neo-stats-grey hover:text-black hover:bg-neo-settings-lightGrey !important;
 }
 .react-datepicker__time-container {
-    @apply border-none !important;
+    @apply border-none bg-neo-stats-black !important;
 }
 .react-datepicker__time {
     @apply bg-transparent text-neo-link !important;
+}
+.react-datepicker__today-button {
+    @apply bg-transparent border-2 border-neo-link rounded text-neo-link w-3/4 mx-auto;
 }
