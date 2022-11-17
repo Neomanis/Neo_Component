@@ -15,9 +15,9 @@ test("should work with diagnostic data", async ({ mount }) => {
     );
     await expect(component.locator('[data-testid="diagnosticType"]')).toBeVisible();
 });
-test("should work with diagChild data", async ({ mount }) => {
-    const component = await mount(
-        <DiagnosticComponent diagChild={fakeDiagChild} redirectUrl="/url" navigate={testNavigate} />
-    );
-    await expect(component.locator('[data-testid="diagChildType"]')).toBeVisible();
-});
+// test("should work with diagChild data", async ({ mount }) => {
+//     const component = await mount(
+//         <DiagnosticComponent diagChild={fakeDiagChild} redirectUrl="/url" navigate={testNavigate} />
+//     );
+//     await expect(component.locator('[data-testid="diagChildType"]')).toBeVisible();
+// });

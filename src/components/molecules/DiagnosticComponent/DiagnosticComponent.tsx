@@ -2,7 +2,7 @@ import React, { ReactElement, useMemo, useState } from "react";
 import { Awaiting, CompactDiagnostic, DiagResult } from "@neomanis/neo-types";
 import DiagnosticBlock from "@/components/atoms/DiagnosticBlock";
 
-function checkChildren(data: DiagResult, type: "Error" | "Awaiting") {
+function checkChildren(data: DiagResult, type: "Error" | "Awaiting"): boolean {
     if (data[type]) {
         return true;
     }
@@ -20,10 +20,10 @@ const DiagList = ({
 }: {
     results: DiagResult[];
     redirectUrl: string;
-    navigate: (url: string, state: { state: string }) => void;
+    navigate: (url: string, state: { state: string | undefined }) => void;
     awaiting?: Awaiting;
 }): ReactElement => {
-    const lastElement = results[results.length - 1];
+    const lastElement = results?.at(-1);
 
     function isLastElement(children: JSX.Element, isLast: boolean) {
         if (isLast) {
@@ -39,14 +39,16 @@ const DiagList = ({
     }
 
     const lineDot = useMemo(() => {
-        if (Object.keys(lastElement)[0] === "Exit") {
-            return false;
-        }
-        if (Object.keys(lastElement)[0] === "Error") {
-            return false;
-        }
-        if (Object.keys(lastElement)[0] === "Awaiting") {
-            return false;
+        if (lastElement) {
+            if (Object.keys(lastElement)[0] === "Exit") {
+                return false;
+            }
+            if (Object.keys(lastElement)[0] === "Error") {
+                return false;
+            }
+            if (Object.keys(lastElement)[0] === "Awaiting") {
+                return false;
+            }
         }
 
         return true;
@@ -124,11 +126,16 @@ const DiagBook = ({
     redirectUrl: string;
     navigate: (url: string, state: { state: string }) => void;
 }): ReactElement => {
-    const [bookOpen, setBookOpen] = useState<string>();
+    const [bookOpen, setBookOpen] = useState(true);
 
-    const lastElement = diagnostic.results[diagnostic.results.length - 1];
-    const isAwaiting = diagnostic.results.some((item) => checkChildren(item, "Awaiting"));
-    const isError = diagnostic.results.some((item) => checkChildren(item, "Error"));
+    const lastElement = diagnostic.results?.at(-1);
+    const isAwaiting = diagnostic.results?.some((item) => checkChildren(item, "Awaiting"));
+    const isError = diagnostic.results?.some((item) => checkChildren(item, "Error"));
+
+    // TODO: Find a better way to handle this
+    if (!lastElement) {
+        return <></>;
+    }
 
     return (
         <div key={diagnostic.runId} data-testid="diagnosticType" className="my-2 relative">
@@ -140,17 +147,11 @@ const DiagBook = ({
                     isAwaiting: isAwaiting,
                     isError: isError,
                 }}
-                isOpen={bookOpen === diagnostic.name}
-                openBook={() => {
-                    if (bookOpen !== diagnostic.name) {
-                        setBookOpen(diagnostic.name);
-                    } else {
-                        setBookOpen(undefined);
-                    }
-                }}
+                isOpen={bookOpen}
+                openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: diagnostic.name })}
             />
-            {bookOpen === diagnostic.name && (
+            {bookOpen && (
                 <DiagList
                     results={diagnostic.results}
                     redirectUrl={redirectUrl}
@@ -168,31 +169,31 @@ const DiagChild = ({
 }: {
     diagChild: DiagResult;
     redirectUrl: string;
-    navigate: (url: string, state: { state: string }) => void;
+    navigate: (url: string, state: { state: string | undefined }) => void;
 }): ReactElement => {
-    const [bookOpen, setBookOpen] = useState<string>();
-    const lastElement = diagChild.results[diagChild.results.length - 1];
+    const [bookOpen, setBookOpen] = useState(true);
+    const lastElement = diagChild.results?.at(-1);
 
-    const isAwaiting = diagChild.results.some((item) => checkChildren(item, "Awaiting"));
-    const isError = diagChild.results.some((item) => checkChildren(item, "Error"));
+    const isAwaiting = Boolean(diagChild.results?.some((item) => checkChildren(item, "Awaiting")));
+    const isError = Boolean(diagChild.results?.some((item) => checkChildren(item, "Error")));
+
+    // TODO: Find a better way to handle this
+    if (!diagChild.name || !lastElement) {
+        return <></>;
+    }
 
     return (
         <div data-testid="diagChildType" className="my-2 relative">
             <DiagnosticBlock
                 book={{ name: diagChild.name, lastElement: lastElement, isAwaiting: isAwaiting, isError: isError }}
-                isOpen={bookOpen === diagChild.name}
-                openBook={() => {
-                    if (bookOpen !== diagChild.name) {
-                        setBookOpen(diagChild.name);
-                    } else {
-                        setBookOpen(undefined);
-                    }
-                }}
+                isOpen={bookOpen}
+                openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: diagChild.name })}
             />
-            {bookOpen === diagChild.name && (
+            {bookOpen && (
                 <DiagList
-                    results={diagChild.results}
+                    // TODO: Find a better way to handle this
+                    results={diagChild.results ?? []}
                     redirectUrl={redirectUrl}
                     navigate={() => navigate(redirectUrl, { state: diagChild.name })}
                 />
@@ -212,12 +213,14 @@ const DiagnosticComponent = ({
     diagnostic?: CompactDiagnostic;
     redirectUrl: string;
     awaiting?: Awaiting;
-    navigate: (url: string, state: { state: string }) => void;
+    navigate: (url: string, state: { state: string | undefined }) => void;
 }): ReactElement => {
     function insertApproval(booknames: string[], description: string, results: DiagResult[]) {
         if (booknames.length > 0) {
-            const bookResults = results.find((result) => result.name === booknames[0]).results;
-            insertApproval(booknames.slice(1), description, bookResults);
+            const bookResults = results.find((result) => result.name === booknames[0])?.results;
+            if (bookResults) {
+                insertApproval(booknames.slice(1), description, bookResults);
+            }
         } else {
             // we will add only if Awaiting was not already added
             if (!results.find((result) => result.Awaiting)) {
