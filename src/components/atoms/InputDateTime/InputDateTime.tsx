@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { UseFormReturn, useController } from "react-hook-form";
-import { isEqual, startOfDay, endOfDay } from "date-fns";
+import { isEqual, startOfDay, endOfDay, format } from "date-fns";
 import { enGB, enUS, fr } from "date-fns/locale";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,6 +9,13 @@ import { IconChevron } from "@/img/svg";
 import { useInputs } from "@/utils/hooks/useInputs";
 import "@/styles/reactDatePicker.css";
 import Updater from "../Updater";
+import {
+    locales,
+    getTimeList,
+    insertElementInList,
+    createHourListElement,
+    getListIndexBetweenDates,
+} from "./InputDateTimeHelper";
 
 export interface InputDateTimeProps {
     formMethods: UseFormReturn;
@@ -31,6 +38,7 @@ export interface InputDateTimeProps {
     placeholder?: string;
     defaultValueShowMonthPicker?: boolean;
     svg?: ReactElement;
+    showNowButton?: boolean;
     showTimePicker?: boolean;
     datePickerElementWrapperClassName?: string;
     disabled?: boolean;
@@ -67,6 +75,7 @@ const InputDateTime = ({
     defaultValueShowMonthPicker = false,
     isRange = false,
     svg,
+    showNowButton = true,
     showTimePicker = true,
     datePickerElementWrapperClassName = "",
     disabled = false,
@@ -74,8 +83,10 @@ const InputDateTime = ({
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
     const timer = useRef(null);
+    const [isCalendarOpen, setIsCalenderOpen] = useState(false);
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
 
     const {
         field: { ref, value, onChange },
@@ -184,6 +195,39 @@ const InputDateTime = ({
         }
     }
 
+    function handleNowButton() {
+        handleTimeValue(new Date());
+        onChange(isRange ? [new Date(), new Date()] : new Date());
+    }
+
+    function handleTimeValue(value: Date) {
+        const date = format(value, dateTimeFormat, { locale: locales[i18n.language] });
+        const { dates, timeList } = getTimeList();
+
+        if (!dates.includes(date) && timeList) {
+            insertElementInList(
+                timeList,
+                createHourListElement(date),
+                getListIndexBetweenDates(dates, value, dateTimeFormat, i18n.language as keyof typeof locales)
+            );
+        }
+    }
+
+    useEffect(() => {
+        if (isCalendarOpen && defaultValue && !Array.isArray(defaultValue) && isEqual(defaultValue, value)) {
+            handleTimeValue(defaultValue);
+        }
+
+        const nowButton = document.querySelector(".react-datepicker__today-button");
+        if (nowButton) {
+            nowButton.addEventListener("click", handleNowButton);
+
+            return () => {
+                nowButton.removeEventListener("click", handleNowButton);
+            };
+        }
+    }, [isCalendarOpen, defaultValue, value]);
+
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
         onChange(defaultValue === undefined ? null : defaultValue);
@@ -216,12 +260,14 @@ const InputDateTime = ({
             <div className={datePickerElementWrapperClassName}>
                 {svg && svg}
                 <DatePicker
+                    {...(showNowButton && { todayButton: t("global.now") })}
                     className={inputClassName}
                     calendarClassName="bg-custom-date-picker"
                     renderCustomHeader={customHeader}
                     timeClassName={() => "bg-neo-stats-black"}
                     timeCaption={t("date.hour_one")}
                     showTimeSelect={!isRange && showTimePicker}
+                    timeIntervals={30}
                     placeholderText={placeholder}
                     required={required}
                     selected={datesValue.startDate}
@@ -233,9 +279,16 @@ const InputDateTime = ({
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
-                    onChange={(dates: Date | [Date, Date]) =>
-                        Array.isArray(dates) ? handleChangeArray(dates) : handleChangeSingle(dates)
-                    }
+                    onChange={(dates: Date | [Date, Date]) => {
+                        if (Array.isArray(dates)) {
+                            handleChangeArray(dates);
+                        } else {
+                            handleChangeSingle(dates);
+                            handleTimeValue(dates);
+                        }
+                    }}
+                    onCalendarOpen={() => setIsCalenderOpen(true)}
+                    onCalendarClose={() => setIsCalenderOpen(false)}
                     startDate={datesValue.startDate}
                     endDate={datesValue.endDate}
                     ref={ref}
