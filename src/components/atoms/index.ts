@@ -1,6 +1,7 @@
 export { default as Button } from "./Button";
 export { default as BubbleChat } from "./BubbleChat";
 export { default as ButtonSwitch } from "./ButtonSwitch";
+export { default as DiagnosticBlock } from "./DiagnosticBlock";
 export { default as Hexagon } from "./Hexagon";
 export { default as Icon } from "./Icon";
 export { default as IconOutageCategory } from "./IconOutageCategory";
