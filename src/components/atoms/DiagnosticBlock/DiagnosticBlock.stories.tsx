@@ -58,5 +58,7 @@ DefaultExit.args = {
         id: 456,
         type: "escalate",
         action: "Action Exit",
+        position: { y: 110, x: 100 },
+        isLocked: false,
     },
 };

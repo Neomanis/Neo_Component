@@ -1,7 +1,7 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import DiagnosticComponent from "./DiagnosticComponent";
-import { fakeDiag, fakeDiagChild } from "@/utils/storiesData/fakeObject";
+import { fakeDiag, fakeDiagChild } from "@/utils/storiesData/fakeDiagnostic";
 
 function testNavigate(url: string, state: { state: string }): void {
     // eslint-disable-next-line no-console
