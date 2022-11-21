@@ -34,7 +34,7 @@ const colorRef = {
 
 export interface DiagnosticBlockProps {
     book?: {
-        name: string;
+        name?: string;
         diagExecutionTime?: number;
         lastElement?: DiagResult;
         isAwaiting?: boolean;

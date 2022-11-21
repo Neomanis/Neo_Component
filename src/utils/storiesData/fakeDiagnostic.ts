@@ -330,7 +330,7 @@ export const fakeDiagOnlyApproval: Diagnostic = {
             name: "lama_solo",
             diagExecutionTime: 3376,
             psycho: "qsd",
-            results: [],
+            results: [] as DiagResult[],
         },
     ],
     awaiting: [

@@ -2,12 +2,12 @@ import React, { ReactElement, useMemo, useState } from "react";
 import { Awaiting, CompactDiagnostic, DiagResult } from "@neomanis/neo-types";
 import DiagnosticBlock from "@/components/atoms/DiagnosticBlock";
 
-function checkChildren(data: DiagResult, type: "Error" | "Awaiting"): boolean {
-    if (data[type]) {
+function checkAwaiting(data: DiagResult): boolean {
+    if (data["Awaiting"]) {
         return true;
     }
     if (data.results) {
-        return data.results.some((item) => checkChildren(item, type));
+        return data.results.some((item) => checkAwaiting(item));
     }
     return false;
 }
@@ -129,12 +129,7 @@ const DiagBook = ({
     const [bookOpen, setBookOpen] = useState(true);
 
     const lastElement = diagnostic.results?.at(-1);
-    const isAwaiting = diagnostic.results?.some((item) => checkChildren(item, "Awaiting"));
-
-    // TODO: Find a better way to handle this
-    if (!lastElement) {
-        return <></>;
-    }
+    const isAwaiting = diagnostic.results?.some((item) => checkAwaiting(item));
 
     return (
         <div key={diagnostic.runId} data-testid="diagnosticType" className="my-2 relative">
@@ -171,18 +166,12 @@ const DiagChild = ({
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
     const lastElement = diagChild.results?.at(-1);
-
-    const isAwaiting = Boolean(diagChild.results?.some((item) => checkChildren(item, "Awaiting")));
-
-    // TODO: Find a better way to handle this
-    if (!diagChild.name || !lastElement) {
-        return <></>;
-    }
+    const isAwaiting = Boolean(diagChild.results?.some((item) => checkAwaiting(item)));
 
     return (
-        <div data-testid="diagChildType" className="my-2 relative">
+        <div className="my-2 relative">
             <DiagnosticBlock
-                book={{ name: diagChild.name, lastElement: lastElement, isAwaiting: isAwaiting }}
+                book={{ name: diagChild?.name, lastElement: lastElement, isAwaiting: isAwaiting }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: diagChild.name })}
@@ -228,7 +217,7 @@ const DiagnosticComponent = ({
     }
     if (diagnostic && awaiting && diagnostic.runId === awaiting.runId) {
         // we will insert a fake "action" to display it at the right position
-        insertApproval(awaiting.bookNames.slice(1), awaiting.currentChapter.desc, diagnostic.results);
+        insertApproval(awaiting.bookNames.slice(1), awaiting.currentChapter.desc, diagnostic?.results);
     }
 
     return (

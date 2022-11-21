@@ -22,8 +22,6 @@ DefaultBook.args = {
     book: {
         name: "Book Name",
         lastElement: {},
-        isAwaiting: false,
-        isError: false,
     },
 };
 export const DefaultError: ComponentStory<typeof DiagnosticBlock> = Template.bind({});
