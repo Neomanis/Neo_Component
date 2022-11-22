@@ -153,7 +153,7 @@ const DiagnosticBlock = ({
     return (
         <div
             className={classNames(
-                "flex items-center justify-between rounded px-4 py-2 ",
+                "flex items-center justify-between rounded px-4 py-2 red-flicker-fix",
                 book && "bg-neo-bg-B h-12 group cursor-pointer",
                 !book && "bg-neo-blue-extraDark h-10"
             )}
