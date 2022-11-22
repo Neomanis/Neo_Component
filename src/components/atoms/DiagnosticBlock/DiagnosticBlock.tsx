@@ -1,19 +1,12 @@
-import { CautionLogo, ClockLogo, IconBook, IconChapterExit, IconChapterScript } from "@/img/svg";
+import { CautionLogo, ClockLogo, IconArrowRight, IconBook, IconChapterExit } from "@/img/svg";
 import { classNames } from "@/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { DiagResult } from "@neomanis/neo-types";
+import { DiagnosticResult, DiagResult, Exit } from "@neomanis/neo-types";
 import React, { ReactElement, useCallback, useMemo } from "react";
 import Button from "../Button";
 import Icon from "../Icon";
 import Title from "../Title";
-
-interface Error {
-    message: string;
-    code: number | string | null;
-    runId: string;
-    data?: Record<string, unknown>;
-}
 
 //Block text and icon color
 const colorRef = {
@@ -41,21 +34,25 @@ const colorRef = {
 
 export interface DiagnosticBlockProps {
     book?: {
-        name: string;
+        name?: string;
         diagExecutionTime?: number;
-        lastElement: DiagResult;
-        isAwaiting: boolean;
-        isError: boolean;
+        lastElement?: DiagResult;
+        diagResultType?: string;
     };
     Action?: {
-        id: number;
         description: string;
         date: Date;
         executionTime: number | undefined;
+        id: number;
         result: string;
     };
-    Error?: Error;
-    Exit?: { id: number; type: string; action: string };
+    Error?: {
+        message: string;
+        code: string | number;
+        runId: string;
+        data?: Record<string, unknown>;
+    };
+    Exit?: Exit;
     Awaiting?: {
         description: string;
     };
@@ -82,10 +79,9 @@ const DiagnosticBlock = ({
             if (Awaiting) {
                 return colorRef["purple"][type];
             }
-            if (Error) {
+            if (Error || book?.diagResultType === DiagnosticResult.Failed) {
                 return colorRef["red"][type];
             }
-
             if (Exit) {
                 if (Exit.type === "solved") {
                     return colorRef["green"][type];
@@ -102,14 +98,17 @@ const DiagnosticBlock = ({
             }
 
             if (book) {
-                if (book.isAwaiting) {
+                if (book.diagResultType === DiagnosticResult.Awaiting || book.lastElement?.Awaiting) {
                     return colorRef["purple"][type];
                 }
-                if (book.isError) {
+                if (book.lastElement?.Error) {
                     return colorRef["red"][type];
                 }
                 if (book.lastElement?.Exit) {
-                    if (book.lastElement?.Exit?.type === "escalate") {
+                    if (
+                        book.lastElement?.Exit?.type === "escalate" ||
+                        book.diagResultType === DiagnosticResult.Escalate
+                    ) {
                         return colorRef["orange"][type];
                     }
                     if (book.lastElement?.Exit?.type === "solved") {
@@ -134,7 +133,7 @@ const DiagnosticBlock = ({
             );
         }
         if (Action) {
-            return <IconChapterScript data-testid={"blockIsAction"} className={classNames("w-5", color("fill"))} />;
+            return <IconArrowRight data-testid={"blockIsAction"} className={classNames("w-3", color("fill"))} />;
         }
         if (Exit) {
             return <IconChapterExit data-testid={"blockIsExit"} className={classNames("w-5", color("fill"))} />;
@@ -195,7 +194,6 @@ const DiagnosticBlock = ({
                             <Icon fontIcon={faChevronDown} />
                         </div>
                     )}
-                    {Error && <p className="bg-neo-red rounded-full px-2 text-white font-bold text-xs">{Error.code}</p>}
                 </div>
             )}
         </div>

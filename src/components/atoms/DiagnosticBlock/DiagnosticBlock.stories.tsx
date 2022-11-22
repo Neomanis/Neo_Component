@@ -22,8 +22,6 @@ DefaultBook.args = {
     book: {
         name: "Book Name",
         lastElement: {},
-        isAwaiting: false,
-        isError: false,
     },
 };
 export const DefaultError: ComponentStory<typeof DiagnosticBlock> = Template.bind({});
@@ -58,5 +56,7 @@ DefaultExit.args = {
         id: 456,
         type: "escalate",
         action: "Action Exit",
+        position: { y: 110, x: 100 },
+        isLocked: false,
     },
 };

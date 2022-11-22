@@ -2,16 +2,6 @@ import React, { ReactElement, useMemo, useState } from "react";
 import { Awaiting, CompactDiagnostic, DiagResult } from "@neomanis/neo-types";
 import DiagnosticBlock from "@/components/atoms/DiagnosticBlock";
 
-function checkChildren(data: DiagResult, type: "Error" | "Awaiting"): boolean {
-    if (data[type]) {
-        return true;
-    }
-    if (data.results) {
-        return data.results.some((item) => checkChildren(item, type));
-    }
-    return false;
-}
-
 const DiagList = ({
     results,
     redirectUrl,
@@ -62,56 +52,57 @@ const DiagList = ({
                 )}
             </div>
             <div className="w-full">
-                {results.map((result) => {
-                    if (result.Action) {
-                        return (
-                            <div key={result.Action.id} className="my-2">
-                                <DiagnosticBlock Action={result.Action} />
-                            </div>
-                        );
-                    }
-                    if (result.Error) {
-                        return (
-                            <div key={result.Error.message}>
-                                {isLastElement(
-                                    <DiagnosticBlock Error={result.Error} />,
-                                    lastElement?.Error?.message === result.Error.message
-                                )}
-                            </div>
-                        );
-                    }
-                    if (result.Exit) {
-                        return (
-                            <div key={result.Exit.id}>
-                                {isLastElement(
-                                    <DiagnosticBlock Exit={result.Exit} />,
-                                    lastElement?.Exit?.id === result.Exit.id
-                                )}
-                            </div>
-                        );
-                    }
-                    if (result.Awaiting) {
-                        return (
-                            <div key={result.Awaiting.description}>
-                                {isLastElement(
-                                    <DiagnosticBlock Awaiting={result.Awaiting} />,
-                                    lastElement?.Awaiting?.description === result.Awaiting.description
-                                )}
-                            </div>
-                        );
-                    }
-                    if (result.name) {
-                        return (
-                            <DiagnosticComponent
-                                key={result.name}
-                                diagChild={result}
-                                redirectUrl={redirectUrl}
-                                navigate={() => navigate(redirectUrl, { state: result.name })}
-                                awaiting={awaiting}
-                            />
-                        );
-                    }
-                })}
+                {results &&
+                    results.map((result, key) => {
+                        if (result.Action) {
+                            return (
+                                <div key={result.Action.id + "block" + key} className="my-2">
+                                    <DiagnosticBlock Action={result.Action} />
+                                </div>
+                            );
+                        }
+                        if (result.Error) {
+                            return (
+                                <div key={result.Error.message + "block" + key}>
+                                    {isLastElement(
+                                        <DiagnosticBlock Error={result.Error} />,
+                                        lastElement?.Error?.message === result.Error.message
+                                    )}
+                                </div>
+                            );
+                        }
+                        if (result.Exit) {
+                            return (
+                                <div key={result.Exit.id + "block" + key}>
+                                    {isLastElement(
+                                        <DiagnosticBlock Exit={result.Exit} />,
+                                        lastElement?.Exit?.id === result.Exit.id
+                                    )}
+                                </div>
+                            );
+                        }
+                        if (result.Awaiting) {
+                            return (
+                                <div key={result.Awaiting.description + "block" + key}>
+                                    {isLastElement(
+                                        <DiagnosticBlock Awaiting={result.Awaiting} />,
+                                        lastElement?.Awaiting?.description === result.Awaiting.description
+                                    )}
+                                </div>
+                            );
+                        }
+                        if (result?.name) {
+                            return (
+                                <DiagnosticComponent
+                                    key={result.name + "Component" + key}
+                                    diagChild={result}
+                                    redirectUrl={redirectUrl}
+                                    navigate={() => result.name && navigate(redirectUrl, { state: result.name })}
+                                    awaiting={awaiting}
+                                />
+                            );
+                        }
+                    })}
             </div>
         </div>
     );
@@ -121,31 +112,23 @@ const DiagBook = ({
     diagnostic,
     navigate,
     redirectUrl,
+    diagResultType,
 }: {
     diagnostic: CompactDiagnostic;
     redirectUrl: string;
     navigate: (url: string, state: { state: string }) => void;
+    diagResultType?: string;
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
-
     const lastElement = diagnostic.results?.at(-1);
-    const isAwaiting = diagnostic.results?.some((item) => checkChildren(item, "Awaiting"));
-    const isError = diagnostic.results?.some((item) => checkChildren(item, "Error"));
-
-    // TODO: Find a better way to handle this
-    if (!lastElement) {
-        return <></>;
-    }
-
     return (
         <div key={diagnostic.runId} data-testid="diagnosticType" className="my-2 relative">
             <DiagnosticBlock
                 book={{
                     name: diagnostic.name,
                     diagExecutionTime: diagnostic.diagExecutionTime,
+                    diagResultType: diagResultType,
                     lastElement: lastElement,
-                    isAwaiting: isAwaiting,
-                    isError: isError,
                 }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
@@ -174,33 +157,40 @@ const DiagChild = ({
     const [bookOpen, setBookOpen] = useState(true);
     const lastElement = diagChild.results?.at(-1);
 
-    const isAwaiting = Boolean(diagChild.results?.some((item) => checkChildren(item, "Awaiting")));
-    const isError = Boolean(diagChild.results?.some((item) => checkChildren(item, "Error")));
-
-    // TODO: Find a better way to handle this
-    if (!diagChild.name || !lastElement) {
-        return <></>;
-    }
-
     return (
-        <div data-testid="diagChildType" className="my-2 relative">
+        <div className="my-2 relative">
             <DiagnosticBlock
-                book={{ name: diagChild.name, lastElement: lastElement, isAwaiting: isAwaiting, isError: isError }}
+                book={{ name: diagChild?.name, lastElement: lastElement }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: diagChild.name })}
             />
-            {bookOpen && (
+            {bookOpen && diagChild.results && (
                 <DiagList
-                    // TODO: Find a better way to handle this
-                    results={diagChild.results ?? []}
+                    results={diagChild.results}
                     redirectUrl={redirectUrl}
-                    navigate={() => navigate(redirectUrl, { state: diagChild.name })}
+                    navigate={() => diagChild.name && navigate(redirectUrl, { state: diagChild.name })}
                 />
             )}
         </div>
     );
 };
+
+function insertApproval(booknames: string[], description: string, results: DiagResult[]) {
+    if (booknames.length > 0) {
+        const bookResults = results.find((result) => result.name === booknames[0]);
+        bookResults?.results && insertApproval(booknames.slice(1), description, bookResults.results);
+    } else {
+        // we will add only if Awaiting was not already added
+        if (!results?.find((result) => result?.Awaiting)) {
+            results.push({
+                Awaiting: {
+                    description: description,
+                },
+            });
+        }
+    }
+}
 
 const DiagnosticComponent = ({
     diagChild,
@@ -208,38 +198,36 @@ const DiagnosticComponent = ({
     navigate,
     redirectUrl,
     awaiting,
+    diagResultType,
 }: {
     diagChild?: DiagResult;
     diagnostic?: CompactDiagnostic;
     redirectUrl: string;
     awaiting?: Awaiting;
     navigate: (url: string, state: { state: string | undefined }) => void;
+    diagResultType?: string;
 }): ReactElement => {
-    function insertApproval(booknames: string[], description: string, results: DiagResult[]) {
-        if (booknames.length > 0) {
-            const bookResults = results.find((result) => result.name === booknames[0])?.results;
-            if (bookResults) {
-                insertApproval(booknames.slice(1), description, bookResults);
-            }
-        } else {
-            // we will add only if Awaiting was not already added
-            if (!results.find((result) => result.Awaiting)) {
-                results.push({
-                    Awaiting: {
-                        description: description,
-                    },
-                });
-            }
+    if (diagnostic) {
+        // results key must exist
+        if (!diagnostic.results) {
+            diagnostic.results = [];
         }
-    }
-    if (diagnostic && awaiting && diagnostic.runId === awaiting.runId) {
-        // we will insert a fake "action" to display it at the right position
-        insertApproval(awaiting.bookNames.slice(1), awaiting.currentChapter.desc, diagnostic.results);
+        if (awaiting && diagnostic.runId === awaiting.runId) {
+            // we will insert a fake "action" to display it at the right position
+            insertApproval(awaiting.bookNames.slice(1), awaiting.currentChapter.desc, diagnostic.results);
+        }
     }
 
     return (
         <div className="w-full">
-            {diagnostic && <DiagBook diagnostic={diagnostic} navigate={navigate} redirectUrl={redirectUrl} />}
+            {diagnostic && (
+                <DiagBook
+                    diagnostic={diagnostic}
+                    navigate={navigate}
+                    redirectUrl={redirectUrl}
+                    diagResultType={diagResultType}
+                />
+            )}
             {diagChild && <DiagChild diagChild={diagChild} navigate={navigate} redirectUrl={redirectUrl} />}
         </div>
     );
