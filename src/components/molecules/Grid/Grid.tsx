@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
-import { CompactTicket, Ticket, GridIds, GroupObject } from "@neomanis/neo-types";
+import { CompactTicket, Ticket, GridIds, MembershipInfo } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
@@ -20,7 +20,7 @@ export interface GridProps {
     ticketBG?: boolean;
     gridId?: GridIds;
     selectedTicketsUids?: string[];
-    userGroups?: GroupObject[];
+    userGroups?: MembershipInfo[];
     userNeoId?: number;
     categoriesIcons?: { name: string; icon: IconProp }[];
 }

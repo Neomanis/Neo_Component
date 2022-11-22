@@ -75,7 +75,7 @@ const NeoHelperTicketBanner = ({
                             )}
                         />
                         <p className="text-xs font-bold" data-testid="NHticket-ticketCreationDate">
-                            {formatDistanceStrict(now, new Date(ticket.date_creation), {
+                            {formatDistanceStrict(now, new Date(ticket.createdAt), {
                                 locale: getDateFnsLocaleFromUserLang(userLanguage),
                             })}
                         </p>

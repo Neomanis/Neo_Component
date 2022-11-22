@@ -1,24 +1,23 @@
-import { NeoUser, Notification, Ticket, GroupObject, CompleteUser } from "@neomanis/neo-types";
+import { NeoUser, Notification, Ticket, MembershipInfo, CompleteUser } from "@neomanis/neo-types";
 import { addHours, addMinutes } from "date-fns";
 
 export const fakeTicket: Ticket = {
     id: 4212,
     name: "test with new groups",
     date: "2022-07-20T11:15:00.000+02:00",
-    closedate: "null",
-    solvedate: "null",
-    date_mod: "2022-07-20T11:15:01.001+02:00",
+    closeDate: null,
+    solveDate: null,
+    updatedAt: "2022-07-20T11:15:01.001+02:00",
     status: 2,
     content: "&lt;p&gt;zdfadfs&lt;/p&gt;",
     urgency: 3,
     impact: 3,
     priority: 3,
     type: 1,
-    global_validation: 1,
-    time_to_resolve: addMinutes(new Date(), 10).toISOString(),
-    time_to_own: addMinutes(new Date(), 10).toISOString(),
-    is_deleted: 0,
-    date_creation: addHours(new Date(), -1).toISOString(),
+    globalValidation: 1,
+    ttr: addMinutes(new Date(), 10).toISOString(),
+    tto: addMinutes(new Date(), 10).toISOString(),
+    createdAt: addHours(new Date(), -1).toISOString(),
     uid: "1gl-4212-INC",
     level: 1,
     entityId: 0,
@@ -150,14 +149,20 @@ export const fakeUser: CompleteUser = {
 
 fakeUsers[1].realname;
 
-export const fakeGroups: GroupObject[] = [
+export const fakeGroups: MembershipInfo[] = [
     { id: 1, name: "gojira", itsmCode: "go1" },
     { id: 2, name: "ne_obliviscaris", itsmCode: "ne1" },
     { id: 3, name: "parkway_drive", itsmCode: "pa1" },
 ];
 
 export const fakeTicketResources: Partial<Ticket> = {
-    resources: [{ type: "Mana", item: { id: 2, name: "fakeRessources" }, tickets: [] }],
+    resources: [
+        {
+            type: "Mana",
+            item: { id: 2, name: "fakeRessources", entity: { id: 1, itsmCode: "IT1", name: "itsm1" } },
+            tickets: [],
+        },
+    ],
 };
 
 export const fakeNotification: Notification = {

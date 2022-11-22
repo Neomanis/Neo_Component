@@ -1614,10 +1614,10 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@^3.4.0":
-  version "3.4.0"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-3.4.0.tgz#2cf147e85416cabed7a9f03fd46c97b2863c87e8"
-  integrity sha1-LPFH6FQWyr7XqfA/1GyXsoY8h+g=
+"@neomanis/neo-types@^4.0.0":
+  version "4.0.0"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-4.0.0.tgz#b45081b0f5210d15bba9c1fe81db61878acd0788"
+  integrity sha1-tFCBsPUhDRW7qcH+gdthh4rNB4g=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

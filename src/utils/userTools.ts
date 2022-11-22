@@ -1,9 +1,9 @@
-import { Ticket, NeoUser, GroupObject } from "@neomanis/neo-types";
+import { Ticket, NeoUser, MembershipInfo } from "@neomanis/neo-types";
 
 interface GetActorNameParams {
     ticket: Ticket;
     itsmUsers: NeoUser[];
-    itsmGroups: GroupObject[];
+    itsmGroups: MembershipInfo[];
     type: "Requester" | "Watcher" | "AssignedTo";
 }
 
@@ -34,7 +34,7 @@ export function getUserName(user: NeoUser): string {
 export function getRequesterUid(
     ticket: Ticket,
     itsmUsers: NeoUser[],
-    itsmGroups: GroupObject[] | undefined = undefined
+    itsmGroups: MembershipInfo[] | undefined = undefined
 ): string | undefined {
     const userNeoId = ticket.userRequester[0];
     const group = ticket.groupRequester[0];

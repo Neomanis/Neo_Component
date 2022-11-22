@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo } from "react";
-import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, GroupObject } from "@neomanis/neo-types";
+import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, MembershipInfo } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
 import { classNames, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
@@ -12,11 +12,11 @@ export interface TicketProps {
     currentTicket?: CompactTicket;
     fCallBackClick?: (ticket: ITicket) => void;
     fCallBackHover?: (ticket?: CompactTicket) => void;
-    ticket?: ITicket;
+    ticket?: ITicket & { isPositionLoading?: boolean };
     ticketBG?: boolean;
     gridId?: GridIds;
     isOpacity?: boolean;
-    userGroups?: GroupObject[];
+    userGroups?: MembershipInfo[];
     userNeoId?: number;
     categoryIcon?: IconProp;
 }
@@ -45,8 +45,8 @@ const Ticket = ({
     function isTTOorTTRStale() {
         return (
             getDateCompletionPercentage(
-                ticket.date_creation,
-                ticket.status === Status.New ? (ticket as ITicket).time_to_own : ticket.time_to_resolve
+                ticket.createdAt,
+                ticket.status === Status.New ? (ticket as ITicket).tto : ticket.ttr
             ) >= 75 &&
             ticket.status !== Status.Pending &&
             ticket.status !== Status.Solved &&
@@ -114,8 +114,8 @@ const Ticket = ({
                             width={30}
                             fill={`${
                                 getDateCompletionPercentage(
-                                    ticket.date_creation,
-                                    ticket.status === Status.New ? ticket.time_to_own : ticket.time_to_resolve
+                                    ticket.createdAt,
+                                    ticket.status === Status.New ? ticket.tto : ticket.ttr
                                 ) <= 99
                                     ? "#ED943B"
                                     : "#F7284F"
@@ -163,8 +163,7 @@ const Ticket = ({
                                 <ClockLogo fill="#fff" />
                             </div>
                             <p className="text-xxs text-white font-extrabold">
-                                {ticket.date_creation &&
-                                    getTimeToNowWithTranslation(ticket.date_creation, i18n.language)}
+                                {ticket.createdAt && getTimeToNowWithTranslation(ticket.createdAt, i18n.language)}
                             </p>
                         </div>
                     )}
