@@ -21,6 +21,12 @@ export interface TicketProps {
     categoryIcon?: IconProp;
 }
 
+function getStatusDataAttribute(ticketStatus: number) {
+    return (
+        Status[ticketStatus] === Status[Status.Planned] ? Status[Status.Assigned] : Status[ticketStatus]
+    ).toLowerCase();
+}
+
 const Ticket = ({
     currentTicket,
     fCallBackClick,
@@ -98,9 +104,9 @@ const Ticket = ({
             onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
             onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
             data-testid="ticket-body"
-            id="ticket"
-            data-ticket-uid={ticket.uid}
+            id={ticket.uid}
             data-grid-id={gridId}
+            data-ticket-status={getStatusDataAttribute(ticket.status)}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {checkIsWatcher() && (
