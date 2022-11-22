@@ -15,8 +15,6 @@ test("should be visible with type Book", async ({ mount }) => {
             book={{
                 name: "Book Name",
                 lastElement: {},
-                isAwaiting: false,
-                isError: false,
             }}
         />
     );
@@ -43,6 +41,8 @@ test("should be visible with type Exit", async ({ mount }) => {
                 id: 456,
                 type: "escalate",
                 action: "Action Exit",
+                position: { y: 110, x: 100 },
+                isLocked: false,
             }}
         />
     );

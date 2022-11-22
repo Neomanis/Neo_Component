@@ -1,8 +1,8 @@
-import { CautionLogo, ClockLogo, IconBook, IconChapterExit, IconChapterScript } from "@/img/svg";
+import { CautionLogo, ClockLogo, IconArrowRight, IconBook, IconChapterExit } from "@/img/svg";
 import { classNames } from "@/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { DiagResult, Exit } from "@neomanis/neo-types";
+import { DiagnosticResult, DiagResult, Exit } from "@neomanis/neo-types";
 import React, { ReactElement, useCallback, useMemo } from "react";
 import Button from "../Button";
 import Icon from "../Icon";
@@ -37,7 +37,7 @@ export interface DiagnosticBlockProps {
         name?: string;
         diagExecutionTime?: number;
         lastElement?: DiagResult;
-        isAwaiting?: boolean;
+        diagResultType?: string;
     };
     Action?: {
         description: string;
@@ -79,10 +79,9 @@ const DiagnosticBlock = ({
             if (Awaiting) {
                 return colorRef["purple"][type];
             }
-            if (Error) {
+            if (Error || book?.diagResultType === DiagnosticResult.Failed) {
                 return colorRef["red"][type];
             }
-
             if (Exit) {
                 if (Exit.type === "solved") {
                     return colorRef["green"][type];
@@ -99,14 +98,17 @@ const DiagnosticBlock = ({
             }
 
             if (book) {
-                if (book.isAwaiting) {
+                if (book.diagResultType === DiagnosticResult.Awaiting || book.lastElement?.Awaiting) {
                     return colorRef["purple"][type];
                 }
                 if (book.lastElement?.Error) {
                     return colorRef["red"][type];
                 }
                 if (book.lastElement?.Exit) {
-                    if (book.lastElement?.Exit?.type === "escalate") {
+                    if (
+                        book.lastElement?.Exit?.type === "escalate" ||
+                        book.diagResultType === DiagnosticResult.Escalate
+                    ) {
                         return colorRef["orange"][type];
                     }
                     if (book.lastElement?.Exit?.type === "solved") {
@@ -131,7 +133,7 @@ const DiagnosticBlock = ({
             );
         }
         if (Action) {
-            return <IconChapterScript data-testid={"blockIsAction"} className={classNames("w-5", color("fill"))} />;
+            return <IconArrowRight data-testid={"blockIsAction"} className={classNames("w-3", color("fill"))} />;
         }
         if (Exit) {
             return <IconChapterExit data-testid={"blockIsExit"} className={classNames("w-5", color("fill"))} />;

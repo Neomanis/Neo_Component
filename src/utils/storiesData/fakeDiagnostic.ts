@@ -92,7 +92,7 @@ export const fakeDiag: Diagnostic = {
                 {
                     Exit: {
                         id: 1,
-                        action: "Exite escalate",
+                        action: "Exit escalate",
                         type: "escalate",
                         position: { x: 1980, y: 170 },
                         isLocked: false,
@@ -196,6 +196,7 @@ export const fakeAwaitingDiag: Diagnostic = {
                                 executionTime: 505,
                             },
                         },
+
                         {
                             name: "test_approval_enfant 2",
                             results: [
@@ -208,15 +209,6 @@ export const fakeAwaitingDiag: Diagnostic = {
                                         executionTime: 505,
                                     },
                                 },
-                                {
-                                    Exit: {
-                                        id: 7,
-                                        action: "Approval failed",
-                                        type: "escalate",
-                                        position: { x: 1980, y: 30 },
-                                        isLocked: false,
-                                    },
-                                },
                             ],
                         },
                     ],
@@ -226,7 +218,7 @@ export const fakeAwaitingDiag: Diagnostic = {
     ],
     awaiting: [
         {
-            bookNames: ["test_approval_parent", "test_approval_enfant"],
+            bookNames: ["test_approval_parent", "test_approval_enfant", "test_approval_enfant 2"],
             runId: "1664376143263",
             currentChapter: {
                 id: 1,
@@ -316,40 +308,39 @@ export const fakeDiagChild: DiagResult = {
     ],
 };
 export const fakeDiagOnlyApproval: Diagnostic = {
-    _id: "63330a6ed152a617b60cba5e",
-    ticketUid: "1gl-450-INC",
-    username: "User02",
-    userNeoId: 7,
-    techName: "admin01",
-    techNeoId: 2,
-    computerName: "pre01-clt01",
-    target: "https://ajankloss.neomanis.bzh:8010/a477e5ce-99ea-4fe1-a8e1-401f39921e58",
+    _id: "637b99631339e0807fa3cdb5",
+    ticketUid: "1gl-5151-INC",
+    username: "utest",
+    userNeoId: 15,
+    techName: "atest",
+    techNeoId: 1,
+    computerName: "desktop-8dstmdd",
+    target: "https://services.neomanis.bzh:8010/4cfd551e-da03-4a04-9af0-7206a504f92b",
     diagnostics: [
         {
-            runId: "1668764076456",
-            name: "lama_solo",
-            diagExecutionTime: 3376,
-            psycho: "qsd",
-            results: [] as DiagResult[],
+            runId: "1669045130247",
+            name: "livre_test",
+            diagExecutionTime: 5131,
+            gg: "gg",
         },
     ],
     awaiting: [
         {
-            bookNames: ["lama_solo"],
-            runId: "1668764076456",
+            bookNames: ["livre_test"],
+            runId: "1669045130247",
             currentChapter: {
                 id: 1,
-                desc: "Lalalala",
+                desc: "demande oui non",
                 actionParams: {
                     type: "approval",
                     params: [
                         {
                             type: "message",
-                            value: "Can you shut up ?",
+                            value: "oui ou non ?",
                             recipient: [
                                 {
                                     type: "value",
-                                    value: "atest",
+                                    value: "stest",
                                 },
                             ],
                         },
@@ -366,13 +357,14 @@ export const fakeDiagOnlyApproval: Diagnostic = {
                     },
                 },
                 position: {
-                    x: 180,
+                    x: 20,
                     y: 210,
                 },
                 isLocked: false,
             },
             username: "utest",
-            userNeoId: 6,
+            userNeoId: 15,
         },
     ],
+    __v: 6,
 } as unknown as Diagnostic;
