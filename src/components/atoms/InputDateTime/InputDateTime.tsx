@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useMemo, useRef, useState } from "react
 import { UseFormReturn, useController } from "react-hook-form";
 import { isEqual, startOfDay, endOfDay, format } from "date-fns";
 import { enGB, enUS, fr } from "date-fns/locale";
-import DatePicker, { registerLocale } from "react-datepicker";
+import DatePicker, { ReactDatePickerCustomHeaderProps, registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useTranslation } from "@neomanis/neo-translation";
 import { IconChevron } from "@/img/svg";
@@ -82,7 +82,7 @@ const InputDateTime = ({
 }: InputDateTimeProps & RangeConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
-    const timer = useRef(null);
+    const timer = useRef<NodeJS.Timeout | null>(null);
     const [isCalendarOpen, setIsCalenderOpen] = useState(false);
 
     const { t, i18n } = useTranslation();
@@ -106,7 +106,13 @@ const InputDateTime = ({
         }
     }, [value]);
 
-    const customHeader = ({ monthDate, decreaseMonth, increaseMonth, decreaseYear, increaseYear }) => (
+    const customHeader = ({
+        monthDate,
+        decreaseMonth,
+        increaseMonth,
+        decreaseYear,
+        increaseYear,
+    }: ReactDatePickerCustomHeaderProps) => (
         <div className="text-white flex items-center justify-between bg-neo-stats-black px-4">
             <IconChevron
                 onClick={() => (!showMonthPicker ? decreaseMonth() : decreaseYear())}
@@ -151,18 +157,19 @@ const InputDateTime = ({
         } else if (minTime && !maxTime) {
             return date.getTime() > minTime.getTime();
         } else {
-            return date.getTime() > minTime.getTime() && date.getTime() < maxTime.getTime();
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return date.getTime() > minTime!.getTime() && date.getTime() < maxTime!.getTime();
         }
     }
 
     function handleChangeSingle(value: Date) {
         onChange(value);
         if (isUpdateField) {
-            clearTimeout(timer.current);
+            timer.current !== null && clearTimeout(timer.current);
             if (!isEqual(value, state.previous as Date)) {
                 dispatch({ type: "UPDATING", payload: value });
                 timer.current = setTimeout(() => {
-                    updateFunction(refForm, value);
+                    updateFunction && updateFunction(refForm, value);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     timer.current = setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -178,12 +185,12 @@ const InputDateTime = ({
         const start = startOfDay(value[0]);
         const end = value[1] === null ? value[1] : endOfDay(value[1]);
         onChange([start, end]);
-        if (isUpdateField) {
-            clearTimeout(timer.current);
+        if (isUpdateField && Array.isArray(state.previous)) {
+            timer.current !== null && clearTimeout(timer.current);
             if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
                 dispatch({ type: "UPDATING", payload: value });
                 timer.current = setTimeout(() => {
-                    updateFunction(refForm, [start, end]);
+                    updateFunction && updateFunction(refForm, [start, end]);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     timer.current = setTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -201,15 +208,19 @@ const InputDateTime = ({
     }
 
     function handleTimeValue(value: Date) {
-        const date = format(value, dateTimeFormat, { locale: locales[i18n.language] });
+        const date = format(value, dateTimeFormat, { locale: locales[i18n.language as keyof typeof locales] });
         const { dates, timeList } = getTimeList();
 
         if (!dates.includes(date) && timeList) {
-            insertElementInList(
-                timeList,
-                createHourListElement(date),
-                getListIndexBetweenDates(dates, value, dateTimeFormat, i18n.language as keyof typeof locales)
+            const indexToInsert = getListIndexBetweenDates(
+                dates,
+                value,
+                dateTimeFormat,
+                i18n.language as keyof typeof locales
             );
+            if (indexToInsert !== undefined) {
+                insertElementInList(timeList, createHourListElement(date), indexToInsert);
+            }
         }
     }
 
