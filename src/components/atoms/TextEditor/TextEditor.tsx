@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -7,6 +7,7 @@ import { useInputs } from "@/utils/hooks/useInputs";
 import { getHTMLValue } from "@/utils/tools";
 import "@/styles/textEditor.css";
 import Updater from "../Updater";
+import { useOnClickOutside } from "@/utils/hooks/useOnClickOutside";
 
 export interface TextEditorProps {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -52,6 +53,18 @@ const TextEditor = ({
     watch,
 }: TextEditorProps): ReactElement => {
     const [state, dispatch] = useInputs(getHTMLValue(defaultValue));
+    const [data, setData] = useState(defaultValue);
+
+    const wrapperRef = useRef<HTMLDivElement>(null);
+
+    useOnClickOutside(wrapperRef, () => {
+        if (isUpdateField && state.previous !== data && !isError) {
+            dispatch({ type: "UPDATING", payload: data });
+            if (state.timeoutId) {
+                clearTimeout(state.timeoutId);
+            }
+        }
+    });
 
     const modules = {
         toolbar: [
@@ -150,27 +163,14 @@ const TextEditor = ({
                     />
                 )}
             </div>
-            <div className="flex w-full h-full mt-1">
+            <div className="flex w-full h-full mt-1 block" ref={wrapperRef}>
                 <ReactQuill
                     readOnly={readOnly}
                     value={watch && watch(refForm)}
-                    onBlur={(previousSelection, source, editor) => {
-                        if (!readOnly) {
-                            // Paste action trigger onBlur event with parameter "source" return a string "silent",
-                            // so we skip onBlur if this is the case
-                            if (source !== "silent") {
-                                if (isUpdateField && state.previous !== editor.getHTML() && !isError) {
-                                    dispatch({ type: "UPDATING", payload: editor.getHTML() });
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
-                                    }
-                                }
-                            }
-                        }
-                    }}
                     onChange={(data) => {
                         if (!readOnly) {
                             setValue && setValue(refForm, data, { shouldValidate: true });
+                            setData(data);
                             if (isUpdateField) {
                                 if (state.previous !== data) {
                                     dispatch({ type: "SHOW_DOT" });
