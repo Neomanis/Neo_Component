@@ -18,7 +18,7 @@ export function insertElementInList(list: HTMLUListElement, element: HTMLLIEleme
 }
 
 export function checkAndRemoveTemporaryElement(list: HTMLUListElement) {
-    [...list.children].forEach((element: HTMLLIElement) => {
+    [...(list.children as HTMLCollectionOf<HTMLElement>)].forEach((element) => {
         if (element.dataset.temporary) {
             element.remove();
         }
@@ -36,7 +36,7 @@ export function getListIndexBetweenDates(
         dates.map((text) => parse(text, dateFormat, date, { locale: locales[locale] }))
     );
 
-    if (!isAfter(parse(dates[index], dateFormat, date, { locale: locales[locale] }), date)) {
+    if (index && !isAfter(parse(dates[index], dateFormat, date, { locale: locales[locale] }), date)) {
         index++;
     }
 
@@ -44,7 +44,9 @@ export function getListIndexBetweenDates(
 }
 
 export function getTimeList() {
-    const timeList: HTMLUListElement = document.querySelector(".react-datepicker__time-list");
-    checkAndRemoveTemporaryElement(timeList);
-    return { timeList, dates: [...timeList.children].map((element) => element.innerHTML) };
+    const timeList: HTMLUListElement | null = document.querySelector(".react-datepicker__time-list");
+    if (timeList) {
+        checkAndRemoveTemporaryElement(timeList);
+    }
+    return { timeList, dates: [...(timeList?.children ?? [])].map((element) => element.innerHTML) };
 }
