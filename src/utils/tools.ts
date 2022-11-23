@@ -14,7 +14,7 @@ export function mapEnumToInputSelectData(
     traductionOption?: { context?: string; count?: number }
 ): InputSelectData[] {
     const enumarableValues = Object.keys(enumarable).filter((key) => isNaN(Number(key)));
-    const enumarableKeys = Object.keys(enumarable).filter((key) => !isNaN(Number(key)));
+    const enumarableKeys = Object.values(enumarable).filter((key) => !isNaN(Number(key)));
     return enumarableValues.map((key, index) => ({
         label:
             tFunction && traductionKey
