@@ -55,6 +55,7 @@ import { ReactComponent as IconLockOpen } from "./nm_ico_lock_open.svg";
 import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
 import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
+import { ReactComponent as IconNotFound } from "./nm_ico_not_found.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
 import { ReactComponent as IconOther } from "./nm_ico_other.svg";
 import { ReactComponent as IconPrinter } from "./nm_ico_printer.svg";
@@ -159,6 +160,7 @@ export {
     IconLogin,
     IconLogout,
     IconMaintenance,
+    IconNotFound,
     IconNotification,
     IconOther,
     IconPrinter,
