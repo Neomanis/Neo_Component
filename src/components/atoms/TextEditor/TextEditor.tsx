@@ -54,12 +54,14 @@ const TextEditor = ({
 }: TextEditorProps): ReactElement => {
     const [state, dispatch] = useInputs(getHTMLValue(defaultValue));
     const [data, setData] = useState(defaultValue);
+    const [isFocus, setIsFocus] = useState(false);
 
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     useOnClickOutside(wrapperRef, () => {
-        if (isUpdateField && state.previous !== data && !isError) {
+        if (isFocus && isUpdateField && state.previous !== data && !isError) {
             dispatch({ type: "UPDATING", payload: data });
+            setIsFocus(false);
             if (state.timeoutId) {
                 clearTimeout(state.timeoutId);
             }
@@ -169,6 +171,7 @@ const TextEditor = ({
                     value={watch && watch(refForm)}
                     onChange={(data) => {
                         if (!readOnly) {
+                            !isFocus && setIsFocus(true);
                             setValue && setValue(refForm, data, { shouldValidate: true });
                             setData(data);
                             if (isUpdateField) {
