@@ -67,6 +67,7 @@ interface FormatDateOption {
     withSecond?: boolean;
 }
 export function formatDate(date: string, option?: FormatDateOption): string {
+    option = option ?? {};
     option.lang = option.lang ?? "en-GB";
     option.dayOfWeek = option.dayOfWeek ?? false;
     option.withSecond = option.withSecond ?? false;
