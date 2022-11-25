@@ -61,9 +61,17 @@ export function getDateFnsLocaleFromUserLang(lang: string): Locale {
     }
 }
 
-export function formatDate(date: string, lang = "en-GB", dayOfWeek = false): string {
-    return format(new Date(date), `${dayOfWeek ? "EEEE " : ""}P p`, {
-        locale: getDateFnsLocaleFromUserLang(lang),
+interface FormatDateOption {
+    lang?: string;
+    dayOfWeek?: boolean;
+    withSecond?: boolean;
+}
+export function formatDate(date: string, option?: FormatDateOption): string {
+    option.lang = option.lang ?? "en-GB";
+    option.dayOfWeek = option.dayOfWeek ?? false;
+    option.withSecond = option.withSecond ?? false;
+    return format(new Date(date), `${option.dayOfWeek ? "EEEE " : ""}P p${option.withSecond ? ":ss" : ""}`, {
+        locale: getDateFnsLocaleFromUserLang(option.lang),
     });
 }
 

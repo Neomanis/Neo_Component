@@ -1,5 +1,5 @@
 import { CautionLogo, ClockLogo, IconArrowRight, IconBook, IconChapterExit } from "@/img/svg";
-import { classNames } from "@/utils";
+import { classNames, formatDate } from "@/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
 import { DiagnosticResult, DiagResult, Exit } from "@neomanis/neo-types";
@@ -35,6 +35,7 @@ const colorRef = {
 export interface DiagnosticBlockProps {
     book?: {
         name?: string;
+        launchDate?: Date;
         diagExecutionTime?: number;
         lastElement?: DiagResult;
         diagResultType?: string;
@@ -182,10 +183,15 @@ const DiagnosticBlock = ({
                     )}
                     {(Action?.executionTime || book?.diagExecutionTime) && (
                         <div className="flex items-center text-xs ml-4">
-                            <p className="mb-[2px] font-bold">
-                                {Action?.executionTime}
-                                {book?.diagExecutionTime} ms
-                            </p>
+                            <span className="mb-[2px] font-bold flex">
+                                <p className="text-neo-link mr-1">
+                                    {book?.launchDate && formatDate(book?.launchDate.toString(), { withSecond: true })}
+                                </p>
+                                <p className="text-xxs">
+                                    ({Action?.executionTime}
+                                    {book?.diagExecutionTime} ms)
+                                </p>
+                            </span>
                             <ClockLogo className="w-5 p-1 fill-neo-blue-secondary" />
                         </div>
                     )}
