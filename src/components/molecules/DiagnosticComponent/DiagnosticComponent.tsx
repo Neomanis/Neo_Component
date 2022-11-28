@@ -126,6 +126,7 @@ const DiagBook = ({
             <DiagnosticBlock
                 book={{
                     name: diagnostic.name,
+                    launchDate: diagnostic.launchDate,
                     diagExecutionTime: diagnostic.diagExecutionTime,
                     diagResultType: diagResultType,
                     lastElement: lastElement,

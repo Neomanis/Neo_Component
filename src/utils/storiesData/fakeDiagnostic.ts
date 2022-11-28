@@ -12,6 +12,7 @@ export const fakeDiag: Diagnostic = {
     diagnostics: [
         {
             runId: "1664376143263",
+            launchDate: "2022-09-28T16:42:23.263+00:00",
             name: "test_approval_parent",
             diagExecutionTime: 2139,
             helloWorld: "Congratulations, it's working !",
