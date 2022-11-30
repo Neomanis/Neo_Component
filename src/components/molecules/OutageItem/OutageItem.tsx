@@ -30,6 +30,7 @@ const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: 
             onMouseEnter={() => hoverInCallBack(data, ref?.current && ref?.current.getBoundingClientRect())}
             onMouseLeave={() => hoverOutCallBack(data, ref?.current && ref?.current.getBoundingClientRect())}
             className={`w-full text-${colorOutage} grid grid-cols-12 ${isNotSelected && "opacity-50"}`}
+            data-outage-item={data.title}
         >
             <div className="col-span-2 pt-1">
                 <IconOutageCategory id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />

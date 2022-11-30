@@ -32,6 +32,7 @@ export interface InputDateTimeProps {
     required?: boolean;
     updaterClassName?: string;
     errorMessage?: string;
+    id?: string;
     isError?: boolean;
     lang?: string;
     pattern?: string;
@@ -60,6 +61,7 @@ const InputDateTime = ({
     updaterClassName = "",
     updateFunction,
     formMethods,
+    id,
     isError,
     isUpdateField = false,
     label,
@@ -263,6 +265,7 @@ const InputDateTime = ({
                                     clearTimeout(state.timeoutId);
                                     dispatch({ type: "CANCEL_UPDATE" });
                                 }}
+                                id={"updater-" + id}
                             />
                         )}
                     </div>
@@ -304,6 +307,7 @@ const InputDateTime = ({
                     endDate={datesValue.endDate}
                     ref={ref}
                     disabled={disabled}
+                    id={id}
                 />
             </div>
         </label>
