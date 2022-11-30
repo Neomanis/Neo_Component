@@ -52,6 +52,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     showLabelAndUpdater?: boolean;
     updateFunction?: (field: string, value: Value<Option, IsMulti>) => void;
     updaterClassName?: string;
+    id?: string;
 }
 
 function InputSelect<
@@ -80,6 +81,7 @@ function InputSelect<
     showLabelAndUpdater = true,
     updateFunction,
     updaterClassName,
+    id,
 }: InputSelectProps<Option, IsMulti, Group>): ReactElement {
     const timer = useRef(null);
     const { t } = useTranslation();
@@ -158,6 +160,7 @@ function InputSelect<
                                     dispatch({ type: "CANCEL_UPDATE" });
                                     onChange(state.previous);
                                 }}
+                                id={"updater-" + id}
                             />
                         )}
                     </div>
@@ -179,6 +182,7 @@ function InputSelect<
                 styles={styles}
                 value={value}
                 onInputChange={(newValue) => onInputChange && onInputChange(newValue)}
+                id={id}
             />
         </div>
     );

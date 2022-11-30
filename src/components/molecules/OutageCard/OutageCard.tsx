@@ -43,6 +43,7 @@ const OutageCard = ({
             onMouseEnter={() => hoverInCallBack()}
             onMouseLeave={() => hoverOutCallBack()}
             className={`w-full h-full text-${colorOutage} bg-neo-blue-extraDark p-5 grid grid-cols-10 rounded-xl`}
+            data-outage-card={data.title}
         >
             <div className="col-span-2 flex flex-col justify-between ">
                 <IconOutageCategory id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
@@ -56,6 +57,7 @@ const OutageCard = ({
                                     onClick={(): void => modifCallBack(data)}
                                     variant="none"
                                     size="none"
+                                    id="edit-button"
                                 />
 
                                 <Button
@@ -64,6 +66,7 @@ const OutageCard = ({
                                     onClick={(): void => setOpenValidationCard(true)}
                                     variant="none"
                                     size="none"
+                                    id="delete-button"
                                 />
                             </div>
                         ) : (
@@ -79,6 +82,7 @@ const OutageCard = ({
                                     deleteCallBack(data.id);
                                 }}
                                 text={t("global.deleteThis") + " " + data.type + " ?"}
+                                id="delete-button"
                             />
                         )}
                     </>

@@ -17,6 +17,7 @@ export interface TextEditorProps {
     labelClassName?: string;
     dotClassName?: string;
     errorMessage?: string;
+    id?: string;
     isError?: boolean;
     isUpdateField?: boolean;
     readOnly?: boolean;
@@ -39,6 +40,7 @@ const TextEditor = ({
     labelClassName,
     dotClassName,
     errorMessage,
+    id,
     isError,
     isUpdateField = false,
     readOnly = false,
@@ -162,6 +164,7 @@ const TextEditor = ({
                         trigger={state.trigger}
                         updateCooldown={timerSetting}
                         errorMessage={errorMessage}
+                        id={"updater-" + id}
                     />
                 )}
             </div>
@@ -188,6 +191,7 @@ const TextEditor = ({
                     }}
                     modules={modules}
                     formats={formats}
+                    id={id}
                 />
             </div>
         </div>
