@@ -32,3 +32,25 @@ test("should be able to check/uncheck and change css colors", async ({ mount }) 
     await expect(input).toHaveClass(/bg-neo-red/);
     await expect(component.locator('[data-testid="switchToggle-bg"]')).toHaveClass(/bg-neo-blue/);
 });
+
+test("shouldn't be able to check/uncheck when disabled", async ({ mount }) => {
+    const component = await mount(
+        <SwitchToggle
+            value="Helloworld"
+            defaultStatus={false}
+            checkBgColor="neo-blue"
+            checkPillColor="neo-red"
+            uncheckBgColor="neo-green"
+            uncheckPillColor="neo-blue"
+            labelClassName="text-neo-green"
+            disabled={true}
+        />
+    );
+    const input = component.locator("input");
+    await expect(component.locator('[data-testid="switchToggle-pill"]')).toHaveClass(/cursor-not-allowed/);
+    await expect(component.locator('[data-testid="switchToggle-bg"]')).toHaveClass(/cursor-not-allowed/);
+    await expect(component.locator('[data-testid="switchToggle-label"]')).toHaveClass(/cursor-not-allowed/);
+    await expect(input).not.toBeChecked();
+    await input.click({ force: true });
+    await expect(input).not.toBeChecked();
+});

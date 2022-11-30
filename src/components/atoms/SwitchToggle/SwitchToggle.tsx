@@ -1,3 +1,4 @@
+import { classNames } from "@/utils/tools";
 import React, { ReactElement, useEffect, useState } from "react";
 
 export interface SwitchToggleProps {
@@ -10,6 +11,7 @@ export interface SwitchToggleProps {
     uncheckPillColor?: string;
     checkBgColor?: string;
     checkPillColor?: string;
+    disabled?: boolean;
 }
 
 const SwitchToggle = ({
@@ -22,6 +24,7 @@ const SwitchToggle = ({
     uncheckPillColor,
     checkBgColor,
     checkPillColor,
+    disabled,
 }: SwitchToggleProps): ReactElement => {
     const [checked, setChecked] = useState(defaultStatus);
 
@@ -42,9 +45,10 @@ const SwitchToggle = ({
                 <input
                     checked={checked}
                     data-testid="switchToggle-pill"
-                    className={`absolute block w-4 h-4 m-1 rounded-full appearance-none cursor-pointer transform duration-150 ease-linear 
-                    ${checked && "translate-x-full "} 
-                    ${
+                    className={classNames(
+                        "absolute block w-4 h-4 m-1 rounded-full appearance-none transform duration-150 ease-linear",
+                        disabled ? "cursor-not-allowed" : "cursor-pointer",
+                        checked && "translate-x-full",
                         checked
                             ? checkPillColor
                                 ? "bg-" + checkPillColor
@@ -52,18 +56,19 @@ const SwitchToggle = ({
                             : uncheckPillColor
                             ? "bg-" + uncheckPillColor
                             : "bg-neo-bg-A"
-                    }
-                    `}
+                    )}
                     id={id}
                     onChange={(): void => {
                         toggleSwitch();
                     }}
                     type="checkbox"
+                    disabled={disabled}
                 />
                 <label
                     data-testid="switchToggle-bg"
-                    className={`block overflow-hidden h-6 rounded-full cursor-pointer duration-150 ease-linear 
-                    ${
+                    className={classNames(
+                        "block overflow-hidden h-6 rounded-full duration-150 ease-linear",
+                        disabled ? "cursor-not-allowed" : "cursor-pointer",
                         checked
                             ? checkBgColor
                                 ? "bg-" + checkBgColor
@@ -71,18 +76,17 @@ const SwitchToggle = ({
                             : uncheckBgColor
                             ? "bg-" + uncheckBgColor
                             : "bg-neo-blue-secondary"
-                    }
-
-                    `}
+                    )}
                     htmlFor={id}
                 ></label>
             </div>
             {value && (
                 <label
                     data-testid="switchToggle-label"
-                    className={`${
-                        labelClassName ? labelClassName : "ml-2 text-xs text-neo-blue-secondary cursor-pointer"
-                    } `}
+                    className={classNames(
+                        labelClassName ? labelClassName : "ml-2 text-xs text-neo-blue-secondary",
+                        disabled ? "cursor-not-allowed" : "cursor-pointer"
+                    )}
                     htmlFor={id}
                 >
                     {value}

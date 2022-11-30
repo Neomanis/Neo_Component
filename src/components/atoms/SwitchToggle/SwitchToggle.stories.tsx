@@ -24,6 +24,7 @@ Default.args = {
     defaultStatus: false,
     fCallBack: () => console.log("switch"),
     value: "Exemple switch",
+    disabled: false,
 };
 
 export const WithStyle: ComponentStory<typeof SwitchToggle> = Template.bind({});
@@ -36,4 +37,5 @@ WithStyle.args = {
     checkPillColor: "neo-blue",
     fCallBack: () => console.log("switch"),
     value: "Exemple switch with style",
+    disabled: false,
 };
