@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, ReactNode, RefObject, useLayoutEffe
 import { classNames as createClassNames } from "@/utils/tools";
 export interface ShadowBoxWrapperProps {
     children: ReactNode;
-    refP?: RefObject<HTMLUListElement>;
+    refParent?: RefObject<HTMLUListElement>;
     classNames?: {
         topShadowBox?: string;
         bottomShadowBox?: string;
@@ -22,7 +22,7 @@ export interface ShadowBoxWrapperProps {
 
 const ShadowBoxWrapper = ({
     children,
-    refP,
+    refParent,
     linearGradient,
     containerStyle,
     sizeShawbox,
@@ -32,7 +32,7 @@ const ShadowBoxWrapper = ({
     const [showEndShadowBox, setShowEndShadowBox] = useState(true);
 
     const defaultRef = useRef<HTMLUListElement>(null);
-    const listContainerRef = refP ?? defaultRef;
+    const listContainerRef = refParent ?? defaultRef;
 
     switch (linearGradient) {
         case "bg-A":
@@ -86,7 +86,7 @@ const ShadowBoxWrapper = ({
             {showStartShadowBox && (
                 <div
                     className={createClassNames(
-                        "absolute z-20 ",
+                        "absolute z-20 pointer-events-none",
                         inline ? `h-full left-0 ${sizeShawbox ?? "w-10"}` : `w-full top-0 ${sizeShawbox ?? "h-10"}`
                     )}
                     style={{
@@ -102,6 +102,7 @@ const ShadowBoxWrapper = ({
                     inline && "flex"
                 )}
                 onScroll={() => listContainerRef.current && detectScroll(listContainerRef.current)}
+                style={{ scrollBehavior: "smooth" }}
                 ref={listContainerRef}
             >
                 {children}
@@ -109,7 +110,7 @@ const ShadowBoxWrapper = ({
             {showEndShadowBox && (
                 <div
                     className={createClassNames(
-                        "absolute z-20",
+                        "absolute z-20 pointer-events-none",
                         inline ? `h-full right-0 ${sizeShawbox ?? "w-10"}` : `w-full bottom-0 ${sizeShawbox ?? "h-10"}`
                     )}
                     style={{

@@ -6,7 +6,6 @@ export { default as ChartRangeSelector } from "./ChartRangeSelector";
 export { default as ChatCard } from "./ChatCard";
 export { default as DiagnosticComponent } from "./DiagnosticComponent";
 export { default as Grid } from "./Grid";
-export { default as InlineShadowBoxWrapper } from "./InlineShadowBoxWrapper";
 export { default as InputChat } from "./InputChat";
 export { default as MessageChat } from "./MessageChat";
 export { default as NeoBotProcess } from "./NeoBotProcess";
