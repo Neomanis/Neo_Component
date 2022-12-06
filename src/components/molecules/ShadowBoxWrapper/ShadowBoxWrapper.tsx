@@ -1,8 +1,8 @@
 import React, { CSSProperties, ReactElement, ReactNode, RefObject, useLayoutEffect, useRef, useState } from "react";
 import { classNames as createClassNames } from "@/utils/tools";
 export interface ShadowBoxWrapperProps {
-    refParent?: RefObject<HTMLDivElement>;
     children: ReactNode;
+    refParent?: RefObject<HTMLUListElement>;
     classNames?: {
         topShadowBox?: string;
         bottomShadowBox?: string;
@@ -16,19 +16,23 @@ export interface ShadowBoxWrapperProps {
         | "bg-A"
         | "bg-B";
     containerStyle?: CSSProperties;
+    sizeShawbox?: string;
+    inline?: boolean;
 }
 
 const ShadowBoxWrapper = ({
     children,
-    classNames,
-    linearGradient,
     refParent,
+    linearGradient,
     containerStyle,
+    sizeShawbox,
+    inline,
 }: ShadowBoxWrapperProps): ReactElement => {
-    const [showTopShadowBox, setShowTopShadowBox] = useState(false);
-    const [showBottomShadowBox, setShowBottomShadowBox] = useState(true);
+    const [showStartShadowBox, setShowStartShadowBox] = useState(false);
+    const [showEndShadowBox, setShowEndShadowBox] = useState(true);
 
-    const listContainerRef = useRef<HTMLDivElement>(null);
+    const defaultRef = useRef<HTMLUListElement>(null);
+    const listContainerRef = refParent ?? defaultRef;
 
     switch (linearGradient) {
         case "bg-A":
@@ -39,38 +43,34 @@ const ShadowBoxWrapper = ({
             break;
     }
 
-    function detectScroll(ref: HTMLDivElement): void {
-        const scrollPercentage = ref.scrollTop / (ref.scrollHeight - ref.clientHeight);
+    function detectScroll(ref: HTMLUListElement): void {
+        const scrollPercentage = inline
+            ? ref.scrollLeft / (ref.scrollWidth - ref.clientWidth)
+            : ref.scrollTop / (ref.scrollHeight - ref.clientHeight);
+
         if (scrollPercentage === 0) {
-            setShowTopShadowBox(false);
-            setShowBottomShadowBox(true);
+            setShowStartShadowBox(false);
+            setShowEndShadowBox(true);
         }
         if (scrollPercentage === 1) {
-            setShowTopShadowBox(true);
-            setShowBottomShadowBox(false);
+            setShowStartShadowBox(true);
+            setShowEndShadowBox(false);
         }
         if (scrollPercentage > 0 && scrollPercentage < 1) {
-            setShowTopShadowBox(true);
-            setShowBottomShadowBox(true);
+            setShowStartShadowBox(true);
+            setShowEndShadowBox(true);
         }
     }
 
-    function isOverflow(element: HTMLDivElement): boolean {
-        return element.scrollHeight > element.clientHeight;
+    function isOverflow(element: HTMLUListElement): boolean {
+        return inline ? element.scrollWidth > element.clientWidth : element.scrollHeight > element.clientHeight;
     }
 
     useLayoutEffect(() => {
-        if (refParent && refParent.current) {
-            if (!isOverflow(refParent.current)) {
-                setShowTopShadowBox(false);
-                setShowBottomShadowBox(false);
-            } else {
-                detectScroll(refParent.current);
-            }
-        } else if (listContainerRef.current) {
+        if (listContainerRef.current) {
             if (!isOverflow(listContainerRef.current)) {
-                setShowTopShadowBox(false);
-                setShowBottomShadowBox(false);
+                setShowStartShadowBox(false);
+                setShowEndShadowBox(false);
             } else {
                 detectScroll(listContainerRef.current);
             }
@@ -79,37 +79,43 @@ const ShadowBoxWrapper = ({
 
     return (
         <div
-            ref={refParent ? refParent : listContainerRef}
-            className={createClassNames(
-                "list-none overflow-y-scroll no-scrollbar",
-                classNames.container ?? "h-full w-full"
-            )}
+            className={createClassNames("relative h-full w-full", inline && "flex")}
             style={containerStyle}
-            onScroll={() =>
-                refParent
-                    ? refParent.current && detectScroll(refParent.current)
-                    : listContainerRef.current && detectScroll(listContainerRef.current)
-            }
             data-testid="shadowBoxWrapperContainer"
         >
-            {showTopShadowBox && (
+            {showStartShadowBox && (
                 <div
-                    className={createClassNames("w-full absolute z-20 left-0", classNames.topShadowBox ?? "top-0 h-10")}
+                    className={createClassNames(
+                        "absolute z-20 pointer-events-none",
+                        inline ? `h-full left-0 ${sizeShawbox ?? "w-10"}` : `w-full top-0 ${sizeShawbox ?? "h-10"}`
+                    )}
                     style={{
-                        background: `linear-gradient(180deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
+                        background: `linear-gradient(${inline ? "90deg" : "180deg"}, ${linearGradient.first} 0%, 
+                        ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
                     }}
                     data-testid="shadowBoxWrapperTopShadowBox"
                 ></div>
             )}
-            {children}
-            {showBottomShadowBox && (
+            <ul
+                className={createClassNames(
+                    "absolute list-none overflow-scroll no-scrollbar w-full h-full",
+                    inline && "flex"
+                )}
+                onScroll={() => listContainerRef.current && detectScroll(listContainerRef.current)}
+                style={{ scrollBehavior: "smooth" }}
+                ref={listContainerRef}
+            >
+                {children}
+            </ul>
+            {showEndShadowBox && (
                 <div
                     className={createClassNames(
-                        "w-full absolute z-20 left-0",
-                        classNames.bottomShadowBox ?? "bottom-0 h-10"
+                        "absolute z-20 pointer-events-none",
+                        inline ? `h-full right-0 ${sizeShawbox ?? "w-10"}` : `w-full bottom-0 ${sizeShawbox ?? "h-10"}`
                     )}
                     style={{
-                        background: `linear-gradient(0deg, ${linearGradient.first} 0%, ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
+                        background: `linear-gradient(${inline ? "270deg" : "0deg"}, ${linearGradient.first} 0%, 
+                        ${linearGradient.second} 55%, rgba(255,0,0,0) 100%)`,
                     }}
                     data-testid="shadowBoxWrapperBottomShadowBox"
                 ></div>
