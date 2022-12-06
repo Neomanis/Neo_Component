@@ -24,10 +24,10 @@ import NeoColors from "@/utils/neoColors";
 import { InputDateTime } from "@/components/atoms";
 
 export interface Props {
-    fCallBackData: (dates: { period: string; dates: { start: Date; end: Date } }) => void;
+    fCallBackData: (dates: { period: string | undefined; dates: { start: Date; end: Date } }) => void;
     fullSelector?: boolean;
     containerClassName?: string;
-    defaultValue?: { period: string | undefined; dates: { start: Date | undefined; end: Date | undefined } };
+    defaultValue?: { period: string | undefined; dates?: { start: Date; end: Date } };
     resetDates?: { reset: boolean; setter: (val: boolean) => void };
 }
 
@@ -61,12 +61,20 @@ const ChartRangeSelector = ({
         data.push({ label: t("global.period"), value: rangeDateValue.custom });
     }
 
-    const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue>(rangeDateValue[defaultValue.period]);
+    const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue | undefined>(
+        rangeDateValue[defaultValue.period as rangeDateValue]
+    );
     const [offset, setOffset] = useState<number>(0);
 
     const [customRange, setCustomRange] = useState<{ start: Date; end: Date }>({
-        start: isDate(defaultValue.dates.start) ? startOfDay(defaultValue.dates.start) : startOfDay(refDate),
-        end: isDate(defaultValue.dates.end) ? endOfDay(defaultValue.dates.end) : endOfDay(refDate),
+        start:
+            defaultValue.dates?.start && isDate(defaultValue.dates.start)
+                ? startOfDay(defaultValue.dates.start)
+                : startOfDay(refDate),
+        end:
+            defaultValue.dates?.end && isDate(defaultValue.dates.end)
+                ? endOfDay(defaultValue.dates.end)
+                : endOfDay(refDate),
     });
 
     const formMethods = useForm({ mode: "onChange" });
@@ -98,7 +106,7 @@ const ChartRangeSelector = ({
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
         const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate) + 1);
-        const actualQuarterMonthDates = quarterRange[actualQuarterMonth + 1];
+        const actualQuarterMonthDates = quarterRange[actualQuarterMonth];
         return {
             start: startOfMonth(new Date(year, actualQuarterMonthDates.startMonth)),
             end: endOfMonth(new Date(year, actualQuarterMonthDates.endMonth)),
@@ -123,36 +131,20 @@ const ChartRangeSelector = ({
     const dateRange = useMemo(() => {
         switch (typeRangeSelect) {
             case rangeDateValue.daily:
-                return dayRangePicker(
-                    defaultValue.period === rangeDateValue.daily ? defaultValue.dates.start : refDate,
-                    offset
-                );
+                return dayRangePicker(defaultValue.dates?.start ?? refDate, offset);
             case rangeDateValue.weekly:
-                return weekRangePicker(
-                    defaultValue.period === rangeDateValue.weekly ? defaultValue.dates.start : refDate,
-                    offset
-                );
+                return weekRangePicker(defaultValue.dates?.start ?? refDate, offset);
             case rangeDateValue.monthly:
-                return monthRangePicker(
-                    defaultValue.period === rangeDateValue.monthly ? defaultValue.dates.start : refDate,
-                    offset
-                );
+                return monthRangePicker(defaultValue.dates?.start ?? refDate, offset);
             case rangeDateValue.quarterly:
-                return quarterRangePicker(
-                    defaultValue.period === rangeDateValue.quarterly ? defaultValue.dates.start : refDate,
-                    offset
-                );
+                return quarterRangePicker(defaultValue.dates?.start ?? refDate, offset);
             case rangeDateValue.yearly:
-                return yearRangePicker(
-                    defaultValue.period === rangeDateValue.yearly ? defaultValue.dates.start : refDate,
-                    offset
-                );
+                return yearRangePicker(defaultValue.dates?.start ?? refDate, offset);
             case rangeDateValue.custom:
                 return {
                     start: isDate(customRange.start) ? customRange.start : startOfDay(refDate),
                     end: isDate(customRange.end) ? customRange.end : endOfDay(refDate),
                 };
-
             default:
                 return dayRangePicker(refDate, refDate.getDay());
         }
@@ -181,8 +173,8 @@ const ChartRangeSelector = ({
 
     const periodDefaultValue = useMemo(
         (): [Date, Date] => [
-            startOfDay(defaultValue.dates.start ?? new Date()),
-            endOfDay(defaultValue.dates.end ?? new Date()),
+            startOfDay(defaultValue.dates?.start ?? refDate),
+            endOfDay(defaultValue.dates?.end ?? refDate),
         ],
         []
     );
@@ -193,7 +185,10 @@ const ChartRangeSelector = ({
 
     useEffect(() => {
         if (resetDates && resetDates.reset) {
-            setCustomRange({ start: undefined, end: undefined });
+            setCustomRange({
+                start: refDate,
+                end: refDate,
+            });
             setTypeRangeSelect(undefined);
             resetDates.setter(false);
         }
@@ -217,7 +212,10 @@ const ChartRangeSelector = ({
     }
 
     function showUpDate(): boolean {
-        return dateRange.start.getTime() <= refDate.getTime() && dateRange.end.getTime() <= refDate.getTime();
+        if (dateRange.start && dateRange.end) {
+            return dateRange.start.getTime() <= refDate.getTime() && dateRange.end.getTime() <= refDate.getTime();
+        }
+        return false;
     }
 
     useEffect(() => {
@@ -283,7 +281,7 @@ const ChartRangeSelector = ({
                             <InputDateTime
                                 className="w-72 px-4 z-50"
                                 defaultValue={periodDefaultValue}
-                                maxDate={new Date()}
+                                maxDate={refDate}
                                 refForm="date_creation_range"
                                 lang={i18n.language}
                                 formMethods={formMethods}
