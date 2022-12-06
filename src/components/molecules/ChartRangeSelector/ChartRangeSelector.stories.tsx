@@ -26,7 +26,7 @@ export const Default: Story<Props> = () => {
 
 export const WithReset: Story<Props> = () => {
     const [reset, setReset] = useState(false);
-    const [dates, setDates] = useState({ start: undefined, end: undefined });
+    const [dates, setDates] = useState<{ start: string; end: string }>();
     return (
         <div className="flex-col">
             <button className="text-neo-red" onClick={() => setReset(true)}>
@@ -39,16 +39,16 @@ export const WithReset: Story<Props> = () => {
                     }
                 }}
                 defaultValue={{
-                    period: undefined,
+                    period: "daily",
                     dates: {
-                        start: undefined,
-                        end: undefined,
+                        start: new Date(),
+                        end: new Date(),
                     },
                 }}
                 resetDates={{ reset, setter: setReset }}
             />
-            <p className="text-neo-light-grey">START: {dates.start ?? ""}</p>
-            <p className="text-neo-light-grey">END: {dates.end ?? ""}</p>
+            <p className="text-neo-light-grey">START: {dates?.start ?? ""}</p>
+            <p className="text-neo-light-grey">END: {dates?.end ?? ""}</p>
         </div>
     );
 };
