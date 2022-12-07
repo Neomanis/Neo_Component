@@ -12,7 +12,7 @@ const BubbleChat = ({ bgColor, border, content, isValidate = true }: BubbleChatP
     return (
         <div
             className={classNames(
-                "text-xxs rounded-md p-2 text-neo-light-grey",
+                "text-xxs rounded-md p-2 text-neo-light-grey break-words",
                 bgColor,
                 border,
                 border && "border-2",
