@@ -33,7 +33,7 @@ const MessageChat = ({
     const [hover, setHover] = useState(false);
 
     return (
-        <div>
+        <div className="w-full px-2">
             <div
                 className={classNames(
                     "overflow-hidden h-4 text-xxs flex text-neo-blue-secondary font-bold",
@@ -57,21 +57,19 @@ const MessageChat = ({
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >
-                <div className="min-w-max ">
-                    {avatar && avatar.encodedAvatar !== null ? (
-                        <Img
-                            type="imgProfile"
-                            data={{
-                                src: avatar.encodedAvatar,
-                                alt: avatar.originalname,
-                            }}
-                            className="rounded-full w-11 h-11"
-                        />
-                    ) : (
-                        <Img type="imgProfile" className="rounded-full w-11" />
-                    )}
-                </div>
-                <div className="mx-3 relative">
+                {avatar && avatar.encodedAvatar !== null ? (
+                    <Img
+                        type="imgProfile"
+                        data={{
+                            src: avatar.encodedAvatar,
+                            alt: avatar.originalname,
+                        }}
+                        className="rounded-full w-11 h-11"
+                    />
+                ) : (
+                    <Img type="imgProfile" className="rounded-full w-11" />
+                )}
+                <div className="mx-3 relative w-[calc(100%-3rem)]">
                     {!isFailed && privateMessage && (
                         <Icon
                             className={classNames(
