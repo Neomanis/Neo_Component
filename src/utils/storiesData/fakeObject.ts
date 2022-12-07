@@ -122,7 +122,7 @@ export const fakeUser: CompleteUser = {
             },
             {
                 id: 0,
-                name: "Entité racine",
+                name: "Entité racine > entité enfant",
                 itsmCode: "2gl",
             },
         ],

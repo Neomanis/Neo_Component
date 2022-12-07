@@ -28,19 +28,19 @@ const roundings = {
     none: "",
 };
 
-type IconProps =
+export type IconProps =
     | { startIcon: ReactElement | null; endIcon?: never }
     | { startIcon?: never; endIcon: ReactElement | null }
     | { startIcon?: undefined; endIcon?: undefined };
 
-export type ButtonV2Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: keyof typeof variants;
     size?: keyof typeof sizes;
     rounded?: keyof typeof roundings;
     isLoading?: boolean;
 } & IconProps;
 
-const Button = forwardRef<HTMLButtonElement, ButtonV2Props>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
             type = "button",
