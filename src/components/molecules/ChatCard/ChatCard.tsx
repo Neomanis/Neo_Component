@@ -2,8 +2,8 @@ import React, { ReactElement } from "react";
 import { InputChoice } from "@/components/atoms";
 
 export interface ChatCardProps {
-    data: { label: string; value: number }[];
-    fCallBack: (data: { label: string; value: number }) => void;
+    data: { label: string; value: number | string }[];
+    fCallBack: (data: { label: string; value: number | string }) => void;
 }
 
 const ChatCard = ({ data, fCallBack }: ChatCardProps): ReactElement => {

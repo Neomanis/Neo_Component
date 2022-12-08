@@ -3,8 +3,8 @@ import React, { ReactElement } from "react";
 export interface InputChoiceProps {
     cardClassName?: string;
     className?: string;
-    data: { label: string; value: number }[];
-    fCallBack?: (data: { label: string; value: number }) => void;
+    data: { label: string; value: number | string }[];
+    fCallBack?: (data: { label: string; value: number | string }) => void;
     label?: string;
     labelClassName?: string;
     titleClassName?: string;
