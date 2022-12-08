@@ -1,4 +1,5 @@
 export { default as Button } from "./Button";
+export { default as ButtonSelect } from "./ButtonSelect";
 export { default as BubbleChat } from "./BubbleChat";
 export { default as ButtonSwitch } from "./ButtonSwitch";
 export { default as DiagnosticBlock } from "./DiagnosticBlock";
