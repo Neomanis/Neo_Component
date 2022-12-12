@@ -183,6 +183,7 @@ function InputSelect<
                 value={value}
                 onInputChange={(newValue) => onInputChange && onInputChange(newValue)}
                 id={id}
+                instanceId={id}
             />
         </div>
     );
