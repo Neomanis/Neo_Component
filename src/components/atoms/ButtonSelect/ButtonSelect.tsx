@@ -1,5 +1,5 @@
 import { classNames, useOnClickOutside } from "@/utils";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useMemo, useRef, useState } from "react";
 import Button from "../Button";
 import { ButtonProps } from "../Button/Button";
 
@@ -8,6 +8,7 @@ interface Props<T> {
     selectedItem?: T;
     button: ButtonProps;
     aligneSelect?: "left" | "right";
+    selectOne?: boolean;
     onClick: (item: T) => void;
 }
 
@@ -16,6 +17,7 @@ export default function ButtonSelect<T>({
     button,
     aligneSelect,
     selectedItem,
+    selectOne,
     onClick,
 }: Props<T>): ReactElement {
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -23,7 +25,17 @@ export default function ButtonSelect<T>({
 
     const [showDropdown, setShowDropdown] = useState(false);
 
-    if (array.length > 1 && !selectedItem) {
+    const showSelect = useMemo(() => {
+        if (selectOne) {
+            return true;
+        }
+        if (array.length > 1 && !selectedItem) {
+            return true;
+        }
+        return false;
+    }, [selectOne, selectedItem, array]);
+
+    if (showSelect) {
         return (
             <div className="relative group" ref={wrapperRef}>
                 <Button
@@ -33,7 +45,7 @@ export default function ButtonSelect<T>({
                 />
                 <ul
                     className={classNames(
-                        "absolute mt-4 bg-neo-settings-grey text-white text-xs font-bold rounded z-10 transform",
+                        "absolute mt-2 bg-neo-settings-grey text-white text-xs font-bold rounded z-10 transform min-w-full overflow-hidden",
                         showDropdown ? "block" : "hidden",
                         !aligneSelect && "-translate-x-1/2 left-1/2",
                         aligneSelect === "right" && "right-0",
@@ -59,6 +71,6 @@ export default function ButtonSelect<T>({
             </div>
         );
     } else {
-        return <Button {...button} onClick={() => selectedItem && onClick(selectedItem)} />;
+        return <Button {...button} onClick={() => onClick(selectedItem ?? array[0].value)} />;
     }
 }

@@ -71,10 +71,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 type={type}
                 {...props}
             >
-                {isLoading && <Loader type="circleOnly" />}
-                {!isLoading && startIcon}
-                {props.children && <span className="mx-2">{props.children}</span>}
-                {!isLoading && endIcon}
+                {isLoading && (
+                    <span className={classNames(props.children && "mr-2")}>
+                        <Loader type="circleOnly" />
+                    </span>
+                )}
+                {!isLoading && <span className={classNames(props.children && "mr-2")}>{startIcon}</span>}
+                {props.children && <span>{props.children}</span>}
+                {!isLoading && <span className={classNames(props.children && "ml-2")}>{endIcon}</span>}
             </button>
         );
     }
