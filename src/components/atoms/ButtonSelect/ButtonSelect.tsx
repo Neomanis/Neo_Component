@@ -8,6 +8,7 @@ interface Props<T> {
     selectedItem?: T;
     button: ButtonProps;
     aligneSelect?: "left" | "right";
+    selectOnTop?: boolean;
     selectOne?: boolean;
     onClick: (item: T) => void;
 }
@@ -17,6 +18,7 @@ export default function ButtonSelect<T>({
     button,
     aligneSelect,
     selectedItem,
+    selectOnTop,
     selectOne,
     onClick,
 }: Props<T>): ReactElement {
@@ -45,7 +47,8 @@ export default function ButtonSelect<T>({
                 />
                 <ul
                     className={classNames(
-                        "absolute mt-2 bg-neo-settings-grey text-white text-xs font-bold rounded z-10 transform min-w-full overflow-hidden",
+                        "absolute  bg-neo-settings-grey text-white text-xs font-bold rounded z-10 transform min-w-full overflow-hidden ",
+                        selectOnTop ? "bottom-full mb-2" : "mt-2",
                         showDropdown ? "block" : "hidden",
                         !aligneSelect && "-translate-x-1/2 left-1/2",
                         aligneSelect === "right" && "right-0",
