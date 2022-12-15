@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.19.3] 
+ ### [5.19.4] 
+ add z-index on selectButton ### [5.19.3] 
  add selectOnTop on ButtonSelect ### [5.19.2] 
  update select button style ### [5.19.1] 
  add instanceId on reactSelect ### [5.19.0] 
