@@ -47,7 +47,7 @@ export default function ButtonSelect<T>({
                 />
                 <ul
                     className={classNames(
-                        "absolute  bg-neo-settings-grey text-white text-xs font-bold rounded z-10 transform min-w-full overflow-hidden ",
+                        "absolute bg-neo-settings-grey text-white text-xs font-bold rounded z-50 transform min-w-full overflow-hidden ",
                         selectOnTop ? "bottom-full mb-2" : "mt-2",
                         showDropdown ? "block" : "hidden",
                         !aligneSelect && "-translate-x-1/2 left-1/2",
