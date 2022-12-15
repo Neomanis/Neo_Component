@@ -45,6 +45,7 @@ export const DefaultSelect: ComponentStory<typeof ButtonSelect> = () => {
                 button={{ children: "ButtonTest", startIcon: <TicketNew className="w-9 fill-white" /> }}
                 onClick={(data: MembershipInfo) => setEntitySlecet(`[${data.itsmCode}] ${data.name}`)}
                 aligneSelect="right"
+                selectOnTop={true}
             />
             <p className="ml-4 text-white font-bold">{entitySelect}</p>
         </div>
