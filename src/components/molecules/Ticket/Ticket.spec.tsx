@@ -23,7 +23,7 @@ test("should have opacity if ticket and current ticket are not the same and both
             currentTicket={{ ...fakeTicket, uid: "1gl-4000-INC", gridId: "inventory" }}
         />
     );
-    await expect(component).toHaveClass(/opacity-30/);
+    await expect(component).toHaveCSS("opacity", "0.3");
 });
 
 test("should render correct solved icon icon", async ({ mount }) => {
