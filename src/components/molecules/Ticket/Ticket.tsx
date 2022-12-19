@@ -81,6 +81,8 @@ const Ticket = ({
             <div
                 className="absolute w-[135px] h-[135px] flex items-center justify-center"
                 data-testid="ticket-empty-body"
+                data-grid-id={gridId}
+                data-is-ticket={false}
             >
                 <div className="absolute">
                     <TicketLogo width={32} fill={NeoColors.bg.B} />
@@ -99,6 +101,7 @@ const Ticket = ({
             data-testid="ticket-body"
             id={ticket.uid}
             data-grid-id={gridId}
+            data-is-ticket={true}
             data-ticket-status={getStatusDataAttribute(ticket.status)}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
