@@ -2,16 +2,16 @@ import React, { ReactElement, useMemo } from "react";
 import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, MembershipInfo } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
-import { classNames, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
+import { getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
 import NeoColors from "@/utils/neoColors";
 import { Hexagon, Icon, Title } from "@/components/atoms";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { motion } from "framer-motion";
 export interface TicketProps {
     currentTicket?: CompactTicket;
     fCallBackClick?: (ticket: ITicket) => void;
-    fCallBackHover?: (ticket?: CompactTicket) => void;
     ticket?: ITicket & { isPositionLoading?: boolean };
     ticketBG?: boolean;
     gridId?: GridIds;
@@ -30,7 +30,6 @@ function getStatusDataAttribute(ticketStatus: number) {
 const Ticket = ({
     currentTicket,
     fCallBackClick,
-    fCallBackHover,
     ticket,
     ticketBG,
     gridId,
@@ -41,12 +40,10 @@ const Ticket = ({
 }: TicketProps): ReactElement => {
     const { i18n } = useTranslation();
 
-    const opacity = useMemo(() => {
-        if ((currentTicket && currentTicket.uid !== ticket?.uid && gridId === currentTicket?.gridId) || isOpacity) {
-            return "30";
-        }
-        return "";
-    }, [currentTicket, isOpacity]);
+    const opacified = useMemo(
+        () => (currentTicket && currentTicket.uid !== ticket?.uid && gridId === currentTicket?.gridId) || isOpacity,
+        [currentTicket, isOpacity]
+    );
 
     function isTTOorTTRStale() {
         return (
@@ -94,15 +91,11 @@ const Ticket = ({
     }
 
     return (
-        <div
-            className={classNames(
-                "transition-all duration-75 flex flex-col justify-around text-center items-center relative w-[135px] h-[135px]",
-                `opacity-${opacity}`,
-                !isOpacity && "cursor-pointer transform hover:scale-105"
-            )}
+        <motion.div
+            animate={opacified ? "opacified" : "visible"}
+            variants={{ opacified: { opacity: 0.3 }, visible: { opacity: 1 } }}
+            className="flex flex-col justify-around text-center items-center relative w-[135px] h-[135px]"
             onClick={(): void => fCallBackClick && !isOpacity && fCallBackClick(ticket)}
-            onMouseEnter={(): void => fCallBackHover && !isOpacity && fCallBackHover({ ...ticket, gridId })}
-            onMouseLeave={(): void => fCallBackHover && fCallBackHover()}
             data-testid="ticket-body"
             id={ticket.uid}
             data-grid-id={gridId}
@@ -214,7 +207,7 @@ const Ticket = ({
                     isSelected={currentTicket === ticket}
                 />
             </div>
-        </div>
+        </motion.div>
     );
 };
 

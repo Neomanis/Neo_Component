@@ -5,6 +5,7 @@ import { IconArrowLeft, IconArrowRight } from "@/img/svg";
 import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { classNames } from "@/utils";
 
 export interface GridProps {
     className?: string;
@@ -77,12 +78,8 @@ const Grid = ({
         (ticket: Ticket) => fCurrentTicket && fCurrentTicket(ticket),
         [fCurrentTicket]
     );
-    const hoverCallBack = useCallback(
-        (ticket: CompactTicket) => fCallBackHover && fCallBackHover(ticket),
-        [fCallBackHover]
-    );
 
-    function isTypeOfTicket(item: Ticket | BlankHexagon) {
+    function isTypeOfTicket(item: Ticket | BlankHexagon): item is Ticket {
         return "type" in item;
     }
 
@@ -235,7 +232,20 @@ const Grid = ({
                             {row.map((item, itemKey) => (
                                 <div
                                     key={`ticket-${itemKey}-${currentPageNumber}`}
-                                    className="mx-[6px]"
+                                    className={classNames(
+                                        "px-[6px]",
+                                        !isOpacified(item.uid) &&
+                                            isTypeOfTicket(item) &&
+                                            "cursor-pointer transform hover:scale-105"
+                                    )}
+                                    {...(isTypeOfTicket(item) && {
+                                        onMouseEnter: () => {
+                                            if (fCallBackHover && !isOpacified(item.uid)) {
+                                                fCallBackHover({ ...item, gridId });
+                                            }
+                                        },
+                                        onMouseLeave: () => fCallBackHover && fCallBackHover(),
+                                    })}
                                     data-testid="grid-ticket"
                                 >
                                     {isTypeOfTicket(item) ? (
@@ -243,9 +253,8 @@ const Grid = ({
                                             ticketProps={{
                                                 currentTicket,
                                                 fCallBackClick: currentTicketCallBack,
-                                                fCallBackHover: hoverCallBack,
                                                 isOpacity: isOpacified(item.uid),
-                                                ticket: item as Ticket,
+                                                ticket: item,
                                                 gridId,
                                                 userGroups,
                                                 userNeoId,

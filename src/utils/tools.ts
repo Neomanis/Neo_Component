@@ -40,7 +40,9 @@ export function getContrastBasedOnHexColor(hexcolor: string): "white" | "black" 
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
     return yiq >= 128 ? "black" : "white";
 }
-
+/**
+ * @deprecated use Neocolors instead (ex: Neocolors.red)
+ */
 export function getHexColorFromTailwindColor(tailwindColor: string): string | undefined {
     let neoColors = {
         neo: {
