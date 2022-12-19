@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.20.0] 
+ ### [5.20.1] 
+ :technologist: added some data attribute to ticket to facilitate dnd testing with selenium ### [5.20.0] 
  :lipstick: added opacity transition to tickets and added padding to ticket in grid to avoid compact ticket flickering ### [5.19.4] 
  add z-index on selectButton ### [5.19.3] 
  add selectOnTop on ButtonSelect ### [5.19.2] 
