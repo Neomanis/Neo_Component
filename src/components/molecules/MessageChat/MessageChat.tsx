@@ -67,9 +67,9 @@ const MessageChat = ({
                         className="rounded-full w-11 h-11"
                     />
                 ) : (
-                    <Img type="imgProfile" className="rounded-full w-11" />
+                    <Img type="imgProfile" className="rounded-full w-1/6" />
                 )}
-                <div className="mx-3 relative w-[calc(100%-3rem)]">
+                <div className="mx-1/12 w-4/6">
                     {!isFailed && privateMessage && (
                         <Icon
                             className={classNames(
