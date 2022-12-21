@@ -22,7 +22,7 @@ export const Default: ComponentStory<typeof UneditableField> = Template.bind({})
 Default.args = {
     variant: "primary",
     label: "UneditableField",
-    data: "bien le bonjour",
+    children: "bien le bonjour",
 };
 
 export const Empty: ComponentStory<typeof UneditableField> = Template.bind({});
@@ -36,15 +36,19 @@ BackgroundColor.args = {
     variant: "secondary",
     label: "UneditableField",
     mainColor: { bg: "bg-neo-pink" },
-    data: "ploup mamen",
+    children: "ploup mamen",
 };
 
 export const FullCustom: ComponentStory<typeof UneditableField> = Template.bind({});
 FullCustom.args = {
     variant: "custom",
     label: "UneditableField",
-    data: "HORRIBLE RAINBOW",
-    component: <IconAdd width={40} />,
+    children: (
+        <div className="flex flex-row items-center fill-neo-green">
+            <p className="text-neo-pink mr-3">HORRIBLE RAINBOW</p>
+            <IconAdd width={40} />
+        </div>
+    ),
     className: "border-2 border-neo-orange p-3 flex flex-row-reverse justify-end fill-neo-green",
     labelClassName: "text-neo-yellow-sand text-2xl",
 };
