@@ -7,7 +7,7 @@ test.use({ viewport: { width: 500, height: 500 } });
 test("should show correct text", async ({ mount }) => {
     const component = await mount(<UneditableField variant="primary" label="UneditableField" children="et hop" />);
     await expect(component).toContainText("UneditableField");
-    await expect(component).toContainText("et hop");
+    await expect(component).toContainText("coucou Raph");
 });
 
 test("should be empty if no data", async ({ mount }) => {

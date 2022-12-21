@@ -31,6 +31,7 @@ const UneditableField = ({
     labelClassName = defaultLabelStyle,
 }: Props): ReactElement => {
     variants.secondary += " " + mainColor.bg;
+
     return (
         <div className="flex flex-col justify-end">
             {label && (
@@ -42,10 +43,8 @@ const UneditableField = ({
                 data-testid="uneditablefield-body"
                 className={classNames(variants[variant], variant !== "secondary" && mainColor.text, className)}
             >
-                {children ? (
-                    children
-                ) : (
-                    <hr className="absolute border-neo-bg-B border-2 top-5 w-11/12 rounded transform -rotate-6"></hr>
+                {children ?? (
+                    <hr className="absolute border-neo-bg-B border-2 top-5 w-11/12 rounded transform -rotate-6" />
                 )}
             </div>
         </div>

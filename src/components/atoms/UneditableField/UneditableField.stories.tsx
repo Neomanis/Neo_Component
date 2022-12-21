@@ -22,7 +22,7 @@ export const Default: ComponentStory<typeof UneditableField> = Template.bind({})
 Default.args = {
     variant: "primary",
     label: "UneditableField",
-    children: "bien le bonjour",
+    children: "toujours pas d'inspi",
 };
 
 export const Empty: ComponentStory<typeof UneditableField> = Template.bind({});
