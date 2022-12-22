@@ -127,7 +127,7 @@ export function getStatusOrPriorityColor(
     isHex: boolean,
     tailwindType?: keyof TailwindColorApplication
 ): string {
-    if (status === Status.Solved || status === Status.Closed || status === Status.Pending) {
+    if (status === Status.New || status === Status.Solved || status === Status.Closed || status === Status.Pending) {
         return getStatusColor(status, isHex, tailwindType);
     }
     return getPriorityColor(priority, isHex, tailwindType);
