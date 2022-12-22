@@ -5,7 +5,7 @@ import UneditableField from "./UneditableField";
 test.use({ viewport: { width: 500, height: 500 } });
 
 test("should show correct text", async ({ mount }) => {
-    const component = await mount(<UneditableField variant="primary" label="UneditableField" children="et hop" />);
+    const component = await mount(<UneditableField variant="primary" label="UneditableField" children="coucou Raph" />);
     await expect(component).toContainText("UneditableField");
     await expect(component).toContainText("coucou Raph");
 });
