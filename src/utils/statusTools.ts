@@ -51,12 +51,12 @@ const statusColors = {
     },
     closed: {
         tailwind: {
-            bg: "bg-neo-green",
-            border: "border-neo-green",
-            text: "text-neo-green",
-            fill: "fill-neo-green",
+            bg: "bg-neo-stats-green",
+            border: "border-neo-stats-green",
+            text: "text-neo-stats-green",
+            fill: "fill-neo-stats-green",
         },
-        hex: "#7FEF7F",
+        hex: "#1DB17F",
     },
 };
 
