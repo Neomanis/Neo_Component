@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.21.0] 
+ ### [5.21.1] 
+ repair test text for uneditableField ### [5.21.0] 
  add uneditableField component with his tests and docs ### [5.20.2] 
  repair chat message width for too long words ### [5.20.1] 
  :technologist: added some data attribute to ticket to facilitate dnd testing with selenium ### [5.20.0] 
