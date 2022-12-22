@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.21.1] 
+ ### [5.21.2] 
+ change close color value and get status color not priority for new ticket ### [5.21.1] 
  repair test text for uneditableField ### [5.21.0] 
  add uneditableField component with his tests and docs ### [5.20.2] 
  repair chat message width for too long words ### [5.20.1] 
