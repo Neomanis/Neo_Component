@@ -89,11 +89,7 @@ export function getHexColorFromTailwindColor(tailwindColor: string): string | un
             },
             grey: "#473c61",
             ticketUrgency: {
-                very: {
-                    low: "#89D2FF",
-                    high: "#F7284F",
-                },
-                low: "#366688",
+                low: "#89D2FF",
                 medium: "#2242B5",
                 high: "#ED943B",
                 major: "#D41F1F",
@@ -144,36 +140,9 @@ const priorityValues = [
     { impact: 2, urgency: 2, priority: 2 },
     { impact: 1, urgency: 3, priority: 2 },
     { impact: 3, urgency: 1, priority: 2 },
-    { impact: 1, urgency: 4, priority: 2 },
-    { impact: 4, urgency: 1, priority: 2 },
     { impact: 3, urgency: 2, priority: 2 },
     { impact: 2, urgency: 3, priority: 2 },
     { impact: 3, urgency: 3, priority: 3 },
-    { impact: 2, urgency: 4, priority: 3 },
-    { impact: 4, urgency: 2, priority: 3 },
-    { impact: 1, urgency: 5, priority: 3 },
-    { impact: 5, urgency: 1, priority: 3 },
-    { impact: 4, urgency: 4, priority: 4 },
-    { impact: 3, urgency: 4, priority: 4 },
-    { impact: 4, urgency: 3, priority: 4 },
-    { impact: 5, urgency: 2, priority: 4 },
-    { impact: 5, urgency: 3, priority: 4 },
-    { impact: 5, urgency: 4, priority: 4 },
-    { impact: 2, urgency: 5, priority: 4 },
-    { impact: 3, urgency: 5, priority: 4 },
-    { impact: 4, urgency: 5, priority: 4 },
-    { impact: 6, urgency: 1, priority: 4 },
-    { impact: 6, urgency: 2, priority: 4 },
-    { impact: 6, urgency: 3, priority: 4 },
-    { impact: 1, urgency: 6, priority: 4 },
-    { impact: 2, urgency: 6, priority: 4 },
-    { impact: 3, urgency: 6, priority: 4 },
-    { impact: 5, urgency: 5, priority: 5 },
-    { impact: 6, urgency: 4, priority: 5 },
-    { impact: 4, urgency: 6, priority: 5 },
-    { impact: 6, urgency: 5, priority: 6 },
-    { impact: 5, urgency: 6, priority: 6 },
-    { impact: 6, urgency: 6, priority: 6 },
 ];
 
 export function getPriorityValue(impact: number, urgency: number): number | undefined {
@@ -181,15 +150,6 @@ export function getPriorityValue(impact: number, urgency: number): number | unde
 }
 
 const priorityColors: Colors = {
-    verylow: {
-        hex: NeoColors.ticketUrgency.very.low,
-        tailwind: {
-            bg: "bg-neo-ticketUrgency-very-low",
-            border: "border-neo-ticketUrgency-very-low",
-            text: "text-neo-ticketUrgency-very-low",
-            fill: "fill-neo-ticketUrgency-very-low",
-        },
-    },
     low: {
         hex: NeoColors.ticketUrgency.low,
         tailwind: {
@@ -215,24 +175,6 @@ const priorityColors: Colors = {
             border: "border-neo-ticketUrgency-high",
             text: "text-neo-ticketUrgency-high",
             fill: "fill-neo-ticketUrgency-high",
-        },
-    },
-    veryhigh: {
-        hex: NeoColors.ticketUrgency.very.high,
-        tailwind: {
-            bg: "bg-neo-ticketUrgency-very-high",
-            border: "border-neo-ticketUrgency-very-high",
-            text: "text-neo-ticketUrgency-very-high",
-            fill: "fill-neo-ticketUrgency-very-high",
-        },
-    },
-    major: {
-        hex: NeoColors.ticketUrgency.major,
-        tailwind: {
-            bg: "bg-neo-ticketUrgency-major",
-            border: "border-neo-ticketUrgency-major",
-            text: "text-neo-ticketUrgency-major",
-            fill: "fill-neo-ticketUrgency-major",
         },
     },
     neutral: {

@@ -49,11 +49,7 @@ module.exports = {
                     },
                     grey: "#473c61",
                     ticketUrgency: {
-                        very: {
-                            low: "#89D2FF",
-                            high: "#F7284F",
-                        },
-                        low: "#366688",
+                        low: "#89D2FF",
                         medium: "#2242B5",
                         high: "#ED943B",
                         major: "#D41F1F",
