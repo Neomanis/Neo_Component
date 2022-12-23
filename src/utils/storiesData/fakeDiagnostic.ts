@@ -21,6 +21,7 @@ export const fakeDiag: Diagnostic = {
                     Action: {
                         description: "Action successful",
                         id: 2,
+                        type: "type",
                         result: "OK",
                         date: "2022-09-28T14:42:24.070Z",
                         executionTime: 692,
@@ -33,6 +34,7 @@ export const fakeDiag: Diagnostic = {
                             Action: {
                                 description: "Check user account healthy OK",
                                 id: 5,
+                                type: "type",
                                 result: "OK",
                                 date: "2022-09-27T15:59:01.807Z",
                                 executionTime: 505,
@@ -42,6 +44,7 @@ export const fakeDiag: Diagnostic = {
                             Action: {
                                 description: "approval OK",
                                 id: 6,
+                                type: "type",
                                 result: "OK",
                                 date: "2022-09-27T15:59:27.403Z",
                                 executionTime: 505,
@@ -54,6 +57,7 @@ export const fakeDiag: Diagnostic = {
                                     Action: {
                                         description: "Action rejected",
                                         id: 5,
+                                        type: "type",
                                         result: "Rejected",
                                         date: "2022-09-27T15:59:01.807Z",
                                         executionTime: 505,
@@ -63,6 +67,7 @@ export const fakeDiag: Diagnostic = {
                                     Action: {
                                         description: "Action failed",
                                         id: 6,
+                                        type: "type",
                                         result: "Failed",
                                         date: "2022-09-27T15:59:27.403Z",
                                         executionTime: 505,
@@ -126,6 +131,7 @@ export const fakeDiagError: Diagnostic = {
                     Action: {
                         description: "hello world, mais plus vieux",
                         id: 2,
+                        type: "type",
                         result: "OK",
                         date: "2022-09-28T14:42:24.070Z",
                         executionTime: 692,
@@ -139,6 +145,7 @@ export const fakeDiagError: Diagnostic = {
                             Action: {
                                 description: "Action Rejected",
                                 id: 6,
+                                type: "type",
                                 result: "Rejected",
                                 date: "2022-09-27T15:59:27.403Z",
                                 executionTime: 505,
@@ -180,6 +187,7 @@ export const fakeAwaitingDiag: Diagnostic = {
                     Action: {
                         description: "hello world, mais plus vieux",
                         id: 2,
+                        type: "type",
                         result: "OK",
                         date: "2022-09-28T14:42:24.070Z",
                         executionTime: 692,
@@ -192,6 +200,7 @@ export const fakeAwaitingDiag: Diagnostic = {
                             Action: {
                                 description: "Action rejected",
                                 id: 6,
+                                type: "type",
                                 result: "Rejected",
                                 date: "2022-09-27T15:59:27.403Z",
                                 executionTime: 505,
@@ -205,6 +214,7 @@ export const fakeAwaitingDiag: Diagnostic = {
                                     Action: {
                                         description: "Check user account healthy",
                                         id: 5,
+                                        type: "type",
                                         result: "OK",
                                         date: "2022-09-27T15:59:01.807Z",
                                         executionTime: 505,
@@ -251,6 +261,7 @@ export const fakeDiagChild: DiagResult = {
             Action: {
                 description: "Check user account healthy OK",
                 id: 5,
+                type: "type",
                 result: "OK",
                 date: new Date("2022-09-27T15:59:27.403Z"),
                 executionTime: 505,
@@ -260,6 +271,7 @@ export const fakeDiagChild: DiagResult = {
             Action: {
                 description: "approval OK",
                 id: 6,
+                type: "type",
                 result: "OK",
                 date: new Date("2022-09-27T15:59:27.403Z"),
                 executionTime: 505,
@@ -272,6 +284,7 @@ export const fakeDiagChild: DiagResult = {
                     Action: {
                         description: "Action rejected",
                         id: 5,
+                        type: "type",
                         result: "Rejected",
                         date: new Date("2022-09-27T15:59:27.403Z"),
                         executionTime: 505,
@@ -281,6 +294,7 @@ export const fakeDiagChild: DiagResult = {
                     Action: {
                         description: "Action failed",
                         id: 6,
+                        type: "type",
                         result: "Failed",
                         date: new Date("2022-09-27T15:59:27.403Z"),
                         executionTime: 505,
