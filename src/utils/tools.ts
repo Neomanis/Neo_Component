@@ -134,15 +134,15 @@ export async function sleep(delay: number): Promise<void> {
 }
 
 const priorityValues = [
-    { impact: 1, urgency: 1, priority: 1 },
-    { impact: 2, urgency: 1, priority: 1 },
-    { impact: 1, urgency: 2, priority: 1 },
-    { impact: 2, urgency: 2, priority: 2 },
-    { impact: 1, urgency: 3, priority: 2 },
-    { impact: 3, urgency: 1, priority: 2 },
-    { impact: 3, urgency: 2, priority: 2 },
-    { impact: 2, urgency: 3, priority: 2 },
-    { impact: 3, urgency: 3, priority: 3 },
+    { impact: 1, urgency: 1, priority: 2 },
+    { impact: 2, urgency: 1, priority: 2 },
+    { impact: 1, urgency: 2, priority: 2 },
+    { impact: 2, urgency: 2, priority: 3 },
+    { impact: 1, urgency: 3, priority: 3 },
+    { impact: 3, urgency: 1, priority: 3 },
+    { impact: 3, urgency: 2, priority: 4 },
+    { impact: 2, urgency: 3, priority: 4 },
+    { impact: 3, urgency: 3, priority: 4 },
 ];
 
 export function getPriorityValue(impact: number, urgency: number): number | undefined {
@@ -193,7 +193,7 @@ export function getPriorityColor(
     isHex: boolean,
     tailwindType?: keyof TailwindColorApplication
 ): string {
-    if (priorityId >= 1 && priorityId <= 6) {
+    if (priorityId >= 2 && priorityId <= 4) {
         const key: keyof Colors = Priority[priorityId].toLowerCase();
         return isHex ? priorityColors[key].hex : priorityColors[key].tailwind[tailwindType];
     }

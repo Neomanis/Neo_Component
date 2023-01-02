@@ -12,7 +12,7 @@ export const fakeTicket: Ticket = {
     content: "&lt;p&gt;zdfadfs&lt;/p&gt;",
     urgency: 3,
     impact: 3,
-    priority: 3,
+    priority: 4,
     timeSpent: 0,
     type: 1,
     ttr: addMinutes(new Date(), 10).toISOString(),
