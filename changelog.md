@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.23.0] 
+ ### [5.24.0] 
+ :sparkles: added a sortable table component ### [5.23.0] 
  add className props on ul element in shadowBoxWrapper to allow custom spacing ### [5.22.0] 
  delete some priority type and update color and function of priority ### [5.21.2] 
  change close color value and get status color not priority for new ticket ### [5.21.1] 
