@@ -133,22 +133,6 @@ export async function sleep(delay: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-const priorityValues = [
-    { impact: 2, urgency: 2, priority: 2 },
-    { impact: 3, urgency: 2, priority: 2 },
-    { impact: 2, urgency: 3, priority: 2 },
-    { impact: 3, urgency: 3, priority: 3 },
-    { impact: 2, urgency: 4, priority: 3 },
-    { impact: 4, urgency: 2, priority: 3 },
-    { impact: 4, urgency: 3, priority: 4 },
-    { impact: 3, urgency: 4, priority: 4 },
-    { impact: 4, urgency: 4, priority: 4 },
-];
-
-export function getPriorityValue(impact: number, urgency: number): number | undefined {
-    return priorityValues.find((priority) => priority.impact === impact && priority.urgency === urgency)?.priority;
-}
-
 const priorityColors: Colors = {
     low: {
         hex: NeoColors.ticketUrgency.low,
