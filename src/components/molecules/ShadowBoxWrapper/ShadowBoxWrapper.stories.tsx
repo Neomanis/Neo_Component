@@ -41,4 +41,5 @@ export const DefaultInline: ComponentStory<typeof ShadowBoxWrapper> = Template.b
 DefaultInline.args = {
     linearGradient: "bg-B",
     inline: true,
+    listClassName: "space-x-2",
 };
