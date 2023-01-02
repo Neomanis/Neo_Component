@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.21.2] 
+ ### [5.22.0] 
+ delete some priority type and update color and function of priority ### [5.21.2] 
  change close color value and get status color not priority for new ticket ### [5.21.1] 
  repair test text for uneditableField ### [5.21.0] 
  add uneditableField component with his tests and docs ### [5.20.2] 
