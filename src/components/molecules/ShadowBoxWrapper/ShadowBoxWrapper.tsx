@@ -18,6 +18,7 @@ export interface ShadowBoxWrapperProps {
     containerStyle?: CSSProperties;
     sizeShawbox?: string;
     inline?: boolean;
+    listClassName?: string;
 }
 
 const ShadowBoxWrapper = ({
@@ -27,6 +28,7 @@ const ShadowBoxWrapper = ({
     containerStyle,
     sizeShawbox,
     inline,
+    listClassName,
 }: ShadowBoxWrapperProps): ReactElement => {
     const [showStartShadowBox, setShowStartShadowBox] = useState(false);
     const [showEndShadowBox, setShowEndShadowBox] = useState(true);
@@ -99,7 +101,8 @@ const ShadowBoxWrapper = ({
             <ul
                 className={createClassNames(
                     "absolute list-none overflow-scroll no-scrollbar w-full h-full",
-                    inline && "flex"
+                    inline && "flex",
+                    listClassName
                 )}
                 onScroll={() => listContainerRef.current && detectScroll(listContainerRef.current)}
                 style={{ scrollBehavior: "smooth" }}
