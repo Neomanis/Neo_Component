@@ -5,6 +5,7 @@ import { useInputs } from "@/utils/hooks/useInputs";
 import { IconArrowLeft } from "@/img/svg";
 import { Button, UneditableField, Updater } from "@/components/atoms";
 import TimeSpentTooltip from "./TimeSpentToolbar";
+import { useOnClickOutside } from "@/utils";
 
 export interface TimeSpentInputProps {
     defaultValue: number;
@@ -21,10 +22,13 @@ const TimeSpentInput = ({
     updateFunction,
     ticketUid,
 }: TimeSpentInputProps): ReactElement => {
+    const toolBarRef = useRef<HTMLDivElement>(null);
     const timer = useRef(null);
     const [state, dispatch] = useInputs(defaultValue);
     const { t } = useTranslation();
     const [toolbarOpened, setToolbarOpened] = useState(false);
+
+    useOnClickOutside(toolBarRef, () => setToolbarOpened(false));
 
     const {
         field: { value, onChange },
@@ -104,16 +108,20 @@ const TimeSpentInput = ({
             </div>
             <UneditableField variant="primary">{getFormattedDuration(value)}</UneditableField>
             <Button
-                onClick={() => setToolbarOpened(true)}
+                onClick={() => setToolbarOpened(!toolbarOpened)}
                 variant="secondary"
-                className="h-[50px] uppercase p-2 text-sm justify-center"
+                className="h-[50px] p-2 text-sm justify-center"
                 rounded="md"
                 size="none"
+                data-clickOutsideException
             >
-                {t("global.add")}/{t("global.remove")}
+                {t("global.add")} / {t("global.remove")}
             </Button>
             {toolbarOpened && (
-                <div className="flex absolute transform -translate-x-1/2 left-1/2 z-50 flex-col-reverse translate-y-full bottom-0">
+                <div
+                    ref={toolBarRef}
+                    className="flex absolute transform -translate-x-1/2 left-1/2 z-50 flex-col-reverse translate-y-full bottom-0"
+                >
                     <div className="bg-neo-stats-black text-white font-extrabold px-3 py-2 rounded-md flex flex-col items-center text-center z-20 min-w-max">
                         <TimeSpentTooltip onClick={handleChange} />
                     </div>
