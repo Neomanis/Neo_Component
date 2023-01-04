@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.24.2] 
+ ### [5.25.0] 
+ :sparkles: added time spent component ### [5.24.2] 
  fix updater problem on display or hide ### [5.24.1] 
  handle correctly index of glpi ticket priority and scale ### [5.24.0] 
  :sparkles: added a sortable table component ### [5.23.0] 
