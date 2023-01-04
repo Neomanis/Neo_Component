@@ -7,7 +7,7 @@ import { columns, data } from "./TableDataExemple";
 
 export default {
     component: Table,
-    title: "Table",
+    title: "Molecules/Table",
 } as Meta;
 
 const Template: ComponentStory<typeof Table> = () => {
