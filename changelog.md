@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.25.0] 
+ ### [5.25.1] 
+ :adhesive_bandage: fixed closing handle of time spent input and button add/remove visual ### [5.25.0] 
  :sparkles: added time spent component ### [5.24.2] 
  fix updater problem on display or hide ### [5.24.1] 
  handle correctly index of glpi ticket priority and scale ### [5.24.0] 
