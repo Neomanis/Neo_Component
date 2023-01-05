@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.25.1] 
+ ### [5.25.2] 
+ :recycle: updated chart range selector to match time spent screen, fixed issue with useOnClickOutside data attribute exception ### [5.25.1] 
  :adhesive_bandage: fixed closing handle of time spent input and button add/remove visual ### [5.25.0] 
  :sparkles: added time spent component ### [5.24.2] 
  fix updater problem on display or hide ### [5.24.1] 
