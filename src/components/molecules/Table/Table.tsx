@@ -39,7 +39,7 @@ const Table = <T extends object>({ data, columns }: TableProps<T>): ReactElement
     }, [dataWithIds, sortedColumn]);
 
     return (
-        <table className="sortable border-collapse border-none">
+        <table className="sortable border-collapse border-none rounded-md overflow-hidden">
             <thead>
                 <TableHeader columns={columns} setSortedColumn={setSortedColumn} sortedColumn={sortedColumn} />
             </thead>
