@@ -22,22 +22,14 @@ import { IconChevron } from "@/img/svg";
 import { getDateFnsLocaleFromUserLang } from "@/utils/dateTools";
 import NeoColors from "@/utils/neoColors";
 import { InputDateTime } from "@/components/atoms";
+import { RangeDateValue } from "@neomanis/neo-types";
 
 export interface Props {
-    fCallBackData: (dates: { period: string | undefined; dates: { start: Date; end: Date } }) => void;
+    fCallBackData: (dates: { period: RangeDateValue; dates: { start: Date; end: Date } }) => void;
     fullSelector?: boolean;
     containerClassName?: string;
-    defaultValue?: { period: string | undefined; dates?: { start: Date; end: Date } };
+    defaultValue?: { period: RangeDateValue | undefined; dates?: { start: Date; end: Date } };
     resetDates?: { reset: boolean; setter: (val: boolean) => void };
-}
-
-enum rangeDateValue {
-    daily = "daily",
-    weekly = "weekly",
-    monthly = "monthly",
-    quarterly = "quarterly",
-    yearly = "yearly",
-    custom = "custom",
 }
 
 const ChartRangeSelector = ({
@@ -48,22 +40,20 @@ const ChartRangeSelector = ({
     resetDates,
 }: Props): ReactElement => {
     const { t, i18n } = useTranslation();
-    const data = [
-        { label: t("date.shortDateSelector.week"), value: rangeDateValue.weekly },
-        { label: t("date.shortDateSelector.month"), value: rangeDateValue.monthly },
-        { label: t("date.shortDateSelector.quarter"), value: rangeDateValue.quarterly },
-        { label: t("date.shortDateSelector.year"), value: rangeDateValue.yearly },
+    const data: { label: string; value: RangeDateValue }[] = [
+        { label: t("date.shortDateSelector.week"), value: "weekly" },
+        { label: t("date.shortDateSelector.month"), value: "monthly" },
+        { label: t("date.shortDateSelector.quarter"), value: "quarterly" },
+        { label: t("date.shortDateSelector.year"), value: "yearly" },
     ];
 
     const refDate: Date = useMemo(() => new Date(), []);
     if (fullSelector) {
-        data.unshift({ label: t("date.day_one"), value: rangeDateValue.daily });
-        data.push({ label: t("global.period"), value: rangeDateValue.custom });
+        data.unshift({ label: t("date.day_one"), value: "daily" });
+        data.push({ label: t("global.period"), value: "custom" });
     }
 
-    const [typeRangeSelect, setTypeRangeSelect] = useState<rangeDateValue | undefined>(
-        rangeDateValue[defaultValue.period as rangeDateValue]
-    );
+    const [typeRangeSelect, setTypeRangeSelect] = useState<RangeDateValue>(defaultValue.period);
     const [offset, setOffset] = useState<number>(0);
 
     const [customRange, setCustomRange] = useState<{ start: Date; end: Date }>({
@@ -130,17 +120,17 @@ const ChartRangeSelector = ({
 
     const dateRange = useMemo(() => {
         switch (typeRangeSelect) {
-            case rangeDateValue.daily:
+            case "daily":
                 return dayRangePicker(defaultValue.dates?.start ?? refDate, offset);
-            case rangeDateValue.weekly:
+            case "weekly":
                 return weekRangePicker(defaultValue.dates?.start ?? refDate, offset);
-            case rangeDateValue.monthly:
+            case "monthly":
                 return monthRangePicker(defaultValue.dates?.start ?? refDate, offset);
-            case rangeDateValue.quarterly:
+            case "quarterly":
                 return quarterRangePicker(defaultValue.dates?.start ?? refDate, offset);
-            case rangeDateValue.yearly:
+            case "yearly":
                 return yearRangePicker(defaultValue.dates?.start ?? refDate, offset);
-            case rangeDateValue.custom:
+            case "custom":
                 return {
                     start: isDate(customRange.start) ? customRange.start : startOfDay(refDate),
                     end: isDate(customRange.end) ? customRange.end : endOfDay(refDate),
@@ -152,19 +142,19 @@ const ChartRangeSelector = ({
 
     const textShow = useMemo(() => {
         switch (typeRangeSelect) {
-            case rangeDateValue.daily:
+            case "daily":
                 return format(dateRange.start, "EEEE P", {
                     locale: getDateFnsLocaleFromUserLang(i18n.language),
                 });
-            case rangeDateValue.weekly:
+            case "weekly":
                 return `${t("date.shortDateSelector.week")} ${format(dateRange.start, "I yyyy")}`;
-            case rangeDateValue.monthly:
+            case "monthly":
                 return format(dateRange.start, "MMMM yyyy", {
                     locale: getDateFnsLocaleFromUserLang(i18n.language),
                 });
-            case rangeDateValue.quarterly:
+            case "quarterly":
                 return t("date.shortDateSelector.quarter").charAt(0) + format(dateRange.start, "Q yyyy");
-            case rangeDateValue.yearly:
+            case "yearly":
                 return dateRange.start.getFullYear().toString();
             default:
                 return undefined;
@@ -189,22 +179,22 @@ const ChartRangeSelector = ({
                 start: refDate,
                 end: refDate,
             });
-            setTypeRangeSelect(undefined);
+            setTypeRangeSelect(defaultValue.period);
             resetDates.setter(false);
         }
     }, [resetDates]);
 
     function getWidth(): number {
         switch (typeRangeSelect) {
-            case rangeDateValue.daily:
+            case "daily":
                 return 170;
-            case rangeDateValue.weekly:
+            case "weekly":
                 return 130;
-            case rangeDateValue.monthly:
+            case "monthly":
                 return 120;
-            case rangeDateValue.quarterly:
+            case "quarterly":
                 return 70;
-            case rangeDateValue.yearly:
+            case "yearly":
                 return 50;
             default:
                 return 100;
@@ -249,7 +239,7 @@ const ChartRangeSelector = ({
                         >
                             {item.label}
                         </p>
-                        {item.value === typeRangeSelect && item.value !== rangeDateValue.custom && (
+                        {item.value === typeRangeSelect && item.value !== "custom" && (
                             <div className="flex items-center">
                                 <p className={`mx-2 text-white capitalize`} style={{ width: getWidth() }}>
                                     {textShow}
@@ -277,7 +267,7 @@ const ChartRangeSelector = ({
                                 </div>
                             </div>
                         )}
-                        {item.value === typeRangeSelect && item.value === rangeDateValue.custom && (
+                        {item.value === typeRangeSelect && item.value === "custom" && (
                             <InputDateTime
                                 className="w-72 px-4 z-50"
                                 defaultValue={periodDefaultValue}

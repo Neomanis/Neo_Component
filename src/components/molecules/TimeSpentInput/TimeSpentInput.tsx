@@ -113,7 +113,7 @@ const TimeSpentInput = ({
                 className="h-[50px] p-2 text-sm justify-center"
                 rounded="md"
                 size="none"
-                data-clickOutsideException
+                data-click-outside-exception
             >
                 {t("global.add")} / {t("global.remove")}
             </Button>

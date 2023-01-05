@@ -62,7 +62,7 @@ const TableHeader = <T,>({ columns, setSortedColumn, sortedColumn }: TableHeader
         <tr>
             {columns.map((column) => (
                 <th
-                    className="p-3 cursor-pointer text-white space-x-2 font-semibold text-left bg-neo-bg-B first:rounded-tl-md last:rounded-tr-md"
+                    className="p-3 cursor-pointer text-white space-x-2 font-semibold text-left bg-neo-bg-B"
                     key={`table-head-cell-${column.key}`}
                     onClick={() => handleSortChange(column)}
                 >

@@ -3,7 +3,7 @@ import { RefObject, useEffect } from "react";
 /**
  * Hook that listens for clicks or touches outside of a specified element.
  *
- * The `data-clickOutsideException` attribute can be added to any element that should be ignored by the hook,
+ * The `data-click-outside-exception` attribute can be added to any element that should be ignored by the hook,
  */
 export function useOnClickOutside<T extends HTMLElement = HTMLElement>(ref: RefObject<T>, handler: () => void) {
     useEffect(() => {
@@ -26,5 +26,5 @@ export function useOnClickOutside<T extends HTMLElement = HTMLElement>(ref: RefO
 }
 
 function isClickOutsideException(event: EventTarget) {
-    return event instanceof Element && event.closest("[data-clickOutsideException]");
+    return event instanceof Element && event.closest("[data-click-outside-exception]");
 }
