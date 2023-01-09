@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.25.3] 
+ ### [5.25.4] 
+ :rotating_light: fixed some memory leak and key react warning ### [5.25.3] 
  :adhesive_bandage: fixed time spent input width and :poop: typescript, i know where you hide, come here so i can kill you motherfucker ### [5.25.2] 
  :recycle: updated chart range selector to match time spent screen, fixed issue with useOnClickOutside data attribute exception ### [5.25.1] 
  :adhesive_bandage: fixed closing handle of time spent input and button add/remove visual ### [5.25.0] 
