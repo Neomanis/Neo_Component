@@ -2,6 +2,10 @@ import React, { ReactElement, ReactNode, useMemo, useState } from "react";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
+// TODO: Add solution to strongly type this component to avoid error
+// Some leads : type of TableColumn["key"] could be keyof T instead of string
+// Then find a way to not fuckup the T extend object generic
+
 type WithoutId<T extends object> = { [P in keyof T]: P extends "id" ? never : T[P] };
 
 export type TableColumn<T> = {
@@ -29,13 +33,21 @@ const Table = <T extends object>({ data, columns }: TableProps<T>): ReactElement
             return dataWithIds;
         }
 
-        return [...dataWithIds].sort(
-            (a, b) =>
-                a[sortedColumn.columnKey]
-                    .toString()
-                    .localeCompare(b[sortedColumn.columnKey].toString(), "en", { numeric: true }) *
-                (sortedColumn.state === "asc" ? 1 : -1)
-        );
+        return [...dataWithIds].sort((a, b) => {
+            if (sortedColumn.columnKey === null || !(sortedColumn.columnKey in a) || !(sortedColumn.columnKey in b)) {
+                return 0;
+            }
+
+            return (
+                String(a[sortedColumn.columnKey as keyof T]).localeCompare(
+                    String(b[sortedColumn.columnKey as keyof T]),
+                    "en",
+                    {
+                        numeric: true,
+                    }
+                ) * (sortedColumn.state === "asc" ? 1 : -1)
+            );
+        });
     }, [dataWithIds, sortedColumn]);
 
     return (

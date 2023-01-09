@@ -7,10 +7,10 @@ export interface TableCellProps<T> {
     column: TableColumn<T>;
 }
 
-const TableCell = <T,>({ item, column }: TableCellProps<T>): ReactElement => {
+const TableCell = <T extends object>({ item, column }: TableCellProps<T>): ReactElement => {
     return (
         <td className={classNames("p-3", column.textPositon)}>
-            {column.render ? column.render(column, item) : item[column.key]}
+            {column.render ? column.render(column, item) : String(item[column.key as keyof T])}
         </td>
     );
 };

@@ -28,13 +28,14 @@ const TimeSpentTooltip = ({ onClick }: TimeSpentTooltipProps): ReactElement => {
             />
             <ReactSelect
                 className="h-10 text-xs w-24"
-                styles={{ ...baseStyles }}
+                styles={baseStyles}
                 options={[
-                    { label: t("date.hour_other"), value: "hours" },
-                    { label: t("date.minute_other"), value: "minutes" },
+                    { label: t("date.hour_other") ?? "", value: "hours" },
+                    { label: t("date.minute_other") ?? "", value: "minutes" },
                 ]}
                 defaultValue={{ label: "Minutes", value: "minutes" }}
-                onChange={({ value }: { value: string }) => (values.current.timeSpentType = value)}
+                onChange={(data) => (values.current.timeSpentType = (data as { label: string; value: string }).value)}
+                isMulti={false}
             />
             <Button onClick={() => onClick("add", getTimeSpent())} variant="tertiary" rounded="md">
                 {t("global.add")}

@@ -23,7 +23,7 @@ const TimeSpentInput = ({
     ticketUid,
 }: TimeSpentInputProps): ReactElement => {
     const toolBarRef = useRef<HTMLDivElement>(null);
-    const timer = useRef(null);
+    const timer = useRef<NodeJS.Timeout | null>(null);
     const [state, dispatch] = useInputs(defaultValue);
     const { t } = useTranslation();
     const [toolbarOpened, setToolbarOpened] = useState(false);
@@ -65,7 +65,7 @@ const TimeSpentInput = ({
         }
         onChange(newValue);
 
-        clearTimeout(timer.current);
+        timer.current && clearTimeout(timer.current);
         if (newValue !== state.previous) {
             dispatch({ type: "UPDATING", payload: newValue });
             timer.current = setTimeout(() => {
@@ -86,7 +86,7 @@ const TimeSpentInput = ({
     }, [defaultValue]);
 
     return (
-        <div className="grid grid-cols-[46%_1fr] grid-rows-[auto_1fr] gap-x-4 items-end relative">
+        <div className="grid grid-cols-[52%_1fr] grid-rows-[auto_1fr] gap-x-4 items-end relative">
             <div className="h-5 flex justify-between items-center col-span-2 pr-2">
                 <label className={"text-xs font-bold text-neo-blue-secondary ml-4"}>{t("ticket.timeSpent")}</label>
                 <div data-testid="inputSelectUpdater-body">
@@ -98,7 +98,7 @@ const TimeSpentInput = ({
                         isUpdate={state.isCooldown}
                         trigger={state.trigger}
                         fCallBackCancel={(): void => {
-                            clearTimeout(timer.current);
+                            timer.current && clearTimeout(timer.current);
                             dispatch({ type: "CANCEL_UPDATE" });
                             onChange(state.previous);
                         }}
@@ -110,7 +110,7 @@ const TimeSpentInput = ({
             <Button
                 onClick={() => setToolbarOpened(!toolbarOpened)}
                 variant="secondary"
-                className="h-[50px] p-2 text-sm justify-center"
+                className="h-[50px] p-1 text-sm justify-center"
                 rounded="md"
                 size="none"
                 data-click-outside-exception

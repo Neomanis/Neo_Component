@@ -7,7 +7,7 @@ export interface TableRowProps<T> {
     columns: TableColumn<T>[];
 }
 
-const TableRow = <T,>({ data, columns }: TableRowProps<T>): ReactElement => {
+const TableRow = <T extends object>({ data, columns }: TableRowProps<T>): ReactElement => {
     return (
         <>
             {data.map((item) => (
