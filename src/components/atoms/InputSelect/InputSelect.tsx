@@ -138,6 +138,12 @@ function InputSelect<
         formMethods.setValue(refForm, defaultValue === undefined ? null : defaultValue, { shouldValidate: false });
     }, [defaultValue]);
 
+    useEffect(() => {
+        return () => {
+            timer.current && clearTimeout(timer.current);
+        };
+    }, []);
+
     return (
         <div className={containerClassName ? containerClassName : "w-full"}>
             {showLabelAndUpdater && (
