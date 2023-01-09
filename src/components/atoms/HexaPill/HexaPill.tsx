@@ -17,8 +17,8 @@ const HexaPill = ({ color, ticketUid }: HexaPillProps): ReactElement => {
             >
                 {getDisplayedTicketUid(ticketUid)
                     .split(" ")
-                    .map((word) => (
-                        <div>{word}</div>
+                    .map((word, index) => (
+                        <div key={`${index}-${word}`}>{word}</div>
                     ))}
             </div>
         </div>

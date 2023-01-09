@@ -256,6 +256,12 @@ const InputDateTime = ({
         }
     }, [inputForm]);
 
+    useEffect(() => {
+        return () => {
+            timer.current && clearTimeout(timer.current);
+        };
+    }, []);
+
     return (
         <label className={className} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
