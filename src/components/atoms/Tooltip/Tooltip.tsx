@@ -13,6 +13,7 @@ export interface TooltipProps {
     svg?: ReactElement;
     position: "top" | "bottom";
     disabled?: boolean;
+    className?: string;
 }
 
 const Tooltip = ({
@@ -24,15 +25,15 @@ const Tooltip = ({
     position,
     svg,
     disabled,
+    className,
 }: TooltipProps): ReactElement => {
     return (
-        <div className="relative group">
+        <div className={classNames(className, "relative group")}>
             <div
                 className={classNames(
                     "flex items-center absolute transform -translate-x-1/2 left-1/2 z-50 opacity-0 pointer-events-none",
-                    disabled
-                        ? ""
-                        : "group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 duration-200 ease-linear delay-200 group-hover:pointer-events-auto",
+                    !disabled &&
+                        "group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 duration-200 ease-linear delay-200 group-hover:pointer-events-auto",
                     position === "top"
                         ? "flex-col -translate-y-full top-0"
                         : "flex-col-reverse translate-y-full bottom-0"
@@ -57,7 +58,9 @@ const Tooltip = ({
                         ${position === "top" ? "-rotate-90 -mt-[14px]" : "rotate-90 -mb-[14px]"}`}
                 />
             </div>
-            <div data-testid="tooltip-body">{children}</div>
+            <div data-testid="tooltip-body" className="h-full w-full">
+                {children}
+            </div>
         </div>
     );
 };

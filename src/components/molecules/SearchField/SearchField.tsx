@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import { UseFormRegister, FieldValues, UseFormSetValue, UseFormReset } from "react-hook-form";
 import { CloseLogo, IconSearch } from "@/img/svg";
 import { Button, Input } from "@/components/atoms";
+import { classNames } from "@/utils";
 
 export interface SearchFieldProps {
     placeholder: string;
@@ -36,7 +37,7 @@ const SearchField = ({
         }
     }
     return (
-        <div className={containerClassName}>
+        <div className={classNames(containerClassName, "group transition-all")}>
             <div className="ml-4 pr-2 w-full" onKeyDown={(e) => onEscape(e)}>
                 <Input
                     inputClassName={inputClassName}
@@ -54,7 +55,9 @@ const SearchField = ({
             <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">
                 {showClearButton && (
                     <Button
-                        startIcon={<CloseLogo className="w-3 h-3" fill={iconResetColor} />}
+                        startIcon={
+                            <CloseLogo className="w-3 h-3 hover:fill-neo-red transition-all" fill={iconResetColor} />
+                        }
                         onClick={() => reset && reset()}
                         variant="none"
                         size="none"
@@ -62,7 +65,9 @@ const SearchField = ({
                     />
                 )}
             </div>
-            <IconSearch fill={iconSearchColor} className="w-5 mr-3" />
+            <div className="group-hover:scale-105 transition-all">
+                <IconSearch fill={iconSearchColor} className="w-4 mr-3 group-hover:animate-swing" />
+            </div>
         </div>
     );
 };

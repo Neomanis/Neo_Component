@@ -20,9 +20,9 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "@neomanis/neo-translation";
 import { IconChevron } from "@/img/svg";
 import { getDateFnsLocaleFromUserLang } from "@/utils/dateTools";
-import NeoColors from "@/utils/neoColors";
 import { InputDateTime } from "@/components/atoms";
 import { RangeDateValue } from "@neomanis/neo-types";
+import { classNames } from "@/utils";
 
 export interface Props {
     fCallBackData: (dates: { period: RangeDateValue; dates: { start: Date; end: Date } }) => void;
@@ -224,14 +224,14 @@ const ChartRangeSelector = ({
                 className="relative flex text-neo-blue-secondary font-bold text-sm"
             >
                 {data.map((item, key) => (
-                    <li className="mx-2 flex items-center" key={key}>
+                    <li className="mx-2 flex items-center transition-all" key={key}>
                         <p
-                            className={`uppercase transition-colors rounded-full px-4 py-1
-                        ${
-                            item.value === typeRangeSelect
-                                ? "bg-neo-blue text-white"
-                                : "cursor-pointer hover:bg-neo-blue-secondary hover:text-white"
-                        }`}
+                            className={classNames(
+                                "uppercase rounded-full px-4 py-1 transition-all",
+                                item.value === typeRangeSelect
+                                    ? "bg-neo-blue text-white"
+                                    : "cursor-pointer hover:bg-neo-blue-secondary hover:text-white hover:scale-110"
+                            )}
                             onClick={() => {
                                 setTypeRangeSelect(item.value);
                                 setOffset(0);
@@ -241,7 +241,7 @@ const ChartRangeSelector = ({
                         </p>
                         {item.value === typeRangeSelect && item.value !== "custom" && (
                             <div className="flex items-center">
-                                <p className={`mx-2 text-white capitalize`} style={{ width: getWidth() }}>
+                                <p className="mx-2 text-white capitalize" style={{ width: getWidth() }}>
                                     {textShow}
                                 </p>
                                 <div>
@@ -249,20 +249,32 @@ const ChartRangeSelector = ({
                                         onClick={() => {
                                             showUpDate() && setOffset(offset + 1);
                                         }}
-                                        className={`transform rotate-180 mb-2 p-1
-                                    ${showUpDate() ? "cursor-pointer hover:scale-110 transition-all " : "opacity-30"}`}
+                                        className={classNames(
+                                            "transform rotate-180 mb-2 p-1 group",
+                                            showUpDate()
+                                                ? "cursor-pointer hover:scale-110 transition-all"
+                                                : "opacity-30"
+                                        )}
                                     >
                                         {/* caret up */}
-                                        <IconChevron width={15} fill={NeoColors.blue.secondary} />
+                                        <IconChevron
+                                            className={classNames(
+                                                showUpDate() &&
+                                                    "opacity-60 group-hover:opacity-100 group-hover:animate-bounce",
+                                                "w-4 fill-neo-blue-secondary"
+                                            )}
+                                        />
                                     </div>
                                     <div
                                         onClick={() => {
                                             setOffset(offset - 1);
                                         }}
-                                        className="transform hover:scale-110 transition-all hover:cursor-pointer mt-2 p-1"
+                                        className="transform hover:scale-110 rotate-180 transition-all hover:cursor-pointer mt-2 p-1 group "
                                     >
                                         {/* caret down  */}
-                                        <IconChevron width={15} fill={NeoColors.blue.secondary} />
+                                        <div className="rotate-180">
+                                            <IconChevron className="w-4 fill-neo-blue-secondary group-hover:animate-bounce opacity-60 group-hover:opacity-100 transition-opacity" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

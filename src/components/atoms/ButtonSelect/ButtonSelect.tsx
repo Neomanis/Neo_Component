@@ -1,4 +1,5 @@
 import { classNames, useOnClickOutside } from "@/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactElement, useMemo, useRef, useState } from "react";
 import Button from "../Button";
 import { ButtonProps } from "../Button/Button";
@@ -37,6 +38,10 @@ export default function ButtonSelect<T>({
         return false;
     }, [selectOne, selectedItem, array]);
 
+    const heightDropDown = useMemo(() => {
+        return array.length * 32;
+    }, [array]);
+
     if (showSelect) {
         return (
             <div className="relative group" ref={wrapperRef}>
@@ -45,32 +50,40 @@ export default function ButtonSelect<T>({
                     className={classNames("group", button.className)}
                     onClick={() => setShowDropdown(!showDropdown)}
                 />
-                <ul
-                    className={classNames(
-                        "absolute bg-neo-settings-grey text-white text-xs font-bold rounded z-50 transform min-w-full overflow-hidden ",
-                        selectOnTop ? "bottom-full mb-2" : "mt-2",
-                        showDropdown ? "block" : "hidden",
-                        !aligneSelect && "-translate-x-1/2 left-1/2",
-                        aligneSelect === "right" && "right-0",
-                        aligneSelect === "left" && "left-0"
-                    )}
-                    id="button-select-list"
-                >
-                    {array.map((item, key) => (
-                        <li
-                            id={`item-option-${item.label}`}
-                            data-attribute="item-button-option"
-                            key={key}
-                            className="hover:bg-neo-settings-lightGrey px-3 py-2 cursor-pointer min-w-max"
-                            onClick={() => {
-                                setShowDropdown(!setShowDropdown);
-                                onClick(item.value);
-                            }}
+                <AnimatePresence>
+                    {showDropdown && (
+                        <motion.div
+                            key="button-dropDown"
+                            initial={{ height: 0 }}
+                            animate={{ height: heightDropDown }}
+                            exit={{ height: 0 }}
+                            transition={{ type: "tween", duration: 0.5 }}
+                            className={classNames(
+                                "absolute bg-neo-settings-grey text-white text-xs font-bold rounded z-50 transform min-w-full overflow-hidden",
+                                selectOnTop ? "bottom-full mb-2" : "mt-2",
+                                !aligneSelect && "-translate-x-1/2 left-1/2",
+                                aligneSelect === "right" && "right-0",
+                                aligneSelect === "left" && "left-0"
+                            )}
+                            id="button-select-list"
                         >
-                            <p>{item.label}</p>
-                        </li>
-                    ))}
-                </ul>
+                            {array.map((item, key) => (
+                                <li
+                                    id={`item-option-${item.label}`}
+                                    data-attribute="item-button-option"
+                                    key={key}
+                                    className="hover:bg-neo-settings-lightGrey px-3 py-2 cursor-pointer min-w-max"
+                                    onClick={() => {
+                                        setShowDropdown(!setShowDropdown);
+                                        onClick(item.value);
+                                    }}
+                                >
+                                    <p>{item.label}</p>
+                                </li>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         );
     } else {

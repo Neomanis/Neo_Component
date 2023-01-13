@@ -125,6 +125,31 @@ export const fakeUser: CompleteUser = {
                 name: "Entité racine > entité enfant",
                 itsmCode: "2gl",
             },
+            {
+                id: 0,
+                name: "Entité racine > entité enfant test test ets t",
+                itsmCode: "2gl",
+            },
+            {
+                id: 0,
+                name: "Entité racine > entité enfant toast toast toast toast toast  ",
+                itsmCode: "2gl",
+            },
+            {
+                id: 0,
+                name: "Entité racine > entité enfant toast toast toast toast toast  ",
+                itsmCode: "2gl",
+            },
+            {
+                id: 0,
+                name: "Entité racine > entité enfant toast toast toast toast toast  ",
+                itsmCode: "2gl",
+            },
+            {
+                id: 0,
+                name: "Entité racine > entité enfant toast toast toast toast toast  ",
+                itsmCode: "2gl",
+            },
         ],
         groups: [
             {

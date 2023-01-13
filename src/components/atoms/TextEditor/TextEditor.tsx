@@ -8,6 +8,9 @@ import { getHTMLValue } from "@/utils/tools";
 import "@/styles/textEditor.css";
 import Updater from "../Updater";
 import { useOnClickOutside } from "@/utils/hooks/useOnClickOutside";
+import { classNames as utilsClassNames } from "@/utils";
+import Icon from "../Icon";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export interface TextEditorProps {
     clearErrors?: UseFormClearErrors<FieldValues>;
@@ -144,11 +147,13 @@ const TextEditor = ({
     }
 
     return (
-        <div className={className} data-testid="textEditor-body">
-            <label htmlFor={refForm} className={labelClassName}>
-                {label}
-            </label>
-            <div className={dotClassName}>
+        <div className={utilsClassNames(className, "group relative")} data-testid="textEditor-body">
+            <div className={utilsClassNames(dotClassName, isUpdateField && "h-6", "flex justify-between items-center")}>
+                {label && (
+                    <label htmlFor={refForm} className={utilsClassNames(labelClassName, "ml-4")}>
+                        {label}
+                    </label>
+                )}
                 {(isUpdateField || isError) && (
                     <Updater
                         isCancelable={state.isCancelable}
@@ -169,6 +174,12 @@ const TextEditor = ({
                 )}
             </div>
             <div className="flex w-full h-full mt-1 block" ref={wrapperRef}>
+                {isUpdateField && (
+                    <Icon
+                        fontIcon={faPenToSquare}
+                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-4 top-9 mt-1 transition-all"
+                    />
+                )}
                 <ReactQuill
                     readOnly={readOnly}
                     value={watch && watch(refForm)}

@@ -6,6 +6,7 @@ import { Button } from "@/components/atoms";
 import DndTicket from "../DndTicket";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { classNames } from "@/utils";
+import { AnimatePresence, motion } from "framer-motion";
 
 export interface GridProps {
     className?: string;
@@ -25,6 +26,27 @@ export interface GridProps {
     userNeoId?: number;
     categoriesIcons?: { name: string; icon: IconProp }[];
 }
+
+const variants = {
+    enter: (direction: number) => {
+        return {
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction: number) => {
+        return {
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+};
 
 interface BlankHexagon {
     id: number;
@@ -54,7 +76,8 @@ const Grid = ({
     // second one is the number of collumns
     // third is the number of rows
     const [grids, setGrids] = useState<(Ticket | BlankHexagon)[][][]>([]);
-    const [currentPageNumber, setCurrentPageNumber] = useState(0);
+
+    const [[page, direction], setPage] = useState([0, 0]);
 
     const { setNodeRef } = useDroppable({
         id: gridId,
@@ -161,18 +184,21 @@ const Grid = ({
         setGrids(gridsInitialization);
     }
 
-    function changePage(direction: "prev" | "next"): void {
-        if (direction === "prev") {
-            setCurrentPageNumber((pageNumber) => (pageNumber === 0 ? gridsPaginationNumber - 1 : pageNumber - 1));
+    const paginate = (newDirection: number) => {
+        if (newDirection > 0) {
+            if (page + 1 === grids.length) {
+                setPage([0, newDirection]);
+            } else {
+                setPage([page + newDirection, newDirection]);
+            }
         } else {
-            setCurrentPageNumber((pageNumber) => (pageNumber === gridsPaginationNumber - 1 ? 0 : pageNumber + 1));
+            if (page + 1 === 1) {
+                setPage([grids.length - 1, newDirection]);
+            } else {
+                setPage([page + newDirection, newDirection]);
+            }
         }
-    }
-    useEffect(() => {
-        if (currentPageNumber + 1 > gridsPaginationNumber) {
-            setCurrentPageNumber(0);
-        }
-    }, [ticketList, gridsPaginationNumber, currentPageNumber]);
+    };
 
     useEffect(() => {
         createGrids(ticketList ? Array.from(ticketList) : []);
@@ -186,95 +212,130 @@ const Grid = ({
     );
 
     return (
-        <div className={className} data-testid="grid-body" ref={gridId ? setNodeRef : null}>
-            <div className="h-7 transform translate-x-[75px]">
+        <div
+            className={classNames(className, "")}
+            data-testid="grid-body"
+            ref={gridId ? setNodeRef : null}
+            style={{ width: 170 * cols, height: 155 * rows }}
+        >
+            <div className="transform mb-6">
                 {showPagination && gridsPaginationNumber > 1 && (
-                    <div className={`${cols === 1 && "-mr-4"} flex text-xl justify-end items-center text-neo-link`}>
-                        <p className="mr-4" data-testid="grid-page-number">
-                            {currentPageNumber + 1}/{gridsPaginationNumber}
+                    <div className={classNames("flex text-xl justify-end items-center text-neo-link mr-2")}>
+                        <p className="mr-4 font-bold" data-testid="grid-page-number">
+                            {page + 1} / {gridsPaginationNumber}
                         </p>
-                        <Button
-                            className="cursor-pointer w-5 pr-1 transform hover:scale-105"
-                            onClick={(): void => changePage("prev")}
-                            startIcon={<IconArrowLeft fill="#7DAAB7" className="w-4" />}
-                            data-testid="grid-page-left-button"
-                            variant="none"
-                            size="none"
-                            rounded="none"
-                            id={`${gridId}-previous-button`}
-                        />
-                        <Button
-                            className="cursor-pointer w-5 pl-1 transform hover:scale-105"
-                            onClick={(): void => changePage("next")}
-                            startIcon={<IconArrowRight fill="#7DAAB7" className="w-4" />}
-                            data-testid="grid-page-right-button"
-                            variant="none"
-                            size="none"
-                            rounded="none"
-                            id={`${gridId}-next-button`}
-                        />
+                        <div className="hover:scale-110 group mr-1 mt-[1px]">
+                            <div className="transform rotate-[270deg]">
+                                <Button
+                                    className="cursor-pointer w-4 group-hover:animate-bounce transition-transform"
+                                    onClick={(): void => paginate(-1)}
+                                    startIcon={
+                                        <IconArrowLeft className="w-4 transform rotate-90 fill-neo-link opacity-60 group-hover:opacity-100" />
+                                    }
+                                    data-testid="grid-page-left-button"
+                                    variant="none"
+                                    size="none"
+                                    rounded="none"
+                                    id={`${gridId}-previous-button`}
+                                />
+                            </div>
+                        </div>
+                        <div className="hover:scale-110 group ml-1 mt-[2px]">
+                            <div className="transform rotate-90">
+                                <Button
+                                    className="cursor-pointer w-4 group-hover:animate-bounce transition-transform ="
+                                    onClick={(): void => paginate(1)}
+                                    startIcon={
+                                        <IconArrowRight className="w-4 transform -rotate-90 fill-neo-link opacity-60 group-hover:opacity-100" />
+                                    }
+                                    data-testid="grid-page-right-button"
+                                    variant="none"
+                                    size="none"
+                                    rounded="none"
+                                    id={`${gridId}-next-button`}
+                                />
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
-            <div className="transform scale-[0.95]" data-testid="grid-element">
-                {grids.length > 0 &&
-                    grids[currentPageNumber].map((row, rowKey) => (
-                        <div
-                            className={`flex justify-center transform scale-110 my-1
-                                    ${
-                                        reverseGrid
-                                            ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
-                                            : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
-                                    }`}
-                            key={`row-${rowKey}-${currentPageNumber}`}
-                            data-testid="grid-row"
-                        >
-                            {row.map((item, itemKey) => (
-                                <div
-                                    key={`ticket-${itemKey}-${currentPageNumber}`}
-                                    className={classNames(
-                                        "px-[6px]",
-                                        !isOpacified(item.uid) &&
-                                            isTypeOfTicket(item) &&
-                                            "cursor-pointer transform hover:scale-105"
-                                    )}
-                                    {...(isTypeOfTicket(item) && {
-                                        onMouseEnter: () => {
-                                            if (fCallBackHover && !isOpacified(item.uid)) {
-                                                fCallBackHover({ ...item, gridId });
-                                            }
-                                        },
-                                        onMouseLeave: () => fCallBackHover && fCallBackHover(),
-                                    })}
-                                    data-testid="grid-ticket"
-                                >
-                                    {isTypeOfTicket(item) ? (
-                                        <DndTicket
-                                            ticketProps={{
-                                                currentTicket,
-                                                fCallBackClick: currentTicketCallBack,
-                                                isOpacity: isOpacified(item.uid),
-                                                ticket: item,
-                                                gridId,
-                                                userGroups,
-                                                userNeoId,
-                                                categoryIcon: categoriesIcons?.find(
-                                                    (category) => "category" in item && category.name === item?.category
-                                                )?.icon,
-                                            }}
-                                            dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
-                                        />
-                                    ) : (
-                                        <DndTicket
-                                            ticketProps={{ ticketBG: ticketBG, gridId }}
-                                            dndId={`${currentPageNumber}-${rowKey}-${itemKey}-${gridId}-emptyTicket`}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    ))}
-            </div>
+            <AnimatePresence initial={false}>
+                {grids.length > 0 && (
+                    <motion.div
+                        key={page}
+                        variants={variants}
+                        custom={direction}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: "spring", stiffness: 300, damping: 30 },
+                            opacity: { duration: 0.2 },
+                        }}
+                        className="transform scale-[0.95] absolute"
+                        style={{ marginLeft: -68 + cols * 12 }}
+                        data-testid="grid-element"
+                    >
+                        {grids[page].map((row, rowKey) => (
+                            <div
+                                className={classNames(
+                                    "flex justify-center transform scale-110 my-1",
+                                    reverseGrid
+                                        ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
+                                        : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
+                                )}
+                                key={`row-${rowKey}-${page}`}
+                                data-testid="grid-row"
+                            >
+                                {row.map((item, itemKey) => (
+                                    <div
+                                        key={`ticket-${itemKey}-${page}`}
+                                        className={classNames(
+                                            "px-[6px]",
+                                            !isOpacified(item.uid) &&
+                                                isTypeOfTicket(item) &&
+                                                "cursor-pointer transform hover:scale-105"
+                                        )}
+                                        {...(isTypeOfTicket(item) && {
+                                            onMouseEnter: () => {
+                                                if (fCallBackHover && !isOpacified(item.uid)) {
+                                                    fCallBackHover({ ...item, gridId });
+                                                }
+                                            },
+                                            onMouseLeave: () => fCallBackHover && fCallBackHover(),
+                                        })}
+                                        data-testid="grid-ticket"
+                                    >
+                                        {isTypeOfTicket(item) ? (
+                                            <DndTicket
+                                                ticketProps={{
+                                                    currentTicket,
+                                                    fCallBackClick: currentTicketCallBack,
+                                                    isOpacity: isOpacified(item.uid),
+                                                    ticket: item,
+                                                    gridId,
+                                                    userGroups,
+                                                    userNeoId,
+                                                    categoryIcon: categoriesIcons?.find(
+                                                        (category) =>
+                                                            "category" in item && category.name === item?.category
+                                                    )?.icon,
+                                                }}
+                                                dndId={`${page}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
+                                            />
+                                        ) : (
+                                            <DndTicket
+                                                ticketProps={{ ticketBG: ticketBG, gridId }}
+                                                dndId={`${page}-${rowKey}-${itemKey}-${gridId}-emptyTicket`}
+                                            />
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
