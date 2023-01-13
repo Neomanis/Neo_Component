@@ -16,6 +16,7 @@ import {
     createHourListElement,
     getListIndexBetweenDates,
 } from "./InputDateTimeHelper";
+import { classNames } from "@/utils";
 
 export interface InputDateTimeProps {
     formMethods: UseFormReturn;
@@ -263,7 +264,7 @@ const InputDateTime = ({
     }, []);
 
     return (
-        <label className={className} data-testid="inputDateTime-body">
+        <label className={classNames(className)} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
                 <div className="h-6 flex justify-between">
                     <p className={labelClassName}>{label}</p>
@@ -287,7 +288,7 @@ const InputDateTime = ({
                     </div>
                 </div>
             )}
-            <div className={datePickerElementWrapperClassName}>
+            <div className={classNames(datePickerElementWrapperClassName)}>
                 {svg && svg}
                 <DatePicker
                     {...(showNowButton && { todayButton: t("global.now") })}

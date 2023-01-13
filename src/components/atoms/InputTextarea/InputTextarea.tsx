@@ -3,6 +3,9 @@ import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
 import Updater from "../Updater";
+import Icon from "../Icon";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { classNames as utilsClassNames } from "@/utils";
 
 export interface InputTextareaProps {
     classNames?: {
@@ -87,7 +90,7 @@ const InputTextarea = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className={classNames?.container ?? ""} data-testid="inputTextarea-body">
+        <div className={utilsClassNames(classNames?.container, "group ")} data-testid="inputTextarea-body">
             <label className={classNames?.labelBody ?? ""}>
                 <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
                     <div className={classNames?.labelText ?? ""}>{label}</div>
@@ -118,7 +121,7 @@ const InputTextarea = ({
                 <textarea
                     disabled={readOnly}
                     {...inputRegister}
-                    className={classNames?.textArea ?? ""}
+                    className={utilsClassNames(classNames?.textArea, "relative")}
                     defaultValue={defaultValue}
                     onBlur={(e): void => {
                         if (!readOnly) {
@@ -149,6 +152,12 @@ const InputTextarea = ({
                     placeholder={placeholder}
                     {...props}
                 ></textarea>
+                {isUpdateField && (
+                    <Icon
+                        fontIcon={faPenToSquare}
+                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-2 top-8 transition-all"
+                    />
+                )}
             </label>
         </div>
     );
