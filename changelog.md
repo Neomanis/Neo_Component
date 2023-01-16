@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.0] 
+ ### [5.26.1] 
+ remove id Calque_1 and Layer_1 and cls-x (add fill instead) ### [5.26.0] 
  add annim in grid and add hover in input component and button icon  ### [5.25.4] 
  :rotating_light: fixed some memory leak and key react warning ### [5.25.3] 
  :adhesive_bandage: fixed time spent input width and :poop: typescript, i know where you hide, come here so i can kill you motherfucker ### [5.25.2] 
