@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 15 15" style="enable-background:new 0 0 15 15;" xml:space="preserve">
-<g>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	viewBox="0 0 15 15" style="enable-background:new 0 0 15 15;" xml:space="preserve">
 	<g>
-		<path d="M7.5,0C3.4,0,0,3.4,0,7.5S3.4,15,7.5,15S15,11.6,15,7.5S11.6,0,7.5,0z M7.5,13.3c-3.2,0-5.8-2.6-5.8-5.8s2.6-5.8,5.8-5.8
-			s5.8,2.6,5.8,5.8C13.2,10.7,10.7,13.3,7.5,13.3z"/>
-		<path d="M10,8.8L8.3,7.6V4.3c0-0.5-0.4-0.9-0.9-0.9S6.5,3.8,6.5,4.3V8c0,0.3,0.1,0.5,0.4,0.7l2,1.4c0.2,0.1,0.3,0.2,0.5,0.2
-			c0.3,0,0.5-0.1,0.7-0.4C10.5,9.6,10.4,9.1,10,8.8z"/>
+		<g>
+			<path d="M7.5,0C3.4,0,0,3.4,0,7.5S3.4,15,7.5,15S15,11.6,15,7.5S11.6,0,7.5,0z M7.5,13.3c-3.2,0-5.8-2.6-5.8-5.8s2.6-5.8,5.8-5.8
+			s5.8,2.6,5.8,5.8C13.2,10.7,10.7,13.3,7.5,13.3z" />
+			<path d="M10,8.8L8.3,7.6V4.3c0-0.5-0.4-0.9-0.9-0.9S6.5,3.8,6.5,4.3V8c0,0.3,0.1,0.5,0.4,0.7l2,1.4c0.2,0.1,0.3,0.2,0.5,0.2
+			c0.3,0,0.5-0.1,0.7-0.4C10.5,9.6,10.4,9.1,10,8.8z" />
+		</g>
 	</g>
-</g>
 </svg>
