@@ -59,7 +59,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 ref={ref}
                 className={classNames(
-                    "flex items-center font-bold",
+                    "flex items-center font-bold group",
                     "disabled:opacity-30 disabled:cursor-not-allowed",
                     !props.disabled && "hover:scale-110 transition-all",
                     "focus:outline-none",
@@ -76,9 +76,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                         <Loader type="circleOnly" />
                     </span>
                 )}
-                {!isLoading && <span className={classNames(props.children && "mr-2")}>{startIcon}</span>}
+                {!isLoading && (
+                    <span className={classNames(props.children && "mr-2", "group-hover:animate-swing")}>
+                        {startIcon}
+                    </span>
+                )}
                 {props.children && <span>{props.children}</span>}
-                {!isLoading && <span className={classNames(props.children && "ml-2")}>{endIcon}</span>}
+                {!isLoading && (
+                    <span className={classNames(props.children && "ml-2", "group-hover:animate-swing")}>{endIcon}</span>
+                )}
             </button>
         );
     }

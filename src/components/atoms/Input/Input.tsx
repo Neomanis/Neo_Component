@@ -3,6 +3,8 @@ import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue } fro
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
 import Updater from "../Updater";
+import Icon from "../Icon";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export interface InputProps {
     className?: string;
@@ -110,7 +112,7 @@ const Input = ({
         register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
     return (
         <div className={`${className} w-full flex items-center justify-center relative`} data-testid="input-body">
-            <label className="w-full">
+            <label className="w-full group">
                 <div className={`${showLabelAndUpdater && "h-6"} flex justify-between items-center`}>
                     <p className={labelClassName}>{label}</p>
                     <div className={dotClassName}>
@@ -182,6 +184,12 @@ const Input = ({
                         style={style}
                         {...props}
                     />
+                    {isUpdateField && !readOnly && (
+                        <Icon
+                            fontIcon={faPenToSquare}
+                            className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-2 top-1/2 mt-1 transition-all"
+                        />
+                    )}
                 </div>
             </label>
         </div>

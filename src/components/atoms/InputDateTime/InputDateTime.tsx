@@ -16,6 +16,7 @@ import {
     createHourListElement,
     getListIndexBetweenDates,
 } from "./InputDateTimeHelper";
+import { classNames } from "@/utils";
 
 export interface InputDateTimeProps {
     formMethods: UseFormReturn;
@@ -88,7 +89,6 @@ const InputDateTime = ({
     const [isCalendarOpen, setIsCalenderOpen] = useState(false);
 
     const { t, i18n } = useTranslation();
-    const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
 
     const {
         field: { ref, value, onChange },
@@ -209,10 +209,10 @@ const InputDateTime = ({
         onChange(isRange ? [new Date(), new Date()] : new Date());
     }
 
+    const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
     function handleTimeValue(value: Date) {
         const date = format(value, dateTimeFormat, { locale: locales[i18n.language as keyof typeof locales] });
         const { dates, timeList } = getTimeList();
-
         if (!dates.includes(date) && timeList) {
             const indexToInsert = getListIndexBetweenDates(
                 dates,
@@ -230,7 +230,6 @@ const InputDateTime = ({
         if (isCalendarOpen && defaultValue && !Array.isArray(defaultValue) && isEqual(defaultValue, value)) {
             handleTimeValue(defaultValue);
         }
-
         const nowButton = document.querySelector(".react-datepicker__today-button");
         if (nowButton) {
             nowButton.addEventListener("click", handleNowButton);
@@ -246,10 +245,28 @@ const InputDateTime = ({
         onChange(defaultValue === undefined ? null : defaultValue);
     }, [defaultValue]);
 
+    const inputForm: Date | [Date, Date] = formMethods.watch(refForm);
+    useEffect(() => {
+        if (inputForm) {
+            if (Array.isArray(inputForm)) {
+                handleChangeArray(inputForm);
+            } else {
+                handleChangeSingle(inputForm);
+                handleTimeValue(inputForm);
+            }
+        }
+    }, [inputForm]);
+
+    useEffect(() => {
+        return () => {
+            timer.current && clearTimeout(timer.current);
+        };
+    }, []);
+
     return (
-        <label className={className} data-testid="inputDateTime-body">
+        <label className={classNames(className)} data-testid="inputDateTime-body">
             {(isUpdateField || isError || label) && (
-                <div className={`h-6 flex justify-between`}>
+                <div className="h-6 flex justify-between">
                     <p className={labelClassName}>{label}</p>
                     <div className={updaterClassName}>
                         {(isUpdateField || isError) && (
@@ -271,7 +288,7 @@ const InputDateTime = ({
                     </div>
                 </div>
             )}
-            <div className={datePickerElementWrapperClassName}>
+            <div className={classNames(datePickerElementWrapperClassName)}>
                 {svg && svg}
                 <DatePicker
                     {...(showNowButton && { todayButton: t("global.now") })}

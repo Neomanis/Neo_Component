@@ -28,3 +28,5 @@ export { default as ApprovalCard } from "./ApprovalCard";
 export { default as DndTicket } from "./DndTicket";
 export { default as NeoBotOpenTicket } from "./NeoBotOpenTicket";
 export { default as NeoHelperTicketBanner } from "./NeoHelperTicketBanner";
+export { default as Table } from "./Table";
+export { default as TimeSpentInput } from "./TimeSpentInput";

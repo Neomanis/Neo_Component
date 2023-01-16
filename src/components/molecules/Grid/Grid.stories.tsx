@@ -78,10 +78,10 @@ GridWithoutWatchers.args = {
     ],
 };
 
-export const DefaultHelper: ComponentStory<typeof Grid> = Template.bind({});
-DefaultHelper.args = {
+export const DefaultOne: ComponentStory<typeof Grid> = Template.bind({});
+DefaultOne.args = {
     fCurrentTicket: () => console.log("fCurrentTicket"),
-    reverseGrid: true,
+    reverseGrid: false,
     ticketBG: true,
     ticketList: ticketList,
     rows: 4,
