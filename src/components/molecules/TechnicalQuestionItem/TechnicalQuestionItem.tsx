@@ -1,11 +1,7 @@
 import React, { ReactElement } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
-import { formatDate } from "@/utils/dateTools";
-import { getTicketLogoByStatus } from "@/utils/ticketLogoByStatus";
-import { getContrastBasedOnHexColor, getStatusOrPriorityColor } from "@/utils/tools";
-import NeoColors from "@/utils/neoColors";
 import { Title } from "@/components/atoms";
-
+import { formatDate, getContrastBasedOnHexColor, getStatusColor, getTicketLogoByStatus, NeoColors } from "@/utils";
 export interface TechnicalQuestionItemProps {
     answerAmount: number;
     createDate: string;
@@ -28,7 +24,6 @@ const TechnicalQuestionItem = ({
     title,
 }: TechnicalQuestionItemProps): ReactElement => {
     const { t } = useTranslation();
-
     return (
         <li
             key={id}
@@ -76,19 +71,12 @@ const TechnicalQuestionItem = ({
             {ticket && (
                 <div
                     data-testid="tq-end"
-                    className={`flex justify-between px-2 rounded-r-lg ${getStatusOrPriorityColor(
-                        ticket.status,
-                        ticket.priority,
-                        false,
-                        "bg"
-                    )}`}
+                    className={`flex justify-between px-2 rounded-r-lg ${getStatusColor(ticket.status, false, "bg")}`}
                 >
                     <div data-testid="tq-svg" className="flex items-center">
                         {getTicketLogoByStatus(
                             ticket.status,
-                            getContrastBasedOnHexColor(
-                                getStatusOrPriorityColor(ticket.status, ticket.priority, true)
-                            ) === "black"
+                            getContrastBasedOnHexColor(getStatusColor(ticket.status, true)) === "black"
                                 ? NeoColors.blue.extraDark
                                 : "#FFFFFF"
                         )}
