@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.5] 
+ ### [5.26.6] 
+ add list-style-none ### [5.26.5] 
  update getContrastBasedOnHexColor function and color ### [5.26.4] 
  fix grid height ### [5.26.3] 
  :adhesive_bandage: fixed a crash that when choosing quarter in chart range selector component ### [5.26.2] 
