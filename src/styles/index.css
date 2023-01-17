@@ -17,6 +17,10 @@
     font-family: "Inter" !important;
 }
 
+li {
+    list-style-type: none;
+}
+
 @font-face {
     font-family: "Inter";
     src: url("../font/Inter/inter-variablefont_slntwght-webfont.eot"); /* IE9*/
