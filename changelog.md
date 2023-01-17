@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.3] 
+ ### [5.26.4] 
+ fix grid height ### [5.26.3] 
  :adhesive_bandage: fixed a crash that when choosing quarter in chart range selector component ### [5.26.2] 
  :adhesive_bandage: fixed initial grid animation and pagination animation ### [5.26.1] 
  remove id Calque_1 and Layer_1 and cls-x (add fill instead) ### [5.26.0] 
