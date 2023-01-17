@@ -142,19 +142,17 @@ const Ticket = ({
                     </div>
                 </div>
                 <div
-                    className={`text-center flex items-center justify-center mb-2
-                            ${
-                                (ticket.status === 1 || ticket.status === 2) &&
-                                ticket.priority &&
-                                getPriorityColor(ticket.priority, false, "bg")
-                            }`}
+                    className={classNames(
+                        "text-center flex items-center justify-center mb-2",
+                        getPriorityColor(ticket.priority, false, "bg")
+                    )}
                     style={{ width: "95%", height: 45, marginTop: 7 }}
                 >
                     <p
                         className={classNames(
                             "mx-2 line-clamp-3 font-bold text-[11px]",
                             getContrastBasedOnHexColor(getPriorityColor(ticket.priority, true)) === "white"
-                                ? "text-neo-light-grey"
+                                ? "text-white"
                                 : "text-neo-expanded"
                         )}
                         style={{ lineHeight: "13px" }}
@@ -174,20 +172,10 @@ const Ticket = ({
                         </div>
                     )}
                     {ticket && ticket.status === 5 && (
-                        <IconTicketSolved
-                            width={25}
-                            fill="#152535"
-                            className="-mt-[10px]"
-                            data-testid="ticket-icon-solved"
-                        />
+                        <IconTicketSolved className="w-5 fill-neo-bg-A -mb-1" data-testid="ticket-icon-solved" />
                     )}
                     {ticket && ticket.status === 6 && (
-                        <IconTicketClosed
-                            width={25}
-                            fill="#152535"
-                            className="-mt-[10px]"
-                            data-testid="ticket-icon-closed"
-                        />
+                        <IconTicketClosed className="w-5 fill-neo-bg-A -mb-1" data-testid="ticket-icon-closed" />
                     )}
                 </div>
             </div>
