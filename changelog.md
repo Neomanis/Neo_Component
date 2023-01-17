@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.1] 
+ ### [5.26.2] 
+ :adhesive_bandage: fixed initial grid animation and pagination animation ### [5.26.1] 
  remove id Calque_1 and Layer_1 and cls-x (add fill instead) ### [5.26.0] 
  add annim in grid and add hover in input component and button icon  ### [5.25.4] 
  :rotating_light: fixed some memory leak and key react warning ### [5.25.3] 
