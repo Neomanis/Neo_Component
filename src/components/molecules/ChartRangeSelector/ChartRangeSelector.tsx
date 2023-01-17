@@ -88,10 +88,10 @@ const ChartRangeSelector = ({
 
     function quarterRangePicker(date: Date, offsetQuarter: number): { start: Date; end: Date } {
         const quarterRange: Record<number, { startMonth: number; endMonth: number }> = {
-            1: { startMonth: 0, endMonth: 2 },
-            2: { startMonth: 3, endMonth: 5 },
-            3: { startMonth: 6, endMonth: 8 },
-            4: { startMonth: 9, endMonth: 11 },
+            0: { startMonth: 0, endMonth: 2 },
+            1: { startMonth: 3, endMonth: 5 },
+            2: { startMonth: 6, endMonth: 8 },
+            3: { startMonth: 9, endMonth: 11 },
         };
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
