@@ -72,12 +72,7 @@ const Grid = ({
     userNeoId,
     categoriesIcons,
 }: GridProps): ReactElement => {
-    // grids is a 3D array, the first is the number of pagination
-    // second one is the number of collumns
-    // third is the number of rows
-    const [grids, setGrids] = useState<(Ticket | BlankHexagon)[][][]>([]);
-
-    const [[page, direction], setPage] = useState([0, 0]);
+    const [[page, direction, gridKey], setPage] = useState([0, 0, 0]);
 
     const { setNodeRef } = useDroppable({
         id: gridId,
@@ -97,16 +92,11 @@ const Grid = ({
         return 1;
     }, [ticketList, rows, cols]);
 
-    const currentTicketCallBack = useCallback(
-        (ticket: Ticket) => fCurrentTicket && fCurrentTicket(ticket),
-        [fCurrentTicket]
-    );
-
-    function isTypeOfTicket(item: Ticket | BlankHexagon): item is Ticket {
-        return "type" in item;
-    }
-
-    function createGrids(tickets: Ticket[]) {
+    // grids is a 3D array, the first is the number of pagination
+    // second one is the number of collumns
+    // third is the number of rows
+    const [grids, unpositionedTickets] = useMemo(() => {
+        const tickets = Array.from(ticketList ?? []);
         const gridsInitialization: (Ticket | BlankHexagon)[][][] = [];
 
         // grids creation
@@ -179,30 +169,42 @@ const Grid = ({
                     });
                 });
             });
-            fNewPositionedTicket(ticketWithNoPosition);
         }
-        setGrids(gridsInitialization);
+
+        return [gridsInitialization, ticketWithNoPosition];
+    }, [ticketList, gridId, cols, rows, gridsPaginationNumber]);
+
+    const currentTicketCallBack = useCallback(
+        (ticket: Ticket) => fCurrentTicket && fCurrentTicket(ticket),
+        [fCurrentTicket]
+    );
+
+    function isTypeOfTicket(item: Ticket | BlankHexagon): item is Ticket {
+        return "type" in item;
     }
 
     const paginate = (newDirection: number) => {
+        const newGridKey = gridKey + 1;
         if (newDirection > 0) {
             if (page + 1 === grids.length) {
-                setPage([0, newDirection]);
+                setPage([0, newDirection, newGridKey]);
             } else {
-                setPage([page + newDirection, newDirection]);
+                setPage([page + newDirection, newDirection, newGridKey]);
             }
         } else {
             if (page + 1 === 1) {
-                setPage([grids.length - 1, newDirection]);
+                setPage([grids.length - 1, newDirection, newGridKey]);
             } else {
-                setPage([page + newDirection, newDirection]);
+                setPage([page + newDirection, newDirection, newGridKey]);
             }
         }
     };
 
     useEffect(() => {
-        createGrids(ticketList ? Array.from(ticketList) : []);
-    }, [ticketList]);
+        if (unpositionedTickets.length > 0) {
+            fNewPositionedTicket(unpositionedTickets);
+        }
+    }, [unpositionedTickets]);
 
     const isOpacified = useCallback(
         (uid) => {
@@ -259,10 +261,10 @@ const Grid = ({
                     </div>
                 )}
             </div>
-            <AnimatePresence initial={false}>
+            <AnimatePresence initial={false} custom={direction}>
                 {grids.length > 0 && (
                     <motion.div
-                        key={page}
+                        key={gridKey}
                         variants={variants}
                         custom={direction}
                         initial="enter"
