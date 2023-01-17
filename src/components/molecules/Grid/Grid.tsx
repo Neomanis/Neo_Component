@@ -220,9 +220,9 @@ const Grid = ({
             ref={gridId ? setNodeRef : null}
             style={{ width: 170 * cols, height: 155 * rows }}
         >
-            <div className="transform mb-6">
+            <div className="h-[5%]">
                 {showPagination && gridsPaginationNumber > 1 && (
-                    <div className={classNames("flex text-xl justify-end items-center text-neo-link mr-2")}>
+                    <div className="flex text-xl justify-end items-center text-neo-link">
                         <p className="mr-4 font-bold" data-testid="grid-page-number">
                             {page + 1} / {gridsPaginationNumber}
                         </p>
@@ -261,83 +261,84 @@ const Grid = ({
                     </div>
                 )}
             </div>
-            <AnimatePresence initial={false} custom={direction}>
-                {grids.length > 0 && (
-                    <motion.div
-                        key={gridKey}
-                        variants={variants}
-                        custom={direction}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        transition={{
-                            x: { type: "spring", stiffness: 300, damping: 30 },
-                            opacity: { duration: 0.2 },
-                        }}
-                        className="transform scale-[0.95] absolute"
-                        style={{ marginLeft: -68 + cols * 12 }}
-                        data-testid="grid-element"
-                    >
-                        {grids[page].map((row, rowKey) => (
-                            <div
-                                className={classNames(
-                                    "flex justify-center transform scale-110 my-1",
-                                    reverseGrid
-                                        ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
-                                        : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
-                                )}
-                                key={`row-${rowKey}-${page}`}
-                                data-testid="grid-row"
-                            >
-                                {row.map((item, itemKey) => (
-                                    <div
-                                        key={`ticket-${itemKey}-${page}`}
-                                        className={classNames(
-                                            "px-[6px]",
-                                            !isOpacified(item.uid) &&
-                                                isTypeOfTicket(item) &&
-                                                "cursor-pointer transform hover:scale-105"
-                                        )}
-                                        {...(isTypeOfTicket(item) && {
-                                            onMouseEnter: () => {
-                                                if (fCallBackHover && !isOpacified(item.uid)) {
-                                                    fCallBackHover({ ...item, gridId });
-                                                }
-                                            },
-                                            onMouseLeave: () => fCallBackHover && fCallBackHover(),
-                                        })}
-                                        data-testid="grid-ticket"
-                                    >
-                                        {isTypeOfTicket(item) ? (
-                                            <DndTicket
-                                                ticketProps={{
-                                                    currentTicket,
-                                                    fCallBackClick: currentTicketCallBack,
-                                                    isOpacity: isOpacified(item.uid),
-                                                    ticket: item,
-                                                    gridId,
-                                                    userGroups,
-                                                    userNeoId,
-                                                    categoryIcon: categoriesIcons?.find(
-                                                        (category) =>
-                                                            "category" in item && category.name === item?.category
-                                                    )?.icon,
-                                                }}
-                                                dndId={`${page}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
-                                            />
-                                        ) : (
-                                            <DndTicket
-                                                ticketProps={{ ticketBG: ticketBG, gridId }}
-                                                dndId={`${page}-${rowKey}-${itemKey}-${gridId}-emptyTicket`}
-                                            />
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <div className="transform scale-95 h-[95%]">
+                <AnimatePresence initial={false} custom={direction}>
+                    {grids.length > 0 && (
+                        <motion.div
+                            key={gridKey}
+                            variants={variants}
+                            custom={direction}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                opacity: { duration: 0.2 },
+                            }}
+                            className={classNames("absolute", cols === 1 && "-ml-14")}
+                            data-testid="grid-element"
+                        >
+                            {grids[page].map((row, rowKey) => (
+                                <div
+                                    className={classNames(
+                                        "flex justify-center transform scale-110 my-1",
+                                        reverseGrid
+                                            ? Number.isInteger(rowKey / 2) && "translate-x-[81px]"
+                                            : !Number.isInteger(rowKey / 2) && "translate-x-[81px]"
+                                    )}
+                                    key={`row-${rowKey}-${page}`}
+                                    data-testid="grid-row"
+                                >
+                                    {row.map((item, itemKey) => (
+                                        <div
+                                            key={`ticket-${itemKey}-${page}`}
+                                            className={classNames(
+                                                "px-[6px]",
+                                                !isOpacified(item.uid) &&
+                                                    isTypeOfTicket(item) &&
+                                                    "cursor-pointer transform hover:scale-105"
+                                            )}
+                                            {...(isTypeOfTicket(item) && {
+                                                onMouseEnter: () => {
+                                                    if (fCallBackHover && !isOpacified(item.uid)) {
+                                                        fCallBackHover({ ...item, gridId });
+                                                    }
+                                                },
+                                                onMouseLeave: () => fCallBackHover && fCallBackHover(),
+                                            })}
+                                            data-testid="grid-ticket"
+                                        >
+                                            {isTypeOfTicket(item) ? (
+                                                <DndTicket
+                                                    ticketProps={{
+                                                        currentTicket,
+                                                        fCallBackClick: currentTicketCallBack,
+                                                        isOpacity: isOpacified(item.uid),
+                                                        ticket: item,
+                                                        gridId,
+                                                        userGroups,
+                                                        userNeoId,
+                                                        categoryIcon: categoriesIcons?.find(
+                                                            (category) =>
+                                                                "category" in item && category.name === item?.category
+                                                        )?.icon,
+                                                    }}
+                                                    dndId={`${page}-${rowKey}-${itemKey}-${gridId}-ticket-${item.uid}`}
+                                                />
+                                            ) : (
+                                                <DndTicket
+                                                    ticketProps={{ ticketBG: ticketBG, gridId }}
+                                                    dndId={`${page}-${rowKey}-${itemKey}-${gridId}-emptyTicket`}
+                                                />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
     );
 };
