@@ -10,7 +10,7 @@ const DiagList = ({
 }: {
     results: DiagResult[];
     redirectUrl: string;
-    navigate: (url: string, state: { state: string | undefined }) => void;
+    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
     awaiting?: Awaiting;
 }): ReactElement => {
     const lastElement = results?.at(-1);
@@ -91,13 +91,13 @@ const DiagList = ({
                                 </div>
                             );
                         }
-                        if (result?.name) {
+                        if (result?.bookId) {
                             return (
                                 <DiagnosticComponent
-                                    key={result.name + "Component" + key}
+                                    key={result.bookId + "Component" + key}
                                     diagChild={result}
                                     redirectUrl={redirectUrl}
-                                    navigate={() => result.name && navigate(redirectUrl, { state: result.name })}
+                                    navigate={() => navigate(redirectUrl, { state: { bookId: result.bookId } })}
                                     awaiting={awaiting}
                                 />
                             );
@@ -116,7 +116,7 @@ const DiagBook = ({
 }: {
     diagnostic: CompactDiagnostic;
     redirectUrl: string;
-    navigate: (url: string, state: { state: string }) => void;
+    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
     diagResultType?: string;
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
@@ -133,13 +133,13 @@ const DiagBook = ({
                 }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
-                redirectTo={() => navigate(redirectUrl, { state: diagnostic.name })}
+                redirectTo={() => navigate(redirectUrl, { state: { bookId: diagnostic.bookId } })}
             />
             {bookOpen && (
                 <DiagList
                     results={diagnostic.results}
                     redirectUrl={redirectUrl}
-                    navigate={() => navigate(redirectUrl, { state: diagnostic.name })}
+                    navigate={() => navigate(redirectUrl, { state: { bookId: diagnostic.bookId } })}
                 />
             )}
         </div>
@@ -153,7 +153,7 @@ const DiagChild = ({
 }: {
     diagChild: DiagResult;
     redirectUrl: string;
-    navigate: (url: string, state: { state: string | undefined }) => void;
+    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
     const lastElement = diagChild.results?.at(-1);
@@ -164,13 +164,13 @@ const DiagChild = ({
                 book={{ name: diagChild?.name, lastElement: lastElement }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
-                redirectTo={() => navigate(redirectUrl, { state: diagChild.name })}
+                redirectTo={() => navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
             />
             {bookOpen && diagChild.results && (
                 <DiagList
                     results={diagChild.results}
                     redirectUrl={redirectUrl}
-                    navigate={() => diagChild.name && navigate(redirectUrl, { state: diagChild.name })}
+                    navigate={() => diagChild.name && navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
                 />
             )}
         </div>
@@ -205,7 +205,7 @@ const DiagnosticComponent = ({
     diagnostic?: CompactDiagnostic;
     redirectUrl: string;
     awaiting?: Awaiting;
-    navigate: (url: string, state: { state: string | undefined }) => void;
+    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
     diagResultType?: string;
 }): ReactElement => {
     if (diagnostic) {
