@@ -14,6 +14,7 @@ import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { useInputs } from "@/utils/hooks/useInputs";
 import { baseStyles } from "@/utils/inputSelectCss";
+import { createTimeout } from "@/utils/tools";
 import Updater from "../Updater";
 
 const CustomGroupHeading = ({ children, style, ...props }: GroupHeadingProps) => {
@@ -83,7 +84,7 @@ function InputSelect<
     updaterClassName,
     id,
 }: InputSelectProps<Option, IsMulti, Group>): ReactElement {
-    const timer = useRef(null);
+    const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const { t } = useTranslation();
     const [state, dispatch] = useInputs(defaultValue);
     const {
@@ -117,13 +118,13 @@ function InputSelect<
     function handleChange(value: Value<Option, IsMulti>) {
         onChange(value);
         if (isUpdateField) {
-            clearTimeout(timer.current);
+            timer.current?.clear();
             if (!isEqual(value, state.previous)) {
                 dispatch({ type: "UPDATING", payload: value });
-                timer.current = setTimeout(() => {
-                    updateFunction(refForm, value);
+                timer.current = createTimeout(() => {
+                    updateFunction?.(refForm, value);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    timer.current = setTimeout(() => {
+                    timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
                 }, 5000);
@@ -140,7 +141,7 @@ function InputSelect<
 
     useEffect(() => {
         return () => {
-            timer.current && clearTimeout(timer.current);
+            timer.current?.trigger();
         };
     }, []);
 
@@ -162,7 +163,7 @@ function InputSelect<
                                 isUpdate={state.isCooldown}
                                 trigger={state.trigger}
                                 fCallBackCancel={(): void => {
-                                    clearTimeout(timer.current);
+                                    timer.current?.clear();
                                     dispatch({ type: "CANCEL_UPDATE" });
                                     onChange(state.previous);
                                 }}

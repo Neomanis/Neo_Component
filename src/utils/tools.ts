@@ -214,3 +214,19 @@ export function findAndSplitContentWith(
     const [startContent, endContent] = content.split(getDisplayedTicketUid(objectId));
     return { startContent, ticketUid: objectId, endContent };
 }
+
+export function createTimeout(handler: () => void, delay: number) {
+    const id = setTimeout(handler, delay);
+    return {
+        clear: () => {
+            clearTimeout(id);
+            handler = () => {
+                return;
+            };
+        },
+        trigger: () => {
+            clearTimeout(id);
+            handler();
+        },
+    };
+}
