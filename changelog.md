@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.7] 
+ ### [5.26.8] 
+ :adhesive_bandage: input select now retrigger updated on unmount ### [5.26.7] 
  update grid annime ### [5.26.6] 
  add list-style-none ### [5.26.5] 
  update getContrastBasedOnHexColor function and color ### [5.26.4] 
