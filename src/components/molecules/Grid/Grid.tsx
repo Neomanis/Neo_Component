@@ -227,36 +227,32 @@ const Grid = ({
                             {page + 1} / {gridsPaginationNumber}
                         </p>
                         <div className="hover:scale-110 group mr-1 mt-[1px]">
-                            <div className="transform rotate-[270deg]">
-                                <Button
-                                    className="cursor-pointer w-4 group-hover:animate-bounce transition-transform"
-                                    onClick={(): void => paginate(-1)}
-                                    startIcon={
-                                        <IconArrowLeft className="w-4 transform rotate-90 fill-neo-link opacity-60 group-hover:opacity-100" />
-                                    }
-                                    data-testid="grid-page-left-button"
-                                    variant="none"
-                                    size="none"
-                                    rounded="none"
-                                    id={`${gridId}-previous-button`}
-                                />
-                            </div>
+                            <Button
+                                className="cursor-pointer w-4"
+                                onClick={(): void => paginate(-1)}
+                                startIcon={
+                                    <IconArrowLeft className="w-4 fill-neo-link opacity-60 group-hover:opacity-100" />
+                                }
+                                data-testid="grid-page-left-button"
+                                variant="none"
+                                size="none"
+                                rounded="none"
+                                id={`${gridId}-previous-button`}
+                            />
                         </div>
                         <div className="hover:scale-110 group ml-1 mt-[2px]">
-                            <div className="transform rotate-90">
-                                <Button
-                                    className="cursor-pointer w-4 group-hover:animate-bounce transition-transform ="
-                                    onClick={(): void => paginate(1)}
-                                    startIcon={
-                                        <IconArrowRight className="w-4 transform -rotate-90 fill-neo-link opacity-60 group-hover:opacity-100" />
-                                    }
-                                    data-testid="grid-page-right-button"
-                                    variant="none"
-                                    size="none"
-                                    rounded="none"
-                                    id={`${gridId}-next-button`}
-                                />
-                            </div>
+                            <Button
+                                className="cursor-pointer w-4"
+                                onClick={(): void => paginate(1)}
+                                startIcon={
+                                    <IconArrowRight className="w-4 fill-neo-link opacity-60 group-hover:opacity-100" />
+                                }
+                                data-testid="grid-page-right-button"
+                                variant="none"
+                                size="none"
+                                rounded="none"
+                                id={`${gridId}-next-button`}
+                            />
                         </div>
                     </div>
                 )}
@@ -273,7 +269,7 @@ const Grid = ({
                             exit="exit"
                             transition={{
                                 x: { type: "spring", stiffness: 300, damping: 30 },
-                                opacity: { duration: 0.2 },
+                                opacity: { duration: 0.4 },
                             }}
                             className={classNames("absolute", cols === 1 && "-ml-14")}
                             data-testid="grid-element"
