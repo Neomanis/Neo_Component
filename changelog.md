@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.27.0] 
+ ### [5.27.1] 
+ :adhesive_bandage: fixed input date time unmount update behavior ### [5.27.0] 
  :recycle: changed diagnostic book redirection from filename to book id ### [5.26.8] 
  :adhesive_bandage: input select now retrigger updated on unmount ### [5.26.7] 
  update grid annime ### [5.26.6] 
