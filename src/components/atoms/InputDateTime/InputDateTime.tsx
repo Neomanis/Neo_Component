@@ -16,7 +16,7 @@ import {
     createHourListElement,
     getListIndexBetweenDates,
 } from "./InputDateTimeHelper";
-import { classNames } from "@/utils";
+import { classNames, createTimeout } from "@/utils";
 
 export interface InputDateTimeProps {
     formMethods: UseFormReturn;
@@ -85,7 +85,7 @@ const InputDateTime = ({
 }: InputDateTimeProps & RangeConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
-    const timer = useRef<NodeJS.Timeout | null>(null);
+    const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const [isCalendarOpen, setIsCalenderOpen] = useState(false);
 
     const { t, i18n } = useTranslation();
@@ -167,13 +167,13 @@ const InputDateTime = ({
     function handleChangeSingle(value: Date) {
         onChange(value);
         if (isUpdateField) {
-            timer.current !== null && clearTimeout(timer.current);
+            timer.current?.clear();
             if (!isEqual(value, state.previous as Date)) {
                 dispatch({ type: "UPDATING", payload: value });
-                timer.current = setTimeout(() => {
+                timer.current = createTimeout(() => {
                     updateFunction && updateFunction(refForm, value);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    timer.current = setTimeout(() => {
+                    timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
                 }, 5000);
@@ -188,13 +188,13 @@ const InputDateTime = ({
         const end = value[1] === null ? value[1] : endOfDay(value[1]);
         onChange([start, end]);
         if (isUpdateField && Array.isArray(state.previous)) {
-            timer.current !== null && clearTimeout(timer.current);
+            timer.current?.clear();
             if (!isEqual(start, state.previous[0]) || !isEqual(end, state.previous[1])) {
                 dispatch({ type: "UPDATING", payload: value });
-                timer.current = setTimeout(() => {
+                timer.current = createTimeout(() => {
                     updateFunction && updateFunction(refForm, [start, end]);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    timer.current = setTimeout(() => {
+                    timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
                 }, 5000);
@@ -259,7 +259,7 @@ const InputDateTime = ({
 
     useEffect(() => {
         return () => {
-            timer.current && clearTimeout(timer.current);
+            timer.current?.trigger();
         };
     }, []);
 
@@ -279,7 +279,7 @@ const InputDateTime = ({
                                 trigger={state.trigger}
                                 fCallBackCancel={(): void => {
                                     formMethods.setValue(refForm, state.previous);
-                                    clearTimeout(state.timeoutId);
+                                    timer.current?.clear();
                                     dispatch({ type: "CANCEL_UPDATE" });
                                 }}
                                 id={"updater-" + id}
