@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.26.8] 
+ ### [5.27.0] 
+ :recycle: changed diagnostic book redirection from filename to book id ### [5.26.8] 
  :adhesive_bandage: input select now retrigger updated on unmount ### [5.26.7] 
  update grid annime ### [5.26.6] 
  add list-style-none ### [5.26.5] 
