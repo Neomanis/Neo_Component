@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/experimental-ct-react";
 import DiagnosticComponent from "./DiagnosticComponent";
 import { fakeDiag } from "@/utils/storiesData/fakeDiagnostic";
 
-function testNavigate(url: string, state: { state: string | undefined }): void {
+function testNavigate(url: string, state: { state: { bookId: string | undefined } }): void {
     // eslint-disable-next-line no-console
     console.log(url, state);
 }
