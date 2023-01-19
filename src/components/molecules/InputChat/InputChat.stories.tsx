@@ -20,7 +20,13 @@ const Template: ComponentStory<typeof InputChat> = (args) => {
         <div className="w-full h-56 bg-neo-bg-A">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="p-4 flex items-center ">
-                    <InputChat {...args} setValue={setValue} register={register} refForm="input" />
+                    <InputChat
+                        {...args}
+                        onClickAddAttachment={() => console.log("pj")}
+                        setValue={setValue}
+                        register={register}
+                        refForm="input"
+                    />
                 </div>
             </form>
         </div>

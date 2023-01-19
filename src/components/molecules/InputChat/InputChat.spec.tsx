@@ -5,6 +5,7 @@ import InputChat from "./InputChat";
 test.use({ viewport: { width: 500, height: 500 } });
 
 test("should work", async ({ mount }) => {
-    const component = await mount(<InputChat refForm="Burudōzā ya!" />);
+    // eslint-disable-next-line no-console
+    const component = await mount(<InputChat refForm="Burudōzā ya!" onClickAddAttachment={() => console.log("pj")} />);
     await expect(component).toBeVisible();
 });
