@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.27.1] 
+ ### [5.28.0] 
+ add attachment button on inputChat![image](/attachments/a188eae2-57c9-4809-92f1-84c7e7097efd)![image](/attachments/3385b20b-4dec-4ba8-be32-a2128ff3228c) ### [5.27.1] 
  :adhesive_bandage: fixed input date time unmount update behavior ### [5.27.0] 
  :recycle: changed diagnostic book redirection from filename to book id ### [5.26.8] 
  :adhesive_bandage: input select now retrigger updated on unmount ### [5.26.7] 
