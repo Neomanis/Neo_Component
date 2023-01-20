@@ -31,6 +31,16 @@ const Template2: ComponentStory<typeof MessageChat> = (args) => {
     );
 };
 
+const Template3: ComponentStory<typeof MessageChat> = (args) => {
+    return (
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
+            <MessageChat {...args} name={"It's me"} content={"My interloctor is writting now"} isMe={true} />
+            <MessageChat {...args} name={"It's not me"} content={"this_message_is_a_file.jpeg"} isMe={false} />
+            <MessageChat {...args} name={"It's not me"} content={"send_by_me_i_can_delete_it.jpeg"} isMe={true} />
+        </div>
+    );
+};
+
 export const Default: ComponentStory<typeof MessageChat> = Template.bind({});
 Default.args = {
     content: "BURN BABY BURN!",
@@ -57,5 +67,11 @@ EncodedAvatar.args = {
 export const IsWriting: ComponentStory<typeof MessageChat> = Template2.bind({});
 IsWriting.args = {
     date: "12:12",
+    privateMessage: false,
+};
+
+export const ContainFile: ComponentStory<typeof MessageChat> = Template3.bind({});
+ContainFile.args = {
+    date: "15:15",
     privateMessage: false,
 };
