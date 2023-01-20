@@ -44,7 +44,7 @@ const InputChat = ({
             )}
         >
             <div className="w-16 flex justify-center">
-                <Tooltip position="bottom" text={t("ticket.attachment_one")}>
+                <Tooltip position="top" text={t("ticket.attachment_one")}>
                     <Button
                         onClick={() => onClickAddAttachment()}
                         startIcon={<IconAdd className="w-5 fill-neo-link" />}
@@ -71,7 +71,7 @@ const InputChat = ({
             />
             {privateMessage && (
                 <div className="py-3 px-2 w-10">
-                    <Tooltip position="bottom" text={t("chat.private")}>
+                    <Tooltip position="top" text={t("chat.private")}>
                         <ButtonSwitch
                             activeFontIcon={faLock}
                             inactiveFontIcon={faLockOpen}
