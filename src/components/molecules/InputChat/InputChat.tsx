@@ -2,8 +2,9 @@ import React, { ReactElement } from "react";
 import { UseFormRegister, FieldValues, UseFormSetValue } from "react-hook-form";
 import { faLock, faLockOpen } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
-import { Tooltip, ButtonSwitch, Input } from "@/components/atoms";
+import { Tooltip, ButtonSwitch, Input, Button } from "@/components/atoms";
 import { classNames } from "@/utils/tools";
+import { IconAdd } from "@/img/svg";
 
 export interface InputChatProps {
     buttonSub?: boolean;
@@ -12,6 +13,7 @@ export interface InputChatProps {
     fCallbackPrivateMessage?: () => void;
     inputClassName?: string;
     languageUser?: string;
+    onClickAddAttachment: () => void;
     placeholder?: string;
     privateMessage?: boolean;
     refForm: string;
@@ -24,6 +26,7 @@ const InputChat = ({
     className,
     fCallbackPrivateMessage,
     inputClassName,
+    onClickAddAttachment,
     placeholder,
     privateMessage,
     refForm,
@@ -40,6 +43,16 @@ const InputChat = ({
                     : "flex items-center bg-neo-bg-B text-white rounded-md divide-x-2 divide-neo-bg-A h-11"
             )}
         >
+            <div className="w-16 flex justify-center">
+                <Tooltip position="top" text={t("ticket.attachment_one")}>
+                    <Button
+                        onClick={() => onClickAddAttachment()}
+                        startIcon={<IconAdd className="w-5 fill-neo-link" />}
+                        className="px-0"
+                        variant="none"
+                    />
+                </Tooltip>
+            </div>
             <Input
                 readOnly={cardOpen}
                 inputClassName={classNames(
@@ -58,7 +71,7 @@ const InputChat = ({
             />
             {privateMessage && (
                 <div className="py-3 px-2 w-10">
-                    <Tooltip position="bottom" text={t("chat.private")}>
+                    <Tooltip position="top" text={t("chat.private")}>
                         <ButtonSwitch
                             activeFontIcon={faLock}
                             inactiveFontIcon={faLockOpen}
