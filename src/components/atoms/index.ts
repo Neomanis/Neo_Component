@@ -5,6 +5,7 @@ export { default as ButtonSwitch } from "./ButtonSwitch";
 export { default as Checkbox } from "./Checkbox";
 export { default as DiagnosticBlock } from "./DiagnosticBlock";
 export { default as DiagnosticTab } from "./DiagnosticTab";
+export { default as Dropzone } from "./Dropzone";
 export { default as Hexagon } from "./Hexagon";
 export { default as HexaPill } from "./HexaPill";
 export { default as Icon } from "./Icon";
