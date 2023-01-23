@@ -89,6 +89,7 @@ import { ReactComponent as LogoBLeuSvg } from "./nm_logo_couleur_bleu.svg";
 import { ReactComponent as LogoMonoBlanc } from "./nm_logo_mono_blanc.svg";
 import { ReactComponent as LogoMonoNoir } from "./nm_logo_mono_noir.svg";
 import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
+import { ReactComponent as LogoWithText } from "./nm_logo_couleur_texte.svg";
 import { ReactComponent as NeoLogo } from "./nm_logo_couleur_blanc_toast.svg";
 import { ReactComponent as NeoLogoSad } from "./nm_logo_couleur_blanc_toast-sad.svg";
 import { ReactComponent as Planet } from "./nm_design_planet.svg";
@@ -194,6 +195,7 @@ export {
     LogoMonoBlanc,
     LogoMonoNoir,
     LogoNeomanis,
+    LogoWithText,
     NeoLogo,
     NeoLogoSad,
     Planet,
