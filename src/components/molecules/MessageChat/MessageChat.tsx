@@ -1,7 +1,8 @@
 import React, { ReactElement, useState } from "react";
 import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
-import { Img, Icon, BubbleChat, Loader } from "@/components/atoms";
+import { Img, Icon, BubbleChat, Loader, AttachmentChat } from "@/components/atoms";
 import { classNames } from "@/utils/tools";
+import { MessageType } from "@neomanis/neo-types";
 
 export interface MessageChatProps {
     content: string | ReactElement;
@@ -9,6 +10,10 @@ export interface MessageChatProps {
     isMe: boolean;
     privateMessage?: boolean;
     name: string;
+    type: MessageType;
+    attachmentId?: number;
+    onClickAttachmentCallback: (data: boolean) => void;
+    onDeleteAttachmentCallback: (data: boolean) => void;
     isFailed?: boolean;
     isValidate?: boolean;
     isLoading?: boolean;
@@ -24,11 +29,15 @@ const MessageChat = ({
     date,
     isMe,
     privateMessage,
+    attachmentId,
+    onClickAttachmentCallback,
+    onDeleteAttachmentCallback,
     isFailed,
     isValidate = true,
     isLoading,
     name,
     avatar,
+    type,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
 
@@ -102,12 +111,23 @@ const MessageChat = ({
                             <Loader type="circleOnly" className="text-white" />
                         </div>
                     )}
-                    <BubbleChat
-                        bgColor={isMe && "bg-neo-bg-B "}
-                        border={!isMe && "border-neo-bg-B"}
-                        content={content}
-                        isValidate={isValidate}
-                    />
+                    {type === MessageType.ATTACHMENT && attachmentId ? (
+                        <AttachmentChat
+                            attachmentId={attachmentId}
+                            bgColor={isMe && "bg-neo-bg-B "}
+                            border={!isMe && "border-neo-bg-B"}
+                            content={content}
+                            onClickCallback={onClickAttachmentCallback}
+                            onDeleteCallback={onDeleteAttachmentCallback}
+                        />
+                    ) : (
+                        <BubbleChat
+                            bgColor={isMe && "bg-neo-bg-B "}
+                            border={!isMe && "border-neo-bg-B"}
+                            content={content}
+                            isValidate={isValidate}
+                        />
+                    )}
                 </div>
             </div>
         </div>
