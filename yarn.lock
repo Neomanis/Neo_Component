@@ -1845,11 +1845,6 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@C:\\Neomanis\\DEV\\Neo_Package\\Neo_Types\\neomanis-neo-types-v4.1888.0.tgz":
-  version "4.1888.0"
-  uid "415fc15b03539a824bccd64db0adba4772d6f389"
-  resolved "C:\\Neomanis\\DEV\\Neo_Package\\Neo_Types\\neomanis-neo-types-v4.1888.0.tgz#415fc15b03539a824bccd64db0adba4772d6f389"
-
 "@neomanis/neo-types@file:../Neo_Types/neomanis-neo-types-v4.1888.0.tgz":
   version "4.1888.0"
   resolved "file:../Neo_Types/neomanis-neo-types-v4.1888.0.tgz#415fc15b03539a824bccd64db0adba4772d6f389"
