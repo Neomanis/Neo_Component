@@ -1847,11 +1847,12 @@
 
 "@neomanis/neo-types@C:\\Neomanis\\DEV\\Neo_Package\\Neo_Types\\neomanis-neo-types-v4.1888.0.tgz":
   version "4.1888.0"
+  uid "415fc15b03539a824bccd64db0adba4772d6f389"
   resolved "C:\\Neomanis\\DEV\\Neo_Package\\Neo_Types\\neomanis-neo-types-v4.1888.0.tgz#415fc15b03539a824bccd64db0adba4772d6f389"
 
-"@neomanis/neo-types@file:../Neo_Types/neomanis-neo-types-v4518.0.0.tgz":
-  version "4518.0.0"
-  resolved "file:../Neo_Types/neomanis-neo-types-v4518.0.0.tgz#d6cdda79717163cb2f9eb9e93ab69f3e3b89c737"
+"@neomanis/neo-types@file:../Neo_Types/neomanis-neo-types-v4.1888.0.tgz":
+  version "4.1888.0"
+  resolved "file:../Neo_Types/neomanis-neo-types-v4.1888.0.tgz#415fc15b03539a824bccd64db0adba4772d6f389"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"

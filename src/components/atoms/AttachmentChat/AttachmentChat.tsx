@@ -1,49 +1,82 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { classNames } from "@/utils/tools";
 import { IconTrash } from "@/img/svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import { ValidationCard } from "@/components/molecules";
+import { useTranslation } from "@neomanis/neo-translation";
 
 export interface AttachmentChatProps {
-    attachmentId: number;
+    attachmentId: string;
     bgColor?: string;
     border?: string;
     content: string | ReactElement;
     isValidate?: boolean;
-    onClickCallback: (data: boolean) => void;
-    onDeleteCallback: (data: boolean) => void;
+    downloadCallback: (attachmentId: string) => void;
+    deleteCallback: (attachmentId: string) => void;
 }
 
 const AttachmentChat = ({
+    attachmentId,
     bgColor,
     border,
     content,
     isValidate = true,
-    onClickCallback,
-    onDeleteCallback,
+    downloadCallback,
+    deleteCallback,
 }: AttachmentChatProps): ReactElement => {
+    const { t } = useTranslation();
+    const [openValidationCard, setOpenValidationCard] = useState<boolean>(false);
+
     return (
-        <div
-            className={classNames(
-                "flex items-center text-xxs rounded-md p-2 text-neo-blue break-words",
-                bgColor,
-                border,
-                !isValidate && "opacity-50"
+        <div data-testid="attachmentChat-body">
+            {!openValidationCard ? (
+                <div
+                    className={classNames(
+                        "flex items-center justify-around rounded-md p-2 relative",
+                        bgColor,
+                        border,
+                        border && "border-2",
+                        !isValidate && "opacity-50"
+                    )}
+                >
+                    <FontAwesomeIcon icon={faFileDownload} className="mr-1 text-2xl text-neo-blue mr-2" />
+                    <div
+                        className="text-xxs break-words line-clamp-2 hover:underline cursor-pointer w-4/5"
+                        onClick={() => {
+                            downloadCallback(attachmentId);
+                        }}
+                    >
+                        {content}
+                    </div>
+                    <IconTrash
+                        className={classNames(
+                            "fill-neo-link opacity-20 w-3 ml-2 cursor-pointer",
+                            "hover:fill-neo-red hover:opacity-100"
+                        )}
+                        onClick={() => {
+                            setOpenValidationCard(true);
+                        }}
+                    />
+                </div>
+            ) : (
+                <ValidationCard
+                    classNames={{
+                        container: `flex flex-row justify-between items-center relative rounded-md p-2  ${border} ${
+                            border && "border-2"
+                        } ${bgColor}`,
+                        buttonContainer: "flex justify-around w-1/4 ml-1",
+                        text: "text-xxs text-white",
+                    }}
+                    fCallBackCancel={(): void => setOpenValidationCard(false)}
+                    fCallBackValidate={(): void => {
+                        setOpenValidationCard(false);
+                        deleteCallback(attachmentId);
+                    }}
+                    text={t("global.deleteThis") + " " + t("ticket.attachment", { count: 1 }).toLocaleLowerCase() + "?"}
+                    id="delete-button"
+                />
             )}
-            data-testid="bubbleChat-body"
-            onClick={() => onClickCallback}
-        >
-            <FontAwesomeIcon icon={faFileDownload} className="mr-1" />
-            <p className="hover:underline cursor-pointer">{content}</p>
-            <IconTrash
-                className={classNames(
-                    "fill-neo-link opacity-20 w-3 ml-2 cursor-pointer",
-                    "hover:fill-neo-red hover:opacity-100"
-                )}
-                onClick={() => {
-                    console.log();
-                }}
-            />
         </div>
     );
 };

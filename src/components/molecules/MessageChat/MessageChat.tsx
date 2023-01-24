@@ -11,9 +11,9 @@ export interface MessageChatProps {
     privateMessage?: boolean;
     name: string;
     type: MessageType;
-    attachmentId?: number;
-    onClickAttachmentCallback: (data: boolean) => void;
-    onDeleteAttachmentCallback: (data: boolean) => void;
+    attachmentId?: string;
+    downloadAttachmentCallback: (attachmentId: string) => void;
+    deleteAttachmentCallback: (attachmentId: string) => void;
     isFailed?: boolean;
     isValidate?: boolean;
     isLoading?: boolean;
@@ -30,8 +30,8 @@ const MessageChat = ({
     isMe,
     privateMessage,
     attachmentId,
-    onClickAttachmentCallback,
-    onDeleteAttachmentCallback,
+    downloadAttachmentCallback,
+    deleteAttachmentCallback,
     isFailed,
     isValidate = true,
     isLoading,
@@ -117,8 +117,8 @@ const MessageChat = ({
                             bgColor={isMe && "bg-neo-bg-B "}
                             border={!isMe && "border-neo-bg-B"}
                             content={content}
-                            onClickCallback={onClickAttachmentCallback}
-                            onDeleteCallback={onDeleteAttachmentCallback}
+                            downloadCallback={downloadAttachmentCallback}
+                            deleteCallback={deleteAttachmentCallback}
                         />
                     ) : (
                         <BubbleChat

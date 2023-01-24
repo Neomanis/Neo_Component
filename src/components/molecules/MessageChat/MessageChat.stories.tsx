@@ -12,6 +12,14 @@ export default {
     title: "Molecules/Chat/MessageChat",
 } as Meta;
 
+function downloadStory(attachmentId: string): void {
+    console.log("download attachement " + attachmentId);
+}
+
+function deleteStory(attachmentId: string): void {
+    console.log("delete attachement " + attachmentId);
+}
+
 const Template: ComponentStory<typeof MessageChat> = (args) => {
     return (
         <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
@@ -34,7 +42,7 @@ const Template2: ComponentStory<typeof MessageChat> = (args) => {
 
 const Template3: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
+        <div className="p-4 flex items-center flex-col bg-neo-bg-A w-72">
             <MessageChat
                 {...args}
                 name={"It's me"}
@@ -52,9 +60,16 @@ const Template3: ComponentStory<typeof MessageChat> = (args) => {
             <MessageChat
                 {...args}
                 name={"It's me"}
-                content={"send_by_me_i_can_delete_it.jpeg"}
+                content={"send_by_me.jpeg"}
                 isMe={true}
                 type={MessageType.ATTACHMENT}
+            />
+            <MessageChat
+                {...args}
+                name={"It's not me"}
+                content={"UNE PEPENE"}
+                isMe={false}
+                type={MessageType.MESSAGE}
             />
         </div>
     );
@@ -95,5 +110,7 @@ export const ContainFile: ComponentStory<typeof MessageChat> = Template3.bind({}
 ContainFile.args = {
     date: "15:15",
     privateMessage: false,
-    attachmentId: 1,
+    attachmentId: "12",
+    downloadAttachmentCallback: downloadStory,
+    deleteAttachmentCallback: deleteStory,
 };
