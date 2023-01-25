@@ -18,13 +18,16 @@ const Dropzone = ({ getRootProps, getInputProps, isDragActive }: Props): ReactEl
             {...getRootProps({
                 className: classNames(
                     isDragActive && "border-neo-blue",
-                    "dropzone transition-all rounded group cursor-pointer group border border-dashed border-2 border-neo-link hover:border-neo-blue w-full"
+                    "dropzone transition-all rounded group cursor-pointer group border border-dashed border-2 border-neo-link hover:border-neo-blue w-full h-full flex items-center"
                 ),
             })}
         >
             <input {...getInputProps()} />
             <div
-                className={classNames(isDragActive && "scale-105", "text-center group-hover:scale-105 transition-all")}
+                className={classNames(
+                    isDragActive && "scale-105",
+                    "text-center group-hover:scale-105 transition-all w-full h-fit"
+                )}
             >
                 <Icon
                     fontIcon={faUpload}
@@ -36,7 +39,7 @@ const Dropzone = ({ getRootProps, getInputProps, isDragActive }: Props): ReactEl
                 <p
                     className={classNames(
                         isDragActive && "text-neo-blue",
-                        "text-neo-link font-bold group-hover:text-neo-blue transition-all mb-2"
+                        "text-neo-link font-bold group-hover:text-neo-blue transition-all mb-2 text-sm"
                     )}
                 >
                     {t("global.dropzoneText")}

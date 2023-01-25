@@ -29,7 +29,10 @@ const InputAttachments = ({ sendFilesArray }: Props): ReactElement => {
         ]);
     }, []);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop: onDrop, maxSize: 10485760 });
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop: onDrop,
+        maxSize: 10485760,
+    });
     const filesSelect = useMemo(() => Boolean(files.length > 0), [files]);
 
     function deleteFile(file: { title: string; file: File }) {
@@ -59,7 +62,7 @@ const InputAttachments = ({ sendFilesArray }: Props): ReactElement => {
 
     return (
         <div className="bg-neo-bg-B rounded px-4 py-3 h-full">
-            <div className="flex items-center justify-between h-[20%]">
+            <div className="flex items-center justify-between h-21">
                 <button
                     className={classNames(
                         "text-center bg-neo-bg-A p-4 rounded-xl w-[15%]",
@@ -103,25 +106,27 @@ const InputAttachments = ({ sendFilesArray }: Props): ReactElement => {
                         </>
                     )}
                 </button>
-                <div className="w-[85%] pl-4">
+                <div className="w-[85%] h-full pl-4">
                     <Dropzone getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} />
                 </div>
             </div>
-            <aside className="h-[75%]">
+            <aside className="h-[81%] mt-2">
                 <ShadowBoxWrapper
                     linearGradient={{
-                        first: "rgba(09, 40, 71,1)",
-                        second: "rgba(09, 40, 71,0.5)",
+                        first: "rgba(14, 56, 100,1)",
+                        second: "rgba(14, 56, 100,0.5)",
                     }}
                 >
                     {files.map((file, key) => (
-                        <FileEditCard
-                            key={`${file.file.name}-${key}`}
-                            data={file}
-                            deleteFile={() => deleteFile(file)}
-                            onChangeInput={(data) => renameTitleOfFile(data, key)}
-                            isEmptyCallBack={(isEmpty) => setIsEmptyTab(key, isEmpty)}
-                        />
+                        <div className="my-4">
+                            <FileEditCard
+                                key={`${file.file.name}-${key}`}
+                                data={file}
+                                deleteFile={() => deleteFile(file)}
+                                onChangeInput={(data) => renameTitleOfFile(data, key)}
+                                isEmptyCallBack={(isEmpty) => setIsEmptyTab(key, isEmpty)}
+                            />
+                        </div>
                     ))}
                 </ShadowBoxWrapper>
             </aside>

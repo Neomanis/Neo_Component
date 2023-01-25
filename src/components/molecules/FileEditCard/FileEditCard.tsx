@@ -23,7 +23,7 @@ const FileEditCard = ({ data, deleteFile, onChangeInput, isEmptyCallBack }: Prop
         <li
             key={data.file.name}
             className={classNames(
-                "w-full my-4 flex items-center justify-between bg-neo-bg-A rounded",
+                "w-full flex items-center justify-between bg-neo-bg-A rounded",
                 isEmpty && "border-neo-red border"
             )}
         >
@@ -35,12 +35,12 @@ const FileEditCard = ({ data, deleteFile, onChangeInput, isEmptyCallBack }: Prop
                 <div className="flex items-end justify-between items-center w-full text-neo-link group">
                     <Icon
                         fontIcon={faPenToSquare}
-                        className="text-neo-link group-hover:text-neo-blue transition-all mt-1"
+                        className="text-neo-link group-hover:text-neo-blue transition-all mt-1 mr-4"
                     />
                     <Input
                         refForm="name"
                         typeInput="text"
-                        inputClassName="bg-none outline-none text-white text-xl font-bold bg-neo-bg-A px-4"
+                        inputClassName="outline-none text-white text-xl font-bold bg-neo-bg-A pr-4"
                         showLabelAndUpdater={false}
                         placeholder={t("global.title")}
                         defaultValue={inputValue}
