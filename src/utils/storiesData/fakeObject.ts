@@ -57,6 +57,7 @@ export const fakeTicket: Ticket = {
         row: 3,
     },
     linkedTickets: [],
+    attachments: [],
 };
 
 export const fakeUsers: NeoUser[] = [

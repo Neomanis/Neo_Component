@@ -31,3 +31,4 @@ export { default as Tooltip } from "./Tooltip";
 export { default as UneditableField } from "./UneditableField";
 export { default as Updater } from "./Updater";
 export { default as WritingDots } from "./WritingDots";
+export { default as AttachmentChat } from "./AttachmentChat";
