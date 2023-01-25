@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.29.0] 
+ ### [5.30.0] 
+ <description> ### [5.29.0] 
  add dropZone component and add inputAttachement component ### [5.28.1] 
  add logo for neoHelper web ### [5.28.0] 
  add attachment button on inputChat![image](/attachments/a188eae2-57c9-4809-92f1-84c7e7097efd)![image](/attachments/3385b20b-4dec-4ba8-be32-a2128ff3228c) ### [5.27.1] 
