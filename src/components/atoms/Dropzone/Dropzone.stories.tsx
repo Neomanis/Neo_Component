@@ -12,7 +12,11 @@ export default {
 
 const Template: ComponentStory<typeof Dropzone> = (args) => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone();
-    return <Dropzone {...args} getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} />;
+    return (
+        <div className="h-52 w-60">
+            <Dropzone {...args} getRootProps={getRootProps} getInputProps={getInputProps} isDragActive={isDragActive} />
+        </div>
+    );
 };
 
 export const Default: ComponentStory<typeof Dropzone> = Template.bind({});
