@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.30.1] 
+ ### [5.30.2] 
+ modify dropzone to fit parent height ### [5.30.1] 
  update css inputAttachment ### [5.30.0] 
  <description> ### [5.29.0] 
  add dropZone component and add inputAttachement component ### [5.28.1] 
