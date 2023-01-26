@@ -51,9 +51,7 @@ const AttachmentChat = ({
                         <p className="text-white text-xxs break-words line-clamp-2 transition-all">{content}</p>
                     </div>
                     <IconTrash
-                        className={
-                            "fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
-                        }
+                        className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
                         onClick={() => setOpenValidationCard(true)}
                     />
                 </div>
