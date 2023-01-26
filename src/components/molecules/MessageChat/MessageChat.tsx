@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
 import { Img, Icon, BubbleChat, Loader, AttachmentChat } from "@/components/atoms";
 import { classNames } from "@/utils/tools";
@@ -40,9 +40,15 @@ const MessageChat = ({
     type,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const [maxWidth, setMaxWidth] = useState<number>(0);
+
+    useEffect(() => {
+        setMaxWidth(ref.current.getBoundingClientRect().width - 104); //44px of profil picture and 60px of margin/padding
+    }, [ref]);
 
     return (
-        <div className="w-full px-2">
+        <div ref={ref} className="w-full px-2">
             <div
                 className={classNames(
                     "overflow-hidden h-4 text-xxs flex text-neo-blue-secondary font-bold",
@@ -76,9 +82,9 @@ const MessageChat = ({
                         className="rounded-full w-11 h-11"
                     />
                 ) : (
-                    <Img type="imgProfile" className="rounded-full w-1/6" />
+                    <Img type="imgProfile" className="rounded-full w-11 h-11" />
                 )}
-                <div className="mx-1/12 w-4/6">
+                <div className="mx-5" style={{ width: `${maxWidth}px` }}>
                     {!isFailed && privateMessage && (
                         <Icon
                             className={classNames(
