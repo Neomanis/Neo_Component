@@ -40,18 +40,18 @@ const AttachmentChat = ({
                         !isValidate && "opacity-50"
                     )}
                 >
-                    <FontAwesomeIcon icon={faFileDownload} className="mr-1 text-2xl text-neo-blue mr-2" />
                     <div
-                        className="text-xxs break-words line-clamp-2 hover:underline cursor-pointer w-4/5"
+                        className="flex items-center group cursor-pointer w-4/5"
                         onClick={() => downloadCallback(attachmentId)}
                     >
-                        <p>{content}</p>
+                        <FontAwesomeIcon
+                            icon={faFileDownload}
+                            className="text-neo-link mr-2 text-2xl group-hover:text-neo-blue transition-all opacity-50 group-hover:opacity-100"
+                        />
+                        <p className="text-white text-xxs break-words line-clamp-2 transition-all">{content}</p>
                     </div>
                     <IconTrash
-                        className={classNames(
-                            "fill-neo-link opacity-20 w-3 ml-2 cursor-pointer",
-                            "hover:fill-neo-red hover:opacity-100"
-                        )}
+                        className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
                         onClick={() => setOpenValidationCard(true)}
                     />
                 </div>
@@ -59,7 +59,7 @@ const AttachmentChat = ({
                 <ValidationCard
                     classNames={{
                         container: classNames(
-                            "flex flex-row justify-between items-center relative rounded-md p-2",
+                            "flex justify-between items-center relative rounded-md p-2",
                             border,
                             border && "border-2",
                             bgColor
