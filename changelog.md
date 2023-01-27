@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.30.2] 
+ ### [5.30.3] 
+ update message chat to fit in nh web![image](/attachments/3fabc98d-8e4c-49e7-8230-01cef752c76e)![image](/attachments/8d135800-d9cb-4749-9887-5762a2ecdd7a)![image](/attachments/6b4850cd-438d-4e64-be2c-b985b9331a29) ### [5.30.2] 
  modify dropzone to fit parent height ### [5.30.1] 
  update css inputAttachment ### [5.30.0] 
  <description> ### [5.29.0] 
