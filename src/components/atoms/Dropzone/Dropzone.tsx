@@ -7,7 +7,7 @@ import Icon from "../Icon";
 
 export interface Props {
     getRootProps: <T extends DropzoneRootProps>(props?: T) => T;
-    getInputProps: <T extends DropzoneInputProps>(props?: T) => T;
+    getInputProps?: <T extends DropzoneInputProps>(props?: T) => T;
     isDragActive: boolean;
 }
 
@@ -22,7 +22,7 @@ const Dropzone = ({ getRootProps, getInputProps, isDragActive }: Props): ReactEl
                 ),
             })}
         >
-            <input {...getInputProps()} />
+            {getInputProps && <input {...getInputProps()} />}
             <div
                 className={classNames(
                     isDragActive && "scale-105",
@@ -36,14 +36,16 @@ const Dropzone = ({ getRootProps, getInputProps, isDragActive }: Props): ReactEl
                         "text-4xl text-neo-link group-hover:text-neo-blue transition-all my-2"
                     )}
                 />
-                <p
-                    className={classNames(
-                        isDragActive && "text-neo-blue",
-                        "text-neo-link font-bold group-hover:text-neo-blue transition-all mb-2 text-sm"
-                    )}
-                >
-                    {t("global.dropzoneText")}
-                </p>
+                {getInputProps && (
+                    <p
+                        className={classNames(
+                            isDragActive && "text-neo-blue",
+                            "text-neo-link font-bold group-hover:text-neo-blue transition-all mb-2 text-sm"
+                        )}
+                    >
+                        {t("global.dropzoneText")}
+                    </p>
+                )}
             </div>
         </div>
     );

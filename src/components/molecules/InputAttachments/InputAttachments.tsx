@@ -118,9 +118,8 @@ const InputAttachments = ({ sendFilesArray }: Props): ReactElement => {
                     }}
                 >
                     {files.map((file, key) => (
-                        <div className="my-4">
+                        <div className="my-4" key={`${file.file.name}-${key}`}>
                             <FileEditCard
-                                key={`${file.file.name}-${key}`}
                                 data={file}
                                 deleteFile={() => deleteFile(file)}
                                 onChangeInput={(data) => renameTitleOfFile(data, key)}
