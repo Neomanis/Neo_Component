@@ -108,12 +108,17 @@ export function getDateCompletionPercentage(startDate: string, endDate: string):
     return Math.round(((now - start) / (end - start)) * 100);
 }
 
-export function getOutageDateInformation(period: { startAt: string; endAt?: string }, lang: string) {
+export function getOutageDateInformation(
+    period: { startAt: string; endAt?: string },
+    lang: string,
+    options?: { shortenedMonthNames: boolean }
+) {
     const t = i18n.getFixedT(lang);
+    const month = options?.shortenedMonthNames ? "MMM" : "MMMM";
     const dateFormat =
         lang === "fr-FR"
-            ? `d MMMM ${t("date.formatDateToNow.at")} H:mm`
-            : `MMMM do ${t("date.formatDateToNow.at")} H:mm`;
+            ? `d ${month} ${t("date.formatDateToNow.at")} H:mm`
+            : `${month} do ${t("date.formatDateToNow.at")} H:mm`;
     const startAt = format(new Date(period.startAt), dateFormat, {
         locale: getDateFnsLocaleFromUserLang(lang),
     });
