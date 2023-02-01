@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.30.5] 
+ ### [5.30.6] 
+ add roundingNumber and update FileCard ### [5.30.5] 
  change props Dropzone ### [5.30.4] 
  :recycle: added options to get shortened month in outages date function, :adhesive_bandage: fixed some svg colors ### [5.30.3] 
  update message chat to fit in nh web![image](/attachments/3fabc98d-8e4c-49e7-8230-01cef752c76e)![image](/attachments/8d135800-d9cb-4749-9887-5762a2ecdd7a)![image](/attachments/6b4850cd-438d-4e64-be2c-b985b9331a29) ### [5.30.2] 
