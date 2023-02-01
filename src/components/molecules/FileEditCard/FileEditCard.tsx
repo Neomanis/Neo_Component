@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { faClose, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { Icon, Input } from "@/components/atoms";
-import { classNames } from "@/utils";
+import { classNames, transformBytes } from "@/utils";
 import { useTranslation } from "@neomanis/neo-translation";
 
 interface Props {
@@ -15,7 +15,6 @@ const FileEditCard = ({ data, deleteFile, onChangeInput, isEmptyCallBack }: Prop
     const { t } = useTranslation();
     const [isEmpty, setIsEmpty] = useState(false);
     const [inputValue, setInputValue] = useState<string>(data.title);
-    const size = JSON.stringify(data.file.size / 1000).split(".")[0];
 
     useEffect(() => onChangeInput(inputValue), [inputValue, data]);
 
@@ -30,7 +29,7 @@ const FileEditCard = ({ data, deleteFile, onChangeInput, isEmptyCallBack }: Prop
             <div className="w-[90%] px-4 py-2">
                 <div className="flex items-center font-bold mb-2">
                     <p className="text-neo-blue text-sm mr-4 line-clamp-1">{data.file.name}</p>
-                    <p className=" text-neo-blue-secondary font-bold">{size} kb</p>
+                    <p className=" text-neo-blue-secondary font-bold">{transformBytes(data.file.size)}</p>
                 </div>
                 <div className="flex items-end justify-between items-center w-full text-neo-link group">
                     <Icon
