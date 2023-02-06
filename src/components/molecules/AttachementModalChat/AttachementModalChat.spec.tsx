@@ -5,13 +5,16 @@ import AttachementModalChat from "./AttachementModalChat";
 test.use({ viewport: { width: 500, height: 500 } });
 
 test("should work", async ({ mount }) => {
+    const file = new File(["image"], "../../utils/storiesData/neo-nico.png", { type: "image/png" });
     const component = await mount(
         <AttachementModalChat
-            title="AttachementModalChat"
+            title="neo-nico"
+            file={file}
+            isEmpty={false}
             onChangeCallback={() => {}}
             onValidateCallback={() => {}}
             onUndoCallback={() => {}}
         />
     );
-    await expect(component).toContainText("AttachementModalChat");
+    await expect(component).toContainText("neo-nico");
 });
