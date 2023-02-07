@@ -2,21 +2,21 @@
 import React, { useState } from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
-import AttachementModalChat from "./AttachementModalChat";
+import AttachmentModalChat from "./AttachmentModalChat";
 
 export default {
-    component: AttachementModalChat,
-    title: "Molecules/Chat/AttachementModalChat",
+    component: AttachmentModalChat,
+    title: "Molecules/Chat/AttachmentModalChat",
 } as Meta;
 
-const Template: ComponentStory<typeof AttachementModalChat> = (args) => {
+const Template: ComponentStory<typeof AttachmentModalChat> = (args) => {
     const [file, setFile] = useState<{ title: string; file: File; isEmpty: boolean }>({
         title: "neo-nico",
         file: new File(["image"], "../../utils/storiesData/neo-nico.png", { type: "image/png" }),
         isEmpty: false,
     });
     return (
-        <AttachementModalChat
+        <AttachmentModalChat
             onChangeCallback={(e) => {
                 const isEmpty = e.target.value === "";
                 setFile((oldFile) => {
@@ -33,7 +33,7 @@ const Template: ComponentStory<typeof AttachementModalChat> = (args) => {
     );
 };
 
-export const Default: ComponentStory<typeof AttachementModalChat> = Template.bind({});
+export const Default: ComponentStory<typeof AttachmentModalChat> = Template.bind({});
 Default.args = {
     fCallBackValidate: () => console.log("validate"),
     fCallBackCancel: () => console.log("undo"),

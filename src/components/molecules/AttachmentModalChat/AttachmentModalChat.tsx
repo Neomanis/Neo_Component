@@ -4,7 +4,7 @@ import { classNames, transformBytes } from "@/utils";
 import { faCheck, faPenToSquare, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { ReactElement } from "react";
 
-export interface AttachementModalChatProps {
+export interface AttachmentModalChatProps {
     title?: string;
     file?: File;
     isEmpty?: boolean;
@@ -13,14 +13,14 @@ export interface AttachementModalChatProps {
     fCallBackCancel: () => void;
 }
 
-const AttachementModalChat = ({
+const AttachmentModalChat = ({
     title,
     file,
     isEmpty,
     onChangeCallback,
     fCallBackValidate,
     fCallBackCancel,
-}: AttachementModalChatProps): ReactElement => {
+}: AttachmentModalChatProps): ReactElement => {
     const { t } = useTranslation();
 
     return (
@@ -64,4 +64,4 @@ const AttachementModalChat = ({
     );
 };
 
-export default AttachementModalChat;
+export default AttachmentModalChat;
