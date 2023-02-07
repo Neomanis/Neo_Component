@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.30.6] 
+ ### [5.31.0] 
+ add AttachmentModalChat in component to use it on Neo_helper ### [5.30.6] 
  add roundingNumber and update FileCard ### [5.30.5] 
  change props Dropzone ### [5.30.4] 
  :recycle: added options to get shortened month in outages date function, :adhesive_bandage: fixed some svg colors ### [5.30.3] 
