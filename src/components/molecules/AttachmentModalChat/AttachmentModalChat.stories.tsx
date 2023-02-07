@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof AttachmentModalChat> = (args) => {
     });
     return (
         <AttachmentModalChat
-            onChangeCallback={(e) => {
+            onInputChange={(e) => {
                 const isEmpty = e.target.value === "";
                 setFile((oldFile) => {
                     if (oldFile) {
@@ -35,6 +35,6 @@ const Template: ComponentStory<typeof AttachmentModalChat> = (args) => {
 
 export const Default: ComponentStory<typeof AttachmentModalChat> = Template.bind({});
 Default.args = {
-    fCallBackValidate: () => console.log("validate"),
-    fCallBackCancel: () => console.log("undo"),
+    onValidate: () => console.log("validate"),
+    onCancel: () => console.log("undo"),
 };
