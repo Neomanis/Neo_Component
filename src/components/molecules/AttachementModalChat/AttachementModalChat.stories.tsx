@@ -35,6 +35,6 @@ const Template: ComponentStory<typeof AttachementModalChat> = (args) => {
 
 export const Default: ComponentStory<typeof AttachementModalChat> = Template.bind({});
 Default.args = {
-    onValidateCallback: () => console.log("validate"),
-    onUndoCallback: () => console.log("undo"),
+    fCallBackValidate: () => console.log("validate"),
+    fCallBackCancel: () => console.log("undo"),
 };

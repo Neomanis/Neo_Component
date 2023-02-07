@@ -8,9 +8,9 @@ export interface AttachementModalChatProps {
     title?: string;
     file?: File;
     isEmpty?: boolean;
-    onChangeCallback: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onValidateCallback: () => void;
-    onUndoCallback: () => void;
+    onChangeCallback: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    fCallBackValidate: () => void;
+    fCallBackCancel: () => void;
 }
 
 const AttachementModalChat = ({
@@ -18,8 +18,8 @@ const AttachementModalChat = ({
     file,
     isEmpty,
     onChangeCallback,
-    onValidateCallback,
-    onUndoCallback,
+    fCallBackValidate,
+    fCallBackCancel,
 }: AttachementModalChatProps): ReactElement => {
     const { t } = useTranslation();
 
@@ -44,18 +44,18 @@ const AttachementModalChat = ({
                 placeholder={t("global.title")}
                 refForm="title_attachment"
                 typeInput="text"
-                onChange={(e) => {
+                onChange={(e): void => {
                     onChangeCallback(e);
                 }}
             />
             <div className="flex justify-center gap-4">
                 <Icon
-                    onClick={() => onValidateCallback}
+                    onClick={(): void => fCallBackValidate()}
                     fontIcon={faCheck}
                     className="text-2xl text-neo-link hover:text-neo-green hover:scale-105 transition-all cursor-pointer"
                 />
                 <Icon
-                    onClick={() => onUndoCallback}
+                    onClick={(): void => fCallBackCancel()}
                     fontIcon={faTimes}
                     className="text-2xl text-neo-link hover:text-neo-red hover:scale-105 transition-all cursor-pointer"
                 />
