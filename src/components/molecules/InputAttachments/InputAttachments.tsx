@@ -4,7 +4,7 @@ import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "@/components/atoms/Dropzone";
 import { useDropzone } from "react-dropzone";
 import FileEditCard from "../FileEditCard";
-import { classNames } from "@/utils";
+import { classNames, getAcceptFileType } from "@/utils";
 import ShadowBoxWrapper from "../ShadowBoxWrapper";
 import { useTranslation } from "@neomanis/neo-translation";
 
@@ -32,6 +32,7 @@ const InputAttachments = ({ sendFilesArray }: Props): ReactElement => {
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: onDrop,
         maxSize: 10485760,
+        accept: getAcceptFileType(),
     });
     const filesSelect = useMemo(() => Boolean(files.length > 0), [files]);
 
