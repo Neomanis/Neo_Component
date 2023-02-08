@@ -1,5 +1,5 @@
 import { getStatusColor } from "./statusTools";
-import { InputSelectData, TailwindColorApplication, Status, Colors, Priority } from "@neomanis/neo-types";
+import { InputSelectData, TailwindColorApplication, Status, Colors, Priority, Extensions } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
 import NeoColors from "./neoColors";
 
@@ -239,4 +239,12 @@ export function transformBytes(bytes: number): string {
         return `${(bytes / 1000).toFixed(2)} KB`;
     }
     return `${bytes} Bytes`;
+}
+
+export function getAcceptFileType() {
+    const arrayObjects = [];
+    for (const [propertyKey] of Object.entries(Extensions)) {
+        arrayObjects.push(propertyKey);
+    }
+    return arrayObjects;
 }
