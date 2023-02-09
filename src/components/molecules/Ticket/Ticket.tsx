@@ -103,6 +103,7 @@ const Ticket = ({
             data-grid-id={gridId}
             data-is-ticket={true}
             data-ticket-status={getStatusDataAttribute(ticket.status)}
+            data-ticket-category={ticket.category.toLowerCase()}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {checkIsWatcher() && (
