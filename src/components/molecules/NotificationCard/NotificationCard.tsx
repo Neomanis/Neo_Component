@@ -39,6 +39,7 @@ const NotificationCard = ({
 
     return (
         <div
+            id={`notification-${objectId}-card`}
             onClick={(e) => {
                 e.stopPropagation();
                 setIsFolded(!isFolded);
@@ -50,6 +51,7 @@ const NotificationCard = ({
             <div className="flex">
                 <div className="flex justify-start relative">
                     <Icon
+                        id={`notification-${objectId}-isRead`}
                         className={`text-xxs absolute top-0 -right-1 ${read ? "opacity-0" : "text-neo-red"}`}
                         fontIcon={faCircle}
                         testId="notifCard-dot"
@@ -90,6 +92,7 @@ const NotificationCard = ({
             </div>
 
             <Icon
+                id={`notification-${objectId}-close`}
                 svg={<CloseLogo fill="#7DAAB7" />}
                 className="cursor-pointer w-2 h-2 transform hover:scale-125 absolute right-2 top-5"
                 fCallBack={(e) => {
