@@ -19,8 +19,10 @@ function deleteStory(attachmentId: string): void {
 
 const Template: ComponentStory<typeof AttachmentChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
-            <AttachmentChat {...args} />
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-80">
+            <div className="w-full">
+                <AttachmentChat {...args} />
+            </div>
         </div>
     );
 };
