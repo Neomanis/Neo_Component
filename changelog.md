@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.31.4] 
+ ### [5.31.5] 
+ :recycle: changed style of chat attachment component to work with larger chat ### [5.31.4] 
  :ambulance: fixed data ticket catergory crash ### [5.31.3] 
  add category and notification id to test ### [5.31.2] 
  :lipstick: added padding to input choices ### [5.31.1] 
