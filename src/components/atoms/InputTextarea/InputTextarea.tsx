@@ -5,16 +5,9 @@ import { useInputs } from "@/utils/hooks/useInputs";
 import Updater from "../Updater";
 import Icon from "../Icon";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { classNames as utilsClassNames } from "@/utils";
+import { classNames } from "@/utils";
 
 export interface InputTextareaProps {
-    classNames?: {
-        container?: string;
-        dot?: string;
-        labelBody?: string;
-        labelText?: string;
-        textArea?: string;
-    };
     customValidation?: ReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
@@ -34,7 +27,6 @@ export interface InputTextareaProps {
 }
 
 const InputTextarea = ({
-    classNames,
     customValidation,
     defaultValue,
     errorMessage,
@@ -90,76 +82,77 @@ const InputTextarea = ({
     }, [state.updated, state.previous]);
 
     return (
-        <div className={utilsClassNames(classNames?.container, "group ")} data-testid="inputTextarea-body">
-            <label className={classNames?.labelBody ?? ""}>
-                <div className={`${isUpdateField && "h-6"} flex justify-between items-center`}>
-                    <div className={classNames?.labelText ?? ""}>{label}</div>
-                    <div className={`${classNames?.dot ?? ""}`}>
-                        {(isUpdateField || isError) && (
-                            <Updater
-                                isCancelable={state.isCancelable}
-                                isUpdate={state.isCooldown}
-                                isError={isError}
-                                isSuccess={state.isSuccess}
-                                fCallBackCancel={(): void => {
-                                    if (setValue && state.previous) {
-                                        setValue(refForm, state.previous);
-                                    }
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
-                                    }
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }}
-                                trigger={state.trigger}
-                                updateCooldown={timerSetting}
-                                errorMessage={errorMessage}
-                                id={props.id}
-                            />
-                        )}
-                    </div>
+        <label className="relative w-full h-full group" data-testid="inputTextarea-body">
+            <div className={classNames((isUpdateField || label) && "h-6 mb-2", "flex justify-between items-center")}>
+                <div className="flex">
+                    {label && <p className="font-bold text-neo-blue-secondary text-sm">{label}</p>}
+                    {isUpdateField && (
+                        <Icon
+                            fontIcon={faPenToSquare}
+                            className="group-hover:opacity-100 opacity-0 text-neo-link transition-all pl-2"
+                        />
+                    )}
                 </div>
-                <textarea
-                    disabled={readOnly}
-                    {...inputRegister}
-                    className={utilsClassNames(classNames?.textArea, "relative")}
-                    defaultValue={defaultValue}
-                    onBlur={(e): void => {
-                        if (!readOnly) {
-                            if (isUpdateField && state.previous !== e.target.value && !isError) {
-                                dispatch({ type: "UPDATING", payload: e.target.value });
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
+                {(isUpdateField || isError) && (
+                    <Updater
+                        isCancelable={state.isCancelable}
+                        isUpdate={state.isCooldown}
+                        isError={isError}
+                        isSuccess={state.isSuccess}
+                        fCallBackCancel={(): void => {
+                            if (setValue && state.previous) {
+                                setValue(refForm, state.previous);
                             }
-                        }
-                    }}
-                    onChange={(e): void => {
-                        if (!readOnly) {
-                            onChangeCallBack && onChangeCallBack();
-                            inputRegister && inputRegister.onChange(e);
-                            if (isUpdateField) {
-                                if (state.previous !== e.target.value) {
-                                    dispatch({ type: "SHOW_DOT" });
-                                } else {
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
                             }
-                        }
-                    }}
-                    placeholder={placeholder}
-                    {...props}
-                ></textarea>
-                {isUpdateField && (
-                    <Icon
-                        fontIcon={faPenToSquare}
-                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-2 top-8 transition-all"
+                            dispatch({ type: "CANCEL_UPDATE" });
+                        }}
+                        trigger={state.trigger}
+                        updateCooldown={timerSetting}
+                        errorMessage={errorMessage}
+                        id={props.id}
                     />
                 )}
-            </label>
-        </div>
+            </div>
+            <textarea
+                disabled={readOnly}
+                {...inputRegister}
+                className={classNames(
+                    "bg-neo-bg-B rounded px-3 py-1 text-white w-full overflow-y-scroll custom-scroll scroll-B resize-none outline-none no-scrollbar",
+                    isUpdateField || label ? "h-[90%]" : "h-full"
+                )}
+                defaultValue={defaultValue}
+                onBlur={(e): void => {
+                    if (!readOnly) {
+                        if (isUpdateField && state.previous !== e.target.value && !isError) {
+                            dispatch({ type: "UPDATING", payload: e.target.value });
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                        }
+                    }
+                }}
+                onChange={(e): void => {
+                    if (!readOnly) {
+                        onChangeCallBack && onChangeCallBack();
+                        inputRegister && inputRegister.onChange(e);
+                        if (isUpdateField) {
+                            if (state.previous !== e.target.value) {
+                                dispatch({ type: "SHOW_DOT" });
+                            } else {
+                                dispatch({ type: "CANCEL_UPDATE" });
+                            }
+                            if (state.timeoutId) {
+                                clearTimeout(state.timeoutId);
+                            }
+                        }
+                    }
+                }}
+                placeholder={placeholder}
+                {...props}
+            ></textarea>
+        </label>
     );
 };
 
