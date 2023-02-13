@@ -119,7 +119,7 @@ const NotificationItem = ({
                 <div
                     className={classNames("text-xxs", isFolded && "line-clamp-2")}
                     dangerouslySetInnerHTML={{ __html: notification.content }}
-                ></div>
+                />
             </div>
         );
     }
