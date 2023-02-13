@@ -33,7 +33,7 @@ const AttachmentChat = ({
             {!openValidationCard ? (
                 <div
                     className={classNames(
-                        "flex items-center justify-around rounded-md p-2 relative",
+                        "flex items-center justify-between rounded-md py-2 px-4 relative",
                         bgColor,
                         border,
                         border && "border-2",
@@ -59,12 +59,12 @@ const AttachmentChat = ({
                 <ValidationCard
                     classNames={{
                         container: classNames(
-                            "flex justify-between items-center relative rounded-md p-2",
+                            "flex items-center justify-between rounded-md py-2 px-4 relative",
                             border,
                             border && "border-2",
                             bgColor
                         ),
-                        buttonContainer: "flex justify-around w-1/4 ml-1",
+                        buttonContainer: "flex gap-2",
                         text: "text-xxs text-white",
                     }}
                     fCallBackCancel={() => setOpenValidationCard(false)}
