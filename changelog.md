@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.31.7] 
+ ### [5.31.8] 
+ remove bar in empty uneditable field ### [5.31.7] 
  update inputTextarea style label ### [5.31.6] 
  add neo types to peer dependencies ### [5.31.5] 
  :recycle: changed style of chat attachment component to work with larger chat ### [5.31.4] 
