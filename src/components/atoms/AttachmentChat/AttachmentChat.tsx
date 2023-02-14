@@ -48,7 +48,7 @@ const AttachmentChat = ({
                             icon={faFileDownload}
                             className="text-neo-link mr-2 text-2xl group-hover:text-neo-blue transition-all opacity-50 group-hover:opacity-100"
                         />
-                        <p className="text-white text-xxs break-words line-clamp-2 transition-all">{content}</p>
+                        <p className="text-white break-words line-clamp-2 transition-all">{content}</p>
                     </div>
                     <IconTrash
                         className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
@@ -65,7 +65,7 @@ const AttachmentChat = ({
                             bgColor
                         ),
                         buttonContainer: "flex gap-2",
-                        text: "text-xxs text-white",
+                        text: "text-white",
                     }}
                     fCallBackCancel={() => setOpenValidationCard(false)}
                     fCallBackValidate={() => {

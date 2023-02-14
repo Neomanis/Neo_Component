@@ -22,6 +22,7 @@ export interface MessageChatProps {
         mimetype: string;
         originalname: string;
     };
+    bubbleChatWidth?: number;
 }
 
 const MessageChat = ({
@@ -38,6 +39,7 @@ const MessageChat = ({
     name,
     avatar,
     type,
+    bubbleChatWidth,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -51,7 +53,7 @@ const MessageChat = ({
         <div ref={ref} className="w-full px-2">
             <div
                 className={classNames(
-                    "overflow-hidden h-4 text-xxs flex text-neo-blue-secondary font-bold",
+                    "overflow-hidden h-4 flex text-neo-blue-secondary font-bold",
                     isMe && "flex-row-reverse"
                 )}
                 style={{ marginBottom: 1 }}
@@ -84,7 +86,7 @@ const MessageChat = ({
                 ) : (
                     <Img type="imgProfile" className="rounded-full w-11 h-11" />
                 )}
-                <div className="mx-5" style={{ width: `${maxWidth}px` }}>
+                <div className="mx-5" style={{ width: `${bubbleChatWidth ?? maxWidth}px` }}>
                     {!isFailed && privateMessage && (
                         <Icon
                             className={classNames(
