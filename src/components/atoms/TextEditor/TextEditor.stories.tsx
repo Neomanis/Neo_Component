@@ -11,13 +11,13 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof TextEditor> = (args) => {
-    const { register, setValue, handleSubmit, watch } = useForm({ mode: "onChange" });
+    const formMethods = useForm({ mode: "onChange" });
     const onSubmit: SubmitHandler<unknown> = async (data) => {
         console.log(data);
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full h-96 bg-neo-bg-A text-black p-5">
-            <TextEditor {...args} register={register} setValue={setValue} watch={watch} refForm="content" />
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="w-full h-96 bg-neo-bg-A text-black p-5">
+            <TextEditor {...args} formMethods={formMethods} refForm="content" />
         </form>
     );
 };
