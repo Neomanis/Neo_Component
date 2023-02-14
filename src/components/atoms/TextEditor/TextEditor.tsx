@@ -25,7 +25,7 @@ export interface TextEditorProps {
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    className: string;
+    className?: string;
 }
 
 const TextEditor = ({
@@ -137,7 +137,7 @@ const TextEditor = ({
 
     if (readOnly) {
         return (
-            <div className={className}>
+            <div className={utilsClassNames(className)}>
                 <label htmlFor={refForm} className={labelClassName}>
                     {label}
                 </label>

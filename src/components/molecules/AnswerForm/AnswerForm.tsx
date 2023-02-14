@@ -11,8 +11,7 @@ export interface AnswerFormProps {
 }
 
 const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: AnswerFormProps): ReactElement => {
-    const { register, setValue, handleSubmit, formState, watch } = useForm({ mode: "onSubmit" });
-
+    const formMethods = useForm({ mode: "onSubmit" });
     const { t } = useTranslation();
 
     const onSubmit: SubmitHandler<{ text: string }> = async (data) => {
@@ -20,20 +19,17 @@ const AnswerForm = ({ isUpdateField, onSubmitAnswer, text, updateFunction }: Ans
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="p-2" data-testid="tq-answer-form-body">
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="p-2" data-testid="tq-answer-form-body">
             <div className="flex flex-col">
                 <TextEditor
-                    register={register}
+                    formMethods={formMethods}
                     refForm="text"
                     required
                     errorMessage={t("error.required")}
-                    isError={formState?.errors.text}
-                    setValue={setValue}
                     isUpdateField={isUpdateField}
                     updateFunction={updateFunction}
                     defaultValue={text}
                     className={"w-full h-48 mb-14"}
-                    watch={watch}
                 />
                 {!isUpdateField && (
                     <div className="flex justify-end">
