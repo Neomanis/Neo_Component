@@ -25,12 +25,6 @@ Default.args = {
     children: "toujours pas d'inspi",
 };
 
-export const Empty: ComponentStory<typeof UneditableField> = Template.bind({});
-Empty.args = {
-    variant: "primary",
-    label: "UneditableField",
-};
-
 export const BackgroundColor: ComponentStory<typeof UneditableField> = Template.bind({});
 BackgroundColor.args = {
     variant: "secondary",

@@ -45,9 +45,7 @@ const UneditableField = ({
                     className
                 )}
             >
-                {children ?? (
-                    <hr className="absolute border-neo-bg-B border-2 top-5 w-11/12 rounded transform -rotate-6" />
-                )}
+                {children}
             </div>
         </div>
     );
