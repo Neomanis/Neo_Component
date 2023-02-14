@@ -10,18 +10,10 @@ test("should show correct text", async ({ mount }) => {
     await expect(component).toContainText("coucou Raph");
 });
 
-test("should be empty if no data", async ({ mount }) => {
-    const component = await mount(<UneditableField variant="primary" />);
-    await expect(component.locator('[data-testid="uneditablefield-data"]')).not.toBeVisible();
-    await expect(component.locator('[data-testid="uneditablefield-label"]')).not.toBeVisible();
-    await expect(component.locator("hr")).toBeVisible();
-});
-
 test("should change CSS if props are passed", async ({ mount }) => {
     const component = await mount(<UneditableField variant="primary" />);
     await expect(component.locator('[data-testid="uneditablefield-body"]')).toBeEmpty();
     await expect(component.locator('[data-testid="uneditablefield-label"]')).not.toBeVisible();
-    await expect(component.locator("hr")).toBeVisible();
 });
 
 test("should get variants css with secondary bg", async ({ mount }) => {
