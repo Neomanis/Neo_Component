@@ -1,19 +1,14 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
-import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
-import ReactQuill from "react-quill";
+import { useController, UseFormReturn } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
-import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
-import { useInputs } from "@/utils/hooks/useInputs";
-import { getHTMLValue } from "@/utils/tools";
+import ReactQuill from "react-quill";
 import "@/styles/textEditor.css";
-import Updater from "../Updater";
-import { useOnClickOutside } from "@/utils/hooks/useOnClickOutside";
-import { classNames as utilsClassNames } from "@/utils";
-import Icon from "../Icon";
+import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
+import { classNames as utilsClassNames, createTimeout, getHTMLValue, useOnClickOutside, useInputs } from "@/utils";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-
+import Updater from "../Updater";
+import Icon from "../Icon";
 export interface TextEditorProps {
-    clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: ReactHookFormCustomValidation<number | number[]>;
     defaultValue?: string;
     label?: string;
@@ -21,22 +16,18 @@ export interface TextEditorProps {
     dotClassName?: string;
     errorMessage?: string;
     id?: string;
-    isError?: boolean;
     isUpdateField?: boolean;
     readOnly?: boolean;
     refForm: string;
-    register?: UseFormRegister<FieldValues>;
+    formMethods: UseFormReturn;
     required?: boolean;
-    setValue?: UseFormSetValue<FieldValues>;
     targetId?: number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
-    className: string;
-    watch?: UseFormWatch<FieldValues>;
+    className?: string;
 }
 
 const TextEditor = ({
-    clearErrors,
     customValidation,
     defaultValue = "",
     label,
@@ -44,28 +35,38 @@ const TextEditor = ({
     dotClassName,
     errorMessage,
     id,
-    isError,
     isUpdateField = false,
     readOnly = false,
     refForm,
-    register,
+    formMethods,
     required,
-    setValue,
     targetId,
     timerSetting = 5000,
     updateFunction,
     className,
-    watch,
 }: TextEditorProps): ReactElement => {
     const [state, dispatch] = useInputs(getHTMLValue(defaultValue));
-    const [data, setData] = useState(defaultValue);
-    const [isFocus, setIsFocus] = useState(false);
 
+    const [isFocus, setIsFocus] = useState(false);
+    const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
+    const {
+        field: { ref, value, onChange },
+        formState: { errors },
+    } = useController({
+        control: formMethods.control,
+        name: refForm,
+        rules: { required, validate: { ...customValidation } },
+        shouldUnregister: false,
+        defaultValue,
+    });
+
+    const isError = Boolean(refForm.split(".").reduce((acc, value) => acc?.[value], errors));
+
     useOnClickOutside(wrapperRef, () => {
-        if (isFocus && isUpdateField && state.previous !== data && !isError) {
-            dispatch({ type: "UPDATING", payload: data });
+        if (isFocus && isUpdateField && state.previous !== value && !isError) {
+            dispatch({ type: "UPDATING", payload: value });
             setIsFocus(false);
             if (state.timeoutId) {
                 clearTimeout(state.timeoutId);
@@ -99,42 +100,43 @@ const TextEditor = ({
     const isLastMount = useRef(false);
 
     useEffect(() => {
-        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
-    }, []);
-
-    useEffect(() => {
         dispatch({ type: "RESET", payload: getHTMLValue(defaultValue) as string });
-        setValue && setValue(refForm, getHTMLValue(defaultValue));
+        formMethods.setValue(refForm, getHTMLValue(defaultValue) === undefined ? null : getHTMLValue(defaultValue), {
+            shouldValidate: false,
+        });
         return () => {
             isLastMount.current = true;
         };
-    }, [targetId]);
+    }, [defaultValue, targetId]);
 
     useEffect(() => {
-        if (isUpdateField && state.updated && state.updated !== state.previous) {
-            const newTimeout = setTimeout((): void => {
-                if (updateFunction) {
-                    updateFunction(refForm, state.updated as string);
+        return () => {
+            timer.current?.trigger();
+        };
+    }, []);
+
+    function handleChange(value: string) {
+        onChange(value);
+        if (isUpdateField) {
+            timer.current?.clear();
+            if (value !== state.previous) {
+                dispatch({ type: "UPDATING", payload: value });
+                timer.current = createTimeout(() => {
+                    updateFunction?.(refForm, value);
                     dispatch({ type: "UPDATE_SUCCESS" });
-                    setTimeout(() => {
+                    timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
                     }, 3000);
-                }
-            }, timerSetting);
-            dispatch({ type: "SET_TIMEOUT", payload: newTimeout });
-            return () => {
-                if (isLastMount.current) {
-                    clearTimeout(newTimeout);
-                    updateFunction && updateFunction(refForm, state.updated as string);
-                    isLastMount.current = false;
-                }
-            };
+                }, timerSetting);
+            } else {
+                dispatch({ type: "CANCEL_UPDATE" });
+            }
         }
-    }, [state.updated, state.previous]);
+    }
 
     if (readOnly) {
         return (
-            <div className={className}>
+            <div className={utilsClassNames(className)}>
                 <label htmlFor={refForm} className={labelClassName}>
                     {label}
                 </label>
@@ -147,7 +149,7 @@ const TextEditor = ({
     }
 
     return (
-        <div className={utilsClassNames(className, "group relative")} data-testid="textEditor-body">
+        <div className={utilsClassNames(className, "group")} data-testid="textEditor-body">
             <div className={utilsClassNames(dotClassName, isUpdateField && "h-6", "flex justify-between items-center")}>
                 {label && (
                     <label htmlFor={refForm} className={utilsClassNames(labelClassName, "ml-4")}>
@@ -161,10 +163,9 @@ const TextEditor = ({
                         isError={isError}
                         isSuccess={state.isSuccess}
                         fCallBackCancel={(): void => {
-                            setValue && setValue(refForm, state.previous);
-                            clearErrors && clearErrors();
-                            state.timeoutId && clearTimeout(state.timeoutId);
+                            timer.current?.clear();
                             dispatch({ type: "CANCEL_UPDATE" });
+                            onChange(state.previous);
                         }}
                         trigger={state.trigger}
                         updateCooldown={timerSetting}
@@ -173,31 +174,24 @@ const TextEditor = ({
                     />
                 )}
             </div>
-            <div className="flex w-full h-full mt-1 block" ref={wrapperRef}>
+            <div className="w-full h-[90%] relative" ref={wrapperRef}>
                 {isUpdateField && (
                     <Icon
                         fontIcon={faPenToSquare}
-                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-4 top-9 mt-1 transition-all"
+                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-4 top-4 transition-all"
                     />
                 )}
                 <ReactQuill
                     readOnly={readOnly}
-                    value={watch && watch(refForm)}
-                    onChange={(data) => {
+                    value={value}
+                    ref={ref}
+                    onFocus={() => {
+                        timer.current?.clear();
+                        dispatch({ type: "CANCEL_UPDATE" });
+                    }}
+                    onBlur={(_previousSelection, _source, editor) => {
                         if (!readOnly) {
-                            !isFocus && setIsFocus(true);
-                            setValue && setValue(refForm, data, { shouldValidate: true });
-                            setData(data);
-                            if (isUpdateField) {
-                                if (state.previous !== data) {
-                                    dispatch({ type: "SHOW_DOT" });
-                                } else {
-                                    dispatch({ type: "CANCEL_UPDATE" });
-                                }
-                                if (state.timeoutId) {
-                                    clearTimeout(state.timeoutId);
-                                }
-                            }
+                            handleChange(editor.getHTML());
                         }
                     }}
                     modules={modules}

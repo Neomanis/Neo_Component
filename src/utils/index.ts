@@ -1,6 +1,5 @@
 import { getActorName, getRequesterUid, getUserName } from "./userTools";
 import { stripHtml } from "./chatFunction";
-
 import { getServiceStatusColor } from "./serviceStatusColorSelector";
 import { getStatusColor, getStatusText } from "./statusTools";
 import { useIsFirstRender } from "./hooks/useIsFirstRender";
@@ -11,6 +10,7 @@ import { getOutageBorderColor, getOutageDivideColor, getOutageSVGColor, getOutag
 import { frontEncrypt } from "./crypto/frontUtils";
 import { getTicketLogoByStatus } from "./ticketLogoByStatus";
 import NeoColors from "./neoColors";
+import { useInputs } from "./hooks/useInputs";
 
 export {
     frontEncrypt,
@@ -25,6 +25,7 @@ export {
     getStatusText,
     getTicketLogoByStatus,
     getUserName,
+    useInputs,
     inputReducer,
     LOCAL_STORAGE_VERSION,
     NeoColors,
