@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.31.9] 
+ ### [5.31.10] 
+ update TextEditor formMethods  ### [5.31.9] 
  allow fix width to avoid ref issue in animation and delete text sizing in component ### [5.31.8] 
  remove bar in empty uneditable field ### [5.31.7] 
  update inputTextarea style label ### [5.31.6] 
