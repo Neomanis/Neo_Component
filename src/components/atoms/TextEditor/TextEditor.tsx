@@ -6,7 +6,6 @@ import "@/styles/textEditor.css";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { classNames as utilsClassNames, createTimeout, getHTMLValue, useOnClickOutside, useInputs } from "@/utils";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import isEqual from "lodash.isequal";
 import Updater from "../Updater";
 import Icon from "../Icon";
 export interface TextEditorProps {
@@ -120,7 +119,7 @@ const TextEditor = ({
         onChange(value);
         if (isUpdateField) {
             timer.current?.clear();
-            if (!isEqual(value, state.previous)) {
+            if (value !== state.previous) {
                 dispatch({ type: "UPDATING", payload: value });
                 timer.current = createTimeout(() => {
                     updateFunction?.(refForm, value);
@@ -150,7 +149,7 @@ const TextEditor = ({
     }
 
     return (
-        <div className={utilsClassNames(className, "group relative")} data-testid="textEditor-body">
+        <div className={utilsClassNames(className, "group")} data-testid="textEditor-body">
             <div className={utilsClassNames(dotClassName, isUpdateField && "h-6", "flex justify-between items-center")}>
                 {label && (
                     <label htmlFor={refForm} className={utilsClassNames(labelClassName, "ml-4")}>
@@ -175,11 +174,11 @@ const TextEditor = ({
                     />
                 )}
             </div>
-            <div className="flex w-full h-full mt-1 block" ref={wrapperRef}>
+            <div className="w-full h-[90%] relative" ref={wrapperRef}>
                 {isUpdateField && (
                     <Icon
                         fontIcon={faPenToSquare}
-                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-4 top-9 mt-1 transition-all"
+                        className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-4 top-4 transition-all"
                     />
                 )}
                 <ReactQuill
@@ -192,7 +191,7 @@ const TextEditor = ({
                     }}
                     onBlur={(_previousSelection, _source, editor) => {
                         if (!readOnly) {
-                            handleChange(editor.getText());
+                            handleChange(editor.getHTML());
                         }
                     }}
                     modules={modules}

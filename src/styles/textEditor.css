@@ -1,25 +1,24 @@
 .quill {
-    height: auto !important;
+    height: 100% !important;
     width: 100% !important;
 }
-
-.ql-container {
-    border: none !important;
-    border-bottom-left-radius: 5px !important;
-    border-bottom-right-radius: 5px !important;
-    background-color: #0e3864 !important;
-    color: aliceblue !important;
-    height: 100% !important;
-    overflow-y: scroll !important;
-    scrollbar-width: none !important;
-}
-
 .ql-toolbar {
     border: none !important;
     border-bottom: 1px solid #0f283f !important;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
     background-color: #0e3864 !important;
+    height: 15% !important;
+}
+.ql-container {
+    border: none !important;
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    background-color: #0e3864 !important;
+    color: aliceblue !important;
+    overflow-y: scroll !important;
+    scrollbar-width: none !important;
+    height: 85% !important;
 }
 
 .ql-toolbar .ql-snow {
