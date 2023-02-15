@@ -15,6 +15,7 @@ test("should work", async ({ mount }) => {
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
             type={MessageType.MESSAGE}
+            bubbleChatWidth={110}
         />
     );
     await expect(component).toContainText("Burudōzā o yatta!");
