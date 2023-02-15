@@ -84,15 +84,17 @@ Default.args = {
     type: MessageType.MESSAGE,
     isValidate: true,
     isFailed: false,
+    bubbleChatWidth: 110,
 };
 
 export const EncodedAvatar: ComponentStory<typeof MessageChat> = Template.bind({});
 EncodedAvatar.args = {
-    content: "BURN BABY BURN! And this message is very very very long to show how many line are displayed",
+    content: "BURNBABYBURN!Andthismessageisveryveryverylongtoshowhowmanylinearedisplayed",
     date: "12:12",
     name: "Ragnaros The Firelord",
     privateMessage: false,
     type: MessageType.MESSAGE,
+    bubbleChatWidth: 150,
     avatar: {
         encodedAvatar: imgAvatar,
         mimetype: "image/png",
@@ -104,6 +106,7 @@ export const IsWriting: ComponentStory<typeof MessageChat> = Template2.bind({});
 IsWriting.args = {
     date: "12:12",
     privateMessage: false,
+    bubbleChatWidth: 110,
 };
 
 export const ContainFile: ComponentStory<typeof MessageChat> = Template3.bind({});
@@ -113,4 +116,5 @@ ContainFile.args = {
     attachmentId: "12",
     downloadAttachmentCallback: downloadStory,
     deleteAttachmentCallback: deleteStory,
+    bubbleChatWidth: 110,
 };
