@@ -1,10 +1,11 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
-import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
-import { Img, Icon, BubbleChat, Loader, AttachmentChat } from "@/components/atoms";
-import { classNames } from "@/utils/tools";
+import React, { ReactElement, useState } from "react";
 import { MessageType } from "@neomanis/neo-types";
+import { classNames as classFunction } from "@/utils";
+import { AttachmentChat, BubbleChat, Icon, Img, Loader } from "@/components/atoms";
+import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
 
 export interface MessageChatProps {
+    classNames?: { hoverInformations?: string; icon?: string; message?: string };
     content: string | ReactElement;
     date: string;
     isMe: boolean;
@@ -26,6 +27,7 @@ export interface MessageChatProps {
 }
 
 const MessageChat = ({
+    classNames,
     content,
     date,
     isMe,
@@ -39,30 +41,19 @@ const MessageChat = ({
     name,
     avatar,
     type,
-    bubbleChatWidth,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-    const [maxWidth, setMaxWidth] = useState<number>(0);
-
-    useEffect(() => {
-        setMaxWidth(ref.current.getBoundingClientRect().width - 104); //44px of profil picture and 60px of margin/padding
-    }, [ref]);
 
     return (
-        <div ref={ref} className="w-full px-2">
-            <div
-                className={classNames(
-                    "overflow-hidden h-4 flex text-neo-blue-secondary font-bold",
-                    isMe && "flex-row-reverse"
-                )}
-                style={{ marginBottom: 1 }}
-            >
+        <div className="w-full" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+            <div className={classFunction("overflow-hidden h-auto flex mb-px", isMe && "flex-row-reverse")}>
                 <div
-                    className={classNames(
-                        "flex transform duration-300 transition-transform ",
+                    data-testid="message-hover-information"
+                    className={classFunction(
+                        "flex transform duration-300 transition-transform",
                         isMe && "flex-row-reverse",
-                        !hover && "translate-y-4"
+                        !hover && "translate-y-full",
+                        classNames?.hoverInformations ?? "text-xxs text-neo-blue-secondary font-bold"
                     )}
                 >
                     <p>{name}</p>
@@ -70,72 +61,74 @@ const MessageChat = ({
                 </div>
             </div>
             <div
-                className={classNames(isMe && "flex-row-reverse", "w-full flex items-center relative")}
-                onMouseEnter={() => setHover(true)}
-                onMouseLeave={() => setHover(false)}
+                data-testid="message-icon-container"
+                className={classFunction(isMe && "flex-row-reverse", "w-full flex items-center")}
             >
-                {avatar && avatar.encodedAvatar !== null ? (
-                    <Img
-                        type="imgProfile"
-                        data={{
-                            src: avatar.encodedAvatar,
-                            alt: avatar.originalname,
-                        }}
-                        className="rounded-full w-11 h-11"
-                    />
-                ) : (
-                    <Img type="imgProfile" className="rounded-full w-11 h-11" />
-                )}
-                <div className="mx-5" style={{ width: `${bubbleChatWidth ?? maxWidth}px` }}>
+                <div data-testid="message-icon" className={classFunction(classNames?.icon ?? "w-1/6")}>
+                    {avatar && avatar.encodedAvatar !== null ? (
+                        <Img
+                            type="imgProfile"
+                            data={{
+                                src: avatar.encodedAvatar,
+                                alt: avatar.originalname,
+                            }}
+                            className="rounded-full w-full select-none"
+                        />
+                    ) : (
+                        <Img type="imgProfile" className="rounded-full w-full select-none" />
+                    )}
+                </div>
+                <div
+                    data-testid="message-content"
+                    className={classFunction(classNames?.message ?? "w-5/6 px-2 text-xxs", "relative")}
+                >
+                    {isLoading && !isValidate && (
+                        <div
+                            data-testid="message-is-loading"
+                            className="absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+                        >
+                            <Loader type="circleOnly" className="text-white text-base" />
+                        </div>
+                    )}
                     {!isFailed && privateMessage && (
                         <Icon
-                            className={classNames(
-                                !isMe ? "-left-2" : "-right-2",
-                                "text-neo-red absolute -top-1 drop-shadow-md z-50"
+                            data-testid="private-message-icon"
+                            className={classFunction(
+                                isMe ? "left-1" : "right-1",
+                                "text-neo-red absolute -top-1 drop-shadow-md z-50 text-xs"
                             )}
                             fontIcon={faLock}
                         />
                     )}
                     {isFailed && (
-                        <>
-                            <Icon
-                                fontIcon={faCircleExclamation}
-                                className={classNames(
-                                    !isMe ? "-left-2" : "-right-2",
-                                    "text-neo-red text-base absolute -top-1 z-50"
-                                )}
+                        <Icon
+                            data-testid="error-message-icon"
+                            fontIcon={faCircleExclamation}
+                            className={classFunction(
+                                isMe ? "left-0" : "right-0",
+                                "text-neo-red bg-white rounded-full ring ring-neo-red ring-inset absolute -top-2 z-50 text-base"
+                            )}
+                        />
+                    )}
+                    <div className={classFunction(isLoading && "opacity-50")}>
+                        {type === MessageType["ATTACHMENT"] ? (
+                            <AttachmentChat
+                                attachmentId={attachmentId}
+                                bgColor={isMe && "bg-neo-bg-B"}
+                                border={!isMe && "border-neo-bg-B"}
+                                content={content}
+                                downloadCallback={downloadAttachmentCallback}
+                                deleteCallback={deleteAttachmentCallback}
                             />
-                            <div
-                                className={classNames(
-                                    !isMe ? "-left-2" : "-right-1",
-                                    !isMe ? "-left-1" : "-right-1",
-                                    "bg-white h-[10px] w-2 absolute top-0 z-40 "
-                                )}
-                            ></div>
-                        </>
-                    )}
-                    {isLoading && !isValidate && (
-                        <div className="absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
-                            <Loader type="circleOnly" className="text-white" />
-                        </div>
-                    )}
-                    {type === MessageType.ATTACHMENT && attachmentId ? (
-                        <AttachmentChat
-                            attachmentId={attachmentId}
-                            bgColor={isMe && "bg-neo-bg-B "}
-                            border={!isMe && "border-neo-bg-B"}
-                            content={content}
-                            downloadCallback={downloadAttachmentCallback}
-                            deleteCallback={deleteAttachmentCallback}
-                        />
-                    ) : (
-                        <BubbleChat
-                            bgColor={isMe && "bg-neo-bg-B "}
-                            border={!isMe && "border-neo-bg-B"}
-                            content={content}
-                            isValidate={isValidate}
-                        />
-                    )}
+                        ) : (
+                            <BubbleChat
+                                bgColor={isMe && "bg-neo-bg-B"}
+                                border={!isMe && "border-neo-bg-B"}
+                                content={content}
+                                isValidate={isValidate}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

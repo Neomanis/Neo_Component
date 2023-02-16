@@ -28,11 +28,12 @@ const ValidationCard = ({
     id,
 }: ValidationCardProps): ReactElement => {
     return (
-        <div className={classNames.container}>
+        <div data-testid="validation-card-container" className={classNames.container}>
             {text != "" && <p className={classNames.text}>{text}</p>}
             <div className={classNames.buttonContainer}>
                 <div className="transform hover:scale-110">
                     <Button
+                        data-testid="on-click-validate"
                         startIcon={<FontAwesomeIcon icon={faCheck} />}
                         className={"text-neo-green flex items-center justify-center rounded-lg"}
                         onClick={(): void => {
@@ -45,6 +46,7 @@ const ValidationCard = ({
                 </div>
                 <div className="transform hover:scale-110">
                     <Button
+                        data-testid="on-click-cancel"
                         startIcon={<FontAwesomeIcon icon={faTimes} />}
                         className={"text-neo-red flex items-center justify-center rounded-lg"}
                         onClick={(): void => fCallBackCancel()}

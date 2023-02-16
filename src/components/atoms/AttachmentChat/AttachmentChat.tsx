@@ -32,6 +32,7 @@ const AttachmentChat = ({
         <div data-testid="attachmentChat-body">
             {!openValidationCard ? (
                 <div
+                    data-testid="attachment-content"
                     className={classNames(
                         "flex items-center justify-between rounded-md py-2 px-4 relative",
                         bgColor,
@@ -41,6 +42,7 @@ const AttachmentChat = ({
                     )}
                 >
                     <div
+                        data-testid="on-click-download"
                         className="flex items-center group cursor-pointer w-4/5"
                         onClick={() => downloadCallback(attachmentId)}
                     >
@@ -51,6 +53,7 @@ const AttachmentChat = ({
                         <p className="text-white break-words line-clamp-2 transition-all">{content}</p>
                     </div>
                     <IconTrash
+                        data-testid="attachment-chat-delete-icon"
                         className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
                         onClick={() => setOpenValidationCard(true)}
                     />
