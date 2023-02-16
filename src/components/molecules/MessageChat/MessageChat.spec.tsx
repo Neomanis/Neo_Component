@@ -23,23 +23,23 @@ test("should work", async ({ mount }) => {
     await expect(component.locator('[data-testid="bubbleChat-body"]')).toHaveClass(/bg-neo-bg-B/);
 });
 
-// test("should have right properties if isNotMe", async ({ mount }) => {
-//     const component = await mount(
-//         <MessageChat
-//             content="Burudōzā o yatta!"
-//             date="21:12"
-//             isMe={false}
-//             name="Jiro"
-//             type={MessageType.ATTACHMENT}
-//             downloadAttachmentCallback={() => {}}
-//             deleteAttachmentCallback={() => {}}
-//         />
-//     );
+test("should have right properties if isNotMe", async ({ mount }) => {
+    const component = await mount(
+        <MessageChat
+            content="Burudōzā o yatta!"
+            date="21:12"
+            isMe={false}
+            name="Jiro"
+            type={MessageType.ATTACHMENT}
+            downloadAttachmentCallback={() => {}}
+            deleteAttachmentCallback={() => {}}
+        />
+    );
 
-//     await expect(component.locator('[data-testid="message-hover-information"]')).not.toHaveClass(/flex-flow-reverse/);
-//     await expect(component.locator('[data-testid="message-icon-container"]')).not.toHaveClass(/flex-flow-reverse/);
-//     await expect(component.locator('[data-testid="attachment-content"]')).toHaveClass(/border-neo-bg-B/);
-// });
+    await expect(component.locator('[data-testid="message-hover-information"]')).not.toHaveClass(/flex-flow-reverse/);
+    await expect(component.locator('[data-testid="message-icon-container"]')).not.toHaveClass(/flex-flow-reverse/);
+    await expect(component.locator('[data-testid="attachment-content"]')).toHaveClass(/border-neo-bg-B/);
+});
 
 test("should get classNames", async ({ mount }) => {
     const component = await mount(
