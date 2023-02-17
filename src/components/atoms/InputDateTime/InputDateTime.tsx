@@ -46,6 +46,8 @@ export interface InputDateTimeProps {
     disabled?: boolean;
     isUpdateField?: boolean;
     updateFunction?: (refForm: string, value: Date | [Date, Date]) => void;
+    fOnChange?: (date: Date | [Date, Date]) => void;
+    fOnBlur?: () => void;
 }
 
 type RangeConditionalProps = { isRange?: true; defaultValue?: [Date, Date] } | { isRange?: false; defaultValue?: Date };
@@ -82,6 +84,8 @@ const InputDateTime = ({
     showTimePicker = true,
     datePickerElementWrapperClassName = "",
     disabled = false,
+    fOnChange,
+    fOnBlur,
 }: InputDateTimeProps & RangeConditionalProps): ReactElement => {
     const [showMonthPicker, setShowMonthPicker] = useState<boolean>(defaultValueShowMonthPicker);
     const [state, dispatch] = useInputs(defaultValue);
@@ -99,6 +103,10 @@ const InputDateTime = ({
         shouldUnregister: true,
         defaultValue,
     });
+
+    useEffect(() => {
+        fOnChange && fOnChange(value);
+    }, [value]);
 
     const datesValue = useMemo(() => {
         if (!Array.isArray(value)) {
@@ -311,6 +319,7 @@ const InputDateTime = ({
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
                     onChange={(dates: Date | [Date, Date]) => {
+                        fOnChange && fOnChange(dates);
                         if (Array.isArray(dates)) {
                             handleChangeArray(dates);
                         } else {
@@ -325,6 +334,7 @@ const InputDateTime = ({
                     ref={ref}
                     disabled={disabled}
                     id={id}
+                    onBlur={() => fOnBlur && fOnBlur()}
                 />
             </div>
         </label>

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,14 +6,14 @@ import "@/styles/reactDatePicker.css";
 import isEqual from "lodash.isequal";
 import { useTranslation } from "@neomanis/neo-translation";
 import { IconCalendar } from "@/img/svg";
-import { InputDateTime, Updater } from "@/components/atoms";
+import { InputDateTime, Title, Updater } from "@/components/atoms";
 import { classNames, createTimeout, useInputs } from "@/utils";
 
-interface Dates {
-    startAt: string;
-    displayAt: string;
-    endAt: string;
-    hideAt: string;
+export interface Dates {
+    startAt?: Date;
+    displayAt?: Date;
+    endAt?: Date;
+    hideAt?: Date;
 }
 
 export interface Props {
@@ -39,33 +39,31 @@ const InputDates = ({
 }: Props): ReactElement => {
     const { t, i18n } = useTranslation();
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
-    const [state, dispatch] = useInputs(defaultValues);
+
+    const [state, dispatch] = useInputs({
+        startAt: defaultValues?.startAt,
+        displayAt: defaultValues?.displayAt,
+        endAt: defaultValues?.endAt,
+        hideAt: defaultValues?.hideAt,
+    } as Dates);
+
+    const [localStateDates, setLocalStateDates] = useState({
+        startAt: defaultValues?.startAt,
+        displayAt: defaultValues?.displayAt,
+        endAt: defaultValues?.endAt,
+        hideAt: defaultValues?.hideAt,
+    } as Dates);
 
     const disabledStartDate = Boolean(!watchType);
-    const disabledEndDate = (watchType && watchType === "outage" && !defaultValues) || !watchType;
-
-    const watchStartAt = formMethods.watch("startAt");
-    const watchEndAt = formMethods.watch("endAt");
-    const watchDisplayAt = formMethods.watch("displayAt");
-    const watchHideAt = formMethods.watch("hideAt");
+    const disabledEndDate = (watchType && watchType === "outage") || !watchType;
 
     useEffect(() => {
-        const newDates = {
-            startAt: watchStartAt,
-            displayAt: watchEndAt,
-            endAt: watchDisplayAt,
-            hideAt: watchHideAt,
-        };
-        handleChange(newDates);
-    }, [watchStartAt, watchEndAt, watchDisplayAt, watchHideAt]);
-
-    useEffect(() => {
-        if (watchType === "outage" && !defaultValues) {
+        if (disabledEndDate && !defaultValues) {
             formMethods.resetField("endAt");
             formMethods.resetField("hideAt");
             return;
         }
-    }, [defaultValues, watchType]);
+    }, [defaultValues, disabledEndDate]);
 
     useEffect(() => {
         if (!defaultValues && Boolean(!watchType) === false) {
@@ -76,51 +74,49 @@ const InputDates = ({
 
     // reset DisplayAt
     useEffect(() => {
-        if (!watchStartAt || !watchDisplayAt) {
+        if (!localStateDates.startAt || !localStateDates.displayAt) {
             return;
         }
-
-        const startAt = new Date(watchStartAt);
-        const displayAt = new Date(watchDisplayAt);
-        if (startAt.getTime() < displayAt.getTime()) {
-            formMethods.setValue("displayAt", startAt);
+        if (localStateDates.startAt.getTime() < localStateDates.displayAt.getTime()) {
+            formMethods.setValue("displayAt", localStateDates.startAt);
         }
-    }, [watchStartAt, watchDisplayAt]);
+    }, [localStateDates.startAt, localStateDates.displayAt]);
 
     // reset endAt if startAt is higher
     useEffect(() => {
-        if (!watchStartAt || !watchEndAt) {
+        if (!localStateDates.startAt || !localStateDates.endAt) {
             return;
         }
-        const startAt = new Date(watchStartAt);
-        const endAt = new Date(watchEndAt);
-        if (startAt.getTime() > endAt.getTime()) {
-            formMethods.setValue("endAt", startAt);
+        if (localStateDates.startAt.getTime() > localStateDates.endAt.getTime()) {
+            formMethods.setValue("endAt", localStateDates.startAt);
         }
-    }, [watchStartAt, watchEndAt]);
+    }, [localStateDates.startAt, localStateDates.endAt]);
 
     // reset HideAt
     useEffect(() => {
-        if (!watchEndAt || !watchHideAt) {
+        if (!localStateDates.endAt || !localStateDates.hideAt) {
             return;
         }
-
-        const endAt = new Date(watchEndAt);
-        const hideAt = new Date(watchHideAt);
-        if (endAt.getTime() > hideAt.getTime()) {
-            formMethods.setValue("hideAt", endAt);
+        if (localStateDates.endAt.getTime() > localStateDates.hideAt.getTime()) {
+            formMethods.setValue("hideAt", localStateDates.endAt);
         }
-    }, [watchEndAt, watchHideAt]);
+    }, [localStateDates.endAt, localStateDates.hideAt]);
 
     // auto set input if only endAt or hideAt is filled
     useEffect(() => {
-        if (watchHideAt && !watchEndAt) {
-            formMethods.setValue("endAt", watchHideAt);
+        if (localStateDates.hideAt && !localStateDates.endAt) {
+            formMethods.setValue("endAt", localStateDates.hideAt);
         }
-        if (!watchHideAt && watchEndAt) {
-            formMethods.setValue("hideAt", watchEndAt);
+        if (!localStateDates.hideAt && localStateDates.endAt) {
+            formMethods.setValue("hideAt", localStateDates.endAt);
         }
-    }, [watchHideAt, watchEndAt]);
+    }, [localStateDates.hideAt, localStateDates.endAt]);
+
+    function handleChangeLocalState(value: Date, ref: string, oldState: Dates) {
+        const newState = oldState;
+        Reflect.set(newState, ref, value);
+        setLocalStateDates({ ...newState });
+    }
 
     function handleChange(value: Dates) {
         if (isUpdate) {
@@ -140,6 +136,11 @@ const InputDates = ({
         }
     }
 
+    function triggerUpdate() {
+        timer.current?.clear();
+        dispatch({ type: "CANCEL_UPDATE" });
+        handleChange(localStateDates);
+    }
     useEffect(() => {
         return () => {
             timer.current?.trigger();
@@ -148,8 +149,9 @@ const InputDates = ({
 
     return (
         <div className="h-full w-full">
-            {isUpdate && (
-                <div className="h-6 flex justify-between w-full">
+            <div className="h-6 flex justify-between w-full mb-4">
+                <Title type="h1" data="Timing" className="text-2xl text-neo-blue-secondary font-bold" />
+                {isUpdate && (
                     <Updater
                         errorMessage={errorMessage}
                         isCancelable={state.isCancelable}
@@ -159,7 +161,7 @@ const InputDates = ({
                         fCallBackCancel={(): void => {
                             state.previous.startAt && formMethods.setValue("startAt", state.previous.startAt);
                             state.previous.displayAt && formMethods.setValue("displayAt", state.previous.displayAt);
-                            if (watchType !== "outage") {
+                            if (!disabledEndDate) {
                                 state.previous.endAt && formMethods.setValue("endAt", state.previous.endAt);
                                 state.previous.hideAt && formMethods.setValue("hideAt", state.previous.hideAt);
                             }
@@ -168,8 +170,8 @@ const InputDates = ({
                         }}
                         id={"updater-" + id}
                     />
-                </div>
-            )}
+                )}
+            </div>
             <div className="flex gap-4 w-full">
                 <div className="w-1/2">
                     <InputDateTime
@@ -186,12 +188,15 @@ const InputDates = ({
                         lang={i18n.language}
                         svg={<IconCalendar className="fill-neo-light-grey w-7 mb-2 absolute z-10 mr-2" />}
                         id="startAt-date-input"
+                        defaultValue={defaultValues?.startAt}
+                        fOnChange={(date) => handleChangeLocalState(date as Date, "startAt", localStateDates)}
+                        fOnBlur={triggerUpdate}
                     />
                     <InputDateTime
                         refForm="displayAt"
                         formMethods={formMethods}
-                        maxDate={new Date(watchStartAt)}
-                        maxTime={new Date()}
+                        maxDate={localStateDates.startAt}
+                        maxTime={localStateDates.startAt}
                         label={t("date.displayAt")}
                         labelClassName="text-neo-blue-secondary text-xs font-bold"
                         inputClassName="bg-neo-bg-B px-3 font-bold rounded text-white text-xs w-full text-bold h-[48px]"
@@ -201,14 +206,19 @@ const InputDates = ({
                         lang={i18n.language}
                         svg={<IconCalendar className="fill-neo-light-grey w-7 mb-2 absolute z-10 mr-2" />}
                         id="displayAt-date-input"
+                        defaultValue={defaultValues?.displayAt}
+                        fOnChange={(date) => {
+                            handleChangeLocalState(date as Date, "displayAt", localStateDates);
+                        }}
+                        fOnBlur={triggerUpdate}
                     />
                 </div>
                 <div className="w-1/2">
                     <InputDateTime
                         refForm="endAt"
                         formMethods={formMethods}
-                        minDate={new Date(watchStartAt)}
-                        minTime={new Date(watchStartAt)}
+                        minDate={localStateDates.startAt}
+                        minTime={localStateDates.startAt}
                         label={t("date.endAt")}
                         labelClassName="text-neo-blue-secondary text-xs font-bold"
                         inputClassName="bg-neo-bg-B px-3 font-bold rounded text-white text-xs w-full text-bold h-[48px] mb-2"
@@ -218,12 +228,15 @@ const InputDates = ({
                         lang={i18n.language}
                         svg={<IconCalendar className="fill-neo-light-grey w-7 mb-2 absolute z-10 mr-2" />}
                         id="endAt-date-input"
+                        defaultValue={defaultValues?.endAt}
+                        fOnChange={(date) => handleChangeLocalState(date as Date, "endAt", localStateDates)}
+                        fOnBlur={triggerUpdate}
                     />
                     <InputDateTime
                         refForm="hideAt"
                         formMethods={formMethods}
-                        minDate={new Date(watchEndAt)}
-                        minTime={new Date(watchEndAt)}
+                        minDate={localStateDates.endAt}
+                        minTime={localStateDates.endAt}
                         label={t("date.hideAt")}
                         labelClassName="text-neo-blue-secondary text-xs font-bold"
                         inputClassName="bg-neo-bg-B px-3 font-bold rounded text-white text-xs w-full text-bold h-[48px]"
@@ -233,6 +246,9 @@ const InputDates = ({
                         lang={i18n.language}
                         svg={<IconCalendar className="fill-neo-light-grey w-7 mb-2 absolute z-10 mr-2" />}
                         id="hideAt-date-input"
+                        defaultValue={defaultValues?.hideAt}
+                        fOnChange={(date) => handleChangeLocalState(date as Date, "hideAt", localStateDates)}
+                        fOnBlur={triggerUpdate}
                     />
                 </div>
             </div>
