@@ -192,10 +192,10 @@ export function isNotNullOrUndefined(value: unknown) {
     return value !== null && value !== undefined;
 }
 
-export function getDisplayedTicketUid(ticketUid: string, ticketType?: string): string {
+export function getDisplayedTicketUid(ticketUid: string, ticketType?: number): string {
     const [itsmCode, ticketId, type] = ticketUid.split("-");
-    if (itsmCode && ticketId && (ticketType || type)) {
-        return `[${itsmCode}] ${ticketType ?? type} ${ticketId}`.toUpperCase();
+    if (itsmCode && ticketId && (type || ticketType)) {
+        return `[${itsmCode}] ${type ?? ticketTypeToTrigrameConverter(ticketType)} ${ticketId}`.toUpperCase();
     }
     return ticketUid;
 }

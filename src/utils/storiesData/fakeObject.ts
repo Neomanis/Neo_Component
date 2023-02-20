@@ -18,7 +18,7 @@ export const fakeTicket: Ticket = {
     ttr: addMinutes(new Date(), 10).toISOString(),
     tto: addMinutes(new Date(), 10).toISOString(),
     createdAt: addHours(new Date(), -1).toISOString(),
-    uid: "1gl-4212-INC",
+    uid: "1gl-4212",
     level: 1,
     entityId: 0,
     category: "server",
