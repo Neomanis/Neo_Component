@@ -8,6 +8,7 @@ import {
     getDateFnsLocaleFromUserLang,
     getDisplayedTicketUid,
     getStatusColor,
+    ticketTypeToTrigrameConverter,
 } from "@/utils";
 import { Icon } from "@/components/atoms";
 import { formatDistanceStrict } from "date-fns";
@@ -64,7 +65,7 @@ const NeoHelperTicketBanner = ({
                 data-testid="NHticket-blockDesc"
             >
                 <p className="font-bold uppercase text-xs" data-testid="NHticket-ticketUid">
-                    {getDisplayedTicketUid(ticket.uid)}
+                    {getDisplayedTicketUid(ticket.uid, ticketTypeToTrigrameConverter(ticket.type))}
                 </p>
                 <div className="flex items-center space-x-6">
                     <div className="flex justify-center item-center">
