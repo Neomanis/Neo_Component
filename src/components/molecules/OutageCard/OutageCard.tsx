@@ -3,7 +3,6 @@ import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
 import { Outage, Role } from "@neomanis/neo-types";
 import { getOutageDateInformation } from "@/utils/dateTools";
-import { stripHtml } from "@/utils/chatFunction";
 import { Button, IconOutageCategory, Title } from "@/components/atoms";
 import ValidationCard from "../ValidationCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -98,9 +97,11 @@ const OutageCard = ({
                 <p className="text-xxs font-bold mt-1 text-neo-blue-secondary">
                     {getOutageDateInformation({ startAt: data.startAt, endAt: data.endAt }, i18n.language)}
                 </p>
-                <p className="text-xxs text-white line-clamp-3" style={{ lineHeight: "115%" }}>
-                    {stripHtml(data.content)}
-                </p>
+                <p
+                    className="text-xxs text-white line-clamp-3"
+                    style={{ lineHeight: "115%" }}
+                    dangerouslySetInnerHTML={{ __html: data.content }}
+                ></p>
             </div>
         </div>
     );

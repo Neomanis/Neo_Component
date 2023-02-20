@@ -17,7 +17,7 @@
     font-family: "Inter" !important;
 }
 
-li {
+li:not(.prose *) {
     list-style-type: none;
 }
 
