@@ -1,6 +1,6 @@
 import React, { ReactElement, useMemo } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { Ticket } from "@neomanis/neo-types";
+import { Ticket, TicketTypeTrigram } from "@neomanis/neo-types";
 import { ClockLogo } from "@/img/svg";
 import {
     classNames,
@@ -8,7 +8,6 @@ import {
     getDateFnsLocaleFromUserLang,
     getDisplayedTicketUid,
     getStatusColor,
-    ticketTypeToTrigramConverter,
 } from "@/utils";
 import { Icon } from "@/components/atoms";
 import { formatDistanceStrict } from "date-fns";
@@ -65,7 +64,7 @@ const NeoHelperTicketBanner = ({
                 data-testid="NHticket-blockDesc"
             >
                 <p className="font-bold uppercase text-xs" data-testid="NHticket-ticketUid">
-                    {getDisplayedTicketUid(ticket.uid, ticketTypeToTrigramConverter(ticket.type))}
+                    {getDisplayedTicketUid(ticket.uid, TicketTypeTrigram[ticket.type])}
                 </p>
                 <div className="flex items-center space-x-6">
                     <div className="flex justify-center item-center">
