@@ -205,7 +205,7 @@ export function getDisplayedTicketUid(ticketUid: string, ticketType?: string): s
 }
 
 // There is a twin function in neo utilities, if you modify it do it for both
-export function ticketTypeToTrigrameConverter(ticketType: number): string {
+export function ticketTypeToTrigramConverter(ticketType: number): string {
     switch (ticketType) {
         case 2:
             return "REQ";

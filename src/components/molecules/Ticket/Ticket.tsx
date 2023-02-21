@@ -7,7 +7,7 @@ import {
     getContrastBasedOnHexColor,
     getDisplayedTicketUid,
     getPriorityColor,
-    ticketTypeToTrigrameConverter,
+    ticketTypeToTrigramConverter,
 } from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
@@ -147,7 +147,7 @@ const Ticket = ({
                     <div data-testid="ticket-title">
                         <Title
                             type="h3"
-                            data={getDisplayedTicketUid(ticket.uid, ticketTypeToTrigrameConverter(ticket.type))}
+                            data={getDisplayedTicketUid(ticket.uid, ticketTypeToTrigramConverter(ticket.type))}
                             className="font-extrabold text-xs"
                         />
                     </div>
