@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { HexagonResources } from "@/img/svg";
-import { getDisplayedTicketUid } from "@/utils/tools";
+import { getDisplayedTicketUid, ticketTypeToTrigrameConverter } from "@/utils/tools";
 
 export interface HexaPillProps {
     color: string;
@@ -16,7 +16,7 @@ const HexaPill = ({ color, ticketUid, ticketType }: HexaPillProps): ReactElement
                 style={{ color }}
                 className="absolute w-full text-center text-xxs leading-3 top-1/2 transform -translate-y-1/2"
             >
-                {getDisplayedTicketUid(ticketUid, ticketType)
+                {getDisplayedTicketUid(ticketUid, ticketTypeToTrigrameConverter(ticketType))
                     .split(" ")
                     .map((word, index) => (
                         <div key={`${index}-${word}`}>{word}</div>

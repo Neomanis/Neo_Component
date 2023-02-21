@@ -192,14 +192,19 @@ export function isNotNullOrUndefined(value: unknown) {
     return value !== null && value !== undefined;
 }
 
-export function getDisplayedTicketUid(ticketUid: string, ticketType?: number): string {
+// There is a twin function in neo utilities, if you modify it do it for both
+export function getDisplayedTicketUid(ticketUid: string, ticketType?: string): string {
     const [itsmCode, ticketId, type] = ticketUid.split("-");
-    if (itsmCode && ticketId && (type || ticketType)) {
-        return `[${itsmCode}] ${type ?? ticketTypeToTrigrameConverter(ticketType)} ${ticketId}`.toUpperCase();
+    const typeValue = type ?? ticketType;
+    if (itsmCode && ticketId) {
+        return typeValue
+            ? `[${itsmCode}] ${typeValue} ${ticketId}`.toUpperCase()
+            : `[${itsmCode}] ${ticketId}`.toUpperCase();
     }
     return ticketUid;
 }
 
+// There is a twin function in neo utilities, if you modify it do it for both
 export function ticketTypeToTrigrameConverter(ticketType: number): string {
     switch (ticketType) {
         case 2:
@@ -217,13 +222,15 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
 
 export function findAndSplitContentWith(
     content: string,
-    ticketUid: string
+    ticketUid: string,
+    ticketType: string
 ): { startContent: string; ticketUid: string | null; endContent: string | null } {
-    if (!content.includes(getDisplayedTicketUid(ticketUid))) {
+    const ticketUidDisplay = getDisplayedTicketUid(ticketUid, ticketType);
+    if (!content.includes(ticketUidDisplay)) {
         return { startContent: content, ticketUid: null, endContent: null };
     }
-    const [startContent, endContent] = content.split(getDisplayedTicketUid(ticketUid));
-    return { startContent, ticketUid, endContent };
+    const [startContent, endContent] = content.split(ticketUidDisplay);
+    return { startContent, ticketUid: ticketUidDisplay, endContent };
 }
 
 export function createTimeout(handler: () => void, delay: number) {
