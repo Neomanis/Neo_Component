@@ -130,7 +130,6 @@ const NotificationItem = ({
             data-testid="notifItem-notifType"
         >
             <div className="font-bold text-xs uppercase">
-                {/* hello */}
                 {notification.notification.type === "message" ? t("global.message_one") : t("ticket.title_one")}
             </div>
             <div className="text-xxs uppercase mb-2 font-semibold">
