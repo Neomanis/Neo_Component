@@ -1,5 +1,13 @@
 import React, { ReactElement, useMemo } from "react";
-import { CompactTicket, GridIds, Status, Type, Ticket as ITicket, MembershipInfo } from "@neomanis/neo-types";
+import {
+    CompactTicket,
+    GridIds,
+    Status,
+    Type,
+    Ticket as ITicket,
+    MembershipInfo,
+    TicketTypeTrigram,
+} from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
 import { classNames, getContrastBasedOnHexColor, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
@@ -139,7 +147,11 @@ const Ticket = ({
                 <div className="text-neo-bg-A">
                     <div className="h-6">{categoryIcon && <Icon fontIcon={categoryIcon} className="text-xl" />}</div>
                     <div data-testid="ticket-title">
-                        <Title type="h3" data={getDisplayedTicketUid(ticket.uid)} className="font-extrabold text-xs" />
+                        <Title
+                            type="h3"
+                            data={getDisplayedTicketUid(ticket.uid, TicketTypeTrigram[ticket.type])}
+                            className="font-extrabold text-xs"
+                        />
                     </div>
                 </div>
                 <div

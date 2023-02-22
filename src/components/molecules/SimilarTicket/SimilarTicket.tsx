@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { TicketPreview, Status } from "@neomanis/neo-types";
+import { TicketPreview, Status, TicketTypeTrigram } from "@neomanis/neo-types";
 import { getTicketLogoByStatus } from "@/utils/ticketLogoByStatus";
 import { getStatusColor } from "@/utils/statusTools";
 import { getDisplayedTicketUid } from "@/utils/tools";
@@ -24,7 +24,7 @@ const SimilarTicket = ({ fOpenSimilarTicket, ticket }: SimilarTicketProps): Reac
             </div>
             <div className="flex flex-col px-4 py-1 w-11/12">
                 <div className={`font-bold text-sm ${getStatusColor(ticket.status, false, "text")}`}>
-                    {getDisplayedTicketUid(ticket.uid)}
+                    {getDisplayedTicketUid(ticket.uid, TicketTypeTrigram[ticket.type])}
                 </div>
                 <div className={`text-neo-light-grey font-bold text-xs truncate`}>{ticket.name}</div>
             </div>
