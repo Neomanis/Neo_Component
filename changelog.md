@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.34.0] 
+ ### [5.34.1] 
+ local storage version goes up : v4 ### [5.34.0] 
  Change how we handle ticket type ### [5.33.1] 
  add props in inputDate ### [5.33.0] 
  :sparkles: added new text editor with tiptap ### [5.32.0] 
