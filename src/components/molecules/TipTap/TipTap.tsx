@@ -64,7 +64,7 @@ const TipTap = ({
                 required: (value) => value !== "<p></p>",
             },
         },
-        shouldUnregister: false,
+        shouldUnregister: true,
         defaultValue: getHTMLValue(defaultValue),
     });
     const isError = Boolean(errors[refForm]);
@@ -98,10 +98,11 @@ const TipTap = ({
             }
 
             timer.current?.clear();
-            if (formMethods.getValues(refForm) !== state.previous) {
-                dispatch({ type: "UPDATING", payload: formMethods.getValues(refForm) });
+            const newValue = formMethods.getValues(refForm);
+            if (newValue !== state.previous) {
+                dispatch({ type: "UPDATING", payload: newValue });
                 timer.current = createTimeout(() => {
-                    updateFunction?.(refForm, formMethods.getValues(refForm));
+                    updateFunction?.(refForm, newValue);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
