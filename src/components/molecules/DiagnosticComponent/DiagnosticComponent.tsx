@@ -135,13 +135,7 @@ const DiagBook = ({
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: { bookId: diagnostic.bookId } })}
             />
-            {bookOpen && (
-                <DiagList
-                    results={diagnostic.results}
-                    redirectUrl={redirectUrl}
-                    navigate={() => navigate(redirectUrl, { state: { bookId: diagnostic.bookId } })}
-                />
-            )}
+            {bookOpen && <DiagList results={diagnostic.results} redirectUrl={redirectUrl} navigate={navigate} />}
         </div>
     );
 };
@@ -167,11 +161,7 @@ const DiagChild = ({
                 redirectTo={() => navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
             />
             {bookOpen && diagChild.results && (
-                <DiagList
-                    results={diagChild.results}
-                    redirectUrl={redirectUrl}
-                    navigate={() => diagChild.name && navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
-                />
+                <DiagList results={diagChild.results} redirectUrl={redirectUrl} navigate={navigate} />
             )}
         </div>
     );
