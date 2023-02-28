@@ -256,6 +256,7 @@ export const fakeAwaitingDiag: Diagnostic = {
 
 export const fakeDiagChild: DiagResult = {
     name: "test_approval_enfant",
+    bookId: "book_id_1",
     results: [
         {
             Action: {
@@ -279,6 +280,7 @@ export const fakeDiagChild: DiagResult = {
         },
         {
             name: "test_approval_enfant 2",
+            bookId: "book_id_2",
             results: [
                 {
                     Action: {
