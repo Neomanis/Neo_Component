@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.34.2] 
+ ### [5.34.3] 
+ Remove useless navigate statement to only get final navigate bookId value ### [5.34.2] 
  :adhesive_bandage: in ticket creation fixed tiptap default value override ### [5.34.1] 
  local storage version goes up : v4 ### [5.34.0] 
  Change how we handle ticket type ### [5.33.1] 
