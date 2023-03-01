@@ -1,9 +1,9 @@
 import { CautionLogo, ClockLogo, IconArrowRight, IconBook, IconChapterExit } from "@/img/svg";
-import { classNames, formatDate } from "@/utils";
+import { classNames, convertDuration, formatDate } from "@/utils";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "@neomanis/neo-translation";
 import { DiagnosticResult, DiagResult, Exit } from "@neomanis/neo-types";
-import React, { ReactElement, useCallback, useMemo } from "react";
+import React, { ReactElement, useCallback, useMemo, useState } from "react";
 import Button from "../Button";
 import Icon from "../Icon";
 import Title from "../Title";
@@ -73,6 +73,7 @@ const DiagnosticBlock = ({
     redirectTo,
     isOpen = false,
 }: DiagnosticBlockProps): ReactElement => {
+    const [isFolded, setIsFolded] = useState(true);
     const { t } = useTranslation();
 
     const color = useCallback(
@@ -140,7 +141,7 @@ const DiagnosticBlock = ({
             return <IconChapterExit data-testid={"blockIsExit"} className={classNames("w-5", color("fill"))} />;
         }
         if (Error) {
-            return <CautionLogo data-testid={"blockIsError"} className={classNames("w-5", color("fill"))} />;
+            return <CautionLogo data-testid={"blockIsError"} className={classNames("w-10", color("fill"))} />;
         }
         if (Awaiting) {
             return (
@@ -156,14 +157,19 @@ const DiagnosticBlock = ({
             className={classNames(
                 "flex items-center justify-between rounded px-4 py-2 red-flicker-fix",
                 book && "bg-neo-bg-B h-12 group cursor-pointer",
-                !book && "bg-neo-blue-extraDark h-10"
+                !book && "bg-neo-blue-extraDark min-h-[2.5rem]"
             )}
             onClick={() => openBook && openBook()}
         >
-            <div className="flex items-center">
+            <div className="flex items-center cursor-pointer" onClick={() => setIsFolded((old) => !old)}>
                 {icon}
                 <Title
-                    className={classNames(color("text"), book ? "ml-[17px]" : "ml-2", " font-bold")}
+                    className={classNames(
+                        color("text"),
+                        book ? "ml-[17px]" : "ml-2",
+                        isFolded && "line-clamp-1",
+                        "font-bold w-full"
+                    )}
                     type="h3"
                     data={Action?.description || Exit?.action || book?.name || Error?.message || Awaiting?.description}
                 />
@@ -188,8 +194,8 @@ const DiagnosticBlock = ({
                                     {book?.launchDate && formatDate(book?.launchDate.toString(), { withSecond: true })}
                                 </p>
                                 <p className="text-xxs">
-                                    ({Action?.executionTime}
-                                    {book?.diagExecutionTime} ms)
+                                    {Action?.executionTime && <span>{convertDuration(Action.executionTime)}</span>}
+                                    {book?.diagExecutionTime && <span>{convertDuration(book.diagExecutionTime)}</span>}
                                 </p>
                             </span>
                             <ClockLogo className="w-5 p-1 fill-neo-blue-secondary" />
