@@ -19,7 +19,8 @@ export const fakeDiag: Diagnostic = {
             results: [
                 {
                     Action: {
-                        description: "Action successful",
+                        description:
+                            "C:\\neosolutions\\temp\\5905019_retrieve_powershell_version.ps1 : Impossible de traiter la transformation d'argument sur le param�tre �expectedVersion�. Impossible de convertir la valeur en type System.String. Au caract�re Ligne:1 : 70 + ... osolutions\\temp\\5905019_retrieve_powershell_version.ps1 desktop xx,xx + ~~~~~ + CategoryInfo : InvalidData : (:) [5905019_retrieve_powershell_version.ps1], ParameterBindingArgumentTra nsformationException + FullyQualifiedErrorId : ParameterArgumentTransformationError,5905019_retrieve_powershell_version.ps1",
                         id: 2,
                         type: "type",
                         result: "OK",
@@ -128,7 +129,7 @@ export const fakeDiagError: Diagnostic = {
             helloWorld: "Congratulations, it's working !",
             results: [
                 {
-                    Action: {
+                    Error: {
                         description: "hello world, mais plus vieux",
                         id: 2,
                         type: "type",
