@@ -1,12 +1,19 @@
 import React, { ReactElement } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
 import { Title } from "@/components/atoms";
-import { formatDate, getContrastBasedOnHexColor, getStatusColor, getTicketLogoByStatus, NeoColors } from "@/utils";
+import {
+    classNames,
+    formatDate,
+    getContrastBasedOnHexColor,
+    getFormatedTimeToNowExtended,
+    getStatusColor,
+} from "@/utils";
+import { TicketLogo } from "@/img/svg";
 export interface TechnicalQuestionItemProps {
     answerAmount: number;
     createDate: string;
     id: number;
-    isSelected: boolean;
+    selectedQuestion?: number;
     openTechnicalQuestion: () => void;
     solved: boolean;
     ticket?: { id: number; priority: number; status: number; uid: string };
@@ -17,18 +24,22 @@ const TechnicalQuestionItem = ({
     answerAmount,
     createDate,
     id,
-    isSelected = false,
+    selectedQuestion,
     openTechnicalQuestion,
     solved,
     ticket,
     title,
 }: TechnicalQuestionItemProps): ReactElement => {
     const { t } = useTranslation();
+
+    const isSelected = selectedQuestion ? id == selectedQuestion : true;
     return (
         <li
             key={id}
-            className={`m-4 relative list-none text-white cursor-pointer flex justify-between items-stretch z-10
-            ${!isSelected && "transform hover:scale-105 transition-transform duration-[90ms]"}`}
+            className={classNames(
+                "m-4 relative list-none text-white cursor-pointer flex justify-between items-stretch z-10",
+                !isSelected && "transform hover:scale-105 transition-transform duration-[90ms]"
+            )}
             onClick={() => {
                 openTechnicalQuestion();
             }}
@@ -42,9 +53,11 @@ const TechnicalQuestionItem = ({
             ></div>
             <div
                 data-testid="tq-middle"
-                className={`${
-                    isSelected ? "bg-neo-blue" : "bg-neo-bg-B"
-                } px-4 flex flex-col justify-center flex-grow py-3 rounded-l-lg ${!ticket && "rounded-r-lg"}`}
+                className={classNames(
+                    "bg-neo-bg-B px-4 flex flex-col justify-center flex-grow py-3 rounded-l-lg",
+                    !isSelected ? "opacity-50" : "opacity-100",
+                    !ticket && "rounded-r-lg"
+                )}
             >
                 <div data-testid="tq-middle-top" className="flex justify-between items-center w-full">
                     <Title
@@ -59,7 +72,14 @@ const TechnicalQuestionItem = ({
                         isSelected ? "text-white" : "text-neo-blue-secondary"
                     } flex w-full space-x-3 items-center text-xs font-bold`}
                 >
-                    {createDate && <p data-testid="tq-date">{formatDate(createDate)}</p>}
+                    {createDate && (
+                        <p data-testid="tq-date">
+                            {/* Change formatDate if > 30 days */}
+                            {new Date().getTime() - new Date(createDate).getTime() < 2678400000 // 30 days in ms
+                                ? getFormatedTimeToNowExtended(createDate, "fr_FR")
+                                : formatDate(createDate)}
+                        </p>
+                    )}
 
                     {answerAmount > 0 && (
                         <p data-testid="tq-answer">
@@ -74,12 +94,12 @@ const TechnicalQuestionItem = ({
                     className={`flex justify-between px-2 rounded-r-lg ${getStatusColor(ticket.status, false, "bg")}`}
                 >
                     <div data-testid="tq-svg" className="flex items-center">
-                        {getTicketLogoByStatus(
-                            ticket.status,
-                            getContrastBasedOnHexColor(getStatusColor(ticket.status, true)) === "black"
-                                ? NeoColors.blue.extraDark
-                                : "#FFFFFF"
-                        )}
+                        {
+                            <TicketLogo
+                                fill={getContrastBasedOnHexColor(getStatusColor(ticket.status, true))}
+                                width={32}
+                            />
+                        }
                     </div>
                 </div>
             )}
