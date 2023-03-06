@@ -68,7 +68,6 @@ test("should display content correctly if selected or/and solved", async ({ moun
 
     await expect(component.locator('[data-testid="tq-middle"]')).toHaveClass(/opacity-100/);
     await expect(component.locator('[data-testid="tq-pill"]')).toHaveClass(/bg-neo-green/);
-    await expect(component.locator('[data-testid="tq-middle-bottom"]')).toHaveClass(/text-white/);
 });
 
 test("shouldn't display information not passed", async ({ mount }) => {

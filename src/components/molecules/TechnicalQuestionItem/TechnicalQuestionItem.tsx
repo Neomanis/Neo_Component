@@ -1,13 +1,7 @@
 import React, { ReactElement } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
 import { Title } from "@/components/atoms";
-import {
-    classNames,
-    formatDate,
-    getContrastBasedOnHexColor,
-    getFormatedTimeToNowExtended,
-    getStatusColor,
-} from "@/utils";
+import { classNames, getContrastBasedOnHexColor, getFormatDateOrTimeToNow, getStatusColor } from "@/utils";
 import { TicketLogo } from "@/img/svg";
 export interface TechnicalQuestionItemProps {
     answerAmount: number;
@@ -47,9 +41,10 @@ const TechnicalQuestionItem = ({
         >
             <div
                 data-testid="tq-pill"
-                className={`absolute w-1.5 h-11 rounded-lg my-auto top-0 bottom-0 left-0 transform -translate-x-1/2 ${
+                className={classNames(
+                    "absolute h-1/2 w-2 rounded-lg my-auto top-0 bottom-0 left-0 z-10 transform -translate-x-1/2",
                     solved ? "bg-neo-green" : "bg-neo-red"
-                }`}
+                )}
             ></div>
             <div
                 data-testid="tq-middle"
@@ -68,18 +63,9 @@ const TechnicalQuestionItem = ({
                 </div>
                 <div
                     data-testid="tq-middle-bottom"
-                    className={` ${
-                        isSelected ? "text-white" : "text-neo-blue-secondary"
-                    } flex w-full space-x-3 items-center text-xs font-bold`}
+                    className="text-neo-blue-secondary flex w-full space-x-3 items-center text-xs font-bold"
                 >
-                    {createDate && (
-                        <p data-testid="tq-date">
-                            {/* Change formatDate if > 30 days */}
-                            {new Date().getTime() - new Date(createDate).getTime() < 2678400000 // 30 days in ms
-                                ? getFormatedTimeToNowExtended(createDate, "fr_FR")
-                                : formatDate(createDate)}
-                        </p>
-                    )}
+                    {createDate && <p data-testid="tq-date">{getFormatDateOrTimeToNow(createDate, 2678400000)}</p>}
 
                     {answerAmount > 0 && (
                         <p data-testid="tq-answer">

@@ -76,6 +76,14 @@ export function formatDate(date: string, option?: FormatDateOption): string {
     });
 }
 
+//30 days in ms ==> 2678400000 ms
+export function getFormatDateOrTimeToNow(date: string, limitInMs: number): string {
+    if (new Date().getTime() - new Date(date).getTime() <= limitInMs) {
+        return getFormatedTimeToNowExtended(date, "fr_FR");
+    }
+    return formatDate(date);
+}
+
 export function formatDateToNow(incomingDate: string, lang: string): string {
     let formatedDate: string;
     const date = new Date(incomingDate);
