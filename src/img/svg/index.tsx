@@ -75,7 +75,11 @@ import { ReactComponent as IconStatusBar } from "./nm_ico_statusbar_long.svg";
 import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.svg";
 import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
+import { ReactComponent as IconTechnicalQuestionsAll } from "./nm_ico_tq_all.svg";
+import { ReactComponent as IconTechnicalQuestionsAnswered } from "./nm_ico_tq_answered.svg";
 import { ReactComponent as IconTechnicalQuestionsNew } from "./nm_ico_tq_new.svg";
+import { ReactComponent as IconTechnicalQuestionsSolved } from "./nm_ico_tq_solved.svg";
+import { ReactComponent as IconTechnicalQuestionsUnanswered } from "./nm_ico_tq_unanswered.svg";
 import { ReactComponent as IconTicketClosed } from "./nm_ico_ticket_closed.svg";
 import { ReactComponent as IconTicketSolved } from "./nm_ico_ticket_solved.svg";
 import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
@@ -182,7 +186,11 @@ export {
     IconStatusBarShort,
     IconSystemStatus,
     IconTechnicalQuestions,
+    IconTechnicalQuestionsAll,
+    IconTechnicalQuestionsAnswered,
     IconTechnicalQuestionsNew,
+    IconTechnicalQuestionsSolved,
+    IconTechnicalQuestionsUnanswered,
     IconTicketClosed,
     IconTicketSolved,
     IconTrash,
