@@ -36,6 +36,7 @@ import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
 import { ReactComponent as IconDiagtoolBox } from "./nm_ico_diagtoolbox.svg";
+import { ReactComponent as IconDownload } from "./nm_ico_download.svg";
 import { ReactComponent as IconEmptystar } from "./nm_ico_rating_emptystar.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
@@ -147,6 +148,7 @@ export {
     IconConsole,
     IconDashboard,
     IconDiagtoolBox,
+    IconDownload,
     IconEmptystar,
     IconFlow,
     IconFullStar,
