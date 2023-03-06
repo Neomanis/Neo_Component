@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.35.0] 
+ ### [5.36.0] 
+ Create filter TQ component![image](/attachments/37deecf3-0373-4286-b1db-ee4dd7b18773) ### [5.35.0] 
  change TQ tab component ### [5.34.4] 
      :lipstick: improved diagnostics display ### [5.34.3] 
  Remove useless navigate statement to only get final navigate bookId value ### [5.34.2] 
