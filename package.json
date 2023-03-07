@@ -74,6 +74,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.9",
+    "@tiptap/extension-image": "^2.0.0-beta.220",
     "@tiptap/extension-text-align": "^2.0.0-beta.218",
     "@tiptap/extension-underline": "^2.0.0-beta.218",
     "@tiptap/pm": "^2.0.0-beta.217",

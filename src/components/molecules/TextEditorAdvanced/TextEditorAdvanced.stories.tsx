@@ -31,6 +31,7 @@ Default.args = {
             type: "paragraph",
             attrs: {
                 textAlign: "left",
+                justifyContent: "justify-start",
             },
             content: [
                 {
