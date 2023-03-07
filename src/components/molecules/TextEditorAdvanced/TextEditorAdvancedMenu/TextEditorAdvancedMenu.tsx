@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/atoms";
 import { classNames } from "@/utils";
+import { ImageInput } from "../CustomImage";
 
 interface Props {
     editor: Editor | null;
@@ -34,7 +35,8 @@ export type MenuButtons =
     | "align-left-button"
     | "align-center-button"
     | "align-right-button"
-    | "align-justify-button";
+    | "align-justify-button"
+    | "image-button";
 
 interface TipTapButton {
     icon?: ReactElement;
@@ -45,7 +47,7 @@ interface TipTapButton {
     id: MenuButtons;
 }
 
-const TextEditorAdvancedMenu = ({ editor }: Props): ReactElement => {
+const TextEditorAdvancedMenu = ({ editor }: Props) => {
     const menuButtons: TipTapButton[] = [
         {
             onClick: () => editor?.chain().focus().toggleHeading({ level: 1 }).run(),
@@ -163,6 +165,7 @@ const TextEditorAdvancedMenu = ({ editor }: Props): ReactElement => {
                     {content}
                 </Button>
             ))}
+            <ImageInput editor={editor} />
         </div>
     );
 };
