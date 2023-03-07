@@ -13,6 +13,7 @@ export interface TimeSpentInputProps {
     refForm: string;
     updateFunction: (field: string, value: number) => void;
     ticketUid: string;
+    disabled?: boolean;
 }
 
 const TimeSpentInput = ({
@@ -21,6 +22,7 @@ const TimeSpentInput = ({
     refForm,
     updateFunction,
     ticketUid,
+    disabled = false,
 }: TimeSpentInputProps): ReactElement => {
     const toolBarRef = useRef<HTMLDivElement>(null);
     const timer = useRef<NodeJS.Timeout | null>(null);
@@ -113,6 +115,7 @@ const TimeSpentInput = ({
                 className="h-[50px] p-1 text-sm justify-center"
                 rounded="md"
                 size="none"
+                disabled={disabled}
                 data-click-outside-exception
             >
                 {t("global.add")} / {t("global.remove")}
