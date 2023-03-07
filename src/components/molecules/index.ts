@@ -34,3 +34,4 @@ export { default as Table } from "./Table";
 export { default as TimeSpentInput } from "./TimeSpentInput";
 export { default as AttachmentModalChat } from "./AttachmentModalChat";
 export { default as TipTap } from "./TipTap";
+export { default as TextEditorAdvanced } from "./TextEditorAdvanced";

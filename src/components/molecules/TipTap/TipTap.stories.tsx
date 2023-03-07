@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export default {
     component: TipTap,
-    title: "TipTap",
+    title: "Molecules/TipTap",
 } as Meta;
 
 const Template: ComponentStory<typeof TipTap> = (args) => {
