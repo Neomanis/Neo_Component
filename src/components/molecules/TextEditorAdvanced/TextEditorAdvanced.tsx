@@ -8,6 +8,7 @@ import { TextEditorAdvancedMenu } from "./TextEditorAdvancedMenu";
 import { useTranslation } from "@neomanis/neo-translation";
 import { handleFiles, CustomImage } from "./CustomImage";
 import { CustomTextAlign } from "./customTextAlign";
+import { CustomCodeBlock } from "./CodeBlock";
 
 export interface TextEditorAdvancedProps {
     formMethods: UseFormReturn;
@@ -29,13 +30,18 @@ const TextEditorAdvanced = ({
     editable = false,
 }: TextEditorAdvancedProps): ReactElement => {
     const { t } = useTranslation();
+
     const editor = useEditor(
         {
             extensions: [
-                StarterKit.configure({ dropcursor: { class: "animate-pulse", color: "#FFFFFF", width: 2 } }),
+                StarterKit.configure({
+                    dropcursor: { class: "animate-pulse", color: "#FFFFFF", width: 2 },
+                    codeBlock: false,
+                }),
                 CustomTextAlign.configure({ types: ["heading", "paragraph", "customImage"] }),
                 Underline,
                 CustomImage,
+                CustomCodeBlock,
             ],
             content: {
                 type: "doc",

@@ -66,5 +66,24 @@ Default.args = {
                 },
             ],
         },
+        {
+            type: "paragraph",
+            attrs: {
+                textAlign: "left",
+                justifyContent: "justify-start",
+            },
+        },
+        {
+            type: "codeBlock",
+            attrs: {
+                language: "javascript",
+            },
+            content: [
+                {
+                    type: "text",
+                    text: 'for (var i=1; i <= 20; i++)\n{\n  if (i % 15 == 0)\n    console.log("FizzBuzz");\n  else if (i % 3 == 0)\n    console.log("Fizz");\n  else if (i % 5 == 0)\n    console.log("Buzz");\n  else\n    console.log(i);\n}',
+                },
+            ],
+        },
     ],
 };
