@@ -3,3 +3,5 @@ build/
 dist/
 tailwind.config.js
 .eslintrc.i18n-json.js
+playwright-report/
+playwright/.cache/

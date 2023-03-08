@@ -12,6 +12,7 @@ import {
     faAlignCenter,
     faAlignRight,
     faAlignJustify,
+    faCode,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "@/components/atoms";
 import { classNames } from "@/utils";
@@ -36,7 +37,8 @@ export type MenuButtons =
     | "align-center-button"
     | "align-right-button"
     | "align-justify-button"
-    | "image-button";
+    | "image-button"
+    | "code-block-button";
 
 interface TipTapButton {
     icon?: ReactElement;
@@ -139,6 +141,12 @@ const TextEditorAdvancedMenu = ({ editor }: Props) => {
             isActive: editor?.isActive({ textAlign: "justify" }),
             id: "align-justify-button",
         },
+        {
+            icon: <FontAwesomeIcon icon={faCode} />,
+            onClick: () => editor?.chain().focus().toggleCodeBlock().run(),
+            isActive: editor?.isActive("codeBlock"),
+            id: "code-block-button",
+        },
     ];
 
     if (!editor) {
@@ -158,7 +166,7 @@ const TextEditorAdvancedMenu = ({ editor }: Props) => {
                     onClick={onClick}
                     disabled={disabled}
                     className={classNames(
-                        "h-12 w-8 flex items-center justify-center",
+                        "h-12 w-8 flex items-center justify-center font-medium",
                         isActive ? "text-neo-blue" : "text-white"
                     )}
                 >

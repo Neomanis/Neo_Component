@@ -4,3 +4,5 @@ package.json
 build
 dist
 .eslintrc.i18n-json.js
+playwright-report/
+playwright/.cache/
