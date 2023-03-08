@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.39.1] 
+ ### [5.40.0] 
+ disable props added ### [5.39.1] 
  :lipstick: advanced text editor menu now wrap ### [5.39.0] 
  :sparkles: added tiptap custom image node and updated text align extension ### [5.38.0] 
  :sparkles: added advanced text editor to handle technical question and documentary base ### [5.37.0] 
