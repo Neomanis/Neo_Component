@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.39.0] 
+ ### [5.39.1] 
+ :lipstick: advanced text editor menu now wrap ### [5.39.0] 
  :sparkles: added tiptap custom image node and updated text align extension ### [5.38.0] 
  :sparkles: added advanced text editor to handle technical question and documentary base ### [5.37.0] 
  add save icon for TQ details panelmodify flow icon viewboxmodify css of TQ-tab to fit figma mockup ### [5.36.0] 
