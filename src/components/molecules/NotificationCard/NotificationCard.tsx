@@ -70,7 +70,7 @@ const NotificationCard = ({
                     >
                         {title}
                     </p>
-                    {findAndSplitContentWith(content, objectId, objectType).ticketUid === null ? (
+                    {findAndSplitContentWith(content, objectId, objectType).objectDisplay === null ? (
                         <p
                             className={classNames("text-xxs", isFolded && "line-clamp-2")}
                             data-testid="notifCard-content-classic"
@@ -85,7 +85,7 @@ const NotificationCard = ({
                                 onClick={navigateTo}
                                 data-testid="notifCard-content-clickable"
                             >
-                                {findAndSplitContentWith(content, objectId, objectType).ticketUid}
+                                {findAndSplitContentWith(content, objectId, objectType).objectDisplay}
                             </span>
                             {findAndSplitContentWith(content, objectId, objectType).endContent}
                         </p>

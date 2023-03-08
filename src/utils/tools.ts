@@ -1,5 +1,13 @@
 import { getStatusColor } from "./statusTools";
-import { InputSelectData, TailwindColorApplication, Status, Colors, Priority, Extensions } from "@neomanis/neo-types";
+import {
+    InputSelectData,
+    TailwindColorApplication,
+    Status,
+    Colors,
+    Priority,
+    Extensions,
+    ObjectType,
+} from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
 import NeoColors from "./neoColors";
 
@@ -210,15 +218,19 @@ export function classNames(...classes: (false | null | undefined | string)[]): s
 
 export function findAndSplitContentWith(
     content: string,
-    ticketUid: string,
-    ticketType: string
-): { startContent: string; ticketUid: string | null; endContent: string | null } {
-    const ticketUidDisplay = getDisplayedTicketUid(ticketUid, ticketType);
-    if (!content.includes(ticketUidDisplay)) {
-        return { startContent: content, ticketUid: null, endContent: null };
+    objectId: string,
+    objectType?: string
+): { startContent: string; objectDisplay: string | null; endContent: string | null } {
+    if (objectType === ObjectType.QUESTION) {
+        return { startContent: content, objectDisplay: null, endContent: null };
+    } else {
+        const ticketUidDisplay = getDisplayedTicketUid(objectId, objectType);
+        if (!content.includes(ticketUidDisplay)) {
+            return { startContent: content, objectDisplay: null, endContent: null };
+        }
+        const [startContent, endContent] = content.split(ticketUidDisplay);
+        return { startContent, objectDisplay: ticketUidDisplay, endContent };
     }
-    const [startContent, endContent] = content.split(ticketUidDisplay);
-    return { startContent, ticketUid: ticketUidDisplay, endContent };
 }
 
 export function createTimeout(handler: () => void, delay: number) {

@@ -139,7 +139,7 @@ const NotificationItem = ({
                 notification.notification.content,
                 notification.notification.objectId,
                 notification.notification.objectType
-            ).ticketUid === null ? (
+            ).objectDisplay === null ? (
                 <p
                     className={classNames("text-xxs", isFolded && "line-clamp-2")}
                     data-testid="notifItem-content-no-ticketUid"
@@ -165,7 +165,7 @@ const NotificationItem = ({
                                 notification.notification.content,
                                 notification.notification.objectId,
                                 notification.notification.objectType
-                            ).ticketUid
+                            ).objectDisplay
                         }
                     </span>
                     {
