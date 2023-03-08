@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.41.0] 
+ ### [5.41.1] 
+ update notificationCard to handle notif without ticket uid ### [5.41.0] 
   :sparkles: Added block code to advanced text editor ### [5.40.0] 
  disable props added ### [5.39.1] 
  :lipstick: advanced text editor menu now wrap ### [5.39.0] 
