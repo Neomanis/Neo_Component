@@ -21,3 +21,10 @@ Default.args = {
     defaultValue: 20160,
     updateFunction: (_, value) => console.log(value),
 };
+
+export const Disabled: ComponentStory<typeof TimeSpentInput> = Template.bind({});
+Disabled.args = {
+    defaultValue: 20160,
+    updateFunction: (_, value) => console.log(value),
+    disabled: true,
+};
