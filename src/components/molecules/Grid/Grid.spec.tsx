@@ -86,13 +86,15 @@ test("should change pages when clicking on button", async ({ mount }) => {
             showPagination
         />
     );
-
-    await component.locator('[data-testid="grid-page-right-button"]').click();
-    await expect(component.locator('[data-testid="grid-page-number"]')).toHaveText("2 / 7");
-    await component.locator('[data-testid="grid-page-left-button"]').click();
-    await expect(component.locator('[data-testid="grid-page-number"]')).toHaveText("1 / 7");
-    await component.locator('[data-testid="grid-page-right-button"]').click();
-    await expect(component.locator('[data-testid="grid-page-number"]')).toHaveText("2 / 7");
+    const rightButton = component.locator('[data-testid="grid-page-right-button"]');
+    const leftButton = component.locator('[data-testid="grid-page-left-button"]');
+    const pageNumb = component.locator('[data-testid="grid-page-number"]');
+    await rightButton.click();
+    await expect(pageNumb).toHaveText("2 / 7");
+    await leftButton.click();
+    await expect(pageNumb).toHaveText("1 / 7");
+    await rightButton.click();
+    await expect(pageNumb).toHaveText("2 / 7");
 });
 
 test("should trigger all callback", async ({ mount }) => {
