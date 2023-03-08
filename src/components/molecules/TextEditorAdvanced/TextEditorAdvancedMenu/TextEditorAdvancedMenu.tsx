@@ -146,7 +146,7 @@ const TextEditorAdvancedMenu = ({ editor }: Props) => {
     }
 
     return (
-        <div className="flex bg-neo-bg-B gap-1 px-4 rounded-t-md">
+        <div className="flex flex-wrap bg-neo-bg-B gap-x-1 px-4 rounded-t-md">
             {menuButtons.map(({ icon, disabled, isActive, onClick, content, id }, key) => (
                 <Button
                     id={id}
