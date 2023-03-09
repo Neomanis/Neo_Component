@@ -1,6 +1,4 @@
 export { default as AgentAndUser } from "./AgentAndUser";
-export { default as AnswerForm } from "./AnswerForm";
-export { default as AnswerItem } from "./AnswerItem";
 export { default as AvatarEditor } from "./AvatarEditor";
 export { default as ChartRangeSelector } from "./ChartRangeSelector";
 export { default as ChatCard } from "./ChatCard";
@@ -20,7 +18,6 @@ export { default as OutageItem } from "./OutageItem";
 export { default as SearchField } from "./SearchField";
 export { default as ShadowBoxWrapper } from "./ShadowBoxWrapper";
 export { default as SimilarTicket } from "./SimilarTicket";
-export { default as TechnicalQuestionItem } from "./TechnicalQuestionItem";
 export { default as Ticket } from "./Ticket";
 export { default as TicketTechnicalQuestionLine } from "./TicketTechnicalQuestionLine";
 export { default as Toaster } from "./Toaster";

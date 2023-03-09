@@ -77,11 +77,11 @@ export function formatDate(date: string, option?: FormatDateOption): string {
 }
 
 //30 days in ms ==> 2678400000 ms
-export function getFormatDateOrTimeToNow(date: string, limitInMs: number): string {
+export function getFormatDateOrTimeToNow(date: string, limitInMs: number, lang: string): string {
     if (new Date().getTime() - new Date(date).getTime() <= limitInMs) {
-        return getFormatedTimeToNowExtended(date, "fr_FR");
+        return getFormatedTimeToNowExtended(date, lang);
     }
-    return formatDate(date);
+    return formatDate(date, { lang: lang });
 }
 
 export function formatDateToNow(incomingDate: string, lang: string): string {

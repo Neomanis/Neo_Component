@@ -63,7 +63,7 @@ const TextEditorAdvanced = ({
                 handleDrop: (view, event) => handleFiles(view, event),
             },
         },
-        [editable]
+        [editable, defaultValue]
     );
 
     const {
