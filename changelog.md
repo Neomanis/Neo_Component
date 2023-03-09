@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.41.1] 
+ ### [5.42.0] 
+ update date function, update texteditor, remove useless tq components     ### [5.41.1] 
  update notificationCard to handle notif without ticket uid ### [5.41.0] 
   :sparkles: Added block code to advanced text editor ### [5.40.0] 
  disable props added ### [5.39.1] 
