@@ -12,7 +12,7 @@ import { CustomCodeBlock } from "./CodeBlock";
 
 export interface TextEditorAdvancedProps {
     formMethods: UseFormReturn;
-    required: boolean;
+    required?: boolean;
     refForm: string;
     defaultValue?: JSONContent[];
     label?: string;
@@ -22,7 +22,7 @@ export interface TextEditorAdvancedProps {
 
 const TextEditorAdvanced = ({
     refForm,
-    required,
+    required = false,
     formMethods,
     defaultValue,
     label,
@@ -43,10 +43,12 @@ const TextEditorAdvanced = ({
                 CustomImage,
                 CustomCodeBlock,
             ],
-            content: {
-                type: "doc",
-                content: defaultValue,
-            },
+            content: defaultValue
+                ? {
+                      type: "doc",
+                      content: defaultValue,
+                  }
+                : null,
             onUpdate: ({ editor }) => {
                 onChange(editor.getJSON());
             },
@@ -70,7 +72,7 @@ const TextEditorAdvanced = ({
         field: { ref, onChange },
         formState: { errors },
     } = useController({
-        control: formMethods.control,
+        control: formMethods?.control,
         name: refForm,
         rules: {
             ...(required

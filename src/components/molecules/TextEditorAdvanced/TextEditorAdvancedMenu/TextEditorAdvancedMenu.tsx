@@ -9,8 +9,8 @@ import {
     faListUl,
     faListOl,
     faAlignLeft,
-    faAlignCenter,
-    faAlignRight,
+    // faAlignCenter,
+    // faAlignRight,
     faAlignJustify,
     faCode,
 } from "@fortawesome/free-solid-svg-icons";
@@ -69,12 +69,12 @@ const TextEditorAdvancedMenu = ({ editor }: Props) => {
             content: <span className="text-lg">H3</span>,
             id: "heading-3-button",
         },
-        {
-            onClick: () => editor?.chain().focus().toggleHeading({ level: 4 }).run(),
-            isActive: editor?.isActive("heading", { level: 4 }),
-            content: <span className="text-lg">H4</span>,
-            id: "heading-4-button",
-        },
+        // {
+        //     onClick: () => editor?.chain().focus().toggleHeading({ level: 4 }).run(),
+        //     isActive: editor?.isActive("heading", { level: 4 }),
+        //     content: <span className="text-lg">H4</span>,
+        //     id: "heading-4-button",
+        // },
         {
             icon: <FontAwesomeIcon icon={faBold} />,
             onClick: () => editor?.chain().focus().toggleBold().run(),
@@ -123,18 +123,18 @@ const TextEditorAdvancedMenu = ({ editor }: Props) => {
             isActive: editor?.isActive({ textAlign: "left" }),
             id: "align-left-button",
         },
-        {
-            icon: <FontAwesomeIcon icon={faAlignCenter} />,
-            onClick: () => editor?.chain().focus().setTextAlign("center").run(),
-            isActive: editor?.isActive({ textAlign: "center" }),
-            id: "align-center-button",
-        },
-        {
-            icon: <FontAwesomeIcon icon={faAlignRight} />,
-            onClick: () => editor?.chain().focus().setTextAlign("right").run(),
-            isActive: editor?.isActive({ textAlign: "right" }),
-            id: "align-right-button",
-        },
+        // {
+        //     icon: <FontAwesomeIcon icon={faAlignCenter} />,
+        //     onClick: () => editor?.chain().focus().setTextAlign("center").run(),
+        //     isActive: editor?.isActive({ textAlign: "center" }),
+        //     id: "align-center-button",
+        // },
+        // {
+        //     icon: <FontAwesomeIcon icon={faAlignRight} />,
+        //     onClick: () => editor?.chain().focus().setTextAlign("right").run(),
+        //     isActive: editor?.isActive({ textAlign: "right" }),
+        //     id: "align-right-button",
+        // },
         {
             icon: <FontAwesomeIcon icon={faAlignJustify} />,
             onClick: () => editor?.chain().focus().setTextAlign("justify").run(),

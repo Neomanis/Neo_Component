@@ -1,12 +1,11 @@
-import type { PlaywrightTestConfig } from "@playwright/experimental-ct-react";
-import { devices } from "@playwright/experimental-ct-react";
+import { devices, defineConfig } from "@playwright/experimental-ct-react";
 import { resolve } from "path";
-import svgr from "vite-plugin-svgr-2.1.0";
+import svgr from "vite-plugin-svgr";
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
+export default defineConfig({
     testDir: "./src",
     /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
     snapshotDir: "./__snapshots__",
@@ -60,6 +59,4 @@ const config: PlaywrightTestConfig = {
             },
         },
     ],
-};
-
-export default config;
+});
