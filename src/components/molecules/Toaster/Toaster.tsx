@@ -59,6 +59,7 @@ const Toaster = ({
         <div
             className={`flex w-full py-3 relative overflow-hidden ${className}`}
             data-testid="toastClassName"
+            data-toaster-success={emotion === "happy"}
             id="toaster"
         >
             <div className="flex items-center justify-center w-3/12">{renderSwitchNeoLogo(emotion)}</div>

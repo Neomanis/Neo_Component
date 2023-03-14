@@ -49,11 +49,13 @@ const NotificationCard = ({
             }}
             className={`cursor-pointer flex items-center justify-between rounded-md relative ${className}`}
             data-testid="notifCard-read"
+            data-objectid={objectId}
         >
             <div className="flex">
                 <div className="flex justify-start relative">
                     <Icon
-                        id={`notification-${objectId}-isRead`}
+                        id={`notification-${objectId}-dot`}
+                        data-read={read}
                         className={`text-xxs absolute top-0 -right-1 ${read ? "opacity-0" : "text-neo-red"}`}
                         fontIcon={faCircle}
                         testId="notifCard-dot"
