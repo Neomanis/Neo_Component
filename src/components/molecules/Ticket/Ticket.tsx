@@ -10,7 +10,13 @@ import {
 } from "@neomanis/neo-types";
 import { useTranslation } from "@neomanis/neo-translation";
 import { CautionLogoFull, ClockLogo, IconTicketSolved, IconTicketClosed, TicketLogo, IconWatcherBlue } from "@/img/svg";
-import { classNames, getContrastBasedOnHexColor, getDisplayedTicketUid, getPriorityColor } from "@/utils/tools";
+import {
+    classNames,
+    getContrastBasedOnHexColor,
+    getDisplayedTicketUid,
+    getPriorityColor,
+    lowerCaseFirstLetter,
+} from "@/utils/tools";
 import { getDateCompletionPercentage, getTimeToNowWithTranslation } from "@/utils/dateTools";
 import { getStatusColor } from "@/utils/statusTools";
 import NeoColors from "@/utils/neoColors";
@@ -29,12 +35,6 @@ export interface TicketProps {
     categoryIcon?: IconProp;
 }
 
-function getStatusDataAttribute(ticketStatus: number) {
-    return (
-        Status[ticketStatus] === Status[Status.Planned] ? Status[Status.Assigned] : Status[ticketStatus]
-    ).toLowerCase();
-}
-
 const Ticket = ({
     currentTicket,
     fCallBackClick,
@@ -46,13 +46,18 @@ const Ticket = ({
     userNeoId,
     categoryIcon,
 }: TicketProps): ReactElement => {
-    const { i18n } = useTranslation();
+    const { i18n, t } = useTranslation();
 
     const opacified = useMemo(
         () => (currentTicket && currentTicket.uid !== ticket?.uid && gridId === currentTicket?.gridId) || isOpacity,
         [currentTicket, isOpacity]
     );
 
+    function getStatusDataAttribute(ticketStatus: number) {
+        return Status[ticketStatus] === Status[Status.Planned]
+            ? t(`status.${lowerCaseFirstLetter(Status[Status.Assigned])}`)
+            : t(`status.${lowerCaseFirstLetter(Status[ticketStatus])}`);
+    }
     function isTTOorTTRStale() {
         return (
             getDateCompletionPercentage(
@@ -112,6 +117,7 @@ const Ticket = ({
             data-is-ticket={true}
             data-ticket-status={getStatusDataAttribute(ticket.status)}
             data-ticket-category={ticket.category?.toLowerCase() ?? "no-category"}
+            data-ticket-type={TicketTypeTrigram[ticket.type]}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {checkIsWatcher() && (

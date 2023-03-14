@@ -71,6 +71,9 @@ export default function ButtonSelect<T>({
                                 <li
                                     id={`item-option-${item.label}`}
                                     data-attribute="item-button-option"
+                                    data-label={
+                                        item.label.match(/\[(?<trigram>.{3})\].*/)?.groups?.trigram ?? item.label
+                                    }
                                     key={key}
                                     className="hover:bg-neo-settings-lightGrey px-3 py-2 cursor-pointer min-w-max"
                                     onClick={() => {
