@@ -71,7 +71,7 @@ export default function ButtonSelect<T>({
                                 <li
                                     id={`item-option-${item.label}`}
                                     data-attribute="item-button-option"
-                                    data-itsm-code={
+                                    data-label={
                                         item.label.match(/\[(?<trigram>.{3})\].*/)?.groups?.trigram ?? item.label
                                     }
                                     key={key}
