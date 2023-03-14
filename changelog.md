@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.43.2] 
+ ### [5.43.3] 
+ ajouts d'ids pour les tests selenium sur notification card, button-select, toaster, ticket ### [5.43.2] 
  :sparkles: added readOnly props to tiptap component ### [5.43.1] 
  fix notification dates to take lastUpdatedAt ### [5.43.0] 
  :adhesive_bandage: fixed advanced text editor default value and removed some menu actions⬆️ Updated playwright and vite ### [5.42.0] 
