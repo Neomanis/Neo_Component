@@ -34,6 +34,7 @@ export interface TipTapProps {
     refForm: string;
     required?: boolean;
     updateFunction?: (field: string, value: string) => void;
+    readOnly?: boolean;
 }
 
 const TipTap = ({
@@ -48,6 +49,7 @@ const TipTap = ({
     refForm,
     required = false,
     updateFunction,
+    readOnly = false,
 }: TipTapProps): ReactElement => {
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const { t } = useTranslation();
@@ -69,57 +71,64 @@ const TipTap = ({
     });
     const isError = Boolean(errors[refForm]);
 
-    const editor = useEditor({
-        extensions: [
-            StarterKit,
-            TextAlign.configure({
-                types: ["heading", "paragraph"],
-            }),
-            Underline,
-        ],
-        content: value,
-        onUpdate: ({ editor }) => {
-            onChange(editor.getHTML());
+    const editor = useEditor(
+        {
+            extensions: [
+                StarterKit,
+                TextAlign.configure({
+                    types: ["heading", "paragraph"],
+                }),
+                Underline,
+            ],
+            content: value,
+            editable: !readOnly,
+            onUpdate: ({ editor }) => {
+                onChange(editor.getHTML());
 
-            if (!isUpdateField) {
-                return;
-            }
+                if (!isUpdateField) {
+                    return;
+                }
 
-            timer.current?.clear();
-            if (editor.getHTML() !== state.previous) {
-                dispatch({ type: "SHOW_DOT" });
-            } else {
-                dispatch({ type: "CANCEL_UPDATE" });
-            }
-        },
-        onBlur: () => {
-            if (!isUpdateField) {
-                return;
-            }
+                timer.current?.clear();
+                if (editor.getHTML() !== state.previous) {
+                    dispatch({ type: "SHOW_DOT" });
+                } else {
+                    dispatch({ type: "CANCEL_UPDATE" });
+                }
+            },
+            onBlur: () => {
+                if (!isUpdateField) {
+                    return;
+                }
 
-            timer.current?.clear();
-            const newValue = formMethods.getValues(refForm);
-            if (newValue !== state.previous) {
-                dispatch({ type: "UPDATING", payload: newValue });
-                timer.current = createTimeout(() => {
-                    updateFunction?.(refForm, newValue);
-                    dispatch({ type: "UPDATE_SUCCESS" });
+                timer.current?.clear();
+                const newValue = formMethods.getValues(refForm);
+                if (newValue !== state.previous) {
+                    dispatch({ type: "UPDATING", payload: newValue });
                     timer.current = createTimeout(() => {
-                        dispatch({ type: "CLEAR_SUCCESS" });
-                    }, 3000);
-                }, 5000);
-            } else {
-                dispatch({ type: "CANCEL_UPDATE" });
-            }
-        },
-        editorProps: {
-            attributes: {
-                id: "text-editor",
-                // @tw
-                class: "prose max-w-none w-full h-full bg-neo-bg-B outline-none p-4 prose-invert rounded-b-md overflow-y-auto",
+                        updateFunction?.(refForm, newValue);
+                        dispatch({ type: "UPDATE_SUCCESS" });
+                        timer.current = createTimeout(() => {
+                            dispatch({ type: "CLEAR_SUCCESS" });
+                        }, 3000);
+                    }, 5000);
+                } else {
+                    dispatch({ type: "CANCEL_UPDATE" });
+                }
+            },
+            editorProps: {
+                attributes: {
+                    id: "text-editor",
+                    // @tw
+                    class: classNames(
+                        "prose max-w-none w-full h-full bg-neo-bg-B outline-none p-4 prose-invert rounded-b-md overflow-y-auto",
+                        readOnly ? "rounded-md" : "rounded-b-md"
+                    ),
+                },
             },
         },
-    });
+        [readOnly]
+    );
 
     useEffect(() => {
         return () => {
@@ -128,7 +137,13 @@ const TipTap = ({
     }, []);
 
     return (
-        <div className={classNames("w-full h-full grid grid-rows-[auto_auto_minmax(0,1fr)] gap-1", className)}>
+        <div
+            className={classNames(
+                "w-full h-full grid gap-1",
+                readOnly ? "grid-rows-[auto_minmax(0,1fr)]" : "grid-rows-[auto_auto_minmax(0,1fr)]",
+                className
+            )}
+        >
             <div className="h-6 flex justify-between items-center">
                 <label className={labelClassName ?? "text-white"}>{label}</label>
                 <div>
@@ -151,7 +166,7 @@ const TipTap = ({
                     )}
                 </div>
             </div>
-            <TipTapMenu editor={editor} menuButtonsFilter={menuButtonsFilter} />
+            {!readOnly && <TipTapMenu editor={editor} menuButtonsFilter={menuButtonsFilter} />}
             <EditorContent editor={editor} className="w-full h-full" ref={ref} />
         </div>
     );
