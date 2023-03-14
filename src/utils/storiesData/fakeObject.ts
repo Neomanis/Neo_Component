@@ -202,7 +202,7 @@ export const fakeNotification: Notification = {
         type: "test",
     },
     read: false,
-    lastUpdatedAt: "",
+    lastUpdatedAt: "2021-11-10T15:21:13.856Z",
 };
 
 export const fakeAnswer = {

@@ -133,7 +133,7 @@ const NotificationItem = ({
                 {notification.notification.type === "message" ? t("global.message_one") : t("ticket.title_one")}
             </div>
             <div className="text-xxs uppercase mb-2 font-semibold">
-                {getFormatedTimeToNowExtended(notification.notification.createdAt, i18n.language)}
+                {getFormatedTimeToNowExtended(notification.lastUpdatedAt, i18n.language)}
             </div>
             {findAndSplitContentWith(
                 notification.notification.content,
