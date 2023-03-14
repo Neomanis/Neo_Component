@@ -28,7 +28,7 @@ export const WithTicketUid: Story<NotificationItemProps> = () => {
                     type: "test",
                 },
                 read: false,
-                lastUpdatedAt: "",
+                lastUpdatedAt: "2021-11-10T15:21:13.856Z",
             }}
             navigateTo={() => console.log("Let's navigate else where")}
         />
