@@ -14,6 +14,7 @@ export interface AttachmentChatProps {
     isValidate?: boolean;
     downloadCallback: (attachmentId: string) => void;
     deleteCallback: (attachmentId: string) => void;
+    readOnly?: boolean;
 }
 
 const AttachmentChat = ({
@@ -24,6 +25,7 @@ const AttachmentChat = ({
     isValidate = true,
     downloadCallback,
     deleteCallback,
+    readOnly = false,
 }: AttachmentChatProps): ReactElement => {
     const { t } = useTranslation();
     const [openValidationCard, setOpenValidationCard] = useState<boolean>(false);
@@ -52,11 +54,13 @@ const AttachmentChat = ({
                         />
                         <p className="text-white break-words line-clamp-2 transition-all">{content}</p>
                     </div>
-                    <IconTrash
-                        data-testid="attachment-chat-delete-icon"
-                        className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
-                        onClick={() => setOpenValidationCard(true)}
-                    />
+                    {!readOnly && (
+                        <IconTrash
+                            data-testid="attachment-chat-delete-icon"
+                            className="fill-neo-link hover:fill-neo-red w-3 cursor-pointer transition-all opacity-50 hover:opacity-100"
+                            onClick={() => setOpenValidationCard(true)}
+                        />
+                    )}
                 </div>
             ) : (
                 <ValidationCard

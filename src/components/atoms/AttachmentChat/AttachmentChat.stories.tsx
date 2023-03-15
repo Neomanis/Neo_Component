@@ -35,3 +35,13 @@ Default.args = {
     downloadCallback: downloadStory,
     deleteCallback: deleteStory,
 };
+
+export const Readonly: ComponentStory<typeof AttachmentChat> = Template.bind({});
+Readonly.args = {
+    attachmentId: "attachment ID",
+    content: "ceci_est_un_jpeg.jpeg",
+    bgColor: "bg-neo-bg-B",
+    downloadCallback: downloadStory,
+    deleteCallback: deleteStory,
+    readOnly: true,
+};

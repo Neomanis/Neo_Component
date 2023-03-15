@@ -24,6 +24,7 @@ export interface MessageChatProps {
         originalname: string;
     };
     bubbleChatWidth?: number;
+    attachmentReadOnly: boolean;
 }
 
 const MessageChat = ({
@@ -41,6 +42,7 @@ const MessageChat = ({
     name,
     avatar,
     type,
+    attachmentReadOnly = false,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
 
@@ -119,6 +121,7 @@ const MessageChat = ({
                                 content={content}
                                 downloadCallback={downloadAttachmentCallback}
                                 deleteCallback={deleteAttachmentCallback}
+                                readOnly={attachmentReadOnly}
                             />
                         ) : (
                             <BubbleChat

@@ -15,6 +15,7 @@ test("should work", async ({ mount }) => {
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
             type={MessageType.MESSAGE}
+            attachmentReadOnly={false}
         />
     );
     await expect(component).toContainText("Burudōzā o yatta!");
@@ -33,6 +34,7 @@ test("should have right properties if isNotMe", async ({ mount }) => {
             type={MessageType.ATTACHMENT}
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
+            attachmentReadOnly={false}
         />
     );
 
@@ -52,6 +54,7 @@ test("should get classNames", async ({ mount }) => {
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
             classNames={{ icon: "w-[50%]", message: "w-[50%] px-4" }}
+            attachmentReadOnly={false}
         />
     );
 
@@ -71,6 +74,7 @@ test("should show error", async ({ mount }) => {
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
             isFailed={true}
+            attachmentReadOnly={false}
         />
     );
 
@@ -87,6 +91,7 @@ test("should show private", async ({ mount }) => {
             type={MessageType.ATTACHMENT}
             downloadAttachmentCallback={() => {}}
             deleteAttachmentCallback={() => {}}
+            attachmentReadOnly={false}
             privateMessage={true}
         />
     );
@@ -105,6 +110,7 @@ test("should show loading", async ({ mount }) => {
             isValidate={false}
             type={MessageType.ATTACHMENT}
             downloadAttachmentCallback={() => {}}
+            attachmentReadOnly={false}
             deleteAttachmentCallback={() => {}}
         />
     );
@@ -125,6 +131,7 @@ test("should launch callback", async ({ mount }) => {
             type={MessageType.ATTACHMENT}
             downloadAttachmentCallback={() => (downloadClicked = true)}
             deleteAttachmentCallback={() => (deleteClicked = true)}
+            attachmentReadOnly={false}
         />
     );
 
@@ -148,6 +155,7 @@ test("should have correct default sizing", async ({ mount }) => {
                 type={MessageType.ATTACHMENT}
                 downloadAttachmentCallback={() => {}}
                 deleteAttachmentCallback={() => {}}
+                attachmentReadOnly={false}
             />
         </div>
     );
@@ -167,6 +175,7 @@ test("should have correct custom sizing", async ({ mount }) => {
                 type={MessageType.ATTACHMENT}
                 downloadAttachmentCallback={() => {}}
                 deleteAttachmentCallback={() => {}}
+                attachmentReadOnly={false}
                 classNames={{ icon: "w-[50%]", message: "w-[50%]" }}
             />
         </div>
