@@ -121,6 +121,15 @@ ContainFile.args = {
     deleteAttachmentCallback: deleteStory,
 };
 
+export const ContainFileReadOnly: ComponentStory<typeof MessageChat> = Template3.bind({});
+ContainFileReadOnly.args = {
+    date: "15:15",
+    attachmentId: "12",
+    downloadAttachmentCallback: downloadStory,
+    deleteAttachmentCallback: deleteStory,
+    attachmentReadOnly: true,
+};
+
 export const IsWide: ComponentStory<typeof MessageChat> = Template4.bind({});
 IsWide.args = {
     content: "BURN BABY BURN!",
