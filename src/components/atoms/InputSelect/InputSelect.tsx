@@ -54,6 +54,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     updateFunction?: (field: string, value: Value<Option, IsMulti>) => void;
     updaterClassName?: string;
     id?: string;
+    scrollTimeOut?: number;
 }
 
 function InputSelect<
@@ -83,6 +84,7 @@ function InputSelect<
     updateFunction,
     updaterClassName,
     id,
+    scrollTimeOut = 50,
 }: InputSelectProps<Option, IsMulti, Group>): ReactElement {
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const { t } = useTranslation();
@@ -114,6 +116,35 @@ function InputSelect<
         }
         return style;
     }, [readOnly, customStyles]);
+
+    function isGroupBase(option: unknown): option is GroupBase<Option> {
+        return option && typeof option === "object" && Reflect.get(option, "options");
+    }
+    function findOptionCoordinates(options: OptionsOrGroups<Option, Group>, value: Option): number[] {
+        return options.reduce((acc: number[], option, index) => {
+            if (isGroupBase(option)) {
+                const result = findOptionCoordinates(option.options, value);
+                result.length && acc.push(index, ...result);
+            } else {
+                isEqual(option, value) && acc.push(index);
+            }
+            return acc;
+        }, []);
+    }
+
+    function scrollToOption(options: OptionsOrGroups<Option, Group>, value: Option, selectId: string) {
+        const indexes = findOptionCoordinates(options, value);
+        if (indexes.length) {
+            const elementId = `react-select-${selectId}-option-${indexes.join("-")}`;
+            setTimeout(() => {
+                const option = document.getElementById(elementId);
+                const y = option.getBoundingClientRect().top + window.pageYOffset;
+                const x = option.getBoundingClientRect().left + window.pageXOffset;
+                option?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                window.scrollTo({ top: y, left: x, behavior: "smooth" });
+            }, scrollTimeOut);
+        }
+    }
 
     function handleChange(value: Value<Option, IsMulti>) {
         onChange(value);
@@ -183,6 +214,7 @@ function InputSelect<
                 isSearchable={isSearchable}
                 menuPlacement="auto"
                 onChange={handleChange}
+                onMenuOpen={() => scrollToOption(options, value, id)}
                 options={options}
                 placeholder={placeholder}
                 ref={ref}
