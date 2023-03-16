@@ -138,7 +138,10 @@ function InputSelect<
             const elementId = `react-select-${selectId}-option-${indexes.join("-")}`;
             setTimeout(() => {
                 const option = document.getElementById(elementId);
-                option?.scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
+                const y = option.getBoundingClientRect().top + window.pageYOffset;
+                const x = option.getBoundingClientRect().left + window.pageXOffset;
+                option?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                window.scrollTo({ top: y, left: x, behavior: "smooth" });
             }, scrollTimeOut);
         }
     }
