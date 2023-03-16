@@ -104,10 +104,6 @@ const InputDateTime = ({
         defaultValue,
     });
 
-    useEffect(() => {
-        fOnChange && fOnChange(value);
-    }, [value]);
-
     const datesValue = useMemo(() => {
         if (!Array.isArray(value)) {
             return { startDate: value, endDate: null };
@@ -214,7 +210,6 @@ const InputDateTime = ({
 
     function handleNowButton() {
         handleTimeValue(new Date());
-        onChange(isRange ? [startOfDay(new Date()), endOfDay(new Date())] : new Date());
     }
 
     const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
@@ -253,6 +248,10 @@ const InputDateTime = ({
         dispatch({ type: "RESET", payload: defaultValue });
         onChange(defaultValue === undefined ? null : defaultValue);
     }, [defaultValue]);
+
+    useEffect(() => {
+        fOnChange && fOnChange(value);
+    }, [value]);
 
     useEffect(() => {
         return () => {
@@ -307,7 +306,11 @@ const InputDateTime = ({
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
-                    onChange={(dates: Date | [Date, Date]) => {
+                    onChange={(dates: Date | [Date, Date], event: React.SyntheticEvent) => {
+                        if (event.currentTarget.className === "react-datepicker__today-button" && isRange) {
+                            const now = new Date();
+                            dates = [startOfDay(now), endOfDay(now)];
+                        }
                         fOnChange && fOnChange(dates);
                         if (Array.isArray(dates)) {
                             handleChangeArray(dates);
