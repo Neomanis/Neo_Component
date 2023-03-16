@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.44.1] 
+ ### [5.45.0] 
+ implement scroll auto on input select dropdown ### [5.44.1] 
  chartRangeSelect fix ### [5.44.0] 
  update attachment related component with readonly props ### [5.43.3] 
  ajouts d'ids pour les tests selenium sur notification card, button-select, toaster, ticket ### [5.43.2] 
