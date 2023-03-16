@@ -214,10 +214,11 @@ const InputDateTime = ({
 
     function handleNowButton() {
         handleTimeValue(new Date());
-        onChange(isRange ? [new Date(), new Date()] : new Date());
+        onChange(isRange ? [startOfDay(new Date()), endOfDay(new Date())] : new Date());
     }
 
     const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
+
     function handleTimeValue(value: Date) {
         const date = format(value, dateTimeFormat, { locale: locales[i18n.language as keyof typeof locales] });
         const { dates, timeList } = getTimeList();
@@ -252,18 +253,6 @@ const InputDateTime = ({
         dispatch({ type: "RESET", payload: defaultValue });
         onChange(defaultValue === undefined ? null : defaultValue);
     }, [defaultValue]);
-
-    const inputForm: Date | [Date, Date] = formMethods.watch(refForm);
-    useEffect(() => {
-        if (inputForm) {
-            if (Array.isArray(inputForm)) {
-                handleChangeArray(inputForm);
-            } else {
-                handleChangeSingle(inputForm);
-                handleTimeValue(inputForm);
-            }
-        }
-    }, [inputForm]);
 
     useEffect(() => {
         return () => {
