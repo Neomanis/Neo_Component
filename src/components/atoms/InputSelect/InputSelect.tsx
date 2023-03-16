@@ -54,6 +54,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     updateFunction?: (field: string, value: Value<Option, IsMulti>) => void;
     updaterClassName?: string;
     id?: string;
+    scrollTimeOut?: number;
 }
 
 function InputSelect<
@@ -83,6 +84,7 @@ function InputSelect<
     updateFunction,
     updaterClassName,
     id,
+    scrollTimeOut = 50,
 }: InputSelectProps<Option, IsMulti, Group>): ReactElement {
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const { t } = useTranslation();
@@ -136,8 +138,8 @@ function InputSelect<
             const elementId = `react-select-${selectId}-option-${indexes.join("-")}`;
             setTimeout(() => {
                 const option = document.getElementById(elementId);
-                option && option.scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
-            }, 50);
+                option?.scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
+            }, scrollTimeOut);
         }
     }
 
