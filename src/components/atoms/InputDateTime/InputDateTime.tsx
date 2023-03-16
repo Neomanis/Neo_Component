@@ -104,10 +104,6 @@ const InputDateTime = ({
         defaultValue,
     });
 
-    useEffect(() => {
-        fOnChange && fOnChange(value);
-    }, [value]);
-
     const datesValue = useMemo(() => {
         if (!Array.isArray(value)) {
             return { startDate: value, endDate: null };
@@ -214,10 +210,10 @@ const InputDateTime = ({
 
     function handleNowButton() {
         handleTimeValue(new Date());
-        onChange(isRange ? [new Date(), new Date()] : new Date());
     }
 
     const dateTimeFormat = i18n.language === "en-GB" ? "h:mm a" : "HH:mm";
+
     function handleTimeValue(value: Date) {
         const date = format(value, dateTimeFormat, { locale: locales[i18n.language as keyof typeof locales] });
         const { dates, timeList } = getTimeList();
@@ -253,17 +249,9 @@ const InputDateTime = ({
         onChange(defaultValue === undefined ? null : defaultValue);
     }, [defaultValue]);
 
-    const inputForm: Date | [Date, Date] = formMethods.watch(refForm);
     useEffect(() => {
-        if (inputForm) {
-            if (Array.isArray(inputForm)) {
-                handleChangeArray(inputForm);
-            } else {
-                handleChangeSingle(inputForm);
-                handleTimeValue(inputForm);
-            }
-        }
-    }, [inputForm]);
+        fOnChange && fOnChange(value);
+    }, [value]);
 
     useEffect(() => {
         return () => {
@@ -318,7 +306,11 @@ const InputDateTime = ({
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
-                    onChange={(dates: Date | [Date, Date]) => {
+                    onChange={(dates: Date | [Date, Date], event: React.SyntheticEvent) => {
+                        if (event.currentTarget.className === "react-datepicker__today-button" && isRange) {
+                            const now = new Date();
+                            dates = [startOfDay(now), endOfDay(now)];
+                        }
                         fOnChange && fOnChange(dates);
                         if (Array.isArray(dates)) {
                             handleChangeArray(dates);

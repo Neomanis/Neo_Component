@@ -93,9 +93,10 @@ const ChartRangeSelector = ({
             2: { startMonth: 6, endMonth: 8 },
             3: { startMonth: 9, endMonth: 11 },
         };
+
         const selectedDate = addQuarters(date, offsetQuarter);
         const year = selectedDate.getFullYear();
-        const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate) + 1);
+        const actualQuarterMonth = monthsToQuarters(getMonth(selectedDate));
         const actualQuarterMonthDates = quarterRange[actualQuarterMonth];
         return {
             start: startOfMonth(new Date(year, actualQuarterMonthDates.startMonth)),
