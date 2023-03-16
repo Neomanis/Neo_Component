@@ -6,7 +6,7 @@ import ChartRangeSelector, { Props } from "./ChartRangeSelector";
 
 export default {
     component: ChartRangeSelector,
-    title: "Molecules/Statistics/ChartRangeSelector",
+    title: "Molecules/ChartRangeSelector",
 } as Meta;
 
 export const Default: Story<Props> = () => {
