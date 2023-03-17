@@ -35,10 +35,10 @@ const colorRef = {
 export interface DiagnosticBlockProps {
     book?: {
         name?: string;
-        launchDate?: Date;
+        date?: Date;
         diagExecutionTime?: number;
         lastElement?: DiagResult;
-        diagResultType?: string;
+        result?: string;
     };
     Action?: {
         description: string;
@@ -81,7 +81,7 @@ const DiagnosticBlock = ({
             if (Awaiting) {
                 return colorRef["purple"][type];
             }
-            if (Error || book?.diagResultType === DiagnosticResult.Failed) {
+            if (Error || book?.result === DiagnosticResult.Failed) {
                 return colorRef["red"][type];
             }
             if (Exit) {
@@ -100,17 +100,14 @@ const DiagnosticBlock = ({
             }
 
             if (book) {
-                if (book.diagResultType === DiagnosticResult.Awaiting || book.lastElement?.Awaiting) {
+                if (book.result === DiagnosticResult.Awaiting || book.lastElement?.Awaiting) {
                     return colorRef["purple"][type];
                 }
                 if (book.lastElement?.Error) {
                     return colorRef["red"][type];
                 }
                 if (book.lastElement?.Exit) {
-                    if (
-                        book.lastElement?.Exit?.type === "escalate" ||
-                        book.diagResultType === DiagnosticResult.Escalate
-                    ) {
+                    if (book.result === DiagnosticResult.Escalate || book.lastElement?.Exit?.type === "escalate") {
                         return colorRef["orange"][type];
                     }
                     if (book.lastElement?.Exit?.type === "solved") {
@@ -130,7 +127,7 @@ const DiagnosticBlock = ({
             return (
                 <IconBook
                     data-testid={"blockIsBook"}
-                    className={classNames("w-[35px] group-hover:animate-swing", color("fill"))}
+                    className={classNames("w-10 group-hover:animate-swing", color("fill"))}
                 />
             );
         }
@@ -141,11 +138,11 @@ const DiagnosticBlock = ({
             return <IconChapterExit data-testid={"blockIsExit"} className={classNames("w-5", color("fill"))} />;
         }
         if (Error) {
-            return <CautionLogo data-testid={"blockIsError"} className={classNames("w-10", color("fill"))} />;
+            return <CautionLogo data-testid={"blockIsError"} className={classNames("w-5", color("fill"))} />;
         }
         if (Awaiting) {
             return (
-                <p data-testid={"blockIsAwaiting"} className={classNames("text-2xl font-bold", color("text"))}>
+                <p data-testid={"blockIsAwaiting"} className={classNames("font-extrabold", color("text"))}>
                     ?
                 </p>
             );
@@ -161,7 +158,7 @@ const DiagnosticBlock = ({
             )}
             onClick={() => openBook && openBook()}
         >
-            <div className="flex items-center cursor-pointer" onClick={() => setIsFolded((old) => !old)}>
+            <div className="flex items-center cursor-pointer w-full" onClick={() => setIsFolded((old) => !old)}>
                 {icon}
                 <Title
                     className={classNames(
@@ -175,7 +172,7 @@ const DiagnosticBlock = ({
                 />
             </div>
             {!Exit && (
-                <div className="flex items-center text-neo-blue-secondary">
+                <div className="flex items-center text-neo-blue-secondary min-w-max">
                     {book && (
                         <Button
                             onClick={(e) => {
@@ -188,10 +185,10 @@ const DiagnosticBlock = ({
                         </Button>
                     )}
                     {(Action?.executionTime || book?.diagExecutionTime) && (
-                        <div className="flex items-center text-xs ml-4">
+                        <div className="flex items-center text-xs ml-2">
                             <span className="mb-[2px] font-bold flex">
-                                <p className="text-neo-link mr-1">
-                                    {book?.launchDate && formatDate(book?.launchDate.toString(), { withSecond: true })}
+                                <p className="text-neo-link mr-2">
+                                    {book?.date && formatDate(book?.date.toString(), { withSecond: true })}
                                 </p>
                                 <p className="text-xxs">
                                     {Action?.executionTime && <span>{convertDuration(Action.executionTime)}</span>}

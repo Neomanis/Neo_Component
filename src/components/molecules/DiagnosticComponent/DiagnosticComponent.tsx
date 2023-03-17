@@ -40,7 +40,6 @@ const DiagList = ({
                 return false;
             }
         }
-
         return true;
     }, [lastElement]);
 
@@ -126,9 +125,9 @@ const DiagBook = ({
             <DiagnosticBlock
                 book={{
                     name: diagnostic.name,
-                    launchDate: diagnostic.launchDate,
+                    date: diagnostic.launchDate,
                     diagExecutionTime: diagnostic.diagExecutionTime,
-                    diagResultType: diagResultType,
+                    result: diagResultType,
                     lastElement: lastElement,
                 }}
                 isOpen={bookOpen}
@@ -151,11 +150,15 @@ const DiagChild = ({
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
     const lastElement = diagChild.results?.at(-1);
-
     return (
         <div className="my-2 relative">
             <DiagnosticBlock
-                book={{ name: diagChild?.name, lastElement: lastElement }}
+                book={{
+                    name: diagChild?.name,
+                    date: diagChild?.date,
+                    diagExecutionTime: diagChild?.diagExecutionTime,
+                    lastElement: lastElement,
+                }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
                 redirectTo={() => navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
@@ -208,7 +211,6 @@ const DiagnosticComponent = ({
             insertApproval(awaiting.bookNames.slice(1), awaiting.currentChapter.desc, diagnostic.results);
         }
     }
-
     return (
         <div className="w-full">
             {diagnostic && (
