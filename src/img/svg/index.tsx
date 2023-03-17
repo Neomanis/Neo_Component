@@ -98,6 +98,7 @@ import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
 import { ReactComponent as LogoWithText } from "./nm_logo_couleur_texte.svg";
 import { ReactComponent as NeoLogo } from "./nm_logo_couleur_blanc_toast.svg";
 import { ReactComponent as NeoLogoSad } from "./nm_logo_couleur_blanc_toast-sad.svg";
+import { ReactComponent as OfficeBuilding } from "./nm_ico_office_building.svg";
 import { ReactComponent as Planet } from "./nm_design_planet.svg";
 import { ReactComponent as SquareCross } from "./nm_ico_square_cross.svg";
 import { ReactComponent as StatusContainer } from "./nm_status_container.svg";
@@ -108,6 +109,7 @@ import { ReactComponent as TicketLogo } from "./nm_ico_ticket_normal.svg";
 import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
 import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
 import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
+import { ReactComponent as Triangle } from "./nm_ico_triangle.svg";
 
 export {
     CautionLogo,
@@ -210,6 +212,7 @@ export {
     LogoWithText,
     NeoLogo,
     NeoLogoSad,
+    OfficeBuilding,
     Planet,
     SquareCross,
     StatusContainer,
@@ -220,4 +223,5 @@ export {
     TicketNew,
     TicketSave,
     TicketTop,
+    Triangle,
 };
