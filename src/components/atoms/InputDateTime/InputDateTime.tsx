@@ -307,7 +307,7 @@ const InputDateTime = ({
                     showMonthYearPicker={showMonthPicker}
                     selectsRange={isRange}
                     onChange={(dates: Date | [Date, Date], event: React.SyntheticEvent) => {
-                        if (event.currentTarget.className === "react-datepicker__today-button" && isRange) {
+                        if (event && event.currentTarget.className === "react-datepicker__today-button" && isRange) {
                             const now = new Date();
                             dates = [startOfDay(now), endOfDay(now)];
                         }
