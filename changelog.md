@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.46.2] 
+ ### [5.46.3] 
+ update TicketDateInfo style and add userAssigned in JSX ### [5.46.2] 
  fix hour picking ### [5.46.1] 
  change object Diagnostic component ### [5.46.0] 
  Add 2 new icon: offiche building and triangle ### [5.45.0] 
