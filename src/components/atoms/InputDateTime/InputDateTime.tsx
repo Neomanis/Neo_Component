@@ -36,7 +36,7 @@ export interface InputDateTimeProps {
     id?: string;
     isError?: boolean;
     lang?: string;
-    pattern?: string;
+    formatDate?: string;
     placeholder?: string;
     defaultValueShowMonthPicker?: boolean;
     svg?: ReactElement;
@@ -69,6 +69,7 @@ const InputDateTime = ({
     isUpdateField = false,
     label,
     lang,
+    formatDate,
     maxDate,
     minDate,
     minTime,
@@ -301,7 +302,7 @@ const InputDateTime = ({
                     maxDate={maxDate}
                     minDate={minDate}
                     filterTime={filteredTime}
-                    dateFormat={isRange ? "P" : "Pp"}
+                    dateFormat={formatDate ?? isRange ? "P" : "Pp"}
                     timeFormat="p"
                     locale={lang}
                     showMonthYearPicker={showMonthPicker}
