@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.46.4] 
+ ### [5.46.5] 
+ :lipstick: reduced gap between text editor menu icon ### [5.46.4] 
  Remove useless prop and add formatDate to improve displayed value in InputDateTime ### [5.46.3] 
  update TicketDateInfo style and add userAssigned in JSX ### [5.46.2] 
  fix hour picking ### [5.46.1] 
