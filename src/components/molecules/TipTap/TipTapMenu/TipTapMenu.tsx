@@ -159,7 +159,7 @@ const TipTapMenu = ({ editor, menuButtonsFilter }: Props) => {
                         onClick={onClick}
                         disabled={disabled}
                         className={classNames(
-                            "h-12 w-8 flex items-center justify-center",
+                            "h-12 w-8 flex items-center justify-center font-medium",
                             isActive ? "text-neo-blue" : "text-white"
                         )}
                     >
