@@ -23,7 +23,6 @@ export { default as SwitchToggle } from "./SwitchToggle";
 export { default as Tab } from "./Tab";
 export { default as Tabs } from "./Tabs";
 export { default as TabTitle } from "./TabTitle";
-export { default as TextEditor } from "./TextEditor";
 export { default as TicketDateInfos } from "./TicketDateInfos";
 export { default as TicketStatus } from "./TicketStatus";
 export { default as Title } from "./Title";
