@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.46.6] 
+ ### [5.47.0] 
+ :fire: removed unused code and library ### [5.46.6] 
  :lipstick: fixed tiptap editor heading button font weight     ### [5.46.5] 
  :lipstick: reduced gap between text editor menu icon ### [5.46.4] 
  Remove useless prop and add formatDate to improve displayed value in InputDateTime ### [5.46.3] 
