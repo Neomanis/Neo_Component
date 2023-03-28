@@ -80,7 +80,7 @@ const OutageCard = ({
                                     setOpenValidationCard(false);
                                     deleteCallBack(data.id);
                                 }}
-                                text={t("global.deleteThis") + " " + data.type + " ?"}
+                                text={`${t("global.confirm")} ?`}
                                 id="delete-button"
                             />
                         )}
