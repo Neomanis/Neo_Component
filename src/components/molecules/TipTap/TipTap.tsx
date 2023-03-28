@@ -4,7 +4,7 @@ import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import { MenuButtons, TipTapMenu } from "./TipTapMenu";
 import Underline from "@tiptap/extension-underline";
-import { classNames, createTimeout, getHTMLValue } from "@/utils";
+import { classNames, createTimeout } from "@/utils";
 import { useTranslation } from "@neomanis/neo-translation";
 import { useInputs } from "@/utils/hooks/useInputs";
 import { useController, UseFormReturn } from "react-hook-form";
@@ -53,7 +53,7 @@ const TipTap = ({
 }: TipTapProps): ReactElement => {
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
     const { t } = useTranslation();
-    const [state, dispatch] = useInputs(getHTMLValue(defaultValue));
+    const [state, dispatch] = useInputs(defaultValue);
     const {
         field: { ref, value, onChange },
         formState: { errors },
@@ -67,7 +67,7 @@ const TipTap = ({
             },
         },
         shouldUnregister: true,
-        defaultValue: getHTMLValue(defaultValue),
+        defaultValue: defaultValue,
     });
     const isError = Boolean(errors[refForm]);
 
