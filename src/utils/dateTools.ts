@@ -1,5 +1,14 @@
 import { i18n } from "@neomanis/neo-translation";
-import { formatDistanceToNowStrict, Locale, format, isFuture, getTime, intervalToDuration } from "date-fns";
+import {
+    formatDistanceToNowStrict,
+    Locale,
+    format,
+    isFuture,
+    getTime,
+    intervalToDuration,
+    isToday,
+    isThisWeek,
+} from "date-fns";
 import { enUS, enGB, fr } from "date-fns/locale";
 import { lowerCaseFirstLetter } from "./tools";
 
@@ -87,17 +96,18 @@ export function getFormatDateOrTimeToNow(date: string, limitInMs: number, lang: 
 export function formatDateToNow(incomingDate: string, lang: string): string {
     let formatedDate: string;
     const date = new Date(incomingDate);
-    const timestampDiff = (new Date().getTime() - new Date(date).getTime()) / 1000;
     const myLanguage = i18n.getFixedT(lang);
     const begin = myLanguage("date.formatDateToNow.begin");
     const middle = myLanguage("date.formatDateToNow.middle");
     const end = myLanguage("date.formatDateToNow.end");
+    const todayT = myLanguage("date.today");
+    const at = myLanguage("date.at");
 
-    if (timestampDiff < 24 * 60 * 60 && date.getDay() === new Date().getDay()) {
-        formatedDate = format(date, `p`, {
+    if (isToday(date)) {
+        formatedDate = `${todayT} ${at} ${format(date, `p`, {
             locale: getDateFnsLocaleFromUserLang(lang),
-        });
-    } else if (timestampDiff < 7 * 24 * 60 * 60 && date.getDay() !== new Date().getDay()) {
+        })}`;
+    } else if (isThisWeek(date)) {
         formatedDate = format(date, `eeee${middle}p`, {
             locale: getDateFnsLocaleFromUserLang(lang),
         });

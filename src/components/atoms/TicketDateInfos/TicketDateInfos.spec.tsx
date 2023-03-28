@@ -9,7 +9,7 @@ test("should work", async ({ mount }) => {
     const component = await mount(
         <TicketDateInfos createdAt={new Date().toISOString()} updatedAt={new Date().toISOString()} userLanguage="" />
     );
-    await expect(component).toContainText("Created at");
-    await expect(component).toContainText("Updated at");
+    await expect(component).toContainText("Created");
+    await expect(component).toContainText("Updated");
     await expect(component).toContainText(formatDateToNow(new Date().toISOString(), ""));
 });
