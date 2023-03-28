@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.47.1] 
+ ### [5.48.0] 
+ updated component dateinfos display ### [5.47.1] 
  :adhesive_bandage: removed get html value function from tiptap editor since glpi now return valid data ### [5.47.0] 
  :fire: removed unused code and library ### [5.46.6] 
  :lipstick: fixed tiptap editor heading button font weight     ### [5.46.5] 
