@@ -75,6 +75,7 @@ import { ReactComponent as IconStatistics } from "./nm_ico_statistics.svg";
 import { ReactComponent as IconStatusBar } from "./nm_ico_statusbar_long.svg";
 import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.svg";
 import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
+import { ReactComponent as IconTeam } from "./nm_ico_team.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
 import { ReactComponent as IconTechnicalQuestionsAll } from "./nm_ico_tq_all.svg";
 import { ReactComponent as IconTechnicalQuestionsAnswered } from "./nm_ico_tq_answered.svg";
@@ -188,6 +189,7 @@ export {
     IconStatusBar,
     IconStatusBarShort,
     IconSystemStatus,
+    IconTeam,
     IconTechnicalQuestions,
     IconTechnicalQuestionsAll,
     IconTechnicalQuestionsAnswered,
