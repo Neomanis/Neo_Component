@@ -158,7 +158,7 @@ const DiagnosticBlock = ({
             )}
             onClick={() => openBook && openBook()}
         >
-            <div className="flex items-center cursor-pointer w-full" onClick={() => setIsFolded((old) => !old)}>
+            <div className="flex items-center w-full" onClick={() => setIsFolded((old) => !old)}>
                 {icon}
                 <Title
                     className={classNames(
