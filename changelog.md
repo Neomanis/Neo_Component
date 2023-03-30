@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.48.3] 
+ ### [5.49.0] 
+ :sparkles: added upload progress component ### [5.48.3] 
  add icon for teamScreen  ### [5.48.2] 
  update prettierignore and eslintignore ### [5.48.1] 
  add translation for validation card ### [5.48.0] 
