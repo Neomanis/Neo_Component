@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Avatar, CompleteUser } from "@neomanis/neo-types";
+import { CompleteUser } from "@neomanis/neo-types";
 import { UserInfo, AvatarEditor } from "@/components/molecules";
 
 export interface AvatarHandlerProps {
@@ -7,7 +7,7 @@ export interface AvatarHandlerProps {
     divInfoClassName?: string;
     dropZoneClassName?: string;
     editorWidth: number;
-    fCallBackUploadAvatar: (avatar: Avatar) => void;
+    fCallBackUploadAvatar: (avatar: File) => void;
     nameClassName?: string;
     roleClassName?: string;
     user: CompleteUser;

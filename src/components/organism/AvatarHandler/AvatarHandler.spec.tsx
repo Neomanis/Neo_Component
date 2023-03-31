@@ -1,7 +1,6 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import { CompleteUser, Role } from "@neomanis/neo-types";
-import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import AvatarHandler from "./AvatarHandler";
 
 test.use({ viewport: { width: 500, height: 500 } });
@@ -11,11 +10,7 @@ const defaultUser: CompleteUser = {
     lastname: "Test",
     role: Role.TECHNICIAN,
     language: "fr-FR",
-    avatar: {
-        encodedAvatar: imgAvatar,
-        mimetype: "image/png",
-        originalname: "blob-l-eponge.png",
-    },
+    avatar: "blob-l-eponge.png",
     dn: "dn",
     isActive: true,
     level: 1,

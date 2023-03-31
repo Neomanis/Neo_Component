@@ -3,7 +3,6 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import UserInfo from "./UserInfo";
-import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import { Role } from "@neomanis/neo-types";
 
 export default {
@@ -21,11 +20,7 @@ const userTest = {
     lastname: "Test",
     role: Role.TECHNICIAN,
     language: "fr-FR",
-    avatar: {
-        encodedAvatar: imgAvatar,
-        mimetype: "image/png",
-        originalname: "blob-l-eponge.png",
-    },
+    avatar: "http://" + "localhost:9000/d78679d3/3030/4c66/8e92/e456e1630304/blob-l-eponge.png",
     dn: "dn",
     isActive: true,
     level: 1,

@@ -1964,10 +1964,9 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@^4.31.0":
-  version "4.31.0"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-4.31.0.tgz#6073e034d259b94d1e63d9574ff79a6507e580b4"
-  integrity sha1-YHPgNNJZuU0eY9lXT/eaZQflgLQ=
+"@neomanis/neo-types@file:../Neo_Types/neomanis-neo-types-v4.35.0.tgz":
+  version "4.35.0"
+  resolved "file:../Neo_Types/neomanis-neo-types-v4.35.0.tgz#39c71c1ea957d4e9f15a5c652a83581fc2dc194e"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3741,6 +3740,13 @@
   version "6.9.7"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.7.tgz#63bb7d067db107cc1e457c303bc25d511febf6cb"
   integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
+
+"@types/react-avatar-editor@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-avatar-editor/-/react-avatar-editor-13.0.0.tgz#5963e16c931746c47e478d669dd72d388b427393"
+  integrity sha512-5ymOayy6mfT35xTqzni7UjXvCNEg8/pH4pI5RenITp9PBc02KGTYjSV1WboXiQDYSh5KomLT0ngBLEAIhV1QoQ==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-datepicker@^4.4.2":
   version "4.4.2"

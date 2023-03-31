@@ -18,11 +18,7 @@ export interface MessageChatProps {
     isFailed?: boolean;
     isValidate?: boolean;
     isLoading?: boolean;
-    avatar?: {
-        encodedAvatar: string;
-        mimetype: string;
-        originalname: string;
-    };
+    avatar?: string;
     bubbleChatWidth?: number;
     attachmentReadOnly: boolean;
 }
@@ -67,12 +63,12 @@ const MessageChat = ({
                 className={classFunction(isMe && "flex-row-reverse", "w-full flex items-center")}
             >
                 <div data-testid="message-icon" className={classFunction(classNames?.icon ?? "w-1/6")}>
-                    {avatar && avatar.encodedAvatar !== null ? (
+                    {avatar ? (
                         <Img
                             type="imgProfile"
                             data={{
-                                src: avatar.encodedAvatar,
-                                alt: avatar.originalname,
+                                src: avatar,
+                                alt: "avatar",
                             }}
                             className="rounded-full w-full select-none"
                         />

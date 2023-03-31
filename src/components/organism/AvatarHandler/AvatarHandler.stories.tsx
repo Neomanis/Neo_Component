@@ -2,8 +2,6 @@
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 import { Role } from "@neomanis/neo-types";
-import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
-
 import AvatarHandler from "./AvatarHandler";
 
 export default {
@@ -21,11 +19,8 @@ const userTest = {
     lastname: "Test",
     role: Role.TECHNICIAN,
     language: "fr-FR",
-    avatar: {
-        encodedAvatar: imgAvatar,
-        mimetype: "image/png",
-        originalname: "blob-l-eponge.png",
-    },
+    // will work only with you avatar url
+    avatar: "http://" + "localhost:9000/d78679d3/3030/4c66/8e92/e456e1630304/blob-l-eponge.png",
     dn: "dn",
     isActive: true,
     level: 1,

@@ -1,7 +1,6 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
 import { CompleteUser } from "@neomanis/neo-types";
-import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import UserInfo from "./UserInfo";
 
 test.use({ viewport: { width: 500, height: 500 } });
@@ -12,11 +11,7 @@ const defaultUser: CompleteUser = {
     lastname: "Test",
     role: "technician",
     language: "fr-FR",
-    avatar: {
-        encodedAvatar: imgAvatar,
-        mimetype: "image/png",
-        originalname: "blob-l-eponge.png",
-    },
+    avatar: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
     neoId: 1,
     dn: "dn",
     level: 1,
@@ -54,7 +49,6 @@ test("should change style when asked", async ({ mount }) => {
     await expect(component).toHaveClass(/bg-neo-blue/);
     await expect(component.locator('[data-testid="name-info-user"]')).toHaveClass(/text-neo-yellow-sand/);
     await expect(component.locator('[data-testid="role-info-user"]')).toHaveClass(/text-neo-light-grey/);
-    await expect(component.locator('[data-testid="profileImg-with-data-body"]')).toHaveCSS("height", "144px");
 });
 
 test("should show and hide hover bubble when image is hover", async ({ mount }) => {

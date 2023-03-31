@@ -44,8 +44,8 @@ const UserInfo = ({
                     className="rounded-full"
                     type="imgProfile"
                     data={{
-                        src: user.avatar && user.avatar.encodedAvatar ? user.avatar.encodedAvatar : DefaultUserPicture,
-                        alt: user.avatar ? user.avatar.originalname : "default img",
+                        src: user.avatar ?? DefaultUserPicture,
+                        alt: user.avatar ?? "default img",
                         height: imageSize,
                     }}
                     data-testid="profileImg-with-data-body"
