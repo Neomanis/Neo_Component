@@ -50,8 +50,9 @@ const AvatarEditor = ({
         setError({ show: true, messages: errorMessages });
     }
 
-    const blobPromise = (avatarRef: ReactAvatarEditor): Promise<Blob> =>
-        new Promise((resolve) => avatarRef.getImage().toBlob((blob) => resolve(blob)));
+    function blobPromise(avatarRef: ReactAvatarEditor): Promise<Blob> {
+        return new Promise((resolve) => avatarRef.getImage().toBlob((blob) => resolve(blob)));
+    }
 
     async function uploadAvatar(): Promise<void> {
         if (image) {
