@@ -20,7 +20,8 @@ const userTest = {
     lastname: "Test",
     role: Role.TECHNICIAN,
     language: "fr-FR",
-    avatar: "http://" + "localhost:9000/d78679d3/3030/4c66/8e92/e456e1630304/blob-l-eponge.png",
+    // will work only with you avatar url
+    avatar: "https://gravatar.com/avatar/e2ac581c768269e98d230f8afcb97804?s=200&d=retro&r=pg",
     dn: "dn",
     isActive: true,
     level: 1,

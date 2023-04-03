@@ -18,7 +18,7 @@ export interface MessageChatProps {
     isFailed?: boolean;
     isValidate?: boolean;
     isLoading?: boolean;
-    avatar?: string;
+    avatar?: string | null;
     bubbleChatWidth?: number;
     attachmentReadOnly: boolean;
 }

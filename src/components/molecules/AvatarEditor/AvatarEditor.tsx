@@ -1,4 +1,4 @@
-import React, { createRef, Dispatch, ReactElement, SetStateAction, useEffect, useMemo, useState } from "react";
+import React, { createRef, Dispatch, ReactElement, SetStateAction, useEffect, useState } from "react";
 import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
 import ReactAvatarEditor from "react-avatar-editor";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -56,9 +56,7 @@ const AvatarEditor = ({
     async function uploadAvatar(): Promise<void> {
         if (image) {
             const blob = await blobPromise(avatarEditorRef.current);
-            console.log(blob);
-
-            fCallBackUploadAvatar(new File([blob], image.name));
+            fCallBackUploadAvatar(new File([blob], image.name, { type: image.type }));
             reset();
             setShowAvatarEditor(false);
         }
