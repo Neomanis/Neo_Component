@@ -1,6 +1,7 @@
 # Changelog 
 
- ### [5.50.0] 
+ ### [6.0.0] 
+ update avatar handling and displaying ### [5.50.0] 
  <description> ### [5.49.0] 
  :sparkles: added upload progress component ### [5.48.3] 
  add icon for teamScreen  ### [5.48.2] 
