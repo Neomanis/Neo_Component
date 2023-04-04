@@ -2,7 +2,7 @@ import React, { createRef, Dispatch, ReactElement, SetStateAction, useEffect, us
 import Dropzone, { DropzoneRef, FileRejection } from "react-dropzone";
 import ReactAvatarEditor from "react-avatar-editor";
 import { useTranslation } from "@neomanis/neo-translation";
-import { Avatar, FileErrorTraductionKey } from "@neomanis/neo-types";
+import { FileErrorTraductionKey } from "@neomanis/neo-types";
 import { Button } from "@/components/atoms";
 import { CloseLogo } from "@/img/svg";
 
@@ -10,7 +10,7 @@ export interface AvatarEditorProps {
     divEditorClassName?: string;
     dropZoneClassName?: string;
     editorWidth: number;
-    fCallBackUploadAvatar: (avatar: Avatar) => void;
+    fCallBackUploadAvatar: (avatar: File) => void;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -23,8 +23,7 @@ const AvatarEditor = ({
 }: AvatarEditorProps): ReactElement => {
     const { t } = useTranslation();
 
-    const [image, setImage] = useState("");
-    const [imageInformation, setImageInformation] = useState<{ mimetype: string; originalname: string }>();
+    const [image, setImage] = useState<File | undefined>();
     const [error, setError] = useState<{ messages: string[]; show: boolean }>({ messages: [], show: false });
     const [scale, setScale] = useState(1);
 
@@ -38,8 +37,7 @@ const AvatarEditor = ({
     };
 
     function reset() {
-        setImage("");
-        setImageInformation(undefined);
+        setImage(undefined);
         setScale(1);
         setError({ show: false, messages: [] });
     }
@@ -52,15 +50,14 @@ const AvatarEditor = ({
         setError({ show: true, messages: errorMessages });
     }
 
+    function blobPromise(avatarRef: ReactAvatarEditor): Promise<Blob> {
+        return new Promise((resolve) => avatarRef.getImage().toBlob((blob) => resolve(blob)));
+    }
+
     async function uploadAvatar(): Promise<void> {
-        if (imageInformation && avatarEditorRef.current) {
-            const encodedAvatar = avatarEditorRef.current.getImageScaledToCanvas().toDataURL();
-            const avatar = {
-                encodedAvatar: encodedAvatar,
-                mimetype: imageInformation.mimetype,
-                originalname: imageInformation.originalname,
-            };
-            fCallBackUploadAvatar(avatar);
+        if (image) {
+            const blob = await blobPromise(avatarEditorRef.current);
+            fCallBackUploadAvatar(new File([blob], image.name, { type: image.type }));
             reset();
             setShowAvatarEditor(false);
         }
@@ -137,11 +134,7 @@ const AvatarEditor = ({
                         maxSize={2000000}
                         onDropRejected={(errors) => handleError(errors)}
                         onDropAccepted={(acceptedFiles) => {
-                            setImage(URL.createObjectURL(acceptedFiles[0]));
-                            setImageInformation({
-                                mimetype: acceptedFiles[0].type,
-                                originalname: acceptedFiles[0].name,
-                            });
+                            setImage(acceptedFiles[0]);
                         }}
                     >
                         {({ getRootProps, getInputProps }) => (

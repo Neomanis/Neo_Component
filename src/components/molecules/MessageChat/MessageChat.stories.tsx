@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
-import { imgAvatar } from "@/utils/storiesData/fakeAvatar";
 import WritingDots from "@/components/atoms/WritingDots";
 
 import MessageChat from "./MessageChat";
@@ -101,11 +100,7 @@ EncodedAvatar.args = {
     date: "12:12",
     name: "Ragnaros The Firelord",
     type: MessageType.MESSAGE,
-    avatar: {
-        encodedAvatar: imgAvatar,
-        mimetype: "image/png",
-        originalname: "blob-l-eponge.png",
-    },
+    avatar: "blob-l-eponge.png",
 };
 
 export const IsWriting: ComponentStory<typeof MessageChat> = Template2.bind({});

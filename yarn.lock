@@ -1956,7 +1956,7 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@neomanis/neo-translation@^2.23.2":
+"@neomanis/neo-translation@2.23.2":
   version "2.23.2"
   resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-translation/-/neo-translation-2.23.2.tgz#201819f7fe012fe662f0c0d4e851dcad4a009980"
   integrity sha1-IBgZ9/4BL+Zi8MDU6FHcrUoAmYA=
@@ -1964,10 +1964,10 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
-"@neomanis/neo-types@^4.31.0":
-  version "4.31.0"
-  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-4.31.0.tgz#6073e034d259b94d1e63d9574ff79a6507e580b4"
-  integrity sha1-YHPgNNJZuU0eY9lXT/eaZQflgLQ=
+"@neomanis/neo-types@4.35.0":
+  version "4.35.0"
+  resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-4.35.0.tgz#dacfb8256fb1a93fa1a1c7c16f54e04accb801b8"
+  integrity sha1-2s+4JW+xqT+hocfBb1TgSsy4Abg=
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -3741,6 +3741,13 @@
   version "6.9.7"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.7.tgz#63bb7d067db107cc1e457c303bc25d511febf6cb"
   integrity sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==
+
+"@types/react-avatar-editor@^13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-avatar-editor/-/react-avatar-editor-13.0.0.tgz#5963e16c931746c47e478d669dd72d388b427393"
+  integrity sha512-5ymOayy6mfT35xTqzni7UjXvCNEg8/pH4pI5RenITp9PBc02KGTYjSV1WboXiQDYSh5KomLT0ngBLEAIhV1QoQ==
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-datepicker@^4.4.2":
   version "4.4.2"
