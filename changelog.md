@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.2] 
+ :adhesive_bandage: fixed grid issue with pagination in supervisor screen 
  ### [6.0.1] 
  add isClearable in InputSelect props and add disabel prop in SearchField 
  ### [6.0.0] 
