@@ -24,6 +24,7 @@ const Template: ComponentStory<typeof InputSelect> = (args) => {
                 formMethods={formMethods}
                 refForm="inputSelect"
                 defaultValue={defaultValue}
+                isClearable={false}
                 id="testSelect"
             />
             <div className="flex flex-col items-start space-y-2">

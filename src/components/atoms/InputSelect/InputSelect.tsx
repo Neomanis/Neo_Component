@@ -42,6 +42,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     isMulti?: IsMulti;
     isSearchable?: boolean;
     isUpdateField?: boolean;
+    isClearable?: boolean;
     label?: string;
     labelClassName?: string;
     options: OptionsOrGroups<Option, Group>;
@@ -72,6 +73,7 @@ function InputSelect<
     isMulti,
     isSearchable,
     isUpdateField,
+    isClearable,
     label,
     labelClassName,
     options,
@@ -223,6 +225,7 @@ function InputSelect<
                 onInputChange={(newValue) => onInputChange && onInputChange(newValue)}
                 id={id}
                 instanceId={id}
+                isClearable={isClearable}
             />
         </div>
     );

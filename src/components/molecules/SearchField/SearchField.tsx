@@ -8,7 +8,7 @@ export interface SearchFieldProps {
     placeholder: string;
     refForm: string;
     containerClassName?: string;
-    disabled: boolean;
+    disabled?: boolean;
     inputClassName?: string;
     showClearButton?: boolean;
     iconSearchColor?: string;
