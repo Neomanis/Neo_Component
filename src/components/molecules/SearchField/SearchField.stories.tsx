@@ -27,6 +27,7 @@ export const Default: ComponentStory<typeof SearchField> = Template.bind({});
 Default.args = {
     refForm: "input",
     placeholder: "Search ...",
+    disabled: true,
 };
 export const DefaultNoReset = Template.bind({});
 DefaultNoReset.args = {
