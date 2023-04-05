@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.1] 
+ add isClearable in InputSelect props and add disabel prop in SearchField 
  ### [6.0.0] 
  update avatar handling and displaying ### [5.50.0] 
  <description> ### [5.49.0] 
