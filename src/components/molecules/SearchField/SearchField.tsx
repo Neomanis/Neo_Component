@@ -8,6 +8,7 @@ export interface SearchFieldProps {
     placeholder: string;
     refForm: string;
     containerClassName?: string;
+    disabled: boolean;
     inputClassName?: string;
     showClearButton?: boolean;
     iconSearchColor?: string;
@@ -21,6 +22,7 @@ export interface SearchFieldProps {
 const SearchField = ({
     placeholder,
     refForm,
+    disabled,
     register,
     setValue,
     reset,
@@ -37,7 +39,7 @@ const SearchField = ({
         }
     }
     return (
-        <div className={classNames(containerClassName, "group transition-all")}>
+        <div className={classNames(containerClassName, "group transition-all", disabled && "opacity-50")}>
             <div className="ml-4 pr-2 w-full" onKeyDown={(e) => onEscape(e)}>
                 <Input
                     inputClassName={inputClassName}
@@ -50,22 +52,31 @@ const SearchField = ({
                     typeInput="text"
                     showLabelAndUpdater={false}
                     id={id}
+                    disabled={disabled}
                 />
             </div>
-            <div className="w-3 mr-4 flex items-center transform hover:scale-110 transition-transform">
+            <div
+                className={classNames(
+                    "w-3 mr-4 flex items-center transform transition-transform",
+                    !disabled && "hover:scale-110"
+                )}
+            >
                 {showClearButton && (
                     <Button
                         startIcon={
-                            <CloseLogo className="w-3 h-3 hover:fill-neo-red transition-all" fill={iconResetColor} />
+                            <CloseLogo
+                                className={classNames("w-3 h-3 transition-all", !disabled && "hover:fill-neo-red")}
+                                fill={iconResetColor}
+                            />
                         }
-                        onClick={() => reset && reset()}
+                        onClick={() => !disabled && reset && reset()}
                         variant="none"
                         size="none"
                         id={`${id}-clear`}
                     />
                 )}
             </div>
-            <div className="group-hover:scale-105 transition-all">
+            <div className={classNames("transition-all", !disabled && "group-hover:scale-105")}>
                 <IconSearch fill={iconSearchColor} className="w-4 mr-3 group-hover:animate-swing" />
             </div>
         </div>
