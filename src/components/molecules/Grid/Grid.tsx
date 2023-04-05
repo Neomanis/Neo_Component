@@ -1,4 +1,12 @@
-import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+    ForwardRefRenderFunction,
+    forwardRef,
+    useCallback,
+    useEffect,
+    useImperativeHandle,
+    useMemo,
+    useState,
+} from "react";
 import { useDroppable } from "@dnd-kit/core";
 import { CompactTicket, Ticket, GridIds, MembershipInfo } from "@neomanis/neo-types";
 import { IconArrowLeft, IconArrowRight } from "@/img/svg";
@@ -7,6 +15,10 @@ import DndTicket from "../DndTicket";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { classNames } from "@/utils";
 import { AnimatePresence, motion } from "framer-motion";
+
+interface GridHandle {
+    resetPagination: () => void;
+}
 
 export interface GridProps {
     className?: string;
@@ -54,24 +66,27 @@ interface BlankHexagon {
     name: "blank";
 }
 
-const Grid = ({
-    className,
-    cols,
-    currentTicket,
-    ticketBG,
-    gridId = "inbox",
-    fCallBackHover,
-    fCurrentTicket,
-    fNewPositionedTicket,
-    reverseGrid,
-    rows,
-    showPagination,
-    ticketList,
-    selectedTicketsUids,
-    userGroups,
-    userNeoId,
-    categoriesIcons,
-}: GridProps): ReactElement => {
+const Grid: ForwardRefRenderFunction<GridHandle, GridProps> = (
+    {
+        className,
+        cols,
+        currentTicket,
+        ticketBG,
+        gridId = "inbox",
+        fCallBackHover,
+        fCurrentTicket,
+        fNewPositionedTicket,
+        reverseGrid,
+        rows,
+        showPagination,
+        ticketList,
+        selectedTicketsUids,
+        userGroups,
+        userNeoId,
+        categoriesIcons,
+    },
+    ref
+) => {
     const [[page, direction, gridKey], setPage] = useState([0, 0, 0]);
 
     const { setNodeRef } = useDroppable({
@@ -79,18 +94,22 @@ const Grid = ({
     });
 
     const gridsPaginationNumber = useMemo(() => {
-        if (ticketList?.length > 0) {
-            const ticketWithPosition = ticketList.filter((ticket) => Boolean(ticket.position));
-            const maxTicketGridNumber =
-                ticketWithPosition.length > 0
-                    ? Math.max(...ticketWithPosition.map((ticket) => ticket.position.grid)) + 1
-                    : 0;
-
-            return Math.max(...[maxTicketGridNumber, Math.ceil(ticketList.length / (rows * cols))]);
+        if (!ticketList || ticketList.length === 0) {
+            return 1;
         }
 
-        return 1;
-    }, [ticketList, rows, cols]);
+        if (gridId !== "inventory") {
+            return Math.ceil(ticketList.length / (rows * cols));
+        }
+
+        const ticketWithPosition = ticketList.filter((ticket) => Boolean(ticket.position));
+        const maxTicketGridNumber =
+            ticketWithPosition.length > 0
+                ? Math.max(...ticketWithPosition.map((ticket) => ticket.position.grid)) + 1
+                : 0;
+
+        return Math.max(...[maxTicketGridNumber, Math.ceil(ticketList.length / (rows * cols))]);
+    }, [ticketList, rows, cols, gridId]);
 
     // grids is a 3D array, the first is the number of pagination
     // second one is the number of collumns
@@ -200,6 +219,12 @@ const Grid = ({
         }
     };
 
+    useImperativeHandle(ref, () => ({
+        resetPagination() {
+            setPage([0, 0, 0]);
+        },
+    }));
+
     useEffect(() => {
         if (unpositionedTickets.length > 0) {
             fNewPositionedTicket(unpositionedTickets);
@@ -274,7 +299,7 @@ const Grid = ({
                             className={classNames("absolute", cols === 1 && "-ml-14")}
                             data-testid="grid-element"
                         >
-                            {grids[page].map((row, rowKey) => (
+                            {grids[page]?.map((row, rowKey) => (
                                 <div
                                     className={classNames(
                                         "flex justify-center transform scale-110 my-1",
@@ -339,4 +364,4 @@ const Grid = ({
     );
 };
 
-export default Grid;
+export default forwardRef(Grid);
