@@ -29,7 +29,16 @@ const Img = ({ className, data, type }: ImgProps): ReactElement => {
 
         case "imgProfile":
             return data ? (
-                <img src={data.src} alt={data.alt} className={className} data-testid="profileImg-with-data-body" />
+                <img
+                    src={data.src}
+                    alt={data.alt}
+                    className={className}
+                    data-testid="profileImg-with-data-body"
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = DefaultUserPicture;
+                    }}
+                />
             ) : (
                 <img
                     src={DefaultUserPicture}
