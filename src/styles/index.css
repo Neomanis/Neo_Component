@@ -1,34 +1,5 @@
-.niveauGrotesk {
-    font-family: "Niveau Grotesk Bold" !important;
-}
-
-@font-face {
-    font-family: "Niveau Grotesk Bold";
-    src: url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.eot"); /* IE9*/
-    src: url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.eot?#iefix") format("embedded-opentype"),
-        /* IE6-IE8 */ url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.woff2") format("woff2"),
-        /* chrome、firefox */ url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.woff") format("woff"),
-        /* chrome、firefox */ url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.ttf") format("truetype"),
-        /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-            url("../font/NiveauGrotesk/30527d34912d15cde13bea7b1fcea1e8.svg#Niveau Grotesk Bold") format("svg"); /* iOS 4.1- */
-}
-
-.inter {
-    font-family: "Inter" !important;
-}
-
 li:not(.prose *) {
     list-style-type: none;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("../font/Inter/inter-variablefont_slntwght-webfont.eot"); /* IE9*/
-    src: url("../font/Inter/inter-variablefont_slntwght-webfont.woff2") format("woff2"),
-        /* chrome、firefox */ url("../font/Inter/inter-variablefont_slntwght-webfont.woff") format("woff"),
-        /* chrome、firefox */ url("../font/Inter/inter-variablefont_slntwght-webfont.ttf") format("truetype"),
-        /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-            url("../font/Inter/inter-variablefont_slntwght-webfont.svg") format("svg"); /* iOS 4.1- */
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -65,4 +36,25 @@ li:not(.prose *) {
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+}
+
+/* Remove input type number arrow */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+}
+
+/* Custom Scrollbar */
+
+.custom-scroll::-webkit-scrollbar {
+    @apply border-neo-bg-A;
+    width: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    @apply bg-neo-light-grey;
+    border-radius: 10px;
 }
