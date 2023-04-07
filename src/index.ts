@@ -1,4 +1,3 @@
-import "./styles/tailwind.css";
 import "./styles/index.css";
 
 export * from "./components/atoms";

@@ -6,7 +6,7 @@ import UploadProgress from "./UploadProgress";
 
 export default {
     component: UploadProgress,
-    title: "UploadProgress",
+    title: "Atoms/UploadProgress",
 } as Meta;
 
 const Template: ComponentStory<typeof UploadProgress> = () => {
