@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.4] 
+ :zap: removed tailwind css and font from build since frontend services are already taking care of it 
  ### [6.0.3] 
  :children_crossing: handled a default user avatar if avatar is not found 
  ### [6.0.2] 
