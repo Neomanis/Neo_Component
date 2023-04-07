@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.3] 
+ :children_crossing: handled a default user avatar if avatar is not found 
  ### [6.0.2] 
  :adhesive_bandage: fixed grid issue with pagination in supervisor screen 
  ### [6.0.1] 
