@@ -8,6 +8,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { classNames } from "@/utils";
 
 export interface InputTextareaProps {
+    autoComplete?: "on" | "off";
     customValidation?: ReactHookFormCustomValidation<string>;
     defaultValue?: string;
     errorMessage?: string;
@@ -27,6 +28,7 @@ export interface InputTextareaProps {
 }
 
 const InputTextarea = ({
+    autoComplete = "off",
     customValidation,
     defaultValue,
     errorMessage,
@@ -116,6 +118,7 @@ const InputTextarea = ({
                 )}
             </div>
             <textarea
+                autoComplete={autoComplete}
                 disabled={readOnly}
                 {...inputRegister}
                 className={classNames(

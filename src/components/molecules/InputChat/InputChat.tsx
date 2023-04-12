@@ -7,9 +7,10 @@ import { classNames } from "@/utils/tools";
 import { IconAdd } from "@/img/svg";
 
 export interface InputChatProps {
-    enableAttachment?: boolean;
+    autoComplete?: "on" | "off";
     cardOpen?: boolean;
     className?: string;
+    enableAttachment?: boolean;
     fCallbackPrivateMessage?: () => void;
     inputClassName?: string;
     languageUser?: string;
@@ -22,9 +23,10 @@ export interface InputChatProps {
 }
 
 const InputChat = ({
-    enableAttachment = true,
+    autoComplete = "off",
     cardOpen,
     className,
+    enableAttachment = true,
     fCallbackPrivateMessage,
     inputClassName,
     onClickAddAttachment,
@@ -57,6 +59,7 @@ const InputChat = ({
                 </div>
             )}
             <Input
+                autoComplete={autoComplete}
                 readOnly={cardOpen}
                 inputClassName={classNames(
                     inputClassName

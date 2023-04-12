@@ -19,6 +19,7 @@ import {
 import { classNames, createTimeout } from "@/utils";
 
 export interface InputDateTimeProps {
+    autoComplete?: "on" | "off";
     formMethods: UseFormReturn;
     refForm: string;
     className?: string;
@@ -57,6 +58,7 @@ registerLocale("en-US", enUS);
 registerLocale("fr-FR", fr);
 
 const InputDateTime = ({
+    autoComplete = "off",
     className = "w-full",
     labelClassName = "text-neo-link uppercase ml-2 font-bold",
     inputClassName = "bg-neo-bg-B font-bold rounded py-3 pl-4 text-white text-sm w-full text-bold",
@@ -325,6 +327,7 @@ const InputDateTime = ({
                     startDate={datesValue.startDate}
                     endDate={datesValue.endDate}
                     ref={ref}
+                    autoComplete={autoComplete}
                     disabled={disabled}
                     id={id}
                     onBlur={() => fOnBlur && fOnBlur()}
