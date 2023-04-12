@@ -41,3 +41,10 @@ WithPrivateOption.args = {
     fCallbackPrivateMessage: () => console.log("mp"),
     placeholder: "Send a message",
 };
+
+export const WithoutAttachementButton: ComponentStory<typeof InputChat> = Template.bind({});
+WithoutAttachementButton.args = {
+    enableAttachment: false,
+    fCallbackPrivateMessage: () => console.log("mp"),
+    placeholder: "Send a message",
+};

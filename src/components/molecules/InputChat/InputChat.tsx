@@ -7,7 +7,7 @@ import { classNames } from "@/utils/tools";
 import { IconAdd } from "@/img/svg";
 
 export interface InputChatProps {
-    buttonSub?: boolean;
+    enableAttachment?: boolean;
     cardOpen?: boolean;
     className?: string;
     fCallbackPrivateMessage?: () => void;
@@ -22,6 +22,7 @@ export interface InputChatProps {
 }
 
 const InputChat = ({
+    enableAttachment = true,
     cardOpen,
     className,
     fCallbackPrivateMessage,
@@ -43,16 +44,18 @@ const InputChat = ({
                     : "flex items-center bg-neo-bg-B text-white rounded-md divide-x-2 divide-neo-bg-A h-11"
             )}
         >
-            <div className="w-16 flex justify-center">
-                <Tooltip position="top" text={t("ticket.attachment_one")}>
-                    <Button
-                        onClick={() => onClickAddAttachment()}
-                        startIcon={<IconAdd className="w-5 fill-neo-link" />}
-                        className="px-0"
-                        variant="none"
-                    />
-                </Tooltip>
-            </div>
+            {enableAttachment && (
+                <div className="w-16 flex justify-center">
+                    <Tooltip position="top" text={t("ticket.attachment_one")}>
+                        <Button
+                            onClick={() => onClickAddAttachment()}
+                            startIcon={<IconAdd className="w-5 fill-neo-link" />}
+                            className="px-0"
+                            variant="none"
+                        />
+                    </Tooltip>
+                </div>
+            )}
             <Input
                 readOnly={cardOpen}
                 inputClassName={classNames(
