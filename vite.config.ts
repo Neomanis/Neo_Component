@@ -23,6 +23,7 @@ export default defineConfig({
         visualizer(),
     ],
     build: {
+        minify: false,
         outDir: "build",
         lib: {
             entry: path.resolve(__dirname, "src/index.ts"),
