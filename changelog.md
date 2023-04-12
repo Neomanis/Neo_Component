@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.6] 
+ :adhesive_bandage: removed build minify to fix tailwind falling to detect class in minify build 
  ### [6.0.5] 
  hide add attachment button when there is no ticket associate at the chat 
  ### [6.0.4] 
