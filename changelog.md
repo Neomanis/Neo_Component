@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.5] 
+ hide add attachment button when there is no ticket associate at the chat 
  ### [6.0.4] 
  :zap: removed tailwind css and font from build since frontend services are already taking care of it 
  ### [6.0.3] 
