@@ -12,7 +12,7 @@ export default {
 
 const Template: ComponentStory<typeof InputSelect> = (args) => {
     const formMethods = useForm({ mode: "onChange" });
-    const [defaultValue, setDefaultValue] = useState({ label: "Konoha", value: "Konoha" });
+    const [defaultValue, setDefaultValue] = useState([{ label: "Konoha", value: "Konoha" }]);
     const onSubmit: SubmitHandler<{ inputSelect: string }> = (data) => {
         console.log(data);
     };
@@ -33,9 +33,9 @@ const Template: ComponentStory<typeof InputSelect> = (args) => {
                     className="bg-neo-red p-2 rounded"
                     onClick={() =>
                         setDefaultValue((old) =>
-                            old.value === "Shikamaru"
-                                ? { label: "Naruto", value: "Naruto" }
-                                : { label: "Shikamaru", value: "Shikamaru" }
+                            old[0].value === "Shikamaru"
+                                ? [{ label: "Naruto", value: "Naruto" }]
+                                : [{ label: "Shikamaru", value: "Shikamaru" }]
                         )
                     }
                 >
@@ -84,6 +84,46 @@ Default.args = {
     ],
     isUpdateField: true,
     isMulti: true,
+};
+
+export const ForbidLastRemove: ComponentStory<typeof InputSelect> = Template.bind({});
+ForbidLastRemove.args = {
+    options: [
+        {
+            label: "Characters From Naruto",
+            options: [
+                { label: "Shikamaru", value: "Shikamaru" },
+                { label: "Naruto", value: "Naruto" },
+                { label: "Sasuke", value: "Sasuke" },
+                { label: "Itachi", value: "Itachi" },
+                { label: "Madara", value: "Madara" },
+            ],
+        },
+        {
+            label: "Villages From Naruto",
+            options: [
+                { label: "Konoha", value: "Konoha" },
+                { label: "Suna", value: "Suna" },
+                { label: "Kumo", value: "Kumo" },
+                { label: "Iwa", value: "Iwa" },
+                { label: "Kiri", value: "Kiri" },
+            ],
+        },
+        {
+            label: "Ninjutsu From Naruto",
+            options: [
+                { label: "Katon", value: "Katon" },
+                { label: "Suiton", value: "Suiton" },
+                { label: "Doton", value: "Doton" },
+                { label: "Futon", value: "Futon" },
+                { label: "Raiton", value: "Raiton" },
+                { label: "Mokuton", value: "Mokuton" },
+            ],
+        },
+    ],
+    isUpdateField: true,
+    isMulti: true,
+    forbidLastRemove: true,
 };
 
 export const Updatable: ComponentStory<typeof InputSelect> = Template.bind({});
