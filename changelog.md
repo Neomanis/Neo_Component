@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.9] 
+ delete helperDateDetail and add formatDateToNowDateLess 
  ### [6.0.8] 
  add a props to forbid last item deletion in a multiple inputSelect 
  ### [6.0.7] 
