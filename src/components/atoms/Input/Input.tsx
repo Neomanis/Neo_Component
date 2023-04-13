@@ -7,6 +7,7 @@ import Icon from "../Icon";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 export interface InputProps {
+    autoComplete?: "on" | "off";
     className?: string;
     clearErrors?: UseFormClearErrors<FieldValues>;
     customValidation?: ReactHookFormCustomValidation<string>;
@@ -41,6 +42,7 @@ export interface InputProps {
 }
 
 const Input = ({
+    autoComplete = "off",
     className,
     clearErrors,
     customValidation,
@@ -149,6 +151,7 @@ const Input = ({
                         {...inputRegister}
                         className={`${inputClassName} w-full`}
                         defaultValue={defaultValue}
+                        autoComplete={autoComplete}
                         disabled={readOnly}
                         onBlur={(e): void => {
                             if (!readOnly) {
