@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.8] 
+ add a props to forbid last item deletion in a multiple inputSelect 
  ### [6.0.7] 
  add autocomplete props on input to hide cache proposition date/text 
  ### [6.0.6] 
