@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.0.7] 
+ add autocomplete props on input to hide cache proposition date/text 
  ### [6.0.6] 
  :adhesive_bandage: removed build minify to fix tailwind falling to detect class in minify build 
  ### [6.0.5] 
