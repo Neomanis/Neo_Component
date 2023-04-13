@@ -119,6 +119,27 @@ export function formatDateToNow(incomingDate: string, lang: string): string {
     return formatedDate;
 }
 
+export function formatDateToNowDateLess(incomingDate: string, lang: string): string {
+    let formatedDate: string;
+    const date = new Date(incomingDate);
+    const myLanguage = i18n.getFixedT(lang);
+    const begin = myLanguage("date.formatDateToNow.begin");
+    const todayT = myLanguage("date.today");
+
+    if (isToday(date)) {
+        formatedDate = `${todayT}`;
+    } else if (isThisWeek(date)) {
+        formatedDate = format(date, "eeee", {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
+    } else {
+        formatedDate = format(date, `${begin}P`, {
+            locale: getDateFnsLocaleFromUserLang(lang),
+        });
+    }
+    return formatedDate;
+}
+
 export function getDateCompletionPercentage(startDate: string, endDate: string): number {
     const start = new Date(startDate).getTime();
     const end = new Date(endDate).getTime();
