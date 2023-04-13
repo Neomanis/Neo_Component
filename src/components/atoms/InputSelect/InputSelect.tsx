@@ -8,6 +8,8 @@ import Select, {
     GroupHeadingProps,
     components,
     FormatOptionLabelMeta,
+    ActionMeta,
+    MultiValueRemoveProps,
 } from "react-select";
 import isEqual from "lodash.isequal";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
@@ -37,6 +39,7 @@ export interface InputSelectProps<Option, IsMulti extends boolean, Group extends
     customStyles?: StylesConfig;
     customValidation?: ReactHookFormCustomValidation<Value<Option, IsMulti>>;
     defaultValue?: Value<Option, IsMulti>;
+    forbidLastRemove?: boolean;
     formatOptionLabel?: (data: Option, formatOptionLabelMeta: FormatOptionLabelMeta<Option>) => ReactNode;
     formMethods: UseFormReturn;
     isMulti?: IsMulti;
@@ -68,6 +71,7 @@ function InputSelect<
     customStyles,
     customValidation,
     defaultValue,
+    forbidLastRemove,
     formatOptionLabel,
     formMethods,
     isMulti,
@@ -103,7 +107,6 @@ function InputSelect<
     });
 
     const isError = Boolean(refForm.split(".").reduce((acc, value) => acc?.[value], errors));
-
     const styles = useMemo((): StylesConfig => {
         const style = {
             ...baseStyles,
@@ -118,6 +121,11 @@ function InputSelect<
         }
         return style;
     }, [readOnly, customStyles]);
+
+    const CustomMultiValueRemove = ({ ...props }: MultiValueRemoveProps) => {
+        if (forbidLastRemove && value.length === 1) return null;
+        return <components.MultiValueRemove {...props} />;
+    };
 
     function isGroupBase(option: unknown): option is GroupBase<Option> {
         return option && typeof option === "object" && Reflect.get(option, "options");
@@ -148,14 +156,17 @@ function InputSelect<
         }
     }
 
-    function handleChange(value: Value<Option, IsMulti>) {
-        onChange(value);
+    function handleChange(val: Value<Option, IsMulti>, actionMeta: ActionMeta<Option>) {
+        if (forbidLastRemove && actionMeta.action === "remove-value" && value.length === 1) {
+            return;
+        }
+        onChange(val);
         if (isUpdateField) {
             timer.current?.clear();
-            if (!isEqual(value, state.previous)) {
-                dispatch({ type: "UPDATING", payload: value });
+            if (!isEqual(val, state.previous)) {
+                dispatch({ type: "UPDATING", payload: val });
                 timer.current = createTimeout(() => {
-                    updateFunction?.(refForm, value);
+                    updateFunction?.(refForm, val);
                     dispatch({ type: "UPDATE_SUCCESS" });
                     timer.current = createTimeout(() => {
                         dispatch({ type: "CLEAR_SUCCESS" });
@@ -210,7 +221,11 @@ function InputSelect<
                 isDisabled={readOnly}
                 className="flex items-center w-full rounded-md text-xs font-bold"
                 closeMenuOnSelect={!isMulti}
-                components={{ GroupHeading: CustomGroupHeading, ...customComponents }}
+                components={{
+                    GroupHeading: CustomGroupHeading,
+                    MultiValueRemove: CustomMultiValueRemove,
+                    ...customComponents,
+                }}
                 formatOptionLabel={formatOptionLabel}
                 isMulti={isMulti}
                 isSearchable={isSearchable}
