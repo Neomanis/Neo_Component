@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
+
 import BubbleChat from "./BubbleChat";
 
 export default {
@@ -8,20 +9,53 @@ export default {
     title: "Atoms/Chat/BubbleChat",
 } as Meta;
 
+function downloadStory(attachmentId: string): void {
+    console.log("download attachement " + attachmentId);
+}
+
+function deleteStory(attachmentId: string): void {
+    console.log("delete attachement " + attachmentId);
+}
+
 const Template: ComponentStory<typeof BubbleChat> = (args) => {
-    return <BubbleChat {...args} />;
+    return (
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-80">
+            <div className="w-full">
+                <BubbleChat {...args} />
+            </div>
+        </div>
+    );
 };
 
 export const Default: ComponentStory<typeof BubbleChat> = Template.bind({});
 Default.args = {
+    attachmentId: "attachment ID",
+    content: "ceci_est_un_jpeg.jpeg",
     bgColor: "bg-neo-bg-B",
-    content: "I am more monster than man.",
+    downloadCallback: downloadStory,
+    deleteCallback: deleteStory,
 };
 
-export const Bot: ComponentStory<typeof BubbleChat> = Template.bind({});
-Bot.args = {
-    border: "border-white",
-    content: "I've been really busy being dead. You know, after you MURDERED ME.",
+export const Readonly: ComponentStory<typeof BubbleChat> = Template.bind({});
+Readonly.args = {
+    attachmentId: "attachment ID",
+    content: "ceci_est_un_jpeg.jpeg",
+    bgColor: "bg-neo-bg-B",
+    downloadCallback: downloadStory,
+    deleteCallback: deleteStory,
+    readOnly: true,
+};
+
+export const Deleted: ComponentStory<typeof BubbleChat> = Template.bind({});
+Deleted.args = {
+    attachmentId: "attachment ID",
+    content: "ceci_est_un_jpeg.jpeg",
+    bgColor: "bg-neo-bg-B",
+    downloadCallback: downloadStory,
+    deleteCallback: deleteStory,
+    deleteDate: "04/14/2023",
+    isValidate: true,
+    readOnly: true,
 };
 
 export const WithLink: ComponentStory<typeof BubbleChat> = Template.bind({});

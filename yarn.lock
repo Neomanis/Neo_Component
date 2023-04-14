@@ -1964,6 +1964,13 @@
     i18next "^21.8.7"
     react-i18next "^11.16.11"
 
+"@neomanis/neo-translation@file:../neomanis-neo-translation-v2.2456763.5.tgz":
+  version "2.2456763.5"
+  resolved "file:../neomanis-neo-translation-v2.2456763.5.tgz#660e63bfacb0ceb834a09c09cf2bf1d7a7a4ef93"
+  dependencies:
+    i18next "^21.8.7"
+    react-i18next "^11.16.11"
+
 "@neomanis/neo-types@4.35.1":
   version "4.35.1"
   resolved "https://nexus.neomanis.bzh/repository/Neomanis-NPM-hosted/@neomanis/neo-types/-/neo-types-4.35.1.tgz#f701a5ef7f63459c892e638cb1979284acf31c52"

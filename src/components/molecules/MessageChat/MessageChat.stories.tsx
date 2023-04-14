@@ -21,7 +21,7 @@ function deleteStory(attachmentId: string): void {
 
 const Template: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-[330px]">
             <MessageChat {...args} isMe={true} isFailed={true} />
             <MessageChat {...args} isMe={false} privateMessage={true} />
             <MessageChat {...args} isMe={true} isLoading={true} isValidate={false} />
@@ -32,7 +32,7 @@ const Template: ComponentStory<typeof MessageChat> = (args) => {
 
 const Template2: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-expanded w-72">
+        <div className="p-4 flex items-center flex-col bg-neo-expandedw-[330px]">
             <MessageChat {...args} name={"It's me"} content={"My interloctor is writting now"} isMe={true} />
             <MessageChat {...args} name={"It's who write"} content={<WritingDots />} isMe={false} />
         </div>
@@ -41,7 +41,7 @@ const Template2: ComponentStory<typeof MessageChat> = (args) => {
 
 const Template3: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-bg-A w-72">
+        <div className="p-4 flex items-center flex-col bg-neo-bg-A w-[330px]">
             <MessageChat
                 {...args}
                 name={"It's me"}
@@ -52,15 +52,20 @@ const Template3: ComponentStory<typeof MessageChat> = (args) => {
             <MessageChat
                 {...args}
                 name={"It's not me"}
-                content={"this_message_is_a_fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.jpeg"}
+                content={
+                    "this_message_is_a_fileeeeeeegk regktrk gktr ekgtr elgtkr egltkr egltkr glkt relgktrel gktrlk egtlrk egltkr eglktre kgtr legkrt keeeeeeeeeeeeeeeeeeeeeeeeee.jpeg"
+                }
                 isMe={false}
                 type={MessageType.ATTACHMENT}
+                deleteDate="04/14/2023"
             />
             <MessageChat
                 {...args}
                 name={"It's me"}
-                content={"send_by_me.jpeg"}
-                isMe={true}
+                content={
+                    "send_by_megfred vkre kvre kzerk ez kre krke zfkr ekzfr kezkf  kgrfke kgfre kgkre kgrek grek zgkre kgrek zgkre kzgr ekzg kregzk rek gzrek.jpeg"
+                }
+                isMe={false}
                 type={MessageType.ATTACHMENT}
             />
             <MessageChat
@@ -77,7 +82,7 @@ const Template3: ComponentStory<typeof MessageChat> = (args) => {
 
 const Template4: ComponentStory<typeof MessageChat> = (args) => {
     return (
-        <div className="p-4 flex items-center flex-col bg-neo-expanded w-full">
+        <div className="p-4 flex items-center flex-col bg-neo-expanded w-[330px]">
             <MessageChat {...args} isMe={true} isFailed={true} />
             <MessageChat {...args} isMe={false} privateMessage={true} />
             <MessageChat {...args} isMe={true} isLoading={true} isValidate={false} />

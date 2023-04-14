@@ -1,15 +1,17 @@
 import React, { ReactElement, useState } from "react";
 import { MessageType } from "@neomanis/neo-types";
 import { classNames as classFunction } from "@/utils";
-import { AttachmentChat, BubbleChat, Icon, Img, Loader } from "@/components/atoms";
+import { BubbleChat, Icon, Img, Loader } from "@/components/atoms";
 import { faCircleExclamation, faLock } from "@fortawesome/free-solid-svg-icons";
 
 export interface MessageChatProps {
     classNames?: { hoverInformations?: string; icon?: string; message?: string };
     content: string | ReactElement;
     date: string;
-    isMe: boolean;
+    deleteDate?: string;
     privateMessage?: boolean;
+    isMe: boolean;
+    avatar?: string | null;
     name: string;
     type: MessageType;
     attachmentId?: string;
@@ -18,7 +20,6 @@ export interface MessageChatProps {
     isFailed?: boolean;
     isValidate?: boolean;
     isLoading?: boolean;
-    avatar?: string | null;
     bubbleChatWidth?: number;
     attachmentReadOnly: boolean;
 }
@@ -35,6 +36,7 @@ const MessageChat = ({
     isFailed,
     isValidate = true,
     isLoading,
+    deleteDate,
     name,
     avatar,
     type,
@@ -62,7 +64,10 @@ const MessageChat = ({
                 data-testid="message-icon-container"
                 className={classFunction(isMe && "flex-row-reverse", "w-full flex items-center")}
             >
-                <div data-testid="message-icon" className={classFunction(classNames?.icon ?? "w-1/6")}>
+                <div
+                    data-testid="message-icon"
+                    className={classFunction(classNames?.icon ?? "w-1/6", deleteDate && "opacity-50")}
+                >
                     {avatar ? (
                         <Img
                             type="imgProfile"
@@ -109,24 +114,18 @@ const MessageChat = ({
                         />
                     )}
                     <div className={classFunction(isLoading && "opacity-50")}>
-                        {type === MessageType["ATTACHMENT"] ? (
-                            <AttachmentChat
-                                attachmentId={attachmentId}
-                                bgColor={isMe && "bg-neo-bg-B"}
-                                border={!isMe && "border-neo-bg-B"}
-                                content={content}
-                                downloadCallback={downloadAttachmentCallback}
-                                deleteCallback={deleteAttachmentCallback}
-                                readOnly={attachmentReadOnly}
-                            />
-                        ) : (
-                            <BubbleChat
-                                bgColor={isMe && "bg-neo-bg-B"}
-                                border={!isMe && "border-neo-bg-B"}
-                                content={content}
-                                isValidate={isValidate}
-                            />
-                        )}
+                        <BubbleChat
+                            attachmentId={attachmentId}
+                            bgColor={isMe && "bg-neo-bg-B"}
+                            border={!isMe && "border-neo-bg-B"}
+                            content={content}
+                            downloadCallback={downloadAttachmentCallback}
+                            deleteCallback={deleteAttachmentCallback}
+                            readOnly={attachmentReadOnly}
+                            deleteDate={deleteDate}
+                            isValidate={isValidate}
+                            type={type}
+                        />
                     </div>
                 </div>
             </div>
