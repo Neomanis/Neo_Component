@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.1.0] 
+ :sparkles: added link and linkify component to parse and show url in text 
  ### [6.0.9] 
  delete helperDateDetail and add formatDateToNowDateLess 
  ### [6.0.8] 
