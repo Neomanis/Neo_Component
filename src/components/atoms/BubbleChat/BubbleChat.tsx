@@ -1,5 +1,6 @@
 import { classNames } from "@/utils/tools";
 import React, { ReactElement } from "react";
+import Linkify from "../Linkify";
 
 export interface BubbleChatProps {
     bgColor?: string;
@@ -10,7 +11,7 @@ export interface BubbleChatProps {
 
 const BubbleChat = ({ bgColor, border, content, isValidate = true }: BubbleChatProps): ReactElement => {
     return (
-        <div
+        <p
             className={classNames(
                 "rounded-md p-2 text-neo-light-grey break-words",
                 bgColor,
@@ -20,8 +21,8 @@ const BubbleChat = ({ bgColor, border, content, isValidate = true }: BubbleChatP
             )}
             data-testid="bubbleChat-body"
         >
-            {content}
-        </div>
+            <Linkify>{content}</Linkify>
+        </p>
     );
 };
 

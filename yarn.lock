@@ -8569,6 +8569,16 @@ linkify-it@^4.0.1:
   dependencies:
     uc.micro "^1.0.1"
 
+linkify-react@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-4.1.1.tgz#79cc29c6e5c0fd660be74a6a51d25c1b36977cf7"
+  integrity sha512-2K9Y1cUdvq40dFWqCJ//X+WP19nlzIVITFGI93RjLnA0M7KbnxQ/ffC3AZIZaEIrLangF9Hjt3i0GQ9/anEG5A==
+
+linkifyjs@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.1.1.tgz#73d427e3bbaaf4ca8e71c589ad4ffda11a9a5fde"
+  integrity sha512-zFN/CTVmbcVef+WaDXT63dNzzkfRBKT1j464NJQkV7iSgJU0sLBus9W0HBwnXK13/hf168pbrx/V/bjEHOXNHA==
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"

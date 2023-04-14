@@ -23,3 +23,10 @@ Bot.args = {
     border: "border-white",
     content: "I've been really busy being dead. You know, after you MURDERED ME.",
 };
+
+export const WithLink: ComponentStory<typeof BubbleChat> = Template.bind({});
+WithLink.args = {
+    bgColor: "bg-neo-bg-B",
+    content:
+        "Regarde cette question : https://mortis.neomanis.bzh/technical-questions/64108b9f45cc87da8ae3a0dc et sinon tu peux toujours google.com",
+};
