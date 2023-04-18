@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.1.2] 
+ :adhesive_bandage: added string type to targetId input props 
  ### [6.1.1] 
  add prop backspaceRemovesValue to fit forbidLastRemove and avoid removing values with keyboard 
  ### [6.1.0] 
