@@ -241,6 +241,7 @@ function InputSelect<
                 id={id}
                 instanceId={id}
                 isClearable={isClearable}
+                backspaceRemovesValue={!forbidLastRemove}
             />
         </div>
     );
