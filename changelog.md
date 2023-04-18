@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.1.1] 
+ add prop backspaceRemovesValue to fit forbidLastRemove and avoid removing values with keyboard 
  ### [6.1.0] 
  :sparkles: added link and linkify component to parse and show url in text 
  ### [6.0.9] 
