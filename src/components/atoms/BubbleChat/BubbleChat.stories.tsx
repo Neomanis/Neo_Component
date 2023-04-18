@@ -3,6 +3,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import BubbleChat from "./BubbleChat";
+import { MessageType } from "@neomanis/neo-types";
 
 export default {
     component: BubbleChat,
@@ -34,6 +35,7 @@ Default.args = {
     bgColor: "bg-neo-bg-B",
     downloadCallback: downloadStory,
     deleteCallback: deleteStory,
+    type: MessageType.MESSAGE,
 };
 
 export const Readonly: ComponentStory<typeof BubbleChat> = Template.bind({});
@@ -44,6 +46,7 @@ Readonly.args = {
     downloadCallback: downloadStory,
     deleteCallback: deleteStory,
     readOnly: true,
+    type: MessageType.ATTACHMENT,
 };
 
 export const Deleted: ComponentStory<typeof BubbleChat> = Template.bind({});
@@ -56,6 +59,18 @@ Deleted.args = {
     deleteDate: "04/14/2023",
     isValidate: true,
     readOnly: true,
+    type: MessageType.ATTACHMENT,
+};
+
+export const Attachment: ComponentStory<typeof BubbleChat> = Template.bind({});
+Attachment.args = {
+    attachmentId: "attachment ID",
+    content: "ceci_est_un_jpegtrestresloooonnnnng.jpeg",
+    bgColor: "bg-neo-bg-B",
+    downloadCallback: downloadStory,
+    deleteCallback: deleteStory,
+    readOnly: false,
+    type: MessageType.ATTACHMENT,
 };
 
 export const WithLink: ComponentStory<typeof BubbleChat> = Template.bind({});

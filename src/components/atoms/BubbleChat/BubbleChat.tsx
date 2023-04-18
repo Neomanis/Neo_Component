@@ -39,76 +39,84 @@ const BubbleChat = ({
 
     const readOnlyOrDelete = useMemo(() => Boolean(readOnly || deleteDate), [readOnly]);
 
-    return (
-        <div data-testid="attachmentChat-body">
-            {!openValidationCard ? (
-                <div
-                    data-testid="on-click-download"
-                    className={classNames(
-                        "flex items-center justify-between rounded-md p-2 relative",
-                        bgColor,
+    if (openValidationCard) {
+        return (
+            <ValidationCard
+                classNames={{
+                    container: classNames(
+                        "flex items-center justify-between rounded-md py-2 px-4 relative",
                         border,
                         border && "border-2",
-                        !isValidate && "opacity-50",
-                        deleteDate && "opacity-50",
-                        !deleteDate && "group",
-                        "flex items-center",
-                        type === MessageType.ATTACHMENT && !deleteDate && "cursor-pointer"
-                    )}
-                    onClick={() => !deleteDate && attachmentId && downloadCallback(attachmentId)}
+                        bgColor
+                    ),
+                    buttonContainer: "flex gap-2",
+                    text: "text-white",
+                }}
+                fCallBackCancel={() => setOpenValidationCard(false)}
+                fCallBackValidate={() => {
+                    setOpenValidationCard(false);
+                    attachmentId && deleteCallback(attachmentId);
+                }}
+                text={`${t("global.deleteThis")} ${t("ticket.attachment", { count: 1 }).toLocaleLowerCase()} ?`}
+                id="delete-button"
+            />
+        );
+    }
+    return (
+        <div
+            data-testid="bubbleChat-body"
+            className={classNames(
+                "flex items-center justify-between rounded-md p-2 relative",
+                bgColor,
+                border,
+                border && "border-2",
+                !isValidate && "opacity-50",
+                deleteDate && "opacity-50",
+                type === MessageType.ATTACHMENT && !deleteDate && "cursor-pointer"
+            )}
+        >
+            <div
+                data-testid="on-click-download"
+                className={classNames(
+                    "flex items-center",
+                    type === MessageType.ATTACHMENT ? (!readOnlyOrDelete ? "w-[90%]" : "w-full") : "w-full",
+                    !deleteDate && "group"
+                )}
+                onClick={() => !deleteDate && attachmentId && downloadCallback(attachmentId)}
+            >
+                {type === MessageType.ATTACHMENT && (
+                    <FontAwesomeIcon
+                        icon={!deleteDate ? faFileDownload : faFileCircleXmark}
+                        className="text-neo-link text-2xl group-hover:text-neo-blue transition-all opacity-50 group-hover:opacity-100 w-[10%]"
+                    />
+                )}
+                <div
+                    data-testid="bubbleChat-content"
+                    className={classNames(type === MessageType.ATTACHMENT ? "w-[90%]" : "w-full")}
                 >
-                    {type === MessageType.ATTACHMENT && (
-                        <FontAwesomeIcon
-                            icon={!deleteDate ? faFileDownload : faFileCircleXmark}
-                            className="text-neo-link text-2xl group-hover:text-neo-blue transition-all opacity-50 group-hover:opacity-100 w-[10%]"
-                        />
+                    {deleteDate && (
+                        <div className="text-xxs text-neo-blue font-bold px-2">
+                            <Title type="h2" data={t("ticket.attachmentDeleted")} />
+                            <p data-testid="bubbleChat-deleteDate">{formatDateToNow(deleteDate, i18n.language)}</p>
+                        </div>
                     )}
-                    <div
-                        className={classNames(
-                            type === MessageType.ATTACHMENT ? (!readOnlyOrDelete ? "w-[80%]" : "w-[90%]") : "w-full"
-                        )}
-                    >
-                        {deleteDate && (
-                            <div className="text-xxs text-neo-blue font-bold px-2">
-                                <Title type="h2" data={t("ticket.attachmentDeleted")} />
-                                <p>{formatDateToNow(deleteDate, i18n.language)}</p>
-                            </div>
-                        )}
-                        <p className={classNames("text-white break-words transition-all px-2")}>
-                            <Linkify>{content}</Linkify>
-                        </p>
-                    </div>
-                    {type === MessageType.ATTACHMENT && !readOnlyOrDelete && (
-                        <IconTrash
-                            data-testid="attachment-chat-delete-icon"
-                            className="fill-neo-link hover:fill-neo-red cursor-pointer transition-all opacity-50 hover:opacity-100 w-[8%]"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setOpenValidationCard(true);
-                            }}
-                        />
-                    )}
+                    <p className={classNames("text-white break-words transition-all px-2")}>
+                        <Linkify>{content}</Linkify>
+                    </p>
                 </div>
-            ) : (
-                <ValidationCard
-                    classNames={{
-                        container: classNames(
-                            "flex items-center justify-between rounded-md py-2 px-4 relative",
-                            border,
-                            border && "border-2",
-                            bgColor
-                        ),
-                        buttonContainer: "flex gap-2",
-                        text: "text-white",
-                    }}
-                    fCallBackCancel={() => setOpenValidationCard(false)}
-                    fCallBackValidate={() => {
-                        setOpenValidationCard(false);
-                        attachmentId && deleteCallback(attachmentId);
-                    }}
-                    text={`${t("global.deleteThis")} ${t("ticket.attachment", { count: 1 }).toLocaleLowerCase()} ?`}
-                    id="delete-button"
-                />
+            </div>
+
+            {type === MessageType.ATTACHMENT && !readOnlyOrDelete && (
+                <div className="w-[10%]">
+                    <IconTrash
+                        data-testid="attachment-chat-delete-icon"
+                        className="fill-neo-link hover:fill-neo-red cursor-pointer transition-all opacity-50 hover:opacity-100 max-w-[20px] mx-auto"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenValidationCard(true);
+                        }}
+                    />
+                </div>
             )}
         </div>
     );
