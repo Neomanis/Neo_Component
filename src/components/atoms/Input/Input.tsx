@@ -35,7 +35,7 @@ export interface InputProps {
     setValue?: UseFormSetValue<FieldValues>;
     showLabelAndUpdater?: boolean;
     style?: React.CSSProperties;
-    targetId?: number | undefined;
+    targetId?: string | number | undefined;
     timerSetting?: number;
     typeInput: string;
     updateFunction?: (refForm: string, value: string) => void;
