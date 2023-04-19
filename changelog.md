@@ -1,5 +1,16 @@
 # Changelog 
 
+ ### [6.2.0] 
+ Merge bubbleChat and attachmentMessage, add deleteDate for deleted attachment, fix css and tests
+
+*Chat in NeoServer*
+![image](/attachments/75136118-1b5f-45d4-ba46-291df1235b10)
+
+*Chat in NeoHelperWeb*
+![image](/attachments/d46c0e3d-09ca-4507-b9d8-1fe65332c882)
+
+*Chat in NeoHelper*
+![image](/attachments/4df403da-58cd-40c5-9073-4634aa7ca9a2) 
  ### [6.1.2] 
  :adhesive_bandage: added string type to targetId input props 
  ### [6.1.1] 
