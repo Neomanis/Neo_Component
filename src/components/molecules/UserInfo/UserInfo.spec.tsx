@@ -1,11 +1,11 @@
 import React from "react";
 import { test, expect } from "@playwright/experimental-ct-react";
-import { CompleteUser } from "@neomanis/neo-types";
+import { NeomanisUser } from "@neomanis/neo-types";
 import UserInfo from "./UserInfo";
 
 test.use({ viewport: { width: 500, height: 500 } });
 
-const defaultUser: CompleteUser = {
+const defaultUser: NeomanisUser = {
     uid: "ttest",
     firstname: "Tech",
     lastname: "Test",
@@ -16,18 +16,17 @@ const defaultUser: CompleteUser = {
     dn: "dn",
     level: 1,
     xmpp: {},
-    timezone: null,
+    permissions: [],
     membership: {
         entities: [],
         groups: [],
     },
-    isActive: true,
 };
 
 const defaultEmptyUser = {
     uid: "ttest",
     language: "fr-FR",
-} as CompleteUser;
+} as NeomanisUser;
 
 test("should be visible and display content props value", async ({ mount }) => {
     const component = await mount(<UserInfo user={defaultUser} setShowAvatarEditor={() => {}} />);

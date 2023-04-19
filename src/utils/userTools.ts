@@ -1,18 +1,18 @@
-import { Ticket, NeoUser, MembershipInfo } from "@neomanis/neo-types";
+import { Ticket, MembershipInfo, NeomanisUser } from "@neomanis/neo-types";
 
 interface GetActorNameParams {
     ticket: Ticket;
-    itsmUsers: NeoUser[];
+    users: NeomanisUser[];
     itsmGroups: MembershipInfo[];
     type: "Requester" | "Watcher" | "AssignedTo";
 }
 
-export function getActorName({ ticket, itsmUsers, itsmGroups, type }: GetActorNameParams): string | undefined {
+export function getActorName({ ticket, users, itsmGroups, type }: GetActorNameParams): string | undefined {
     const userNeoId = ticket[`user${type}`][0];
     const group = ticket[`group${type}`][0];
 
     if (userNeoId) {
-        const user = itsmUsers.find((user) => user.neoId === userNeoId);
+        const user = users.find((user) => user.neoId === userNeoId);
         return user ? getUserName(user) : undefined;
     }
 
@@ -25,15 +25,17 @@ export function getActorName({ ticket, itsmUsers, itsmGroups, type }: GetActorNa
     return undefined;
 }
 
-export function getUserName(user: NeoUser): string {
-    return user.firstname && user.realname
-        ? `${user.firstname} ${user.realname}`
-        : user.realname || user.firstname || user.name;
+export function getUserName(user: NeomanisUser): string {
+    if (user.firstname && user.lastname) {
+        return `${user.firstname} ${user.lastname}`;
+    }
+
+    return user.lastname || user.firstname || user.uid;
 }
 
 export function getRequesterUid(
     ticket: Ticket,
-    itsmUsers: NeoUser[],
+    itsmUsers: NeomanisUser[],
     itsmGroups: MembershipInfo[] | undefined = undefined
 ): string | undefined {
     const userNeoId = ticket.userRequester[0];
@@ -47,5 +49,6 @@ export function getRequesterUid(
     }
 
     const user = itsmUsers.find((user) => user.neoId === userNeoId);
-    return user?.name;
+
+    return user?.uid;
 }

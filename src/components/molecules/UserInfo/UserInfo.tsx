@@ -1,6 +1,6 @@
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import { useTranslation } from "@neomanis/neo-translation";
-import { Role, CompleteUser } from "@neomanis/neo-types";
+import { Role, NeomanisUser } from "@neomanis/neo-types";
 import { DefaultUserPicture } from "@/img/png";
 import { IconAdd } from "@/img/svg";
 import NeoColors from "@/utils/neoColors";
@@ -12,7 +12,7 @@ export interface UserInfoProps {
     nameClassName?: string;
     roleClassName?: string;
     setShowAvatarEditor: Dispatch<SetStateAction<boolean>>;
-    user: CompleteUser;
+    user: NeomanisUser;
 }
 
 const UserInfo = ({

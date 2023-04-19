@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentStory, Meta } from "@storybook/react";
 
 import UserInfo from "./UserInfo";
-import { Role } from "@neomanis/neo-types";
+import { NeomanisUser, Role } from "@neomanis/neo-types";
 
 export default {
     component: UserInfo,
@@ -14,7 +14,7 @@ const Template: ComponentStory<typeof UserInfo> = (args) => {
     return <UserInfo {...args} />;
 };
 
-const userTest = {
+const userTest: NeomanisUser = {
     uid: "ttest",
     firstname: "Tech",
     lastname: "Test",
@@ -23,16 +23,14 @@ const userTest = {
     // will work only with you avatar url
     avatar: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAKlBMVEUAAAAAAAApKSlBQUpiMQhzc4OcUgDFIBjelADmWkH2vSD25lL/9qT////Vai+KAAAAAXRSTlMAQObYZgAAAdlJREFUWMPtlsFqwkAQhjclhB6ztRRReqiHXnoSbz0piLX2JcwliD6A0JsgEuoDlNJTQKzsnkJpSDN9A3PpG3U2ST12J4dCKftjNML/MTObndkwZmRkZPTX5Vb0Wxe/DrQq5nRSHehWBK4PQKtFAWpiU9wctTodygI0SsCZQqfTJgK+P3ZmgAClfltsJ9k+Qf8bKQACQZZlgHptqwC+lhh+ZNleAVz5HRjrAEwGUi4Tr/wX61JaSMzm8wrygo9BD5wjENVKYI3hNDnZbRiqlHJfAHrAuVQmeH9eqooJwB3AABN5egyL+rVF3MrldDtJ5/OwDKADbkSuHJAVgJf7kE1FTmg2lCNKheoOCa7froU2OSo5owLSHeG33s+aJQCuTfKzJhQBsNjRlpEAJHZSrY4tKBNkHeNSqk3XZXUKYEFSApH18D1BfgYAmwZ7CKJhsOsRgHUB7CAMgj5lGM9AIfgJ6wtGA2Ko45UK7lPmUjPGmRThlQr3zCMAM/BxhXz1MLhPAKyiBwCkEH2PkJIlCn+apiKklGDlPQBCYoSQdKBMxUG0o6hx8O9oh53VEAHnqndIj42x/kotpjWYrGgB7Djp5c6R8GgR+Gn5G0cVXwl41bcUIyMjo/+qLw92FGczGN4XAAAAAElFTkSuQmCC",
     dn: "dn",
-    isActive: true,
     level: 1,
     membership: {
         entities: [],
         groups: [],
     },
     neoId: 1,
-    timezone: null,
     xmpp: {},
-    title: "totle",
+    permissions: [],
 };
 
 export const Default: ComponentStory<typeof UserInfo> = Template.bind({});

@@ -1,4 +1,4 @@
-import { NeoUser, Notification, Ticket, MembershipInfo, CompleteUser } from "@neomanis/neo-types";
+import { NeomanisUser, Notification, Ticket, MembershipInfo } from "@neomanis/neo-types";
 import { addHours, addMinutes } from "date-fns";
 
 export const fakeTicket: Ticket = {
@@ -60,55 +60,63 @@ export const fakeTicket: Ticket = {
     attachments: [],
 };
 
-export const fakeUsers: NeoUser[] = [
+export const fakeUsers: NeomanisUser[] = [
     {
         firstname: "Unicorn",
-        realname: "Pichon",
-        name: "uPichon",
+        lastname: "Pichon",
+        uid: "uPichon",
         dn: "dn1",
-        isActive: true,
         language: "fr_FR",
         neoId: 1,
+        mail: "unicorn.pichon@gmail.com",
+        avatar: undefined,
+        xmpp: {},
+        role: "user",
+        permissions: [],
         membership: { entities: [], groups: [] },
-        timezone: null,
     },
     {
         firstname: "Platypus",
-        realname: null,
-        name: "uCollins",
-        isActive: true,
+        lastname: null,
+        uid: "uCollins",
         dn: "dn2",
         language: "fr_FR",
         neoId: 1,
+        mail: "platypus.collins@gmail.com",
+        avatar: undefined,
+        xmpp: {},
+        role: "user",
+        permissions: [],
         membership: { entities: [], groups: [] },
-        timezone: null,
     },
     {
         firstname: "Beluga",
-        realname: "Rotarez",
-        name: "uRotarez",
-        isActive: true,
+        lastname: "Rotarez",
+        uid: "uRotarez",
         dn: "dn2",
         language: "fr_FR",
         neoId: 1,
+        mail: "beluga.rotarez@gmail.com",
+        avatar: undefined,
+        xmpp: {},
+        role: "user",
+        permissions: [],
         membership: { entities: [], groups: [] },
-        timezone: null,
     },
 ];
 
-export const fakeUser: CompleteUser = {
+export const fakeUser: NeomanisUser = {
     neoId: 1,
     dn: "dc=neomanis,dc=bzh",
     uid: "atest",
     firstname: "Admin",
     lastname: "Test",
-    title: "Administrateur",
     role: "administrator",
     level: 0,
     avatar: "_118283913_29xp-meme-mobilemasterat3x-v3.jpg",
     xmpp: {},
     language: "fr-FR",
-    timezone: null,
+    permissions: [],
     membership: {
         entities: [
             {
@@ -165,10 +173,7 @@ export const fakeUser: CompleteUser = {
             },
         ],
     },
-    isActive: true,
 };
-
-fakeUsers[1].realname;
 
 export const fakeGroups: MembershipInfo[] = [
     { id: 1, name: "gojira", itsmCode: "go1" },
