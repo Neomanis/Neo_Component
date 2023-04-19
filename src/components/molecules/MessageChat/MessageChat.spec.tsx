@@ -40,7 +40,7 @@ test("should have right properties if isNotMe", async ({ mount }) => {
 
     await expect(component.locator('[data-testid="message-hover-information"]')).not.toHaveClass(/flex-flow-reverse/);
     await expect(component.locator('[data-testid="message-icon-container"]')).not.toHaveClass(/flex-flow-reverse/);
-    await expect(component.locator('[data-testid="attachment-content"]')).toHaveClass(/border-neo-bg-B/);
+    await expect(component.locator('[data-testid="bubbleChat-body"]')).toHaveClass(/border-neo-bg-B/);
 });
 
 test("should get classNames", async ({ mount }) => {
@@ -124,24 +124,30 @@ test("should launch callback", async ({ mount }) => {
 
     const component = await mount(
         <MessageChat
+            attachmentId="12"
             content="Burudōzā o yatta!"
             date="21:12"
             isMe
             name="Jiro"
             type={MessageType.ATTACHMENT}
-            downloadAttachmentCallback={() => (downloadClicked = true)}
-            deleteAttachmentCallback={() => (deleteClicked = true)}
+            downloadAttachmentCallback={() => {
+                downloadClicked = true;
+            }}
+            deleteAttachmentCallback={() => {
+                deleteClicked = true;
+            }}
             attachmentReadOnly={false}
         />
     );
 
     await component.locator('[data-testid="on-click-download"]').click();
-    expect(downloadClicked).toBe(true);
+    expect(downloadClicked).toBeTruthy();
 
     await component.locator('[data-testid="attachment-chat-delete-icon"]').click();
     await expect(component.locator('[data-testid="validation-card-container"]')).toBeVisible();
+
     await component.locator('[data-testid="on-click-validate"]').click();
-    expect(deleteClicked).toBe(true);
+    expect(deleteClicked).toBeTruthy();
 });
 
 test("should have correct default sizing", async ({ mount }) => {
