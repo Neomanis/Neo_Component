@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.3.0] 
+ update props InputTextArea and label css 
  ### [6.2.1] 
  add data attribute to ticket with opacified state 
  ### [6.2.0] 
