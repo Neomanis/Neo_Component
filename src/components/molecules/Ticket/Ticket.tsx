@@ -118,6 +118,7 @@ const Ticket = ({
             data-ticket-status={getStatusDataAttribute(ticket.status)}
             data-ticket-category={ticket.category?.toLowerCase() ?? "no-category"}
             data-ticket-type={TicketTypeTrigram[ticket.type]}
+            data-ticket-disabled={opacified}
         >
             <div className="absolute w-full" style={{ zIndex: 3 }}>
                 {checkIsWatcher() && (
