@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.2.1] 
+ add data attribute to ticket with opacified state 
  ### [6.2.0] 
  Merge bubbleChat and attachmentMessage, add deleteDate for deleted attachment, fix css and tests
 
