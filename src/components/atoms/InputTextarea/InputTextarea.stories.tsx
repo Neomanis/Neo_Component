@@ -11,24 +11,18 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof InputTextarea> = (args) => {
-    const {
-        setValue,
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({ mode: "onChange" });
+    const formMethods = useForm({ mode: "onChange" });
 
     const onSubmit: SubmitHandler<unknown> = async (data) => {
         console.log(data);
     };
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="bg-neo-bg-A p-4 h-96">
+        <form onSubmit={formMethods.handleSubmit(onSubmit)} className="bg-neo-bg-A p-4 h-40">
             <InputTextarea
                 {...args}
-                setValue={setValue}
-                register={register}
+                formMethods={formMethods}
                 refForm="exemple"
-                isError={errors?.exemple && true}
+                isError={formMethods.formState.errors?.exemple && true}
             />
         </form>
     );
@@ -39,7 +33,9 @@ Default.args = {
     placeholder: "Exemple",
     required: true,
     errorMessage: "No text !",
-
+    label: "label test",
     readOnly: false,
+    isUpdateField: true,
+    defaultValue: "test value",
     updateFunction: (refForm, value) => console.log(refForm, value),
 };

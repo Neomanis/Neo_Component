@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactElement, useEffect, useRef } from "react";
-import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
 import Updater from "../Updater";
@@ -19,9 +19,8 @@ export interface InputTextareaProps {
     placeholder?: string;
     readOnly?: boolean;
     refForm: string;
-    register?: UseFormRegister<FieldValues>;
     required?: boolean;
-    setValue?: UseFormSetValue<FieldValues>;
+    formMethods: UseFormReturn;
     targetId?: string | number | undefined;
     timerSetting?: number;
     updateFunction?: (refForm: string, value: string) => void;
@@ -39,9 +38,8 @@ const InputTextarea = ({
     placeholder,
     readOnly = false,
     refForm,
-    register,
     required,
-    setValue,
+    formMethods,
     targetId,
     timerSetting = 5000,
     updateFunction,
@@ -50,12 +48,13 @@ const InputTextarea = ({
     const [state, dispatch] = useInputs(defaultValue);
     const isLastMount = useRef(false);
 
-    const inputRegister =
-        register && register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
+    const { setValue, register } = formMethods;
+
+    const inputRegister = register(refForm, { required: required && errorMessage, validate: { ...customValidation } });
 
     useEffect(() => {
         dispatch({ type: "RESET", payload: defaultValue });
-        setValue && setValue(refForm, defaultValue);
+        setValue(refForm, defaultValue);
         return () => {
             isLastMount.current = true;
         };
@@ -84,10 +83,13 @@ const InputTextarea = ({
     }, [state.updated, state.previous]);
 
     return (
-        <label className="relative w-full h-full group" data-testid="inputTextarea-body">
-            <div className={classNames((isUpdateField || label) && "h-6 mb-2", "flex justify-between items-center")}>
+        <div className="relative h-full group grid grid-rows-[auto_minmax(0,1fr)]" data-testid="inputTextarea-body">
+            <label
+                htmlFor={refForm}
+                className={classNames((isUpdateField || label) && "h-6", "flex justify-between items-center")}
+            >
                 <div className="flex">
-                    {label && <p className="font-bold text-neo-blue-secondary text-sm">{label}</p>}
+                    {label && <p className="font-bold text-neo-blue-secondary text-xs ml-3">{label}</p>}
                     {isUpdateField && (
                         <Icon
                             fontIcon={faPenToSquare}
@@ -102,7 +104,7 @@ const InputTextarea = ({
                         isError={isError}
                         isSuccess={state.isSuccess}
                         fCallBackCancel={(): void => {
-                            if (setValue && state.previous) {
+                            if (state.previous) {
                                 setValue(refForm, state.previous);
                             }
                             if (state.timeoutId) {
@@ -116,15 +118,12 @@ const InputTextarea = ({
                         id={props.id}
                     />
                 )}
-            </div>
+            </label>
             <textarea
                 autoComplete={autoComplete}
                 disabled={readOnly}
                 {...inputRegister}
-                className={classNames(
-                    "bg-neo-bg-B rounded px-3 py-1 text-white w-full overflow-y-scroll custom-scroll scroll-B resize-none outline-none no-scrollbar",
-                    isUpdateField || label ? "h-[90%]" : "h-full"
-                )}
+                className="bg-neo-bg-B rounded px-3 py-1 text-white w-full overflow-y-scroll custom-scroll scroll-B resize-none outline-none no-scrollbar h-full"
                 defaultValue={defaultValue}
                 onBlur={(e): void => {
                     if (!readOnly) {
@@ -154,8 +153,9 @@ const InputTextarea = ({
                 }}
                 placeholder={placeholder}
                 {...props}
+                id={refForm}
             ></textarea>
-        </label>
+        </div>
     );
 };
 

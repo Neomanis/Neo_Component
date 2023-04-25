@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import InputTextarea from "./InputTextarea";
 
 const InputTextAreaWrapper = (): ReactElement => {
-    const { setValue, register } = useForm();
-    return <InputTextarea refForm="inputSelect" setValue={setValue} register={register} />;
+    const formMethods = useForm();
+    return <InputTextarea refForm="inputSelect" formMethods={formMethods} />;
 };
 
 export default InputTextAreaWrapper;
