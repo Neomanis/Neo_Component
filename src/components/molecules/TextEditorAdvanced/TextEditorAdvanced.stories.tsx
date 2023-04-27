@@ -18,7 +18,8 @@ const Template: ComponentStory<typeof TextEditorAdvanced> = (args) => {
     };
     return (
         <form onSubmit={formMethods.handleSubmit(onSubmit)} className="w-full">
-            <TextEditorAdvanced {...args} formMethods={formMethods} refForm="desc" required />
+            <button>yolo</button>
+            <TextEditorAdvanced {...args} formMethods={formMethods} refForm="desc" required previewOnly />
         </form>
     );
 };
