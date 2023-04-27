@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.4.0] 
+ :sparkles: added new button filter 
  ### [6.3.0] 
  update props InputTextArea and label css 
  ### [6.2.1] 
