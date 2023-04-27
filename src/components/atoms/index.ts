@@ -33,3 +33,4 @@ export { default as TQFilterButton } from "./TQFilterButton";
 export { default as UploadProgress } from "./UploadProgress";
 export { default as Linkify } from "./Linkify";
 export { default as Link } from "./Link";
+export { default as ButtonFilter } from "./ButtonFilter";
