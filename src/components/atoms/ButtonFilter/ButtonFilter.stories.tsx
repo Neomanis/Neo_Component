@@ -6,7 +6,7 @@ import ButtonFilter from "./ButtonFilter";
 
 export default {
     component: ButtonFilter,
-    title: "ButtonFilter",
+    title: "Atoms/ButtonFilter",
 } as Meta;
 
 const Template: ComponentStory<typeof ButtonFilter> = () => {
