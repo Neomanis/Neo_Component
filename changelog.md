@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.5.0] 
+ :recycle: implemented neomanis user interface 
  ### [6.4.0] 
  :sparkles: added new button filter 
  ### [6.3.0] 
