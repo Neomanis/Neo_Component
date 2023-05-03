@@ -4,6 +4,5 @@
         "[a-zA-Z0-9]*ClassName={`([^`]*)`}",
         ["@tw([^;]*);", "\"(.*)\""]
     ],
-    "tailwindCSS.lint.cssConflict": "ignore",
-    "svg.preview.background": "transparent"
+    "tailwindCSS.lint.cssConflict": "ignore"
 }

@@ -1,20 +1,12 @@
 import { ReactComponent as CautionLogo } from "./nm_ico_caution.svg";
 import { ReactComponent as CautionLogoFull } from "./nm_ico_caution_full.svg";
-import { ReactComponent as CautionLogoFullInvert } from "./nm_ico_caution_full_invert.svg";
 import { ReactComponent as ChatLogo } from "./nm_ico_chat.svg";
 import { ReactComponent as ClockLogo } from "./nm_ico_time.svg";
 import { ReactComponent as CloseLogo } from "./nm_ico_close.svg";
-import { ReactComponent as DiagLogo } from "./nm_ico_systemdiag.svg";
-import { ReactComponent as ExpandLogo } from "./nm_ico_expand.svg";
-import { ReactComponent as HexagonLine } from "./nm_design_hexagon_line.svg";
-import { ReactComponent as HexagonLineAdd } from "./nm_design_hexagon_line_add.svg";
 import { ReactComponent as HexagonResources } from "./nm_ico_hexagon_resources.svg";
-import { ReactComponent as HexagonRotate } from "./nm_design_kb_bg.svg";
-import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
 import { ReactComponent as IconAdd2 } from "./nm_ico_add_2.svg";
 import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.svg";
-import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
 import { ReactComponent as IconArrow } from "./nm_ico_arrow.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
@@ -30,51 +22,33 @@ import { ReactComponent as IconChapterConfirmation } from "./nm_ico_chapter_conf
 import { ReactComponent as IconChapterExit } from "./nm_ico_chapter_exit.svg";
 import { ReactComponent as IconChapterNotification } from "./nm_ico_chapter_notifications.svg";
 import { ReactComponent as IconChapterScript } from "./nm_ico_chapter_script.svg";
-import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCircleCheck } from "./nm_ico_circle_check.svg";
-import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
-<<<<<<< HEAD
 import { ReactComponent as IconCodeFile } from "./nm_ico_code_file.svg";
-=======
 import { ReactComponent as IconColumn } from "./nm_ico_column.svg";
->>>>>>> 6bbf1fb (create slider component to allow outside scroll control)
 import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
-import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
-import { ReactComponent as IconDiagtoolBox } from "./nm_ico_diagtoolbox.svg";
 import { ReactComponent as IconDownload } from "./nm_ico_download.svg";
-import { ReactComponent as IconEmptystar } from "./nm_ico_rating_emptystar.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
-import { ReactComponent as IconHalfStar } from "./nm_ico_rating_halfstar.svg";
 import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.svg";
-import { ReactComponent as IconHeadphones } from "./nm_ico_headphones.svg";
 import { ReactComponent as IconInbox } from "./nm_ico_inbox.svg";
 import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
 import { ReactComponent as IconInfoTooltip } from "./nm_ico_info_tooltip.svg";
 import { ReactComponent as IconInventory } from "./nm_ico_inventory.svg";
-import { ReactComponent as IconInvoice } from "./invoice-ticket-svgrepo-com.svg";
-import { ReactComponent as IconKbOff } from "./nm_ico_kb_off.svg";
-import { ReactComponent as IconKbOn } from "./nm_ico_kb_on.svg";
 import { ReactComponent as IconKey } from "./nm_ico_key.svg";
 import { ReactComponent as IconLicenses } from "./nm_ico_licenses.svg";
 import { ReactComponent as IconLock } from "./nm_ico_lock.svg";
 import { ReactComponent as IconLockOpen } from "./nm_ico_lock_open.svg";
-import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
-import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
 import { ReactComponent as IconMinus } from "./nm_ico_minus.svg";
 import { ReactComponent as IconNotFound } from "./nm_ico_not_found.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
-import { ReactComponent as IconOther } from "./nm_ico_other.svg";
-import { ReactComponent as IconPrinter } from "./nm_ico_printer.svg";
 import { ReactComponent as IconProblemes } from "./nm_ico_problemes.svg";
 import { ReactComponent as IconRemoteControl } from "./nm_ico_remotecontrol.svg";
 import { ReactComponent as IconRemoteShell } from "./nm_ico_remoteshell.svg";
 import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
-import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
 import { ReactComponent as IconSave } from "./nm_ico_save.svg";
 import { ReactComponent as IconScissors } from "./nm_ico_scissors.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
@@ -82,9 +56,6 @@ import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
 import { ReactComponent as IconSquareChat } from "./nm_ico_square_chat.svg";
 import { ReactComponent as IconSquareClose } from "./nm_ico_square_close.svg";
 import { ReactComponent as IconStatistics } from "./nm_ico_statistics.svg";
-import { ReactComponent as IconStatusBar } from "./nm_ico_statusbar_long.svg";
-import { ReactComponent as IconStatusBarShort } from "./nm_ico_statusbar_short.svg";
-import { ReactComponent as IconSystemStatus } from "./nm_ico_systemstatus.svg";
 import { ReactComponent as IconTeam } from "./nm_ico_team.svg";
 import { ReactComponent as IconTeamList } from "./nm_ico_team_list.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
@@ -99,15 +70,8 @@ import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
 import { ReactComponent as IconTrashBin } from "./nm_ico_trash_bin.svg";
 import { ReactComponent as IconUpload } from "./nm_ico_upload.svg";
 import { ReactComponent as IconUser } from "./nm_ico_user.svg";
-import { ReactComponent as IconWatcher } from "./nm_ico_watcher.svg";
-import { ReactComponent as IconWatcherBg } from "./nm_ico_watcher_bg.svg";
 import { ReactComponent as IconWatcherBlue } from "./nm_ico_watcher_blue.svg";
 import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_texte.svg";
-import { ReactComponent as LogoBlancSvg } from "./nm_logo_couleur_blanc.svg";
-import { ReactComponent as LogoBleuNoText } from "./nm_logo_couleur_bleu_sans_texte.svg";
-import { ReactComponent as LogoBLeuSvg } from "./nm_logo_couleur_bleu.svg";
-import { ReactComponent as LogoMonoBlanc } from "./nm_logo_mono_blanc.svg";
-import { ReactComponent as LogoMonoNoir } from "./nm_logo_mono_noir.svg";
 import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
 import { ReactComponent as LogoWithText } from "./nm_logo_couleur_texte.svg";
 import { ReactComponent as NeoLogo } from "./nm_logo_couleur_blanc_toast.svg";
@@ -116,31 +80,20 @@ import { ReactComponent as OfficeBuilding } from "./nm_ico_office_building.svg";
 import { ReactComponent as SquareCross } from "./nm_ico_square_cross.svg";
 import { ReactComponent as StatusContainer } from "./nm_status_container.svg";
 import { ReactComponent as TabLogo } from "./nm_ico_popup.svg";
-import { ReactComponent as TicketBottom } from "./nm_design_ticket_bottom.svg";
-import { ReactComponent as TicketCenter } from "./nm_design_ticket_center.svg";
 import { ReactComponent as TicketLogo } from "./nm_ico_ticket_normal.svg";
 import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
 import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
-import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
 import { ReactComponent as Triangle } from "./nm_ico_triangle.svg";
 export {
     CautionLogo,
     CautionLogoFull,
-    CautionLogoFullInvert,
     ChatLogo,
     ClockLogo,
     CloseLogo,
-    DiagLogo,
-    ExpandLogo,
-    HexagonLine,
-    HexagonLineAdd,
     HexagonResources,
-    HexagonRotate,
-    HexagonShape,
     IconAdd,
     IconAdd2,
     IconAdvancedSearch,
-    IconAgent,
     IconArrow,
     IconArrowLeft,
     IconArrowLogin,
@@ -156,51 +109,33 @@ export {
     IconChapterExit,
     IconChapterNotification,
     IconChapterScript,
-    IconChartPie,
     IconCheck,
     IconChevron,
     IconCircleCheck,
-    IconCloud,
-<<<<<<< HEAD
     IconCodeFile,
-=======
     IconColumn,
->>>>>>> 6bbf1fb (create slider component to allow outside scroll control)
     IconComputer,
-    IconConsole,
     IconDashboard,
-    IconDiagtoolBox,
     IconDownload,
-    IconEmptystar,
     IconFlow,
     IconFullStar,
-    IconHalfStar,
     IconHardwareSystem,
-    IconHeadphones,
     IconInbox,
     IconInfo,
     IconInfoTooltip,
     IconInventory,
-    IconInvoice,
-    IconKbOff,
-    IconKbOn,
     IconKey,
     IconLicenses,
     IconLock,
     IconLockOpen,
-    IconLogin,
-    IconLogout,
     IconMaintenance,
     IconMinus,
     IconNotFound,
     IconNotification,
-    IconOther,
-    IconPrinter,
     IconProblemes,
     IconRemoteControl,
     IconRemoteShell,
     IconRessources,
-    IconRetract,
     IconSave,
     IconScissors,
     IconSearch,
@@ -208,9 +143,6 @@ export {
     IconSquareChat,
     IconSquareClose,
     IconStatistics,
-    IconStatusBar,
-    IconStatusBarShort,
-    IconSystemStatus,
     IconTeam,
     IconTeamList,
     IconTechnicalQuestions,
@@ -225,15 +157,8 @@ export {
     IconTrashBin,
     IconUpload,
     IconUser,
-    IconWatcher,
-    IconWatcherBg,
     IconWatcherBlue,
     LogoBlancNoText,
-    LogoBlancSvg,
-    LogoBleuNoText,
-    LogoBLeuSvg,
-    LogoMonoBlanc,
-    LogoMonoNoir,
     LogoNeomanis,
     LogoWithText,
     NeoLogo,
@@ -242,11 +167,8 @@ export {
     SquareCross,
     StatusContainer,
     TabLogo,
-    TicketBottom,
-    TicketCenter,
     TicketLogo,
     TicketNew,
     TicketSave,
-    TicketTop,
     Triangle,
 };
