@@ -6,7 +6,7 @@ import Link from "./Link";
 
 export default {
     component: Link,
-    title: "Link",
+    title: "Atoms/Link",
 } as Meta;
 
 const Template: ComponentStory<typeof Link> = (args) => {

@@ -6,7 +6,7 @@ import Linkify from "./Linkify";
 
 export default {
     component: Linkify,
-    title: "Linkify",
+    title: "Atoms/Linkify",
 } as Meta;
 
 const Template: ComponentStory<typeof Linkify> = () => {

@@ -35,7 +35,11 @@ import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCircleCheck } from "./nm_ico_circle_check.svg";
 import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
+<<<<<<< HEAD
 import { ReactComponent as IconCodeFile } from "./nm_ico_code_file.svg";
+=======
+import { ReactComponent as IconColumn } from "./nm_ico_column.svg";
+>>>>>>> 6bbf1fb (create slider component to allow outside scroll control)
 import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
@@ -157,7 +161,11 @@ export {
     IconChevron,
     IconCircleCheck,
     IconCloud,
+<<<<<<< HEAD
     IconCodeFile,
+=======
+    IconColumn,
+>>>>>>> 6bbf1fb (create slider component to allow outside scroll control)
     IconComputer,
     IconConsole,
     IconDashboard,
