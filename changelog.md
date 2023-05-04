@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.5.1] 
+ :bento: added new icons, updated script icon and added a new blue color variant 
  ### [6.5.0] 
  :recycle: implemented neomanis user interface 
  ### [6.4.0] 
