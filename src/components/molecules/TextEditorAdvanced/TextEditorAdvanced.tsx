@@ -18,6 +18,7 @@ export interface TextEditorAdvancedProps {
     label?: string;
     labelClassName?: string;
     editable?: boolean;
+    previewOnly?: boolean;
 }
 
 const TextEditorAdvanced = ({
@@ -28,6 +29,7 @@ const TextEditorAdvanced = ({
     label,
     labelClassName,
     editable = false,
+    previewOnly = false,
 }: TextEditorAdvancedProps): ReactElement => {
     const { t } = useTranslation();
 
@@ -41,7 +43,7 @@ const TextEditorAdvanced = ({
                 CustomTextAlign.configure({ types: ["heading", "paragraph", "customImage"] }),
                 Underline,
                 CustomImage,
-                CustomCodeBlock,
+                CustomCodeBlock.configure({ previewOnly }),
             ],
             content: defaultValue
                 ? {

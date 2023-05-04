@@ -12,8 +12,10 @@ import { ReactComponent as HexagonResources } from "./nm_ico_hexagon_resources.s
 import { ReactComponent as HexagonRotate } from "./nm_design_kb_bg.svg";
 import { ReactComponent as HexagonShape } from "./nm_design_hexagon_shape.svg";
 import { ReactComponent as IconAdd } from "./nm_ico_add.svg";
+import { ReactComponent as IconAdd2 } from "./nm_ico_add_2.svg";
 import { ReactComponent as IconAdvancedSearch } from "./nm_ico_advanced_search.svg";
 import { ReactComponent as IconAgent } from "./nm_ico_agents.svg";
+import { ReactComponent as IconArrow } from "./nm_ico_arrow.svg";
 import { ReactComponent as IconArrowLeft } from "./nm_ico_arrow_left.svg";
 import { ReactComponent as IconArrowLogin } from "./nm_ico_arrow_login.svg";
 import { ReactComponent as IconArrowRight } from "./nm_ico_arrow_right.svg";
@@ -31,7 +33,9 @@ import { ReactComponent as IconChapterScript } from "./nm_ico_chapter_script.svg
 import { ReactComponent as IconChartPie } from "./nm_ico_chart-pie.svg";
 import { ReactComponent as IconCheck } from "./nm_ico_check.svg";
 import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
+import { ReactComponent as IconCircleCheck } from "./nm_ico_circle_check.svg";
 import { ReactComponent as IconCloud } from "./nm_ico_cloud.svg";
+import { ReactComponent as IconCodeFile } from "./nm_ico_code_file.svg";
 import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconConsole } from "./nm_ico_console.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
@@ -57,6 +61,7 @@ import { ReactComponent as IconLockOpen } from "./nm_ico_lock_open.svg";
 import { ReactComponent as IconLogin } from "./nm_ico_login.svg";
 import { ReactComponent as IconLogout } from "./nm_ico_logout.svg";
 import { ReactComponent as IconMaintenance } from "./nm_ico_maintenance.svg";
+import { ReactComponent as IconMinus } from "./nm_ico_minus.svg";
 import { ReactComponent as IconNotFound } from "./nm_ico_not_found.svg";
 import { ReactComponent as IconNotification } from "./nm_ico_notification.svg";
 import { ReactComponent as IconOther } from "./nm_ico_other.svg";
@@ -66,6 +71,7 @@ import { ReactComponent as IconRemoteControl } from "./nm_ico_remotecontrol.svg"
 import { ReactComponent as IconRemoteShell } from "./nm_ico_remoteshell.svg";
 import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
 import { ReactComponent as IconRetract } from "./nm_ico_retract.svg";
+import { ReactComponent as IconSave } from "./nm_ico_save.svg";
 import { ReactComponent as IconScissors } from "./nm_ico_scissors.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
 import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
@@ -86,6 +92,7 @@ import { ReactComponent as IconTechnicalQuestionsUnanswered } from "./nm_ico_tq_
 import { ReactComponent as IconTicketClosed } from "./nm_ico_ticket_closed.svg";
 import { ReactComponent as IconTicketSolved } from "./nm_ico_ticket_solved.svg";
 import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
+import { ReactComponent as IconUpload } from "./nm_ico_upload.svg";
 import { ReactComponent as IconUser } from "./nm_ico_user.svg";
 import { ReactComponent as IconWatcher } from "./nm_ico_watcher.svg";
 import { ReactComponent as IconWatcherBg } from "./nm_ico_watcher_bg.svg";
@@ -111,7 +118,6 @@ import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
 import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
 import { ReactComponent as TicketTop } from "./nm_design_ticket_top.svg";
 import { ReactComponent as Triangle } from "./nm_ico_triangle.svg";
-
 export {
     CautionLogo,
     CautionLogoFull,
@@ -127,8 +133,10 @@ export {
     HexagonRotate,
     HexagonShape,
     IconAdd,
+    IconAdd2,
     IconAdvancedSearch,
     IconAgent,
+    IconArrow,
     IconArrowLeft,
     IconArrowLogin,
     IconArrowRight,
@@ -146,7 +154,9 @@ export {
     IconChartPie,
     IconCheck,
     IconChevron,
+    IconCircleCheck,
     IconCloud,
+    IconCodeFile,
     IconComputer,
     IconConsole,
     IconDashboard,
@@ -172,6 +182,7 @@ export {
     IconLogin,
     IconLogout,
     IconMaintenance,
+    IconMinus,
     IconNotFound,
     IconNotification,
     IconOther,
@@ -181,6 +192,7 @@ export {
     IconRemoteShell,
     IconRessources,
     IconRetract,
+    IconSave,
     IconScissors,
     IconSearch,
     IconSetting,
@@ -201,6 +213,7 @@ export {
     IconTicketClosed,
     IconTicketSolved,
     IconTrash,
+    IconUpload,
     IconUser,
     IconWatcher,
     IconWatcherBg,

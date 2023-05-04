@@ -18,6 +18,7 @@ module.exports = {
                         planned: "#89D2FF",
                         dark: "#092847",
                         extraDark: "#0A1E32",
+                        intermediate: "#0D2E4F",
                     },
                     expanded: "#17212B",
                     light: {

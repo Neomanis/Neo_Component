@@ -16,7 +16,7 @@ const defaultDataStyle = "text-xs font-extrabold";
 interface Props {
     variant: keyof typeof variants;
     mainColor?: { text?: string; bg?: string };
-    label?: string;
+    label?: ReactNode;
     children?: ReactNode;
     className?: string;
     labelClassName?: string;

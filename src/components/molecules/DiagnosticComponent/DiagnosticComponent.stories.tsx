@@ -28,36 +28,31 @@ const Template: ComponentStory<typeof DiagnosticComponent> = (args) => {
 export const Default: ComponentStory<typeof DiagnosticComponent> = Template.bind({});
 Default.args = {
     diagnostic: fakeDiag.diagnostics[0],
-    redirectUrl: "/url",
-    navigate: (url, state) => console.log(url, state.state),
+    onNavigate: (bookId) => console.log(bookId),
 };
 
 export const DiagError: ComponentStory<typeof DiagnosticComponent> = Template.bind({});
 DiagError.args = {
     diagnostic: fakeDiagError.diagnostics[0],
-    redirectUrl: "/url",
-    navigate: (url, state) => console.log(url, state.state),
+    onNavigate: (bookId) => console.log(bookId),
     diagResultType: DiagnosticResult.Failed,
 };
 export const DiagAwaiting: ComponentStory<typeof DiagnosticComponent> = Template.bind({});
 DiagAwaiting.args = {
     diagnostic: fakeAwaitingDiag.diagnostics[0],
     awaiting: fakeAwaitingDiag.awaiting.at(-1),
-    redirectUrl: "/url",
-    navigate: (url, state) => console.log(url, state.state),
+    onNavigate: (bookId) => console.log(bookId),
     diagResultType: DiagnosticResult.Awaiting,
 };
 export const DiagOnlyAwaiting: ComponentStory<typeof DiagnosticComponent> = Template.bind({});
 DiagOnlyAwaiting.args = {
     diagnostic: fakeDiagOnlyApproval.diagnostics[0],
     awaiting: fakeDiagOnlyApproval.awaiting.at(-1),
-    redirectUrl: "/url",
-    navigate: (url, state) => console.log(url, state.state),
+    onNavigate: (bookId) => console.log(bookId),
     diagResultType: DiagnosticResult.Awaiting,
 };
 export const DiagChild: ComponentStory<typeof DiagnosticComponent> = Template.bind({});
 DiagChild.args = {
     diagChild: fakeDiagChild,
-    redirectUrl: "/url",
-    navigate: (url, state) => console.log(url, state.state),
+    onNavigate: (bookId) => console.log(bookId),
 };

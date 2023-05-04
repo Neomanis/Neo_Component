@@ -4,13 +4,11 @@ import DiagnosticBlock from "@/components/atoms/DiagnosticBlock";
 
 const DiagList = ({
     results,
-    redirectUrl,
-    navigate,
+    onNavigate,
     awaiting,
 }: {
     results: DiagResult[];
-    redirectUrl: string;
-    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
+    onNavigate: (bookId: string | undefined) => void;
     awaiting?: Awaiting;
 }): ReactElement => {
     const lastElement = results?.at(-1);
@@ -95,8 +93,7 @@ const DiagList = ({
                                 <DiagnosticComponent
                                     key={result.bookId + "Component" + key}
                                     diagChild={result}
-                                    redirectUrl={redirectUrl}
-                                    navigate={() => navigate(redirectUrl, { state: { bookId: result.bookId } })}
+                                    onNavigate={() => onNavigate(result.bookId)}
                                     awaiting={awaiting}
                                 />
                             );
@@ -109,13 +106,11 @@ const DiagList = ({
 
 const DiagBook = ({
     diagnostic,
-    navigate,
-    redirectUrl,
+    onNavigate,
     diagResultType,
 }: {
     diagnostic: CompactDiagnostic;
-    redirectUrl: string;
-    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
+    onNavigate: (bookId: string | undefined) => void;
     diagResultType?: string;
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
@@ -132,21 +127,19 @@ const DiagBook = ({
                 }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
-                redirectTo={() => navigate(redirectUrl, { state: { bookId: diagnostic.bookId } })}
+                redirectTo={() => onNavigate(diagnostic.bookId)}
             />
-            {bookOpen && <DiagList results={diagnostic.results} redirectUrl={redirectUrl} navigate={navigate} />}
+            {bookOpen && <DiagList results={diagnostic.results} onNavigate={onNavigate} />}
         </div>
     );
 };
 
 const DiagChild = ({
     diagChild,
-    navigate,
-    redirectUrl,
+    onNavigate,
 }: {
     diagChild: DiagResult;
-    redirectUrl: string;
-    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
+    onNavigate: (bookId: string | undefined) => void;
 }): ReactElement => {
     const [bookOpen, setBookOpen] = useState(true);
     const lastElement = diagChild.results?.at(-1);
@@ -161,11 +154,9 @@ const DiagChild = ({
                 }}
                 isOpen={bookOpen}
                 openBook={() => setBookOpen((oldValue) => !oldValue)}
-                redirectTo={() => navigate(redirectUrl, { state: { bookId: diagChild.bookId } })}
+                redirectTo={() => onNavigate(diagChild.bookId)}
             />
-            {bookOpen && diagChild.results && (
-                <DiagList results={diagChild.results} redirectUrl={redirectUrl} navigate={navigate} />
-            )}
+            {bookOpen && diagChild.results && <DiagList results={diagChild.results} onNavigate={onNavigate} />}
         </div>
     );
 };
@@ -189,16 +180,14 @@ function insertApproval(booknames: string[], description: string, results: DiagR
 const DiagnosticComponent = ({
     diagChild,
     diagnostic,
-    navigate,
-    redirectUrl,
+    onNavigate,
     awaiting,
     diagResultType,
 }: {
     diagChild?: DiagResult;
     diagnostic?: CompactDiagnostic;
-    redirectUrl: string;
     awaiting?: Awaiting;
-    navigate: (url: string, state: { state: { bookId: string | undefined } }) => void;
+    onNavigate: (bookId: string | undefined) => void;
     diagResultType?: string;
 }): ReactElement => {
     if (diagnostic) {
@@ -213,15 +202,8 @@ const DiagnosticComponent = ({
     }
     return (
         <div className="w-full">
-            {diagnostic && (
-                <DiagBook
-                    diagnostic={diagnostic}
-                    navigate={navigate}
-                    redirectUrl={redirectUrl}
-                    diagResultType={diagResultType}
-                />
-            )}
-            {diagChild && <DiagChild diagChild={diagChild} navigate={navigate} redirectUrl={redirectUrl} />}
+            {diagnostic && <DiagBook diagnostic={diagnostic} onNavigate={onNavigate} diagResultType={diagResultType} />}
+            {diagChild && <DiagChild diagChild={diagChild} onNavigate={onNavigate} />}
         </div>
     );
 };
