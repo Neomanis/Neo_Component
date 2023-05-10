@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.6.0] 
+ new neomanis user 
  ### [6.5.2] 
  :bento: added trash bin icon 
  ### [6.5.1] 
