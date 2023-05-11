@@ -1,5 +1,8 @@
 # Changelog 
 
+ ### [6.7.0] 
+ Create a slider to allow scrolling from outside a component
+Remove all unused svg and add some useful for role section 
  ### [6.6.0] 
  new neomanis user 
  ### [6.5.2] 
