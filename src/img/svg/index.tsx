@@ -30,6 +30,8 @@ import { ReactComponent as IconColumn } from "./nm_ico_column.svg";
 import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
 import { ReactComponent as IconDownload } from "./nm_ico_download.svg";
+import { ReactComponent as IconDuplicate } from "./nm_ico_duplicate.svg";
+import { ReactComponent as IconEdit } from "./nm_ico_edit.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
 import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.svg";
@@ -49,6 +51,8 @@ import { ReactComponent as IconProblemes } from "./nm_ico_problemes.svg";
 import { ReactComponent as IconRemoteControl } from "./nm_ico_remotecontrol.svg";
 import { ReactComponent as IconRemoteShell } from "./nm_ico_remoteshell.svg";
 import { ReactComponent as IconRessources } from "./nm_ico_ressources.svg";
+import { ReactComponent as IconRole } from "./nm_ico_role.svg";
+import { ReactComponent as IconRoleAdd } from "./nm_ico_role_add.svg";
 import { ReactComponent as IconSave } from "./nm_ico_save.svg";
 import { ReactComponent as IconScissors } from "./nm_ico_scissors.svg";
 import { ReactComponent as IconSearch } from "./nm_ico_search.svg";
@@ -117,6 +121,8 @@ export {
     IconComputer,
     IconDashboard,
     IconDownload,
+    IconDuplicate,
+    IconEdit,
     IconFlow,
     IconFullStar,
     IconHardwareSystem,
@@ -136,6 +142,8 @@ export {
     IconRemoteControl,
     IconRemoteShell,
     IconRessources,
+    IconRole,
+    IconRoleAdd,
     IconSave,
     IconScissors,
     IconSearch,
