@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.7.1] 
+ add missing import 
  ### [6.7.0] 
  Create a slider to allow scrolling from outside a component
 Remove all unused svg and add some useful for role section 
