@@ -1,4 +1,5 @@
 import { NeomanisUser, Notification, Ticket, MembershipInfo } from "@neomanis/neo-types";
+import { FakeUserPicture } from "@/img/png";
 import { addHours, addMinutes } from "date-fns";
 
 export const fakeTicket: Ticket = {
@@ -113,7 +114,7 @@ export const fakeUser: NeomanisUser = {
     lastname: "Test",
     role: "administrator",
     level: 0,
-    avatar: "_118283913_29xp-meme-mobilemasterat3x-v3.jpg",
+    avatar: FakeUserPicture,
     xmpp: {},
     language: "fr-FR",
     permissions: [],

@@ -35,3 +35,4 @@ export { default as Linkify } from "./Linkify";
 export { default as Link } from "./Link";
 export { default as ButtonFilter } from "./ButtonFilter";
 export { default as ScrollSlider } from "./ScrollSlider";
+export { default as UserTile } from "./UserTile";
