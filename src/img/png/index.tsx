@@ -1,5 +1,4 @@
 import DefaultUserPicture from "./defaultUserPicture.png";
-import FakeUserPicture from "./fakeuser.jpg";
 import LogoBleuCarre from "./logo_bleu_carre.png";
 import LogoBlanc from "./nm_logo_couleur_blanc_sans_texte.png";
 import LogoBleu from "./logo_bleu.png";
@@ -10,7 +9,6 @@ import ResourceIconEmpty from "./nm_ico_empty_resource.png";
 
 export {
     DefaultUserPicture,
-    FakeUserPicture,
     LogoBleuCarre,
     LogoBlanc,
     LogoBleu,
