@@ -4,6 +4,7 @@ import { ComponentStory, Meta } from "@storybook/react";
 
 import UserTile from "./UserTile";
 import { fakeUser } from "@/utils/storiesData/fakeObject";
+import { NeomanisUser } from "@neomanis/neo-types";
 
 export default {
     component: UserTile,
@@ -24,7 +25,7 @@ Default.args = {
 export const EmptyUser: ComponentStory<typeof UserTile> = Template.bind({});
 EmptyUser.args = {
     type: "user",
-    user: fakeUser,
+    user: {} as NeomanisUser,
     selectedId: 0,
 };
 
@@ -34,7 +35,7 @@ GroupTile.args = {
     group: {
         id: 0,
         itsmCode: "gl1",
-        name: "Nakama squad",
+        name: "Nakama yolo hop",
     },
     selectedId: 0,
 };
@@ -54,6 +55,6 @@ WithSizeAndNoText.args = {
         name: "Nakama squad",
     },
     selectedId: 1,
-    tileClassName: "h-56 w-56 text-3xl",
+    tileClassName: "h-16 w-16 text-3xl",
     showName: false,
 };

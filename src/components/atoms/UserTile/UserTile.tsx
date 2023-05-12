@@ -9,7 +9,7 @@ export interface UserTileProps {
     type: "user" | "group";
     user?: NeomanisUser;
     group?: MembershipInfo;
-    selectedId: number;
+    selectedId?: number;
     showName?: boolean;
     tileClassName?: string;
     textClassName?: string;
@@ -26,7 +26,10 @@ const UserTile = ({
     textClassName,
     onSelectCallback,
 }: UserTileProps): ReactElement => {
-    const isSelected = user ? user.neoId === selectedId : group ? group.id === selectedId : false;
+    let isSelected = false;
+    if (selectedId !== undefined) {
+        isSelected = user ? user.neoId === selectedId : group ? group.id === selectedId : false;
+    }
     const { t } = useTranslation();
 
     return type === "user" ? (
@@ -63,7 +66,7 @@ const UserTile = ({
             </div>
             {showName && (
                 <p className={classNames(textClassName ?? "mt-6 text-white")}>
-                    {user ? `${user.firstname} ${user.lastname}` : t("global.add")}
+                    {user ? `${user.firstname ?? ""} ${user.lastname ?? ""}` : t("global.add")}
                 </p>
             )}
         </div>
