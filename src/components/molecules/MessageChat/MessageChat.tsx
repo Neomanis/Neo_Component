@@ -43,7 +43,6 @@ const MessageChat = ({
     attachmentReadOnly = false,
 }: MessageChatProps): ReactElement => {
     const [hover, setHover] = useState(false);
-    console.log(avatar);
 
     return (
         <div className="w-full" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
