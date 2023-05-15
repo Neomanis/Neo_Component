@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.7.2] 
+ :bento: added entity related icons 
  ### [6.7.1] 
  add missing import 
  ### [6.7.0] 
