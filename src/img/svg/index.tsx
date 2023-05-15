@@ -27,11 +27,13 @@ import { ReactComponent as IconChevron } from "./nm_ico_chevron.svg";
 import { ReactComponent as IconCircleCheck } from "./nm_ico_circle_check.svg";
 import { ReactComponent as IconCodeFile } from "./nm_ico_code_file.svg";
 import { ReactComponent as IconColumn } from "./nm_ico_column.svg";
+import { ReactComponent as IconCompany } from "./nm_ico_company.svg";
 import { ReactComponent as IconComputer } from "./nm_ico_computer.svg";
 import { ReactComponent as IconDashboard } from "./nm_ico_dashboard.svg";
 import { ReactComponent as IconDownload } from "./nm_ico_download.svg";
 import { ReactComponent as IconDuplicate } from "./nm_ico_duplicate.svg";
 import { ReactComponent as IconEdit } from "./nm_ico_edit.svg";
+import { ReactComponent as IconEntity } from "./nm_ico_entity.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
 import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.svg";
@@ -60,6 +62,7 @@ import { ReactComponent as IconSetting } from "./nm_ico_settings.svg";
 import { ReactComponent as IconSquareChat } from "./nm_ico_square_chat.svg";
 import { ReactComponent as IconSquareClose } from "./nm_ico_square_close.svg";
 import { ReactComponent as IconStatistics } from "./nm_ico_statistics.svg";
+import { ReactComponent as IconSubEntity } from "./nm_ico_sub_entity.svg";
 import { ReactComponent as IconTeam } from "./nm_ico_team.svg";
 import { ReactComponent as IconTeamList } from "./nm_ico_team_list.svg";
 import { ReactComponent as IconTechnicalQuestions } from "./nm_ico_technical_questions.svg";
@@ -88,6 +91,7 @@ import { ReactComponent as TicketLogo } from "./nm_ico_ticket_normal.svg";
 import { ReactComponent as TicketNew } from "./nm_ico_ticket_new.svg";
 import { ReactComponent as TicketSave } from "./nm_ico_ticket_save.svg";
 import { ReactComponent as Triangle } from "./nm_ico_triangle.svg";
+
 export {
     CautionLogo,
     CautionLogoFull,
@@ -118,11 +122,13 @@ export {
     IconCircleCheck,
     IconCodeFile,
     IconColumn,
+    IconCompany,
     IconComputer,
     IconDashboard,
     IconDownload,
     IconDuplicate,
     IconEdit,
+    IconEntity,
     IconFlow,
     IconFullStar,
     IconHardwareSystem,
@@ -151,6 +157,7 @@ export {
     IconSquareChat,
     IconSquareClose,
     IconStatistics,
+    IconSubEntity,
     IconTeam,
     IconTeamList,
     IconTechnicalQuestions,
