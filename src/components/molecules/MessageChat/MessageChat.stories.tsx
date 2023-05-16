@@ -5,6 +5,7 @@ import WritingDots from "@/components/atoms/WritingDots";
 
 import MessageChat from "./MessageChat";
 import { MessageType } from "@neomanis/neo-types";
+import { fakeUser } from "@/utils/storiesData/fakeObject";
 
 export default {
     component: MessageChat,
@@ -123,7 +124,7 @@ EncodedAvatar.args = {
     date: "12:12",
     name: "Ragnaros The Firelord",
     type: MessageType.MESSAGE,
-    avatar: "blob-l-eponge.png",
+    avatar: fakeUser.avatar,
 };
 
 export const IsWriting: ComponentStory<typeof MessageChat> = Template2.bind({});

@@ -113,7 +113,7 @@ export const fakeUser: NeomanisUser = {
     lastname: "Test",
     role: "administrator",
     level: 0,
-    avatar: "_118283913_29xp-meme-mobilemasterat3x-v3.jpg",
+    avatar: "https://i.imgflip.com/2/4mkmdf.jpg",
     xmpp: {},
     language: "fr-FR",
     permissions: [],

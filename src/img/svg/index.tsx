@@ -36,6 +36,7 @@ import { ReactComponent as IconEdit } from "./nm_ico_edit.svg";
 import { ReactComponent as IconEntity } from "./nm_ico_entity.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
+import { ReactComponent as IconGroup } from "./nm_ico_group.svg";
 import { ReactComponent as IconHardwareSystem } from "./nm_ico_hardware_systems.svg";
 import { ReactComponent as IconInbox } from "./nm_ico_inbox.svg";
 import { ReactComponent as IconInfo } from "./nm_ico_info.svg";
@@ -77,6 +78,7 @@ import { ReactComponent as IconTrash } from "./nm_ico_trash.svg";
 import { ReactComponent as IconTrashBin } from "./nm_ico_trash_bin.svg";
 import { ReactComponent as IconUpload } from "./nm_ico_upload.svg";
 import { ReactComponent as IconUser } from "./nm_ico_user.svg";
+import { ReactComponent as IconUserTile } from "./nm_ico_user_tile.svg";
 import { ReactComponent as IconWatcherBlue } from "./nm_ico_watcher_blue.svg";
 import { ReactComponent as LogoBlancNoText } from "./nm_logo_couleur_blanc_sans_texte.svg";
 import { ReactComponent as LogoNeomanis } from "./nm_ico_neomanis.svg";
@@ -131,6 +133,7 @@ export {
     IconEntity,
     IconFlow,
     IconFullStar,
+    IconGroup,
     IconHardwareSystem,
     IconInbox,
     IconInfo,
@@ -172,6 +175,7 @@ export {
     IconTrashBin,
     IconUpload,
     IconUser,
+    IconUserTile,
     IconWatcherBlue,
     LogoBlancNoText,
     LogoNeomanis,

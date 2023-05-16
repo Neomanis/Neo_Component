@@ -72,7 +72,7 @@ const MessageChat = ({
                         <Img
                             type="imgProfile"
                             data={{
-                                src: avatar,
+                                src: "fakeuser.jpg",
                                 alt: "avatar",
                             }}
                             className="rounded-full w-full select-none"
