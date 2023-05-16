@@ -13,7 +13,7 @@ export interface UserTileProps {
     showName?: boolean;
     tileClassName?: string;
     textClassName?: string;
-    onSelectCallback: (information: NeomanisUser | MembershipInfo) => void;
+    onSelect: (information: NeomanisUser | MembershipInfo) => void;
 }
 
 const UserTile = ({
@@ -24,54 +24,56 @@ const UserTile = ({
     showName = true,
     tileClassName,
     textClassName,
-    onSelectCallback,
+    onSelect,
 }: UserTileProps): ReactElement => {
-    let isSelected = false;
-    if (selectedId !== undefined) {
-        isSelected = user ? user.neoId === selectedId : group ? group.id === selectedId : false;
-    }
     const { t } = useTranslation();
+    const isSelected = user ? user.neoId === selectedId : group ? group.id === selectedId : false;
 
-    return type === "user" ? (
-        <div className="relative group flex flex-col items-center" onClick={() => onSelectCallback(user)}>
-            <div
-                className={classNames(
-                    tileClassName ?? "h-[128px] w-[128px]",
-                    "relative rounded-full flex justify-center bg-neo-bg-B",
-                    isSelected && "border-4 border-neo-blue",
-                    !user && "hover:bg-neo-blue"
-                )}
-            >
-                {user ? (
-                    <img className="z-10 rounded-full" src={user.avatar ?? DefaultUserPicture} alt="User avatar" />
-                ) : (
-                    <SquareCross
-                        className={classNames(
-                            "w-[30%] h-auto rotate-45",
-                            isSelected ? "fill-white" : "fill-neo-link",
-                            !user && "group-hover:fill-white"
-                        )}
-                    />
-                )}
-
+    if (type === "user") {
+        return (
+            <div className="relative group flex flex-col items-center" onClick={() => onSelect(user)}>
                 <div
                     className={classNames(
-                        "absolute top-0 z-20 rounded-full h-full w-full bg-neo-blue flex items-center justify-center opacity-0 hover:cursor-pointer",
-                        user && "hover:opacity-80"
+                        tileClassName ?? "h-[128px] w-[128px]",
+                        "relative rounded-full flex justify-center bg-neo-bg-B",
+                        isSelected && "border-4 border-neo-blue",
+                        !user && "hover:bg-neo-blue"
                     )}
                 >
-                    <IconEdit className="fill-white w-[30%] h-auto" />
+                    {user ? (
+                        <img className="z-10 rounded-full" src={user.avatar ?? DefaultUserPicture} alt="User avatar" />
+                    ) : (
+                        <SquareCross
+                            data-testid="add-user"
+                            className={classNames(
+                                "w-[30%] h-auto rotate-45",
+                                isSelected ? "fill-white" : "fill-neo-link",
+                                !user && "group-hover:fill-white"
+                            )}
+                        />
+                    )}
+
+                    <div
+                        className={classNames(
+                            "absolute top-0 z-20 rounded-full h-full w-full bg-neo-blue flex items-center justify-center opacity-0 hover:cursor-pointer",
+                            user && "hover:opacity-80"
+                        )}
+                    >
+                        <IconEdit className="fill-white w-[30%] h-auto" />
+                    </div>
+                    <IconUserTile className="z-30 absolute -bottom-[20%] w-[30%] h-auto fill-white" />
                 </div>
-                <IconUserTile className="z-30 absolute -bottom-[20%] w-[30%] h-auto fill-white" />
+                {showName && (
+                    <p className={classNames(textClassName ?? "mt-6 text-white")}>
+                        {user ? `${user.firstname ?? ""} ${user.lastname ?? ""}` : t("global.add")}
+                    </p>
+                )}
             </div>
-            {showName && (
-                <p className={classNames(textClassName ?? "mt-6 text-white")}>
-                    {user ? `${user.firstname ?? ""} ${user.lastname ?? ""}` : t("global.add")}
-                </p>
-            )}
-        </div>
-    ) : (
-        <div className="relative flex flex-col items-center" onClick={() => onSelectCallback(group)}>
+        );
+    }
+
+    return (
+        <div className="relative flex flex-col items-center" onClick={() => onSelect(group)}>
             <div
                 className={classNames(
                     tileClassName ?? "h-[128px] w-[128px] text-[24px]",
@@ -87,13 +89,10 @@ const UserTile = ({
                     )}
                 >
                     {group ? (
-                        group.name
-                            .match(/\b(\w)/g)
-                            .splice(0, 2)
-                            .join("")
-                            .toUpperCase()
+                        getGroupInitials(group.name)
                     ) : (
                         <SquareCross
+                            data-testid="add-group"
                             className={classNames(
                                 "w-[30%] h-auto rotate-45",
                                 isSelected ? "fill-white" : "fill-neo-link",
@@ -120,3 +119,11 @@ const UserTile = ({
 };
 
 export default UserTile;
+
+function getGroupInitials(name: string) {
+    return name
+        .match(/\b(\w)/g)
+        .splice(0, 2)
+        .join("")
+        .toUpperCase();
+}
