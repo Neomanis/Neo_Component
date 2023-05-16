@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.8.0] 
+ Add UserTile Component for entity/user admin screen 
  ### [6.7.2] 
  :bento: added entity related icons 
  ### [6.7.1] 
