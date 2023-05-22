@@ -2,6 +2,7 @@ import React, { ReactElement, useRef, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import Placeholder from "@tiptap/extension-placeholder";
 import { MenuButtons, TipTapMenu } from "./TipTapMenu";
 import Underline from "@tiptap/extension-underline";
 import { classNames, createTimeout } from "@/utils";
@@ -13,6 +14,7 @@ import { Updater } from "@/components/atoms";
 // This fix a hot reload crash due to a issue with prosemirror
 // see https://github.com/ueberdosis/tiptap/issues/1451#issuecomment-953348865
 import { EditorView } from "prosemirror-view";
+
 EditorView.prototype.updateState = function updateState(state) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -31,6 +33,7 @@ export interface TipTapProps {
     label?: string;
     labelClassName?: string;
     menuButtonsFilter?: MenuButtons[];
+    placeholder?: string;
     refForm: string;
     required?: boolean;
     updateFunction?: (field: string, value: string) => void;
@@ -46,6 +49,7 @@ const TipTap = ({
     label,
     labelClassName = "text-xs font-bold text-neo-blue-secondary ml-4",
     menuButtonsFilter,
+    placeholder,
     refForm,
     required = false,
     updateFunction,
@@ -79,6 +83,9 @@ const TipTap = ({
                     types: ["heading", "paragraph"],
                 }),
                 Underline,
+                Placeholder.configure({
+                    placeholder: placeholder,
+                }),
             ],
             content: value,
             editable: !readOnly,
