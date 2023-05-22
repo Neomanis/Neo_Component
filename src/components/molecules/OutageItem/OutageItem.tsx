@@ -36,10 +36,10 @@ const OutageItem = ({ data, isNotSelected, hoverInCallBack, hoverOutCallBack }: 
                 <IconOutageCategory id={data.type === "event" ? 1 : 2} svgFill={colorSVGOutage} className="w-10" />
             </div>
             <div className={`divide-y-2 divide-${colorOutage} col-span-10`}>
-                <div className="h-8 flex items-center">
+                <div className="h-10 flex items-center">
                     <Title
                         data={data.title}
-                        type={"h2"}
+                        type="h2"
                         className="font-extrabold uppercase text-lg line-clamp-2"
                         style={{ lineHeight: "110%" }}
                     />
