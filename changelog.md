@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.1] 
+ update css outageItem 
  ### [6.9.0] 
  add placeholder for tiptap<br>![image](/attachments/665a43fe-02da-4d14-8e0e-10a82fa358ca) 
  ### [6.8.0] 
