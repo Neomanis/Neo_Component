@@ -27,6 +27,7 @@ const Template: ComponentStory<typeof TipTap> = (args) => {
                 isUpdateField
                 updateFunction={(field, value) => console.log(field, value)}
                 required
+                placeholder="Write something here..."
             />
         </form>
     );
