@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useEffect } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
+import { useEditor, EditorContent, FocusPosition } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -29,6 +29,7 @@ export interface TipTapProps {
     defaultValue?: string;
     formMethods: UseFormReturn;
     id?: string;
+    isAutoFocus?: FocusPosition;
     isUpdateField?: boolean;
     label?: string;
     labelClassName?: string;
@@ -45,6 +46,7 @@ const TipTap = ({
     defaultValue = "",
     formMethods,
     id,
+    isAutoFocus = false,
     isUpdateField = false,
     label,
     labelClassName = "text-xs font-bold text-neo-blue-secondary ml-4",
@@ -87,6 +89,7 @@ const TipTap = ({
                     placeholder: placeholder,
                 }),
             ],
+            autofocus: isAutoFocus,
             content: value,
             editable: !readOnly,
             onUpdate: ({ editor }) => {
