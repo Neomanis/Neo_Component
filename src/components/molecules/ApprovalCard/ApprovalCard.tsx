@@ -1,4 +1,5 @@
 import { Button } from "@/components/atoms";
+import { classNames } from "@/utils";
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { Dispatch, ReactElement, SetStateAction, useState } from "react";
@@ -32,6 +33,10 @@ const ApprovalCard = ({
     const [isFolded, setIsFolded] = useState<boolean>(true);
     const [isError, setIsError] = useState(false);
 
+    function splitContent(data: string) {
+        return data.split("\n");
+    }
+
     return (
         <div
             onClick={(e) => {
@@ -41,12 +46,16 @@ const ApprovalCard = ({
             className="cursor-pointer min-h-24 mb-7 w-full bg-neo-bg-B bg-opacity-50 flex items-center justify-between py-3 pl-3 rounded-md z-10"
         >
             <div className="flex flex-col text-white w-full">
-                <p className={`${isFolded ? "line-clamp-2" : ""} mb-3 text-sm`}>
-                    <span className="font-medium" style={{ fontSize: "1.02rem" }}>
-                        {sender}
+                <p className={classNames(isFolded && "line-clamp-2", " mb-3 text-sm")}>
+                    <span className="mb-2 flex items-center font-bold text-2xl">
+                        <p className="mr-2">{sender}</p>
+                        <p>{approvalRequestText}</p>
                     </span>
-                    {approvalRequestText}
-                    <span style={{ fontSize: "1.02rem" }}> {content}</span>
+                    <span className="text-xl">
+                        {splitContent(content).map((item) => (
+                            <p>{item}</p>
+                        ))}
+                    </span>
                 </p>
                 <div className="flex justify-between w-full">
                     <p className="text-xs text-neo-link whitespace-nowrap mt-2">{date}</p>
