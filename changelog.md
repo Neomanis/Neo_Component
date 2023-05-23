@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.2] 
+ add split-Content in ApprovalCard 
  ### [6.9.1] 
  update css outageItem 
  ### [6.9.0] 
