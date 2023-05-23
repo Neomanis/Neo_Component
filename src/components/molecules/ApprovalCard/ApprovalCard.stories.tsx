@@ -15,7 +15,8 @@ const Template: ComponentStory<typeof ApprovalCard> = (args) => {
 
 export const Default: ComponentStory<typeof ApprovalCard> = Template.bind({});
 Default.args = {
-    content: "access to Printer.",
+    content:
+        "access to Printer. \n test de saut de ligne blzalfdls fledslf lsezl ferzl flre ferl \n fkdks fkk sfkd skfkd s",
     date: "2021-09-05 10:58:24",
     fManageApproval: async () => console.log("hello"),
     sender: "Toto",
