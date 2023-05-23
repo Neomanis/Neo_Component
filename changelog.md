@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.3] 
+ add autofocus props for input 
  ### [6.9.2] 
  add split-Content in ApprovalCard 
  ### [6.9.1] 
