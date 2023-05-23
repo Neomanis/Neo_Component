@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useEffect, useState } from "react";
+import React, { ReactElement, useRef, useEffect } from "react";
 import { useEditor, EditorContent, FocusPosition } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
@@ -58,7 +58,6 @@ const TipTap = ({
     readOnly = false,
 }: TipTapProps): ReactElement => {
     const timer = useRef<ReturnType<typeof createTimeout> | null>(null);
-
     const { t } = useTranslation();
     const [state, dispatch] = useInputs(defaultValue);
     const {
