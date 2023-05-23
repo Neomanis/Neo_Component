@@ -45,6 +45,18 @@ Default.args = {
     readOnly: false,
     defaultValue: "text",
 };
+export const AutoFocus: ComponentStory<typeof Input> = Template.bind({});
+AutoFocus.args = {
+    inputClassName: "bg-neo-bg-B p-2 rounded text-white mr-2",
+    required: true,
+    errorMessage: "error",
+    typeInput: "input",
+    placeholder: "Default Input",
+    isUpdateField: true,
+    readOnly: false,
+    defaultValue: "text",
+    isAutoFocus: true,
+};
 export const ReadOnly: ComponentStory<typeof Input> = Template.bind({});
 ReadOnly.args = {
     inputClassName: "bg-neo-bg-B p-2 rounded text-white mr-2",
