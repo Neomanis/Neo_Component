@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.5] 
+ add autofocus for texteditoradvanced 
  ### [6.9.4] 
  add autofocus to tiptap 
  ### [6.9.3] 
