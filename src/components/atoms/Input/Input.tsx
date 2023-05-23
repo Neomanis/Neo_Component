@@ -19,6 +19,7 @@ export interface InputProps {
     prefixClassName?: string;
     prefix?: string;
     inputClassName?: string;
+    isAutoFocus?: boolean;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
@@ -54,6 +55,7 @@ const Input = ({
     prefixClassName,
     errorMessage,
     inputClassName,
+    isAutoFocus = false,
     isError,
     isUpdateField = false,
     label,
@@ -147,6 +149,7 @@ const Input = ({
                 <div className={inputBoxClassName}>
                     <span className={prefixClassName}>{prefix}</span>
                     <input
+                        autoFocus={isAutoFocus}
                         data-testid="input"
                         {...inputRegister}
                         className={`${inputClassName} w-full`}
