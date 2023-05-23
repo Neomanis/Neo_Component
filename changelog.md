@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.4] 
+ add autofocus to tiptap 
  ### [6.9.3] 
  add autofocus props for input 
  ### [6.9.2] 
