@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.9.7] 
+ Make input clearable 
  ### [6.9.6] 
  change src value for avatar url 
  ### [6.9.5] 
