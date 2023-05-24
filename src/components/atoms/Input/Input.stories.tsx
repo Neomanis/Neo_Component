@@ -13,6 +13,7 @@ export default {
 const Template: ComponentStory<typeof Input> = (args) => {
     const {
         setValue,
+        resetField,
         register,
         handleSubmit,
         formState: { errors },
@@ -29,6 +30,7 @@ const Template: ComponentStory<typeof Input> = (args) => {
                 setValue={setValue}
                 refForm="exemple"
                 isError={errors?.exemple && true}
+                resetField={resetField}
             />
             <button>Submit</button>
         </form>
@@ -44,6 +46,18 @@ Default.args = {
     isUpdateField: true,
     readOnly: false,
     defaultValue: "text",
+};
+export const Clearable: ComponentStory<typeof Input> = Template.bind({});
+Clearable.args = {
+    inputClassName: "bg-neo-bg-B p-2 rounded text-white mr-2",
+    required: true,
+    errorMessage: "error",
+    typeInput: "input",
+    placeholder: "Input clearable",
+    isUpdateField: false,
+    readOnly: false,
+    defaultValue: "",
+    isClearable: true,
 };
 export const AutoFocus: ComponentStory<typeof Input> = Template.bind({});
 AutoFocus.args = {

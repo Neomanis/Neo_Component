@@ -1,10 +1,11 @@
 import React, { InputHTMLAttributes, ReactElement, useEffect, useRef } from "react";
-import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { UseFormClearErrors, FieldValues, UseFormRegister, UseFormSetValue, UseFormResetField } from "react-hook-form";
 import { ReactHookFormCustomValidation } from "@neomanis/neo-types";
 import { useInputs } from "@/utils/hooks/useInputs";
 import Updater from "../Updater";
 import Icon from "../Icon";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { Button, CloseLogo, NeoColors, classNames } from "@/index";
 
 export interface InputProps {
     autoComplete?: "on" | "off";
@@ -20,6 +21,7 @@ export interface InputProps {
     prefix?: string;
     inputClassName?: string;
     isAutoFocus?: boolean;
+    isClearable?: boolean;
     isError?: boolean;
     isUpdateField?: boolean;
     label?: string;
@@ -33,6 +35,7 @@ export interface InputProps {
     refForm: string;
     register?: UseFormRegister<FieldValues>;
     required?: boolean;
+    resetField?: UseFormResetField<FieldValues>;
     setValue?: UseFormSetValue<FieldValues>;
     showLabelAndUpdater?: boolean;
     style?: React.CSSProperties;
@@ -56,6 +59,7 @@ const Input = ({
     errorMessage,
     inputClassName,
     isAutoFocus = false,
+    isClearable = false,
     isError,
     isUpdateField = false,
     label,
@@ -69,6 +73,7 @@ const Input = ({
     refForm,
     register,
     required,
+    resetField,
     setValue,
     showLabelAndUpdater = true,
     style,
@@ -148,52 +153,69 @@ const Input = ({
                 </div>
                 <div className={inputBoxClassName}>
                     <span className={prefixClassName}>{prefix}</span>
-                    <input
-                        autoFocus={isAutoFocus}
-                        data-testid="input"
-                        {...inputRegister}
-                        className={`${inputClassName} w-full`}
-                        defaultValue={defaultValue}
-                        autoComplete={autoComplete}
-                        disabled={readOnly}
-                        onBlur={(e): void => {
-                            if (!readOnly) {
-                                onBlurCallBack && onBlurCallBack();
-                                if (isUpdateField && state.previous !== e.target.value && !isError) {
-                                    dispatch({ type: "UPDATING", payload: e.target.value });
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
+                    <div className={classNames(isClearable && !readOnly && "flex items-center")}>
+                        <input
+                            id={props.id}
+                            autoFocus={isAutoFocus}
+                            data-testid="input"
+                            {...inputRegister}
+                            className={classNames(inputClassName, "w-full", isClearable && !readOnly && "pr-8")}
+                            defaultValue={defaultValue}
+                            autoComplete={autoComplete}
+                            disabled={readOnly}
+                            onBlur={(e): void => {
+                                if (!readOnly) {
+                                    onBlurCallBack && onBlurCallBack();
+                                    if (isUpdateField && state.previous !== e.target.value && !isError) {
+                                        dispatch({ type: "UPDATING", payload: e.target.value });
+                                        if (state.timeoutId) {
+                                            clearTimeout(state.timeoutId);
+                                        }
                                     }
                                 }
-                            }
-                        }}
-                        onFocus={() => !readOnly && onFocusCallBack && onFocusCallBack()}
-                        onChange={(e): void => {
-                            if (!readOnly) {
-                                onChangeCallBack && onChangeCallBack(e.target.value);
-                                inputRegister && inputRegister.onChange(e);
-                                if (isUpdateField) {
-                                    if (state.previous !== e.target.value) {
-                                        dispatch({ type: "SHOW_DOT" });
-                                    } else {
-                                        dispatch({ type: "CANCEL_UPDATE" });
-                                    }
-                                    if (state.timeoutId) {
-                                        clearTimeout(state.timeoutId);
+                            }}
+                            onFocus={() => !readOnly && onFocusCallBack && onFocusCallBack()}
+                            onChange={(e): void => {
+                                if (!readOnly) {
+                                    onChangeCallBack && onChangeCallBack(e.target.value);
+                                    inputRegister && inputRegister.onChange(e);
+                                    if (isUpdateField) {
+                                        if (state.previous !== e.target.value) {
+                                            dispatch({ type: "SHOW_DOT" });
+                                        } else {
+                                            dispatch({ type: "CANCEL_UPDATE" });
+                                        }
+                                        if (state.timeoutId) {
+                                            clearTimeout(state.timeoutId);
+                                        }
                                     }
                                 }
-                            }
-                        }}
-                        pattern={pattern}
-                        placeholder={placeholder}
-                        type={typeInput}
-                        style={style}
-                        {...props}
-                    />
+                            }}
+                            pattern={pattern}
+                            placeholder={placeholder}
+                            type={typeInput}
+                            style={style}
+                            {...props}
+                        />
+                        {isClearable && !readOnly && (
+                            <Button
+                                startIcon={<CloseLogo className="w-3 h-3" fill={NeoColors.link} />}
+                                onClick={() => !readOnly && resetField && resetField(refForm)}
+                                variant="none"
+                                size="none"
+                                className="absolute top-1/2 translate-y-1/2 right-5"
+                                id={`${props.id}-clear`}
+                            />
+                        )}
+                    </div>
+
                     {isUpdateField && !readOnly && (
                         <Icon
                             fontIcon={faPenToSquare}
-                            className="group-hover:opacity-100 opacity-0 text-neo-link absolute right-2 top-1/2 mt-1 transition-all"
+                            className={classNames(
+                                "group-hover:opacity-100 opacity-0 text-neo-link absolute top-1/2 mt-1 transition-all",
+                                isClearable ? "right-10" : "right-2"
+                            )}
                         />
                     )}
                 </div>
