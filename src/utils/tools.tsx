@@ -10,6 +10,7 @@ import {
 } from "@neomanis/neo-types";
 import { TFunction } from "@neomanis/neo-translation";
 import NeoColors from "./neoColors";
+import { ReactElement } from "react";
 
 type EnumType = {
     [key: number]: string;
@@ -265,4 +266,21 @@ export function getAcceptFileType() {
         arrayObjects.push(propertyKey);
     }
     return arrayObjects;
+}
+
+export function decorateMessagePart(
+    content: string,
+    needed: string | RegExp,
+    decoration: "b" | "u" | "i" | "s"
+): ReactElement {
+    const items = content.match(needed);
+    if (!items) {
+        return <p>{content}</p>;
+    }
+    let decoratedContent = content;
+    items.forEach((item) => {
+        decoratedContent = decoratedContent.replace(item, `<${decoration}>${item}</${decoration}>`);
+    });
+
+    return <p dangerouslySetInnerHTML={{ __html: decoratedContent }}></p>;
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo, useState } from "react";
-import { classNames } from "@/utils/tools";
+import { classNames, decorateMessagePart } from "@/utils/tools";
 import Linkify from "../Linkify";
 import { IconTrash } from "@/img/svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -100,9 +100,13 @@ const BubbleChat = ({
                             <p data-testid="bubbleChat-deleteDate">{formatDateToNow(deleteDate, i18n.language)}</p>
                         </div>
                     )}
-                    <p className={classNames("text-white break-words transition-all px-2")}>
-                        <Linkify>{content}</Linkify>
-                    </p>
+                    <div className={classNames("text-white break-words transition-all px-2")}>
+                        <Linkify>
+                            {typeof content === "string"
+                                ? decorateMessagePart(content, new RegExp(/(\[(\w){3}\])\s(INC|DEM)\s\d+/g), "b")
+                                : content}
+                        </Linkify>
+                    </div>
                 </div>
             </div>
 

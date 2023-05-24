@@ -79,3 +79,10 @@ WithLink.args = {
     content:
         "Regarde cette question : https://mortis.neomanis.bzh/technical-questions/64108b9f45cc87da8ae3a0dc et sinon tu peux toujours google.com",
 };
+
+export const WithTicketId: ComponentStory<typeof BubbleChat> = Template.bind({});
+WithTicketId.args = {
+    bgColor: "bg-neo-bg-B",
+    content:
+        "Le ticket [TRI] INC 212 a été créé, un technicien reviendra vers vous dès que possible. Et pour le plaisir tiens ça ressemble à lui: [RIT] DEM 666",
+};
