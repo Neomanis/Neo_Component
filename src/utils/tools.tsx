@@ -271,7 +271,7 @@ export function getAcceptFileType() {
 export function decorateMessagePart(
     content: string,
     needed: string | RegExp,
-    decoration: "b" | "u" | "i" | "s"
+    decoration: "strong" | "u" | "em" | "del" | "mark"
 ): ReactElement {
     const items = content.match(needed);
     if (!items) {

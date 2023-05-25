@@ -84,5 +84,5 @@ export const WithTicketId: ComponentStory<typeof BubbleChat> = Template.bind({})
 WithTicketId.args = {
     bgColor: "bg-neo-bg-B",
     content:
-        "Le ticket [TRI] INC 212 a été créé, un technicien reviendra vers vous dès que possible. Et pour le plaisir tiens ça ressemble à lui: [RIT] DEM 666",
+        "Le ticket [TRI] INC 212 a été créé, un technicien reviendra vers vous dès que possible. Et pour le plaisir tiens ça ressemble à lui: [RIT] REQ 666",
 };

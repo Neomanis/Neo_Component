@@ -103,7 +103,7 @@ const BubbleChat = ({
                     <div className={classNames("text-white break-words transition-all px-2")}>
                         <Linkify>
                             {typeof content === "string"
-                                ? decorateMessagePart(content, new RegExp(/(\[(\w){3}\])\s(INC|DEM)\s\d+/g), "b")
+                                ? decorateMessagePart(content, new RegExp(/(\[(\w){3}\])\s(INC|REQ)\s\d+/g), "strong")
                                 : content}
                         </Linkify>
                     </div>
