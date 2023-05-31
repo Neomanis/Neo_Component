@@ -34,6 +34,7 @@ import { ReactComponent as IconDownload } from "./nm_ico_download.svg";
 import { ReactComponent as IconDuplicate } from "./nm_ico_duplicate.svg";
 import { ReactComponent as IconEdit } from "./nm_ico_edit.svg";
 import { ReactComponent as IconEntity } from "./nm_ico_entity.svg";
+import { ReactComponent as IconEntityAdd } from "./nm_ico_entity_add.svg";
 import { ReactComponent as IconFlow } from "./nm_ico_flow.svg";
 import { ReactComponent as IconFullStar } from "./nm_ico_rating_fullstar.svg";
 import { ReactComponent as IconGroup } from "./nm_ico_group.svg";
@@ -131,6 +132,7 @@ export {
     IconDuplicate,
     IconEdit,
     IconEntity,
+    IconEntityAdd,
     IconFlow,
     IconFullStar,
     IconGroup,
