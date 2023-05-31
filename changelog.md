@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.10.1] 
+ :bento: added entity add icon 
  ### [6.10.0] 
  add decoration for ticketID in chatMessage 
  ### [6.9.7] 
