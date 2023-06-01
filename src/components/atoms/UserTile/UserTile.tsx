@@ -71,7 +71,12 @@ const UserTile = ({
                     >
                         <IconEdit className="fill-white w-[30%] h-auto" />
                     </div>
-                    <IconUserTile className="z-30 absolute -bottom-[20%] w-[30%] h-auto fill-white" />
+                    <IconUserTile
+                        className={classNames(
+                            "z-30 absolute w-[42px] h-[42px] fill-white",
+                            isSelected ? "-bottom-[29px]" : "-bottom-[25px]"
+                        )}
+                    />
                 </div>
                 {showName && (
                     <p className={classNames(textClassName ?? "mt-6 text-white")}>
@@ -122,7 +127,12 @@ const UserTile = ({
                 >
                     <IconEdit className="fill-white w-[30%] h-auto" />
                 </div>
-                <IconGroup className="z-30 absolute -bottom-[22%] w-[35%] h-auto fill-white" />
+                <IconGroup
+                    className={classNames(
+                        "z-30 absolute w-[42px] h-[42px] fill-white",
+                        isSelected ? "-bottom-[29px]" : "-bottom-[25px]"
+                    )}
+                />
             </div>
             {showName && (
                 <p className={classNames(textClassName ?? "mt-6 text-white")}>{group ? group.name : t("global.add")}</p>
