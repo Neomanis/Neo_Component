@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.10.2] 
+ allow readonly mode on userTile 
  ### [6.10.1] 
  :bento: added entity add icon 
  ### [6.10.0] 
