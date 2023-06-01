@@ -58,3 +58,15 @@ WithSizeAndNoText.args = {
     tileClassName: "h-16 w-16 text-3xl",
     showName: false,
 };
+
+export const ReadOnly: ComponentStory<typeof UserTile> = Template.bind({});
+ReadOnly.args = {
+    type: "group",
+    group: {
+        id: 0,
+        itsmCode: "gl1",
+        name: "Nakama squad",
+    },
+    selectedId: 1,
+    readOnly: true,
+};
