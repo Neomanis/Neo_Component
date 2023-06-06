@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.11.0] 
+ Add placeholder props for TextEditorAdvanced 
  ### [6.10.4] 
  delete SimilarTicket 
  ### [6.10.3] 
