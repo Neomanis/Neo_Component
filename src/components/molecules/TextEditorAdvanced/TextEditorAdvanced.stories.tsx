@@ -40,6 +40,7 @@ const Template2: ComponentStory<typeof TextEditorAdvanced> = (args) => {
                 required
                 previewOnly
                 isAutoFocus="end"
+                placeholder="Toto can write here"
             />
         </form>
     );

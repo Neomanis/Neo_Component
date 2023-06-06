@@ -3,6 +3,7 @@ import { useController, UseFormReturn } from "react-hook-form";
 import { useEditor, EditorContent, JSONContent, FocusPosition } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
+import Placeholder from "@tiptap/extension-placeholder";
 import { classNames } from "@/utils";
 import { TextEditorAdvancedMenu } from "./TextEditorAdvancedMenu";
 import { useTranslation } from "@neomanis/neo-translation";
@@ -20,6 +21,7 @@ export interface TextEditorAdvancedProps {
     editable?: boolean;
     previewOnly?: boolean;
     isAutoFocus?: FocusPosition;
+    placeholder?: string;
 }
 
 const TextEditorAdvanced = ({
@@ -32,6 +34,7 @@ const TextEditorAdvanced = ({
     editable = false,
     previewOnly = false,
     isAutoFocus = false,
+    placeholder,
 }: TextEditorAdvancedProps): ReactElement => {
     const { t } = useTranslation();
 
@@ -46,6 +49,9 @@ const TextEditorAdvanced = ({
                 Underline,
                 CustomImage,
                 CustomCodeBlock.configure({ previewOnly }),
+                Placeholder.configure({
+                    placeholder: placeholder ?? t("global.content"),
+                }),
             ],
             autofocus: isAutoFocus,
             content: defaultValue
