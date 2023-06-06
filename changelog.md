@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.10.4] 
+ delete SimilarTicket 
  ### [6.10.3] 
  fix absolute position of icon under image 
  ### [6.10.2] 
