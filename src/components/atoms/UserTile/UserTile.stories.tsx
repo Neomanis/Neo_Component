@@ -12,7 +12,7 @@ export default {
 } as Meta;
 
 const Template: ComponentStory<typeof UserTile> = (args) => {
-    return <UserTile {...args} />;
+    return <UserTile tileWidth={128} {...args} />;
 };
 
 export const Default: ComponentStory<typeof UserTile> = Template.bind({});
@@ -35,7 +35,7 @@ GroupTile.args = {
     group: {
         id: 0,
         itsmCode: "gl1",
-        name: "Nakama yolo hop",
+        name: "Nakama yolo hopp",
     },
     selectedId: 0,
 };
