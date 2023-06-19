@@ -1,5 +1,7 @@
 # Changelog 
 
+ ### [6.11.1] 
+ add tooltip when name is too long<br>![image](/attachments/fca82646-06ac-4a7a-84ba-7e32706ea822) 
  ### [6.11.0] 
  Add placeholder props for TextEditorAdvanced 
  ### [6.10.4] 
