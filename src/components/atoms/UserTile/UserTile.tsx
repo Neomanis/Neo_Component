@@ -1,13 +1,15 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { MembershipInfo, NeomanisUser } from "@neomanis/neo-types";
 import { IconEdit, IconGroup, SquareCross, IconUserTile } from "@/img/svg";
 import { classNames } from "@/utils";
 import { useTranslation } from "@neomanis/neo-translation";
 import { DefaultUserPicture } from "@/img/png";
 import Img from "../Img";
+import Tooltip from "../Tooltip/Tooltip";
 
 export interface UserTileProps {
     type: "user" | "group";
+    tileWidth: number;
     user?: NeomanisUser;
     group?: MembershipInfo;
     readOnly?: boolean;
@@ -20,6 +22,7 @@ export interface UserTileProps {
 
 const UserTile = ({
     type,
+    tileWidth,
     user,
     group,
     selectedId,
@@ -30,11 +33,19 @@ const UserTile = ({
     onSelect,
 }: UserTileProps): ReactElement => {
     const { t } = useTranslation();
+    const [showTooltip, setShowTooltip] = useState(false);
     const isSelected = user ? user.neoId === selectedId : group ? group.id === selectedId : false;
+
+    function isOverflow(element: HTMLDivElement) {
+        if (element?.clientWidth) {
+            setShowTooltip(element.clientWidth === tileWidth);
+        }
+    }
 
     if (type === "user") {
         return (
             <div
+                style={{ width: tileWidth }}
                 className={classNames("relative group flex flex-col items-center", !readOnly && "cursor-pointer")}
                 onClick={() => !readOnly && onSelect(user)}
             >
@@ -79,9 +90,13 @@ const UserTile = ({
                     />
                 </div>
                 {showName && (
-                    <p className={classNames(textClassName ?? "mt-6 text-white")}>
-                        {user ? `${user.firstname ?? ""} ${user.lastname ?? ""}` : t("global.add")}
-                    </p>
+                    <Tooltip position="bottom" text={`${user?.firstname} ${user?.lastname}`} disabled={!showTooltip}>
+                        <div className={classNames(textClassName ?? "mt-6 text-white", "line-clamp-1 break-all")}>
+                            <p ref={isOverflow}>
+                                {user ? `${user.firstname ?? ""} ${user.lastname ?? ""}` : t("global.add")}
+                            </p>
+                        </div>
+                    </Tooltip>
                 )}
             </div>
         );
@@ -89,6 +104,7 @@ const UserTile = ({
 
     return (
         <div
+            style={{ width: tileWidth }}
             className={classNames("relative flex flex-col items-center", !readOnly && "cursor-pointer")}
             onClick={() => !readOnly && onSelect(group)}
         >
@@ -135,7 +151,11 @@ const UserTile = ({
                 />
             </div>
             {showName && (
-                <p className={classNames(textClassName ?? "mt-6 text-white")}>{group ? group.name : t("global.add")}</p>
+                <Tooltip position="bottom" text={group?.name} disabled={!showTooltip}>
+                    <div className={classNames(textClassName ?? "mt-6 text-white", "line-clamp-1 break-all")}>
+                        <p ref={isOverflow}>{group ? group.name : t("global.add")}</p>
+                    </div>
+                </Tooltip>
             )}
         </div>
     );
